@@ -1,0 +1,44 @@
+/.htaccess
+/index.php
+/license.txt
+/local-xdebuginfo.php
+/readme.html
+/remove_mapbox_token.bat
+/remove_mapbox_token.ps1
+/remove_mapbox_token.py
+/wp-activate.php
+/wp-admin
+/wp-blog-header.php
+/wp-comments-post.php
+/wp-config-sample.php
+/wp-config.php
+/wp-cron.php
+/wp-includes
+/wp-links-opml.php
+/wp-load.php
+/wp-login.php
+/wp-mail.php
+/wp-settings.php
+/wp-signup.php
+/wp-trackback.php
+/xmlrpc.php
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Build and generated assets
+wp-content/plugins/uixpress/app/dist/
+*.map
+
+# Node/Vendor
+node_modules/
+vendor/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db

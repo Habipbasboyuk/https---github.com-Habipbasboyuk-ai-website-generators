@@ -1,0 +1,2652 @@
+{
+  "domain": "uixpress",
+  "locale_data": {
+    "uixpress": {
+      "": {
+        "domain": "uixpress",
+        "lang": "tr_TR",
+        "plural-forms": "nplurals=2; plural=(n != 1);"
+      },
+      "Every 30 Seconds": [
+        "Her 30 Saniyede Bir"
+      ],
+      "Every 30 Minutes": [
+        "Her 30 dakikada bir"
+      ],
+      "Google Analytics 4": [
+        "Google Analytics 4"
+      ],
+      "Could not authenticate with Google Analytics. Please check your service account credentials.": [
+        "Google Analytics ile kimlik doğrulama başarısız oldu. Lütfen hizmet hesabınızın kimlik bilgilerini kontrol edin."
+      ],
+      "Permission denied: The service account does not have access to this Google Analytics property. Please add the service account email to your GA4 property with Viewer access. Go to Google Analytics → Admin → Property Access Management and add the service account email.": [
+        "Erişim engellendi: Servis hesabının bu Google Analytics özelliğine erişimi yok. Lütfen servis hesabı e-postasını Görüntüleyici erişimine sahip GA4 özelliğinize ekleyin. Google Analytics → Yönetici → Özellik Erişim Yönetimi'ne gidin ve servis hesabı e-postasını ekleyin."
+      ],
+      "Authentication failed. The access token is invalid or expired. Please try reconnecting your Google Analytics account.": [
+        "Kimlik doğrulama başarısız oldu. Erişim belirteci geçersiz veya süresi dolmuş. Lütfen Google Analytics hesabınızı yeniden bağlamayı deneyin."
+      ],
+      "The specified Google Analytics property was not found. Please check that the Property ID is correct.": [
+        "Belirtilen Google Analytics özelliği bulunamadı. Lütfen Özellik Kimliğinin doğru olup olmadığını kontrol edin."
+      ],
+      "Built-in Analytics": [
+        "Dahili Analitik"
+      ],
+      "Unable to read SVG file for sanitization.": [
+        "SVG dosyasını temizleme işlemi için okuyamıyorum."
+      ],
+      "SVG file could not be sanitized. The file may be corrupted or contain invalid content.": [
+        "SVG dosyası temizlenemedi. Dosya bozuk olabilir veya geçersiz içerik içerebilir."
+      ],
+      "Unable to write sanitized SVG file.": [
+        "Temizlenmiş SVG dosyası yazılamıyor."
+      ],
+      "Error sanitizing SVG file: %s": [
+        "SVG dosyasını temizlemede hata oluştu: %s"
+      ],
+      "Activity Log": [
+        "Aktivite Günlüğü"
+      ],
+      "Welcome to WordPress": [
+        "WordPress'e hoş geldiniz"
+      ],
+      "Welcome to your WordPress dashboard! This is your site management hub.": [
+        "WordPress kontrol panelinize hoş geldiniz! Burası sitenizin yönetim merkezi."
+      ],
+      "Quick Draft": [
+        "Hızlı Taslak"
+      ],
+      "Create a new post quickly from here.": [
+        "Buradan hızlıca yeni bir gönderi oluşturun."
+      ],
+      "Activity": [
+        "Aktivite"
+      ],
+      "Recent activity on your site.": [
+        "Sitenizdeki son etkinlikler."
+      ],
+      "Plugins": [
+        "Eklentiler"
+      ],
+      "Post Types": [
+        "Gönderi Türleri"
+      ],
+      "Fields groups": [
+        "Alan grupları"
+      ],
+      "Database Explorer": [
+        "Veritabanı Gezgini"
+      ],
+      "Generate Dummy Analytics Data": [
+        "Sahte Analitik Veriler Oluştur"
+      ],
+      "Warning:": [
+        "Uyarı:"
+      ],
+      "This will delete all existing analytics data and replace it with dummy data for testing purposes.": [
+        "Bu işlem, mevcut tüm analiz verilerini silecektir ve test amacıyla bunların yerine sahte veriler koyacaktır."
+      ],
+      "Generate Test Data": [
+        "Test Verileri Oluştur"
+      ],
+      "This tool will generate realistic dummy analytics data for the last 2 months to help you test the analytics features.": [
+        "Bu araç, analiz özelliklerini test etmenize yardımcı olmak için son 2 aya ait gerçekçi örnek analiz verileri oluşturacaktır."
+      ],
+      "Number of Months": [
+        "Ay sayısı"
+      ],
+      "Select how many months of dummy data to generate.": [
+        "Oluşturulacak örnek verinin aylık sayısını seçin."
+      ],
+      "Generate Dummy Data": [
+        "Sahte Veri Oluştur"
+      ],
+      "Are you sure? This will delete all existing analytics data.": [
+        "Emin misiniz? Bu işlem mevcut tüm analiz verilerini silecektir."
+      ],
+      "What This Generates": [
+        "Bu Ne Üretiyor?"
+      ],
+      "Page views from various devices (desktop, mobile, tablet)": [
+        "Çeşitli cihazlardan (masaüstü, mobil, tablet) sayfa görüntülemeleri"
+      ],
+      "Realistic browser and operating system data": [
+        "Gerçekçi tarayıcı ve işletim sistemi verileri"
+      ],
+      "Geographic data from different countries and cities": [
+        "Farklı ülkelerden ve şehirlerden coğrafi veriler."
+      ],
+      "Referrer data from search engines and social media": [
+        "Arama motorlarından ve sosyal medyadan gelen yönlendirme verileri"
+      ],
+      "Session tracking and unique visitor data": [
+        "Oturum takibi ve benzersiz ziyaretçi verileri"
+      ],
+      "Aggregated daily statistics": [
+        "Günlük olarak derlenmiş istatistikler"
+      ],
+      "Current Analytics Status": [
+        "Mevcut Analiz Durumu"
+      ],
+      "Analytics Enabled:": [
+        "Analitik Etkinleştirildi:"
+      ],
+      "Tables Created:": [
+        "Oluşturulan Tablolar:"
+      ],
+      "Analytics must be enabled in the UiXpress settings before generating dummy data.": [
+        "Deneme verileri oluşturmadan önce UiXpress ayarlarında analiz özelliğinin etkinleştirilmesi gerekir."
+      ],
+      "Security check failed.": [
+        "Güvenlik kontrolü başarısız oldu."
+      ],
+      "You do not have sufficient permissions to access this page.": [
+        "Bu sayfaya erişmek için yeterli yetkiye sahip değilsiniz."
+      ],
+      "Analytics is not enabled. Please enable analytics in settings first.": [
+        "Analiz özelliği etkinleştirilmemiş. Lütfen öncelikle ayarlardan analiz özelliğini etkinleştirin."
+      ],
+      "Invalid number of months. Please select between 1 and 12 months.": [
+        "Geçersiz ay sayısı. Lütfen 1 ile 12 ay arasında bir sayı seçin."
+      ],
+      "Error generating dummy data: ": [
+        "Sahte veri oluşturulurken hata oluştu:"
+      ],
+      "Menu Creator": [
+        "Menü Oluşturucu"
+      ],
+      "Add New Admin Menu": [
+        "Yeni Yönetici Menüsü Ekle"
+      ],
+      "New Admin Menu": [
+        "Yeni Yönetici Menüsü"
+      ],
+      "Edit Admin Menu": [
+        "Yönetici Menüsünü Düzenle"
+      ],
+      "View Admin Menu": [
+        "Yönetici Menüsünü Görüntüle"
+      ],
+      "All Admin Menus": [
+        "Tüm Yönetici Menüleri"
+      ],
+      "Search Admin Menus": [
+        "Yönetici Menülerinde Arama"
+      ],
+      "No Admin Menus found.": [
+        "Yönetici Menüleri bulunamadı."
+      ],
+      "No Admin Menus found in Trash.": [
+        "Çöp kutusunda hiçbir Yönetici Menüsü bulunamadı."
+      ],
+      "Post type used for the uixpresss menus": [
+        "uixpress menüleri için kullanılan gönderi türü"
+      ],
+      "Role Editor": [
+        "Editör Rolü"
+      ],
+      "Settings": [
+        "Ayarlar"
+      ],
+      "Activity logger is not enabled.": [
+        "Etkinlik kaydedici etkinleştirilmemiş."
+      ],
+      "Unknown": [
+        "Bilinmiyor"
+      ],
+      "Log entry not found.": [
+        "Günlük kaydı bulunamadı."
+      ],
+      "Cleaned up %d old log entries.": [
+        "%d adet eski günlük kaydı temizlendi."
+      ],
+      "Add New Admin Notice": [
+        "Yeni Yönetici Bildirimi Ekle"
+      ],
+      "Edit Admin Notice": [
+        "Yönetici Bildirimini Düzenle"
+      ],
+      "View Admin Notice": [
+        "Yönetici Bildirimini Görüntüle"
+      ],
+      "All Admin Notices": [
+        "Tüm Yönetimsel Duyurular"
+      ],
+      "Search Admin Notices": [
+        "Yönetici Bildirimlerini Ara"
+      ],
+      "No Admin Notices found.": [
+        "Herhangi bir yönetimsel bildirim bulunamadı."
+      ],
+      "Persistent admin notices for uiXpress.": [
+        "uiXpress için kalıcı yönetici bildirimleri."
+      ],
+      "Admin Notices": [
+        "Yönetim Duyuruları"
+      ],
+      "Comments awaiting moderation": [
+        "Yorumlar onay bekliyor."
+      ],
+      "Media": [
+        "Medya"
+      ],
+      "User": [
+        "Kullanıcı"
+      ],
+      "Invalid field group ID.": [
+        "Geçersiz alan grubu kimliği."
+      ],
+      "Field group not found.": [
+        "Alan grubu bulunamadı."
+      ],
+      "Field group title is required.": [
+        "Alan grubu başlığı zorunludur."
+      ],
+      "Failed to save field group.": [
+        "Alan grubu kaydedilemedi."
+      ],
+      "Field group created successfully.": [
+        "Alan grubu başarıyla oluşturuldu."
+      ],
+      "Field group updated successfully.": [
+        "Alan grubu başarıyla güncellendi."
+      ],
+      "Failed to delete field group.": [
+        "Alan grubunu silme işlemi başarısız oldu."
+      ],
+      "Field group deleted successfully.": [
+        "Alan grubu başarıyla silindi."
+      ],
+      "(Copy)": [
+        "(Kopya)"
+      ],
+      "Failed to duplicate field group.": [
+        "Alan grubunu çoğaltma işlemi başarısız oldu."
+      ],
+      "Field group duplicated successfully.": [
+        "Alan grubu başarıyla kopyalandı."
+      ],
+      "Invalid import data. Expected an array of field groups.": [
+        "Geçersiz içe aktarma verisi. Alan gruplarından oluşan bir dizi bekleniyordu."
+      ],
+      "Invalid import mode. Use \"merge\" or \"replace\".": [
+        "Geçersiz içe aktarma modu. \"Birleştir\" veya \"değiştir\" seçeneğini kullanın."
+      ],
+      "Field group at index %d is missing a title.": [
+        "%d dizinindeki alan grubunun başlığı eksik."
+      ],
+      "Failed to save imported field groups.": [
+        "İçe aktarılan alan grupları kaydedilemedi."
+      ],
+      "Import completed successfully.": [
+        "İçe aktarma işlemi başarıyla tamamlandı."
+      ],
+      "Invalid or unauthorized function.": [
+        "Geçersiz veya yetkisiz işlev."
+      ],
+      "Field name is required.": [
+        "Alan adı zorunludur."
+      ],
+      "Valid option page is required.": [
+        "Geçerli bir seçenek sayfası gereklidir."
+      ],
+      "Valid object ID is required.": [
+        "Geçerli bir nesne kimliği gereklidir."
+      ],
+      "Helper function not available. Please ensure the plugin is properly initialized.": [
+        "Yardımcı fonksiyon kullanılamıyor. Lütfen eklentinin doğru şekilde başlatıldığından emin olun."
+      ],
+      "(no title)": [
+        "(başlık yok)"
+      ],
+      "Add Row": [
+        "Satır Ekle"
+      ],
+      "Default Template": [
+        "Varsayılan Şablon"
+      ],
+      "All": [
+        "Tüm"
+      ],
+      "Standard": [
+        "Standart"
+      ],
+      "No field groups are assigned to this option page. Create a field group and set its location to this option page.": [
+        "Bu seçenek sayfasına hiçbir alan grubu atanmamıştır. Bir alan grubu oluşturun ve konumunu bu seçenek sayfasına ayarlayın."
+      ],
+      "Save Changes": [
+        "Değişiklikleri Kaydet"
+      ],
+      "You do not have permission to save these options.": [
+        "Bu seçenekleri kaydetme izniniz yok."
+      ],
+      "Invalid option page slug.": [
+        "Geçersiz seçenek sayfası URL'si."
+      ],
+      "Option page not found.": [
+        "Seçenek sayfası bulunamadı."
+      ],
+      "Option page title is required.": [
+        "Seçenek sayfası başlığı zorunludur."
+      ],
+      "An option page with this slug already exists.": [
+        "Bu URL'ye sahip bir seçenek sayfası zaten mevcut."
+      ],
+      "Failed to save option page.": [
+        "Seçenek sayfası kaydedilemedi."
+      ],
+      "Option page created successfully.": [
+        "Seçenekler sayfası başarıyla oluşturuldu."
+      ],
+      "Option page updated successfully.": [
+        "Seçenekler sayfası başarıyla güncellendi."
+      ],
+      "Failed to delete option page.": [
+        "Seçenek sayfasını silme işlemi başarısız oldu."
+      ],
+      "Option page deleted successfully.": [
+        "Seçenekler sayfası başarıyla silindi."
+      ],
+      "Failed to duplicate option page.": [
+        "Seçenek sayfasını çoğaltma işlemi başarısız oldu."
+      ],
+      "Option page duplicated successfully.": [
+        "Seçenek sayfası başarıyla kopyalandı."
+      ],
+      "Option Page Not Found": [
+        "Seçenek Sayfası Bulunamadı"
+      ],
+      "Tools": [
+        "Aletler"
+      ],
+      "Appearance": [
+        "Dış görünüş"
+      ],
+      "Users": [
+        "Kullanıcılar"
+      ],
+      "Comments": [
+        "Yorumlar"
+      ],
+      "Posts": [
+        "Gönderiler"
+      ],
+      "Pages": [
+        "Sayfalar"
+      ],
+      "Dashboard": [
+        "Kontrol Paneli"
+      ],
+      "Administrator (manage_options)": [
+        "Yönetici (manage_options)"
+      ],
+      "Editor (edit_others_posts)": [
+        "Editör (edit_others_posts)"
+      ],
+      "Author (publish_posts)": [
+        "Yazar (yayınla_yazılar)"
+      ],
+      "Contributor (edit_posts)": [
+        "Katkıda Bulunan (edit_posts)"
+      ],
+      "Subscriber (read)": [
+        "Abone (oku)"
+      ],
+      "Custom Fields": [
+        "Özel Alanlar"
+      ],
+      "Invalid post type slug.": [
+        "Geçersiz gönderi türü uzantısı."
+      ],
+      "Custom post type not found.": [
+        "Özel gönderi türü bulunamadı."
+      ],
+      "Post type slug is required.": [
+        "Gönderi türü uzantısı gereklidir."
+      ],
+      "Post type name is required.": [
+        "Gönderi türü adı zorunludur."
+      ],
+      "Invalid post type slug. Use only lowercase letters, numbers, and underscores. Maximum 20 characters.": [
+        "Geçersiz gönderi türü uzantısı. Yalnızca küçük harfler, rakamlar ve alt çizgiler kullanın. Maksimum 20 karakter."
+      ],
+      "This post type slug is reserved by WordPress.": [
+        "Bu gönderi türü URL'si WordPress tarafından ayrılmıştır."
+      ],
+      "A custom post type with this slug already exists.": [
+        "Bu URL uzantısına sahip özel bir gönderi türü zaten mevcut."
+      ],
+      "Failed to save custom post type.": [
+        "Özel gönderi türü kaydedilemedi."
+      ],
+      "Custom post type created successfully.": [
+        "Özel gönderi türü başarıyla oluşturuldu."
+      ],
+      "Custom post type updated successfully.": [
+        "Özel gönderi türü başarıyla güncellendi."
+      ],
+      "Failed to delete custom post type.": [
+        "Özel gönderi türünü silme işlemi başarısız oldu."
+      ],
+      "Custom post type deleted successfully.": [
+        "Özel gönderi türü başarıyla silindi."
+      ],
+      "Invalid import data. Expected an array of post types.": [
+        "Geçersiz içe aktarma verisi. Gönderi türlerinin bir dizisi bekleniyordu."
+      ],
+      "Post type at index %d is missing required fields (slug or name).": [
+        "%d dizinindeki gönderi türünde gerekli alanlar (slug veya ad) eksik."
+      ],
+      "Post type \"%s\" has an invalid slug format.": [
+        "\"%s\" gönderi türünün URL uzantısı (slug) biçimi geçersiz."
+      ],
+      "Post type \"%s\" uses a reserved slug: %s": [
+        "\"%s\" gönderi türü, ayrılmış bir slug kullanıyor: %s"
+      ],
+      "Import validation failed.": [
+        "İçe aktarma doğrulaması başarısız oldu."
+      ],
+      "Failed to save imported post types.": [
+        "İçe aktarılan gönderi türleri kaydedilemedi."
+      ],
+      "Add New": [
+        "Yeni Ekle"
+      ],
+      "Add New %s": [
+        "Yeni %s ekle"
+      ],
+      "Edit %s": [
+        "Düzenle %s"
+      ],
+      "New %s": [
+        "Haberler"
+      ],
+      "View %s": [
+        "Görünüm %s"
+      ],
+      "Search %s": [
+        "Arama %s"
+      ],
+      "No %s found": [
+        "Hiçbir yüzde bulunamadı."
+      ],
+      "No %s found in Trash": [
+        "Çöp kutusunda % bulunamadı."
+      ],
+      "Parent %s:": [
+        "Ebeveynler:"
+      ],
+      "All %s": [
+        "Tüm %'ler"
+      ],
+      "%s Archives": [
+        "%s Arşivleri"
+      ],
+      "%s Attributes": [
+        "%s Nitelikler"
+      ],
+      "Insert into %s": [
+        "%s'ye ekle"
+      ],
+      "Uploaded to this %s": [
+        "Bu %s'ye yüklendi"
+      ],
+      "Featured image": [
+        "Öne çıkan görsel"
+      ],
+      "Set featured image": [
+        "Öne çıkan görseli ayarla"
+      ],
+      "Remove featured image": [
+        "Öne çıkan görseli kaldır"
+      ],
+      "Use as featured image": [
+        "Öne çıkan görsel olarak kullanın"
+      ],
+      "Filter %s list": [
+        "Filtrele %s listesi"
+      ],
+      "%s list navigation": [
+        "%s liste navigasyonu"
+      ],
+      "%s list": [
+        "%s listesi"
+      ],
+      "%s published.": [
+        "%s yayınlandı."
+      ],
+      "%s published privately.": [
+        "%s özel olarak yayınlandı."
+      ],
+      "%s reverted to draft.": [
+        "%s taslak haline geri döndürüldü."
+      ],
+      "%s scheduled.": [
+        "%s planlandı."
+      ],
+      "%s updated.": [
+        "%s güncellendi."
+      ],
+      "Only SELECT queries are allowed for safety.": [
+        "Güvenlik nedeniyle yalnızca SELECT sorgularına izin verilmektedir."
+      ],
+      "Invalid table name.": [
+        "Geçersiz tablo adı."
+      ],
+      "Table not found.": [
+        "Tablo bulunamadı."
+      ],
+      "Unable to retrieve table structure.": [
+        "Tablo yapısı alınamadı."
+      ],
+      "Query contains prohibited SQL keywords.": [
+        "Sorgu, yasaklanmış SQL anahtar kelimeleri içeriyor."
+      ],
+      "Multiple statements are not allowed.": [
+        "Birden fazla ifadeye izin verilmez."
+      ],
+      "Query execution failed. Please check your SQL syntax.": [
+        "Sorgu yürütme başarısız oldu. Lütfen SQL sözdiziminizi kontrol edin."
+      ],
+      "Password is required.": [
+        "Şifre gereklidir."
+      ],
+      "Invalid password.": [
+        "Geçersiz şifre."
+      ],
+      "Password verification failed.": [
+        "Parola doğrulama başarısız oldu."
+      ],
+      "WordPress core tables cannot be deleted.": [
+        "WordPress'in temel tabloları silinemez."
+      ],
+      "System tables cannot be deleted.": [
+        "Sistem tabloları silinemez."
+      ],
+      "Password is required for this operation.": [
+        "Bu işlem için parola gereklidir."
+      ],
+      "Failed to delete table.": [
+        "Tablo silme işlemi başarısız oldu."
+      ],
+      "Table '%s' has been deleted.": [
+        "'%s' tablosu silindi."
+      ],
+      "Invalid JSON format": [
+        "Geçersiz JSON formatı"
+      ],
+      "Missing required field: %s": [
+        "Gerekli alan eksik: %s"
+      ],
+      "Failed to authenticate with Google. Please check your service account key.": [
+        "Google ile kimlik doğrulama başarısız oldu. Lütfen hizmet hesabı anahtarınızı kontrol edin."
+      ],
+      "Credentials are valid": [
+        "Kimlik bilgileri geçerlidir."
+      ],
+      "JSON must be a service account key": [
+        "JSON, bir hizmet hesabı anahtarı olmalıdır."
+      ],
+      "Service account credentials saved successfully": [
+        "Hizmet hesabı kimlik bilgileri başarıyla kaydedildi."
+      ],
+      "Google Analytics disconnected": [
+        "Google Analytics bağlantısı kesildi"
+      ],
+      "Not connected to Google Analytics": [
+        "Google Analytics'e bağlı değil."
+      ],
+      "Failed to fetch properties. Make sure the service account has been added to your GA4 property.": [
+        "Özellikler alınamadı. Hizmet hesabının GA4 mülkünüze eklendiğinden emin olun."
+      ],
+      "Property ID is required": [
+        "Mülk kimliği gereklidir."
+      ],
+      "Property saved successfully": [
+        "Özellikler başarıyla kaydedildi."
+      ],
+      "Return only unused media items (unattached and not used as featured image).": [
+        "Yalnızca kullanılmamış medya öğelerini (eklenmemiş ve öne çıkan görsel olarak kullanılmamış olanları) iade edin."
+      ],
+      "Unused detection mode: shallow (default) or deep (scans post_content).": [
+        "Kullanılmayan algılama modu: sığ (varsayılan) veya derin (post_content'i tarar)."
+      ],
+      "Invalid request.": [
+        "Geçersiz istek."
+      ],
+      "Invalid media IDs provided.": [
+        "Geçersiz medya kimlikleri sağlandı."
+      ],
+      "Maximum 100 items can be downloaded at once.": [
+        "Tek seferde en fazla 100 öğe indirilebilir."
+      ],
+      "ZIP functionality is not available on this server.": [
+        "Bu sunucuda ZIP işlevi kullanılamamaktadır."
+      ],
+      "Failed to create ZIP file.": [
+        "ZIP dosyası oluşturulamadı."
+      ],
+      "No valid files found to download.": [
+        "İndirilebilecek geçerli dosya bulunamadı."
+      ],
+      "(Untitled)": [
+        "(Başlıksız)"
+      ],
+      "Media ID is required.": [
+        "Medya kimliği gereklidir."
+      ],
+      "Media item not found.": [
+        "Medya öğesi bulunamadı."
+      ],
+      "You do not have permission to edit this media item.": [
+        "Bu medya öğesini düzenleme izniniz yok."
+      ],
+      "No file was uploaded.": [
+        "Hiçbir dosya yüklenmedi."
+      ],
+      "File upload failed. Please try again.": [
+        "Dosya yükleme başarısız oldu. Lütfen tekrar deneyin."
+      ],
+      "File type not allowed.": [
+        "İzin verilmeyen dosya türü."
+      ],
+      "File content does not match file type.": [
+        "Dosya içeriği dosya türüyle eşleşmiyor."
+      ],
+      "File name contains invalid characters.": [
+        "Dosya adı geçersiz karakterler içeriyor."
+      ],
+      "Original file not found.": [
+        "Orijinal dosya bulunamadı."
+      ],
+      "Invalid file path.": [
+        "Geçersiz dosya yolu."
+      ],
+      "Failed to move uploaded file.": [
+        "Yüklenen dosya taşınamadı."
+      ],
+      "File replaced successfully.": [
+        "Dosya başarıyla değiştirildi."
+      ],
+      "Filter media items by tag IDs.": [
+        "Medya öğelerini etiket kimliklerine göre filtreleyin."
+      ],
+      "Media Tags": [
+        "Medya Etiketleri"
+      ],
+      "Media Tag": [
+        "Medya Etiketi"
+      ],
+      "Tags": [
+        "Etiketler"
+      ],
+      "All Tags": [
+        "Tüm Etiketler"
+      ],
+      "Edit Tag": [
+        "Etiketi Düzenle"
+      ],
+      "View Tag": [
+        "Etiketi Görüntüle"
+      ],
+      "Update Tag": [
+        "Etiketi Güncelle"
+      ],
+      "Add New Tag": [
+        "Yeni Etiket Ekle"
+      ],
+      "New Tag Name": [
+        "Yeni Etiket Adı"
+      ],
+      "Search Tags": [
+        "Arama Etiketleri"
+      ],
+      "Popular Tags": [
+        "Popüler Etiketler"
+      ],
+      "Separate tags with commas": [
+        "Etiketleri virgülle ayırın."
+      ],
+      "Add or remove tags": [
+        "Etiket ekle veya kaldır"
+      ],
+      "Choose from the most used tags": [
+        "En çok kullanılan etiketler arasından seçim yapın."
+      ],
+      "No tags found": [
+        "Etiket bulunamadı."
+      ],
+      "Tag name is required": [
+        "Etiket adı zorunludur."
+      ],
+      "Invalid media item": [
+        "Geçersiz medya öğesi"
+      ],
+      "Menu cache key rotated successfully. All client caches have been invalidated.": [
+        "Menü önbellek anahtarı başarıyla döndürüldü. Tüm istemci önbellekleri geçersiz kılındı."
+      ],
+      "Status": [
+        "Durum"
+      ],
+      "Published": [
+        "Yayınlandı"
+      ],
+      "(No title)": [
+        "(Başlık yok)"
+      ],
+      "Scheduled": [
+        "Planlanmış"
+      ],
+      "%s from now": [
+        "şu andan itibaren %s"
+      ],
+      "Modified": [
+        "Değiştirildi"
+      ],
+      "%s ago": [
+        "%s önce"
+      ],
+      "Authentication required. Please provide Basic Auth credentials.": [
+        "Kimlik doğrulama gereklidir. Lütfen Temel Kimlik Doğrulama kimlik bilgilerini girin."
+      ],
+      "Invalid authentication credentials.": [
+        "Geçersiz kimlik doğrulama bilgileri."
+      ],
+      "Missing security token. Please refresh the page and try again.": [
+        "Güvenlik belirteci eksik. Lütfen sayfayı yenileyip tekrar deneyin."
+      ],
+      "Invalid security token. Please refresh the page and try again.": [
+        "Geçersiz güvenlik belirteci. Lütfen sayfayı yenileyip tekrar deneyin."
+      ],
+      "You must be logged in to access this endpoint.": [
+        "Bu uç noktaya erişmek için oturum açmış olmanız gerekmektedir."
+      ],
+      "You do not have permission to perform this action. Required capability: %s": [
+        "Bu işlemi gerçekleştirmek için izniniz yok. Gerekli yetki: %s"
+      ],
+      "Invalid role format.": [
+        "Geçersiz rol formatı."
+      ],
+      "Invalid role.": [
+        "Geçersiz rol."
+      ],
+      "Capabilities must be an array.": [
+        "Yetenekler bir dizi halinde olmalıdır."
+      ],
+      "Role not found.": [
+        "Rol bulunamadı."
+      ],
+      "Role capabilities updated successfully.": [
+        "Rol yetenekleri başarıyla güncellendi."
+      ],
+      "Role name cannot be empty.": [
+        "Rol adı boş bırakılamaz."
+      ],
+      "Role name is too long.": [
+        "Rol adı çok uzun."
+      ],
+      "Role name updated successfully.": [
+        "Rol adı başarıyla güncellendi."
+      ],
+      "Role slug can only contain lowercase letters, numbers, hyphens, and underscores.": [
+        "Rol tanımlayıcısı yalnızca küçük harfler, rakamlar, tireler ve alt çizgiler içerebilir."
+      ],
+      "Role slug is too long.": [
+        "Rol kısaltması çok uzun."
+      ],
+      "A role with this slug already exists.": [
+        "Bu sümüklüböcek türüyle ilgili bir rol zaten mevcut."
+      ],
+      "Failed to create role.": [
+        "Rol oluşturulamadı."
+      ],
+      "Role created successfully.": [
+        "Rol başarıyla oluşturuldu."
+      ],
+      "Cannot delete default WordPress roles.": [
+        "Varsayılan WordPress rollerini silemiyorum."
+      ],
+      "Cannot delete role. There are %d user(s) with this role. Please reassign users to another role first.": [
+        "Rol silinemiyor. Bu role sahip %d kullanıcı var. Lütfen önce kullanıcıları başka bir role atayın."
+      ],
+      "Role deleted successfully.": [
+        "Rol başarıyla silindi."
+      ],
+      "New Users": [
+        "Yeni Kullanıcılar"
+      ],
+      "Activity Log Details": [
+        "Aktivite Günlüğü Ayrıntıları"
+      ],
+      "General": [
+        "Genel"
+      ],
+      "Core plugin settings and license management": [
+        "Temel eklenti ayarları ve lisans yönetimi"
+      ],
+      "Login": [
+        "Giriş yapmak"
+      ],
+      "Customize login page appearance and security": [
+        "Giriş sayfasının görünümünü ve güvenliğini özelleştirin."
+      ],
+      "Theme": [
+        "Tema"
+      ],
+      "Colors, styling, and visual customization": [
+        "Renkler, stil ve görsel özelleştirme"
+      ],
+      "White Label": [
+        "Beyaz Etiket"
+      ],
+      "Rebrand and customize interface text and icons": [
+        "Arayüz metnini ve simgelerini yeniden markalayın ve özelleştirin."
+      ],
+      "Menu": [
+        "Menü"
+      ],
+      "Admin menu behavior and interaction settings": [
+        "Yönetici menüsü davranışı ve etkileşim ayarları"
+      ],
+      "Post management and display preferences": [
+        "Gönderi yönetimi ve görüntüleme tercihleri"
+      ],
+      "Plugin management interface options": [
+        "Eklenti yönetim arayüzü seçenekleri"
+      ],
+      "Custom dashboard and admin interface settings": [
+        "Özel kontrol paneli ve yönetici arayüzü ayarları"
+      ],
+      "Analytics": [
+        "Analitik"
+      ],
+      "Built-in analytics and tracking settings": [
+        "Dahili analiz ve izleme ayarları"
+      ],
+      "Media library and upload management settings": [
+        "Medya kütüphanesi ve yükleme yönetimi ayarları"
+      ],
+      "User management and administration settings": [
+        "Kullanıcı yönetimi ve idari ayarlar"
+      ],
+      "Comment management and administration settings": [
+        "Yorum yönetimi ve idaresi ayarları"
+      ],
+      "Security": [
+        "Güvenlik"
+      ],
+      "Security settings and administration": [
+        "Güvenlik ayarları ve yönetimi"
+      ],
+      "Database": [
+        "Veritabanı"
+      ],
+      "Database explorer and management settings": [
+        "Veritabanı gezgini ve yönetim ayarları"
+      ],
+      "Search settings...": [
+        "Arama ayarları..."
+      ],
+      "Loading settings...": [
+        "Ayarlar yükleniyor..."
+      ],
+      "No settings found": [
+        "Ayarlar bulunamadı."
+      ],
+      "Try a different search term": [
+        "Farklı bir arama terimi deneyin."
+      ],
+      "Loading Settings...": [
+        "Ayarlar yükleniyor..."
+      ],
+      "Settings Panel": [
+        "Ayarlar Paneli"
+      ],
+      "Select a category from the list to configure your settings.": [
+        "Ayarlarınızı yapılandırmak için listeden bir kategori seçin."
+      ],
+      "Activity log entry not found": [
+        "Etkinlik günlüğü kaydı bulunamadı."
+      ],
+      "Just now": [
+        "Şu anda"
+      ],
+      "1 minute ago": [
+        "1 dakika önce"
+      ],
+      "%d minutes ago": [
+        "%d dakika önce"
+      ],
+      "1 hour ago": [
+        "1 saat önce"
+      ],
+      "%d hours ago": [
+        "%d saat önce"
+      ],
+      "1 day ago": [
+        "1 gün önce"
+      ],
+      "%d days ago": [
+        "%d gün önce"
+      ],
+      "Loading...": [
+        "Yükleniyor..."
+      ],
+      "Activity Details": [
+        "Aktivite Detayları"
+      ],
+      "User Information": [
+        "Kullanıcı Bilgileri"
+      ],
+      "Timestamp": [
+        "Zaman damgası"
+      ],
+      "IP Address": [
+        "IP Adresi"
+      ],
+      "User Agent": [
+        "Kullanıcı Aracısı"
+      ],
+      "Changes": [
+        "Değişiklikler"
+      ],
+      "Before": [
+        "Önce"
+      ],
+      "After": [
+        "Sonrasında"
+      ],
+      "Details": [
+        "Detaylar"
+      ],
+      "Metadata": [
+        "Meta Veriler"
+      ],
+      "Remote Site Error": [
+        "Uzak Site Hatası"
+      ],
+      "Invalid remote site configuration": [
+        "Geçersiz uzak site yapılandırması"
+      ],
+      "Click": [
+        "Tıklamak"
+      ],
+      "Hover": [
+        "Fareyle üzerine gelin"
+      ],
+      "Off": [
+        "Kapalı"
+      ],
+      "Light": [
+        "Işık"
+      ],
+      "Dark": [
+        "Karanlık"
+      ],
+      "Licence key": [
+        "Lisans anahtarı"
+      ],
+      "Activating uiXpress enables updates and features": [
+        "uiXpress'i etkinleştirmek, güncellemeleri ve özellikleri kullanıma sunar."
+      ],
+      "Logo": [
+        "Logo"
+      ],
+      "Optional logo for to be displayed in the menu": [
+        "Menüde gösterilecek isteğe bağlı logo"
+      ],
+      "Logo url": [
+        "Logo URL'si"
+      ],
+      "Dark mode logo": [
+        "Karanlık mod logosu"
+      ],
+      "Set an alternative logo to use in dark mode. If one isn't set it will fall back to the standard logo.": [
+        "Karanlık modda kullanılacak alternatif bir logo belirleyin. Eğer bir logo belirlenmezse, standart logo kullanılacaktır."
+      ],
+      "Dark Logo url": [
+        "Koyu Logo URL'si"
+      ],
+      "Remote Sites": [
+        "Uzak Siteler"
+      ],
+      "Configure remote WordPress sites for cross-site operations.": [
+        "Uzak WordPress sitelerini siteler arası işlemler için yapılandırın."
+      ],
+      "Remote Site Switcher Capability": [
+        "Uzaktan Kumandalı Anahtarlama Yeteneği"
+      ],
+      "WordPress capability required to see the remote site switcher in the toolbar. Defaults to \"manage_options\" (admin users). Users with this capability or below will see the switcher.": [
+        "Araç çubuğunda uzak site değiştiriciyi görebilmek için WordPress yetkilendirmesi gereklidir. Varsayılan olarak \"manage_options\" (yönetici kullanıcılar) olarak ayarlanmıştır. Bu yetkilendirmeye veya daha düşük yetkilendirmeye sahip kullanıcılar değiştiriciyi görecektir."
+      ],
+      "Disable theme": [
+        "Temayı devre dışı bırak"
+      ],
+      "Choose roles or usersnames to disable the theme for.": [
+        "Temayı devre dışı bırakmak istediğiniz rolleri veya kullanıcı adlarını seçin."
+      ],
+      "Search post types": [
+        "Arama gönderi türleri"
+      ],
+      "Choose which post types are available in the global search": [
+        "Küresel aramada hangi gönderi türlerinin kullanılabileceğini seçin."
+      ],
+      "Disable global search": [
+        "Genel aramayı devre dışı bırak"
+      ],
+      "Disable global search for all users.": [
+        "Tüm kullanıcılar için genel arama özelliğini devre dışı bırakın."
+      ],
+      "Admin layout": [
+        "Yönetici düzeni"
+      ],
+      "Choose your prefered admin layout": [
+        "Tercih ettiğiniz yönetim paneli düzenini seçin."
+      ],
+      "Modernise login page": [
+        "Giriş sayfasını modernleştirin"
+      ],
+      "When enabled, uiXpress will modernise the default login page.": [
+        "Etkinleştirildiğinde, uiXpress varsayılan giriş sayfasını modernize edecektir."
+      ],
+      "Login image": [
+        "Giriş resmi"
+      ],
+      "Optional image that will be added to the empty panel in the login page": [
+        "Giriş sayfasındaki boş panele eklenecek isteğe bağlı resim."
+      ],
+      "Image url": [
+        "Resim URL'si"
+      ],
+      "Login path": [
+        "Giriş yolu"
+      ],
+      "Change the login url from wp-login.php to a custom slug. Ensure you remember what you change this to.": [
+        "Giriş URL'sini wp-login.php'den özel bir URL'ye değiştirin. Değiştirdiğiniz URL'yi mutlaka hatırlayın."
+      ],
+      "Hide language selector": [
+        "Dil seçiciyi gizle"
+      ],
+      "When hidden the language selector on the login page will not be displayed": [
+        "Dil seçici gizlendiğinde, giriş sayfasında görüntülenmeyecektir."
+      ],
+      "Enable TurnStyle": [
+        "TurnStyle'ı Etkinleştir"
+      ],
+      "When enabled, a cloudflare turnstyle challenge will be displayed on the login page to enhance security. Cloudflare account is required": [
+        "Etkinleştirildiğinde, güvenliği artırmak için giriş sayfasında bir Cloudflare Turnstyle doğrulama ekranı görüntülenecektir. Cloudflare hesabı gereklidir."
+      ],
+      "Turnstyle site key": [
+        "Turnstyle site anahtarı"
+      ],
+      "This is the site key for your turnstyle which can be created from your cloudflare dashboard.": [
+        "Bu, Cloudflare kontrol panelinizden oluşturabileceğiniz turnike sisteminizin site anahtarıdır."
+      ],
+      "Turnstyle secret key": [
+        "Turnike gizli anahtarı"
+      ],
+      "This is the secret key for your turnstyle which can be created from your cloudflare dashboard.": [
+        "Bu, Cloudflare kontrol panelinizden oluşturabileceğiniz turnike sisteminizin gizli anahtarıdır."
+      ],
+      "Force global theme": [
+        "Küresel temayı zorla"
+      ],
+      "When enabled, the light / dark toggle will be removed and the selected theme set for all users.": [
+        "Etkinleştirildiğinde, açık/koyu mod geçişi kaldırılacak ve seçilen tema tüm kullanıcılar için ayarlanacaktır."
+      ],
+      "Hide screen options": [
+        "Ekran seçeneklerini gizle"
+      ],
+      "Hide the screen options toggle in the toolbar": [
+        "Araç çubuğundaki ekran seçenekleri düğmesini gizle"
+      ],
+      "Hide help toggle": [
+        "Yardım düğmesini gizle"
+      ],
+      "Hide the help toggle in the toolbar": [
+        "Araç çubuğundaki yardım düğmesini gizle"
+      ],
+      "Base theme colors": [
+        "Temel tema renkleri"
+      ],
+      "Set a base color and uiXpress will automatically create a color scale for you.": [
+        "Bir temel renk belirleyin ve uiXpress sizin için otomatik olarak bir renk skalası oluşturacaktır."
+      ],
+      "Base": [
+        "Temel"
+      ],
+      "Accent theme colors": [
+        "Vurgu teması renkleri"
+      ],
+      "Set a accent color and uiXpress will automatically create a color scale for you.": [
+        "Bir vurgu rengi belirleyin ve uiXpress sizin için otomatik olarak bir renk skalası oluşturacaktır."
+      ],
+      "Accent base": [
+        "Vurgu tabanı"
+      ],
+      "Custom css": [
+        "Özel CSS"
+      ],
+      "Custom css added here will only be added in the admin area and login page.": [
+        "Buraya eklenen özel CSS kodları yalnızca yönetici paneli ve giriş sayfasında görünecektir."
+      ],
+      "External stylesheets": [
+        "Harici stil sayfaları"
+      ],
+      "Add URLs to any external stylesheets you want uiXpress to load into the admin": [
+        "uiXpress'in yönetici paneline yüklemesini istediğiniz harici stil sayfalarının URL'lerini ekleyin."
+      ],
+      "Custom Font": [
+        "Özel Yazı Tipi"
+      ],
+      "Choose a custom font for the admin interface. Select from Google Fonts, enter a custom font URL, or upload your own font files.": [
+        "Yönetici arayüzü için özel bir yazı tipi seçin. Google Fonts'tan seçim yapabilir, özel bir yazı tipi URL'si girebilir veya kendi yazı tipi dosyalarınızı yükleyebilirsiniz."
+      ],
+      "Admin favicon": [
+        "Yönetici favicon'u"
+      ],
+      "Optional favicon to replace the WordPress favicon in the admin.": [
+        "Yönetici panelinde WordPress favicon'unun yerine geçebilecek isteğe bağlı favicon."
+      ],
+      "Favicon url": [
+        "Favicon URL'si"
+      ],
+      "Rename uiXpress": [
+        "uiXpress'i yeniden adlandırın"
+      ],
+      "This will rename uiXpress in the plugins list as well as renaming it's settings link.": [
+        "Bu işlem, eklentiler listesinde uiXpress'in adını ve ayarlar bağlantısını yeniden adlandıracaktır."
+      ],
+      "Text Replacement": [
+        "Metin Değiştirme"
+      ],
+      "Customize the text displayed in the WordPress admin area. Enter original words or phrases and their replacements to white-label the admin interface.": [
+        "WordPress yönetim alanında görüntülenen metni özelleştirin. Yönetim arayüzünü beyaz etiketlemek için orijinal kelimeler veya ifadeler ve bunların yerine kullanabileceğiniz metinler girin."
+      ],
+      "Submenu style": [
+        "Alt menü stili"
+      ],
+      "Choose from whether the submenu opens on click or hover.": [
+        "Alt menünün tıklama ile mi yoksa fareyle üzerine gelindiğinde mi açılacağını seçin."
+      ],
+      "Enable Admin Menu Search": [
+        "Yönetici Menüsü Aramasını Etkinleştir"
+      ],
+      "Enable search functionality in the admin menu to quickly find menu items.": [
+        "Menü öğelerini hızlıca bulmak için yönetici menüsünde arama işlevini etkinleştirin."
+      ],
+      "Classic Post List View": [
+        "Klasik Gönderi Listesi Görünümü"
+      ],
+      "Switch to WordPress's traditional table layout for posts, removing the modern interface.": [
+        "WordPress'in geleneksel tablo düzenine geçerek, modern arayüzü kaldırın."
+      ],
+      "Modern Post Editor": [
+        "Modern Post Editörü"
+      ],
+      "Replace the built-in WordPress editor with a modern, enhanced post editor interface.": [
+        "WordPress'in yerleşik düzenleyicisini modern ve gelişmiş bir gönderi düzenleyici arayüzüyle değiştirin."
+      ],
+      "Post Types for Modern Editor": [
+        "Modern Editör için Gönderi Türleri"
+      ],
+      "Choose which post types should use the modern post editor. Defaults to posts.": [
+        "Hangi gönderi türlerinin modern gönderi düzenleyicisini kullanacağını seçin. Varsayılan olarak gönderiler seçilidir."
+      ],
+      "Real-time Collaboration": [
+        "Gerçek Zamanlı İşbirliği"
+      ],
+      "Enable real-time collaboration in the modern post editor. Multiple users can edit the same post simultaneously with live cursor tracking and synced changes.": [
+        "Modern gönderi düzenleyicisinde gerçek zamanlı iş birliğini etkinleştirin. Birden fazla kullanıcı, canlı imleç takibi ve senkronize edilmiş değişikliklerle aynı gönderiyi eş zamanlı olarak düzenleyebilir."
+      ],
+      "Modern Plugin Manager": [
+        "Modern Eklenti Yöneticisi"
+      ],
+      "Replace the classic plugins page with a modern plugin manager with plugin profiling and improved features.": [
+        "Klasik eklentiler sayfasını, eklenti profilleme ve geliştirilmiş özelliklere sahip modern bir eklenti yöneticisiyle değiştirin."
+      ],
+      "Modern Media Library": [
+        "Modern Medya Kütüphanesi"
+      ],
+      "Replace the classic WordPress media library with a modern, responsive media manager with improved upload and organization features.": [
+        "Klasik WordPress medya kütüphanesini, gelişmiş yükleme ve düzenleme özelliklerine sahip modern, duyarlı bir medya yöneticisiyle değiştirin."
+      ],
+      "Enable SVG Uploads": [
+        "SVG Yüklemelerini Etkinleştir"
+      ],
+      "Allow SVG (Scalable Vector Graphics) files to be uploaded to the media library. All SVG files are automatically sanitized before upload to remove potentially malicious code, ensuring safe handling of SVG files.": [
+        "Medya kütüphanesine SVG (Ölçeklenebilir Vektör Grafikleri) dosyalarının yüklenmesine izin verin. Tüm SVG dosyaları, potansiyel olarak zararlı kodları kaldırmak için yüklemeden önce otomatik olarak temizlenir ve SVG dosyalarının güvenli bir şekilde işlenmesi sağlanır."
+      ],
+      "Enable Font Uploads": [
+        "Yazı Tipi Yüklemelerini Etkinleştir"
+      ],
+      "Allow font files (.woff2, .woff, .ttf, .otf) to be uploaded to the media library. This enables custom font support for your site.": [
+        "Yazı tipi dosyalarının (.woff2, .woff, .ttf, .otf) medya kütüphanesine yüklenmesine izin verin. Bu, siteniz için özel yazı tipi desteği sağlar."
+      ],
+      "Modern Users Page": [
+        "Modern Kullanıcılar Sayfası"
+      ],
+      "Replace the classic WordPress users page with a modern, responsive user manager with improved features and better organization.": [
+        "Klasik WordPress kullanıcı sayfasını, geliştirilmiş özelliklere ve daha iyi organizasyona sahip modern, duyarlı bir kullanıcı yöneticisiyle değiştirin."
+      ],
+      "Modern Comments Page": [
+        "Modern Yorumlar Sayfası"
+      ],
+      "Replace the classic WordPress comments page with a modern, responsive comment manager with improved features and better organization.": [
+        "Klasik WordPress yorum sayfasını, gelişmiş özelliklere ve daha iyi organizasyona sahip modern, duyarlı bir yorum yöneticisiyle değiştirin."
+      ],
+      "Custom Dashboard": [
+        "Özel Kontrol Paneli"
+      ],
+      "Replace the default WordPress dashboard with a modern, customizable dashboard interface.": [
+        "Varsayılan WordPress kontrol panelini modern, özelleştirilebilir bir kontrol paneli arayüzüyle değiştirin."
+      ],
+      "Enable uiXpress Analytics": [
+        "uiXpress Analitiğini Etkinleştirin"
+      ],
+      "Enable built-in analytics to track user behavior, page views, and performance metrics within your WordPress admin.": [
+        "WordPress yönetici panelinizde kullanıcı davranışını, sayfa görüntülemelerini ve performans ölçümlerini izlemek için yerleşik analiz özelliğini etkinleştirin."
+      ],
+      "Analytics Provider": [
+        "Analiz Sağlayıcısı"
+      ],
+      "Choose which analytics provider to use for dashboard data. Select Built-in Analytics to use the uiXpress tracking system, or Google Analytics to display data from your GA4 property.": [
+        "Kontrol paneli verileri için hangi analiz sağlayıcısını kullanacağınızı seçin. uiXpress izleme sistemini kullanmak için Dahili Analiz'i veya GA4 mülkünüzden veri görüntülemek için Google Analytics'i seçin."
+      ],
+      "Google Analytics Connection": [
+        "Google Analytics Bağlantısı"
+      ],
+      "Connect your Google Analytics 4 property to display analytics data in the dashboard. You will need to create OAuth credentials in Google Cloud Console.": [
+        "Google Analytics 4 mülkünüzü bağlayarak analiz verilerini kontrol panelinde görüntüleyebilirsiniz. Google Cloud Console'da OAuth kimlik bilgileri oluşturmanız gerekecektir."
+      ],
+      "Enable Database Explorer": [
+        "Veritabanı Gezgini'ni etkinleştirin"
+      ],
+      "Enable the modern database explorer interface to browse tables, view data, and execute SQL queries safely.": [
+        "Modern veritabanı gezgini arayüzünü etkinleştirerek tabloları tarayabilir, verileri görüntüleyebilir ve SQL sorgularını güvenli bir şekilde çalıştırabilirsiniz."
+      ],
+      "Enable Role Editor": [
+        "Rol Düzenleyiciyi Etkinleştir"
+      ],
+      "Enable the modern role editor interface to manage WordPress user roles and capabilities.": [
+        "WordPress kullanıcı rollerini ve yeteneklerini yönetmek için modern rol düzenleyici arayüzünü etkinleştirin."
+      ],
+      "Enable Custom Post Types": [
+        "Özel Gönderi Türlerini Etkinleştir"
+      ],
+      "Enable the custom post types creator to register and manage custom post types without code. Post types are stored in a JSON file for performance.": [
+        "Özel gönderi türleri oluşturucusunun kod yazmadan özel gönderi türlerini kaydetmesini ve yönetmesini sağlayın. Gönderi türleri performans için bir JSON dosyasında saklanır."
+      ],
+      "Enable Activity Logger": [
+        "Etkinlik Günlüğünü Etkinleştir"
+      ],
+      "Track and log all admin actions including post changes, user updates, plugin activations, and more.": [
+        "Gönderi değişiklikleri, kullanıcı güncellemeleri, eklenti etkinleştirmeleri ve daha fazlası dahil olmak üzere tüm yönetici işlemlerini izleyin ve kaydedin."
+      ],
+      "Retention Period (Days)": [
+        "Saklama Süresi (Gün)"
+      ],
+      "How many days to keep activity logs before automatic cleanup. Default is 90 days.": [
+        "Otomatik temizlemeden önce etkinlik kayıtlarının kaç gün saklanacağını belirtir. Varsayılan değer 90 gündür."
+      ],
+      "Log Level": [
+        "Günlük Seviyesi"
+      ],
+      "Choose which actions to log. \"All Actions\" logs everything, \"Important Only\" logs only critical actions like deletions and role changes.": [
+        "Kaydedilecek eylemleri seçin. \"Tüm Eylemler\" her şeyi kaydeder, \"Yalnızca Önemli Olanlar\" ise yalnızca silme ve rol değişiklikleri gibi kritik eylemleri kaydeder."
+      ],
+      "All Actions": [
+        "Tüm Eylemler"
+      ],
+      "Important Only": [
+        "Sadece Önemli"
+      ],
+      "Auto Cleanup": [
+        "Otomatik Temizleme"
+      ],
+      "Automatically delete logs older than the retention period. Disable to keep logs indefinitely.": [
+        "Saklama süresinden daha eski kayıtları otomatik olarak silin. Kayıtların süresiz olarak saklanmasını istiyorsanız bu özelliği devre dışı bırakın."
+      ],
+      "Failed to load settings": [
+        "Ayarlar yüklenemedi."
+      ],
+      "Unable to save settings": [
+        "Ayarlar kaydedilemedi."
+      ],
+      "Settings updated!": [
+        "Ayarlar güncellendi!"
+      ],
+      "Please provide a valid JSON file": [
+        "Lütfen geçerli bir JSON dosyası sağlayın."
+      ],
+      "Invalid settings: must be an object": [
+        "Geçersiz ayarlar: bir nesne olmalıdır."
+      ],
+      "Settings imported": [
+        "Ayarlar içe aktarıldı"
+      ],
+      "Import failed": [
+        "İçe aktarma başarısız oldu"
+      ],
+      "Failed to activate key": [
+        "Anahtar etkinleştirilemedi."
+      ],
+      "Key already activated for this site": [
+        "Bu site için giriş anahtarı zaten etkinleştirilmiş durumda."
+      ],
+      "Key successfully activated": [
+        "Anahtar başarıyla etkinleştirildi."
+      ],
+      "Network error during activation": [
+        "Etkinleştirme sırasında ağ hatası"
+      ],
+      "Instance removed": [
+        "Örnek kaldırıldı"
+      ],
+      "Failed to remove activation": [
+        "Etkinleştirme kaldırılamadı."
+      ],
+      "Network error during removal": [
+        "Kaldırma işlemi sırasında ağ hatası"
+      ],
+      "Save": [
+        "Kaydetmek"
+      ],
+      "Please add your licence key to unlock the plugin settings": [
+        "Eklenti ayarlarının kilidini açmak için lütfen lisans anahtarınızı ekleyin."
+      ],
+      "Found": [
+        "Kurmak"
+      ],
+      "matching setting(s)": [
+        "eşleşen ayar(lar)"
+      ],
+      "No settings match your search in this category.": [
+        "Bu kategoride aramanızla eşleşen ayar bulunamadı."
+      ],
+      "Try a different search term or check another category.": [
+        "Farklı bir arama terimi deneyin veya başka bir kategoriye bakın."
+      ],
+      "Minify menu": [
+        "Menüyü küçült"
+      ],
+      "Toggle menu": [
+        "Menüyü aç/kapat"
+      ],
+      "System": [
+        "Sistem"
+      ],
+      "Logout": [
+        "Çıkış yap"
+      ],
+      "Search activities...": [
+        "Arama etkinlikleri..."
+      ],
+      "Action": [
+        "Aksiyon"
+      ],
+      "Object Type": [
+        "Nesne Türü"
+      ],
+      "All Types": [
+        "Tüm Tipler"
+      ],
+      "item": [
+        "öğe"
+      ],
+      "items": [
+        "öğeler"
+      ],
+      "Page": [
+        "Sayfa"
+      ],
+      "Previous": [
+        "Öncesi"
+      ],
+      "Next": [
+        "Sonraki"
+      ],
+      "Select an activity from the list to view detailed information.": [
+        "Ayrıntılı bilgi görüntülemek için listeden bir etkinlik seçin."
+      ],
+      "Default": [
+        "Varsayılan"
+      ],
+      "Rounded": [
+        "Yuvarlak"
+      ],
+      "Bubble": [
+        "Balon"
+      ],
+      "Add new": [
+        "Yeni ekle"
+      ],
+      "Update settings": [
+        "Ayarları güncelle"
+      ],
+      "Loading editor...": [
+        "Editör yükleniyor..."
+      ],
+      "Invalid Input": [
+        "Geçersiz Giriş"
+      ],
+      "Site URL, username, and application password are required": [
+        "Site URL'si, kullanıcı adı ve uygulama şifresi gereklidir."
+      ],
+      "Invalid URL": [
+        "Geçersiz URL"
+      ],
+      "Please provide a valid site URL": [
+        "Lütfen geçerli bir site URL'si sağlayın."
+      ],
+      "Duplicate Site": [
+        "Yinelenen Site"
+      ],
+      "This site URL already exists": [
+        "Bu site URL'si zaten mevcut."
+      ],
+      "Remove Remote Site?": [
+        "Uzak siteyi kaldırmak mı?"
+      ],
+      "Are you sure you want to remove this remote site? This action cannot be undone.": [
+        "Bu uzak siteyi kaldırmak istediğinizden emin misiniz? Bu işlem geri alınamaz."
+      ],
+      "Yes, remove site": [
+        "Evet, siteyi kaldırın."
+      ],
+      "Site Removed": [
+        "Site Kaldırıldı"
+      ],
+      "Remote site has been removed successfully": [
+        "Uzak site başarıyla kaldırıldı."
+      ],
+      "Site URL (e.g., https://example.com)": [
+        "Site URL'si (ör. https://example.com)"
+      ],
+      "Username": [
+        "Kullanıcı adı"
+      ],
+      "Application Password": [
+        "Uygulama Şifresi"
+      ],
+      "Add Site": [
+        "Site Ekle"
+      ],
+      "Site URL": [
+        "Site URL"
+      ],
+      "Password": [
+        "Şifre"
+      ],
+      "No remote sites configured yet": [
+        "Henüz hiçbir uzak site yapılandırılmadı."
+      ],
+      "Application passwords can be created in WordPress under Users > Profile > Application Passwords": [
+        "WordPress'te uygulama şifreleri Kullanıcılar > Profil > Uygulama Şifreleri bölümünden oluşturulabilir."
+      ],
+      "Licence Active": [
+        "Lisans Aktif"
+      ],
+      "Remove key": [
+        "Anahtarı çıkarın"
+      ],
+      "uiXpress licence key": [
+        "uiXpress lisans anahtarı"
+      ],
+      "Activate": [
+        "Etkinleştir"
+      ],
+      "Development server detected, no need to activate your licence key.": [
+        "Geliştirme sunucusu algılandı, lisans anahtarınızı etkinleştirmenize gerek yok."
+      ],
+      "System Default": [
+        "Sistem Varsayılanı"
+      ],
+      "Google Fonts": [
+        "Google Yazı Tipleri"
+      ],
+      "Custom URL": [
+        "Özel URL"
+      ],
+      "Upload Font": [
+        "Yazı tipini yükle"
+      ],
+      "Font Source": [
+        "Yazı Tipi Kaynağı"
+      ],
+      "Select Font": [
+        "Yazı Tipi Seçin"
+      ],
+      "Click to change": [
+        "Değiştirmek için tıklayın"
+      ],
+      "Clear selection": [
+        "Seçimi temizle"
+      ],
+      "Search fonts...": [
+        "Yazı tiplerini ara..."
+      ],
+      "No fonts found": [
+        "Hiçbir yazı tipi bulunamadı."
+      ],
+      "Or enter custom:": [
+        "Veya özel bir giriş yapın:"
+      ],
+      "Font name...": [
+        "Yazı tipi adı..."
+      ],
+      "Font Weights": [
+        "Yazı Tipi Kalınlıkları"
+      ],
+      "Select weights to include. At least one is required.": [
+        "Dahil edilecek ağırlıkları seçin. En az bir tanesi zorunludur."
+      ],
+      "Font Stylesheet URL": [
+        "Yazı Tipi Stil Sayfası URL'si"
+      ],
+      "https://fonts.googleapis.com/css2?family=...": [
+        "https://fonts.googleapis.com/css2?family=..."
+      ],
+      "Enter the URL to an external font stylesheet (CSS file)": [
+        "Harici bir yazı tipi stil dosyasına (CSS dosyası) ait URL'yi girin."
+      ],
+      "Font Family Name": [
+        "Yazı Tipi Ailesi Adı"
+      ],
+      "e.g., Inter, Roboto, Custom Font": [
+        "Örneğin, Inter, Roboto, Özel Yazı Tipi"
+      ],
+      "The exact font-family name as defined in the stylesheet": [
+        "Stil sayfasında tanımlandığı gibi tam yazı tipi ailesi adı."
+      ],
+      "Font Uploads Disabled": [
+        "Yazı Tipi Yüklemeleri Devre Dışı Bırakıldı"
+      ],
+      "Font file uploads are currently disabled. Enable font uploads in the Media settings to upload custom font files (.woff2, .woff, .ttf, .otf).": [
+        "Yazı tipi dosyası yüklemeleri şu anda devre dışı bırakılmıştır. Özel yazı tipi dosyalarını (.woff2, .woff, .ttf, .otf) yüklemek için Medya ayarlarında yazı tipi yüklemelerini etkinleştirin."
+      ],
+      "e.g., My Custom Font": [
+        "Örneğin, Benim Özel Yazı Tipim"
+      ],
+      "Choose a name for your custom font family": [
+        "Özel yazı tipi aileniz için bir isim seçin."
+      ],
+      "Font Files": [
+        "Yazı Tipi Dosyaları"
+      ],
+      "Opening Media Library...": [
+        "Medya Kütüphanesi açılıyor..."
+      ],
+      "Click to select font files": [
+        "Yazı tipi dosyalarını seçmek için tıklayın."
+      ],
+      "Supported formats: .woff2, .woff, .ttf, .otf": [
+        "Desteklenen formatlar: .woff2, .woff, .ttf, .otf"
+      ],
+      "Enable font uploads to add font files": [
+        "Yazı tipi dosyaları eklemek için yazı tipi yüklemelerini etkinleştirin."
+      ],
+      "Select Font File": [
+        "Yazı Tipi Dosyasını Seçin"
+      ],
+      "Select font files from your media library. Supported: .woff2, .woff, .ttf, .otf": [
+        "Medya kitaplığınızdan yazı tipi dosyalarını seçin. Desteklenen formatlar: .woff2, .woff, .ttf, .otf"
+      ],
+      "Loading font...": [
+        "Yazı tipi yükleniyor..."
+      ],
+      "Preview": [
+        "Önizleme"
+      ],
+      "Weight:": [
+        "Ağırlık:"
+      ],
+      "weights loaded": [
+        "yüklenen ağırlıklar"
+      ],
+      "Reset to system default": [
+        "Sistem varsayılan ayarlarına sıfırla"
+      ],
+      "Please paste your service account JSON key": [
+        "Lütfen hizmet hesabınızın JSON anahtarını yapıştırın."
+      ],
+      "Service account connected successfully": [
+        "Servis hesabı başarıyla bağlandı."
+      ],
+      "Failed to save credentials": [
+        "Kimlik bilgilerini kaydetme başarısız oldu."
+      ],
+      "Could not load properties automatically. You can enter your Property ID manually below.": [
+        "Özellikler otomatik olarak yüklenemedi. Lütfen aşağıya Mülk Kimliğinizi manuel olarak girin."
+      ],
+      "Please enter a Property ID": [
+        "Lütfen bir Mülk Kimliği girin."
+      ],
+      "Property saved": [
+        "Mülk kaydedildi"
+      ],
+      "Failed to save property": [
+        "Mülkü kurtarma başarısız oldu."
+      ],
+      "Failed to disconnect": [
+        "Bağlantı kesilemedi"
+      ],
+      "Checking connection...": [
+        "Bağlantı kontrol ediliyor..."
+      ],
+      "Connection Issue": [
+        "Bağlantı Sorunu"
+      ],
+      "Connected to Google Analytics": [
+        "Google Analytics'e bağlı."
+      ],
+      "Permission Issue Detected": [
+        "İzin Sorunu Tespit Edildi"
+      ],
+      "Learn more": [
+        "Daha fazla bilgi edin"
+      ],
+      "Retest Connection": [
+        "Bağlantıyı Yeniden Test Et"
+      ],
+      "Service Account:": [
+        "Hizmet Hesabı:"
+      ],
+      "Select Property": [
+        "Özellik Seç"
+      ],
+      "Select a property...": [
+        "Bir özellik seçin..."
+      ],
+      "Property ID:": [
+        "Mülk Kimliği:"
+      ],
+      "Enter Property ID": [
+        "Mülk Kimliğini Girin"
+      ],
+      "Find your Property ID in Google Analytics: Admin → Property Settings → Property ID (a number like 123456789)": [
+        "Google Analytics'te Mülk Kimliğinizi bulun: Yönetici → Mülk Ayarları → Mülk Kimliği (123456789 gibi bir sayı)"
+      ],
+      "e.g. 123456789": [
+        "örneğin 123456789"
+      ],
+      "Property ID": [
+        "Mülk Kimliği"
+      ],
+      "Change": [
+        "Değiştirmek"
+      ],
+      "Loading properties...": [
+        "Özellikler yükleniyor..."
+      ],
+      "Disconnect": [
+        "Bağlantıyı kes"
+      ],
+      "Setup Instructions": [
+        "Kurulum Talimatları"
+      ],
+      "How to connect Google Analytics 4": [
+        "Google Analytics 4 nasıl bağlanır?"
+      ],
+      "Go to": [
+        "Git"
+      ],
+      "Google Cloud Console": [
+        "Google Cloud Konsolu"
+      ],
+      "and create a new project (or select existing)": [
+        "ve yeni bir proje oluşturun (veya mevcut bir projeyi seçin)"
+      ],
+      "Enable the": [
+        "Etkinleştir"
+      ],
+      "Google Analytics Data API": [
+        "Google Analytics Veri API'si"
+      ],
+      "Service Accounts": [
+        "Hizmet Hesapları"
+      ],
+      "and create a new service account": [
+        "ve yeni bir hizmet hesabı oluşturun"
+      ],
+      "Click the service account, go to \"Keys\" tab, click \"Add Key\" → \"Create new key\" → JSON": [
+        "Hizmet hesabına tıklayın, \"Anahtarlar\" sekmesine gidin, \"Anahtar Ekle\" → \"Yeni anahtar oluştur\" → JSON seçeneğine tıklayın."
+      ],
+      "Download the JSON key file": [
+        "JSON anahtar dosyasını indirin"
+      ],
+      "In": [
+        "İçinde"
+      ],
+      "Google Analytics": [
+        "Google Analytics"
+      ],
+      "→ Admin → Property Access Management, add the service account email as a Viewer": [
+        "→ Yönetici → Mülk Erişim Yönetimi, hizmet hesabı e-postasını Görüntüleyici olarak ekleyin"
+      ],
+      "Paste the contents of the JSON key file below and enter your Property ID": [
+        "JSON anahtar dosyasının içeriğini aşağıya yapıştırın ve Mülk Kimliğinizi girin."
+      ],
+      "Finding your Property ID:": [
+        "Mülk Kimliğinizi Bulma:"
+      ],
+      "In Google Analytics, go to Admin → Property Settings. Your Property ID is the number shown (e.g. 123456789).": [
+        "Google Analytics'te Yönetici → Mülk Ayarları'na gidin. Mülk Kimliğiniz, burada gösterilen sayıdır (örneğin 123456789)."
+      ],
+      "Important:": [
+        "Önemli:"
+      ],
+      "The service account email (found in the JSON file) must be added to your GA4 property with at least Viewer access for data to be retrieved.": [
+        "Verilerin alınabilmesi için (JSON dosyasında bulunan) hizmet hesabı e-posta adresinin, en az Görüntüleyici erişimine sahip GA4 mülkünüze eklenmesi gerekmektedir."
+      ],
+      "Paste the contents of your service account JSON key file:": [
+        "Hizmet hesabınızın JSON anahtar dosyasının içeriğini yapıştırın:"
+      ],
+      "Paste your service account JSON key here...": [
+        "Hizmet hesabınızın JSON anahtarını buraya yapıştırın..."
+      ],
+      "Connect": [
+        "Bağlamak"
+      ],
+      "Cancel": [
+        "İptal etmek"
+      ],
+      "Connect Google Analytics": [
+        "Google Analytics'i bağlayın"
+      ],
+      "Clear custom properties": [
+        "Özel özellikleri temizle"
+      ],
+      "Edit Profile": [
+        "Profil Düzenle"
+      ],
+      "Visit site": [
+        "Siteyi ziyaret edin"
+      ],
+      "Site Settings": [
+        "Site Ayarları"
+      ],
+      "Sign Out": [
+        "Oturumu Kapat"
+      ],
+      "Light Mode": [
+        "Açık Mod"
+      ],
+      "Dark Mode": [
+        "Karanlık Mod"
+      ],
+      "Quick Actions": [
+        "Hızlı İşlemler"
+      ],
+      "Focus Search": [
+        "Odaklanmış Arama"
+      ],
+      "Search menu...": [
+        "Arama menüsü..."
+      ],
+      "No menu items found": [
+        "Menüde hiçbir öğe bulunamadı."
+      ],
+      "result": [
+        "sonuç"
+      ],
+      "results": [
+        "sonuçlar"
+      ],
+      "Navigate": [
+        "Gezinti"
+      ],
+      "Select": [
+        "Seçme"
+      ],
+      "Shortcuts": [
+        "Kısayollar"
+      ],
+      "Name": [
+        "İsim"
+      ],
+      "Shortcut name": [
+        "Kısayol adı"
+      ],
+      "URL": [
+        "URL"
+      ],
+      "https://example.com": [
+        "https://example.com"
+      ],
+      "Icon": [
+        "Simge"
+      ],
+      "icon name": [
+        "simge adı"
+      ],
+      "Delete": [
+        "Silmek"
+      ],
+      "Notifications": [
+        "Bildirimler"
+      ],
+      "Local": [
+        "Yerel"
+      ],
+      "When you switch to a remote site, all API requests will be sent to that site instead of the local site.": [
+        "Uzak bir siteye geçiş yaptığınızda, tüm API istekleri yerel site yerine o siteye gönderilecektir."
+      ],
+      "Remote site switching works on:": [
+        "Uzaktan site değiştirme işlemi şu cihazlarda çalışır:"
+      ],
+      "Modern Media Page": [
+        "Modern Medya Sayfası"
+      ],
+      "Modern Plugins Page": [
+        "Modern Eklentiler Sayfası"
+      ],
+      "Modern Dashboard": [
+        "Modern Gösterge Paneli"
+      ],
+      "All default WordPress pages (Posts, Pages, Comments, etc.) will continue to show local content.": [
+        "WordPress'in tüm varsayılan sayfaları (Yazılar, Sayfalar, Yorumlar vb.) yerel içeriği göstermeye devam edecektir."
+      ],
+      "Remote Site Switching": [
+        "Uzaktan Site Değiştirme"
+      ],
+      "I Understand": [
+        "Anladım"
+      ],
+      "Search sites...": [
+        "Arama siteleri..."
+      ],
+      "No sites found": [
+        "Hiçbir site bulunamadı."
+      ],
+      "Back to menu": [
+        "Menüye geri dön"
+      ],
+      "unread": [
+        "okunmamış"
+      ],
+      "Updates Available": [
+        "Güncellemeler Mevcut"
+      ],
+      "Awaiting moderation": [
+        "Onay bekleniyor"
+      ],
+      "You're all caught up": [
+        "Her şeyden haberdarsınız."
+      ],
+      "No new notifications": [
+        "Yeni bildirim yok."
+      ],
+      "Show less": [
+        "Daha az göster"
+      ],
+      "Show more": [
+        "Daha fazlasını göster"
+      ],
+      "No activities found": [
+        "Hiçbir etkinlik bulunamadı."
+      ],
+      "Find": [
+        "Bulmak"
+      ],
+      "Replace": [
+        "Yer değiştirmek"
+      ],
+      "New item": [
+        "Yeni ürün"
+      ],
+      "Edit CSS": [
+        "CSS'i düzenle"
+      ],
+      "Finished": [
+        "Tamamlandı"
+      ],
+      "Media Library": [
+        "Medya Kütüphanesi"
+      ],
+      "Media Details": [
+        "Medya Detayları"
+      ],
+      "Edit Image": [
+        "Resmi Düzenle"
+      ],
+      "Roles": [
+        "Roller"
+      ],
+      "Items selected": [
+        "Seçilen öğeler"
+      ],
+      "Select users or roles": [
+        "Kullanıcıları veya rolleri seçin"
+      ],
+      "url": [
+        "url"
+      ],
+      "Select post types": [
+        "Gönderi türlerini seçin"
+      ],
+      "Search icons": [
+        "Arama simgeleri"
+      ],
+      "View site": [
+        "Siteyi görüntüle"
+      ],
+      "View dashboard": [
+        "Kontrol panelini görüntüle"
+      ],
+      "Help": [
+        "Yardım"
+      ],
+      "Screen options": [
+        "Ekran seçenekleri"
+      ],
+      "New Post": [
+        "Yeni Gönderi"
+      ],
+      "New Page": [
+        "Yeni Sayfa"
+      ],
+      "Site settings": [
+        "Site ayarları"
+      ],
+      "Dark mode": [
+        "Karanlık mod"
+      ],
+      "Light mode": [
+        "Açık mod"
+      ],
+      "Enable magic dark mode for this page": [
+        "Bu sayfa için sihirli karanlık modu etkinleştirin."
+      ],
+      "Disable magic dark mode for this page": [
+        "Bu sayfa için sihirli karanlık modu devre dışı bırakın."
+      ],
+      "wpbody element not found": [
+        "wpbody öğesi bulunamadı"
+      ],
+      "CSS fix saved to custom CSS settings": [
+        "CSS düzeltmesi özel CSS ayarlarına kaydedildi."
+      ],
+      "Failed to save CSS fix": [
+        "CSS düzeltmesi kaydedilemedi."
+      ],
+      "Please describe the layout issue": [
+        "Lütfen sayfa düzeni sorununu açıklayın."
+      ],
+      "Capturing screenshot...": [
+        "Ekran görüntüsü alınıyor..."
+      ],
+      "Extracting HTML...": [
+        "HTML çıkarılıyor..."
+      ],
+      "Analyzing layout issues...": [
+        "Yerleşim sorunlarını analiz etme..."
+      ],
+      "Failed to fix layout and styling. Please try again later.": [
+        "Tasarım ve stil düzeltme işlemi başarısız oldu. Lütfen daha sonra tekrar deneyin."
+      ],
+      "Daily limit exceeded. Please try again tomorrow.": [
+        "Günlük limit aşıldı. Lütfen yarın tekrar deneyin."
+      ],
+      "Invalid request. Please check your input.": [
+        "Geçersiz istek. Lütfen girdiğiniz bilgileri kontrol edin."
+      ],
+      "Could not find wpbody element. Please ensure you are on a WordPress admin page.": [
+        "wpbody öğesi bulunamadı. Lütfen WordPress yönetici sayfasında olduğunuzdan emin olun."
+      ],
+      "Layout fix removed": [
+        "Yerleşim planı düzeltmesi kaldırıldı."
+      ],
+      "CSS copied to clipboard": [
+        "CSS panoya kopyalandı"
+      ],
+      "Failed to copy CSS": [
+        "CSS kopyalama başarısız oldu."
+      ],
+      "Layout and Styling": [
+        "Yerleşim ve Stil"
+      ],
+      "requests remaining": [
+        "kalan istekler"
+      ],
+      "Describe the layout or styling issue": [
+        "Tasarım veya biçimlendirme sorununu açıklayın."
+      ],
+      "e.g., The header is overlapping with the content area": [
+        "Örneğin, başlık alanı içerik alanıyla çakışıyor."
+      ],
+      "A screenshot of the page will be captured and analyzed. The AI will provide CSS fixes based on your description.": [
+        "Sayfanın ekran görüntüsü alınacak ve analiz edilecektir. Yapay zeka, açıklamalarınıza dayanarak CSS düzeltmeleri sağlayacaktır."
+      ],
+      "Fix Layout": [
+        "Düzeni düzeltin"
+      ],
+      "Layout and styling fix applied successfully!": [
+        "Tasarım ve stil düzeltmesi başarıyla uygulandı!"
+      ],
+      "Would you like to keep this fix permanently or remove it?": [
+        "Bu düzeltmeyi kalıcı olarak mı saklamak istersiniz yoksa kaldırmak mı?"
+      ],
+      "Hide Applied CSS": [
+        "Uygulanan CSS'i Gizle"
+      ],
+      "View Applied CSS": [
+        "Uygulanan CSS'i Görüntüle"
+      ],
+      "Copy CSS": [
+        "CSS'i kopyala"
+      ],
+      "Keep Fix": [
+        "Sabit Tut"
+      ],
+      "Saves to custom CSS settings for persistence.": [
+        "Kalıcı olması için özel CSS ayarlarına kaydeder."
+      ],
+      "Remove Fix": [
+        "Düzeltmeyi Kaldır"
+      ],
+      "Removes the fix immediately.": [
+        "Düzeltmeyi hemen kaldırır."
+      ],
+      "Remove": [
+        "Kaldırmak"
+      ],
+      "Failed to fix layout and styling": [
+        "Tasarım ve stil düzeltmesi başarısız oldu."
+      ],
+      "Close": [
+        "Kapalı"
+      ],
+      "Media item not found": [
+        "Medya öğesi bulunamadı."
+      ],
+      "Only images can be edited": [
+        "Sadece görseller düzenlenebilir."
+      ],
+      "Image saved successfully": [
+        "Görüntü başarıyla kaydedildi."
+      ],
+      "Failed to save image": [
+        "Görüntü kaydedilemedi."
+      ],
+      "Back": [
+        "Geri"
+      ],
+      "1 item selected": [
+        "1 ürün seçildi"
+      ],
+      "%d items selected": [
+        "%d öğe seçildi"
+      ],
+      "Files duplicated": [
+        "Dosyalar çoğaltıldı"
+      ],
+      "Error duplicating files": [
+        "Dosya çoğaltma hatası"
+      ],
+      "Media updated successfully": [
+        "Medya başarıyla güncellendi."
+      ],
+      "Error updating media": [
+        "Medya güncellenirken hata oluştu."
+      ],
+      "Download started": [
+        "İndirme işlemi başladı"
+      ],
+      "Files downloaded": [
+        "Dosyalar indirildi"
+      ],
+      "Error downloading files": [
+        "Dosya indirme hatası"
+      ],
+      "this file": [
+        "bu dosya"
+      ],
+      "these %d files": [
+        "bu %d dosya"
+      ],
+      "Are you sure?": [
+        "Emin misin?"
+      ],
+      "Are you sure you want to delete %s? This action cannot be undone.": [
+        "%s'yi silmek istediğinizden emin misiniz? Bu işlem geri alınamaz."
+      ],
+      "Yes, delete": [
+        "Evet, silin"
+      ],
+      "Media deleted successfully!": [
+        "Medya başarıyla silindi!"
+      ],
+      "Delete failed": [
+        "Silme işlemi başarısız oldu."
+      ],
+      "Upload failed": [
+        "Yükleme başarısız oldu"
+      ],
+      "Files uploaded successfully!": [
+        "Dosyalar başarıyla yüklendi!"
+      ],
+      "%d file(s) uploaded": [
+        "%d dosya yüklendi"
+      ],
+      "Search media...": [
+        "Medya ara..."
+      ],
+      "Images": [
+        "Görseller"
+      ],
+      "Videos": [
+        "Videolar"
+      ],
+      "Docs": [
+        "Belgeler"
+      ],
+      "Fonts": [
+        "Yazı Tipleri"
+      ],
+      "Grid View": [
+        "Izgara Görünümü"
+      ],
+      "List View": [
+        "Liste Görünümü"
+      ],
+      "Sort By": [
+        "Göre sırala"
+      ],
+      "Date Range": [
+        "Tarih Aralığı"
+      ],
+      "No tags available": [
+        "Etiket mevcut değil."
+      ],
+      "Options": [
+        "Seçenekler"
+      ],
+      "Unused Media Only": [
+        "Yalnızca Kullanılmamış Medya"
+      ],
+      "Clear All Filters": [
+        "Tüm filtreleri temizle"
+      ],
+      "Drop files to upload": [
+        "Yüklemek için dosyaları sürükleyip bırakın."
+      ],
+      "Release to start uploading": [
+        "Yüklemeye başlamak için yayına alın"
+      ],
+      "Loading media...": [
+        "Medya yükleniyor..."
+      ],
+      "No media found": [
+        "Hiçbir medya bulunamadı."
+      ],
+      "No media files": [
+        "Medya dosyası yok."
+      ],
+      "Clear filters": [
+        "Filtreleri temizle"
+      ],
+      "Select a media file from the list to view details and edit properties.": [
+        "Listeden bir medya dosyası seçerek ayrıntılarını görüntüleyebilir ve özelliklerini düzenleyebilirsiniz."
+      ],
+      "View": [
+        "Görüş"
+      ],
+      "Bulk Edit": [
+        "Toplu Düzenleme"
+      ],
+      "Download": [
+        "İndirmek"
+      ],
+      "Duplicate": [
+        "Kopyalamak"
+      ],
+      "Bulk Edit Media": [
+        "Toplu Medya Düzenleme"
+      ],
+      "Editing 1 item. Leave fields empty to keep existing values.": [
+        "1 öğe düzenleniyor. Mevcut değerleri korumak için alanları boş bırakın."
+      ],
+      "Editing %d items. Leave fields empty to keep existing values.": [
+        "%d öğe düzenleniyor. Mevcut değerleri korumak için alanları boş bırakın."
+      ],
+      "Title": [
+        "Başlık"
+      ],
+      "Leave empty to keep existing": [
+        "Mevcut olanı korumak için boş bırakın."
+      ],
+      "Alt Text": [
+        "Alternatif Metin"
+      ],
+      "Caption": [
+        "Altyazı"
+      ],
+      "Description": [
+        "Tanım"
+      ],
+      "Saved": [
+        "Kaydedildi"
+      ],
+      "Save failed": [
+        "Kaydetme başarısız oldu"
+      ],
+      "Delete file": [
+        "Dosyayı sil"
+      ],
+      "This will permantantly delete the file. Proceed?": [
+        "Bu işlem dosyayı kalıcı olarak silecektir. Devam edilsin mi?"
+      ],
+      "Deleted": [
+        "Silindi"
+      ],
+      "Copy failed": [
+        "Kopyalama başarısız oldu"
+      ],
+      "File replaced successfully": [
+        "Dosya başarıyla değiştirildi."
+      ],
+      "File replacement failed": [
+        "Dosya değiştirme işlemi başarısız oldu."
+      ],
+      "Only images can be optimized": [
+        "Sadece görseller optimize edilebilir."
+      ],
+      "Optimise image": [
+        "Görüntüyü optimize et"
+      ],
+      "This will permantantly optimise the image and convert to webp format.": [
+        "Bu işlem, görüntüyü kalıcı olarak optimize edecek ve webp formatına dönüştürecektir."
+      ],
+      "Convert": [
+        "Dönüştürmek"
+      ],
+      "Image optimized": [
+        "Görüntü optimize edildi"
+      ],
+      "Optimization failed": [
+        "Optimizasyon başarısız oldu"
+      ],
+      "Failed to add tag": [
+        "Etiket eklenemedi."
+      ],
+      "Failed to remove tag": [
+        "Etiketi kaldırma başarısız oldu."
+      ],
+      "Tag created and added": [
+        "Etiket oluşturuldu ve eklendi."
+      ],
+      "Failed to create tag": [
+        "Etiket oluşturulamadı."
+      ],
+      "Failed to update tags": [
+        "Etiketler güncellenemedi."
+      ],
+      "Drop file to replace": [
+        "Değiştirilecek dosyayı sürükleyip bırakın."
+      ],
+      "Keep the same ID and regenerate thumbnails": [
+        "Aynı kimliği koruyun ve küçük resimleri yeniden oluşturun."
+      ],
+      "Replacing file...": [
+        "Dosya değiştiriliyor..."
+      ],
+      "Regenerating thumbnails": [
+        "Küçük resimler yeniden oluşturuluyor"
+      ],
+      "Optimizing image...": [
+        "Görüntü optimizasyonu..."
+      ],
+      "File replaced successfully!": [
+        "Dosya başarıyla değiştirildi!"
+      ],
+      "Thumbnails regenerated": [
+        "Küçük resimler yeniden oluşturuldu"
+      ],
+      "Your browser does not support the video tag.": [
+        "Tarayıcınız video etiketini desteklemiyor."
+      ],
+      "Uploaded": [
+        "Yüklendi"
+      ],
+      "Untitled": [
+        "Başlıksız"
+      ],
+      "Describe the image for screen readers": [
+        "Ekran okuyucular için görüntüyü tanımlayın."
+      ],
+      "Add a caption": [
+        "Resim yazısı ekle"
+      ],
+      "Add tags...": [
+        "Etiket ekle..."
+      ],
+      "File URL": [
+        "Dosya URL'si"
+      ],
+      "Actions": [
+        "Eylemler"
+      ],
+      "Optimizing...": [
+        "Optimize ediliyor..."
+      ],
+      "Optimize Image": [
+        "Görüntüyü Optimize Et"
+      ],
+      "Replacing...": [
+        "Değiştiriliyor..."
+      ],
+      "Replace Image": [
+        "Resmi Değiştir"
+      ],
+      "Filename": [
+        "Dosya adı"
+      ],
+      "ID": [
+        "İD"
+      ],
+      "File size": [
+        "Dosya boyutu"
+      ],
+      "Used In": [
+        "Kullanıldığı Yer"
+      ],
+      "This media is not currently used anywhere.": [
+        "Bu medya şu anda hiçbir yerde kullanılmıyor."
+      ],
+      "Post": [
+        "Postalamak"
+      ],
+      "Widget": [
+        "Widget"
+      ],
+      "Draft": [
+        "Taslak"
+      ],
+      "Edit": [
+        "Düzenlemek"
+      ],
+      "Search posts": [
+        "Arama gönderileri"
+      ],
+      "Find users": [
+        "Kullanıcıları bulun"
+      ],
+      "Quick actions": [
+        "Hızlı işlemler"
+      ],
+      "View commands": [
+        "Komutları görüntüle"
+      ],
+      "Pending": [
+        "Askıda olması"
+      ],
+      "Private": [
+        "Özel"
+      ],
+      "Welcome to Global Search": [
+        "Global Search'e hoş geldiniz."
+      ],
+      "Quickly find posts, pages, users, and more. Here are some tips to get started:": [
+        "Gönderileri, sayfaları, kullanıcıları ve daha fazlasını hızlıca bulun. İşte başlamanıza yardımcı olacak bazı ipuçları:"
+      ],
+      "Press": [
+        "Basmak"
+      ],
+      "to open search": [
+        "aramayı açmak için"
+      ],
+      "Got it, thanks!": [
+        "Anladım, teşekkürler!"
+      ],
+      "Search posts, pages, categories, users...": [
+        "Gönderileri, sayfaları, kategorileri, kullanıcıları arayın..."
+      ],
+      "Recent Searches": [
+        "Son Aramalar"
+      ],
+      "Clear": [
+        "Temizlemek"
+      ],
+      "Start searching": [
+        "Aramaya başlayın"
+      ],
+      "Search for posts, pages, users, categories, or use quick actions.": [
+        "Gönderileri, sayfaları, kullanıcıları, kategorileri arayın veya hızlı işlemleri kullanın."
+      ],
+      "Try these:": [
+        "Şunları deneyin:"
+      ],
+      "Keyboard Shortcuts": [
+        "Klavye Kısayolları"
+      ],
+      "Open": [
+        "Açık"
+      ],
+      "Show tutorial again": [
+        "Eğitimi tekrar göster"
+      ],
+      "Command Syntax": [
+        "Komut Sözdizimi"
+      ],
+      "Search only posts": [
+        "Yalnızca gönderileri ara"
+      ],
+      "Search only pages": [
+        "Yalnızca arama sayfaları"
+      ],
+      "Search only users": [
+        "Yalnızca kullanıcıları ara"
+      ],
+      "Search only categories": [
+        "Yalnızca kategorilerde ara"
+      ],
+      "Show only quick actions": [
+        "Yalnızca hızlı işlemleri göster"
+      ],
+      "No results found": [
+        "Hiçbir sonuç bulunamadı."
+      ],
+      "Try a different search term or use command syntax to filter results.": [
+        "Farklı bir arama terimi deneyin veya sonuçları filtrelemek için komut sözdizimini kullanın."
+      ],
+      "View Commands": [
+        "Komutları Görüntüle"
+      ],
+      "Clear Search": [
+        "Aramayı temizle"
+      ],
+      "Recently Accessed": [
+        "Son Erişimler"
+      ],
+      "Frequently Used": [
+        "Sık Kullanılanlar"
+      ],
+      "to navigate": [
+        "gezinmek"
+      ],
+      "to select": [
+        "seçmek için"
+      ],
+      "to close": [
+        "kapatmak için"
+      ],
+      "Magic dark mode enabled for this page": [
+        "Bu sayfa için sihirli karanlık mod etkinleştirildi."
+      ],
+      "Failed to enable magic dark mode": [
+        "Sihirli karanlık modu etkinleştirme başarısız oldu."
+      ],
+      "Magic dark mode disabled for this page": [
+        "Bu sayfa için sihirli karanlık mod devre dışı bırakıldı."
+      ],
+      "Failed to disable magic dark mode": [
+        "Sihirli karanlık modu devre dışı bırakma başarısız oldu."
+      ],
+      "Free": [
+        "Özgür"
+      ],
+      "Loading image...": [
+        "Resim yükleniyor..."
+      ],
+      "Apply": [
+        "Uygula"
+      ],
+      "Image Editor": [
+        "Görüntü Düzenleyici"
+      ],
+      "Luminosity": [
+        "Parlaklık"
+      ],
+      "Brightness": [
+        "Parlaklık"
+      ],
+      "Exposure": [
+        "Maruziyet"
+      ],
+      "Highlights": [
+        "Öne çıkanlar"
+      ],
+      "Shadows": [
+        "Gölgeler"
+      ],
+      "Contrast": [
+        "Zıtlık"
+      ],
+      "Color": [
+        "Renk"
+      ],
+      "Saturation": [
+        "Doygunluk"
+      ],
+      "Vibrance": [
+        "Canlılık"
+      ],
+      "Hue": [
+        "Ton"
+      ],
+      "Temperature": [
+        "Sıcaklık"
+      ],
+      "Cool ← → Warm": [
+        "Soğuk ← → Sıcak"
+      ],
+      "Tint": [
+        "Renk tonu"
+      ],
+      "Green ← → Magenta": [
+        "Yeşil ← → Macenta"
+      ],
+      "Effects": [
+        "Etkiler"
+      ],
+      "Sharpness": [
+        "Keskinlik"
+      ],
+      "Negative = blur, positive = sharpen": [
+        "Negatif = bulanıklaştırma, pozitif = keskinleştirme"
+      ],
+      "Blur": [
+        "Bulanıklık"
+      ],
+      "Grain": [
+        "Tahıl"
+      ],
+      "Vignette": [
+        "Kısa öykü"
+      ],
+      "Crop": [
+        "Mahsul"
+      ],
+      "Click and drag on the image to select crop area": [
+        "Görüntü üzerinde tıklayıp sürükleyerek kırpma alanını seçin."
+      ],
+      "Aspect Ratio": [
+        "En Boy Oranı"
+      ],
+      "Start Crop": [
+        "Başlangıç Mahsulü"
+      ],
+      "Resize": [
+        "Boyutunu değiştir"
+      ],
+      "Lock aspect ratio": [
+        "Kilit en boy oranı"
+      ],
+      "Width": [
+        "Genişlik"
+      ],
+      "Height": [
+        "Yükseklik"
+      ],
+      "Apply Resize": [
+        "Yeniden boyutlandırmayı uygula"
+      ],
+      "Transform": [
+        "Dönüştür"
+      ],
+      "Left": [
+        "Sol"
+      ],
+      "Right": [
+        "Sağ"
+      ],
+      "Flip H": [
+        "Flip H"
+      ],
+      "Flip V": [
+        "Flip V"
+      ],
+      "Reset": [
+        "Sıfırla"
+      ],
+      "Reset changes": [
+        "Değişiklikleri sıfırla"
+      ],
+      "Loading more...": [
+        "Daha fazlası yükleniyor..."
+      ],
+      "No more items": [
+        "Başka ürün yok"
+      ],
+      "minute": [
+        "dakika"
+      ],
+      "minutes": [
+        "dakika"
+      ],
+      "ago": [
+        "evvel"
+      ],
+      "hour": [
+        "saat"
+      ],
+      "hours": [
+        "saat"
+      ],
+      "day": [
+        "gün"
+      ],
+      "days": [
+        "günler"
+      ],
+      "Remove tag": [
+        "Etiketi kaldır"
+      ],
+      "Create tag": [
+        "Etiket oluştur"
+      ],
+      "JSON must be a service account key (type should be \"service_account": [
+        "JSON, bir hizmet hesabı anahtarı olmalıdır (tür \"service_account\" olmalıdır)."
+      ],
+      "You must be logged in to access this page.": [
+        "Bu sayfaya erişmek için giriş yapmanız gerekmektedir."
+      ],
+      "Invalid request. Please refresh the page and try again.": [
+        "Geçersiz istek. Lütfen sayfayı yenileyip tekrar deneyin."
+      ],
+      "Search": [
+        "Aramak"
+      ]
+    }
+  }
+}

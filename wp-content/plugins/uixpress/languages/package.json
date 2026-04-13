@@ -1,0 +1,14 @@
+{
+  "name": "uixpress-translations",
+  "version": "1.0.0",
+  "description": "AI-powered translation workflow for UIXpress WordPress plugin",
+  "type": "module",
+  "scripts": {
+    "translate": "node translate-cli.js"
+  },
+  "dependencies": {
+    "@google-cloud/translate": "^8.5.0",
+    "dotenv": "^16.4.7",
+    "gettext-parser": "^8.0.0"
+  }
+}

@@ -1,0 +1,2652 @@
+{
+  "domain": "uixpress",
+  "locale_data": {
+    "uixpress": {
+      "": {
+        "domain": "uixpress",
+        "lang": "ja",
+        "plural-forms": "nplurals=2; plural=(n != 1);"
+      },
+      "Every 30 Seconds": [
+        "30秒ごと"
+      ],
+      "Every 30 Minutes": [
+        "30分ごと"
+      ],
+      "Google Analytics 4": [
+        "Google アナリティクス 4"
+      ],
+      "Could not authenticate with Google Analytics. Please check your service account credentials.": [
+        "Google Analyticsで認証できませんでした。サービスアカウントの認証情報を確認してください。"
+      ],
+      "Permission denied: The service account does not have access to this Google Analytics property. Please add the service account email to your GA4 property with Viewer access. Go to Google Analytics → Admin → Property Access Management and add the service account email.": [
+        "権限が拒否されました: サービスアカウントにはこのGoogleアナリティクス プロパティへのアクセス権がありません。閲覧者権限を持つGA4プロパティにサービスアカウントのメールアドレスを追加してください。Googleアナリティクス → 管理 → プロパティ アクセス管理に移動し、サービスアカウントのメールアドレスを追加してください。"
+      ],
+      "Authentication failed. The access token is invalid or expired. Please try reconnecting your Google Analytics account.": [
+        "認証に失敗しました。アクセストークンが無効または期限切れです。Google Analytics アカウントに再接続してください。"
+      ],
+      "The specified Google Analytics property was not found. Please check that the Property ID is correct.": [
+        "指定されたGoogleアナリティクスプロパティが見つかりません。プロパティIDが正しいことを確認してください。"
+      ],
+      "Built-in Analytics": [
+        "組み込み分析"
+      ],
+      "Unable to read SVG file for sanitization.": [
+        "サニタイズ用の SVG ファイルを読み取ることができません。"
+      ],
+      "SVG file could not be sanitized. The file may be corrupted or contain invalid content.": [
+        "SVGファイルをサニタイズできませんでした。ファイルが破損しているか、無効なコンテンツが含まれている可能性があります。"
+      ],
+      "Unable to write sanitized SVG file.": [
+        "サニタイズされた SVG ファイルを書き込めません。"
+      ],
+      "Error sanitizing SVG file: %s": [
+        "SVG ファイルのサニタイズ中にエラーが発生しました: %s"
+      ],
+      "Activity Log": [
+        "アクティビティログ"
+      ],
+      "Welcome to WordPress": [
+        "WordPressへようこそ"
+      ],
+      "Welcome to your WordPress dashboard! This is your site management hub.": [
+        "WordPress ダッシュボードへようこそ! ここはサイト管理のハブです。"
+      ],
+      "Quick Draft": [
+        "クイックドラフト"
+      ],
+      "Create a new post quickly from here.": [
+        "ここからすぐに新しい投稿を作成してください。"
+      ],
+      "Activity": [
+        "活動"
+      ],
+      "Recent activity on your site.": [
+        "あなたのサイトにおける最近のアクティビティ。"
+      ],
+      "Plugins": [
+        "プラグイン"
+      ],
+      "Post Types": [
+        "投稿タイプ"
+      ],
+      "Fields groups": [
+        "フィールドグループ"
+      ],
+      "Database Explorer": [
+        "データベースエクスプローラー"
+      ],
+      "Generate Dummy Analytics Data": [
+        "ダミー分析データを生成する"
+      ],
+      "Warning:": [
+        "警告："
+      ],
+      "This will delete all existing analytics data and replace it with dummy data for testing purposes.": [
+        "これにより、既存の分析データがすべて削除され、テスト目的でダミー データに置き換えられます。"
+      ],
+      "Generate Test Data": [
+        "テストデータを生成する"
+      ],
+      "This tool will generate realistic dummy analytics data for the last 2 months to help you test the analytics features.": [
+        "このツールは、分析機能のテストに役立つ、過去 2 か月間の現実的なダミー分析データを生成してくれます。"
+      ],
+      "Number of Months": [
+        "月数"
+      ],
+      "Select how many months of dummy data to generate.": [
+        "生成するダミーデータを何ヶ月分か選択します。"
+      ],
+      "Generate Dummy Data": [
+        "ダミーデータを生成する"
+      ],
+      "Are you sure? This will delete all existing analytics data.": [
+        "よろしいですか? これにより、既存の分析データがすべて削除されます。"
+      ],
+      "What This Generates": [
+        "これが生み出すもの"
+      ],
+      "Page views from various devices (desktop, mobile, tablet)": [
+        "さまざまなデバイス（デスクトップ、モバイル、タブレット）からのページビュー"
+      ],
+      "Realistic browser and operating system data": [
+        "現実的なブラウザとオペレーティングシステムのデータ"
+      ],
+      "Geographic data from different countries and cities": [
+        "さまざまな国や都市の地理データ"
+      ],
+      "Referrer data from search engines and social media": [
+        "検索エンジンやソーシャルメディアからのリファラーデータ"
+      ],
+      "Session tracking and unique visitor data": [
+        "セッショントラッキングとユニークビジターデータ"
+      ],
+      "Aggregated daily statistics": [
+        "集計された毎日の統計"
+      ],
+      "Current Analytics Status": [
+        "現在の分析ステータス"
+      ],
+      "Analytics Enabled:": [
+        "分析が有効:"
+      ],
+      "Tables Created:": [
+        "作成されたテーブル:"
+      ],
+      "Analytics must be enabled in the UiXpress settings before generating dummy data.": [
+        "ダミー データを生成する前に、UiXpress 設定で分析を有効にする必要があります。"
+      ],
+      "Security check failed.": [
+        "セキュリティチェックに失敗しました。"
+      ],
+      "You do not have sufficient permissions to access this page.": [
+        "このページにアクセスするための十分な権限がありません。"
+      ],
+      "Analytics is not enabled. Please enable analytics in settings first.": [
+        "アナリティクスが有効になっていません。まず設定でアナリティクスを有効にしてください。"
+      ],
+      "Invalid number of months. Please select between 1 and 12 months.": [
+        "月数が無効です。1～12 か月の間で選択してください。"
+      ],
+      "Error generating dummy data: ": [
+        "ダミーデータの生成中にエラーが発生しました:"
+      ],
+      "Menu Creator": [
+        "メニュー作成者"
+      ],
+      "Add New Admin Menu": [
+        "新しい管理メニューを追加"
+      ],
+      "New Admin Menu": [
+        "新しい管理者メニュー"
+      ],
+      "Edit Admin Menu": [
+        "管理メニューの編集"
+      ],
+      "View Admin Menu": [
+        "管理メニューを表示"
+      ],
+      "All Admin Menus": [
+        "すべての管理メニュー"
+      ],
+      "Search Admin Menus": [
+        "検索管理メニュー"
+      ],
+      "No Admin Menus found.": [
+        "管理メニューが見つかりません。"
+      ],
+      "No Admin Menus found in Trash.": [
+        "ゴミ箱内に管理メニューが見つかりません。"
+      ],
+      "Post type used for the uixpresss menus": [
+        "uixpresssメニューに使用される投稿タイプ"
+      ],
+      "Role Editor": [
+        "ロールエディター"
+      ],
+      "Settings": [
+        "設定"
+      ],
+      "Activity logger is not enabled.": [
+        "アクティビティ ロガーが有効になっていません。"
+      ],
+      "Unknown": [
+        "未知"
+      ],
+      "Log entry not found.": [
+        "ログエントリが見つかりません。"
+      ],
+      "Cleaned up %d old log entries.": [
+        "%d 個の古いログ エントリをクリーンアップしました。"
+      ],
+      "Add New Admin Notice": [
+        "新しい管理者通知を追加する"
+      ],
+      "Edit Admin Notice": [
+        "管理者通知の編集"
+      ],
+      "View Admin Notice": [
+        "管理者通知を表示"
+      ],
+      "All Admin Notices": [
+        "すべての管理者通知"
+      ],
+      "Search Admin Notices": [
+        "検索管理者通知"
+      ],
+      "No Admin Notices found.": [
+        "管理者通知が見つかりません。"
+      ],
+      "Persistent admin notices for uiXpress.": [
+        "uiXpress の永続的な管理者通知。"
+      ],
+      "Admin Notices": [
+        "管理者への通知"
+      ],
+      "Comments awaiting moderation": [
+        "コメントはモデレーション待ちです"
+      ],
+      "Media": [
+        "メディア"
+      ],
+      "User": [
+        "ユーザー"
+      ],
+      "Invalid field group ID.": [
+        "フィールド グループ ID が無効です。"
+      ],
+      "Field group not found.": [
+        "フィールド グループが見つかりません。"
+      ],
+      "Field group title is required.": [
+        "フィールド グループのタイトルは必須です。"
+      ],
+      "Failed to save field group.": [
+        "フィールド グループの保存に失敗しました。"
+      ],
+      "Field group created successfully.": [
+        "フィールド グループが正常に作成されました。"
+      ],
+      "Field group updated successfully.": [
+        "フィールド グループが正常に更新されました。"
+      ],
+      "Failed to delete field group.": [
+        "フィールド グループの削除に失敗しました。"
+      ],
+      "Field group deleted successfully.": [
+        "フィールド グループが正常に削除されました。"
+      ],
+      "(Copy)": [
+        "（コピー）"
+      ],
+      "Failed to duplicate field group.": [
+        "フィールド グループの複製に失敗しました。"
+      ],
+      "Field group duplicated successfully.": [
+        "フィールド グループが正常に複製されました。"
+      ],
+      "Invalid import data. Expected an array of field groups.": [
+        "インポートデータが無効です。フィールド グループの配列が必要です。"
+      ],
+      "Invalid import mode. Use \"merge\" or \"replace\".": [
+        "インポートモードが無効です。「merge」または「replace」を使用してください。"
+      ],
+      "Field group at index %d is missing a title.": [
+        "インデックス %d のフィールド グループにタイトルがありません。"
+      ],
+      "Failed to save imported field groups.": [
+        "インポートされたフィールド グループの保存に失敗しました。"
+      ],
+      "Import completed successfully.": [
+        "インポートが正常に完了しました。"
+      ],
+      "Invalid or unauthorized function.": [
+        "無効または許可されていない機能です。"
+      ],
+      "Field name is required.": [
+        "フィールド名は必須です。"
+      ],
+      "Valid option page is required.": [
+        "有効なオプション ページが必要です。"
+      ],
+      "Valid object ID is required.": [
+        "有効なオブジェクト ID が必要です。"
+      ],
+      "Helper function not available. Please ensure the plugin is properly initialized.": [
+        "ヘルパー関数は利用できません。プラグインが正しく初期化されていることを確認してください。"
+      ],
+      "(no title)": [
+        "（タイトルなし）"
+      ],
+      "Add Row": [
+        "行を追加"
+      ],
+      "Default Template": [
+        "デフォルトテンプレート"
+      ],
+      "All": [
+        "全て"
+      ],
+      "Standard": [
+        "標準"
+      ],
+      "No field groups are assigned to this option page. Create a field group and set its location to this option page.": [
+        "このオプションページにはフィールドグループが割り当てられていません。フィールドグループを作成し、その場所をこのオプションページに設定してください。"
+      ],
+      "Save Changes": [
+        "変更を保存"
+      ],
+      "You do not have permission to save these options.": [
+        "これらのオプションを保存する権限がありません。"
+      ],
+      "Invalid option page slug.": [
+        "オプション ページ スラッグが無効です。"
+      ],
+      "Option page not found.": [
+        "オプション ページが見つかりません。"
+      ],
+      "Option page title is required.": [
+        "オプションページのタイトルは必須です。"
+      ],
+      "An option page with this slug already exists.": [
+        "このスラッグを持つオプション ページは既に存在します。"
+      ],
+      "Failed to save option page.": [
+        "オプションページの保存に失敗しました。"
+      ],
+      "Option page created successfully.": [
+        "オプション ページが正常に作成されました。"
+      ],
+      "Option page updated successfully.": [
+        "オプション ページが正常に更新されました。"
+      ],
+      "Failed to delete option page.": [
+        "オプションページの削除に失敗しました。"
+      ],
+      "Option page deleted successfully.": [
+        "オプション ページが正常に削除されました。"
+      ],
+      "Failed to duplicate option page.": [
+        "オプション ページの複製に失敗しました。"
+      ],
+      "Option page duplicated successfully.": [
+        "オプション ページが正常に複製されました。"
+      ],
+      "Option Page Not Found": [
+        "オプションページが見つかりません"
+      ],
+      "Tools": [
+        "ツール"
+      ],
+      "Appearance": [
+        "外観"
+      ],
+      "Users": [
+        "ユーザー"
+      ],
+      "Comments": [
+        "コメント"
+      ],
+      "Posts": [
+        "投稿"
+      ],
+      "Pages": [
+        "ページ"
+      ],
+      "Dashboard": [
+        "ダッシュボード"
+      ],
+      "Administrator (manage_options)": [
+        "管理者（manage_options）"
+      ],
+      "Editor (edit_others_posts)": [
+        "編集者 (edit_others_posts)"
+      ],
+      "Author (publish_posts)": [
+        "著者（publish_posts）"
+      ],
+      "Contributor (edit_posts)": [
+        "寄稿者 (edit_posts)"
+      ],
+      "Subscriber (read)": [
+        "購読者（既読）"
+      ],
+      "Custom Fields": [
+        "カスタムフィールド"
+      ],
+      "Invalid post type slug.": [
+        "投稿タイプのスラッグが無効です。"
+      ],
+      "Custom post type not found.": [
+        "カスタム投稿タイプが見つかりません。"
+      ],
+      "Post type slug is required.": [
+        "投稿タイプのスラッグは必須です。"
+      ],
+      "Post type name is required.": [
+        "投稿タイプ名は必須です。"
+      ],
+      "Invalid post type slug. Use only lowercase letters, numbers, and underscores. Maximum 20 characters.": [
+        "投稿タイプのスラッグが無効です。小文字、数字、アンダースコアのみを使用してください。最大20文字です。"
+      ],
+      "This post type slug is reserved by WordPress.": [
+        "この投稿タイプのスラッグは WordPress によって予約されています。"
+      ],
+      "A custom post type with this slug already exists.": [
+        "このスラッグを持つカスタム投稿タイプは既に存在します。"
+      ],
+      "Failed to save custom post type.": [
+        "カスタム投稿タイプの保存に失敗しました。"
+      ],
+      "Custom post type created successfully.": [
+        "カスタム投稿タイプが正常に作成されました。"
+      ],
+      "Custom post type updated successfully.": [
+        "カスタム投稿タイプが正常に更新されました。"
+      ],
+      "Failed to delete custom post type.": [
+        "カスタム投稿タイプの削除に失敗しました。"
+      ],
+      "Custom post type deleted successfully.": [
+        "カスタム投稿タイプが正常に削除されました。"
+      ],
+      "Invalid import data. Expected an array of post types.": [
+        "インポートデータが無効です。投稿タイプの配列が必要です。"
+      ],
+      "Post type at index %d is missing required fields (slug or name).": [
+        "インデックス %d の投稿タイプに必須フィールド (スラッグまたは名前) がありません。"
+      ],
+      "Post type \"%s\" has an invalid slug format.": [
+        "投稿タイプ「%s」のスラッグ形式が無効です。"
+      ],
+      "Post type \"%s\" uses a reserved slug: %s": [
+        "投稿タイプ「%s」は予約済みのスラッグを使用しています: %s"
+      ],
+      "Import validation failed.": [
+        "インポート検証に失敗しました。"
+      ],
+      "Failed to save imported post types.": [
+        "インポートした投稿タイプの保存に失敗しました。"
+      ],
+      "Add New": [
+        "新規追加"
+      ],
+      "Add New %s": [
+        "新しい %s を追加"
+      ],
+      "Edit %s": [
+        "%s を編集"
+      ],
+      "New %s": [
+        "ニュース"
+      ],
+      "View %s": [
+        "%s を表示"
+      ],
+      "Search %s": [
+        "%s を検索"
+      ],
+      "No %s found": [
+        "%s が見つかりません"
+      ],
+      "No %s found in Trash": [
+        "ゴミ箱に %s が見つかりません"
+      ],
+      "Parent %s:": [
+        "両親："
+      ],
+      "All %s": [
+        "すべて %s"
+      ],
+      "%s Archives": [
+        "%s アーカイブ"
+      ],
+      "%s Attributes": [
+        "%s 属性"
+      ],
+      "Insert into %s": [
+        "%s に挿入"
+      ],
+      "Uploaded to this %s": [
+        "この%sにアップロードされました"
+      ],
+      "Featured image": [
+        "注目の画像"
+      ],
+      "Set featured image": [
+        "注目画像を設定する"
+      ],
+      "Remove featured image": [
+        "注目画像を削除する"
+      ],
+      "Use as featured image": [
+        "注目画像として使用"
+      ],
+      "Filter %s list": [
+        "%s リストをフィルター"
+      ],
+      "%s list navigation": [
+        "%s リストナビゲーション"
+      ],
+      "%s list": [
+        "%s リスト"
+      ],
+      "%s published.": [
+        "%s が公開されました。"
+      ],
+      "%s published privately.": [
+        "%s は非公開で公開されました。"
+      ],
+      "%s reverted to draft.": [
+        "%s は下書きに戻されました。"
+      ],
+      "%s scheduled.": [
+        "%s がスケジュールされました。"
+      ],
+      "%s updated.": [
+        "%s が更新されました。"
+      ],
+      "Only SELECT queries are allowed for safety.": [
+        "安全のため、SELECT クエリのみが許可されます。"
+      ],
+      "Invalid table name.": [
+        "テーブル名が無効です。"
+      ],
+      "Table not found.": [
+        "テーブルが見つかりません。"
+      ],
+      "Unable to retrieve table structure.": [
+        "テーブル構造を取得できません。"
+      ],
+      "Query contains prohibited SQL keywords.": [
+        "クエリに禁止された SQL キーワードが含まれています。"
+      ],
+      "Multiple statements are not allowed.": [
+        "複数のステートメントは許可されません。"
+      ],
+      "Query execution failed. Please check your SQL syntax.": [
+        "クエリの実行に失敗しました。SQL構文を確認してください。"
+      ],
+      "Password is required.": [
+        "パスワードが必要です。"
+      ],
+      "Invalid password.": [
+        "パスワードが無効です。"
+      ],
+      "Password verification failed.": [
+        "パスワードの検証に失敗しました。"
+      ],
+      "WordPress core tables cannot be deleted.": [
+        "WordPress コアテーブルは削除できません。"
+      ],
+      "System tables cannot be deleted.": [
+        "システム テーブルは削除できません。"
+      ],
+      "Password is required for this operation.": [
+        "この操作にはパスワードが必要です。"
+      ],
+      "Failed to delete table.": [
+        "テーブルの削除に失敗しました。"
+      ],
+      "Table '%s' has been deleted.": [
+        "テーブル '%s' は削除されました。"
+      ],
+      "Invalid JSON format": [
+        "無効なJSON形式"
+      ],
+      "Missing required field: %s": [
+        "必須フィールドが見つかりません: %s"
+      ],
+      "Failed to authenticate with Google. Please check your service account key.": [
+        "Google での認証に失敗しました。サービス アカウント キーを確認してください。"
+      ],
+      "Credentials are valid": [
+        "資格情報は有効です"
+      ],
+      "JSON must be a service account key": [
+        "JSONはサービスアカウントキーである必要があります"
+      ],
+      "Service account credentials saved successfully": [
+        "サービス アカウントの認証情報が正常に保存されました"
+      ],
+      "Google Analytics disconnected": [
+        "Google アナリティクスが切断されました"
+      ],
+      "Not connected to Google Analytics": [
+        "Googleアナリティクスに接続されていません"
+      ],
+      "Failed to fetch properties. Make sure the service account has been added to your GA4 property.": [
+        "プロパティを取得できませんでした。GA4 プロパティにサービス アカウントが追加されていることを確認してください。"
+      ],
+      "Property ID is required": [
+        "物件IDは必須です"
+      ],
+      "Property saved successfully": [
+        "プロパティが正常に保存されました"
+      ],
+      "Return only unused media items (unattached and not used as featured image).": [
+        "未使用のメディア アイテム (添付されておらず、注目の画像として使用されていない) のみを返します。"
+      ],
+      "Unused detection mode: shallow (default) or deep (scans post_content).": [
+        "未使用の検出モード: 浅い (デフォルト) または深い (post_content をスキャン)。"
+      ],
+      "Invalid request.": [
+        "無効なリクエストです。"
+      ],
+      "Invalid media IDs provided.": [
+        "無効なメディア ID が指定されました。"
+      ],
+      "Maximum 100 items can be downloaded at once.": [
+        "一度にダウンロードできるのは最大100件です。"
+      ],
+      "ZIP functionality is not available on this server.": [
+        "このサーバーでは ZIP 機能は使用できません。"
+      ],
+      "Failed to create ZIP file.": [
+        "ZIP ファイルの作成に失敗しました。"
+      ],
+      "No valid files found to download.": [
+        "ダウンロードできる有効なファイルが見つかりません。"
+      ],
+      "(Untitled)": [
+        "（無題）"
+      ],
+      "Media ID is required.": [
+        "メディアIDが必要です。"
+      ],
+      "Media item not found.": [
+        "メディアアイテムが見つかりません。"
+      ],
+      "You do not have permission to edit this media item.": [
+        "このメディアアイテムを編集する権限がありません。"
+      ],
+      "No file was uploaded.": [
+        "ファイルがアップロードされませんでした。"
+      ],
+      "File upload failed. Please try again.": [
+        "ファイルのアップロードに失敗しました。もう一度お試しください。"
+      ],
+      "File type not allowed.": [
+        "許可されていないファイルタイプです。"
+      ],
+      "File content does not match file type.": [
+        "ファイルの内容がファイルの種類と一致しません。"
+      ],
+      "File name contains invalid characters.": [
+        "ファイル名に無効な文字が含まれています。"
+      ],
+      "Original file not found.": [
+        "元のファイルが見つかりません。"
+      ],
+      "Invalid file path.": [
+        "ファイル パスが無効です。"
+      ],
+      "Failed to move uploaded file.": [
+        "アップロードしたファイルの移動に失敗しました。"
+      ],
+      "File replaced successfully.": [
+        "ファイルが正常に置き換えられました。"
+      ],
+      "Filter media items by tag IDs.": [
+        "タグ ID でメディア アイテムをフィルターします。"
+      ],
+      "Media Tags": [
+        "メディアタグ"
+      ],
+      "Media Tag": [
+        "メディアタグ"
+      ],
+      "Tags": [
+        "タグ"
+      ],
+      "All Tags": [
+        "すべてのタグ"
+      ],
+      "Edit Tag": [
+        "タグを編集"
+      ],
+      "View Tag": [
+        "タグを表示"
+      ],
+      "Update Tag": [
+        "タグを更新"
+      ],
+      "Add New Tag": [
+        "新しいタグを追加"
+      ],
+      "New Tag Name": [
+        "新しいタグ名"
+      ],
+      "Search Tags": [
+        "検索タグ"
+      ],
+      "Popular Tags": [
+        "人気のタグ"
+      ],
+      "Separate tags with commas": [
+        "タグはカンマで区切ってください"
+      ],
+      "Add or remove tags": [
+        "タグを追加または削除する"
+      ],
+      "Choose from the most used tags": [
+        "最もよく使われるタグから選択してください"
+      ],
+      "No tags found": [
+        "タグが見つかりません"
+      ],
+      "Tag name is required": [
+        "タグ名は必須です"
+      ],
+      "Invalid media item": [
+        "無効なメディアアイテム"
+      ],
+      "Menu cache key rotated successfully. All client caches have been invalidated.": [
+        "メニューキャッシュキーのローテーションに成功しました。すべてのクライアントキャッシュが無効化されました。"
+      ],
+      "Status": [
+        "状態"
+      ],
+      "Published": [
+        "出版"
+      ],
+      "(No title)": [
+        "（タイトルなし）"
+      ],
+      "Scheduled": [
+        "予定"
+      ],
+      "%s from now": [
+        "今から%s"
+      ],
+      "Modified": [
+        "修正済み"
+      ],
+      "%s ago": [
+        "%s前"
+      ],
+      "Authentication required. Please provide Basic Auth credentials.": [
+        "認証が必要です。Basic認証の資格情報を入力してください。"
+      ],
+      "Invalid authentication credentials.": [
+        "認証資格情報が無効です。"
+      ],
+      "Missing security token. Please refresh the page and try again.": [
+        "セキュリティトークンがありません。ページを更新してもう一度お試しください。"
+      ],
+      "Invalid security token. Please refresh the page and try again.": [
+        "セキュリティトークンが無効です。ページを更新してもう一度お試しください。"
+      ],
+      "You must be logged in to access this endpoint.": [
+        "このエンドポイントにアクセスするにはログインする必要があります。"
+      ],
+      "You do not have permission to perform this action. Required capability: %s": [
+        "この操作を実行する権限がありません。必要な権限: %s"
+      ],
+      "Invalid role format.": [
+        "ロールの形式が無効です。"
+      ],
+      "Invalid role.": [
+        "無効なロールです。"
+      ],
+      "Capabilities must be an array.": [
+        "機能は配列である必要があります。"
+      ],
+      "Role not found.": [
+        "役割が見つかりません。"
+      ],
+      "Role capabilities updated successfully.": [
+        "ロール機能が正常に更新されました。"
+      ],
+      "Role name cannot be empty.": [
+        "ロール名は空にできません。"
+      ],
+      "Role name is too long.": [
+        "ロール名が長すぎます。"
+      ],
+      "Role name updated successfully.": [
+        "ロール名が正常に更新されました。"
+      ],
+      "Role slug can only contain lowercase letters, numbers, hyphens, and underscores.": [
+        "ロールスラッグには、小文字、数字、ハイフン、アンダースコアのみを含めることができます。"
+      ],
+      "Role slug is too long.": [
+        "ロールスラッグが長すぎます。"
+      ],
+      "A role with this slug already exists.": [
+        "このスラッグを持つロールは既に存在します。"
+      ],
+      "Failed to create role.": [
+        "ロールの作成に失敗しました。"
+      ],
+      "Role created successfully.": [
+        "ロールが正常に作成されました。"
+      ],
+      "Cannot delete default WordPress roles.": [
+        "デフォルトの WordPress ロールを削除できません。"
+      ],
+      "Cannot delete role. There are %d user(s) with this role. Please reassign users to another role first.": [
+        "ロールを削除できません。このロールを持つユーザーは %d 人います。まず、ユーザーを別のロールに再割り当てしてください。"
+      ],
+      "Role deleted successfully.": [
+        "ロールが正常に削除されました。"
+      ],
+      "New Users": [
+        "新規ユーザー"
+      ],
+      "Activity Log Details": [
+        "アクティビティログの詳細"
+      ],
+      "General": [
+        "一般的な"
+      ],
+      "Core plugin settings and license management": [
+        "コアプラグインの設定とライセンス管理"
+      ],
+      "Login": [
+        "ログイン"
+      ],
+      "Customize login page appearance and security": [
+        "ログインページの外観とセキュリティをカスタマイズする"
+      ],
+      "Theme": [
+        "テーマ"
+      ],
+      "Colors, styling, and visual customization": [
+        "色、スタイル、ビジュアルのカスタマイズ"
+      ],
+      "White Label": [
+        "ホワイトラベル"
+      ],
+      "Rebrand and customize interface text and icons": [
+        "インターフェースのテキストとアイコンをリブランドしてカスタマイズする"
+      ],
+      "Menu": [
+        "メニュー"
+      ],
+      "Admin menu behavior and interaction settings": [
+        "管理メニューの動作とインタラクション設定"
+      ],
+      "Post management and display preferences": [
+        "投稿管理と表示設定"
+      ],
+      "Plugin management interface options": [
+        "プラグイン管理インターフェースのオプション"
+      ],
+      "Custom dashboard and admin interface settings": [
+        "カスタムダッシュボードと管理インターフェースの設定"
+      ],
+      "Analytics": [
+        "分析"
+      ],
+      "Built-in analytics and tracking settings": [
+        "組み込みの分析と追跡設定"
+      ],
+      "Media library and upload management settings": [
+        "メディアライブラリとアップロード管理設定"
+      ],
+      "User management and administration settings": [
+        "ユーザー管理と管理設定"
+      ],
+      "Comment management and administration settings": [
+        "コメント管理と管理設定"
+      ],
+      "Security": [
+        "安全"
+      ],
+      "Security settings and administration": [
+        "セキュリティ設定と管理"
+      ],
+      "Database": [
+        "データベース"
+      ],
+      "Database explorer and management settings": [
+        "データベースエクスプローラーと管理設定"
+      ],
+      "Search settings...": [
+        "検索設定..."
+      ],
+      "Loading settings...": [
+        "設定を読み込んでいます..."
+      ],
+      "No settings found": [
+        "設定が見つかりません"
+      ],
+      "Try a different search term": [
+        "別の検索語を試してください"
+      ],
+      "Loading Settings...": [
+        "設定を読み込んでいます..."
+      ],
+      "Settings Panel": [
+        "設定パネル"
+      ],
+      "Select a category from the list to configure your settings.": [
+        "リストからカテゴリを選択して設定を構成します。"
+      ],
+      "Activity log entry not found": [
+        "アクティビティログエントリが見つかりません"
+      ],
+      "Just now": [
+        "ちょうど今"
+      ],
+      "1 minute ago": [
+        "1分前"
+      ],
+      "%d minutes ago": [
+        "%d分前"
+      ],
+      "1 hour ago": [
+        "1時間前"
+      ],
+      "%d hours ago": [
+        "%d時間前"
+      ],
+      "1 day ago": [
+        "1日前"
+      ],
+      "%d days ago": [
+        "%d日前"
+      ],
+      "Loading...": [
+        "読み込み中..."
+      ],
+      "Activity Details": [
+        "アクティビティの詳細"
+      ],
+      "User Information": [
+        "ユーザー情報"
+      ],
+      "Timestamp": [
+        "タイムスタンプ"
+      ],
+      "IP Address": [
+        "IPアドレス"
+      ],
+      "User Agent": [
+        "ユーザーエージェント"
+      ],
+      "Changes": [
+        "変更点"
+      ],
+      "Before": [
+        "前に"
+      ],
+      "After": [
+        "後"
+      ],
+      "Details": [
+        "詳細"
+      ],
+      "Metadata": [
+        "メタデータ"
+      ],
+      "Remote Site Error": [
+        "リモートサイトエラー"
+      ],
+      "Invalid remote site configuration": [
+        "リモートサイトの構成が無効です"
+      ],
+      "Click": [
+        "クリック"
+      ],
+      "Hover": [
+        "ホバー"
+      ],
+      "Off": [
+        "オフ"
+      ],
+      "Light": [
+        "ライト"
+      ],
+      "Dark": [
+        "暗い"
+      ],
+      "Licence key": [
+        "ライセンスキー"
+      ],
+      "Activating uiXpress enables updates and features": [
+        "uiXpressを有効化するとアップデートや機能が有効になります"
+      ],
+      "Logo": [
+        "ロゴ"
+      ],
+      "Optional logo for to be displayed in the menu": [
+        "メニューに表示されるオプションのロゴ"
+      ],
+      "Logo url": [
+        "ロゴURL"
+      ],
+      "Dark mode logo": [
+        "ダークモードロゴ"
+      ],
+      "Set an alternative logo to use in dark mode. If one isn't set it will fall back to the standard logo.": [
+        "ダークモードで使用する代替ロゴを設定します。設定されていない場合は、標準ロゴが表示されます。"
+      ],
+      "Dark Logo url": [
+        "ダークロゴのURL"
+      ],
+      "Remote Sites": [
+        "リモートサイト"
+      ],
+      "Configure remote WordPress sites for cross-site operations.": [
+        "クロスサイト操作用にリモート WordPress サイトを構成します。"
+      ],
+      "Remote Site Switcher Capability": [
+        "リモートサイトスイッチャー機能"
+      ],
+      "WordPress capability required to see the remote site switcher in the toolbar. Defaults to \"manage_options\" (admin users). Users with this capability or below will see the switcher.": [
+        "ツールバーにリモートサイトスイッチャーを表示するために必要なWordPress権限。デフォルトは「manage_options」（管理者ユーザー）です。この権限以下のユーザーにはスイッチャーが表示されます。"
+      ],
+      "Disable theme": [
+        "テーマを無効にする"
+      ],
+      "Choose roles or usersnames to disable the theme for.": [
+        "テーマを無効にするロールまたはユーザー名を選択します。"
+      ],
+      "Search post types": [
+        "投稿タイプを検索"
+      ],
+      "Choose which post types are available in the global search": [
+        "グローバル検索で利用可能な投稿タイプを選択します"
+      ],
+      "Disable global search": [
+        "グローバル検索を無効にする"
+      ],
+      "Disable global search for all users.": [
+        "すべてのユーザーに対してグローバル検索を無効にします。"
+      ],
+      "Admin layout": [
+        "管理者レイアウト"
+      ],
+      "Choose your prefered admin layout": [
+        "好みの管理レイアウトを選択してください"
+      ],
+      "Modernise login page": [
+        "ログインページを近代化する"
+      ],
+      "When enabled, uiXpress will modernise the default login page.": [
+        "有効にすると、uiXpress はデフォルトのログイン ページを最新化します。"
+      ],
+      "Login image": [
+        "ログイン画像"
+      ],
+      "Optional image that will be added to the empty panel in the login page": [
+        "ログインページの空のパネルに追加されるオプションの画像"
+      ],
+      "Image url": [
+        "画像URL"
+      ],
+      "Login path": [
+        "ログインパス"
+      ],
+      "Change the login url from wp-login.php to a custom slug. Ensure you remember what you change this to.": [
+        "ログインURLをwp-login.phpからカスタムスラッグに変更します。変更したURLを忘れないようにしてください。"
+      ],
+      "Hide language selector": [
+        "言語セレクターを非表示にする"
+      ],
+      "When hidden the language selector on the login page will not be displayed": [
+        "非表示にすると、ログインページの言語セレクターは表示されなくなります。"
+      ],
+      "Enable TurnStyle": [
+        "ターンスタイルを有効にする"
+      ],
+      "When enabled, a cloudflare turnstyle challenge will be displayed on the login page to enhance security. Cloudflare account is required": [
+        "有効にすると、セキュリティ強化のため、ログインページにCloudflareのターンスタイルチャレンジが表示されます。Cloudflareアカウントが必要です。"
+      ],
+      "Turnstyle site key": [
+        "ターンスタイルサイトキー"
+      ],
+      "This is the site key for your turnstyle which can be created from your cloudflare dashboard.": [
+        "これは、CloudFlare ダッシュボードから作成できるターンスタイルのサイト キーです。"
+      ],
+      "Turnstyle secret key": [
+        "ターンスタイルの秘密鍵"
+      ],
+      "This is the secret key for your turnstyle which can be created from your cloudflare dashboard.": [
+        "これは、CloudFlare ダッシュボードから作成できるターンスタイルの秘密キーです。"
+      ],
+      "Force global theme": [
+        "グローバルテーマを強制する"
+      ],
+      "When enabled, the light / dark toggle will be removed and the selected theme set for all users.": [
+        "有効にすると、明るい/暗い切り替えが削除され、選択したテーマがすべてのユーザーに設定されます。"
+      ],
+      "Hide screen options": [
+        "画面オプションを非表示にする"
+      ],
+      "Hide the screen options toggle in the toolbar": [
+        "ツールバーの画面オプションの切り替えを非表示にする"
+      ],
+      "Hide help toggle": [
+        "ヘルプを非表示にする"
+      ],
+      "Hide the help toggle in the toolbar": [
+        "ツールバーのヘルプトグルを非表示にする"
+      ],
+      "Base theme colors": [
+        "基本テーマカラー"
+      ],
+      "Set a base color and uiXpress will automatically create a color scale for you.": [
+        "基本色を設定すると、uiXpress が自動的にカラー スケールを作成します。"
+      ],
+      "Base": [
+        "ベース"
+      ],
+      "Accent theme colors": [
+        "アクセントテーマカラー"
+      ],
+      "Set a accent color and uiXpress will automatically create a color scale for you.": [
+        "アクセント カラーを設定すると、uiXpress が自動的にカラー スケールを作成します。"
+      ],
+      "Accent base": [
+        "アクセントベース"
+      ],
+      "Custom css": [
+        "カスタムCSS"
+      ],
+      "Custom css added here will only be added in the admin area and login page.": [
+        "ここで追加されたカスタム CSS は、管理領域とログイン ページにのみ追加されます。"
+      ],
+      "External stylesheets": [
+        "外部スタイルシート"
+      ],
+      "Add URLs to any external stylesheets you want uiXpress to load into the admin": [
+        "uiXpress が管理画面に読み込む外部スタイルシートの URL を追加します。"
+      ],
+      "Custom Font": [
+        "カスタムフォント"
+      ],
+      "Choose a custom font for the admin interface. Select from Google Fonts, enter a custom font URL, or upload your own font files.": [
+        "管理インターフェースのカスタムフォントを選択してください。Google Fontsから選択するか、カスタムフォントのURLを入力するか、独自のフォントファイルをアップロードしてください。"
+      ],
+      "Admin favicon": [
+        "管理者のファビコン"
+      ],
+      "Optional favicon to replace the WordPress favicon in the admin.": [
+        "管理画面の WordPress ファビコンを置き換えるオプションのファビコン。"
+      ],
+      "Favicon url": [
+        "ファビコンURL"
+      ],
+      "Rename uiXpress": [
+        "uiXpressの名前を変更する"
+      ],
+      "This will rename uiXpress in the plugins list as well as renaming it's settings link.": [
+        "これにより、プラグイン リスト内の uiXpress の名前が変更され、設定リンクの名前も変更されます。"
+      ],
+      "Text Replacement": [
+        "テキスト置換"
+      ],
+      "Customize the text displayed in the WordPress admin area. Enter original words or phrases and their replacements to white-label the admin interface.": [
+        "WordPress管理画面に表示されるテキストをカスタマイズします。オリジナルの単語やフレーズとその置換テキストを入力して、管理画面をホワイトラベル化します。"
+      ],
+      "Submenu style": [
+        "サブメニュースタイル"
+      ],
+      "Choose from whether the submenu opens on click or hover.": [
+        "クリックまたはホバー時にサブメニューを開くかどうかを選択します。"
+      ],
+      "Enable Admin Menu Search": [
+        "管理メニュー検索を有効にする"
+      ],
+      "Enable search functionality in the admin menu to quickly find menu items.": [
+        "管理メニューで検索機能を有効にすると、メニュー項目をすばやく見つけることができます。"
+      ],
+      "Classic Post List View": [
+        "クラシック投稿リスト表示"
+      ],
+      "Switch to WordPress's traditional table layout for posts, removing the modern interface.": [
+        "最新のインターフェースを削除して、投稿を WordPress の従来のテーブル レイアウトに切り替えます。"
+      ],
+      "Modern Post Editor": [
+        "モダンポストエディター"
+      ],
+      "Replace the built-in WordPress editor with a modern, enhanced post editor interface.": [
+        "組み込みの WordPress エディターを、最新の強化された投稿エディター インターフェースに置き換えます。"
+      ],
+      "Post Types for Modern Editor": [
+        "モダンエディターの投稿タイプ"
+      ],
+      "Choose which post types should use the modern post editor. Defaults to posts.": [
+        "最新の投稿エディターを使用する投稿タイプを選択します。デフォルトは投稿です。"
+      ],
+      "Real-time Collaboration": [
+        "リアルタイムコラボレーション"
+      ],
+      "Enable real-time collaboration in the modern post editor. Multiple users can edit the same post simultaneously with live cursor tracking and synced changes.": [
+        "最新の投稿エディターでリアルタイムの共同作業が可能になります。ライブカーソルトラッキングと同期された変更により、複数のユーザーが同時に同じ投稿を編集できます。"
+      ],
+      "Modern Plugin Manager": [
+        "最新のプラグインマネージャー"
+      ],
+      "Replace the classic plugins page with a modern plugin manager with plugin profiling and improved features.": [
+        "従来のプラグイン ページを、プラグインのプロファイリングと改善された機能を備えた最新のプラグイン マネージャーに置き換えます。"
+      ],
+      "Modern Media Library": [
+        "モダンメディアライブラリ"
+      ],
+      "Replace the classic WordPress media library with a modern, responsive media manager with improved upload and organization features.": [
+        "従来の WordPress メディア ライブラリを、アップロード機能と整理機能が改善された最新のレスポンシブ メディア マネージャーに置き換えます。"
+      ],
+      "Enable SVG Uploads": [
+        "SVGアップロードを有効にする"
+      ],
+      "Allow SVG (Scalable Vector Graphics) files to be uploaded to the media library. All SVG files are automatically sanitized before upload to remove potentially malicious code, ensuring safe handling of SVG files.": [
+        "SVG（スケーラブル・ベクター・グラフィックス）ファイルをメディアライブラリにアップロードできるようになりました。すべてのSVGファイルはアップロード前に自動的にサニタイズされ、悪意のある可能性のあるコードが削除されるため、SVGファイルの安全な取り扱いが保証されます。"
+      ],
+      "Enable Font Uploads": [
+        "フォントのアップロードを有効にする"
+      ],
+      "Allow font files (.woff2, .woff, .ttf, .otf) to be uploaded to the media library. This enables custom font support for your site.": [
+        "フォントファイル（.woff2、.woff、.ttf、.otf）をメディアライブラリにアップロードできるようにします。これにより、サイトでカスタムフォントをサポートできるようになります。"
+      ],
+      "Modern Users Page": [
+        "モダンユーザーページ"
+      ],
+      "Replace the classic WordPress users page with a modern, responsive user manager with improved features and better organization.": [
+        "従来の WordPress ユーザー ページを、機能が向上し、整理整頓がしやすい、最新のレスポンシブなユーザー マネージャーに置き換えます。"
+      ],
+      "Modern Comments Page": [
+        "モダンコメントページ"
+      ],
+      "Replace the classic WordPress comments page with a modern, responsive comment manager with improved features and better organization.": [
+        "従来の WordPress コメント ページを、機能が向上し、整理がしやすくなった、最新のレスポンシブなコメント マネージャーに置き換えます。"
+      ],
+      "Custom Dashboard": [
+        "カスタムダッシュボード"
+      ],
+      "Replace the default WordPress dashboard with a modern, customizable dashboard interface.": [
+        "デフォルトの WordPress ダッシュボードを、最新のカスタマイズ可能なダッシュボード インターフェースに置き換えます。"
+      ],
+      "Enable uiXpress Analytics": [
+        "uiXpress Analyticsを有効にする"
+      ],
+      "Enable built-in analytics to track user behavior, page views, and performance metrics within your WordPress admin.": [
+        "組み込み分析を有効にして、WordPress 管理内でユーザーの行動、ページビュー、パフォーマンス メトリックを追跡します。"
+      ],
+      "Analytics Provider": [
+        "アナリティクスプロバイダー"
+      ],
+      "Choose which analytics provider to use for dashboard data. Select Built-in Analytics to use the uiXpress tracking system, or Google Analytics to display data from your GA4 property.": [
+        "ダッシュボードデータに使用するアナリティクスプロバイダーを選択します。uiXpressトラッキングシステムを使用する場合は「組み込みアナリティクス」を選択し、GA4プロパティのデータを表示するには「Googleアナリティクス」を選択します。"
+      ],
+      "Google Analytics Connection": [
+        "Google アナリティクス接続"
+      ],
+      "Connect your Google Analytics 4 property to display analytics data in the dashboard. You will need to create OAuth credentials in Google Cloud Console.": [
+        "Google アナリティクス 4 プロパティを接続すると、ダッシュボードにアナリティクスデータが表示されます。Google Cloud Console で OAuth 認証情報を作成する必要があります。"
+      ],
+      "Enable Database Explorer": [
+        "データベースエクスプローラーを有効にする"
+      ],
+      "Enable the modern database explorer interface to browse tables, view data, and execute SQL queries safely.": [
+        "最新のデータベース エクスプローラー インターフェイスを有効にして、テーブルを参照し、データを表示し、SQL クエリを安全に実行します。"
+      ],
+      "Enable Role Editor": [
+        "ロールエディターを有効にする"
+      ],
+      "Enable the modern role editor interface to manage WordPress user roles and capabilities.": [
+        "最新のロール エディター インターフェースを有効にして、WordPress ユーザー ロールと機能を管理します。"
+      ],
+      "Enable Custom Post Types": [
+        "カスタム投稿タイプを有効にする"
+      ],
+      "Enable the custom post types creator to register and manage custom post types without code. Post types are stored in a JSON file for performance.": [
+        "カスタム投稿タイプ作成者がコードを書かずにカスタム投稿タイプを登録・管理できるようにします。投稿タイプはパフォーマンス向上のため、JSONファイルに保存されます。"
+      ],
+      "Enable Activity Logger": [
+        "アクティビティロガーを有効にする"
+      ],
+      "Track and log all admin actions including post changes, user updates, plugin activations, and more.": [
+        "投稿の変更、ユーザーの更新、プラグインのアクティブ化など、すべての管理者のアクションを追跡して記録します。"
+      ],
+      "Retention Period (Days)": [
+        "保存期間（日数）"
+      ],
+      "How many days to keep activity logs before automatic cleanup. Default is 90 days.": [
+        "アクティビティログを自動的にクリーンアップするまでの保存日数。デフォルトは90日です。"
+      ],
+      "Log Level": [
+        "ログレベル"
+      ],
+      "Choose which actions to log. \"All Actions\" logs everything, \"Important Only\" logs only critical actions like deletions and role changes.": [
+        "ログに記録するアクションを選択します。「すべてのアクション」はすべてを記録し、「重要なアクションのみ」は削除やロールの変更などの重要なアクションのみを記録します。"
+      ],
+      "All Actions": [
+        "すべてのアクション"
+      ],
+      "Important Only": [
+        "重要のみ"
+      ],
+      "Auto Cleanup": [
+        "自動クリーンアップ"
+      ],
+      "Automatically delete logs older than the retention period. Disable to keep logs indefinitely.": [
+        "保存期間を過ぎたログは自動的に削除されます。ログを無期限に保存する場合は無効にしてください。"
+      ],
+      "Failed to load settings": [
+        "設定を読み込めませんでした"
+      ],
+      "Unable to save settings": [
+        "設定を保存できません"
+      ],
+      "Settings updated!": [
+        "設定が更新されました!"
+      ],
+      "Please provide a valid JSON file": [
+        "有効なJSONファイルをご提供ください"
+      ],
+      "Invalid settings: must be an object": [
+        "無効な設定: オブジェクトである必要があります"
+      ],
+      "Settings imported": [
+        "設定をインポートしました"
+      ],
+      "Import failed": [
+        "インポートに失敗しました"
+      ],
+      "Failed to activate key": [
+        "キーの有効化に失敗しました"
+      ],
+      "Key already activated for this site": [
+        "このサイトのキーはすでに有効化されています"
+      ],
+      "Key successfully activated": [
+        "キーが正常にアクティブ化されました"
+      ],
+      "Network error during activation": [
+        "アクティベーション中にネットワークエラーが発生しました"
+      ],
+      "Instance removed": [
+        "インスタンスを削除しました"
+      ],
+      "Failed to remove activation": [
+        "アクティベーションの削除に失敗しました"
+      ],
+      "Network error during removal": [
+        "削除中にネットワークエラーが発生しました"
+      ],
+      "Save": [
+        "保存"
+      ],
+      "Please add your licence key to unlock the plugin settings": [
+        "プラグイン設定のロックを解除するにはライセンスキーを追加してください"
+      ],
+      "Found": [
+        "見つかった"
+      ],
+      "matching setting(s)": [
+        "一致する設定"
+      ],
+      "No settings match your search in this category.": [
+        "このカテゴリには検索に一致する設定がありません。"
+      ],
+      "Try a different search term or check another category.": [
+        "別の検索語を試すか、別のカテゴリを確認してください。"
+      ],
+      "Minify menu": [
+        "メニューを縮小"
+      ],
+      "Toggle menu": [
+        "メニューを切り替える"
+      ],
+      "System": [
+        "システム"
+      ],
+      "Logout": [
+        "ログアウト"
+      ],
+      "Search activities...": [
+        "アクティビティを検索..."
+      ],
+      "Action": [
+        "アクション"
+      ],
+      "Object Type": [
+        "オブジェクトタイプ"
+      ],
+      "All Types": [
+        "すべてのタイプ"
+      ],
+      "item": [
+        "アイテム"
+      ],
+      "items": [
+        "アイテム"
+      ],
+      "Page": [
+        "ページ"
+      ],
+      "Previous": [
+        "前の"
+      ],
+      "Next": [
+        "次"
+      ],
+      "Select an activity from the list to view detailed information.": [
+        "詳細情報を表示するには、リストからアクティビティを選択します。"
+      ],
+      "Default": [
+        "デフォルト"
+      ],
+      "Rounded": [
+        "丸みを帯びた"
+      ],
+      "Bubble": [
+        "バブル"
+      ],
+      "Add new": [
+        "新規追加"
+      ],
+      "Update settings": [
+        "設定を更新する"
+      ],
+      "Loading editor...": [
+        "エディターを読み込んでいます..."
+      ],
+      "Invalid Input": [
+        "無効な入力"
+      ],
+      "Site URL, username, and application password are required": [
+        "サイトのURL、ユーザー名、アプリケーションパスワードが必要です"
+      ],
+      "Invalid URL": [
+        "無効なURL"
+      ],
+      "Please provide a valid site URL": [
+        "有効なサイトURLを入力してください"
+      ],
+      "Duplicate Site": [
+        "重複サイト"
+      ],
+      "This site URL already exists": [
+        "このサイトのURLは既に存在します"
+      ],
+      "Remove Remote Site?": [
+        "リモートサイトを削除しますか?"
+      ],
+      "Are you sure you want to remove this remote site? This action cannot be undone.": [
+        "このリモートサイトを削除してもよろしいですか? この操作は元に戻せません。"
+      ],
+      "Yes, remove site": [
+        "はい、サイトを削除します"
+      ],
+      "Site Removed": [
+        "サイトが削除されました"
+      ],
+      "Remote site has been removed successfully": [
+        "リモートサイトが正常に削除されました"
+      ],
+      "Site URL (e.g., https://example.com)": [
+        "サイトの URL (例: https://example.com)"
+      ],
+      "Username": [
+        "ユーザー名"
+      ],
+      "Application Password": [
+        "アプリケーションパスワード"
+      ],
+      "Add Site": [
+        "サイトを追加"
+      ],
+      "Site URL": [
+        "サイトURL"
+      ],
+      "Password": [
+        "パスワード"
+      ],
+      "No remote sites configured yet": [
+        "リモートサイトはまだ構成されていません"
+      ],
+      "Application passwords can be created in WordPress under Users > Profile > Application Passwords": [
+        "アプリケーションパスワードは、WordPressの「ユーザー」>「プロフィール」>「アプリケーションパスワード」で作成できます。"
+      ],
+      "Licence Active": [
+        "ライセンス有効"
+      ],
+      "Remove key": [
+        "キーを削除"
+      ],
+      "uiXpress licence key": [
+        "uiXpressライセンスキー"
+      ],
+      "Activate": [
+        "活性化"
+      ],
+      "Development server detected, no need to activate your licence key.": [
+        "開発サーバーが検出されました。ライセンス キーをアクティブ化する必要はありません。"
+      ],
+      "System Default": [
+        "システムのデフォルト"
+      ],
+      "Google Fonts": [
+        "Googleフォント"
+      ],
+      "Custom URL": [
+        "カスタムURL"
+      ],
+      "Upload Font": [
+        "フォントをアップロード"
+      ],
+      "Font Source": [
+        "フォントソース"
+      ],
+      "Select Font": [
+        "フォントを選択"
+      ],
+      "Click to change": [
+        "クリックして変更"
+      ],
+      "Clear selection": [
+        "選択をクリア"
+      ],
+      "Search fonts...": [
+        "フォントを検索..."
+      ],
+      "No fonts found": [
+        "フォントが見つかりません"
+      ],
+      "Or enter custom:": [
+        "またはカスタムを入力します:"
+      ],
+      "Font name...": [
+        "フォント名..."
+      ],
+      "Font Weights": [
+        "フォントの太さ"
+      ],
+      "Select weights to include. At least one is required.": [
+        "含める重みを選択してください。少なくとも 1 つは必要です。"
+      ],
+      "Font Stylesheet URL": [
+        "フォントスタイルシートのURL"
+      ],
+      "https://fonts.googleapis.com/css2?family=...": [
+        "https://fonts.googleapis.com/css2?family=..."
+      ],
+      "Enter the URL to an external font stylesheet (CSS file)": [
+        "外部フォントスタイルシート（CSSファイル）のURLを入力してください"
+      ],
+      "Font Family Name": [
+        "フォントファミリー名"
+      ],
+      "e.g., Inter, Roboto, Custom Font": [
+        "例：Inter、Roboto、カスタムフォント"
+      ],
+      "The exact font-family name as defined in the stylesheet": [
+        "スタイルシートで定義されている正確なフォントファミリー名"
+      ],
+      "Font Uploads Disabled": [
+        "フォントのアップロードが無効です"
+      ],
+      "Font file uploads are currently disabled. Enable font uploads in the Media settings to upload custom font files (.woff2, .woff, .ttf, .otf).": [
+        "フォントファイルのアップロードは現在無効になっています。カスタムフォントファイル（.woff2、.woff、.ttf、.otf）をアップロードするには、メディア設定でフォントのアップロードを有効にしてください。"
+      ],
+      "e.g., My Custom Font": [
+        "例：カスタムフォント"
+      ],
+      "Choose a name for your custom font family": [
+        "カスタムフォントファミリーの名前を選択してください"
+      ],
+      "Font Files": [
+        "フォントファイル"
+      ],
+      "Opening Media Library...": [
+        "メディアライブラリを開いています..."
+      ],
+      "Click to select font files": [
+        "クリックしてフォントファイルを選択"
+      ],
+      "Supported formats: .woff2, .woff, .ttf, .otf": [
+        "サポートされている形式: .woff2、.woff、.ttf、.otf"
+      ],
+      "Enable font uploads to add font files": [
+        "フォントのアップロードを有効にしてフォントファイルを追加します"
+      ],
+      "Select Font File": [
+        "フォントファイルを選択"
+      ],
+      "Select font files from your media library. Supported: .woff2, .woff, .ttf, .otf": [
+        "メディアライブラリからフォントファイルを選択してください。サポート対象: .woff2、.woff、.ttf、.otf"
+      ],
+      "Loading font...": [
+        "フォントを読み込んでいます..."
+      ],
+      "Preview": [
+        "プレビュー"
+      ],
+      "Weight:": [
+        "重さ："
+      ],
+      "weights loaded": [
+        "重量物を積載"
+      ],
+      "Reset to system default": [
+        "システムのデフォルトにリセット"
+      ],
+      "Please paste your service account JSON key": [
+        "サービスアカウントのJSONキーを貼り付けてください"
+      ],
+      "Service account connected successfully": [
+        "サービス アカウントが正常に接続されました"
+      ],
+      "Failed to save credentials": [
+        "資格情報を保存できませんでした"
+      ],
+      "Could not load properties automatically. You can enter your Property ID manually below.": [
+        "物件を自動的に読み込めませんでした。下記に物件IDを手動で入力してください。"
+      ],
+      "Please enter a Property ID": [
+        "物件IDを入力してください"
+      ],
+      "Property saved": [
+        "プロパティを保存しました"
+      ],
+      "Failed to save property": [
+        "プロパティを保存できませんでした"
+      ],
+      "Failed to disconnect": [
+        "切断に失敗しました"
+      ],
+      "Checking connection...": [
+        "接続を確認しています..."
+      ],
+      "Connection Issue": [
+        "接続の問題"
+      ],
+      "Connected to Google Analytics": [
+        "Googleアナリティクスに接続"
+      ],
+      "Permission Issue Detected": [
+        "権限の問題が検出されました"
+      ],
+      "Learn more": [
+        "もっと詳しく知る"
+      ],
+      "Retest Connection": [
+        "接続を再テスト"
+      ],
+      "Service Account:": [
+        "サービスアカウント:"
+      ],
+      "Select Property": [
+        "プロパティを選択"
+      ],
+      "Select a property...": [
+        "プロパティを選択..."
+      ],
+      "Property ID:": [
+        "物件ID:"
+      ],
+      "Enter Property ID": [
+        "物件IDを入力してください"
+      ],
+      "Find your Property ID in Google Analytics: Admin → Property Settings → Property ID (a number like 123456789)": [
+        "Google アナリティクスでプロパティ ID を見つけるには、「管理」→「プロパティ設定」→「プロパティ ID」（123456789 のような数字）に進みます。"
+      ],
+      "e.g. 123456789": [
+        "例：123456789"
+      ],
+      "Property ID": [
+        "物件ID"
+      ],
+      "Change": [
+        "変化"
+      ],
+      "Loading properties...": [
+        "プロパティを読み込んでいます..."
+      ],
+      "Disconnect": [
+        "切断"
+      ],
+      "Setup Instructions": [
+        "セットアップ手順"
+      ],
+      "How to connect Google Analytics 4": [
+        "Google Analytics 4を接続する方法"
+      ],
+      "Go to": [
+        "へ移動"
+      ],
+      "Google Cloud Console": [
+        "Google Cloud コンソール"
+      ],
+      "and create a new project (or select existing)": [
+        "新しいプロジェクトを作成する（または既存のプロジェクトを選択）"
+      ],
+      "Enable the": [
+        "有効にする"
+      ],
+      "Google Analytics Data API": [
+        "Google アナリティクス データ API"
+      ],
+      "Service Accounts": [
+        "サービスアカウント"
+      ],
+      "and create a new service account": [
+        "新しいサービスアカウントを作成します"
+      ],
+      "Click the service account, go to \"Keys\" tab, click \"Add Key\" → \"Create new key\" → JSON": [
+        "サービスアカウントをクリックし、「キー」タブに移動して、「キーの追加」→「新しいキーの作成」→JSONをクリックします。"
+      ],
+      "Download the JSON key file": [
+        "JSONキーファイルをダウンロードする"
+      ],
+      "In": [
+        "で"
+      ],
+      "Google Analytics": [
+        "Googleアナリティクス"
+      ],
+      "→ Admin → Property Access Management, add the service account email as a Viewer": [
+        "→ 管理 → プロパティアクセス管理で、サービスアカウントのメールアドレスを閲覧者として追加します"
+      ],
+      "Paste the contents of the JSON key file below and enter your Property ID": [
+        "以下のJSONキーファイルの内容を貼り付け、プロパティIDを入力してください"
+      ],
+      "Finding your Property ID:": [
+        "プロパティIDを見つける:"
+      ],
+      "In Google Analytics, go to Admin → Property Settings. Your Property ID is the number shown (e.g. 123456789).": [
+        "Googleアナリティクスで、「管理」→「プロパティ設定」に移動します。プロパティIDは表示されている番号です（例：123456789）。"
+      ],
+      "Important:": [
+        "重要："
+      ],
+      "The service account email (found in the JSON file) must be added to your GA4 property with at least Viewer access for data to be retrieved.": [
+        "データを取得するには、サービス アカウントのメール（JSON ファイル内）を少なくとも閲覧者アクセス権で GA4 プロパティに追加する必要があります。"
+      ],
+      "Paste the contents of your service account JSON key file:": [
+        "サービス アカウントの JSON キー ファイルの内容を貼り付けます。"
+      ],
+      "Paste your service account JSON key here...": [
+        "ここにサービス アカウントの JSON キーを貼り付けます..."
+      ],
+      "Connect": [
+        "接続する"
+      ],
+      "Cancel": [
+        "キャンセル"
+      ],
+      "Connect Google Analytics": [
+        "Googleアナリティクスを接続する"
+      ],
+      "Clear custom properties": [
+        "カスタムプロパティをクリアする"
+      ],
+      "Edit Profile": [
+        "プロフィールを編集"
+      ],
+      "Visit site": [
+        "サイトを訪問"
+      ],
+      "Site Settings": [
+        "サイト設定"
+      ],
+      "Sign Out": [
+        "サインアウト"
+      ],
+      "Light Mode": [
+        "ライトモード"
+      ],
+      "Dark Mode": [
+        "ダークモード"
+      ],
+      "Quick Actions": [
+        "クイックアクション"
+      ],
+      "Focus Search": [
+        "フォーカス検索"
+      ],
+      "Search menu...": [
+        "検索メニュー..."
+      ],
+      "No menu items found": [
+        "メニュー項目が見つかりません"
+      ],
+      "result": [
+        "結果"
+      ],
+      "results": [
+        "結果"
+      ],
+      "Navigate": [
+        "ナビゲート"
+      ],
+      "Select": [
+        "選択"
+      ],
+      "Shortcuts": [
+        "ショートカット"
+      ],
+      "Name": [
+        "名前"
+      ],
+      "Shortcut name": [
+        "ショートカット名"
+      ],
+      "URL": [
+        "URL"
+      ],
+      "https://example.com": [
+        "https://example.com"
+      ],
+      "Icon": [
+        "アイコン"
+      ],
+      "icon name": [
+        "アイコン名"
+      ],
+      "Delete": [
+        "消去"
+      ],
+      "Notifications": [
+        "通知"
+      ],
+      "Local": [
+        "地元"
+      ],
+      "When you switch to a remote site, all API requests will be sent to that site instead of the local site.": [
+        "リモート サイトに切り替えると、すべての API リクエストはローカル サイトではなくそのサイトに送信されます。"
+      ],
+      "Remote site switching works on:": [
+        "リモートサイト切り替えは以下で機能します:"
+      ],
+      "Modern Media Page": [
+        "モダンメディアページ"
+      ],
+      "Modern Plugins Page": [
+        "最新のプラグインページ"
+      ],
+      "Modern Dashboard": [
+        "モダンなダッシュボード"
+      ],
+      "All default WordPress pages (Posts, Pages, Comments, etc.) will continue to show local content.": [
+        "すべてのデフォルトの WordPress ページ (投稿、ページ、コメントなど) には、引き続きローカル コンテンツが表示されます。"
+      ],
+      "Remote Site Switching": [
+        "リモートサイトスイッチング"
+      ],
+      "I Understand": [
+        "わかりました"
+      ],
+      "Search sites...": [
+        "サイトを検索..."
+      ],
+      "No sites found": [
+        "サイトが見つかりません"
+      ],
+      "Back to menu": [
+        "メニューに戻る"
+      ],
+      "unread": [
+        "未読"
+      ],
+      "Updates Available": [
+        "アップデートが利用可能"
+      ],
+      "Awaiting moderation": [
+        "モデレーション待ち"
+      ],
+      "You're all caught up": [
+        "皆さん、追いつきましたね"
+      ],
+      "No new notifications": [
+        "新しい通知はありません"
+      ],
+      "Show less": [
+        "表示を減らす"
+      ],
+      "Show more": [
+        "もっと見る"
+      ],
+      "No activities found": [
+        "アクティビティが見つかりません"
+      ],
+      "Find": [
+        "探す"
+      ],
+      "Replace": [
+        "交換する"
+      ],
+      "New item": [
+        "新商品"
+      ],
+      "Edit CSS": [
+        "CSSを編集する"
+      ],
+      "Finished": [
+        "終了した"
+      ],
+      "Media Library": [
+        "メディアライブラリ"
+      ],
+      "Media Details": [
+        "メディアの詳細"
+      ],
+      "Edit Image": [
+        "画像を編集"
+      ],
+      "Roles": [
+        "役割"
+      ],
+      "Items selected": [
+        "選択されたアイテム"
+      ],
+      "Select users or roles": [
+        "ユーザーまたはロールを選択"
+      ],
+      "url": [
+        "URL"
+      ],
+      "Select post types": [
+        "投稿タイプを選択"
+      ],
+      "Search icons": [
+        "検索アイコン"
+      ],
+      "View site": [
+        "サイトを見る"
+      ],
+      "View dashboard": [
+        "ダッシュボードを表示"
+      ],
+      "Help": [
+        "ヘルプ"
+      ],
+      "Screen options": [
+        "画面オプション"
+      ],
+      "New Post": [
+        "新しい投稿"
+      ],
+      "New Page": [
+        "新しいページ"
+      ],
+      "Site settings": [
+        "サイト設定"
+      ],
+      "Dark mode": [
+        "ダークモード"
+      ],
+      "Light mode": [
+        "ライトモード"
+      ],
+      "Enable magic dark mode for this page": [
+        "このページでマジックダークモードを有効にする"
+      ],
+      "Disable magic dark mode for this page": [
+        "このページのマジックダークモードを無効にする"
+      ],
+      "wpbody element not found": [
+        "wpbody要素が見つかりません"
+      ],
+      "CSS fix saved to custom CSS settings": [
+        "CSS 修正がカスタム CSS 設定に保存されました"
+      ],
+      "Failed to save CSS fix": [
+        "CSS修正の保存に失敗しました"
+      ],
+      "Please describe the layout issue": [
+        "レイアウトの問題について説明してください"
+      ],
+      "Capturing screenshot...": [
+        "スクリーンショットをキャプチャしています..."
+      ],
+      "Extracting HTML...": [
+        "HTML を抽出しています..."
+      ],
+      "Analyzing layout issues...": [
+        "レイアウトの問題を分析しています..."
+      ],
+      "Failed to fix layout and styling. Please try again later.": [
+        "レイアウトとスタイルの修正に失敗しました。しばらくしてからもう一度お試しください。"
+      ],
+      "Daily limit exceeded. Please try again tomorrow.": [
+        "1日の制限を超えました。明日もう一度お試しください。"
+      ],
+      "Invalid request. Please check your input.": [
+        "無効なリクエストです。入力内容を確認してください。"
+      ],
+      "Could not find wpbody element. Please ensure you are on a WordPress admin page.": [
+        "wpbody要素が見つかりません。WordPress管理ページにアクセスしていることを確認してください。"
+      ],
+      "Layout fix removed": [
+        "レイアウト修正を削除しました"
+      ],
+      "CSS copied to clipboard": [
+        "CSSをクリップボードにコピーしました"
+      ],
+      "Failed to copy CSS": [
+        "CSSのコピーに失敗しました"
+      ],
+      "Layout and Styling": [
+        "レイアウトとスタイル"
+      ],
+      "requests remaining": [
+        "残りのリクエスト"
+      ],
+      "Describe the layout or styling issue": [
+        "レイアウトやスタイルに関する問題を説明してください"
+      ],
+      "e.g., The header is overlapping with the content area": [
+        "例: ヘッダーがコンテンツ領域と重なっています"
+      ],
+      "A screenshot of the page will be captured and analyzed. The AI will provide CSS fixes based on your description.": [
+        "ページのスクリーンショットがキャプチャされ、分析されます。AIがあなたの説明に基づいてCSSの修正を提案します。"
+      ],
+      "Fix Layout": [
+        "レイアウトを修正"
+      ],
+      "Layout and styling fix applied successfully!": [
+        "レイアウトとスタイルの修正が正常に適用されました。"
+      ],
+      "Would you like to keep this fix permanently or remove it?": [
+        "この修正を永続的に保持しますか、それとも削除しますか?"
+      ],
+      "Hide Applied CSS": [
+        "適用された CSS を非表示"
+      ],
+      "View Applied CSS": [
+        "適用されたCSSを表示"
+      ],
+      "Copy CSS": [
+        "CSSをコピー"
+      ],
+      "Keep Fix": [
+        "修正を続ける"
+      ],
+      "Saves to custom CSS settings for persistence.": [
+        "永続性のためにカスタム CSS 設定を保存します。"
+      ],
+      "Remove Fix": [
+        "修正を削除"
+      ],
+      "Removes the fix immediately.": [
+        "修正を直ちに削除します。"
+      ],
+      "Remove": [
+        "取り除く"
+      ],
+      "Failed to fix layout and styling": [
+        "レイアウトとスタイルの修正に失敗しました"
+      ],
+      "Close": [
+        "近い"
+      ],
+      "Media item not found": [
+        "メディアアイテムが見つかりません"
+      ],
+      "Only images can be edited": [
+        "編集できるのは画像のみです"
+      ],
+      "Image saved successfully": [
+        "画像が正常に保存されました"
+      ],
+      "Failed to save image": [
+        "画像の保存に失敗しました"
+      ],
+      "Back": [
+        "戻る"
+      ],
+      "1 item selected": [
+        "1 個のアイテムが選択されました"
+      ],
+      "%d items selected": [
+        "%d 個のアイテムが選択されました"
+      ],
+      "Files duplicated": [
+        "ファイルが重複しています"
+      ],
+      "Error duplicating files": [
+        "ファイルの複製中にエラーが発生しました"
+      ],
+      "Media updated successfully": [
+        "メディアが正常に更新されました"
+      ],
+      "Error updating media": [
+        "メディアの更新中にエラーが発生しました"
+      ],
+      "Download started": [
+        "ダウンロードを開始しました"
+      ],
+      "Files downloaded": [
+        "ダウンロードされたファイル"
+      ],
+      "Error downloading files": [
+        "ファイルのダウンロード中にエラーが発生しました"
+      ],
+      "this file": [
+        "このファイル"
+      ],
+      "these %d files": [
+        "これらの%d個のファイル"
+      ],
+      "Are you sure?": [
+        "本気ですか？"
+      ],
+      "Are you sure you want to delete %s? This action cannot be undone.": [
+        "%s を削除してもよろしいですか? この操作は元に戻せません。"
+      ],
+      "Yes, delete": [
+        "はい、削除します"
+      ],
+      "Media deleted successfully!": [
+        "メディアは正常に削除されました。"
+      ],
+      "Delete failed": [
+        "削除に失敗しました"
+      ],
+      "Upload failed": [
+        "アップロードに失敗しました"
+      ],
+      "Files uploaded successfully!": [
+        "ファイルのアップロードに成功しました。"
+      ],
+      "%d file(s) uploaded": [
+        "%d 個のファイルをアップロードしました"
+      ],
+      "Search media...": [
+        "メディアを検索..."
+      ],
+      "Images": [
+        "画像"
+      ],
+      "Videos": [
+        "ビデオ"
+      ],
+      "Docs": [
+        "ドキュメント"
+      ],
+      "Fonts": [
+        "フォント"
+      ],
+      "Grid View": [
+        "グリッドビュー"
+      ],
+      "List View": [
+        "リスト表示"
+      ],
+      "Sort By": [
+        "並べ替え"
+      ],
+      "Date Range": [
+        "日付範囲"
+      ],
+      "No tags available": [
+        "利用可能なタグはありません"
+      ],
+      "Options": [
+        "オプション"
+      ],
+      "Unused Media Only": [
+        "未使用メディアのみ"
+      ],
+      "Clear All Filters": [
+        "すべてのフィルターをクリア"
+      ],
+      "Drop files to upload": [
+        "アップロードするファイルをドロップします"
+      ],
+      "Release to start uploading": [
+        "離すとアップロードが始まります"
+      ],
+      "Loading media...": [
+        "メディアを読み込んでいます..."
+      ],
+      "No media found": [
+        "メディアが見つかりません"
+      ],
+      "No media files": [
+        "メディアファイルはありません"
+      ],
+      "Clear filters": [
+        "フィルターをクリア"
+      ],
+      "Select a media file from the list to view details and edit properties.": [
+        "リストからメディア ファイルを選択して、詳細を表示し、プロパティを編集します。"
+      ],
+      "View": [
+        "ビュー"
+      ],
+      "Bulk Edit": [
+        "一括編集"
+      ],
+      "Download": [
+        "ダウンロード"
+      ],
+      "Duplicate": [
+        "重複"
+      ],
+      "Bulk Edit Media": [
+        "メディアの一括編集"
+      ],
+      "Editing 1 item. Leave fields empty to keep existing values.": [
+        "1 項目を編集しています。既存の値を保持するには、フィールドを空のままにしてください。"
+      ],
+      "Editing %d items. Leave fields empty to keep existing values.": [
+        "%d 個の項目を編集しています。既存の値を保持するには、フィールドを空のままにしてください。"
+      ],
+      "Title": [
+        "タイトル"
+      ],
+      "Leave empty to keep existing": [
+        "既存のものを維持するには空白のままにしておきます"
+      ],
+      "Alt Text": [
+        "代替テキスト"
+      ],
+      "Caption": [
+        "キャプション"
+      ],
+      "Description": [
+        "説明"
+      ],
+      "Saved": [
+        "保存されました"
+      ],
+      "Save failed": [
+        "保存に失敗しました"
+      ],
+      "Delete file": [
+        "ファイルを削除"
+      ],
+      "This will permantantly delete the file. Proceed?": [
+        "これにより、ファイルは永久に削除されます。続行しますか?"
+      ],
+      "Deleted": [
+        "削除済み"
+      ],
+      "Copy failed": [
+        "コピーに失敗しました"
+      ],
+      "File replaced successfully": [
+        "ファイルの置き換えに成功しました"
+      ],
+      "File replacement failed": [
+        "ファイルの置換に失敗しました"
+      ],
+      "Only images can be optimized": [
+        "画像のみを最適化できます"
+      ],
+      "Optimise image": [
+        "画像を最適化"
+      ],
+      "This will permantantly optimise the image and convert to webp format.": [
+        "これにより、画像が永続的に最適化され、webp 形式に変換されます。"
+      ],
+      "Convert": [
+        "変換する"
+      ],
+      "Image optimized": [
+        "画像の最適化"
+      ],
+      "Optimization failed": [
+        "最適化に失敗しました"
+      ],
+      "Failed to add tag": [
+        "タグを追加できませんでした"
+      ],
+      "Failed to remove tag": [
+        "タグを削除できませんでした"
+      ],
+      "Tag created and added": [
+        "タグを作成して追加しました"
+      ],
+      "Failed to create tag": [
+        "タグの作成に失敗しました"
+      ],
+      "Failed to update tags": [
+        "タグの更新に失敗しました"
+      ],
+      "Drop file to replace": [
+        "置き換えるファイルをドロップ"
+      ],
+      "Keep the same ID and regenerate thumbnails": [
+        "同じIDを維持し、サムネイルを再生成する"
+      ],
+      "Replacing file...": [
+        "ファイルを置き換えています..."
+      ],
+      "Regenerating thumbnails": [
+        "サムネイルを再生成しています"
+      ],
+      "Optimizing image...": [
+        "画像を最適化しています..."
+      ],
+      "File replaced successfully!": [
+        "ファイルの置き換えに成功しました。"
+      ],
+      "Thumbnails regenerated": [
+        "サムネイルが再生成されました"
+      ],
+      "Your browser does not support the video tag.": [
+        "お使いのブラウザはビデオタグをサポートしていません。"
+      ],
+      "Uploaded": [
+        "アップロード済み"
+      ],
+      "Untitled": [
+        "無題"
+      ],
+      "Describe the image for screen readers": [
+        "スクリーンリーダー向けに画像を説明する"
+      ],
+      "Add a caption": [
+        "キャプションを追加する"
+      ],
+      "Add tags...": [
+        "タグを追加..."
+      ],
+      "File URL": [
+        "ファイルURL"
+      ],
+      "Actions": [
+        "アクション"
+      ],
+      "Optimizing...": [
+        "最適化中..."
+      ],
+      "Optimize Image": [
+        "画像の最適化"
+      ],
+      "Replacing...": [
+        "交換中..."
+      ],
+      "Replace Image": [
+        "画像を置き換える"
+      ],
+      "Filename": [
+        "ファイル名"
+      ],
+      "ID": [
+        "ID"
+      ],
+      "File size": [
+        "ファイルサイズ"
+      ],
+      "Used In": [
+        "使用場所"
+      ],
+      "This media is not currently used anywhere.": [
+        "このメディアは現在どこでも使用されていません。"
+      ],
+      "Post": [
+        "役職"
+      ],
+      "Widget": [
+        "ウィジェット"
+      ],
+      "Draft": [
+        "下書き"
+      ],
+      "Edit": [
+        "編集"
+      ],
+      "Search posts": [
+        "投稿を検索"
+      ],
+      "Find users": [
+        "ユーザーを探す"
+      ],
+      "Quick actions": [
+        "クイックアクション"
+      ],
+      "View commands": [
+        "コマンドの表示"
+      ],
+      "Pending": [
+        "保留中"
+      ],
+      "Private": [
+        "プライベート"
+      ],
+      "Welcome to Global Search": [
+        "グローバル検索へようこそ"
+      ],
+      "Quickly find posts, pages, users, and more. Here are some tips to get started:": [
+        "投稿、ページ、ユーザーなどを素早く見つけられます。使い始めるためのヒントをいくつかご紹介します。"
+      ],
+      "Press": [
+        "プレス"
+      ],
+      "to open search": [
+        "検索を開く"
+      ],
+      "Got it, thanks!": [
+        "分かりました、ありがとうございます！"
+      ],
+      "Search posts, pages, categories, users...": [
+        "投稿、ページ、カテゴリ、ユーザーなどを検索します..."
+      ],
+      "Recent Searches": [
+        "最近の検索"
+      ],
+      "Clear": [
+        "クリア"
+      ],
+      "Start searching": [
+        "検索を開始"
+      ],
+      "Search for posts, pages, users, categories, or use quick actions.": [
+        "投稿、ページ、ユーザー、カテゴリを検索したり、クイックアクションを使用したりできます。"
+      ],
+      "Try these:": [
+        "これらをお試しください:"
+      ],
+      "Keyboard Shortcuts": [
+        "キーボードショートカット"
+      ],
+      "Open": [
+        "開ける"
+      ],
+      "Show tutorial again": [
+        "チュートリアルをもう一度表示"
+      ],
+      "Command Syntax": [
+        "コマンド構文"
+      ],
+      "Search only posts": [
+        "投稿のみを検索"
+      ],
+      "Search only pages": [
+        "ページのみ検索"
+      ],
+      "Search only users": [
+        "ユーザーのみ検索"
+      ],
+      "Search only categories": [
+        "カテゴリのみ検索"
+      ],
+      "Show only quick actions": [
+        "クイックアクションのみを表示"
+      ],
+      "No results found": [
+        "結果が見つかりませんでした"
+      ],
+      "Try a different search term or use command syntax to filter results.": [
+        "別の検索語を試すか、コマンド構文を使用して結果をフィルタリングしてください。"
+      ],
+      "View Commands": [
+        "コマンドの表示"
+      ],
+      "Clear Search": [
+        "検索をクリア"
+      ],
+      "Recently Accessed": [
+        "最近アクセスした"
+      ],
+      "Frequently Used": [
+        "よく使われる"
+      ],
+      "to navigate": [
+        "ナビゲートする"
+      ],
+      "to select": [
+        "選択する"
+      ],
+      "to close": [
+        "閉じる"
+      ],
+      "Magic dark mode enabled for this page": [
+        "このページではマジックダークモードが有効になっています"
+      ],
+      "Failed to enable magic dark mode": [
+        "マジックダークモードを有効にできませんでした"
+      ],
+      "Magic dark mode disabled for this page": [
+        "このページではマジックダークモードが無効になっています"
+      ],
+      "Failed to disable magic dark mode": [
+        "マジックダークモードを無効にできませんでした"
+      ],
+      "Free": [
+        "無料"
+      ],
+      "Loading image...": [
+        "画像を読み込んでいます..."
+      ],
+      "Apply": [
+        "適用する"
+      ],
+      "Image Editor": [
+        "画像エディタ"
+      ],
+      "Luminosity": [
+        "明るさ"
+      ],
+      "Brightness": [
+        "輝度"
+      ],
+      "Exposure": [
+        "暴露"
+      ],
+      "Highlights": [
+        "ハイライト"
+      ],
+      "Shadows": [
+        "影"
+      ],
+      "Contrast": [
+        "対比"
+      ],
+      "Color": [
+        "色"
+      ],
+      "Saturation": [
+        "飽和"
+      ],
+      "Vibrance": [
+        "鮮やかさ"
+      ],
+      "Hue": [
+        "色相"
+      ],
+      "Temperature": [
+        "温度"
+      ],
+      "Cool ← → Warm": [
+        "涼しい ← → 暖かい"
+      ],
+      "Tint": [
+        "色合い"
+      ],
+      "Green ← → Magenta": [
+        "緑 ← → マゼンタ"
+      ],
+      "Effects": [
+        "効果"
+      ],
+      "Sharpness": [
+        "シャープネス"
+      ],
+      "Negative = blur, positive = sharpen": [
+        "マイナス＝ぼかし、プラス＝シャープ"
+      ],
+      "Blur": [
+        "ぼかし"
+      ],
+      "Grain": [
+        "粒"
+      ],
+      "Vignette": [
+        "ビネット"
+      ],
+      "Crop": [
+        "作物"
+      ],
+      "Click and drag on the image to select crop area": [
+        "画像をクリックしてドラッグし、切り取り領域を選択します"
+      ],
+      "Aspect Ratio": [
+        "アスペクト比"
+      ],
+      "Start Crop": [
+        "切り抜きを開始"
+      ],
+      "Resize": [
+        "サイズ変更"
+      ],
+      "Lock aspect ratio": [
+        "アスペクト比をロック"
+      ],
+      "Width": [
+        "幅"
+      ],
+      "Height": [
+        "身長"
+      ],
+      "Apply Resize": [
+        "サイズ変更を適用"
+      ],
+      "Transform": [
+        "変身"
+      ],
+      "Left": [
+        "左"
+      ],
+      "Right": [
+        "右"
+      ],
+      "Flip H": [
+        "フリップH"
+      ],
+      "Flip V": [
+        "フリップV"
+      ],
+      "Reset": [
+        "リセット"
+      ],
+      "Reset changes": [
+        "変更をリセット"
+      ],
+      "Loading more...": [
+        "さらに読み込み中..."
+      ],
+      "No more items": [
+        "アイテムはもうありません"
+      ],
+      "minute": [
+        "分"
+      ],
+      "minutes": [
+        "分"
+      ],
+      "ago": [
+        "前"
+      ],
+      "hour": [
+        "時間"
+      ],
+      "hours": [
+        "時間"
+      ],
+      "day": [
+        "日"
+      ],
+      "days": [
+        "日"
+      ],
+      "Remove tag": [
+        "タグを削除"
+      ],
+      "Create tag": [
+        "タグを作成"
+      ],
+      "JSON must be a service account key (type should be \"service_account": [
+        "JSONはサービスアカウントキーである必要があります（タイプは「service_account」である必要があります）"
+      ],
+      "You must be logged in to access this page.": [
+        "このページにアクセスするにはログインする必要があります。"
+      ],
+      "Invalid request. Please refresh the page and try again.": [
+        "無効なリクエストです。ページを更新してもう一度お試しください。"
+      ],
+      "Search": [
+        "検索"
+      ]
+    }
+  }
+}

@@ -1,0 +1,2652 @@
+{
+  "domain": "uixpress",
+  "locale_data": {
+    "uixpress": {
+      "": {
+        "domain": "uixpress",
+        "lang": "zh_CN",
+        "plural-forms": "nplurals=2; plural=(n != 1);"
+      },
+      "Every 30 Seconds": [
+        "每30秒"
+      ],
+      "Every 30 Minutes": [
+        "每30分钟"
+      ],
+      "Google Analytics 4": [
+        "Google Analytics 4"
+      ],
+      "Could not authenticate with Google Analytics. Please check your service account credentials.": [
+        "无法通过 Google Analytics 进行身份验证。请检查您的服务帐户凭据。"
+      ],
+      "Permission denied: The service account does not have access to this Google Analytics property. Please add the service account email to your GA4 property with Viewer access. Go to Google Analytics → Admin → Property Access Management and add the service account email.": [
+        "权限被拒绝：该服务帐号无权访问此 Google Analytics（分析）媒体资源。请将服务帐号电子邮件地址添加到您的 GA4 媒体资源并授予查看器访问权限。请转到“Google Analytics（分析）”→“管理”→“媒体资源访问权限管理”，然后添加服务帐号电子邮件地址。"
+      ],
+      "Authentication failed. The access token is invalid or expired. Please try reconnecting your Google Analytics account.": [
+        "身份验证失败。访问令牌无效或已过期。请尝试重新连接您的 Google Analytics（分析）帐户。"
+      ],
+      "The specified Google Analytics property was not found. Please check that the Property ID is correct.": [
+        "未找到指定的 Google Analytics（分析）媒体资源。请检查媒体资源 ID 是否正确。"
+      ],
+      "Built-in Analytics": [
+        "内置分析"
+      ],
+      "Unable to read SVG file for sanitization.": [
+        "无法读取SVG文件进行清理。"
+      ],
+      "SVG file could not be sanitized. The file may be corrupted or contain invalid content.": [
+        "SVG文件无法进行安全处理。该文件可能已损坏或包含无效内容。"
+      ],
+      "Unable to write sanitized SVG file.": [
+        "无法写入经过清理的SVG文件。"
+      ],
+      "Error sanitizing SVG file: %s": [
+        "SVG文件清理错误：%s"
+      ],
+      "Activity Log": [
+        "活动日志"
+      ],
+      "Welcome to WordPress": [
+        "欢迎来到WordPress"
+      ],
+      "Welcome to your WordPress dashboard! This is your site management hub.": [
+        "欢迎来到您的WordPress仪表板！这里是您网站的管理中心。"
+      ],
+      "Quick Draft": [
+        "快速草稿"
+      ],
+      "Create a new post quickly from here.": [
+        "在此快速创建新帖。"
+      ],
+      "Activity": [
+        "动态"
+      ],
+      "Recent activity on your site.": [
+        "您网站上的近期活动。"
+      ],
+      "Plugins": [
+        "插件"
+      ],
+      "Post Types": [
+        "文章类型"
+      ],
+      "Fields groups": [
+        "字段组"
+      ],
+      "Database Explorer": [
+        "数据库资源管理器"
+      ],
+      "Generate Dummy Analytics Data": [
+        "生成虚拟分析数据"
+      ],
+      "Warning:": [
+        "警告："
+      ],
+      "This will delete all existing analytics data and replace it with dummy data for testing purposes.": [
+        "这将删除所有现有分析数据，并替换为用于测试目的的虚拟数据。"
+      ],
+      "Generate Test Data": [
+        "生成测试数据"
+      ],
+      "This tool will generate realistic dummy analytics data for the last 2 months to help you test the analytics features.": [
+        "该工具将生成过去两个月的真实模拟分析数据，以帮助您测试分析功能。"
+      ],
+      "Number of Months": [
+        "月数"
+      ],
+      "Select how many months of dummy data to generate.": [
+        "选择要生成的虚拟数据的月份数。"
+      ],
+      "Generate Dummy Data": [
+        "生成虚拟数据"
+      ],
+      "Are you sure? This will delete all existing analytics data.": [
+        "确定吗？这将删除所有现有的分析数据。"
+      ],
+      "What This Generates": [
+        "这会生成什么"
+      ],
+      "Page views from various devices (desktop, mobile, tablet)": [
+        "来自不同设备的页面浏览量（台式机、手机、平板）"
+      ],
+      "Realistic browser and operating system data": [
+        "真实的浏览器和操作系统数据"
+      ],
+      "Geographic data from different countries and cities": [
+        "来自不同国家和城市的地理数据"
+      ],
+      "Referrer data from search engines and social media": [
+        "来自搜索引擎和社交媒体的引荐来源数据"
+      ],
+      "Session tracking and unique visitor data": [
+        "会话跟踪与独立访客数据"
+      ],
+      "Aggregated daily statistics": [
+        "每日汇总统计"
+      ],
+      "Current Analytics Status": [
+        "当前分析状态"
+      ],
+      "Analytics Enabled:": [
+        "分析功能已启用："
+      ],
+      "Tables Created:": [
+        "创建的表："
+      ],
+      "Analytics must be enabled in the UiXpress settings before generating dummy data.": [
+        "在生成虚拟数据之前，必须在UiXpress设置中启用分析功能。"
+      ],
+      "Security check failed.": [
+        "安全检查失败。"
+      ],
+      "You do not have sufficient permissions to access this page.": [
+        "您没有足够的权限访问此页面。"
+      ],
+      "Analytics is not enabled. Please enable analytics in settings first.": [
+        "分析功能尚未启用。请先在设置中启用分析功能。"
+      ],
+      "Invalid number of months. Please select between 1 and 12 months.": [
+        "月份数量无效。请选择1至12个月之间的数值。"
+      ],
+      "Error generating dummy data: ": [
+        "生成虚拟数据时出错： "
+      ],
+      "Menu Creator": [
+        "菜单创建者"
+      ],
+      "Add New Admin Menu": [
+        "添加新的管理员菜单"
+      ],
+      "New Admin Menu": [
+        "管理菜单"
+      ],
+      "Edit Admin Menu": [
+        "管理菜单"
+      ],
+      "View Admin Menu": [
+        "查看管理员菜单"
+      ],
+      "All Admin Menus": [
+        "所有管理菜单"
+      ],
+      "Search Admin Menus": [
+        "搜索管理菜单"
+      ],
+      "No Admin Menus found.": [
+        "未找到管理员菜单。"
+      ],
+      "No Admin Menus found in Trash.": [
+        "在废纸篓中找不到管理菜单。"
+      ],
+      "Post type used for the uixpresss menus": [
+        "用于 uixpresss 菜单的帖子类型"
+      ],
+      "Role Editor": [
+        "角色编辑器"
+      ],
+      "Settings": [
+        "设置"
+      ],
+      "Activity logger is not enabled.": [
+        "活动记录器未启用。"
+      ],
+      "Unknown": [
+        "未知"
+      ],
+      "Log entry not found.": [
+        "日志条目未找到。"
+      ],
+      "Cleaned up %d old log entries.": [
+        "清理了 %d 条旧日志条目。"
+      ],
+      "Add New Admin Notice": [
+        "添加新管理员通知"
+      ],
+      "Edit Admin Notice": [
+        "编辑管理员通知"
+      ],
+      "View Admin Notice": [
+        "查看管理员通知"
+      ],
+      "All Admin Notices": [
+        "所有管理员通知"
+      ],
+      "Search Admin Notices": [
+        "搜索管理员通知"
+      ],
+      "No Admin Notices found.": [
+        "未找到管理员通知。"
+      ],
+      "Persistent admin notices for uiXpress.": [
+        "uiXpress的持续管理通知。"
+      ],
+      "Admin Notices": [
+        "管理通知"
+      ],
+      "Comments awaiting moderation": [
+        "评论需审核"
+      ],
+      "Media": [
+        "媒体"
+      ],
+      "User": [
+        "用户"
+      ],
+      "Invalid field group ID.": [
+        "无效的字段组 ID。"
+      ],
+      "Field group not found.": [
+        "未找到字段组。"
+      ],
+      "Field group title is required.": [
+        "字段组标题为必填项。"
+      ],
+      "Failed to save field group.": [
+        "保存字段组失败。"
+      ],
+      "Field group created successfully.": [
+        "字段组创建成功。"
+      ],
+      "Field group updated successfully.": [
+        "字段组已成功更新。"
+      ],
+      "Failed to delete field group.": [
+        "删除字段组失败。"
+      ],
+      "Field group deleted successfully.": [
+        "字段组已成功删除。"
+      ],
+      "(Copy)": [
+        "（复制）"
+      ],
+      "Failed to duplicate field group.": [
+        "复制字段组失败。"
+      ],
+      "Field group duplicated successfully.": [
+        "字段组复制成功。"
+      ],
+      "Invalid import data. Expected an array of field groups.": [
+        "导入数据无效。应为字段组数组。"
+      ],
+      "Invalid import mode. Use \"merge\" or \"replace\".": [
+        "导入模式无效。请使用“合并”或“替换”模式。"
+      ],
+      "Field group at index %d is missing a title.": [
+        "索引为 %d 的字段组缺少标题。"
+      ],
+      "Failed to save imported field groups.": [
+        "导入的字段组保存失败。"
+      ],
+      "Import completed successfully.": [
+        "导入成功。"
+      ],
+      "Invalid or unauthorized function.": [
+        "无效或未经授权的功能。"
+      ],
+      "Field name is required.": [
+        "字段名称为必填项。"
+      ],
+      "Valid option page is required.": [
+        "必须提供有效的选项页面。"
+      ],
+      "Valid object ID is required.": [
+        "必须提供有效的对象 ID。"
+      ],
+      "Helper function not available. Please ensure the plugin is properly initialized.": [
+        "辅助函数不可用。请确保插件已正确初始化。"
+      ],
+      "(no title)": [
+        "（无标题）"
+      ],
+      "Add Row": [
+        "添加行"
+      ],
+      "Default Template": [
+        "默认模板"
+      ],
+      "All": [
+        "所有"
+      ],
+      "Standard": [
+        "标准"
+      ],
+      "No field groups are assigned to this option page. Create a field group and set its location to this option page.": [
+        "此选项页面未分配任何字段组。请创建一个字段组并将其位置设置为此选项页面。"
+      ],
+      "Save Changes": [
+        "保存更改"
+      ],
+      "You do not have permission to save these options.": [
+        "您没有权限保存这些选项。"
+      ],
+      "Invalid option page slug.": [
+        "无效的选项页面别名。"
+      ],
+      "Option page not found.": [
+        "未找到选项页面。"
+      ],
+      "Option page title is required.": [
+        "选项页面标题为必填项。"
+      ],
+      "An option page with this slug already exists.": [
+        "已存在具有此别名的选项页面。"
+      ],
+      "Failed to save option page.": [
+        "保存选项页面失败。"
+      ],
+      "Option page created successfully.": [
+        "选项页面创建成功。"
+      ],
+      "Option page updated successfully.": [
+        "选项页面已成功更新。"
+      ],
+      "Failed to delete option page.": [
+        "删除选项页面失败。"
+      ],
+      "Option page deleted successfully.": [
+        "选项页面已成功删除。"
+      ],
+      "Failed to duplicate option page.": [
+        "复制选项页面失败。"
+      ],
+      "Option page duplicated successfully.": [
+        "选项页面已成功复制。"
+      ],
+      "Option Page Not Found": [
+        "未找到选项页面"
+      ],
+      "Tools": [
+        "工具"
+      ],
+      "Appearance": [
+        "外貌"
+      ],
+      "Users": [
+        "用户"
+      ],
+      "Comments": [
+        "评论"
+      ],
+      "Posts": [
+        "文章"
+      ],
+      "Pages": [
+        "页"
+      ],
+      "Dashboard": [
+        "仪表盘"
+      ],
+      "Administrator (manage_options)": [
+        "管理员（管理选项）"
+      ],
+      "Editor (edit_others_posts)": [
+        "编辑（编辑其他帖子）"
+      ],
+      "Author (publish_posts)": [
+        "作者（发布文章）"
+      ],
+      "Contributor (edit_posts)": [
+        "贡献者（编辑帖子）"
+      ],
+      "Subscriber (read)": [
+        "订阅者（已读）"
+      ],
+      "Custom Fields": [
+        "自定义字段"
+      ],
+      "Invalid post type slug.": [
+        "无效的帖子类型别名。"
+      ],
+      "Custom post type not found.": [
+        "未找到自定义文章类型。"
+      ],
+      "Post type slug is required.": [
+        "帖子类型别名是必需的。"
+      ],
+      "Post type name is required.": [
+        "文章类型名称为必填项。"
+      ],
+      "Invalid post type slug. Use only lowercase letters, numbers, and underscores. Maximum 20 characters.": [
+        "帖子类型别名无效。请仅使用小写字母、数字和下划线。最多 20 个字符。"
+      ],
+      "This post type slug is reserved by WordPress.": [
+        "此文章类型别名已被 WordPress 保留。"
+      ],
+      "A custom post type with this slug already exists.": [
+        "已存在具有此别名的自定义文章类型。"
+      ],
+      "Failed to save custom post type.": [
+        "自定义文章类型保存失败。"
+      ],
+      "Custom post type created successfully.": [
+        "自定义文章类型创建成功。"
+      ],
+      "Custom post type updated successfully.": [
+        "自定义文章类型已成功更新。"
+      ],
+      "Failed to delete custom post type.": [
+        "删除自定义文章类型失败。"
+      ],
+      "Custom post type deleted successfully.": [
+        "自定义文章类型已成功删除。"
+      ],
+      "Invalid import data. Expected an array of post types.": [
+        "导入数据无效。应为文章类型数组。"
+      ],
+      "Post type at index %d is missing required fields (slug or name).": [
+        "索引为 %d 的帖子类型缺少必填字段（别名或名称）。"
+      ],
+      "Post type \"%s\" has an invalid slug format.": [
+        "帖子类型“%s”的别名格式无效。"
+      ],
+      "Post type \"%s\" uses a reserved slug: %s": [
+        "文章类型“%s”使用保留别名：%s"
+      ],
+      "Import validation failed.": [
+        "导入验证失败。"
+      ],
+      "Failed to save imported post types.": [
+        "导入的文章类型保存失败。"
+      ],
+      "Add New": [
+        "添加新"
+      ],
+      "Add New %s": [
+        "添加新 %s"
+      ],
+      "Edit %s": [
+        "编辑 %s"
+      ],
+      "New %s": [
+        "消息"
+      ],
+      "View %s": [
+        "查看 %s"
+      ],
+      "Search %s": [
+        "搜索 %s"
+      ],
+      "No %s found": [
+        "未找到 %s"
+      ],
+      "No %s found in Trash": [
+        "垃圾桶中未找到 %s"
+      ],
+      "Parent %s:": [
+        "父母："
+      ],
+      "All %s": [
+        "所有 %s"
+      ],
+      "%s Archives": [
+        "%s 存档"
+      ],
+      "%s Attributes": [
+        "%s 属性"
+      ],
+      "Insert into %s": [
+        "插入到 %s"
+      ],
+      "Uploaded to this %s": [
+        "已上传至此 %s"
+      ],
+      "Featured image": [
+        "特色图片"
+      ],
+      "Set featured image": [
+        "设置特色图片"
+      ],
+      "Remove featured image": [
+        "移除特色图片"
+      ],
+      "Use as featured image": [
+        "用作特色图片"
+      ],
+      "Filter %s list": [
+        "筛选 %s 列表"
+      ],
+      "%s list navigation": [
+        "%s 列表导航"
+      ],
+      "%s list": [
+        "%s 列表"
+      ],
+      "%s published.": [
+        "已发布。"
+      ],
+      "%s published privately.": [
+        "%s 私下发布。"
+      ],
+      "%s reverted to draft.": [
+        "%s 已恢复为草稿。"
+      ],
+      "%s scheduled.": [
+        "%s 已安排。"
+      ],
+      "%s updated.": [
+        "%s 已更新。"
+      ],
+      "Only SELECT queries are allowed for safety.": [
+        "出于安全考虑，仅允许执行SELECT查询。"
+      ],
+      "Invalid table name.": [
+        "无效的表名。"
+      ],
+      "Table not found.": [
+        "未找到表格。"
+      ],
+      "Unable to retrieve table structure.": [
+        "无法获取表结构。"
+      ],
+      "Query contains prohibited SQL keywords.": [
+        "查询包含被禁止的SQL关键字。"
+      ],
+      "Multiple statements are not allowed.": [
+        "不允许有多个语句。"
+      ],
+      "Query execution failed. Please check your SQL syntax.": [
+        "查询执行失败。请检查您的SQL语法。"
+      ],
+      "Password is required.": [
+        "密码是必需的。"
+      ],
+      "Invalid password.": [
+        "密码无效。"
+      ],
+      "Password verification failed.": [
+        "密码验证失败。"
+      ],
+      "WordPress core tables cannot be deleted.": [
+        "WordPress核心数据库表不可删除。"
+      ],
+      "System tables cannot be deleted.": [
+        "系统表不可删除。"
+      ],
+      "Password is required for this operation.": [
+        "此操作需要密码。"
+      ],
+      "Failed to delete table.": [
+        "删除表失败。"
+      ],
+      "Table '%s' has been deleted.": [
+        "表单 ‘%s’ 已被删除。"
+      ],
+      "Invalid JSON format": [
+        "无效的 JSON 格式"
+      ],
+      "Missing required field: %s": [
+        "缺少必填字段：%s"
+      ],
+      "Failed to authenticate with Google. Please check your service account key.": [
+        "无法通过 Google 身份验证。请检查您的服务帐号密钥。"
+      ],
+      "Credentials are valid": [
+        "凭证有效"
+      ],
+      "JSON must be a service account key": [
+        "JSON 必须是服务帐户密钥"
+      ],
+      "Service account credentials saved successfully": [
+        "服务帐户凭据已成功保存"
+      ],
+      "Google Analytics disconnected": [
+        "Google Analytics 已断开连接"
+      ],
+      "Not connected to Google Analytics": [
+        "未连接到 Google Analytics"
+      ],
+      "Failed to fetch properties. Make sure the service account has been added to your GA4 property.": [
+        "获取属性失败。请确保已将服务帐户添加到您的 GA4 属性中。"
+      ],
+      "Property ID is required": [
+        "需要提供房产 ID。"
+      ],
+      "Property saved successfully": [
+        "房产已成功保存"
+      ],
+      "Return only unused media items (unattached and not used as featured image).": [
+        "仅归还未使用的媒体项目（未附加且未用作特色图片）。"
+      ],
+      "Unused detection mode: shallow (default) or deep (scans post_content).": [
+        "未使用的检测模式：浅层（默认）或深层（扫描 post_content）。"
+      ],
+      "Invalid request.": [
+        "无效请求。"
+      ],
+      "Invalid media IDs provided.": [
+        "提供的媒体ID无效。"
+      ],
+      "Maximum 100 items can be downloaded at once.": [
+        "每次最多可下载100个项目。"
+      ],
+      "ZIP functionality is not available on this server.": [
+        "此服务器不支持ZIP功能。"
+      ],
+      "Failed to create ZIP file.": [
+        "创建ZIP文件失败。"
+      ],
+      "No valid files found to download.": [
+        "未找到有效的文件可供下载。"
+      ],
+      "(Untitled)": [
+        "（无标题）"
+      ],
+      "Media ID is required.": [
+        "需要媒体ID。"
+      ],
+      "Media item not found.": [
+        "媒体项目未找到。"
+      ],
+      "You do not have permission to edit this media item.": [
+        "您没有权限编辑此媒体项目。"
+      ],
+      "No file was uploaded.": [
+        "没有上传文件。"
+      ],
+      "File upload failed. Please try again.": [
+        "文件上传失败。请重试。"
+      ],
+      "File type not allowed.": [
+        "不允许文件类型。"
+      ],
+      "File content does not match file type.": [
+        "文件内容与文件类型不匹配。"
+      ],
+      "File name contains invalid characters.": [
+        "文件名包含无效字符。"
+      ],
+      "Original file not found.": [
+        "未找到原始文件。"
+      ],
+      "Invalid file path.": [
+        "无效的文件路径。"
+      ],
+      "Failed to move uploaded file.": [
+        "无法移动上传的文件。"
+      ],
+      "File replaced successfully.": [
+        "文件已成功替换。"
+      ],
+      "Filter media items by tag IDs.": [
+        "按标签ID过滤媒体项目。"
+      ],
+      "Media Tags": [
+        "媒体标签"
+      ],
+      "Media Tag": [
+        "媒体标签"
+      ],
+      "Tags": [
+        "标签"
+      ],
+      "All Tags": [
+        "所有标签"
+      ],
+      "Edit Tag": [
+        "编辑标签"
+      ],
+      "View Tag": [
+        "查看标签"
+      ],
+      "Update Tag": [
+        "更新标签"
+      ],
+      "Add New Tag": [
+        "添加新标签"
+      ],
+      "New Tag Name": [
+        "新标签名称"
+      ],
+      "Search Tags": [
+        "搜索标签"
+      ],
+      "Popular Tags": [
+        "热门标签"
+      ],
+      "Separate tags with commas": [
+        "用逗号分隔标签"
+      ],
+      "Add or remove tags": [
+        "添加或删除标签"
+      ],
+      "Choose from the most used tags": [
+        "从最常用的标签中选择"
+      ],
+      "No tags found": [
+        "找不到标签"
+      ],
+      "Tag name is required": [
+        "标签名称是必需的"
+      ],
+      "Invalid media item": [
+        "无效媒体项"
+      ],
+      "Menu cache key rotated successfully. All client caches have been invalidated.": [
+        "菜单缓存键已成功轮换。所有客户端缓存均已失效。"
+      ],
+      "Status": [
+        "状态"
+      ],
+      "Published": [
+        "已发布"
+      ],
+      "(No title)": [
+        "（无标题）"
+      ],
+      "Scheduled": [
+        "计划"
+      ],
+      "%s from now": [
+        "从现在起"
+      ],
+      "Modified": [
+        "修改"
+      ],
+      "%s ago": [
+        "%s 前"
+      ],
+      "Authentication required. Please provide Basic Auth credentials.": [
+        "需要进行身份验证。请提供基本身份验证凭据。"
+      ],
+      "Invalid authentication credentials.": [
+        "身份验证凭据无效。"
+      ],
+      "Missing security token. Please refresh the page and try again.": [
+        "缺少安全令牌。请刷新页面重试。"
+      ],
+      "Invalid security token. Please refresh the page and try again.": [
+        "安全令牌无效。请刷新页面后重试。"
+      ],
+      "You must be logged in to access this endpoint.": [
+        "您必须登录才能访问此接口。"
+      ],
+      "You do not have permission to perform this action. Required capability: %s": [
+        "您没有执行此操作的权限。所需功能：%s"
+      ],
+      "Invalid role format.": [
+        "无效的角色格式。"
+      ],
+      "Invalid role.": [
+        "角色错误。"
+      ],
+      "Capabilities must be an array.": [
+        "能力必须是一个数组。"
+      ],
+      "Role not found.": [
+        "角色未找到。"
+      ],
+      "Role capabilities updated successfully.": [
+        "角色权限已成功更新。"
+      ],
+      "Role name cannot be empty.": [
+        "角色名称不能为空。"
+      ],
+      "Role name is too long.": [
+        "角色名称过长。"
+      ],
+      "Role name updated successfully.": [
+        "角色名称更新成功。"
+      ],
+      "Role slug can only contain lowercase letters, numbers, hyphens, and underscores.": [
+        "角色别名只能包含小写字母、数字、连字符和下划线。"
+      ],
+      "Role slug is too long.": [
+        "角色别名过长。"
+      ],
+      "A role with this slug already exists.": [
+        "已存在一个具有此别名的角色。"
+      ],
+      "Failed to create role.": [
+        "创建角色失败。"
+      ],
+      "Role created successfully.": [
+        "角色创建成功。"
+      ],
+      "Cannot delete default WordPress roles.": [
+        "无法删除默认的WordPress角色。"
+      ],
+      "Cannot delete role. There are %d user(s) with this role. Please reassign users to another role first.": [
+        "无法删除该角色。当前有%d个用户拥有此角色。请先将用户重新分配到其他角色。"
+      ],
+      "Role deleted successfully.": [
+        "已成功删除"
+      ],
+      "New Users": [
+        "新用户"
+      ],
+      "Activity Log Details": [
+        "活动日志详情"
+      ],
+      "General": [
+        "常规"
+      ],
+      "Core plugin settings and license management": [
+        "核心插件设置与许可证管理"
+      ],
+      "Login": [
+        "登录"
+      ],
+      "Customize login page appearance and security": [
+        "自定义登录页面外观与安全性"
+      ],
+      "Theme": [
+        "主题"
+      ],
+      "Colors, styling, and visual customization": [
+        "颜色、样式和视觉定制"
+      ],
+      "White Label": [
+        "白色标签"
+      ],
+      "Rebrand and customize interface text and icons": [
+        "重新设计品牌标识并自定义界面文本与图标"
+      ],
+      "Menu": [
+        "菜单"
+      ],
+      "Admin menu behavior and interaction settings": [
+        "管理菜单行为与交互设置"
+      ],
+      "Post management and display preferences": [
+        "帖子管理与显示偏好设置"
+      ],
+      "Plugin management interface options": [
+        "插件管理界面选项"
+      ],
+      "Custom dashboard and admin interface settings": [
+        "自定义仪表板和管理界面设置"
+      ],
+      "Analytics": [
+        "分析"
+      ],
+      "Built-in analytics and tracking settings": [
+        "内置分析和跟踪设置"
+      ],
+      "Media library and upload management settings": [
+        "媒体库与上传管理设置"
+      ],
+      "User management and administration settings": [
+        "用户管理与管理设置"
+      ],
+      "Comment management and administration settings": [
+        "评论管理与管理设置"
+      ],
+      "Security": [
+        "安全"
+      ],
+      "Security settings and administration": [
+        "安全设置与管理"
+      ],
+      "Database": [
+        "数据库"
+      ],
+      "Database explorer and management settings": [
+        "数据库浏览器与管理设置"
+      ],
+      "Search settings...": [
+        "搜索设置..."
+      ],
+      "Loading settings...": [
+        "正在加载设置..."
+      ],
+      "No settings found": [
+        "未找到设置"
+      ],
+      "Try a different search term": [
+        "尝试使用不同的搜索词"
+      ],
+      "Loading Settings...": [
+        "正在加载设置..."
+      ],
+      "Settings Panel": [
+        "转到设置面板"
+      ],
+      "Select a category from the list to configure your settings.": [
+        "从列表中选择一个类别以配置您的设置。"
+      ],
+      "Activity log entry not found": [
+        "未找到活动日志条目"
+      ],
+      "Just now": [
+        "现在"
+      ],
+      "1 minute ago": [
+        "1分钟前"
+      ],
+      "%d minutes ago": [
+        "%d 分钟前"
+      ],
+      "1 hour ago": [
+        "1小时前"
+      ],
+      "%d hours ago": [
+        "%d 小时前"
+      ],
+      "1 day ago": [
+        "1天前"
+      ],
+      "%d days ago": [
+        "%d 天前"
+      ],
+      "Loading...": [
+        "加载中..."
+      ],
+      "Activity Details": [
+        "活动详情"
+      ],
+      "User Information": [
+        "用户信息"
+      ],
+      "Timestamp": [
+        "时间戳"
+      ],
+      "IP Address": [
+        "IP地址"
+      ],
+      "User Agent": [
+        "用户代理"
+      ],
+      "Changes": [
+        "变化"
+      ],
+      "Before": [
+        "前"
+      ],
+      "After": [
+        "后"
+      ],
+      "Details": [
+        "细节"
+      ],
+      "Metadata": [
+        "元数据"
+      ],
+      "Remote Site Error": [
+        "远程站点错误"
+      ],
+      "Invalid remote site configuration": [
+        "无效的远程站点配置"
+      ],
+      "Click": [
+        "点击"
+      ],
+      "Hover": [
+        "悬停"
+      ],
+      "Off": [
+        "关闭"
+      ],
+      "Light": [
+        "浅色"
+      ],
+      "Dark": [
+        "深色"
+      ],
+      "Licence key": [
+        "许可证密钥"
+      ],
+      "Activating uiXpress enables updates and features": [
+        "启用 uiXpress 可获取更新和新功能"
+      ],
+      "Logo": [
+        "Logo"
+      ],
+      "Optional logo for to be displayed in the menu": [
+        "可选徽标，用于在菜单中显示"
+      ],
+      "Logo url": [
+        "Logo网址"
+      ],
+      "Dark mode logo": [
+        "深色模式标识"
+      ],
+      "Set an alternative logo to use in dark mode. If one isn't set it will fall back to the standard logo.": [
+        "设置在深色模式下使用的备用徽标。若未设置，则将回退到标准徽标。"
+      ],
+      "Dark Logo url": [
+        "黑暗标志网址"
+      ],
+      "Remote Sites": [
+        "远程站点"
+      ],
+      "Configure remote WordPress sites for cross-site operations.": [
+        "配置远程 WordPress 站点以进行跨站点操作。"
+      ],
+      "Remote Site Switcher Capability": [
+        "远程站点切换能力"
+      ],
+      "WordPress capability required to see the remote site switcher in the toolbar. Defaults to \"manage_options\" (admin users). Users with this capability or below will see the switcher.": [
+        "需要具备 WordPress 权限才能在工具栏中看到远程站点切换器。默认权限为“manage_options”（管理员用户）。拥有此权限或更低权限的用户才能看到切换器。"
+      ],
+      "Disable theme": [
+        "禁用主题"
+      ],
+      "Choose roles or usersnames to disable the theme for.": [
+        "选择要禁用该主题的角色或用户名。"
+      ],
+      "Search post types": [
+        "搜索文章类型"
+      ],
+      "Choose which post types are available in the global search": [
+        "选择在全局搜索中可用的文章类型"
+      ],
+      "Disable global search": [
+        "禁用全局搜索"
+      ],
+      "Disable global search for all users.": [
+        "禁用所有用户的全局搜索功能。"
+      ],
+      "Admin layout": [
+        "管理员布局"
+      ],
+      "Choose your prefered admin layout": [
+        "选择您偏好的管理界面布局"
+      ],
+      "Modernise login page": [
+        "现代化登录页面"
+      ],
+      "When enabled, uiXpress will modernise the default login page.": [
+        "启用后，uiXpress将对默认登录页面进行现代化改造。"
+      ],
+      "Login image": [
+        "登录图像"
+      ],
+      "Optional image that will be added to the empty panel in the login page": [
+        "可选图片，将添加至登录页面的空白面板中"
+      ],
+      "Image url": [
+        "图片网址"
+      ],
+      "Login path": [
+        "登录路径"
+      ],
+      "Change the login url from wp-login.php to a custom slug. Ensure you remember what you change this to.": [
+        "将登录网址从 wp-login.php 更改为自定义别名。请务必记住您更改后的名称。"
+      ],
+      "Hide language selector": [
+        "隐藏语言选择器"
+      ],
+      "When hidden the language selector on the login page will not be displayed": [
+        "当隐藏时，登录页面上的语言选择器将不会显示。"
+      ],
+      "Enable TurnStyle": [
+        "启用旋转门"
+      ],
+      "When enabled, a cloudflare turnstyle challenge will be displayed on the login page to enhance security. Cloudflare account is required": [
+        "启用后，登录页面将显示Cloudflare转门挑战以增强安全性。需拥有Cloudflare账户。"
+      ],
+      "Turnstyle site key": [
+        "旋转门站点密钥"
+      ],
+      "This is the site key for your turnstyle which can be created from your cloudflare dashboard.": [
+        "这是您旋转门装置的站点密钥，可通过您的Cloudflare控制面板创建。"
+      ],
+      "Turnstyle secret key": [
+        "旋转门密钥"
+      ],
+      "This is the secret key for your turnstyle which can be created from your cloudflare dashboard.": [
+        "这是您旋转门的密钥，可通过您的Cloudflare控制面板创建。"
+      ],
+      "Force global theme": [
+        "强制全局主题"
+      ],
+      "When enabled, the light / dark toggle will be removed and the selected theme set for all users.": [
+        "启用后，浅色/深色切换按钮将被移除，所选主题将为所有用户统一设置。"
+      ],
+      "Hide screen options": [
+        "隐藏屏幕选项"
+      ],
+      "Hide the screen options toggle in the toolbar": [
+        "在工具栏中隐藏屏幕选项切换按钮"
+      ],
+      "Hide help toggle": [
+        "隐藏帮助切换按钮"
+      ],
+      "Hide the help toggle in the toolbar": [
+        "在工具栏中隐藏帮助切换按钮"
+      ],
+      "Base theme colors": [
+        "基础主题颜色"
+      ],
+      "Set a base color and uiXpress will automatically create a color scale for you.": [
+        "设置基础色，uiXpress将自动为您生成色阶。"
+      ],
+      "Base": [
+        "基础"
+      ],
+      "Accent theme colors": [
+        "强调主题颜色"
+      ],
+      "Set a accent color and uiXpress will automatically create a color scale for you.": [
+        "设置一种强调色，uiXpress将自动为您生成色阶。"
+      ],
+      "Accent base": [
+        "重音基准"
+      ],
+      "Custom css": [
+        "自定义CSS"
+      ],
+      "Custom css added here will only be added in the admin area and login page.": [
+        "在此处添加的自定义CSS仅会在管理区域和登录页面生效。"
+      ],
+      "External stylesheets": [
+        "外部样式表"
+      ],
+      "Add URLs to any external stylesheets you want uiXpress to load into the admin": [
+        "将您希望 uiXpress 在管理后台加载的任何外部样式表的 URL 添加至此处。"
+      ],
+      "Custom Font": [
+        "自定义字体"
+      ],
+      "Choose a custom font for the admin interface. Select from Google Fonts, enter a custom font URL, or upload your own font files.": [
+        "为管理界面选择自定义字体。您可以从 Google Fonts 中选择，输入自定义字体 URL，或上传您自己的字体文件。"
+      ],
+      "Admin favicon": [
+        "管理员网站图标"
+      ],
+      "Optional favicon to replace the WordPress favicon in the admin.": [
+        "可选网站图标，用于替换管理后台中的WordPress默认图标。"
+      ],
+      "Favicon url": [
+        "Favicon 链接"
+      ],
+      "Rename uiXpress": [
+        "重命名 uiXpress"
+      ],
+      "This will rename uiXpress in the plugins list as well as renaming it's settings link.": [
+        "这将同时重命名插件列表中的 uiXpress 以及其设置链接。"
+      ],
+      "Text Replacement": [
+        "文本替换"
+      ],
+      "Customize the text displayed in the WordPress admin area. Enter original words or phrases and their replacements to white-label the admin interface.": [
+        "自定义WordPress管理区域显示的文本。输入原始词语或短语及其替换内容，即可实现管理界面的白标定制。"
+      ],
+      "Submenu style": [
+        "子菜单风格"
+      ],
+      "Choose from whether the submenu opens on click or hover.": [
+        "选择子菜单是在点击时打开还是悬停时打开。"
+      ],
+      "Enable Admin Menu Search": [
+        "启用管理员菜单搜索"
+      ],
+      "Enable search functionality in the admin menu to quickly find menu items.": [
+        "启用管理菜单中的搜索功能，以便快速查找菜单项。"
+      ],
+      "Classic Post List View": [
+        "经典帖子列表视图"
+      ],
+      "Switch to WordPress's traditional table layout for posts, removing the modern interface.": [
+        "切换至WordPress的传统表格布局来显示文章，移除现代界面。"
+      ],
+      "Modern Post Editor": [
+        "现代邮报编辑器"
+      ],
+      "Replace the built-in WordPress editor with a modern, enhanced post editor interface.": [
+        "用现代化的、功能更强大的文章编辑器界面替换 WordPress 内置编辑器。"
+      ],
+      "Post Types for Modern Editor": [
+        "现代编辑器文章类型"
+      ],
+      "Choose which post types should use the modern post editor. Defaults to posts.": [
+        "选择哪些文章类型应使用现代文章编辑器。默认为文章。"
+      ],
+      "Real-time Collaboration": [
+        "实时协作"
+      ],
+      "Enable real-time collaboration in the modern post editor. Multiple users can edit the same post simultaneously with live cursor tracking and synced changes.": [
+        "在现代文章编辑器中启用实时协作。多个用户可以同时编辑同一篇文章，光标实时追踪，更改同步。"
+      ],
+      "Modern Plugin Manager": [
+        "现代插件管理器"
+      ],
+      "Replace the classic plugins page with a modern plugin manager with plugin profiling and improved features.": [
+        "用具备插件分析功能和增强特性的现代化插件管理器取代经典插件页面。"
+      ],
+      "Modern Media Library": [
+        "现代媒体图书馆"
+      ],
+      "Replace the classic WordPress media library with a modern, responsive media manager with improved upload and organization features.": [
+        "用现代化的响应式媒体管理器取代经典的WordPress媒体库，该管理器具备增强的上传和组织功能。"
+      ],
+      "Enable SVG Uploads": [
+        "启用 SVG 上传"
+      ],
+      "Allow SVG (Scalable Vector Graphics) files to be uploaded to the media library. All SVG files are automatically sanitized before upload to remove potentially malicious code, ensuring safe handling of SVG files.": [
+        "允许将SVG（可缩放矢量图形）文件上传至媒体库。所有SVG文件在上传前均会自动进行安全处理，以清除潜在的恶意代码，确保SVG文件的安全处理。"
+      ],
+      "Enable Font Uploads": [
+        "启用字体上传功能"
+      ],
+      "Allow font files (.woff2, .woff, .ttf, .otf) to be uploaded to the media library. This enables custom font support for your site.": [
+        "允许将字体文件（.woff2、.woff、.ttf、.otf）上传到媒体库。这将为您的网站启用自定义字体支持。"
+      ],
+      "Modern Users Page": [
+        "现代用户页面"
+      ],
+      "Replace the classic WordPress users page with a modern, responsive user manager with improved features and better organization.": [
+        "用现代化的响应式用户管理器取代经典的WordPress用户页面，该管理器具备增强的功能和更优的组织结构。"
+      ],
+      "Modern Comments Page": [
+        "现代评论页面"
+      ],
+      "Replace the classic WordPress comments page with a modern, responsive comment manager with improved features and better organization.": [
+        "用现代化的响应式评论管理器取代经典的WordPress评论页面，该管理器具备增强的功能和更优的组织结构。"
+      ],
+      "Custom Dashboard": [
+        "自定义仪表板"
+      ],
+      "Replace the default WordPress dashboard with a modern, customizable dashboard interface.": [
+        "用现代化的可定制仪表盘界面替换默认的WordPress仪表盘。"
+      ],
+      "Enable uiXpress Analytics": [
+        "启用 uiXpress 分析功能"
+      ],
+      "Enable built-in analytics to track user behavior, page views, and performance metrics within your WordPress admin.": [
+        "启用内置分析功能，在WordPress管理后台追踪用户行为、页面浏览量及性能指标。"
+      ],
+      "Analytics Provider": [
+        "分析提供商"
+      ],
+      "Choose which analytics provider to use for dashboard data. Select Built-in Analytics to use the uiXpress tracking system, or Google Analytics to display data from your GA4 property.": [
+        "选择用于仪表板数据的分析提供商。选择“内置分析”以使用 uiXpress 跟踪系统，或选择“Google Analytics”（分析）以显示来自您的 GA4 媒体资源的数据。"
+      ],
+      "Google Analytics Connection": [
+        "Google Analytics 连接"
+      ],
+      "Connect your Google Analytics 4 property to display analytics data in the dashboard. You will need to create OAuth credentials in Google Cloud Console.": [
+        "连接您的 Google Analytics 4 媒体资源，即可在信息中心显示分析数据。您需要在 Google Cloud Console 中创建 OAuth 凭据。"
+      ],
+      "Enable Database Explorer": [
+        "启用数据库资源管理器"
+      ],
+      "Enable the modern database explorer interface to browse tables, view data, and execute SQL queries safely.": [
+        "启用现代数据库浏览器界面，安全地浏览表、查看数据并执行SQL查询。"
+      ],
+      "Enable Role Editor": [
+        "启用角色编辑器"
+      ],
+      "Enable the modern role editor interface to manage WordPress user roles and capabilities.": [
+        "启用现代角色编辑器界面，用于管理WordPress用户角色和权限。"
+      ],
+      "Enable Custom Post Types": [
+        "启用自定义文章类型"
+      ],
+      "Enable the custom post types creator to register and manage custom post types without code. Post types are stored in a JSON file for performance.": [
+        "允许自定义文章类型创建者无需编写代码即可注册和管理自定义文章类型。为了提高性能，文章类型存储在 JSON 文件中。"
+      ],
+      "Enable Activity Logger": [
+        "启用活动记录器"
+      ],
+      "Track and log all admin actions including post changes, user updates, plugin activations, and more.": [
+        "追踪并记录所有管理员操作，包括文章修改、用户更新、插件激活等。"
+      ],
+      "Retention Period (Days)": [
+        "保留期限（天）"
+      ],
+      "How many days to keep activity logs before automatic cleanup. Default is 90 days.": [
+        "活动日志在自动清理前保留多少天？默认值为90天。"
+      ],
+      "Log Level": [
+        "日志级别"
+      ],
+      "Choose which actions to log. \"All Actions\" logs everything, \"Important Only\" logs only critical actions like deletions and role changes.": [
+        "选择要记录的操作。\"所有操作\"记录所有内容，\"仅重要操作\"仅记录删除和角色变更等关键操作。"
+      ],
+      "All Actions": [
+        "所有操作"
+      ],
+      "Important Only": [
+        "重要 仅限"
+      ],
+      "Auto Cleanup": [
+        "自动清理"
+      ],
+      "Automatically delete logs older than the retention period. Disable to keep logs indefinitely.": [
+        "自动删除超过保留期限的日志。禁用此功能可无限期保留日志。"
+      ],
+      "Failed to load settings": [
+        "设置加载失败"
+      ],
+      "Unable to save settings": [
+        "无法保存设置"
+      ],
+      "Settings updated!": [
+        "设置已更新！"
+      ],
+      "Please provide a valid JSON file": [
+        "请提供一个有效的JSON文件"
+      ],
+      "Invalid settings: must be an object": [
+        "无效设置：必须是对象"
+      ],
+      "Settings imported": [
+        "设置已导入"
+      ],
+      "Import failed": [
+        "导入失败"
+      ],
+      "Failed to activate key": [
+        "激活密钥失败"
+      ],
+      "Key already activated for this site": [
+        "该网站的密钥已激活"
+      ],
+      "Key successfully activated": [
+        "密钥激活成功"
+      ],
+      "Network error during activation": [
+        "激活过程中发生网络错误"
+      ],
+      "Instance removed": [
+        "实例已删除"
+      ],
+      "Failed to remove activation": [
+        "激活移除失败"
+      ],
+      "Network error during removal": [
+        "移除过程中发生网络错误"
+      ],
+      "Save": [
+        "保存"
+      ],
+      "Please add your licence key to unlock the plugin settings": [
+        "请添加您的许可证密钥以解锁插件设置"
+      ],
+      "Found": [
+        "找到"
+      ],
+      "matching setting(s)": [
+        "匹配设置"
+      ],
+      "No settings match your search in this category.": [
+        "此类别中没有符合您搜索条件的设置。"
+      ],
+      "Try a different search term or check another category.": [
+        "请尝试使用不同的搜索词，或查看其他类别。"
+      ],
+      "Minify menu": [
+        "最小化菜单"
+      ],
+      "Toggle menu": [
+        "切换菜单"
+      ],
+      "System": [
+        "系统"
+      ],
+      "Logout": [
+        "注销"
+      ],
+      "Search activities...": [
+        "搜索活动……"
+      ],
+      "Action": [
+        "行动"
+      ],
+      "Object Type": [
+        "对象类型"
+      ],
+      "All Types": [
+        "所有类型"
+      ],
+      "item": [
+        "项目"
+      ],
+      "items": [
+        "项目"
+      ],
+      "Page": [
+        "页面"
+      ],
+      "Previous": [
+        "上一个"
+      ],
+      "Next": [
+        "下一个"
+      ],
+      "Select an activity from the list to view detailed information.": [
+        "从列表中选择一项活动以查看详细信息。"
+      ],
+      "Default": [
+        "默认"
+      ],
+      "Rounded": [
+        "圆角"
+      ],
+      "Bubble": [
+        "气泡"
+      ],
+      "Add new": [
+        "添加新的"
+      ],
+      "Update settings": [
+        "更新设置"
+      ],
+      "Loading editor...": [
+        "正在加载编辑器..."
+      ],
+      "Invalid Input": [
+        "输入无效"
+      ],
+      "Site URL, username, and application password are required": [
+        "需要提供网站网址、用户名和应用程序密码。"
+      ],
+      "Invalid URL": [
+        "无效的URL"
+      ],
+      "Please provide a valid site URL": [
+        "请提供有效的网站网址"
+      ],
+      "Duplicate Site": [
+        "重复网站"
+      ],
+      "This site URL already exists": [
+        "此网站网址已存在"
+      ],
+      "Remove Remote Site?": [
+        "删除远程站点？"
+      ],
+      "Are you sure you want to remove this remote site? This action cannot be undone.": [
+        "您确定要删除此远程站点吗？此操作无法撤销。"
+      ],
+      "Yes, remove site": [
+        "是的，移除网站"
+      ],
+      "Site Removed": [
+        "网站已移除"
+      ],
+      "Remote site has been removed successfully": [
+        "远程站点已成功移除"
+      ],
+      "Site URL (e.g., https://example.com)": [
+        "站点 URL（例如 https://example.com）"
+      ],
+      "Username": [
+        "用户名"
+      ],
+      "Application Password": [
+        "应用程序密码"
+      ],
+      "Add Site": [
+        "添加站点"
+      ],
+      "Site URL": [
+        "网站网址"
+      ],
+      "Password": [
+        "密码"
+      ],
+      "No remote sites configured yet": [
+        "尚未配置远程站点"
+      ],
+      "Application passwords can be created in WordPress under Users > Profile > Application Passwords": [
+        "应用程序密码可以在 WordPress 中创建，路径为：用户 > 个人资料 > 应用程序密码"
+      ],
+      "Licence Active": [
+        "许可证已激活"
+      ],
+      "Remove key": [
+        "移除秘钥"
+      ],
+      "uiXpress licence key": [
+        "uiXpress 许可证密钥"
+      ],
+      "Activate": [
+        "启用"
+      ],
+      "Development server detected, no need to activate your licence key.": [
+        "检测到开发服务器，无需激活许可证密钥。"
+      ],
+      "System Default": [
+        "系统默认设置"
+      ],
+      "Google Fonts": [
+        "Google字体"
+      ],
+      "Custom URL": [
+        "自定义网址"
+      ],
+      "Upload Font": [
+        "上传字体"
+      ],
+      "Font Source": [
+        "字体来源"
+      ],
+      "Select Font": [
+        "选择字体"
+      ],
+      "Click to change": [
+        "点击更改"
+      ],
+      "Clear selection": [
+        "清除选择"
+      ],
+      "Search fonts...": [
+        "搜索字体……"
+      ],
+      "No fonts found": [
+        "未找到字体"
+      ],
+      "Or enter custom:": [
+        "或者输入自定义内容："
+      ],
+      "Font name...": [
+        "字体名称..."
+      ],
+      "Font Weights": [
+        "字体粗细"
+      ],
+      "Select weights to include. At least one is required.": [
+        "请选择要包含的权重。至少需要选择一项。"
+      ],
+      "Font Stylesheet URL": [
+        "字体样式表网址"
+      ],
+      "https://fonts.googleapis.com/css2?family=...": [
+        "https://fonts.googleapis.com/css2?family=..."
+      ],
+      "Enter the URL to an external font stylesheet (CSS file)": [
+        "输入外部字体样式表（CSS 文件）的 URL"
+      ],
+      "Font Family Name": [
+        "字体系列名称"
+      ],
+      "e.g., Inter, Roboto, Custom Font": [
+        "例如，Inter、Roboto、自定义字体"
+      ],
+      "The exact font-family name as defined in the stylesheet": [
+        "样式表中定义的确切字体系列名称"
+      ],
+      "Font Uploads Disabled": [
+        "字体上传功能已禁用"
+      ],
+      "Font file uploads are currently disabled. Enable font uploads in the Media settings to upload custom font files (.woff2, .woff, .ttf, .otf).": [
+        "字体文件上传功能目前已禁用。请在媒体设置中启用字体上传功能，以上传自定义字体文件（.woff2、.woff、.ttf、.otf）。"
+      ],
+      "e.g., My Custom Font": [
+        "例如，我的自定义字体"
+      ],
+      "Choose a name for your custom font family": [
+        "为您的自定义字体系列选择一个名称"
+      ],
+      "Font Files": [
+        "字体文件"
+      ],
+      "Opening Media Library...": [
+        "打开媒体库……"
+      ],
+      "Click to select font files": [
+        "点击选择字体文件"
+      ],
+      "Supported formats: .woff2, .woff, .ttf, .otf": [
+        "支持的格式：.woff2、.woff、.ttf、.otf"
+      ],
+      "Enable font uploads to add font files": [
+        "启用字体上传功能以添加字体文件"
+      ],
+      "Select Font File": [
+        "选择字体文件"
+      ],
+      "Select font files from your media library. Supported: .woff2, .woff, .ttf, .otf": [
+        "从媒体库中选择字体文件。支持的文件格式：.woff2、.woff、.ttf、.otf"
+      ],
+      "Loading font...": [
+        "正在加载字体……"
+      ],
+      "Preview": [
+        "预览"
+      ],
+      "Weight:": [
+        "重量："
+      ],
+      "weights loaded": [
+        "加载的重量"
+      ],
+      "Reset to system default": [
+        "重置为系统默认设置"
+      ],
+      "Please paste your service account JSON key": [
+        "请粘贴您的服务帐户 JSON 密钥"
+      ],
+      "Service account connected successfully": [
+        "服务帐户已成功连接"
+      ],
+      "Failed to save credentials": [
+        "保存凭据失败"
+      ],
+      "Could not load properties automatically. You can enter your Property ID manually below.": [
+        "无法自动加载房源信息。您可以在下方手动输入房源 ID。"
+      ],
+      "Please enter a Property ID": [
+        "请输入物业编号"
+      ],
+      "Property saved": [
+        "已保存的属性"
+      ],
+      "Failed to save property": [
+        "保存属性失败"
+      ],
+      "Failed to disconnect": [
+        "断开连接失败"
+      ],
+      "Checking connection...": [
+        "正在检查连接……"
+      ],
+      "Connection Issue": [
+        "连接问题"
+      ],
+      "Connected to Google Analytics": [
+        "已连接到 Google Analytics（分析）"
+      ],
+      "Permission Issue Detected": [
+        "检测到权限问题"
+      ],
+      "Learn more": [
+        "了解更多"
+      ],
+      "Retest Connection": [
+        "重新测试连接"
+      ],
+      "Service Account:": [
+        "服务账号："
+      ],
+      "Select Property": [
+        "选择属性"
+      ],
+      "Select a property...": [
+        "选择房产..."
+      ],
+      "Property ID:": [
+        "物业编号："
+      ],
+      "Enter Property ID": [
+        "输入物业 ID"
+      ],
+      "Find your Property ID in Google Analytics: Admin → Property Settings → Property ID (a number like 123456789)": [
+        "在 Google Analytics（分析）中查找您的媒体资源 ID：管理 → 媒体资源设置 → 媒体资源 ID（例如 123456789 这样的数字）"
+      ],
+      "e.g. 123456789": [
+        "例如：123456789"
+      ],
+      "Property ID": [
+        "物业编号"
+      ],
+      "Change": [
+        "改变"
+      ],
+      "Loading properties...": [
+        "正在加载属性..."
+      ],
+      "Disconnect": [
+        "断开"
+      ],
+      "Setup Instructions": [
+        "安装说明"
+      ],
+      "How to connect Google Analytics 4": [
+        "如何连接 Google Analytics 4"
+      ],
+      "Go to": [
+        "前往"
+      ],
+      "Google Cloud Console": [
+        "Google Cloud Console"
+      ],
+      "and create a new project (or select existing)": [
+        "并创建一个新项目（或选择现有项目）"
+      ],
+      "Enable the": [
+        "启用"
+      ],
+      "Google Analytics Data API": [
+        "Google Analytics 数据 API"
+      ],
+      "Service Accounts": [
+        "服务帐户"
+      ],
+      "and create a new service account": [
+        "并创建一个新的服务帐户"
+      ],
+      "Click the service account, go to \"Keys\" tab, click \"Add Key\" → \"Create new key\" → JSON": [
+        "点击服务账号，转到“密钥”选项卡，点击“添加密钥”→“创建新密钥”→JSON"
+      ],
+      "Download the JSON key file": [
+        "下载 JSON 密钥文件"
+      ],
+      "In": [
+        "在"
+      ],
+      "Google Analytics": [
+        "Google Analytics"
+      ],
+      "→ Admin → Property Access Management, add the service account email as a Viewer": [
+        "→ 管理员 → 物业访问管理，将服务帐户电子邮件添加为查看者"
+      ],
+      "Paste the contents of the JSON key file below and enter your Property ID": [
+        "请将 JSON 密钥文件的内容粘贴到下方，并输入您的物业 ID"
+      ],
+      "Finding your Property ID:": [
+        "查找您的房产编号："
+      ],
+      "In Google Analytics, go to Admin → Property Settings. Your Property ID is the number shown (e.g. 123456789).": [
+        "在 Google Analytics（分析）中，转到“管理”→“媒体资源设置”。您的媒体资源 ID 就是显示的数字（例如 123456789）。"
+      ],
+      "Important:": [
+        "重要的："
+      ],
+      "The service account email (found in the JSON file) must be added to your GA4 property with at least Viewer access for data to be retrieved.": [
+        "必须将服务帐户电子邮件（在 JSON 文件中找到）添加到您的 GA4 属性中，并至少具有查看者访问权限，才能检索数据。"
+      ],
+      "Paste the contents of your service account JSON key file:": [
+        "粘贴您的服务帐户 JSON 密钥文件的内容："
+      ],
+      "Paste your service account JSON key here...": [
+        "将您的服务帐户 JSON 密钥粘贴到此处……"
+      ],
+      "Connect": [
+        "连接"
+      ],
+      "Cancel": [
+        "取消"
+      ],
+      "Connect Google Analytics": [
+        "连接 Google Analytics"
+      ],
+      "Clear custom properties": [
+        "清除自定义属性"
+      ],
+      "Edit Profile": [
+        "编辑个人资料"
+      ],
+      "Visit site": [
+        "查看站点"
+      ],
+      "Site Settings": [
+        "网站设置"
+      ],
+      "Sign Out": [
+        "登出"
+      ],
+      "Light Mode": [
+        "亮色模式"
+      ],
+      "Dark Mode": [
+        "深色模式"
+      ],
+      "Quick Actions": [
+        "快速操作"
+      ],
+      "Focus Search": [
+        "焦点搜索"
+      ],
+      "Search menu...": [
+        "搜索菜单..."
+      ],
+      "No menu items found": [
+        "未找到菜单项"
+      ],
+      "result": [
+        "结果"
+      ],
+      "results": [
+        "结果"
+      ],
+      "Navigate": [
+        "导航"
+      ],
+      "Select": [
+        "选择"
+      ],
+      "Shortcuts": [
+        "快捷键"
+      ],
+      "Name": [
+        "名称"
+      ],
+      "Shortcut name": [
+        "快捷名称"
+      ],
+      "URL": [
+        "网址"
+      ],
+      "https://example.com": [
+        "https://example.com"
+      ],
+      "Icon": [
+        "图标"
+      ],
+      "icon name": [
+        "图标名（来自FontAwesome集）"
+      ],
+      "Delete": [
+        "删除"
+      ],
+      "Notifications": [
+        "通知"
+      ],
+      "Local": [
+        "当地的"
+      ],
+      "When you switch to a remote site, all API requests will be sent to that site instead of the local site.": [
+        "切换到远程站点后，所有 API 请求都将发送到该站点，而不是本地站点。"
+      ],
+      "Remote site switching works on:": [
+        "远程站点切换适用于："
+      ],
+      "Modern Media Page": [
+        "现代媒体页面"
+      ],
+      "Modern Plugins Page": [
+        "现代插件页面"
+      ],
+      "Modern Dashboard": [
+        "现代仪表盘"
+      ],
+      "All default WordPress pages (Posts, Pages, Comments, etc.) will continue to show local content.": [
+        "所有默认的 WordPress 页面（文章、页面、评论等）将继续显示本地内容。"
+      ],
+      "Remote Site Switching": [
+        "远程站点切换"
+      ],
+      "I Understand": [
+        "我明白"
+      ],
+      "Search sites...": [
+        "搜索网站……"
+      ],
+      "No sites found": [
+        "未找到网站"
+      ],
+      "Back to menu": [
+        "返回菜单"
+      ],
+      "unread": [
+        "未读"
+      ],
+      "Updates Available": [
+        "有更新可用"
+      ],
+      "Awaiting moderation": [
+        "等待审核"
+      ],
+      "You're all caught up": [
+        "你已经全部跟上了"
+      ],
+      "No new notifications": [
+        "没有新的通知"
+      ],
+      "Show less": [
+        "显示更少"
+      ],
+      "Show more": [
+        "显示更多"
+      ],
+      "No activities found": [
+        "未发现任何活动"
+      ],
+      "Find": [
+        "查找"
+      ],
+      "Replace": [
+        "替换"
+      ],
+      "New item": [
+        "新项目"
+      ],
+      "Edit CSS": [
+        "编辑CSS"
+      ],
+      "Finished": [
+        "已完成"
+      ],
+      "Media Library": [
+        "媒体库"
+      ],
+      "Media Details": [
+        "媒体详情"
+      ],
+      "Edit Image": [
+        "编辑图像"
+      ],
+      "Roles": [
+        "角色"
+      ],
+      "Items selected": [
+        "没有项目被选择"
+      ],
+      "Select users or roles": [
+        "选择用户或角色"
+      ],
+      "url": [
+        "网址"
+      ],
+      "Select post types": [
+        "选择文章类型"
+      ],
+      "Search icons": [
+        "搜索图标"
+      ],
+      "View site": [
+        "查看网站"
+      ],
+      "View dashboard": [
+        "查看仪表盘"
+      ],
+      "Help": [
+        "帮助"
+      ],
+      "Screen options": [
+        "屏幕选项"
+      ],
+      "New Post": [
+        "最新帖子"
+      ],
+      "New Page": [
+        "新页面"
+      ],
+      "Site settings": [
+        "网站设置"
+      ],
+      "Dark mode": [
+        "黑暗模式"
+      ],
+      "Light mode": [
+        "亮色模式"
+      ],
+      "Enable magic dark mode for this page": [
+        "为本页面启用魔法暗黑模式"
+      ],
+      "Disable magic dark mode for this page": [
+        "禁用本页面的深色模式"
+      ],
+      "wpbody element not found": [
+        "未找到 wpbody 元素"
+      ],
+      "CSS fix saved to custom CSS settings": [
+        "CSS 修复已保存到自定义 CSS 设置"
+      ],
+      "Failed to save CSS fix": [
+        "CSS 修复保存失败"
+      ],
+      "Please describe the layout issue": [
+        "请描述一下布局问题"
+      ],
+      "Capturing screenshot...": [
+        "正在截屏……"
+      ],
+      "Extracting HTML...": [
+        "正在提取HTML..."
+      ],
+      "Analyzing layout issues...": [
+        "分析布局问题……"
+      ],
+      "Failed to fix layout and styling. Please try again later.": [
+        "布局和样式修复失败，请稍后再试。"
+      ],
+      "Daily limit exceeded. Please try again tomorrow.": [
+        "每日限额已用完，请明日再试。"
+      ],
+      "Invalid request. Please check your input.": [
+        "请求无效。请检查您的输入。"
+      ],
+      "Could not find wpbody element. Please ensure you are on a WordPress admin page.": [
+        "找不到 wpbody 元素。请确保您位于 WordPress 管理后台页面。"
+      ],
+      "Layout fix removed": [
+        "布局修复已移除"
+      ],
+      "CSS copied to clipboard": [
+        "CSS 已复制到剪贴板"
+      ],
+      "Failed to copy CSS": [
+        "CSS 复制失败"
+      ],
+      "Layout and Styling": [
+        "布局和样式"
+      ],
+      "requests remaining": [
+        "剩余请求"
+      ],
+      "Describe the layout or styling issue": [
+        "描述布局或样式问题"
+      ],
+      "e.g., The header is overlapping with the content area": [
+        "例如，页眉与内容区域重叠。"
+      ],
+      "A screenshot of the page will be captured and analyzed. The AI will provide CSS fixes based on your description.": [
+        "系统将截取页面屏幕截图并进行分析。人工智能将根据您的描述提供 CSS 修复方案。"
+      ],
+      "Fix Layout": [
+        "修复布局"
+      ],
+      "Layout and styling fix applied successfully!": [
+        "布局和样式修复已成功应用！"
+      ],
+      "Would you like to keep this fix permanently or remove it?": [
+        "您希望永久保留此修复程序还是将其移除？"
+      ],
+      "Hide Applied CSS": [
+        "隐藏已应用的 CSS"
+      ],
+      "View Applied CSS": [
+        "查看应用的 CSS"
+      ],
+      "Copy CSS": [
+        "复制 CSS"
+      ],
+      "Keep Fix": [
+        "保持固定"
+      ],
+      "Saves to custom CSS settings for persistence.": [
+        "保存到自定义 CSS 设置以实现持久化。"
+      ],
+      "Remove Fix": [
+        "移除修复"
+      ],
+      "Removes the fix immediately.": [
+        "立即移除该修复程序。"
+      ],
+      "Remove": [
+        "消除"
+      ],
+      "Failed to fix layout and styling": [
+        "布局和样式修复失败"
+      ],
+      "Close": [
+        "关闭"
+      ],
+      "Media item not found": [
+        "未找到媒体文件"
+      ],
+      "Only images can be edited": [
+        "只有图片可以编辑。"
+      ],
+      "Image saved successfully": [
+        "图片已成功保存"
+      ],
+      "Failed to save image": [
+        "图像保存失败"
+      ],
+      "Back": [
+        "后退"
+      ],
+      "1 item selected": [
+        "已选择 1 件商品"
+      ],
+      "%d items selected": [
+        "已选择 %d 件商品"
+      ],
+      "Files duplicated": [
+        "文件重复"
+      ],
+      "Error duplicating files": [
+        "重复文件时出错"
+      ],
+      "Media updated successfully": [
+        "媒体已成功更新"
+      ],
+      "Error updating media": [
+        "更新媒体时出错"
+      ],
+      "Download started": [
+        "下载已开始"
+      ],
+      "Files downloaded": [
+        "文件已下载"
+      ],
+      "Error downloading files": [
+        "文件下载出错"
+      ],
+      "this file": [
+        "此文件"
+      ],
+      "these %d files": [
+        "这些 %d 个文件"
+      ],
+      "Are you sure?": [
+        "你确定？"
+      ],
+      "Are you sure you want to delete %s? This action cannot be undone.": [
+        "您确定要删除 %s 吗？此操作无法撤销。"
+      ],
+      "Yes, delete": [
+        "是的，删除"
+      ],
+      "Media deleted successfully!": [
+        "媒体文件删除成功！"
+      ],
+      "Delete failed": [
+        "删除失败"
+      ],
+      "Upload failed": [
+        "上传失败"
+      ],
+      "Files uploaded successfully!": [
+        "文件上传成功！"
+      ],
+      "%d file(s) uploaded": [
+        "已上传 %d 个文件"
+      ],
+      "Search media...": [
+        "搜索媒体..."
+      ],
+      "Images": [
+        "图片"
+      ],
+      "Videos": [
+        "视频"
+      ],
+      "Docs": [
+        "文档"
+      ],
+      "Fonts": [
+        "字体"
+      ],
+      "Grid View": [
+        "网格视图"
+      ],
+      "List View": [
+        "列表视图"
+      ],
+      "Sort By": [
+        "排序方式"
+      ],
+      "Date Range": [
+        "日期范围"
+      ],
+      "No tags available": [
+        "暂无标签"
+      ],
+      "Options": [
+        "选项"
+      ],
+      "Unused Media Only": [
+        "仅未使用的媒体"
+      ],
+      "Clear All Filters": [
+        "清除所有筛选条件"
+      ],
+      "Drop files to upload": [
+        "拖放文件即可上传"
+      ],
+      "Release to start uploading": [
+        "发布上传命令"
+      ],
+      "Loading media...": [
+        "正在加载媒体……"
+      ],
+      "No media found": [
+        "未找到媒体"
+      ],
+      "No media files": [
+        "没有媒体文件"
+      ],
+      "Clear filters": [
+        "清除过滤器"
+      ],
+      "Select a media file from the list to view details and edit properties.": [
+        "从列表中选择媒体文件，即可查看详细信息和编辑属性。"
+      ],
+      "View": [
+        "查看"
+      ],
+      "Bulk Edit": [
+        "批量编辑"
+      ],
+      "Download": [
+        "下载"
+      ],
+      "Duplicate": [
+        "复制"
+      ],
+      "Bulk Edit Media": [
+        "批量编辑媒体"
+      ],
+      "Editing 1 item. Leave fields empty to keep existing values.": [
+        "正在编辑 1 个项目。将字段留空以保留现有值。"
+      ],
+      "Editing %d items. Leave fields empty to keep existing values.": [
+        "正在编辑 %d 个项目。将字段留空以保留现有值。"
+      ],
+      "Title": [
+        "标题"
+      ],
+      "Leave empty to keep existing": [
+        "留空以保留现有内容"
+      ],
+      "Alt Text": [
+        "替代文字"
+      ],
+      "Caption": [
+        "标题"
+      ],
+      "Description": [
+        "描述"
+      ],
+      "Saved": [
+        "已保存"
+      ],
+      "Save failed": [
+        "保存失败"
+      ],
+      "Delete file": [
+        "删除文件"
+      ],
+      "This will permantantly delete the file. Proceed?": [
+        "这将永久删除该文件。是否继续？"
+      ],
+      "Deleted": [
+        "已删除"
+      ],
+      "Copy failed": [
+        "复制失败"
+      ],
+      "File replaced successfully": [
+        "文件已成功替换。"
+      ],
+      "File replacement failed": [
+        "文件替换失败"
+      ],
+      "Only images can be optimized": [
+        "只有图像才能优化"
+      ],
+      "Optimise image": [
+        "优化图像"
+      ],
+      "This will permantantly optimise the image and convert to webp format.": [
+        "这将永久优化图像并将其转换为 webp 格式。"
+      ],
+      "Convert": [
+        "转变"
+      ],
+      "Image optimized": [
+        "图像优化"
+      ],
+      "Optimization failed": [
+        "优化失败"
+      ],
+      "Failed to add tag": [
+        "添加标签失败"
+      ],
+      "Failed to remove tag": [
+        "移除标签失败"
+      ],
+      "Tag created and added": [
+        "标签已创建并添加"
+      ],
+      "Failed to create tag": [
+        "标签创建失败"
+      ],
+      "Failed to update tags": [
+        "标签更新失败"
+      ],
+      "Drop file to replace": [
+        "将文件拖放到替换位置"
+      ],
+      "Keep the same ID and regenerate thumbnails": [
+        "保持ID不变并重新生成缩略图"
+      ],
+      "Replacing file...": [
+        "正在替换文件……"
+      ],
+      "Regenerating thumbnails": [
+        "正在重新生成缩略图"
+      ],
+      "Optimizing image...": [
+        "正在优化图像……"
+      ],
+      "File replaced successfully!": [
+        "文件替换成功！"
+      ],
+      "Thumbnails regenerated": [
+        "缩略图已重新生成"
+      ],
+      "Your browser does not support the video tag.": [
+        "您的浏览器不支持视频标签。"
+      ],
+      "Uploaded": [
+        "已上传"
+      ],
+      "Untitled": [
+        "无标题"
+      ],
+      "Describe the image for screen readers": [
+        "为屏幕阅读器描述图像"
+      ],
+      "Add a caption": [
+        "添加标题"
+      ],
+      "Add tags...": [
+        "添加标签……"
+      ],
+      "File URL": [
+        "文件 URL"
+      ],
+      "Actions": [
+        "行动"
+      ],
+      "Optimizing...": [
+        "优化中……"
+      ],
+      "Optimize Image": [
+        "优化图像"
+      ],
+      "Replacing...": [
+        "替换……"
+      ],
+      "Replace Image": [
+        "替换图像"
+      ],
+      "Filename": [
+        "文件名"
+      ],
+      "ID": [
+        "ID"
+      ],
+      "File size": [
+        "文件大小"
+      ],
+      "Used In": [
+        "用于"
+      ],
+      "This media is not currently used anywhere.": [
+        "该媒体目前尚未在任何地方使用。"
+      ],
+      "Post": [
+        "邮政"
+      ],
+      "Widget": [
+        "小部件"
+      ],
+      "Draft": [
+        "草稿"
+      ],
+      "Edit": [
+        "编辑"
+      ],
+      "Search posts": [
+        "搜索文章"
+      ],
+      "Find users": [
+        "查找用户"
+      ],
+      "Quick actions": [
+        "快速行动"
+      ],
+      "View commands": [
+        "查看命令"
+      ],
+      "Pending": [
+        "待定"
+      ],
+      "Private": [
+        "私有"
+      ],
+      "Welcome to Global Search": [
+        "欢迎来到全球搜索"
+      ],
+      "Quickly find posts, pages, users, and more. Here are some tips to get started:": [
+        "快速查找帖子、页面、用户等内容。以下是一些入门技巧："
+      ],
+      "Press": [
+        "按下"
+      ],
+      "to open search": [
+        "打开搜索"
+      ],
+      "Got it, thanks!": [
+        "明白了，谢谢！"
+      ],
+      "Search posts, pages, categories, users...": [
+        "搜索文章、页面、分类、用户..."
+      ],
+      "Recent Searches": [
+        "最近的搜索"
+      ],
+      "Clear": [
+        "清除"
+      ],
+      "Start searching": [
+        "开始搜索"
+      ],
+      "Search for posts, pages, users, categories, or use quick actions.": [
+        "搜索文章、页面、用户、分类，或使用快速操作。"
+      ],
+      "Try these:": [
+        "试试这些："
+      ],
+      "Keyboard Shortcuts": [
+        "键盘快捷键"
+      ],
+      "Open": [
+        "打开"
+      ],
+      "Show tutorial again": [
+        "再次显示教程"
+      ],
+      "Command Syntax": [
+        "命令语法"
+      ],
+      "Search only posts": [
+        "仅搜索帖子"
+      ],
+      "Search only pages": [
+        "仅搜索页面"
+      ],
+      "Search only users": [
+        "仅搜索用户"
+      ],
+      "Search only categories": [
+        "仅搜索类别"
+      ],
+      "Show only quick actions": [
+        "仅显示快速操作"
+      ],
+      "No results found": [
+        "未找到结果"
+      ],
+      "Try a different search term or use command syntax to filter results.": [
+        "尝试使用不同的搜索词，或使用命令语法来筛选结果。"
+      ],
+      "View Commands": [
+        "查看命令"
+      ],
+      "Clear Search": [
+        "清除搜索"
+      ],
+      "Recently Accessed": [
+        "最近访问"
+      ],
+      "Frequently Used": [
+        "经常使用"
+      ],
+      "to navigate": [
+        "导航"
+      ],
+      "to select": [
+        "选择"
+      ],
+      "to close": [
+        "关闭"
+      ],
+      "Magic dark mode enabled for this page": [
+        "本页面已启用魔幻暗黑模式"
+      ],
+      "Failed to enable magic dark mode": [
+        "无法启用魔法暗黑模式"
+      ],
+      "Magic dark mode disabled for this page": [
+        "此页面已禁用魔幻暗黑模式"
+      ],
+      "Failed to disable magic dark mode": [
+        "无法禁用魔法暗黑模式"
+      ],
+      "Free": [
+        "自由的"
+      ],
+      "Loading image...": [
+        "正在加载图片……"
+      ],
+      "Apply": [
+        "申请"
+      ],
+      "Image Editor": [
+        "图像编辑器"
+      ],
+      "Luminosity": [
+        "亮度"
+      ],
+      "Brightness": [
+        "亮度"
+      ],
+      "Exposure": [
+        "接触"
+      ],
+      "Highlights": [
+        "精彩片段"
+      ],
+      "Shadows": [
+        "阴影"
+      ],
+      "Contrast": [
+        "对比"
+      ],
+      "Color": [
+        "颜色"
+      ],
+      "Saturation": [
+        "饱和"
+      ],
+      "Vibrance": [
+        "活力"
+      ],
+      "Hue": [
+        "色调"
+      ],
+      "Temperature": [
+        "温度"
+      ],
+      "Cool ← → Warm": [
+        "凉爽 ← → 温暖"
+      ],
+      "Tint": [
+        "着色"
+      ],
+      "Green ← → Magenta": [
+        "绿色 ← → 品红色"
+      ],
+      "Effects": [
+        "效果"
+      ],
+      "Sharpness": [
+        "清晰度"
+      ],
+      "Negative = blur, positive = sharpen": [
+        "负值 = 模糊，正值 = 锐化"
+      ],
+      "Blur": [
+        "模糊"
+      ],
+      "Grain": [
+        "粮食"
+      ],
+      "Vignette": [
+        "小插曲"
+      ],
+      "Crop": [
+        "庄稼"
+      ],
+      "Click and drag on the image to select crop area": [
+        "点击并拖动图像以选择裁剪区域"
+      ],
+      "Aspect Ratio": [
+        "宽高比"
+      ],
+      "Start Crop": [
+        "起始作物"
+      ],
+      "Resize": [
+        "调整大小"
+      ],
+      "Lock aspect ratio": [
+        "锁定纵横比"
+      ],
+      "Width": [
+        "宽度"
+      ],
+      "Height": [
+        "高度"
+      ],
+      "Apply Resize": [
+        "应用调整大小"
+      ],
+      "Transform": [
+        "转换"
+      ],
+      "Left": [
+        "左边"
+      ],
+      "Right": [
+        "正确的"
+      ],
+      "Flip H": [
+        "翻转 H"
+      ],
+      "Flip V": [
+        "翻转 V"
+      ],
+      "Reset": [
+        "重置"
+      ],
+      "Reset changes": [
+        "重置更改"
+      ],
+      "Loading more...": [
+        "加载中……"
+      ],
+      "No more items": [
+        "已无商品"
+      ],
+      "minute": [
+        "分钟"
+      ],
+      "minutes": [
+        "分钟"
+      ],
+      "ago": [
+        "前"
+      ],
+      "hour": [
+        "小时"
+      ],
+      "hours": [
+        "小时"
+      ],
+      "day": [
+        "天"
+      ],
+      "days": [
+        "天"
+      ],
+      "Remove tag": [
+        "移除标签"
+      ],
+      "Create tag": [
+        "创建标签"
+      ],
+      "JSON must be a service account key (type should be \"service_account": [
+        "JSON 必须是服务帐户键（类型应为“service_account”）。"
+      ],
+      "You must be logged in to access this page.": [
+        "您必须先登录才能访问本页面。"
+      ],
+      "Invalid request. Please refresh the page and try again.": [
+        "请求无效。请刷新页面并重试。"
+      ],
+      "Search": [
+        "搜索"
+      ]
+    }
+  }
+}

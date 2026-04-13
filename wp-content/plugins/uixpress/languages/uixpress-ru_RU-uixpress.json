@@ -1,0 +1,2652 @@
+{
+  "domain": "uixpress",
+  "locale_data": {
+    "uixpress": {
+      "": {
+        "domain": "uixpress",
+        "lang": "ru_RU",
+        "plural-forms": "nplurals=2; plural=(n != 1);"
+      },
+      "Every 30 Seconds": [
+        "Каждые 30 секунд"
+      ],
+      "Every 30 Minutes": [
+        "Каждые 30 минут"
+      ],
+      "Google Analytics 4": [
+        "Google Analytics 4"
+      ],
+      "Could not authenticate with Google Analytics. Please check your service account credentials.": [
+        "Не удалось выполнить аутентификацию в Google Analytics. Пожалуйста, проверьте учетные данные вашей учетной записи."
+      ],
+      "Permission denied: The service account does not have access to this Google Analytics property. Please add the service account email to your GA4 property with Viewer access. Go to Google Analytics → Admin → Property Access Management and add the service account email.": [
+        "Отказано в доступе: у учетной записи службы нет доступа к этому ресурсу Google Analytics. Пожалуйста, добавьте адрес электронной почты учетной записи службы к вашему ресурсу GA4 с правами просмотра. Перейдите в Google Analytics → Администрирование → Управление доступом к ресурсу и добавьте адрес электронной почты учетной записи службы."
+      ],
+      "Authentication failed. The access token is invalid or expired. Please try reconnecting your Google Analytics account.": [
+        "Аутентификация не удалась. Токен доступа недействителен или истек. Пожалуйста, попробуйте повторно подключить свою учетную запись Google Analytics."
+      ],
+      "The specified Google Analytics property was not found. Please check that the Property ID is correct.": [
+        "Указанный ресурс Google Analytics не найден. Пожалуйста, проверьте правильность идентификатора ресурса."
+      ],
+      "Built-in Analytics": [
+        "Встроенная аналитика"
+      ],
+      "Unable to read SVG file for sanitization.": [
+        "Не удалось прочитать SVG-файл для проверки."
+      ],
+      "SVG file could not be sanitized. The file may be corrupted or contain invalid content.": [
+        "Не удалось проверить SVG-файл. Возможно, файл поврежден или содержит недопустимое содержимое."
+      ],
+      "Unable to write sanitized SVG file.": [
+        "Не удалось записать очищенный SVG-файл."
+      ],
+      "Error sanitizing SVG file: %s": [
+        "Ошибка при очистке SVG-файла: %s"
+      ],
+      "Activity Log": [
+        "Журнал активности"
+      ],
+      "Welcome to WordPress": [
+        "Добро пожаловать в WordPress"
+      ],
+      "Welcome to your WordPress dashboard! This is your site management hub.": [
+        "Добро пожаловать в панель управления WordPress! Это ваш центр управления сайтом."
+      ],
+      "Quick Draft": [
+        "Быстрый черновик"
+      ],
+      "Create a new post quickly from here.": [
+        "Здесь вы можете быстро создать новую запись."
+      ],
+      "Activity": [
+        "Активность"
+      ],
+      "Recent activity on your site.": [
+        "Последние активности на вашем сайте."
+      ],
+      "Plugins": [
+        "Плагины"
+      ],
+      "Post Types": [
+        "Типы записей"
+      ],
+      "Fields groups": [
+        "Группы полей"
+      ],
+      "Database Explorer": [
+        "Обозреватель баз данных"
+      ],
+      "Generate Dummy Analytics Data": [
+        "Сгенерировать фиктивные аналитические данные"
+      ],
+      "Warning:": [
+        "Предупреждение:"
+      ],
+      "This will delete all existing analytics data and replace it with dummy data for testing purposes.": [
+        "Это приведет к удалению всех существующих аналитических данных и замене их фиктивными данными для целей тестирования."
+      ],
+      "Generate Test Data": [
+        "Сгенерировать тестовые данные"
+      ],
+      "This tool will generate realistic dummy analytics data for the last 2 months to help you test the analytics features.": [
+        "Этот инструмент сгенерирует реалистичные фиктивные аналитические данные за последние 2 месяца, чтобы помочь вам протестировать аналитические функции."
+      ],
+      "Number of Months": [
+        "Количество месяцев"
+      ],
+      "Select how many months of dummy data to generate.": [
+        "Выберите, за сколько месяцев нужно сгенерировать фиктивные данные."
+      ],
+      "Generate Dummy Data": [
+        "Сгенерировать фиктивные данные"
+      ],
+      "Are you sure? This will delete all existing analytics data.": [
+        "Вы уверены? Это удалит все существующие аналитические данные."
+      ],
+      "What This Generates": [
+        "Что это порождает"
+      ],
+      "Page views from various devices (desktop, mobile, tablet)": [
+        "Просмотр страниц с различных устройств (компьютер, мобильный телефон, планшет)"
+      ],
+      "Realistic browser and operating system data": [
+        "Реалистичные данные о браузере и операционной системе"
+      ],
+      "Geographic data from different countries and cities": [
+        "Географические данные из разных стран и городов."
+      ],
+      "Referrer data from search engines and social media": [
+        "Данные о реферерах из поисковых систем и социальных сетей"
+      ],
+      "Session tracking and unique visitor data": [
+        "Отслеживание сессий и данные об уникальных посетителях"
+      ],
+      "Aggregated daily statistics": [
+        "Сводные ежедневные статистические данные"
+      ],
+      "Current Analytics Status": [
+        "Текущий статус аналитики"
+      ],
+      "Analytics Enabled:": [
+        "Аналитика включена:"
+      ],
+      "Tables Created:": [
+        "Созданы таблицы:"
+      ],
+      "Analytics must be enabled in the UiXpress settings before generating dummy data.": [
+        "Перед созданием фиктивных данных необходимо включить аналитику в настройках UiXpress."
+      ],
+      "Security check failed.": [
+        "Проверка безопасности не пройдена."
+      ],
+      "You do not have sufficient permissions to access this page.": [
+        "У вас недостаточно прав для доступа к этой странице."
+      ],
+      "Analytics is not enabled. Please enable analytics in settings first.": [
+        "Аналитика отключена. Пожалуйста, сначала включите аналитику в настройках."
+      ],
+      "Invalid number of months. Please select between 1 and 12 months.": [
+        "Неверное количество месяцев. Пожалуйста, выберите от 1 до 12 месяцев."
+      ],
+      "Error generating dummy data: ": [
+        "Ошибка при генерации фиктивных данных:"
+      ],
+      "Menu Creator": [
+        "Создатель меню"
+      ],
+      "Add New Admin Menu": [
+        "Добавить новое меню администратора"
+      ],
+      "New Admin Menu": [
+        "Новое меню администратора"
+      ],
+      "Edit Admin Menu": [
+        "Редактировать меню администратора"
+      ],
+      "View Admin Menu": [
+        "Просмотреть меню администратора"
+      ],
+      "All Admin Menus": [
+        "Все административные меню"
+      ],
+      "Search Admin Menus": [
+        "Поиск в меню администратора"
+      ],
+      "No Admin Menus found.": [
+        "Административные меню не найдены."
+      ],
+      "No Admin Menus found in Trash.": [
+        "В корзине не найдено ни одного административного меню."
+      ],
+      "Post type used for the uixpresss menus": [
+        "Тип записи, используемый для меню uixpress."
+      ],
+      "Role Editor": [
+        "Роль редактора"
+      ],
+      "Settings": [
+        "Настройки"
+      ],
+      "Activity logger is not enabled.": [
+        "Журнал активности отключен."
+      ],
+      "Unknown": [
+        "Неизвестный"
+      ],
+      "Log entry not found.": [
+        "Запись в журнале не найдена."
+      ],
+      "Cleaned up %d old log entries.": [
+        "Удалены старые записи журнала %d."
+      ],
+      "Add New Admin Notice": [
+        "Добавить новое уведомление администратора"
+      ],
+      "Edit Admin Notice": [
+        "Редактировать уведомление администратора"
+      ],
+      "View Admin Notice": [
+        "Просмотреть уведомление администратора"
+      ],
+      "All Admin Notices": [
+        "Все административные уведомления"
+      ],
+      "Search Admin Notices": [
+        "Поиск уведомлений администратора"
+      ],
+      "No Admin Notices found.": [
+        "Административные уведомления не найдены."
+      ],
+      "Persistent admin notices for uiXpress.": [
+        "Постоянные уведомления от администратора для uiXpress."
+      ],
+      "Admin Notices": [
+        "Административные уведомления"
+      ],
+      "Comments awaiting moderation": [
+        "Комментарии ожидают модерации."
+      ],
+      "Media": [
+        "СМИ"
+      ],
+      "User": [
+        "Пользователь"
+      ],
+      "Invalid field group ID.": [
+        "Недопустимый идентификатор группы полей."
+      ],
+      "Field group not found.": [
+        "Группа полей не найдена."
+      ],
+      "Field group title is required.": [
+        "Обязательно укажите название полевой группы."
+      ],
+      "Failed to save field group.": [
+        "Не удалось сохранить группу полей."
+      ],
+      "Field group created successfully.": [
+        "Группа полей успешно создана."
+      ],
+      "Field group updated successfully.": [
+        "Группа полей успешно обновлена."
+      ],
+      "Failed to delete field group.": [
+        "Не удалось удалить группу полей."
+      ],
+      "Field group deleted successfully.": [
+        "Группа полей успешно удалена."
+      ],
+      "(Copy)": [
+        "(Копия)"
+      ],
+      "Failed to duplicate field group.": [
+        "Не удалось продублировать группу полей."
+      ],
+      "Field group duplicated successfully.": [
+        "Группа полей успешно продублирована."
+      ],
+      "Invalid import data. Expected an array of field groups.": [
+        "Неверные данные для импорта. Ожидался массив групп полей."
+      ],
+      "Invalid import mode. Use \"merge\" or \"replace\".": [
+        "Недопустимый режим импорта. Используйте «merge» или «replace»."
+      ],
+      "Field group at index %d is missing a title.": [
+        "Группа полей по индексу %d не имеет заголовка."
+      ],
+      "Failed to save imported field groups.": [
+        "Не удалось сохранить импортированные группы полевых работ."
+      ],
+      "Import completed successfully.": [
+        "Импорт успешно завершен."
+      ],
+      "Invalid or unauthorized function.": [
+        "Недопустимая или несанкционированная функция."
+      ],
+      "Field name is required.": [
+        "Название поля обязательно для заполнения."
+      ],
+      "Valid option page is required.": [
+        "Необходимо открыть страницу с действительными настройками."
+      ],
+      "Valid object ID is required.": [
+        "Требуется действительный идентификатор объекта."
+      ],
+      "Helper function not available. Please ensure the plugin is properly initialized.": [
+        "Вспомогательная функция недоступна. Пожалуйста, убедитесь, что плагин правильно инициализирован."
+      ],
+      "(no title)": [
+        "(без названия)"
+      ],
+      "Add Row": [
+        "Добавить строку"
+      ],
+      "Default Template": [
+        "Шаблон по умолчанию"
+      ],
+      "All": [
+        "Все"
+      ],
+      "Standard": [
+        "Стандарт"
+      ],
+      "No field groups are assigned to this option page. Create a field group and set its location to this option page.": [
+        "К этой странице параметров не назначены группы полей. Создайте группу полей и укажите её местоположение на этой странице параметров."
+      ],
+      "Save Changes": [
+        "Сохранить изменения"
+      ],
+      "You do not have permission to save these options.": [
+        "У вас нет разрешения на сохранение этих параметров."
+      ],
+      "Invalid option page slug.": [
+        "Неверный URL-адрес страницы параметров."
+      ],
+      "Option page not found.": [
+        "Страница настроек не найдена."
+      ],
+      "Option page title is required.": [
+        "Заголовок страницы с параметрами обязателен."
+      ],
+      "An option page with this slug already exists.": [
+        "Страница с настройками, содержащая этот слаг, уже существует."
+      ],
+      "Failed to save option page.": [
+        "Не удалось сохранить страницу с настройками."
+      ],
+      "Option page created successfully.": [
+        "Страница с настройками успешно создана."
+      ],
+      "Option page updated successfully.": [
+        "Страница настроек успешно обновлена."
+      ],
+      "Failed to delete option page.": [
+        "Не удалось удалить страницу с опциями."
+      ],
+      "Option page deleted successfully.": [
+        "Страница с настройками успешно удалена."
+      ],
+      "Failed to duplicate option page.": [
+        "Не удалось скопировать страницу с параметрами."
+      ],
+      "Option page duplicated successfully.": [
+        "Страница с параметрами успешно скопирована."
+      ],
+      "Option Page Not Found": [
+        "Страница параметров не найдена"
+      ],
+      "Tools": [
+        "Инструменты"
+      ],
+      "Appearance": [
+        "Появление"
+      ],
+      "Users": [
+        "Пользователи"
+      ],
+      "Comments": [
+        "Комментарии"
+      ],
+      "Posts": [
+        "Сообщения"
+      ],
+      "Pages": [
+        "Страницы"
+      ],
+      "Dashboard": [
+        "Панель управления"
+      ],
+      "Administrator (manage_options)": [
+        "Администратор (manage_options)"
+      ],
+      "Editor (edit_others_posts)": [
+        "Редактор (редактирование других сообщений)"
+      ],
+      "Author (publish_posts)": [
+        "Автор (publish_posts)"
+      ],
+      "Contributor (edit_posts)": [
+        "Участник (редактировать сообщения)"
+      ],
+      "Subscriber (read)": [
+        "Подписчик (читать)"
+      ],
+      "Custom Fields": [
+        "Пользовательские поля"
+      ],
+      "Invalid post type slug.": [
+        "Недопустимый тип записи (slug)."
+      ],
+      "Custom post type not found.": [
+        "Пользовательский тип записи не найден."
+      ],
+      "Post type slug is required.": [
+        "Требуется заготовка типа \"пост\"."
+      ],
+      "Post type name is required.": [
+        "Название типа записи обязательно для заполнения."
+      ],
+      "Invalid post type slug. Use only lowercase letters, numbers, and underscores. Maximum 20 characters.": [
+        "Недопустимый идентификатор типа POST-запроса. Используйте только строчные буквы, цифры и символы подчеркивания. Максимальная длина — 20 символов."
+      ],
+      "This post type slug is reserved by WordPress.": [
+        "Этот идентификатор типа записи зарезервирован WordPress."
+      ],
+      "A custom post type with this slug already exists.": [
+        "Пользовательский тип записи с таким идентификатором уже существует."
+      ],
+      "Failed to save custom post type.": [
+        "Не удалось сохранить пользовательский тип записи."
+      ],
+      "Custom post type created successfully.": [
+        "Пользовательский тип записи успешно создан."
+      ],
+      "Custom post type updated successfully.": [
+        "Пользовательский тип записи успешно обновлен."
+      ],
+      "Failed to delete custom post type.": [
+        "Не удалось удалить пользовательский тип записи."
+      ],
+      "Custom post type deleted successfully.": [
+        "Пользовательский тип записи успешно удален."
+      ],
+      "Invalid import data. Expected an array of post types.": [
+        "Неверные данные для импорта. Ожидался массив типов записей."
+      ],
+      "Post type at index %d is missing required fields (slug or name).": [
+        "В типе записи по индексу %d отсутствуют обязательные поля (slug или name)."
+      ],
+      "Post type \"%s\" has an invalid slug format.": [
+        "Тип записи \"%s\" имеет недопустимый формат слага."
+      ],
+      "Post type \"%s\" uses a reserved slug: %s": [
+        "В типе записи \"%s\" используется зарезервированный слаг: %s"
+      ],
+      "Import validation failed.": [
+        "Проверка импорта не удалась."
+      ],
+      "Failed to save imported post types.": [
+        "Не удалось сохранить импортированные типы записей."
+      ],
+      "Add New": [
+        "Добавить новый"
+      ],
+      "Add New %s": [
+        "Добавить новый %s"
+      ],
+      "Edit %s": [
+        "Редактировать %s"
+      ],
+      "New %s": [
+        "Новые %s"
+      ],
+      "View %s": [
+        "Просмотр %s"
+      ],
+      "Search %s": [
+        "Поиск %s"
+      ],
+      "No %s found": [
+        "% не найдено"
+      ],
+      "No %s found in Trash": [
+        "В корзине не найдено %"
+      ],
+      "Parent %s:": [
+        "Родители:"
+      ],
+      "All %s": [
+        "Все %s"
+      ],
+      "%s Archives": [
+        "%s Архивы"
+      ],
+      "%s Attributes": [
+        "%s Атрибуты"
+      ],
+      "Insert into %s": [
+        "Вставить в %s"
+      ],
+      "Uploaded to this %s": [
+        "Загружено в этот %s"
+      ],
+      "Featured image": [
+        "Главное изображение"
+      ],
+      "Set featured image": [
+        "Установить изображение для обложки"
+      ],
+      "Remove featured image": [
+        "Удалить главное изображение"
+      ],
+      "Use as featured image": [
+        "Используйте в качестве изображения для обложки."
+      ],
+      "Filter %s list": [
+        "Фильтр %список"
+      ],
+      "%s list navigation": [
+        "%s список навигации"
+      ],
+      "%s list": [
+        "%s список"
+      ],
+      "%s published.": [
+        "%s опубликовано."
+      ],
+      "%s published privately.": [
+        "%s опубликовано в частном порядке."
+      ],
+      "%s reverted to draft.": [
+        "%s возвращено в черновой вариант."
+      ],
+      "%s scheduled.": [
+        "%s запланировано."
+      ],
+      "%s updated.": [
+        "%s обновлено."
+      ],
+      "Only SELECT queries are allowed for safety.": [
+        "В целях безопасности разрешены только запросы SELECT."
+      ],
+      "Invalid table name.": [
+        "Недопустимое имя таблицы."
+      ],
+      "Table not found.": [
+        "Таблица не найдена."
+      ],
+      "Unable to retrieve table structure.": [
+        "Не удалось получить структуру таблицы."
+      ],
+      "Query contains prohibited SQL keywords.": [
+        "Запрос содержит запрещенные ключевые слова SQL."
+      ],
+      "Multiple statements are not allowed.": [
+        "Множественные утверждения не допускаются."
+      ],
+      "Query execution failed. Please check your SQL syntax.": [
+        "Выполнение запроса завершилось с ошибкой. Пожалуйста, проверьте синтаксис вашего SQL-запроса."
+      ],
+      "Password is required.": [
+        "Требуется пароль."
+      ],
+      "Invalid password.": [
+        "Неверный пароль."
+      ],
+      "Password verification failed.": [
+        "Проверка пароля не удалась."
+      ],
+      "WordPress core tables cannot be deleted.": [
+        "Основные таблицы WordPress удалить невозможно."
+      ],
+      "System tables cannot be deleted.": [
+        "Системные таблицы удалить невозможно."
+      ],
+      "Password is required for this operation.": [
+        "Для выполнения этой операции требуется пароль."
+      ],
+      "Failed to delete table.": [
+        "Не удалось удалить таблицу."
+      ],
+      "Table '%s' has been deleted.": [
+        "Таблица '%s' удалена."
+      ],
+      "Invalid JSON format": [
+        "Неверный формат JSON"
+      ],
+      "Missing required field: %s": [
+        "Отсутствует обязательное поле: %s"
+      ],
+      "Failed to authenticate with Google. Please check your service account key.": [
+        "Не удалось пройти аутентификацию в Google. Пожалуйста, проверьте ключ вашей учетной записи."
+      ],
+      "Credentials are valid": [
+        "Учетные данные действительны."
+      ],
+      "JSON must be a service account key": [
+        "JSON должен представлять собой ключ учетной записи службы."
+      ],
+      "Service account credentials saved successfully": [
+        "Учетные данные служебной учетной записи успешно сохранены."
+      ],
+      "Google Analytics disconnected": [
+        "Google Analytics отключен"
+      ],
+      "Not connected to Google Analytics": [
+        "Не подключено к Google Analytics"
+      ],
+      "Failed to fetch properties. Make sure the service account has been added to your GA4 property.": [
+        "Не удалось получить свойства. Убедитесь, что учетная запись службы добавлена к вашим свойствам GA4."
+      ],
+      "Property ID is required": [
+        "Требуется идентификатор объекта недвижимости."
+      ],
+      "Property saved successfully": [
+        "Имущество успешно спасено"
+      ],
+      "Return only unused media items (unattached and not used as featured image).": [
+        "Возвращать только неиспользованные медиафайлы (не прикрепленные и не используемые в качестве изображения для предварительного просмотра)."
+      ],
+      "Unused detection mode: shallow (default) or deep (scans post_content).": [
+        "Неиспользуемый режим обнаружения: поверхностный (по умолчанию) или глубокий (сканирует post_content)."
+      ],
+      "Invalid request.": [
+        "Неверный запрос."
+      ],
+      "Invalid media IDs provided.": [
+        "Предоставлены недопустимые идентификаторы медиафайлов."
+      ],
+      "Maximum 100 items can be downloaded at once.": [
+        "Одновременно можно загрузить максимум 100 элементов."
+      ],
+      "ZIP functionality is not available on this server.": [
+        "Функция архивирования ZIP на этом сервере недоступна."
+      ],
+      "Failed to create ZIP file.": [
+        "Не удалось создать ZIP-файл."
+      ],
+      "No valid files found to download.": [
+        "Файлы для скачивания не найдены."
+      ],
+      "(Untitled)": [
+        "(Без названия)"
+      ],
+      "Media ID is required.": [
+        "Требуется идентификатор носителя."
+      ],
+      "Media item not found.": [
+        "Медиафайл не найден."
+      ],
+      "You do not have permission to edit this media item.": [
+        "У вас нет разрешения на редактирование этого медиафайла."
+      ],
+      "No file was uploaded.": [
+        "Файл не был загружен."
+      ],
+      "File upload failed. Please try again.": [
+        "Загрузка файла не удалась. Пожалуйста, попробуйте еще раз."
+      ],
+      "File type not allowed.": [
+        "Тип файла не допускается."
+      ],
+      "File content does not match file type.": [
+        "Содержимое файла не соответствует типу файла."
+      ],
+      "File name contains invalid characters.": [
+        "Имя файла содержит недопустимые символы."
+      ],
+      "Original file not found.": [
+        "Исходный файл не найден."
+      ],
+      "Invalid file path.": [
+        "Неверный путь к файлу."
+      ],
+      "Failed to move uploaded file.": [
+        "Не удалось переместить загруженный файл."
+      ],
+      "File replaced successfully.": [
+        "Файл успешно заменен."
+      ],
+      "Filter media items by tag IDs.": [
+        "Фильтрация медиафайлов по идентификаторам тегов."
+      ],
+      "Media Tags": [
+        "Медиатеги"
+      ],
+      "Media Tag": [
+        "Медиатег"
+      ],
+      "Tags": [
+        "Теги"
+      ],
+      "All Tags": [
+        "Все теги"
+      ],
+      "Edit Tag": [
+        "Редактировать тег"
+      ],
+      "View Tag": [
+        "Просмотреть тег"
+      ],
+      "Update Tag": [
+        "Обновить тег"
+      ],
+      "Add New Tag": [
+        "Добавить новый тег"
+      ],
+      "New Tag Name": [
+        "Новое название тега"
+      ],
+      "Search Tags": [
+        "Поисковые теги"
+      ],
+      "Popular Tags": [
+        "Популярные теги"
+      ],
+      "Separate tags with commas": [
+        "Разделяйте теги запятыми."
+      ],
+      "Add or remove tags": [
+        "Добавить или удалить теги"
+      ],
+      "Choose from the most used tags": [
+        "Выберите наиболее часто используемые теги."
+      ],
+      "No tags found": [
+        "Теги не найдены"
+      ],
+      "Tag name is required": [
+        "Название тега обязательно для заполнения."
+      ],
+      "Invalid media item": [
+        "Недопустимый медиафайл"
+      ],
+      "Menu cache key rotated successfully. All client caches have been invalidated.": [
+        "Ключ кэша меню успешно поменян местами. Все клиентские кэши аннулированы."
+      ],
+      "Status": [
+        "Статус"
+      ],
+      "Published": [
+        "Опубликовано"
+      ],
+      "(No title)": [
+        "(Без названия)"
+      ],
+      "Scheduled": [
+        "Запланировано"
+      ],
+      "%s from now": [
+        "%s с настоящего момента"
+      ],
+      "Modified": [
+        "Модифицированный"
+      ],
+      "%s ago": [
+        "%s назад"
+      ],
+      "Authentication required. Please provide Basic Auth credentials.": [
+        "Требуется аутентификация. Пожалуйста, предоставьте учетные данные для базовой аутентификации."
+      ],
+      "Invalid authentication credentials.": [
+        "Неверные учетные данные для аутентификации."
+      ],
+      "Missing security token. Please refresh the page and try again.": [
+        "Отсутствует токен безопасности. Пожалуйста, обновите страницу и попробуйте снова."
+      ],
+      "Invalid security token. Please refresh the page and try again.": [
+        "Неверный токен безопасности. Пожалуйста, обновите страницу и попробуйте снова."
+      ],
+      "You must be logged in to access this endpoint.": [
+        "Для доступа к этому ресурсу необходимо войти в систему."
+      ],
+      "You do not have permission to perform this action. Required capability: %s": [
+        "У вас нет разрешения на выполнение этого действия. Требуемые права доступа: %s"
+      ],
+      "Invalid role format.": [
+        "Неверный формат роли."
+      ],
+      "Invalid role.": [
+        "Неверная роль."
+      ],
+      "Capabilities must be an array.": [
+        "Возможности должны представлять собой массив."
+      ],
+      "Role not found.": [
+        "Роль не найдена."
+      ],
+      "Role capabilities updated successfully.": [
+        "Возможности роли успешно обновлены."
+      ],
+      "Role name cannot be empty.": [
+        "Название роли не может быть пустым."
+      ],
+      "Role name is too long.": [
+        "Название роли слишком длинное."
+      ],
+      "Role name updated successfully.": [
+        "Название роли успешно обновлено."
+      ],
+      "Role slug can only contain lowercase letters, numbers, hyphens, and underscores.": [
+        "В заголовке объявления могут содержаться только строчные буквы, цифры, дефисы и подчеркивания."
+      ],
+      "Role slug is too long.": [
+        "Длина строки в названии слишком большая."
+      ],
+      "A role with this slug already exists.": [
+        "Вакансия с таким слизнем уже существует."
+      ],
+      "Failed to create role.": [
+        "Не удалось создать роль."
+      ],
+      "Role created successfully.": [
+        "Роль успешно создана."
+      ],
+      "Cannot delete default WordPress roles.": [
+        "Невозможно удалить роли WordPress по умолчанию."
+      ],
+      "Cannot delete role. There are %d user(s) with this role. Please reassign users to another role first.": [
+        "Невозможно удалить роль. Уже %d пользователей имеют эту роль. Пожалуйста, сначала переназначьте пользователей на другие роли."
+      ],
+      "Role deleted successfully.": [
+        "Роль успешно удалена."
+      ],
+      "New Users": [
+        "Новые пользователи"
+      ],
+      "Activity Log Details": [
+        "Подробная информация о журнале действий"
+      ],
+      "General": [
+        "Общий"
+      ],
+      "Core plugin settings and license management": [
+        "Основные настройки плагина и управление лицензиями"
+      ],
+      "Login": [
+        "Авторизоваться"
+      ],
+      "Customize login page appearance and security": [
+        "Настройте внешний вид страницы входа и параметры безопасности."
+      ],
+      "Theme": [
+        "Тема"
+      ],
+      "Colors, styling, and visual customization": [
+        "Цвета, стиль и визуальная персонализация"
+      ],
+      "White Label": [
+        "Белая этикетка"
+      ],
+      "Rebrand and customize interface text and icons": [
+        "Изменение фирменного стиля и персонализация текста и значков интерфейса."
+      ],
+      "Menu": [
+        "Меню"
+      ],
+      "Admin menu behavior and interaction settings": [
+        "Настройки поведения и взаимодействия в административном меню"
+      ],
+      "Post management and display preferences": [
+        "Управление публикациями и параметры отображения"
+      ],
+      "Plugin management interface options": [
+        "параметры интерфейса управления плагинами"
+      ],
+      "Custom dashboard and admin interface settings": [
+        "Пользовательские настройки панели управления и административного интерфейса."
+      ],
+      "Analytics": [
+        "Аналитика"
+      ],
+      "Built-in analytics and tracking settings": [
+        "Встроенные настройки аналитики и отслеживания."
+      ],
+      "Media library and upload management settings": [
+        "Настройки медиатеки и управления загрузками"
+      ],
+      "User management and administration settings": [
+        "Настройки управления и администрирования пользователей"
+      ],
+      "Comment management and administration settings": [
+        "Настройки управления и администрирования комментариев"
+      ],
+      "Security": [
+        "Безопасность"
+      ],
+      "Security settings and administration": [
+        "Настройки безопасности и администрирование"
+      ],
+      "Database": [
+        "База данных"
+      ],
+      "Database explorer and management settings": [
+        "Настройки обозревателя баз данных и управления"
+      ],
+      "Search settings...": [
+        "Настройки поиска..."
+      ],
+      "Loading settings...": [
+        "Загрузка настроек..."
+      ],
+      "No settings found": [
+        "Настройки не найдены"
+      ],
+      "Try a different search term": [
+        "Попробуйте другой поисковый запрос."
+      ],
+      "Loading Settings...": [
+        "Загрузка настроек..."
+      ],
+      "Settings Panel": [
+        "Панель настроек"
+      ],
+      "Select a category from the list to configure your settings.": [
+        "Выберите категорию из списка, чтобы настроить параметры."
+      ],
+      "Activity log entry not found": [
+        "Запись в журнале активности не найдена."
+      ],
+      "Just now": [
+        "Прямо сейчас"
+      ],
+      "1 minute ago": [
+        "1 минуту назад"
+      ],
+      "%d minutes ago": [
+        "%d минут назад"
+      ],
+      "1 hour ago": [
+        "1 час назад"
+      ],
+      "%d hours ago": [
+        "%d часов назад"
+      ],
+      "1 day ago": [
+        "1 день назад"
+      ],
+      "%d days ago": [
+        "%d дней назад"
+      ],
+      "Loading...": [
+        "Загрузка..."
+      ],
+      "Activity Details": [
+        "Подробности мероприятия"
+      ],
+      "User Information": [
+        "Информация о пользователе"
+      ],
+      "Timestamp": [
+        "Отметка времени"
+      ],
+      "IP Address": [
+        "IP-адрес"
+      ],
+      "User Agent": [
+        "Агент пользователя"
+      ],
+      "Changes": [
+        "Изменения"
+      ],
+      "Before": [
+        "До"
+      ],
+      "After": [
+        "После"
+      ],
+      "Details": [
+        "Подробности"
+      ],
+      "Metadata": [
+        "Метаданные"
+      ],
+      "Remote Site Error": [
+        "Ошибка удаленного сайта"
+      ],
+      "Invalid remote site configuration": [
+        "Неверная конфигурация удаленного сайта"
+      ],
+      "Click": [
+        "Нажмите"
+      ],
+      "Hover": [
+        "Ховер"
+      ],
+      "Off": [
+        "Выключенный"
+      ],
+      "Light": [
+        "Свет"
+      ],
+      "Dark": [
+        "Темный"
+      ],
+      "Licence key": [
+        "Лицензионный ключ"
+      ],
+      "Activating uiXpress enables updates and features": [
+        "Активация uiXpress позволяет получать обновления и использовать новые функции."
+      ],
+      "Logo": [
+        "Логотип"
+      ],
+      "Optional logo for to be displayed in the menu": [
+        "Дополнительный логотип для отображения в меню."
+      ],
+      "Logo url": [
+        "URL логотипа"
+      ],
+      "Dark mode logo": [
+        "логотип темного режима"
+      ],
+      "Set an alternative logo to use in dark mode. If one isn't set it will fall back to the standard logo.": [
+        "Задайте альтернативный логотип для использования в темном режиме. Если логотип не задан, будет использоваться стандартный логотип."
+      ],
+      "Dark Logo url": [
+        "Ссылка на тёмный логотип"
+      ],
+      "Remote Sites": [
+        "Удаленные объекты"
+      ],
+      "Configure remote WordPress sites for cross-site operations.": [
+        "Настройка удалённых сайтов WordPress для работы в межсайтовом режиме."
+      ],
+      "Remote Site Switcher Capability": [
+        "Возможность удалённого переключения между площадками"
+      ],
+      "WordPress capability required to see the remote site switcher in the toolbar. Defaults to \"manage_options\" (admin users). Users with this capability or below will see the switcher.": [
+        "Для отображения переключателя удаленных сайтов на панели инструментов требуется наличие соответствующих прав доступа WordPress. По умолчанию используется параметр \"manage_options\" (для администраторов). Пользователи с такими правами или более низким уровнем доступа увидят переключатель."
+      ],
+      "Disable theme": [
+        "Отключить тему"
+      ],
+      "Choose roles or usersnames to disable the theme for.": [
+        "Выберите роли или имена пользователей, для которых нужно отключить тему."
+      ],
+      "Search post types": [
+        "Поиск по типам записей"
+      ],
+      "Choose which post types are available in the global search": [
+        "Выберите, какие типы записей доступны в глобальном поиске."
+      ],
+      "Disable global search": [
+        "Отключить глобальный поиск"
+      ],
+      "Disable global search for all users.": [
+        "Отключить глобальный поиск для всех пользователей."
+      ],
+      "Admin layout": [
+        "Макет административной панели"
+      ],
+      "Choose your prefered admin layout": [
+        "Выберите предпочтительный макет административной панели."
+      ],
+      "Modernise login page": [
+        "Модернизируйте страницу входа"
+      ],
+      "When enabled, uiXpress will modernise the default login page.": [
+        "При включении этой функции uiXpress обновит страницу входа по умолчанию."
+      ],
+      "Login image": [
+        "Изображение для входа"
+      ],
+      "Optional image that will be added to the empty panel in the login page": [
+        "Дополнительное изображение, которое будет добавлено в пустую панель на странице входа в систему."
+      ],
+      "Image url": [
+        "URL изображения"
+      ],
+      "Login path": [
+        "Путь входа"
+      ],
+      "Change the login url from wp-login.php to a custom slug. Ensure you remember what you change this to.": [
+        "Измените URL-адрес страницы входа с wp-login.php на пользовательский слаг. Убедитесь, что вы запомнили, на что именно вы его изменили."
+      ],
+      "Hide language selector": [
+        "Скрыть селектор языка"
+      ],
+      "When hidden the language selector on the login page will not be displayed": [
+        "Если переключатель языка скрыт на странице входа в систему, он отображаться не будет."
+      ],
+      "Enable TurnStyle": [
+        "Включить стиль поворота"
+      ],
+      "When enabled, a cloudflare turnstyle challenge will be displayed on the login page to enhance security. Cloudflare account is required": [
+        "При включении этой функции на странице входа в систему будет отображаться запрос подтверждения авторизации Cloudflare для повышения безопасности. Требуется учетная запись Cloudflare."
+      ],
+      "Turnstyle site key": [
+        "Ключ от площадки Turnstyle"
+      ],
+      "This is the site key for your turnstyle which can be created from your cloudflare dashboard.": [
+        "Это ключ сайта для вашего турникета, который можно создать в панели управления Cloudflare."
+      ],
+      "Turnstyle secret key": [
+        "Секретный ключ Turnstyle"
+      ],
+      "This is the secret key for your turnstyle which can be created from your cloudflare dashboard.": [
+        "Это секретный ключ для вашего турникета, который можно создать на панели управления Cloudflare."
+      ],
+      "Force global theme": [
+        "Принудительное использование глобальной темы"
+      ],
+      "When enabled, the light / dark toggle will be removed and the selected theme set for all users.": [
+        "При включении этой функции переключатель светлой/темной темы будет отключен, и выбранная тема будет установлена для всех пользователей."
+      ],
+      "Hide screen options": [
+        "Скрыть параметры экрана"
+      ],
+      "Hide the screen options toggle in the toolbar": [
+        "Скрыть переключатель параметров экрана на панели инструментов."
+      ],
+      "Hide help toggle": [
+        "Скрыть переключатель справки"
+      ],
+      "Hide the help toggle in the toolbar": [
+        "Скрыть переключатель справки на панели инструментов"
+      ],
+      "Base theme colors": [
+        "Основные цвета темы"
+      ],
+      "Set a base color and uiXpress will automatically create a color scale for you.": [
+        "Задайте базовый цвет, и uiXpress автоматически создаст для вас цветовую шкалу."
+      ],
+      "Base": [
+        "База"
+      ],
+      "Accent theme colors": [
+        "Цвета акцентной темы"
+      ],
+      "Set a accent color and uiXpress will automatically create a color scale for you.": [
+        "Задайте акцентный цвет, и uiXpress автоматически создаст для вас цветовую шкалу."
+      ],
+      "Accent base": [
+        "Подставка"
+      ],
+      "Custom css": [
+        "Пользовательский CSS"
+      ],
+      "Custom css added here will only be added in the admin area and login page.": [
+        "Добавленные здесь пользовательские CSS-стили будут добавлены только в административную панель и на страницу входа."
+      ],
+      "External stylesheets": [
+        "Внешние таблицы стилей"
+      ],
+      "Add URLs to any external stylesheets you want uiXpress to load into the admin": [
+        "Добавьте URL-адреса любых внешних таблиц стилей, которые вы хотите, чтобы uiXpress загружал в административную панель."
+      ],
+      "Custom Font": [
+        "Пользовательский шрифт"
+      ],
+      "Choose a custom font for the admin interface. Select from Google Fonts, enter a custom font URL, or upload your own font files.": [
+        "Выберите пользовательский шрифт для административного интерфейса. Можно выбрать шрифт из Google Fonts, ввести URL-адрес пользовательского шрифта или загрузить собственные файлы шрифтов."
+      ],
+      "Admin favicon": [
+        "значок администратора"
+      ],
+      "Optional favicon to replace the WordPress favicon in the admin.": [
+        "Дополнительный значок сайта (favicon) для замены стандартного значка сайта WordPress в административной панели."
+      ],
+      "Favicon url": [
+        "URL значка сайта (Favicon url)"
+      ],
+      "Rename uiXpress": [
+        "Переименовать uiXpress"
+      ],
+      "This will rename uiXpress in the plugins list as well as renaming it's settings link.": [
+        "Это переименует плагин uiXpress в списке плагинов, а также переименует ссылку на его настройки."
+      ],
+      "Text Replacement": [
+        "Замена текста"
+      ],
+      "Customize the text displayed in the WordPress admin area. Enter original words or phrases and their replacements to white-label the admin interface.": [
+        "Настройте текст, отображаемый в административной панели WordPress. Введите оригинальные слова или фразы и их замены, чтобы придать административному интерфейсу индивидуальный стиль."
+      ],
+      "Submenu style": [
+        "Стиль подменю"
+      ],
+      "Choose from whether the submenu opens on click or hover.": [
+        "Выберите, будет ли подменю открываться при щелчке или при наведении курсора."
+      ],
+      "Enable Admin Menu Search": [
+        "Включить поиск в меню администратора"
+      ],
+      "Enable search functionality in the admin menu to quickly find menu items.": [
+        "Включите функцию поиска в административном меню, чтобы быстро находить пункты меню."
+      ],
+      "Classic Post List View": [
+        "Классический вид списка записей"
+      ],
+      "Switch to WordPress's traditional table layout for posts, removing the modern interface.": [
+        "Перейдите на традиционную табличную структуру записей WordPress, отказавшись от современного интерфейса."
+      ],
+      "Modern Post Editor": [
+        "Современный редактор постов"
+      ],
+      "Replace the built-in WordPress editor with a modern, enhanced post editor interface.": [
+        "Замените встроенный редактор WordPress современным, улучшенным интерфейсом редактора записей."
+      ],
+      "Post Types for Modern Editor": [
+        "Типы записей для современного редактора"
+      ],
+      "Choose which post types should use the modern post editor. Defaults to posts.": [
+        "Выберите, для каких типов записей следует использовать современный редактор записей. По умолчанию — для записей."
+      ],
+      "Real-time Collaboration": [
+        "Сотрудничество в режиме реального времени"
+      ],
+      "Enable real-time collaboration in the modern post editor. Multiple users can edit the same post simultaneously with live cursor tracking and synced changes.": [
+        "Включите совместную работу в режиме реального времени в современном редакторе записей. Несколько пользователей могут одновременно редактировать одну и ту же запись с отслеживанием курсора в реальном времени и синхронизацией изменений."
+      ],
+      "Modern Plugin Manager": [
+        "Современный менеджер плагинов"
+      ],
+      "Replace the classic plugins page with a modern plugin manager with plugin profiling and improved features.": [
+        "Замените классическую страницу плагинов современным менеджером плагинов с функцией профилирования и улучшенными возможностями."
+      ],
+      "Modern Media Library": [
+        "Современная медиатека"
+      ],
+      "Replace the classic WordPress media library with a modern, responsive media manager with improved upload and organization features.": [
+        "Замените классическую медиатеку WordPress на современный, адаптивный медиаменеджер с улучшенными функциями загрузки и организации медиафайлов."
+      ],
+      "Enable SVG Uploads": [
+        "Включить загрузку SVG-файлов"
+      ],
+      "Allow SVG (Scalable Vector Graphics) files to be uploaded to the media library. All SVG files are automatically sanitized before upload to remove potentially malicious code, ensuring safe handling of SVG files.": [
+        "Разрешите загрузку файлов SVG (масштабируемой векторной графики) в медиатеку. Все файлы SVG автоматически проходят проверку перед загрузкой для удаления потенциально вредоносного кода, что обеспечивает безопасную обработку файлов SVG."
+      ],
+      "Enable Font Uploads": [
+        "Включить загрузку шрифтов"
+      ],
+      "Allow font files (.woff2, .woff, .ttf, .otf) to be uploaded to the media library. This enables custom font support for your site.": [
+        "Разрешите загрузку файлов шрифтов (.woff2, .woff, .ttf, .otf) в медиатеку. Это позволит использовать пользовательские шрифты на вашем сайте."
+      ],
+      "Modern Users Page": [
+        "Страница современных пользователей"
+      ],
+      "Replace the classic WordPress users page with a modern, responsive user manager with improved features and better organization.": [
+        "Замените классическую страницу пользователей WordPress на современный, адаптивный менеджер пользователей с улучшенными функциями и лучшей организацией."
+      ],
+      "Modern Comments Page": [
+        "Современная страница комментариев"
+      ],
+      "Replace the classic WordPress comments page with a modern, responsive comment manager with improved features and better organization.": [
+        "Замените классическую страницу комментариев WordPress на современный, адаптивный менеджер комментариев с улучшенными функциями и лучшей организацией."
+      ],
+      "Custom Dashboard": [
+        "Пользовательская панель управления"
+      ],
+      "Replace the default WordPress dashboard with a modern, customizable dashboard interface.": [
+        "Замените стандартную панель управления WordPress на современный, настраиваемый интерфейс."
+      ],
+      "Enable uiXpress Analytics": [
+        "Включить аналитику uiXpress"
+      ],
+      "Enable built-in analytics to track user behavior, page views, and performance metrics within your WordPress admin.": [
+        "Включите встроенную аналитику для отслеживания поведения пользователей, просмотров страниц и показателей производительности в административной панели WordPress."
+      ],
+      "Analytics Provider": [
+        "Поставщик аналитических услуг"
+      ],
+      "Choose which analytics provider to use for dashboard data. Select Built-in Analytics to use the uiXpress tracking system, or Google Analytics to display data from your GA4 property.": [
+        "Выберите поставщика аналитики для использования данных на панели мониторинга. Выберите «Встроенная аналитика», чтобы использовать систему отслеживания uiXpress, или Google Analytics, чтобы отображать данные из вашего ресурса GA4."
+      ],
+      "Google Analytics Connection": [
+        "Подключение Google Analytics"
+      ],
+      "Connect your Google Analytics 4 property to display analytics data in the dashboard. You will need to create OAuth credentials in Google Cloud Console.": [
+        "Подключите свой ресурс Google Analytics 4, чтобы отображать аналитические данные на панели мониторинга. Вам потребуется создать учетные данные OAuth в консоли Google Cloud."
+      ],
+      "Enable Database Explorer": [
+        "Включить обозреватель баз данных"
+      ],
+      "Enable the modern database explorer interface to browse tables, view data, and execute SQL queries safely.": [
+        "Включите современный интерфейс обозревателя баз данных для безопасного просмотра таблиц, просмотра данных и выполнения SQL-запросов."
+      ],
+      "Enable Role Editor": [
+        "Включить редактор ролей"
+      ],
+      "Enable the modern role editor interface to manage WordPress user roles and capabilities.": [
+        "Включите современный интерфейс редактора ролей для управления ролями и возможностями пользователей WordPress."
+      ],
+      "Enable Custom Post Types": [
+        "Включить пользовательские типы записей"
+      ],
+      "Enable the custom post types creator to register and manage custom post types without code. Post types are stored in a JSON file for performance.": [
+        "Предоставьте создателю пользовательских типов записей возможность регистрировать и управлять ими без написания кода. Для повышения производительности типы записей хранятся в JSON-файле."
+      ],
+      "Enable Activity Logger": [
+        "Включить журнал активности"
+      ],
+      "Track and log all admin actions including post changes, user updates, plugin activations, and more.": [
+        "Отслеживайте и регистрируйте все действия администратора, включая изменения в записях, обновления данных пользователей, активацию плагинов и многое другое."
+      ],
+      "Retention Period (Days)": [
+        "Срок хранения (дни)"
+      ],
+      "How many days to keep activity logs before automatic cleanup. Default is 90 days.": [
+        "Сколько дней следует хранить журналы активности до автоматической очистки. По умолчанию — 90 дней."
+      ],
+      "Log Level": [
+        "Уровень лога"
+      ],
+      "Choose which actions to log. \"All Actions\" logs everything, \"Important Only\" logs only critical actions like deletions and role changes.": [
+        "Выберите, какие действия следует регистрировать. «Все действия» регистрирует все действия, «Только важные» — только критически важные, такие как удаление и изменение ролей."
+      ],
+      "All Actions": [
+        "Все действия"
+      ],
+      "Important Only": [
+        "Важно лишь"
+      ],
+      "Auto Cleanup": [
+        "Автоматическая очистка"
+      ],
+      "Automatically delete logs older than the retention period. Disable to keep logs indefinitely.": [
+        "Автоматически удалять журналы старше установленного срока хранения. Отключите эту функцию, чтобы хранить журналы неограниченно долго."
+      ],
+      "Failed to load settings": [
+        "Не удалось загрузить настройки."
+      ],
+      "Unable to save settings": [
+        "Не удалось сохранить настройки."
+      ],
+      "Settings updated!": [
+        "Настройки обновлены!"
+      ],
+      "Please provide a valid JSON file": [
+        "Пожалуйста, предоставьте корректный JSON-файл."
+      ],
+      "Invalid settings: must be an object": [
+        "Неверные настройки: должен быть объектом."
+      ],
+      "Settings imported": [
+        "Импортированные настройки"
+      ],
+      "Import failed": [
+        "Импорт не удался"
+      ],
+      "Failed to activate key": [
+        "Не удалось активировать ключ."
+      ],
+      "Key already activated for this site": [
+        "Ключ для этого сайта уже активирован."
+      ],
+      "Key successfully activated": [
+        "Ключ успешно активирован"
+      ],
+      "Network error during activation": [
+        "Сетевая ошибка во время активации"
+      ],
+      "Instance removed": [
+        "Экземпляр удален"
+      ],
+      "Failed to remove activation": [
+        "Не удалось удалить активацию"
+      ],
+      "Network error during removal": [
+        "Сетевая ошибка во время удаления"
+      ],
+      "Save": [
+        "Сохранять"
+      ],
+      "Please add your licence key to unlock the plugin settings": [
+        "Пожалуйста, введите свой лицензионный ключ, чтобы разблокировать настройки плагина."
+      ],
+      "Found": [
+        "Найденный"
+      ],
+      "matching setting(s)": [
+        "соответствующие настройки"
+      ],
+      "No settings match your search in this category.": [
+        "В этой категории нет настроек, соответствующих вашему поисковому запросу."
+      ],
+      "Try a different search term or check another category.": [
+        "Попробуйте другой поисковый запрос или проверьте другую категорию."
+      ],
+      "Minify menu": [
+        "Свернуть меню"
+      ],
+      "Toggle menu": [
+        "Переключить меню"
+      ],
+      "System": [
+        "Система"
+      ],
+      "Logout": [
+        "Выйти"
+      ],
+      "Search activities...": [
+        "Поиск действий..."
+      ],
+      "Action": [
+        "Действие"
+      ],
+      "Object Type": [
+        "Тип объекта"
+      ],
+      "All Types": [
+        "Все типы"
+      ],
+      "item": [
+        "элемент"
+      ],
+      "items": [
+        "предметы"
+      ],
+      "Page": [
+        "Страница"
+      ],
+      "Previous": [
+        "Предыдущий"
+      ],
+      "Next": [
+        "Следующий"
+      ],
+      "Select an activity from the list to view detailed information.": [
+        "Выберите действие из списка, чтобы просмотреть подробную информацию."
+      ],
+      "Default": [
+        "По умолчанию"
+      ],
+      "Rounded": [
+        "Закругленный"
+      ],
+      "Bubble": [
+        "Пузырь"
+      ],
+      "Add new": [
+        "Добавить новый"
+      ],
+      "Update settings": [
+        "Обновить настройки"
+      ],
+      "Loading editor...": [
+        "Загрузка редактора..."
+      ],
+      "Invalid Input": [
+        "Неверный ввод"
+      ],
+      "Site URL, username, and application password are required": [
+        "Для доступа к сайту необходимы: URL сайта, имя пользователя и пароль приложения."
+      ],
+      "Invalid URL": [
+        "Неверный URL"
+      ],
+      "Please provide a valid site URL": [
+        "Пожалуйста, укажите действительный URL-адрес сайта."
+      ],
+      "Duplicate Site": [
+        "Дубликат сайта"
+      ],
+      "This site URL already exists": [
+        "Этот URL-адрес сайта уже существует."
+      ],
+      "Remove Remote Site?": [
+        "Удалить удалённый сайт?"
+      ],
+      "Are you sure you want to remove this remote site? This action cannot be undone.": [
+        "Вы уверены, что хотите удалить этот удалённый сайт? Это действие необратимо."
+      ],
+      "Yes, remove site": [
+        "Да, удалить сайт"
+      ],
+      "Site Removed": [
+        "Сайт удален"
+      ],
+      "Remote site has been removed successfully": [
+        "Удаленный сайт успешно удален."
+      ],
+      "Site URL (e.g., https://example.com)": [
+        "URL-адрес сайта (например, https://example.com)"
+      ],
+      "Username": [
+        "Имя пользователя"
+      ],
+      "Application Password": [
+        "Пароль приложения"
+      ],
+      "Add Site": [
+        "Добавить сайт"
+      ],
+      "Site URL": [
+        "URL сайта"
+      ],
+      "Password": [
+        "Пароль"
+      ],
+      "No remote sites configured yet": [
+        "Удаленные сайты пока не настроены."
+      ],
+      "Application passwords can be created in WordPress under Users > Profile > Application Passwords": [
+        "Пароли для приложений можно создать в WordPress в разделе Пользователи > Профиль > Пароли для приложений."
+      ],
+      "Licence Active": [
+        "Действующая лицензия"
+      ],
+      "Remove key": [
+        "Извлечь ключ"
+      ],
+      "uiXpress licence key": [
+        "лицензионный ключ uiXpress"
+      ],
+      "Activate": [
+        "Активировать"
+      ],
+      "Development server detected, no need to activate your licence key.": [
+        "Обнаружен сервер разработки, активация лицензионного ключа не требуется."
+      ],
+      "System Default": [
+        "Системные настройки по умолчанию"
+      ],
+      "Google Fonts": [
+        "Google Fonts"
+      ],
+      "Custom URL": [
+        "Пользовательский URL"
+      ],
+      "Upload Font": [
+        "Загрузить шрифт"
+      ],
+      "Font Source": [
+        "Источник шрифта"
+      ],
+      "Select Font": [
+        "Выберите шрифт"
+      ],
+      "Click to change": [
+        "Нажмите, чтобы изменить"
+      ],
+      "Clear selection": [
+        "Четкий выбор"
+      ],
+      "Search fonts...": [
+        "Поиск шрифтов..."
+      ],
+      "No fonts found": [
+        "Шрифты не найдены"
+      ],
+      "Or enter custom:": [
+        "Или введите пользовательский параметр:"
+      ],
+      "Font name...": [
+        "Название шрифта..."
+      ],
+      "Font Weights": [
+        "Толщина шрифта"
+      ],
+      "Select weights to include. At least one is required.": [
+        "Выберите веса, которые необходимо включить. Необходимо указать хотя бы один вес."
+      ],
+      "Font Stylesheet URL": [
+        "URL таблицы стилей шрифта"
+      ],
+      "https://fonts.googleapis.com/css2?family=...": [
+        "https://fonts.googleapis.com/css2?family=..."
+      ],
+      "Enter the URL to an external font stylesheet (CSS file)": [
+        "Введите URL-адрес внешней таблицы стилей шрифта (CSS-файла)."
+      ],
+      "Font Family Name": [
+        "Название семейства шрифтов"
+      ],
+      "e.g., Inter, Roboto, Custom Font": [
+        "например, Inter, Roboto, Custom Font"
+      ],
+      "The exact font-family name as defined in the stylesheet": [
+        "Точное название семейства шрифтов, определенное в таблице стилей."
+      ],
+      "Font Uploads Disabled": [
+        "Загрузка шрифтов отключена."
+      ],
+      "Font file uploads are currently disabled. Enable font uploads in the Media settings to upload custom font files (.woff2, .woff, .ttf, .otf).": [
+        "Загрузка файлов шрифтов в настоящее время отключена. Включите загрузку шрифтов в настройках мультимедиа, чтобы загружать пользовательские файлы шрифтов (.woff2, .woff, .ttf, .otf)."
+      ],
+      "e.g., My Custom Font": [
+        "например, Мой пользовательский шрифт"
+      ],
+      "Choose a name for your custom font family": [
+        "Выберите название для вашего пользовательского семейства шрифтов."
+      ],
+      "Font Files": [
+        "Файлы шрифтов"
+      ],
+      "Opening Media Library...": [
+        "Открытие медиатеки..."
+      ],
+      "Click to select font files": [
+        "Нажмите, чтобы выбрать файлы шрифтов."
+      ],
+      "Supported formats: .woff2, .woff, .ttf, .otf": [
+        "Поддерживаемые форматы: .woff2, .woff, .ttf, .otf"
+      ],
+      "Enable font uploads to add font files": [
+        "Включите загрузку шрифтов, чтобы добавлять файлы шрифтов."
+      ],
+      "Select Font File": [
+        "Выберите файл шрифта"
+      ],
+      "Select font files from your media library. Supported: .woff2, .woff, .ttf, .otf": [
+        "Выберите файлы шрифтов из вашей медиатеки. Поддерживаются форматы: .woff2, .woff, .ttf, .otf"
+      ],
+      "Loading font...": [
+        "Загрузка шрифта..."
+      ],
+      "Preview": [
+        "Предварительный просмотр"
+      ],
+      "Weight:": [
+        "Масса:"
+      ],
+      "weights loaded": [
+        "загруженные веса"
+      ],
+      "Reset to system default": [
+        "Сброс до системных настроек по умолчанию."
+      ],
+      "Please paste your service account JSON key": [
+        "Пожалуйста, вставьте JSON-ключ вашей учетной записи службы."
+      ],
+      "Service account connected successfully": [
+        "Учетная запись службы успешно подключена."
+      ],
+      "Failed to save credentials": [
+        "Не удалось сохранить учетные данные."
+      ],
+      "Could not load properties automatically. You can enter your Property ID manually below.": [
+        "Не удалось автоматически загрузить объекты недвижимости. Вы можете ввести идентификатор объекта недвижимости вручную ниже."
+      ],
+      "Please enter a Property ID": [
+        "Пожалуйста, введите идентификатор объекта недвижимости."
+      ],
+      "Property saved": [
+        "Сохраненное имущество"
+      ],
+      "Failed to save property": [
+        "Не удалось спасти имущество"
+      ],
+      "Failed to disconnect": [
+        "Не удалось отключиться"
+      ],
+      "Checking connection...": [
+        "Проверка соединения..."
+      ],
+      "Connection Issue": [
+        "Проблема с подключением"
+      ],
+      "Connected to Google Analytics": [
+        "Подключено к Google Analytics"
+      ],
+      "Permission Issue Detected": [
+        "Обнаружена проблема с правами доступа."
+      ],
+      "Learn more": [
+        "Узнать больше"
+      ],
+      "Retest Connection": [
+        "Повторно проверьте соединение."
+      ],
+      "Service Account:": [
+        "Учетная запись службы:"
+      ],
+      "Select Property": [
+        "Выберите объект недвижимости"
+      ],
+      "Select a property...": [
+        "Выберите объект недвижимости..."
+      ],
+      "Property ID:": [
+        "Идентификатор объекта недвижимости:"
+      ],
+      "Enter Property ID": [
+        "Введите идентификатор объекта недвижимости"
+      ],
+      "Find your Property ID in Google Analytics: Admin → Property Settings → Property ID (a number like 123456789)": [
+        "Найдите идентификатор вашего объекта недвижимости в Google Analytics: Администрирование → Настройки объекта недвижимости → Идентификатор объекта недвижимости (число, например, 123456789)"
+      ],
+      "e.g. 123456789": [
+        "например, 123456789"
+      ],
+      "Property ID": [
+        "Идентификатор объекта недвижимости"
+      ],
+      "Change": [
+        "Изменять"
+      ],
+      "Loading properties...": [
+        "Загрузка свойств..."
+      ],
+      "Disconnect": [
+        "Отключить"
+      ],
+      "Setup Instructions": [
+        "Инструкции по установке"
+      ],
+      "How to connect Google Analytics 4": [
+        "Как подключить Google Analytics 4"
+      ],
+      "Go to": [
+        "Перейти к"
+      ],
+      "Google Cloud Console": [
+        "Консоль Google Cloud"
+      ],
+      "and create a new project (or select existing)": [
+        "и создать новый проект (или выбрать существующий)."
+      ],
+      "Enable the": [
+        "Включить"
+      ],
+      "Google Analytics Data API": [
+        "API данных Google Analytics"
+      ],
+      "Service Accounts": [
+        "Служебные аккаунты"
+      ],
+      "and create a new service account": [
+        "и создать новую учетную запись службы."
+      ],
+      "Click the service account, go to \"Keys\" tab, click \"Add Key\" → \"Create new key\" → JSON": [
+        "Щелкните по учетной записи службы, перейдите на вкладку «Ключи», нажмите «Добавить ключ» → «Создать новый ключ» → JSON"
+      ],
+      "Download the JSON key file": [
+        "Загрузите JSON-файл ключа."
+      ],
+      "In": [
+        "В"
+      ],
+      "Google Analytics": [
+        "Google Аналитика"
+      ],
+      "→ Admin → Property Access Management, add the service account email as a Viewer": [
+        "→ Администрирование → Управление доступом к ресурсам, добавьте адрес электронной почты учетной записи службы в качестве пользователя для просмотра."
+      ],
+      "Paste the contents of the JSON key file below and enter your Property ID": [
+        "Вставьте содержимое файла JSON с ключами, расположенного ниже, и введите идентификатор вашего объекта недвижимости."
+      ],
+      "Finding your Property ID:": [
+        "Как найти идентификатор вашего объекта недвижимости:"
+      ],
+      "In Google Analytics, go to Admin → Property Settings. Your Property ID is the number shown (e.g. 123456789).": [
+        "В Google Analytics перейдите в раздел «Администрирование» → «Настройки объекта». Идентификатор вашего объекта — это указанный номер (например, 123456789)."
+      ],
+      "Important:": [
+        "Важный:"
+      ],
+      "The service account email (found in the JSON file) must be added to your GA4 property with at least Viewer access for data to be retrieved.": [
+        "Для получения данных необходимо добавить адрес электронной почты сервисной учетной записи (находящийся в JSON-файле) в ваше свойство GA4 с как минимум правами доступа «Просмотрщик»."
+      ],
+      "Paste the contents of your service account JSON key file:": [
+        "Вставьте содержимое JSON-файла ключа вашей учетной записи службы:"
+      ],
+      "Paste your service account JSON key here...": [
+        "Вставьте сюда JSON-ключ вашей учетной записи службы..."
+      ],
+      "Connect": [
+        "Соединять"
+      ],
+      "Cancel": [
+        "Отмена"
+      ],
+      "Connect Google Analytics": [
+        "Подключить Google Analytics"
+      ],
+      "Clear custom properties": [
+        "Очистить пользовательские свойства"
+      ],
+      "Edit Profile": [
+        "Редактировать профиль"
+      ],
+      "Visit site": [
+        "Посетите сайт"
+      ],
+      "Site Settings": [
+        "Настройки сайта"
+      ],
+      "Sign Out": [
+        "Выход"
+      ],
+      "Light Mode": [
+        "Светлый режим"
+      ],
+      "Dark Mode": [
+        "Темный режим"
+      ],
+      "Quick Actions": [
+        "Быстрые действия"
+      ],
+      "Focus Search": [
+        "Фокусированный поиск"
+      ],
+      "Search menu...": [
+        "Меню поиска..."
+      ],
+      "No menu items found": [
+        "Пункты меню не найдены"
+      ],
+      "result": [
+        "результат"
+      ],
+      "results": [
+        "результаты"
+      ],
+      "Navigate": [
+        "Навигация"
+      ],
+      "Select": [
+        "Выбирать"
+      ],
+      "Shortcuts": [
+        "Ярлыки"
+      ],
+      "Name": [
+        "Имя"
+      ],
+      "Shortcut name": [
+        "Название ярлыка"
+      ],
+      "URL": [
+        "URL"
+      ],
+      "https://example.com": [
+        "https://example.com"
+      ],
+      "Icon": [
+        "Икона"
+      ],
+      "icon name": [
+        "название значка"
+      ],
+      "Delete": [
+        "Удалить"
+      ],
+      "Notifications": [
+        "Уведомления"
+      ],
+      "Local": [
+        "Местный"
+      ],
+      "When you switch to a remote site, all API requests will be sent to that site instead of the local site.": [
+        "При переключении на удалённый сайт все API-запросы будут отправляться на этот сайт, а не на локальный."
+      ],
+      "Remote site switching works on:": [
+        "Удалённое переключение между сайтами работает на:"
+      ],
+      "Modern Media Page": [
+        "Страница современных СМИ"
+      ],
+      "Modern Plugins Page": [
+        "Страница современных плагинов"
+      ],
+      "Modern Dashboard": [
+        "Современная панель управления"
+      ],
+      "All default WordPress pages (Posts, Pages, Comments, etc.) will continue to show local content.": [
+        "Все стандартные страницы WordPress (записи, страницы, комментарии и т. д.) будут по-прежнему отображать локальный контент."
+      ],
+      "Remote Site Switching": [
+        "Удалённое переключение сайтов"
+      ],
+      "I Understand": [
+        "Я понимаю"
+      ],
+      "Search sites...": [
+        "Поиск по сайтам..."
+      ],
+      "No sites found": [
+        "Сайты не найдены"
+      ],
+      "Back to menu": [
+        "Вернуться в меню"
+      ],
+      "unread": [
+        "непрочитано"
+      ],
+      "Updates Available": [
+        "Доступны обновления"
+      ],
+      "Awaiting moderation": [
+        "Ожидает модерации"
+      ],
+      "You're all caught up": [
+        "Вы всё успели!"
+      ],
+      "No new notifications": [
+        "Нет новых уведомлений"
+      ],
+      "Show less": [
+        "Показать меньше"
+      ],
+      "Show more": [
+        "Показать больше"
+      ],
+      "No activities found": [
+        "Действия не найдены"
+      ],
+      "Find": [
+        "Находить"
+      ],
+      "Replace": [
+        "Заменять"
+      ],
+      "New item": [
+        "Новый товар"
+      ],
+      "Edit CSS": [
+        "Редактировать CSS"
+      ],
+      "Finished": [
+        "Законченный"
+      ],
+      "Media Library": [
+        "Медиатека"
+      ],
+      "Media Details": [
+        "Информация о СМИ"
+      ],
+      "Edit Image": [
+        "Редактировать изображение"
+      ],
+      "Roles": [
+        "Роли"
+      ],
+      "Items selected": [
+        "Выбранные товары"
+      ],
+      "Select users or roles": [
+        "Выберите пользователей или роли"
+      ],
+      "url": [
+        "url"
+      ],
+      "Select post types": [
+        "Выберите типы записей"
+      ],
+      "Search icons": [
+        "Значки поиска"
+      ],
+      "View site": [
+        "Посмотреть сайт"
+      ],
+      "View dashboard": [
+        "Просмотреть панель управления"
+      ],
+      "Help": [
+        "Помощь"
+      ],
+      "Screen options": [
+        "Параметры экрана"
+      ],
+      "New Post": [
+        "Новая запись"
+      ],
+      "New Page": [
+        "Новая страница"
+      ],
+      "Site settings": [
+        "Настройки сайта"
+      ],
+      "Dark mode": [
+        "Темный режим"
+      ],
+      "Light mode": [
+        "Светлый режим"
+      ],
+      "Enable magic dark mode for this page": [
+        "Включите волшебный темный режим для этой страницы."
+      ],
+      "Disable magic dark mode for this page": [
+        "Отключить волшебный темный режим для этой страницы"
+      ],
+      "wpbody element not found": [
+        "Элемент wpbody не найден"
+      ],
+      "CSS fix saved to custom CSS settings": [
+        "Исправление CSS сохранено в пользовательских настройках CSS."
+      ],
+      "Failed to save CSS fix": [
+        "Не удалось сохранить исправление CSS."
+      ],
+      "Please describe the layout issue": [
+        "Пожалуйста, опишите проблему с компоновкой."
+      ],
+      "Capturing screenshot...": [
+        "Создание скриншота..."
+      ],
+      "Extracting HTML...": [
+        "Извлечение HTML..."
+      ],
+      "Analyzing layout issues...": [
+        "Анализ проблем планировки..."
+      ],
+      "Failed to fix layout and styling. Please try again later.": [
+        "Не удалось исправить макет и стили. Пожалуйста, попробуйте позже."
+      ],
+      "Daily limit exceeded. Please try again tomorrow.": [
+        "Превышен дневной лимит. Пожалуйста, попробуйте завтра."
+      ],
+      "Invalid request. Please check your input.": [
+        "Неверный запрос. Пожалуйста, проверьте введенные данные."
+      ],
+      "Could not find wpbody element. Please ensure you are on a WordPress admin page.": [
+        "Не удалось найти элемент wpbody. Пожалуйста, убедитесь, что вы находитесь на странице административной панели WordPress."
+      ],
+      "Layout fix removed": [
+        "Исправление макета удалено"
+      ],
+      "CSS copied to clipboard": [
+        "CSS скопирован в буфер обмена"
+      ],
+      "Failed to copy CSS": [
+        "Не удалось скопировать CSS."
+      ],
+      "Layout and Styling": [
+        "Планировка и оформление"
+      ],
+      "requests remaining": [
+        "оставшиеся запросы"
+      ],
+      "Describe the layout or styling issue": [
+        "Опишите проблему с макетом или стилем."
+      ],
+      "e.g., The header is overlapping with the content area": [
+        "Например, заголовок перекрывает область контента."
+      ],
+      "A screenshot of the page will be captured and analyzed. The AI will provide CSS fixes based on your description.": [
+        "Будет сделан и проанализирован скриншот страницы. Искусственный интеллект предложит исправления CSS на основе вашего описания."
+      ],
+      "Fix Layout": [
+        "Исправить макет"
+      ],
+      "Layout and styling fix applied successfully!": [
+        "Исправление макета и стиля успешно применено!"
+      ],
+      "Would you like to keep this fix permanently or remove it?": [
+        "Вы хотите сохранить это исправление навсегда или удалить его?"
+      ],
+      "Hide Applied CSS": [
+        "Скрыть примененные CSS-стили"
+      ],
+      "View Applied CSS": [
+        "Просмотреть примененные CSS"
+      ],
+      "Copy CSS": [
+        "Скопировать CSS"
+      ],
+      "Keep Fix": [
+        "Keep Fix"
+      ],
+      "Saves to custom CSS settings for persistence.": [
+        "Сохраняет данные в пользовательские настройки CSS для обеспечения постоянного сохранения."
+      ],
+      "Remove Fix": [
+        "Удалить исправление"
+      ],
+      "Removes the fix immediately.": [
+        "Немедленно удаляет исправление."
+      ],
+      "Remove": [
+        "Удалять"
+      ],
+      "Failed to fix layout and styling": [
+        "Не удалось исправить макет и стиль."
+      ],
+      "Close": [
+        "Закрывать"
+      ],
+      "Media item not found": [
+        "Медиафайл не найден"
+      ],
+      "Only images can be edited": [
+        "Редактировать можно только изображения."
+      ],
+      "Image saved successfully": [
+        "Изображение успешно сохранено."
+      ],
+      "Failed to save image": [
+        "Не удалось сохранить изображение"
+      ],
+      "Back": [
+        "Назад"
+      ],
+      "1 item selected": [
+        "Выбран 1 товар"
+      ],
+      "%d items selected": [
+        "%d выбранных элементов"
+      ],
+      "Files duplicated": [
+        "Файлы дублированы"
+      ],
+      "Error duplicating files": [
+        "Ошибка при дублировании файлов"
+      ],
+      "Media updated successfully": [
+        "Медиафайлы успешно обновлены."
+      ],
+      "Error updating media": [
+        "Ошибка обновления медиафайлов."
+      ],
+      "Download started": [
+        "Загрузка началась."
+      ],
+      "Files downloaded": [
+        "Загруженные файлы"
+      ],
+      "Error downloading files": [
+        "Ошибка при загрузке файлов"
+      ],
+      "this file": [
+        "этот файл"
+      ],
+      "these %d files": [
+        "эти %d файлы"
+      ],
+      "Are you sure?": [
+        "Вы уверены?"
+      ],
+      "Are you sure you want to delete %s? This action cannot be undone.": [
+        "Вы уверены, что хотите удалить %s? Это действие необратимо."
+      ],
+      "Yes, delete": [
+        "Да, удалить"
+      ],
+      "Media deleted successfully!": [
+        "Медиафайлы успешно удалены!"
+      ],
+      "Delete failed": [
+        "Удаление не удалось."
+      ],
+      "Upload failed": [
+        "Загрузка не удалась."
+      ],
+      "Files uploaded successfully!": [
+        "Файлы успешно загружены!"
+      ],
+      "%d file(s) uploaded": [
+        "%d файлов загружено"
+      ],
+      "Search media...": [
+        "Поиск в СМИ..."
+      ],
+      "Images": [
+        "Изображения"
+      ],
+      "Videos": [
+        "Видео"
+      ],
+      "Docs": [
+        "Документы"
+      ],
+      "Fonts": [
+        "Шрифты"
+      ],
+      "Grid View": [
+        "Сеточный вид"
+      ],
+      "List View": [
+        "Просмотр списка"
+      ],
+      "Sort By": [
+        "Сортировать по"
+      ],
+      "Date Range": [
+        "Диапазон дат"
+      ],
+      "No tags available": [
+        "Метки отсутствуют"
+      ],
+      "Options": [
+        "Параметры"
+      ],
+      "Unused Media Only": [
+        "Только неиспользованные носители"
+      ],
+      "Clear All Filters": [
+        "Очистить все фильтры"
+      ],
+      "Drop files to upload": [
+        "Перетащите файлы для загрузки"
+      ],
+      "Release to start uploading": [
+        "Нажмите, чтобы начать загрузку."
+      ],
+      "Loading media...": [
+        "Загрузка медиафайлов..."
+      ],
+      "No media found": [
+        "Медиафайлы не найдены"
+      ],
+      "No media files": [
+        "Нет медиафайлов"
+      ],
+      "Clear filters": [
+        "Очистить фильтры"
+      ],
+      "Select a media file from the list to view details and edit properties.": [
+        "Выберите медиафайл из списка, чтобы просмотреть его подробные сведения и отредактировать свойства."
+      ],
+      "View": [
+        "Вид"
+      ],
+      "Bulk Edit": [
+        "Массовое редактирование"
+      ],
+      "Download": [
+        "Скачать"
+      ],
+      "Duplicate": [
+        "Дубликат"
+      ],
+      "Bulk Edit Media": [
+        "Массовое редактирование медиафайлов"
+      ],
+      "Editing 1 item. Leave fields empty to keep existing values.": [
+        "Редактируется 1 элемент. Оставьте поля пустыми, чтобы сохранить существующие значения."
+      ],
+      "Editing %d items. Leave fields empty to keep existing values.": [
+        "Редактирование %d элементов. Оставьте поля пустыми, чтобы сохранить существующие значения."
+      ],
+      "Title": [
+        "Заголовок"
+      ],
+      "Leave empty to keep existing": [
+        "Оставьте пустым, чтобы продолжать существовать."
+      ],
+      "Alt Text": [
+        "Альтернативный текст"
+      ],
+      "Caption": [
+        "Подпись"
+      ],
+      "Description": [
+        "Описание"
+      ],
+      "Saved": [
+        "Сохранено"
+      ],
+      "Save failed": [
+        "Сохранение не удалось"
+      ],
+      "Delete file": [
+        "Удалить файл"
+      ],
+      "This will permantantly delete the file. Proceed?": [
+        "Это навсегда удалит файл. Продолжить?"
+      ],
+      "Deleted": [
+        "Удалено"
+      ],
+      "Copy failed": [
+        "Копирование не удалось"
+      ],
+      "File replaced successfully": [
+        "Файл успешно заменен."
+      ],
+      "File replacement failed": [
+        "Замена файла не удалась."
+      ],
+      "Only images can be optimized": [
+        "Оптимизировать можно только изображения."
+      ],
+      "Optimise image": [
+        "Оптимизировать изображение"
+      ],
+      "This will permantantly optimise the image and convert to webp format.": [
+        "Это позволит навсегда оптимизировать изображение и преобразовать его в формат webp."
+      ],
+      "Convert": [
+        "Преобразовать"
+      ],
+      "Image optimized": [
+        "Изображение оптимизировано"
+      ],
+      "Optimization failed": [
+        "Оптимизация не удалась"
+      ],
+      "Failed to add tag": [
+        "Не удалось добавить тег"
+      ],
+      "Failed to remove tag": [
+        "Не удалось удалить метку"
+      ],
+      "Tag created and added": [
+        "Тег создан и добавлен."
+      ],
+      "Failed to create tag": [
+        "Не удалось создать тег"
+      ],
+      "Failed to update tags": [
+        "Не удалось обновить теги."
+      ],
+      "Drop file to replace": [
+        "Перетащите файл для замены."
+      ],
+      "Keep the same ID and regenerate thumbnails": [
+        "Сохраните тот же идентификатор и заново сгенерируйте миниатюры."
+      ],
+      "Replacing file...": [
+        "Замена файла..."
+      ],
+      "Regenerating thumbnails": [
+        "Восстановление миниатюр"
+      ],
+      "Optimizing image...": [
+        "Оптимизация изображения..."
+      ],
+      "File replaced successfully!": [
+        "Файл успешно заменен!"
+      ],
+      "Thumbnails regenerated": [
+        "Восстановлены миниатюры"
+      ],
+      "Your browser does not support the video tag.": [
+        "Ваш браузер не поддерживает тег video."
+      ],
+      "Uploaded": [
+        "Загружено"
+      ],
+      "Untitled": [
+        "Без названия"
+      ],
+      "Describe the image for screen readers": [
+        "Опишите изображение для программ чтения с экрана."
+      ],
+      "Add a caption": [
+        "Добавить подпись"
+      ],
+      "Add tags...": [
+        "Добавить теги..."
+      ],
+      "File URL": [
+        "URL файла"
+      ],
+      "Actions": [
+        "Действия"
+      ],
+      "Optimizing...": [
+        "Оптимизация..."
+      ],
+      "Optimize Image": [
+        "Оптимизировать изображение"
+      ],
+      "Replacing...": [
+        "Замена..."
+      ],
+      "Replace Image": [
+        "Заменить изображение"
+      ],
+      "Filename": [
+        "Имя файла"
+      ],
+      "ID": [
+        "ИДЕНТИФИКАТОР"
+      ],
+      "File size": [
+        "размер файла"
+      ],
+      "Used In": [
+        "Используется в"
+      ],
+      "This media is not currently used anywhere.": [
+        "Данный медиаконтент в настоящее время нигде не используется."
+      ],
+      "Post": [
+        "Почта"
+      ],
+      "Widget": [
+        "Виджет"
+      ],
+      "Draft": [
+        "Черновик"
+      ],
+      "Edit": [
+        "Редактировать"
+      ],
+      "Search posts": [
+        "Поиск сообщений"
+      ],
+      "Find users": [
+        "Найти пользователей"
+      ],
+      "Quick actions": [
+        "Быстрые действия"
+      ],
+      "View commands": [
+        "Просмотр команд"
+      ],
+      "Pending": [
+        "В ожидании"
+      ],
+      "Private": [
+        "Частный"
+      ],
+      "Welcome to Global Search": [
+        "Добро пожаловать в Global Search!"
+      ],
+      "Quickly find posts, pages, users, and more. Here are some tips to get started:": [
+        "Быстро находите публикации, страницы, пользователей и многое другое. Вот несколько советов для начала:"
+      ],
+      "Press": [
+        "Нажимать"
+      ],
+      "to open search": [
+        "открыть поиск"
+      ],
+      "Got it, thanks!": [
+        "Понял, спасибо!"
+      ],
+      "Search posts, pages, categories, users...": [
+        "Поиск по записям, страницам, категориям, пользователям..."
+      ],
+      "Recent Searches": [
+        "Недавние поиски"
+      ],
+      "Clear": [
+        "Прозрачный"
+      ],
+      "Start searching": [
+        "Начать поиск"
+      ],
+      "Search for posts, pages, users, categories, or use quick actions.": [
+        "Ищите записи, страницы, пользователей, категории или используйте быстрые действия."
+      ],
+      "Try these:": [
+        "Попробуйте вот это:"
+      ],
+      "Keyboard Shortcuts": [
+        "Клавиатурные сочетания"
+      ],
+      "Open": [
+        "Открыть"
+      ],
+      "Show tutorial again": [
+        "Показать обучающее видео еще раз"
+      ],
+      "Command Syntax": [
+        "Синтаксис команд"
+      ],
+      "Search only posts": [
+        "Поиск только сообщений"
+      ],
+      "Search only pages": [
+        "Поиск только по страницам"
+      ],
+      "Search only users": [
+        "Поиск только пользователей"
+      ],
+      "Search only categories": [
+        "Поиск только по категориям"
+      ],
+      "Show only quick actions": [
+        "Показывать только быстрые действия"
+      ],
+      "No results found": [
+        "Результаты не найдены"
+      ],
+      "Try a different search term or use command syntax to filter results.": [
+        "Попробуйте другой поисковый запрос или используйте синтаксис команд для фильтрации результатов."
+      ],
+      "View Commands": [
+        "Просмотр команд"
+      ],
+      "Clear Search": [
+        "Очистить поиск"
+      ],
+      "Recently Accessed": [
+        "Недавно просмотренные"
+      ],
+      "Frequently Used": [
+        "Часто используемый"
+      ],
+      "to navigate": [
+        "для навигации"
+      ],
+      "to select": [
+        "выбрать"
+      ],
+      "to close": [
+        "закрыть"
+      ],
+      "Magic dark mode enabled for this page": [
+        "Для этой страницы включен волшебный темный режим."
+      ],
+      "Failed to enable magic dark mode": [
+        "Не удалось включить волшебный темный режим."
+      ],
+      "Magic dark mode disabled for this page": [
+        "Для этой страницы отключен волшебный темный режим."
+      ],
+      "Failed to disable magic dark mode": [
+        "Не удалось отключить волшебный темный режим."
+      ],
+      "Free": [
+        "Бесплатно"
+      ],
+      "Loading image...": [
+        "Загрузка изображения..."
+      ],
+      "Apply": [
+        "Применять"
+      ],
+      "Image Editor": [
+        "Редактор изображений"
+      ],
+      "Luminosity": [
+        "Светимость"
+      ],
+      "Brightness": [
+        "Яркость"
+      ],
+      "Exposure": [
+        "Контакт"
+      ],
+      "Highlights": [
+        "Основные моменты"
+      ],
+      "Shadows": [
+        "Тени"
+      ],
+      "Contrast": [
+        "Контраст"
+      ],
+      "Color": [
+        "Цвет"
+      ],
+      "Saturation": [
+        "Насыщенность"
+      ],
+      "Vibrance": [
+        "Вибрация"
+      ],
+      "Hue": [
+        "Оттенок"
+      ],
+      "Temperature": [
+        "Температура"
+      ],
+      "Cool ← → Warm": [
+        "Прохладно ← → Тепло"
+      ],
+      "Tint": [
+        "Тонировка"
+      ],
+      "Green ← → Magenta": [
+        "Зеленый ← → Пурпурный"
+      ],
+      "Effects": [
+        "Эффекты"
+      ],
+      "Sharpness": [
+        "Острота"
+      ],
+      "Negative = blur, positive = sharpen": [
+        "Отрицательное значение = размытие, положительное значение = повышение резкости."
+      ],
+      "Blur": [
+        "Размытие"
+      ],
+      "Grain": [
+        "Зерно"
+      ],
+      "Vignette": [
+        "Виньетка"
+      ],
+      "Crop": [
+        "Обрезать"
+      ],
+      "Click and drag on the image to select crop area": [
+        "Щелкните и перетащите курсор по изображению, чтобы выбрать область обрезки."
+      ],
+      "Aspect Ratio": [
+        "Соотношение сторон"
+      ],
+      "Start Crop": [
+        "Начало посева"
+      ],
+      "Resize": [
+        "Изменить размер"
+      ],
+      "Lock aspect ratio": [
+        "Соотношение сторон замка"
+      ],
+      "Width": [
+        "Ширина"
+      ],
+      "Height": [
+        "Высота"
+      ],
+      "Apply Resize": [
+        "Изменить размер"
+      ],
+      "Transform": [
+        "Трансформация"
+      ],
+      "Left": [
+        "Левый"
+      ],
+      "Right": [
+        "Верно"
+      ],
+      "Flip H": [
+        "Перевернуть H"
+      ],
+      "Flip V": [
+        "Флип V"
+      ],
+      "Reset": [
+        "Перезагрузить"
+      ],
+      "Reset changes": [
+        "Сбросить изменения"
+      ],
+      "Loading more...": [
+        "Загрузка дополнительных данных..."
+      ],
+      "No more items": [
+        "Больше товаров нет."
+      ],
+      "minute": [
+        "минута"
+      ],
+      "minutes": [
+        "минут"
+      ],
+      "ago": [
+        "назад"
+      ],
+      "hour": [
+        "час"
+      ],
+      "hours": [
+        "часы"
+      ],
+      "day": [
+        "день"
+      ],
+      "days": [
+        "дни"
+      ],
+      "Remove tag": [
+        "Удалить тег"
+      ],
+      "Create tag": [
+        "Создать тег"
+      ],
+      "JSON must be a service account key (type should be \"service_account": [
+        "JSON должен представлять собой ключ учетной записи службы (тип должен быть \"service_account\")."
+      ],
+      "You must be logged in to access this page.": [
+        "Для доступа к этой странице необходимо войти в систему."
+      ],
+      "Invalid request. Please refresh the page and try again.": [
+        "Неверный запрос. Пожалуйста, обновите страницу и попробуйте снова."
+      ],
+      "Search": [
+        "Поиск"
+      ]
+    }
+  }
+}

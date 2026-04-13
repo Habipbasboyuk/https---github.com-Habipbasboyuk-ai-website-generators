@@ -1,0 +1,3983 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: uiXpress\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-26T06:27:11.968Z\n"
+"PO-Revision-Date: 2026-02-26T06:27:11.968Z\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: vite-plugin-wp-pot\n"
+"X-Domain: uixpress\n"
+
+#: admin/src/Activity/ActivityLogger.php:53
+msgid "Every 30 Seconds"
+msgstr "Каждые 30 секунд"
+
+#: admin/src/Analytics/AnalyticsCron.php:64
+msgid "Every 30 Minutes"
+msgstr "Каждые 30 минут"
+
+#: admin/src/Analytics/Providers/GoogleAnalyticsProvider.php:70
+#: app/src/pages/settings/src/settings-config.js:45
+msgid "Google Analytics 4"
+msgstr "Google Analytics 4"
+
+#: admin/src/Analytics/Providers/GoogleAnalyticsProvider.php:748
+msgid ""
+"Could not authenticate with Google Analytics. Please check your service "
+"account credentials."
+msgstr ""
+"Не удалось выполнить аутентификацию в Google Analytics. Пожалуйста, "
+"проверьте учетные данные вашей учетной записи."
+
+#: admin/src/Analytics/Providers/GoogleAnalyticsProvider.php:776
+msgid ""
+"Permission denied: The service account does not have access to this Google "
+"Analytics property. Please add the service account email to your GA4 "
+"property with Viewer access. Go to Google Analytics → Admin → Property "
+"Access Management and add the service account email."
+msgstr ""
+"Отказано в доступе: у учетной записи службы нет доступа к этому ресурсу "
+"Google Analytics. Пожалуйста, добавьте адрес электронной почты учетной "
+"записи службы к вашему ресурсу GA4 с правами просмотра. Перейдите в Google "
+"Analytics → Администрирование → Управление доступом к ресурсу и добавьте "
+"адрес электронной почты учетной записи службы."
+
+#: admin/src/Analytics/Providers/GoogleAnalyticsProvider.php:782
+msgid ""
+"Authentication failed. The access token is invalid or expired. Please try "
+"reconnecting your Google Analytics account."
+msgstr ""
+"Аутентификация не удалась. Токен доступа недействителен или истек. "
+"Пожалуйста, попробуйте повторно подключить свою учетную запись Google "
+"Analytics."
+
+#: admin/src/Analytics/Providers/GoogleAnalyticsProvider.php:785
+msgid ""
+"The specified Google Analytics property was not found. Please check that "
+"the Property ID is correct."
+msgstr ""
+"Указанный ресурс Google Analytics не найден. Пожалуйста, проверьте "
+"правильность идентификатора ресурса."
+
+#: admin/src/Analytics/Providers/UIXpressAnalyticsProvider.php:34
+#: app/src/pages/settings/src/settings-config.js:44
+msgid "Built-in Analytics"
+msgstr "Встроенная аналитика"
+
+#: admin/src/Options/MediaOptions.php:198
+msgid "Unable to read SVG file for sanitization."
+msgstr "Не удалось прочитать SVG-файл для проверки."
+
+#: admin/src/Options/MediaOptions.php:212
+msgid ""
+"SVG file could not be sanitized. The file may be corrupted or contain "
+"invalid content."
+msgstr ""
+"Не удалось проверить SVG-файл. Возможно, файл поврежден или содержит "
+"недопустимое содержимое."
+
+#: admin/src/Options/MediaOptions.php:222
+msgid "Unable to write sanitized SVG file."
+msgstr "Не удалось записать очищенный SVG-файл."
+
+#: admin/src/Options/MediaOptions.php:233
+msgid "Error sanitizing SVG file: %s"
+msgstr "Ошибка при очистке SVG-файла: %s"
+
+#: admin/src/Pages/CustomActivityLogPage.php:45 admin/src/Pages/CustomActivityLogPage.php:46
+#: app/src/apps/js/ActivityLog.js:38
+#: app/src/pages/activity-log/src/activity-list-view.vue:308
+#: app/src/components/utility/remote-site-select/index.vue:230
+msgid "Activity Log"
+msgstr "Журнал активности"
+
+#: admin/src/Pages/CustomDashboardPage.php:98
+msgid "Welcome to WordPress"
+msgstr "Добро пожаловать в WordPress"
+
+#: admin/src/Pages/CustomDashboardPage.php:99
+msgid "Welcome to your WordPress dashboard! This is your site management hub."
+msgstr ""
+"Добро пожаловать в панель управления WordPress! Это ваш центр управления "
+"сайтом."
+
+#: admin/src/Pages/CustomDashboardPage.php:104
+msgid "Quick Draft"
+msgstr "Быстрый черновик"
+
+#: admin/src/Pages/CustomDashboardPage.php:105
+msgid "Create a new post quickly from here."
+msgstr "Здесь вы можете быстро создать новую запись."
+
+#: admin/src/Pages/CustomDashboardPage.php:110
+msgid "Activity"
+msgstr "Активность"
+
+#: admin/src/Pages/CustomDashboardPage.php:111
+msgid "Recent activity on your site."
+msgstr "Последние активности на вашем сайте."
+
+#: admin/src/Pages/CustomPluginsPage.php:58
+#: admin/src/Rest/CustomFields/OptionPagesRepository.php:253
+#: app/src/pages/settings/index.vue:129
+msgid "Plugins"
+msgstr "Плагины"
+
+#: admin/src/Pages/CustomPostTypesPage.php:75
+msgid "Post Types"
+msgstr "Типы записей"
+
+#: admin/src/Pages/CustomPostTypesPage.php:86
+msgid "Fields groups"
+msgstr "Группы полей"
+
+#: admin/src/Pages/DatabaseExplorerPage.php:47 admin/src/Pages/DatabaseExplorerPage.php:48
+#: app/src/components/utility/remote-site-select/index.vue:231
+msgid "Database Explorer"
+msgstr "Обозреватель баз данных"
+
+#: admin/src/Pages/DummyDataPage.php:55
+msgid "Generate Dummy Analytics Data"
+msgstr "Сгенерировать фиктивные аналитические данные"
+
+#: admin/src/Pages/DummyDataPage.php:59
+msgid "Warning:"
+msgstr "Предупреждение:"
+
+#: admin/src/Pages/DummyDataPage.php:60
+msgid ""
+"This will delete all existing analytics data and replace it with dummy data "
+"for testing purposes."
+msgstr ""
+"Это приведет к удалению всех существующих аналитических данных и замене их "
+"фиктивными данными для целей тестирования."
+
+#: admin/src/Pages/DummyDataPage.php:65
+msgid "Generate Test Data"
+msgstr "Сгенерировать тестовые данные"
+
+#: admin/src/Pages/DummyDataPage.php:66
+msgid ""
+"This tool will generate realistic dummy analytics data for the last 2 "
+"months to help you test the analytics features."
+msgstr ""
+"Этот инструмент сгенерирует реалистичные фиктивные аналитические данные за "
+"последние 2 месяца, чтобы помочь вам протестировать аналитические функции."
+
+#: admin/src/Pages/DummyDataPage.php:75
+msgid "Number of Months"
+msgstr "Количество месяцев"
+
+#: admin/src/Pages/DummyDataPage.php:84
+msgid "Select how many months of dummy data to generate."
+msgstr "Выберите, за сколько месяцев нужно сгенерировать фиктивные данные."
+
+#: admin/src/Pages/DummyDataPage.php:90
+msgid "Generate Dummy Data"
+msgstr "Сгенерировать фиктивные данные"
+
+#: admin/src/Pages/DummyDataPage.php:91
+msgid "Are you sure? This will delete all existing analytics data."
+msgstr "Вы уверены? Это удалит все существующие аналитические данные."
+
+#: admin/src/Pages/DummyDataPage.php:97
+msgid "What This Generates"
+msgstr "Что это порождает"
+
+#: admin/src/Pages/DummyDataPage.php:99
+msgid "Page views from various devices (desktop, mobile, tablet)"
+msgstr ""
+"Просмотр страниц с различных устройств (компьютер, мобильный телефон, "
+"планшет)"
+
+#: admin/src/Pages/DummyDataPage.php:100
+msgid "Realistic browser and operating system data"
+msgstr "Реалистичные данные о браузере и операционной системе"
+
+#: admin/src/Pages/DummyDataPage.php:101
+msgid "Geographic data from different countries and cities"
+msgstr "Географические данные из разных стран и городов."
+
+#: admin/src/Pages/DummyDataPage.php:102
+msgid "Referrer data from search engines and social media"
+msgstr "Данные о реферерах из поисковых систем и социальных сетей"
+
+#: admin/src/Pages/DummyDataPage.php:103
+msgid "Session tracking and unique visitor data"
+msgstr "Отслеживание сессий и данные об уникальных посетителях"
+
+#: admin/src/Pages/DummyDataPage.php:104
+msgid "Aggregated daily statistics"
+msgstr "Сводные ежедневные статистические данные"
+
+#: admin/src/Pages/DummyDataPage.php:109
+msgid "Current Analytics Status"
+msgstr "Текущий статус аналитики"
+
+#: admin/src/Pages/DummyDataPage.php:111
+msgid "Analytics Enabled:"
+msgstr "Аналитика включена:"
+
+#: admin/src/Pages/DummyDataPage.php:117
+msgid "Tables Created:"
+msgstr "Созданы таблицы:"
+
+#: admin/src/Pages/DummyDataPage.php:122
+msgid ""
+"Analytics must be enabled in the UiXpress settings before generating dummy "
+"data."
+msgstr ""
+"Перед созданием фиктивных данных необходимо включить аналитику в настройках "
+"UiXpress."
+
+#: admin/src/Pages/DummyDataPage.php:140
+#: admin/src/Rest/CustomFields/OptionPageSaver.php:54
+msgid "Security check failed."
+msgstr "Проверка безопасности не пройдена."
+
+#: admin/src/Pages/CustomPluginsPage.php:176
+#: admin/src/Pages/CustomPostTypesPage.php:161
+#: admin/src/Pages/RoleEditorPage.php:124
+#: admin/src/Rest/PostsTables.php:108
+msgid "You do not have sufficient permissions to access this page."
+msgstr "У вас недостаточно прав для доступа к этой странице."
+
+#: admin/src/Pages/DummyDataPage.php:150
+msgid "Analytics is not enabled. Please enable analytics in settings first."
+msgstr "Аналитика отключена. Пожалуйста, сначала включите аналитику в настройках."
+
+#: admin/src/Pages/DummyDataPage.php:156
+msgid "Invalid number of months. Please select between 1 and 12 months."
+msgstr "Неверное количество месяцев. Пожалуйста, выберите от 1 до 12 месяцев."
+
+#: admin/src/Pages/DummyDataPage.php:171
+msgid "Error generating dummy data: "
+msgstr "Ошибка при генерации фиктивных данных:"
+
+#: admin/src/Pages/MenuBuilder.php:65
+#: app/src/components/utility/remote-site-select/index.vue:228
+msgid "Menu Creator"
+msgstr "Создатель меню"
+
+#: admin/src/Pages/MenuBuilder.php:296
+msgid "Add New Admin Menu"
+msgstr "Добавить новое меню администратора"
+
+#: admin/src/Pages/MenuBuilder.php:297
+msgid "New Admin Menu"
+msgstr "Новое меню администратора"
+
+#: admin/src/Pages/MenuBuilder.php:298
+msgid "Edit Admin Menu"
+msgstr "Редактировать меню администратора"
+
+#: admin/src/Pages/MenuBuilder.php:299
+msgid "View Admin Menu"
+msgstr "Просмотреть меню администратора"
+
+#: admin/src/Pages/MenuBuilder.php:300
+msgid "All Admin Menus"
+msgstr "Все административные меню"
+
+#: admin/src/Pages/MenuBuilder.php:301
+msgid "Search Admin Menus"
+msgstr "Поиск в меню администратора"
+
+#: admin/src/Pages/MenuBuilder.php:302
+msgid "No Admin Menus found."
+msgstr "Административные меню не найдены."
+
+#: admin/src/Pages/MenuBuilder.php:303
+msgid "No Admin Menus found in Trash."
+msgstr "В корзине не найдено ни одного административного меню."
+
+#: admin/src/Pages/MenuBuilder.php:307
+msgid "Post type used for the uixpresss menus"
+msgstr "Тип записи, используемый для меню uixpress."
+
+#: admin/src/Pages/RoleEditorPage.php:44
+#: app/src/components/utility/remote-site-select/index.vue:233
+msgid "Role Editor"
+msgstr "Роль редактора"
+
+#: admin/src/Pages/Settings.php:46
+#: admin/src/Rest/CustomFields/OptionPagesRepository.php:250
+#: app/src/pages/settings/index.vue:260
+msgid "Settings"
+msgstr "Настройки"
+
+#: admin/src/Rest/ActivityLog.php:154
+msgid "Activity logger is not enabled."
+msgstr "Журнал активности отключен."
+
+#: admin/src/Rest/ActivityLog.php:192 admin/src/Rest/ActivityLog.php:226 admin/src/Rest/ActivityLog.php:256
+#: app/src/pages/activity-log/src/activity-details-view.vue:350
+#: app/src/pages/activity-log/src/activity-list.vue:284
+#: app/src/pages/media/src/media-list.vue:175
+msgid "Unknown"
+msgstr "Неизвестный"
+
+#: admin/src/Rest/ActivityLog.php:218
+msgid "Log entry not found."
+msgstr "Запись в журнале не найдена."
+
+#: admin/src/Rest/ActivityLog.php:278
+msgid "Cleaned up %d old log entries."
+msgstr "Удалены старые записи журнала %d."
+
+#: admin/src/Rest/AdminNotices.php:43
+msgid "Add New Admin Notice"
+msgstr "Добавить новое уведомление администратора"
+
+#: admin/src/Rest/AdminNotices.php:44
+msgid "Edit Admin Notice"
+msgstr "Редактировать уведомление администратора"
+
+#: admin/src/Rest/AdminNotices.php:45
+msgid "View Admin Notice"
+msgstr "Просмотреть уведомление администратора"
+
+#: admin/src/Rest/AdminNotices.php:46
+msgid "All Admin Notices"
+msgstr "Все административные уведомления"
+
+#: admin/src/Rest/AdminNotices.php:47
+msgid "Search Admin Notices"
+msgstr "Поиск уведомлений администратора"
+
+#: admin/src/Rest/AdminNotices.php:48
+msgid "No Admin Notices found."
+msgstr "Административные уведомления не найдены."
+
+#: admin/src/Rest/AdminNotices.php:52
+msgid "Persistent admin notices for uiXpress."
+msgstr "Постоянные уведомления от администратора для uiXpress."
+
+#: admin/src/Rest/AdminNotices.php:183
+#: app/src/components/utility/remote-site-select/index.vue:232
+msgid "Admin Notices"
+msgstr "Административные уведомления"
+
+#: admin/src/Rest/AdminStatus.php:182
+msgid "Comments awaiting moderation"
+msgstr "Комментарии ожидают модерации."
+
+#: admin/src/Rest/AdminStatus.php:227
+#: admin/src/Rest/CustomFields/OptionPagesRepository.php:255
+#: app/src/pages/settings/index.vue:150
+msgid "Media"
+msgstr "СМИ"
+
+#: admin/src/Rest/AdminStatus.php:237
+msgid "User"
+msgstr "Пользователь"
+
+#: admin/src/Rest/CustomFields/CustomFields.php:255 admin/src/Rest/CustomFields/CustomFields.php:324 admin/src/Rest/CustomFields/CustomFields.php:367 admin/src/Rest/CustomFields/CustomFields.php:409
+msgid "Invalid field group ID."
+msgstr "Недопустимый идентификатор группы полей."
+
+#: admin/src/Rest/CustomFields/CustomFields.php:261 admin/src/Rest/CustomFields/CustomFields.php:331 admin/src/Rest/CustomFields/CustomFields.php:382 admin/src/Rest/CustomFields/CustomFields.php:416
+msgid "Field group not found."
+msgstr "Группа полей не найдена."
+
+#: admin/src/Rest/CustomFields/CustomFields.php:279
+msgid "Field group title is required."
+msgstr "Обязательно укажите название полевой группы."
+
+#: admin/src/Rest/CustomFields/CustomFields.php:303 admin/src/Rest/CustomFields/CustomFields.php:347
+msgid "Failed to save field group."
+msgstr "Не удалось сохранить группу полей."
+
+#: admin/src/Rest/CustomFields/CustomFields.php:307
+msgid "Field group created successfully."
+msgstr "Группа полей успешно создана."
+
+#: admin/src/Rest/CustomFields/CustomFields.php:351
+msgid "Field group updated successfully."
+msgstr "Группа полей успешно обновлена."
+
+#: admin/src/Rest/CustomFields/CustomFields.php:390
+msgid "Failed to delete field group."
+msgstr "Не удалось удалить группу полей."
+
+#: admin/src/Rest/CustomFields/CustomFields.php:394
+msgid "Field group deleted successfully."
+msgstr "Группа полей успешно удалена."
+
+#: admin/src/Rest/CustomFields/CustomFields.php:428
+#: admin/src/Rest/CustomFields/OptionPages.php:354
+msgid "(Copy)"
+msgstr "(Копия)"
+
+#: admin/src/Rest/CustomFields/CustomFields.php:441
+msgid "Failed to duplicate field group."
+msgstr "Не удалось продублировать группу полей."
+
+#: admin/src/Rest/CustomFields/CustomFields.php:445
+msgid "Field group duplicated successfully."
+msgstr "Группа полей успешно продублирована."
+
+#: admin/src/Rest/CustomFields/CustomFields.php:486
+msgid "Invalid import data. Expected an array of field groups."
+msgstr "Неверные данные для импорта. Ожидался массив групп полей."
+
+#: admin/src/Rest/CustomFields/CustomFields.php:494
+#: admin/src/Rest/CustomPostTypes.php:480
+msgid "Invalid import mode. Use \"merge\" or \"replace\"."
+msgstr "Недопустимый режим импорта. Используйте «merge» или «replace»."
+
+#: admin/src/Rest/CustomFields/CustomFields.php:506
+msgid "Field group at index %d is missing a title."
+msgstr "Группа полей по индексу %d не имеет заголовка."
+
+#: admin/src/Rest/CustomFields/CustomFields.php:539
+msgid "Failed to save imported field groups."
+msgstr "Не удалось сохранить импортированные группы полевых работ."
+
+#: admin/src/Rest/CustomFields/CustomFields.php:543
+#: admin/src/Rest/CustomPostTypes.php:564
+msgid "Import completed successfully."
+msgstr "Импорт успешно завершен."
+
+#: admin/src/Rest/CustomFields/CustomFields.php:612
+msgid "Invalid or unauthorized function."
+msgstr "Недопустимая или несанкционированная функция."
+
+#: admin/src/Rest/CustomFields/CustomFields.php:621
+msgid "Field name is required."
+msgstr "Название поля обязательно для заполнения."
+
+#: admin/src/Rest/CustomFields/CustomFields.php:631
+msgid "Valid option page is required."
+msgstr "Необходимо открыть страницу с действительными настройками."
+
+#: admin/src/Rest/CustomFields/CustomFields.php:639
+msgid "Valid object ID is required."
+msgstr "Требуется действительный идентификатор объекта."
+
+#: admin/src/Rest/CustomFields/CustomFields.php:649
+msgid ""
+"Helper function not available. Please ensure the plugin is properly "
+"initialized."
+msgstr ""
+"Вспомогательная функция недоступна. Пожалуйста, убедитесь, что плагин "
+"правильно инициализирован."
+
+#: admin/src/Rest/CustomFields/CustomFields.php:760
+#: admin/src/Rest/CustomFields/RelationshipSearch.php:402
+msgid "(no title)"
+msgstr "(без названия)"
+
+#: admin/src/Rest/CustomFields/FieldGroupSanitizer.php:174
+msgid "Add Row"
+msgstr "Добавить строку"
+
+#: admin/src/Rest/CustomFields/LocationDataProvider.php:72 admin/src/Rest/CustomFields/LocationDataProvider.php:270
+msgid "Default Template"
+msgstr "Шаблон по умолчанию"
+
+#: admin/src/Rest/CustomFields/LocationDataProvider.php:116 admin/src/Rest/CustomFields/LocationDataProvider.php:164 admin/src/Rest/CustomFields/LocationDataProvider.php:222 admin/src/Rest/CustomFields/LocationDataProvider.php:291 admin/src/Rest/CustomFields/LocationDataProvider.php:319 admin/src/Rest/CustomFields/LocationDataProvider.php:371
+#: app/src/pages/media/src/media-list-view.vue:1447
+msgid "All"
+msgstr "Все"
+
+#: admin/src/Rest/CustomFields/LocationDataProvider.php:292
+msgid "Standard"
+msgstr "Стандарт"
+
+#: admin/src/Rest/CustomFields/OptionPageRenderer.php:55
+msgid ""
+"No field groups are assigned to this option page. Create a field group and "
+"set its location to this option page."
+msgstr ""
+"К этой странице параметров не назначены группы полей. Создайте группу полей "
+"и укажите её местоположение на этой странице параметров."
+
+#: admin/src/Rest/CustomFields/OptionPageRenderer.php:75
+#: app/src/pages/media/src/media-list-view.vue:2001
+msgid "Save Changes"
+msgstr "Сохранить изменения"
+
+#: admin/src/Rest/CustomFields/OptionPageSaver.php:59
+msgid "You do not have permission to save these options."
+msgstr "У вас нет разрешения на сохранение этих параметров."
+
+#: admin/src/Rest/CustomFields/OptionPages.php:186 admin/src/Rest/CustomFields/OptionPages.php:257 admin/src/Rest/CustomFields/OptionPages.php:300 admin/src/Rest/CustomFields/OptionPages.php:342
+msgid "Invalid option page slug."
+msgstr "Неверный URL-адрес страницы параметров."
+
+#: admin/src/Rest/CustomFields/OptionPages.php:192 admin/src/Rest/CustomFields/OptionPages.php:264 admin/src/Rest/CustomFields/OptionPages.php:315 admin/src/Rest/CustomFields/OptionPages.php:349
+msgid "Option page not found."
+msgstr "Страница настроек не найдена."
+
+#: admin/src/Rest/CustomFields/OptionPages.php:210
+msgid "Option page title is required."
+msgstr "Заголовок страницы с параметрами обязателен."
+
+#: admin/src/Rest/CustomFields/OptionPages.php:224
+msgid "An option page with this slug already exists."
+msgstr "Страница с настройками, содержащая этот слаг, уже существует."
+
+#: admin/src/Rest/CustomFields/OptionPages.php:236 admin/src/Rest/CustomFields/OptionPages.php:280
+msgid "Failed to save option page."
+msgstr "Не удалось сохранить страницу с настройками."
+
+#: admin/src/Rest/CustomFields/OptionPages.php:240
+msgid "Option page created successfully."
+msgstr "Страница с настройками успешно создана."
+
+#: admin/src/Rest/CustomFields/OptionPages.php:284
+msgid "Option page updated successfully."
+msgstr "Страница настроек успешно обновлена."
+
+#: admin/src/Rest/CustomFields/OptionPages.php:323
+msgid "Failed to delete option page."
+msgstr "Не удалось удалить страницу с опциями."
+
+#: admin/src/Rest/CustomFields/OptionPages.php:327
+msgid "Option page deleted successfully."
+msgstr "Страница с настройками успешно удалена."
+
+#: admin/src/Rest/CustomFields/OptionPages.php:363
+msgid "Failed to duplicate option page."
+msgstr "Не удалось скопировать страницу с параметрами."
+
+#: admin/src/Rest/CustomFields/OptionPages.php:367
+msgid "Option page duplicated successfully."
+msgstr "Страница с параметрами успешно скопирована."
+
+#: admin/src/Rest/CustomFields/OptionPagesLoader.php:140
+msgid "Option Page Not Found"
+msgstr "Страница параметров не найдена"
+
+#: admin/src/Rest/CustomFields/OptionPagesRepository.php:251
+msgid "Tools"
+msgstr "Инструменты"
+
+#: admin/src/Rest/CustomFields/OptionPagesRepository.php:252
+msgid "Appearance"
+msgstr "Появление"
+
+#: admin/src/Rest/CustomFields/OptionPagesRepository.php:254
+#: app/src/pages/settings/index.vue:156
+#: app/src/components/utility/multiselect-roles-and-users/index.vue:66
+msgid "Users"
+msgstr "Пользователи"
+
+#: admin/src/Rest/CustomFields/OptionPagesRepository.php:256
+#: admin/src/Rest/PostsTables.php:374
+#: app/src/pages/settings/index.vue:162
+#: app/src/components/app/admin-notices/NotificationsPanel.vue:391
+msgid "Comments"
+msgstr "Комментарии"
+
+#: admin/src/Rest/CustomFields/OptionPagesRepository.php:257
+#: app/src/pages/settings/index.vue:123
+msgid "Posts"
+msgstr "Сообщения"
+
+#: admin/src/Rest/CustomFields/OptionPagesRepository.php:258
+msgid "Pages"
+msgstr "Страницы"
+
+#: admin/src/Rest/CustomFields/OptionPagesRepository.php:259
+#: app/src/pages/settings/index.vue:135
+msgid "Dashboard"
+msgstr "Панель управления"
+
+#: admin/src/Rest/CustomFields/OptionPagesRepository.php:271
+msgid "Administrator (manage_options)"
+msgstr "Администратор (manage_options)"
+
+#: admin/src/Rest/CustomFields/OptionPagesRepository.php:272
+msgid "Editor (edit_others_posts)"
+msgstr "Редактор (редактирование других сообщений)"
+
+#: admin/src/Rest/CustomFields/OptionPagesRepository.php:273
+msgid "Author (publish_posts)"
+msgstr "Автор (publish_posts)"
+
+#: admin/src/Rest/CustomFields/OptionPagesRepository.php:274
+msgid "Contributor (edit_posts)"
+msgstr "Участник (редактировать сообщения)"
+
+#: admin/src/Rest/CustomFields/OptionPagesRepository.php:275
+msgid "Subscriber (read)"
+msgstr "Подписчик (читать)"
+
+#: admin/src/Rest/CustomFields/UserMetaBoxManager.php:164
+msgid "Custom Fields"
+msgstr "Пользовательские поля"
+
+#: admin/src/Rest/CustomPostTypes.php:206 admin/src/Rest/CustomPostTypes.php:297 admin/src/Rest/CustomPostTypes.php:349
+msgid "Invalid post type slug."
+msgstr "Недопустимый тип записи (slug)."
+
+#: admin/src/Rest/CustomPostTypes.php:220 admin/src/Rest/CustomPostTypes.php:311 admin/src/Rest/CustomPostTypes.php:364
+msgid "Custom post type not found."
+msgstr "Пользовательский тип записи не найден."
+
+#: admin/src/Rest/CustomPostTypes.php:235
+msgid "Post type slug is required."
+msgstr "Требуется заготовка типа \"пост\"."
+
+#: admin/src/Rest/CustomPostTypes.php:239
+msgid "Post type name is required."
+msgstr "Название типа записи обязательно для заполнения."
+
+#: admin/src/Rest/CustomPostTypes.php:246
+msgid ""
+"Invalid post type slug. Use only lowercase letters, numbers, and "
+"underscores. Maximum 20 characters."
+msgstr ""
+"Недопустимый идентификатор типа POST-запроса. Используйте только строчные "
+"буквы, цифры и символы подчеркивания. Максимальная длина — 20 символов."
+
+#: admin/src/Rest/CustomPostTypes.php:251
+msgid "This post type slug is reserved by WordPress."
+msgstr "Этот идентификатор типа записи зарезервирован WordPress."
+
+#: admin/src/Rest/CustomPostTypes.php:259
+msgid "A custom post type with this slug already exists."
+msgstr "Пользовательский тип записи с таким идентификатором уже существует."
+
+#: admin/src/Rest/CustomPostTypes.php:273 admin/src/Rest/CustomPostTypes.php:326
+msgid "Failed to save custom post type."
+msgstr "Не удалось сохранить пользовательский тип записи."
+
+#: admin/src/Rest/CustomPostTypes.php:280
+msgid "Custom post type created successfully."
+msgstr "Пользовательский тип записи успешно создан."
+
+#: admin/src/Rest/CustomPostTypes.php:333
+msgid "Custom post type updated successfully."
+msgstr "Пользовательский тип записи успешно обновлен."
+
+#: admin/src/Rest/CustomPostTypes.php:372
+msgid "Failed to delete custom post type."
+msgstr "Не удалось удалить пользовательский тип записи."
+
+#: admin/src/Rest/CustomPostTypes.php:379
+msgid "Custom post type deleted successfully."
+msgstr "Пользовательский тип записи успешно удален."
+
+#: admin/src/Rest/CustomPostTypes.php:472
+msgid "Invalid import data. Expected an array of post types."
+msgstr "Неверные данные для импорта. Ожидался массив типов записей."
+
+#: admin/src/Rest/CustomPostTypes.php:493
+msgid "Post type at index %d is missing required fields (slug or name)."
+msgstr "В типе записи по индексу %d отсутствуют обязательные поля (slug или name)."
+
+#: admin/src/Rest/CustomPostTypes.php:501
+msgid "Post type \"%s\" has an invalid slug format."
+msgstr "Тип записи \"%s\" имеет недопустимый формат слага."
+
+#: admin/src/Rest/CustomPostTypes.php:507
+msgid "Post type \"%s\" uses a reserved slug: %s"
+msgstr "В типе записи \"%s\" используется зарезервированный слаг: %s"
+
+#: admin/src/Rest/CustomPostTypes.php:549
+msgid "Import validation failed."
+msgstr "Проверка импорта не удалась."
+
+#: admin/src/Rest/CustomPostTypes.php:557
+msgid "Failed to save imported post types."
+msgstr "Не удалось сохранить импортированные типы записей."
+
+#: admin/src/Rest/CustomPostTypes.php:622
+#: app/src/components/app/toolbar/src/buttons/admin-status/component.vue:110
+msgid "Add New"
+msgstr "Добавить новый"
+
+#: admin/src/Rest/CustomPostTypes.php:623
+msgid "Add New %s"
+msgstr "Добавить новый %s"
+
+#: admin/src/Rest/CustomPostTypes.php:624
+msgid "Edit %s"
+msgstr "Редактировать %s"
+
+#: admin/src/Rest/CustomPostTypes.php:625
+msgid "New %s"
+msgstr "Новые %s"
+
+#: admin/src/Rest/CustomPostTypes.php:626 admin/src/Rest/CustomPostTypes.php:627
+msgid "View %s"
+msgstr "Просмотр %s"
+
+#: admin/src/Rest/CustomPostTypes.php:628
+msgid "Search %s"
+msgstr "Поиск %s"
+
+#: admin/src/Rest/CustomPostTypes.php:629
+msgid "No %s found"
+msgstr "% не найдено"
+
+#: admin/src/Rest/CustomPostTypes.php:630
+msgid "No %s found in Trash"
+msgstr "В корзине не найдено %"
+
+#: admin/src/Rest/CustomPostTypes.php:631
+msgid "Parent %s:"
+msgstr "Родители:"
+
+#: admin/src/Rest/CustomPostTypes.php:632
+msgid "All %s"
+msgstr "Все %s"
+
+#: admin/src/Rest/CustomPostTypes.php:633
+msgid "%s Archives"
+msgstr "%s Архивы"
+
+#: admin/src/Rest/CustomPostTypes.php:634
+msgid "%s Attributes"
+msgstr "%s Атрибуты"
+
+#: admin/src/Rest/CustomPostTypes.php:635
+msgid "Insert into %s"
+msgstr "Вставить в %s"
+
+#: admin/src/Rest/CustomPostTypes.php:636
+msgid "Uploaded to this %s"
+msgstr "Загружено в этот %s"
+
+#: admin/src/Rest/CustomPostTypes.php:637
+msgid "Featured image"
+msgstr "Главное изображение"
+
+#: admin/src/Rest/CustomPostTypes.php:638
+msgid "Set featured image"
+msgstr "Установить изображение для обложки"
+
+#: admin/src/Rest/CustomPostTypes.php:639
+msgid "Remove featured image"
+msgstr "Удалить главное изображение"
+
+#: admin/src/Rest/CustomPostTypes.php:640
+msgid "Use as featured image"
+msgstr "Используйте в качестве изображения для обложки."
+
+#: admin/src/Rest/CustomPostTypes.php:642
+msgid "Filter %s list"
+msgstr "Фильтр %список"
+
+#: admin/src/Rest/CustomPostTypes.php:643
+msgid "%s list navigation"
+msgstr "%s список навигации"
+
+#: admin/src/Rest/CustomPostTypes.php:644
+msgid "%s list"
+msgstr "%s список"
+
+#: admin/src/Rest/CustomPostTypes.php:645
+msgid "%s published."
+msgstr "%s опубликовано."
+
+#: admin/src/Rest/CustomPostTypes.php:646
+msgid "%s published privately."
+msgstr "%s опубликовано в частном порядке."
+
+#: admin/src/Rest/CustomPostTypes.php:647
+msgid "%s reverted to draft."
+msgstr "%s возвращено в черновой вариант."
+
+#: admin/src/Rest/CustomPostTypes.php:648
+msgid "%s scheduled."
+msgstr "%s запланировано."
+
+#: admin/src/Rest/CustomPostTypes.php:649
+msgid "%s updated."
+msgstr "%s обновлено."
+
+#: admin/src/Rest/DatabaseExplorer.php:122 admin/src/Rest/DatabaseExplorer.php:549
+msgid "Only SELECT queries are allowed for safety."
+msgstr "В целях безопасности разрешены только запросы SELECT."
+
+#: admin/src/Rest/DatabaseExplorer.php:373 admin/src/Rest/DatabaseExplorer.php:437 admin/src/Rest/DatabaseExplorer.php:618 admin/src/Rest/DatabaseExplorer.php:710
+msgid "Invalid table name."
+msgstr "Недопустимое имя таблицы."
+
+#: admin/src/Rest/DatabaseExplorer.php:378 admin/src/Rest/DatabaseExplorer.php:442 admin/src/Rest/DatabaseExplorer.php:623 admin/src/Rest/DatabaseExplorer.php:733
+msgid "Table not found."
+msgstr "Таблица не найдена."
+
+#: admin/src/Rest/DatabaseExplorer.php:451
+msgid "Unable to retrieve table structure."
+msgstr "Не удалось получить структуру таблицы."
+
+#: admin/src/Rest/DatabaseExplorer.php:556
+msgid "Query contains prohibited SQL keywords."
+msgstr "Запрос содержит запрещенные ключевые слова SQL."
+
+#: admin/src/Rest/DatabaseExplorer.php:567
+msgid "Multiple statements are not allowed."
+msgstr "Множественные утверждения не допускаются."
+
+#: admin/src/Rest/DatabaseExplorer.php:591
+msgid "Query execution failed. Please check your SQL syntax."
+msgstr ""
+"Выполнение запроса завершилось с ошибкой. Пожалуйста, проверьте синтаксис "
+"вашего SQL-запроса."
+
+#: admin/src/Rest/DatabaseExplorer.php:645
+msgid "Password is required."
+msgstr "Требуется пароль."
+
+#: admin/src/Rest/DatabaseExplorer.php:652 admin/src/Rest/DatabaseExplorer.php:722
+msgid "Invalid password."
+msgstr "Неверный пароль."
+
+#: admin/src/Rest/DatabaseExplorer.php:657
+msgid "Password verification failed."
+msgstr "Проверка пароля не удалась."
+
+#: admin/src/Rest/DatabaseExplorer.php:676
+msgid "WordPress core tables cannot be deleted."
+msgstr "Основные таблицы WordPress удалить невозможно."
+
+#: admin/src/Rest/DatabaseExplorer.php:686
+msgid "System tables cannot be deleted."
+msgstr "Системные таблицы удалить невозможно."
+
+#: admin/src/Rest/DatabaseExplorer.php:715
+msgid "Password is required for this operation."
+msgstr "Для выполнения этой операции требуется пароль."
+
+#: admin/src/Rest/DatabaseExplorer.php:751
+msgid "Failed to delete table."
+msgstr "Не удалось удалить таблицу."
+
+#: admin/src/Rest/DatabaseExplorer.php:757
+msgid "Table '%s' has been deleted."
+msgstr "Таблица '%s' удалена."
+
+#: admin/src/Rest/GoogleAnalyticsOAuth.php:128 admin/src/Rest/GoogleAnalyticsOAuth.php:170
+msgid "Invalid JSON format"
+msgstr "Неверный формат JSON"
+
+#: admin/src/Rest/GoogleAnalyticsOAuth.php:135 admin/src/Rest/GoogleAnalyticsOAuth.php:177
+msgid "Missing required field: %s"
+msgstr "Отсутствует обязательное поле: %s"
+
+#: admin/src/Rest/GoogleAnalyticsOAuth.php:146 admin/src/Rest/GoogleAnalyticsOAuth.php:188
+msgid "Failed to authenticate with Google. Please check your service account key."
+msgstr ""
+"Не удалось пройти аутентификацию в Google. Пожалуйста, проверьте ключ вашей "
+"учетной записи."
+
+#: admin/src/Rest/GoogleAnalyticsOAuth.php:151
+msgid "Credentials are valid"
+msgstr "Учетные данные действительны."
+
+#: admin/src/Rest/GoogleAnalyticsOAuth.php:182
+msgid "JSON must be a service account key"
+msgstr "JSON должен представлять собой ключ учетной записи службы."
+
+#: admin/src/Rest/GoogleAnalyticsOAuth.php:201
+msgid "Service account credentials saved successfully"
+msgstr "Учетные данные служебной учетной записи успешно сохранены."
+
+#: admin/src/Rest/GoogleAnalyticsOAuth.php:228
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:411
+msgid "Google Analytics disconnected"
+msgstr "Google Analytics отключен"
+
+#: admin/src/Rest/GoogleAnalyticsOAuth.php:242
+msgid "Not connected to Google Analytics"
+msgstr "Не подключено к Google Analytics"
+
+#: admin/src/Rest/GoogleAnalyticsOAuth.php:261
+msgid ""
+"Failed to fetch properties. Make sure the service account has been added to "
+"your GA4 property."
+msgstr ""
+"Не удалось получить свойства. Убедитесь, что учетная запись службы "
+"добавлена к вашим свойствам GA4."
+
+#: admin/src/Rest/GoogleAnalyticsOAuth.php:330
+msgid "Property ID is required"
+msgstr "Требуется идентификатор объекта недвижимости."
+
+#: admin/src/Rest/GoogleAnalyticsOAuth.php:343
+msgid "Property saved successfully"
+msgstr "Имущество успешно спасено"
+
+#: admin/src/Rest/Media.php:42
+msgid "Return only unused media items (unattached and not used as featured image)."
+msgstr ""
+"Возвращать только неиспользованные медиафайлы (не прикрепленные и не "
+"используемые в качестве изображения для предварительного просмотра)."
+
+#: admin/src/Rest/Media.php:48
+msgid "Unused detection mode: shallow (default) or deep (scans post_content)."
+msgstr ""
+"Неиспользуемый режим обнаружения: поверхностный (по умолчанию) или глубокий "
+"(сканирует post_content)."
+
+#: admin/src/Rest/MediaBulk.php:102
+#: admin/src/Rest/MediaReplace.php:45
+#: admin/src/Rest/PluginManager.php:217
+msgid "Invalid request."
+msgstr "Неверный запрос."
+
+#: admin/src/Rest/MediaBulk.php:121
+msgid "Invalid media IDs provided."
+msgstr "Предоставлены недопустимые идентификаторы медиафайлов."
+
+#: admin/src/Rest/MediaBulk.php:130
+msgid "Maximum 100 items can be downloaded at once."
+msgstr "Одновременно можно загрузить максимум 100 элементов."
+
+#: admin/src/Rest/MediaBulk.php:139
+msgid "ZIP functionality is not available on this server."
+msgstr "Функция архивирования ZIP на этом сервере недоступна."
+
+#: admin/src/Rest/MediaBulk.php:152
+msgid "Failed to create ZIP file."
+msgstr "Не удалось создать ZIP-файл."
+
+#: admin/src/Rest/MediaBulk.php:179
+msgid "No valid files found to download."
+msgstr "Файлы для скачивания не найдены."
+
+#: admin/src/Rest/MediaBulk.php:319 admin/src/Rest/MediaBulk.php:439 admin/src/Rest/MediaBulk.php:456
+msgid "(Untitled)"
+msgstr "(Без названия)"
+
+#: admin/src/Rest/MediaReplace.php:68
+msgid "Media ID is required."
+msgstr "Требуется идентификатор носителя."
+
+#: admin/src/Rest/MediaReplace.php:78
+msgid "Media item not found."
+msgstr "Медиафайл не найден."
+
+#: admin/src/Rest/MediaReplace.php:87
+msgid "You do not have permission to edit this media item."
+msgstr "У вас нет разрешения на редактирование этого медиафайла."
+
+#: admin/src/Rest/MediaReplace.php:97
+msgid "No file was uploaded."
+msgstr "Файл не был загружен."
+
+#: admin/src/Rest/MediaReplace.php:110
+msgid "File upload failed. Please try again."
+msgstr "Загрузка файла не удалась. Пожалуйста, попробуйте еще раз."
+
+#: admin/src/Rest/MediaReplace.php:153
+msgid "File type not allowed."
+msgstr "Тип файла не допускается."
+
+#: admin/src/Rest/MediaReplace.php:173
+msgid "File content does not match file type."
+msgstr "Содержимое файла не соответствует типу файла."
+
+#: admin/src/Rest/MediaReplace.php:185
+msgid "File name contains invalid characters."
+msgstr "Имя файла содержит недопустимые символы."
+
+#: admin/src/Rest/MediaReplace.php:195
+msgid "Original file not found."
+msgstr "Исходный файл не найден."
+
+#: admin/src/Rest/MediaReplace.php:215
+msgid "Invalid file path."
+msgstr "Неверный путь к файлу."
+
+#: admin/src/Rest/MediaReplace.php:232
+msgid "Failed to move uploaded file."
+msgstr "Не удалось переместить загруженный файл."
+
+#: admin/src/Rest/MediaReplace.php:295
+msgid "File replaced successfully."
+msgstr "Файл успешно заменен."
+
+#: admin/src/Rest/MediaTags.php:66
+msgid "Filter media items by tag IDs."
+msgstr "Фильтрация медиафайлов по идентификаторам тегов."
+
+#: admin/src/Rest/MediaTags.php:138
+msgid "Media Tags"
+msgstr "Медиатеги"
+
+#: admin/src/Rest/MediaTags.php:139
+msgid "Media Tag"
+msgstr "Медиатег"
+
+#: admin/src/Rest/MediaTags.php:140
+#: app/src/pages/media/src/media-list-view.vue:1613
+#: app/src/pages/media/src/media-details-view.vue:963
+msgid "Tags"
+msgstr "Теги"
+
+#: admin/src/Rest/MediaTags.php:141
+msgid "All Tags"
+msgstr "Все теги"
+
+#: admin/src/Rest/MediaTags.php:142
+msgid "Edit Tag"
+msgstr "Редактировать тег"
+
+#: admin/src/Rest/MediaTags.php:143
+msgid "View Tag"
+msgstr "Просмотреть тег"
+
+#: admin/src/Rest/MediaTags.php:144
+msgid "Update Tag"
+msgstr "Обновить тег"
+
+#: admin/src/Rest/MediaTags.php:145
+msgid "Add New Tag"
+msgstr "Добавить новый тег"
+
+#: admin/src/Rest/MediaTags.php:146
+msgid "New Tag Name"
+msgstr "Новое название тега"
+
+#: admin/src/Rest/MediaTags.php:147
+msgid "Search Tags"
+msgstr "Поисковые теги"
+
+#: admin/src/Rest/MediaTags.php:148
+msgid "Popular Tags"
+msgstr "Популярные теги"
+
+#: admin/src/Rest/MediaTags.php:149
+msgid "Separate tags with commas"
+msgstr "Разделяйте теги запятыми."
+
+#: admin/src/Rest/MediaTags.php:150
+msgid "Add or remove tags"
+msgstr "Добавить или удалить теги"
+
+#: admin/src/Rest/MediaTags.php:151
+msgid "Choose from the most used tags"
+msgstr "Выберите наиболее часто используемые теги."
+
+#: admin/src/Rest/MediaTags.php:152
+msgid "No tags found"
+msgstr "Теги не найдены"
+
+#: admin/src/Rest/MediaTags.php:324
+msgid "Tag name is required"
+msgstr "Название тега обязательно для заполнения."
+
+#: admin/src/Rest/MediaTags.php:372
+msgid "Invalid media item"
+msgstr "Недопустимый медиафайл"
+
+#: admin/src/Rest/MenuCache.php:93
+msgid ""
+"Menu cache key rotated successfully. All client caches have been "
+"invalidated."
+msgstr "Ключ кэша меню успешно поменян местами. Все клиентские кэши аннулированы."
+
+#: admin/src/Rest/PostsTables.php:354
+msgid "Status"
+msgstr "Статус"
+
+#: admin/src/Rest/PostsTables.php:373 admin/src/Rest/PostsTables.php:632
+#: app/src/pages/media/src/media-details-view.vue:1124
+#: app/src/components/app/search/state/constants.js:91
+msgid "Published"
+msgstr "Опубликовано"
+
+#: admin/src/Rest/PostsTables.php:584
+msgid "(No title)"
+msgstr "(Без названия)"
+
+#: admin/src/Rest/PostsTables.php:616
+#: app/src/components/app/search/state/constants.js:95
+msgid "Scheduled"
+msgstr "Запланировано"
+
+#: admin/src/Rest/PostsTables.php:617
+msgid "%s from now"
+msgstr "%s с настоящего момента"
+
+#: admin/src/Rest/PostsTables.php:622 admin/src/Rest/PostsTables.php:638
+#: app/src/pages/media/src/media-details-view.vue:1076
+msgid "Modified"
+msgstr "Модифицированный"
+
+#: admin/src/Rest/PostsTables.php:623 admin/src/Rest/PostsTables.php:633 admin/src/Rest/PostsTables.php:639
+msgid "%s ago"
+msgstr "%s назад"
+
+#: admin/src/Rest/RestPermissionChecker.php:75
+msgid "Authentication required. Please provide Basic Auth credentials."
+msgstr ""
+"Требуется аутентификация. Пожалуйста, предоставьте учетные данные для "
+"базовой аутентификации."
+
+#: admin/src/Rest/RestPermissionChecker.php:87 admin/src/Rest/RestPermissionChecker.php:97 admin/src/Rest/RestPermissionChecker.php:108 admin/src/Rest/RestPermissionChecker.php:145
+msgid "Invalid authentication credentials."
+msgstr "Неверные учетные данные для аутентификации."
+
+#: admin/src/Rest/RestPermissionChecker.php:163
+msgid "Missing security token. Please refresh the page and try again."
+msgstr ""
+"Отсутствует токен безопасности. Пожалуйста, обновите страницу и попробуйте "
+"снова."
+
+#: admin/src/Rest/RestPermissionChecker.php:171
+msgid "Invalid security token. Please refresh the page and try again."
+msgstr ""
+"Неверный токен безопасности. Пожалуйста, обновите страницу и попробуйте "
+"снова."
+
+#: admin/src/Rest/RestPermissionChecker.php:197
+msgid "You must be logged in to access this endpoint."
+msgstr "Для доступа к этому ресурсу необходимо войти в систему."
+
+#: admin/src/Rest/RestPermissionChecker.php:227 admin/src/Rest/RestPermissionChecker.php:237
+msgid "You do not have permission to perform this action. Required capability: %s"
+msgstr ""
+"У вас нет разрешения на выполнение этого действия. Требуемые права доступа: "
+"%s"
+
+#: admin/src/Rest/RoleEditor.php:107 admin/src/Rest/RoleEditor.php:153 admin/src/Rest/RoleEditor.php:231 admin/src/Rest/RoleEditor.php:439
+msgid "Invalid role format."
+msgstr "Неверный формат роли."
+
+#: admin/src/Rest/RoleEditor.php:113 admin/src/Rest/RoleEditor.php:159 admin/src/Rest/RoleEditor.php:237 admin/src/Rest/RoleEditor.php:445
+msgid "Invalid role."
+msgstr "Неверная роль."
+
+#: admin/src/Rest/RoleEditor.php:166
+msgid "Capabilities must be an array."
+msgstr "Возможности должны представлять собой массив."
+
+#: admin/src/Rest/RoleEditor.php:171
+msgid "Role not found."
+msgstr "Роль не найдена."
+
+#: admin/src/Rest/RoleEditor.php:215
+msgid "Role capabilities updated successfully."
+msgstr "Возможности роли успешно обновлены."
+
+#: admin/src/Rest/RoleEditor.php:248 admin/src/Rest/RoleEditor.php:358
+msgid "Role name cannot be empty."
+msgstr "Название роли не может быть пустым."
+
+#: admin/src/Rest/RoleEditor.php:253 admin/src/Rest/RoleEditor.php:363
+msgid "Role name is too long."
+msgstr "Название роли слишком длинное."
+
+#: admin/src/Rest/RoleEditor.php:265
+msgid "Role name updated successfully."
+msgstr "Название роли успешно обновлено."
+
+#: admin/src/Rest/RoleEditor.php:373
+msgid ""
+"Role slug can only contain lowercase letters, numbers, hyphens, and "
+"underscores."
+msgstr ""
+"В заголовке объявления могут содержаться только строчные буквы, цифры, "
+"дефисы и подчеркивания."
+
+#: admin/src/Rest/RoleEditor.php:378
+msgid "Role slug is too long."
+msgstr "Длина строки в названии слишком большая."
+
+#: admin/src/Rest/RoleEditor.php:385
+msgid "A role with this slug already exists."
+msgstr "Вакансия с таким слизнем уже существует."
+
+#: admin/src/Rest/RoleEditor.php:408
+msgid "Failed to create role."
+msgstr "Не удалось создать роль."
+
+#: admin/src/Rest/RoleEditor.php:423
+msgid "Role created successfully."
+msgstr "Роль успешно создана."
+
+#: admin/src/Rest/RoleEditor.php:451
+msgid "Cannot delete default WordPress roles."
+msgstr "Невозможно удалить роли WordPress по умолчанию."
+
+#: admin/src/Rest/RoleEditor.php:459
+msgid ""
+"Cannot delete role. There are %d user(s) with this role. Please reassign "
+"users to another role first."
+msgstr ""
+"Невозможно удалить роль. Уже %d пользователей имеют эту роль. Пожалуйста, "
+"сначала переназначьте пользователей на другие роли."
+
+#: admin/src/Rest/RoleEditor.php:467
+msgid "Role deleted successfully."
+msgstr "Роль успешно удалена."
+
+#: admin/src/Rest/UserAnalytics.php:214
+msgid "New Users"
+msgstr "Новые пользователи"
+
+#: app/src/apps/js/ActivityLog.js:45
+msgid "Activity Log Details"
+msgstr "Подробная информация о журнале действий"
+
+#: app/src/pages/settings/index.vue:90
+msgid "General"
+msgstr "Общий"
+
+#: app/src/pages/settings/index.vue:92
+msgid "Core plugin settings and license management"
+msgstr "Основные настройки плагина и управление лицензиями"
+
+#: app/src/pages/settings/index.vue:96
+msgid "Login"
+msgstr "Авторизоваться"
+
+#: app/src/pages/settings/index.vue:98
+msgid "Customize login page appearance and security"
+msgstr "Настройте внешний вид страницы входа и параметры безопасности."
+
+#: app/src/pages/settings/index.vue:102
+#: app/src/components/app/toolbar/index.vue:285
+#: app/src/components/app/menu/components/UserDetails.vue:430
+msgid "Theme"
+msgstr "Тема"
+
+#: app/src/pages/settings/index.vue:104
+msgid "Colors, styling, and visual customization"
+msgstr "Цвета, стиль и визуальная персонализация"
+
+#: app/src/pages/settings/index.vue:108
+msgid "White Label"
+msgstr "Белая этикетка"
+
+#: app/src/pages/settings/index.vue:110
+msgid "Rebrand and customize interface text and icons"
+msgstr "Изменение фирменного стиля и персонализация текста и значков интерфейса."
+
+#: app/src/pages/settings/index.vue:117
+msgid "Menu"
+msgstr "Меню"
+
+#: app/src/pages/settings/index.vue:119
+msgid "Admin menu behavior and interaction settings"
+msgstr "Настройки поведения и взаимодействия в административном меню"
+
+#: app/src/pages/settings/index.vue:125
+msgid "Post management and display preferences"
+msgstr "Управление публикациями и параметры отображения"
+
+#: app/src/pages/settings/index.vue:131
+msgid "Plugin management interface options"
+msgstr "параметры интерфейса управления плагинами"
+
+#: app/src/pages/settings/index.vue:137
+msgid "Custom dashboard and admin interface settings"
+msgstr "Пользовательские настройки панели управления и административного интерфейса."
+
+#: app/src/pages/settings/index.vue:144
+msgid "Analytics"
+msgstr "Аналитика"
+
+#: app/src/pages/settings/index.vue:146
+msgid "Built-in analytics and tracking settings"
+msgstr "Встроенные настройки аналитики и отслеживания."
+
+#: app/src/pages/settings/index.vue:152
+msgid "Media library and upload management settings"
+msgstr "Настройки медиатеки и управления загрузками"
+
+#: app/src/pages/settings/index.vue:158
+msgid "User management and administration settings"
+msgstr "Настройки управления и администрирования пользователей"
+
+#: app/src/pages/settings/index.vue:164
+msgid "Comment management and administration settings"
+msgstr "Настройки управления и администрирования комментариев"
+
+#: app/src/pages/settings/index.vue:171
+msgid "Security"
+msgstr "Безопасность"
+
+#: app/src/pages/settings/index.vue:173
+msgid "Security settings and administration"
+msgstr "Настройки безопасности и администрирование"
+
+#: app/src/pages/settings/index.vue:177
+msgid "Database"
+msgstr "База данных"
+
+#: app/src/pages/settings/index.vue:179
+msgid "Database explorer and management settings"
+msgstr "Настройки обозревателя баз данных и управления"
+
+#: app/src/pages/settings/index.vue:308
+msgid "Search settings..."
+msgstr "Настройки поиска..."
+
+#: app/src/pages/settings/index.vue:336
+msgid "Loading settings..."
+msgstr "Загрузка настроек..."
+
+#: app/src/pages/settings/index.vue:347
+#: app/src/pages/settings/src/settings-panel.vue:162
+msgid "No settings found"
+msgstr "Настройки не найдены"
+
+#: app/src/pages/settings/index.vue:348
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:746
+#: app/src/components/app/menu/components/MenuSearch.vue:438
+msgid "Try a different search term"
+msgstr "Попробуйте другой поисковый запрос."
+
+#: app/src/pages/settings/index.vue:414
+msgid "Loading Settings..."
+msgstr "Загрузка настроек..."
+
+#: app/src/pages/settings/index.vue:426
+msgid "Settings Panel"
+msgstr "Панель настроек"
+
+#: app/src/pages/settings/index.vue:427
+msgid "Select a category from the list to configure your settings."
+msgstr "Выберите категорию из списка, чтобы настроить параметры."
+
+#: app/src/pages/activity-log/src/activity-details-view.vue:113
+msgid "Activity log entry not found"
+msgstr "Запись в журнале активности не найдена."
+
+#: app/src/pages/activity-log/src/activity-details-view.vue:186
+#: app/src/pages/activity-log/src/activity-list.vue:133
+#: app/src/components/app/search/utils/formatRelativeDate.js:17
+msgid "Just now"
+msgstr "Прямо сейчас"
+
+#: app/src/pages/activity-log/src/activity-details-view.vue:192
+#: app/src/pages/activity-log/src/activity-list.vue:139
+msgid "1 minute ago"
+msgstr "1 минуту назад"
+
+#: app/src/pages/activity-log/src/activity-details-view.vue:193
+#: app/src/pages/activity-log/src/activity-list.vue:140
+msgid "%d minutes ago"
+msgstr "%d минут назад"
+
+#: app/src/pages/activity-log/src/activity-details-view.vue:199
+#: app/src/pages/activity-log/src/activity-list.vue:146
+msgid "1 hour ago"
+msgstr "1 час назад"
+
+#: app/src/pages/activity-log/src/activity-details-view.vue:200
+#: app/src/pages/activity-log/src/activity-list.vue:147
+msgid "%d hours ago"
+msgstr "%d часов назад"
+
+#: app/src/pages/activity-log/src/activity-details-view.vue:206
+#: app/src/pages/activity-log/src/activity-list.vue:153
+msgid "1 day ago"
+msgstr "1 день назад"
+
+#: app/src/pages/activity-log/src/activity-details-view.vue:207
+#: app/src/pages/activity-log/src/activity-list.vue:154
+msgid "%d days ago"
+msgstr "%d дней назад"
+
+#: app/src/pages/activity-log/src/activity-details-view.vue:302
+#: app/src/pages/media/src/media-edit-view.vue:206
+#: app/src/pages/media/src/media-details-view.vue:798
+msgid "Loading..."
+msgstr "Загрузка..."
+
+#: app/src/pages/activity-log/src/activity-details-view.vue:308 app/src/pages/activity-log/src/activity-details-view.vue:357
+#: app/src/pages/activity-log/src/activity-list-view.vue:422
+msgid "Activity Details"
+msgstr "Подробности мероприятия"
+
+#: app/src/pages/activity-log/src/activity-details-view.vue:332
+msgid "User Information"
+msgstr "Информация о пользователе"
+
+#: app/src/pages/activity-log/src/activity-details-view.vue:360
+msgid "Timestamp"
+msgstr "Отметка времени"
+
+#: app/src/pages/activity-log/src/activity-details-view.vue:366
+msgid "IP Address"
+msgstr "IP-адрес"
+
+#: app/src/pages/activity-log/src/activity-details-view.vue:372
+msgid "User Agent"
+msgstr "Агент пользователя"
+
+#: app/src/pages/activity-log/src/activity-details-view.vue:380
+msgid "Changes"
+msgstr "Изменения"
+
+#: app/src/pages/activity-log/src/activity-details-view.vue:383
+msgid "Before"
+msgstr "До"
+
+#: app/src/pages/activity-log/src/activity-details-view.vue:387
+msgid "After"
+msgstr "После"
+
+#: app/src/pages/activity-log/src/activity-details-view.vue:394
+#: app/src/pages/media/src/media-details-view.vue:1065
+msgid "Details"
+msgstr "Подробности"
+
+#: app/src/pages/activity-log/src/activity-details-view.vue:400
+msgid "Metadata"
+msgstr "Метаданные"
+
+#: app/src/assets/js/functions/lmnFetch.js:87
+msgid "Remote Site Error"
+msgstr "Ошибка удаленного сайта"
+
+#: app/src/assets/js/functions/lmnFetch.js:88
+msgid "Invalid remote site configuration"
+msgstr "Неверная конфигурация удаленного сайта"
+
+#: app/src/pages/settings/src/settings-config.js:25
+msgid "Click"
+msgstr "Нажмите"
+
+#: app/src/pages/settings/src/settings-config.js:26
+msgid "Hover"
+msgstr "Ховер"
+
+#: app/src/pages/settings/src/settings-config.js:34
+msgid "Off"
+msgstr "Выключенный"
+
+#: app/src/pages/settings/src/settings-config.js:35
+#: app/src/components/app/toolbar/index.vue:303
+msgid "Light"
+msgstr "Свет"
+
+#: app/src/pages/settings/src/settings-config.js:36
+#: app/src/components/app/toolbar/index.vue:312
+msgid "Dark"
+msgstr "Темный"
+
+#: app/src/pages/settings/src/settings-config.js:62
+msgid "Licence key"
+msgstr "Лицензионный ключ"
+
+#: app/src/pages/settings/src/settings-config.js:63
+msgid "Activating uiXpress enables updates and features"
+msgstr ""
+"Активация uiXpress позволяет получать обновления и использовать новые "
+"функции."
+
+#: app/src/pages/settings/src/settings-config.js:75
+msgid "Logo"
+msgstr "Логотип"
+
+#: app/src/pages/settings/src/settings-config.js:76
+msgid "Optional logo for to be displayed in the menu"
+msgstr "Дополнительный логотип для отображения в меню."
+
+#: app/src/pages/settings/src/settings-config.js:82
+msgid "Logo url"
+msgstr "URL логотипа"
+
+#: app/src/pages/settings/src/settings-config.js:90
+msgid "Dark mode logo"
+msgstr "логотип темного режима"
+
+#: app/src/pages/settings/src/settings-config.js:91
+msgid ""
+"Set an alternative logo to use in dark mode. If one isn't set it will fall "
+"back to the standard logo."
+msgstr ""
+"Задайте альтернативный логотип для использования в темном режиме. Если "
+"логотип не задан, будет использоваться стандартный логотип."
+
+#: app/src/pages/settings/src/settings-config.js:97
+msgid "Dark Logo url"
+msgstr "Ссылка на тёмный логотип"
+
+#: app/src/pages/settings/src/settings-config.js:105
+msgid "Remote Sites"
+msgstr "Удаленные объекты"
+
+#: app/src/pages/settings/src/settings-config.js:106
+msgid "Configure remote WordPress sites for cross-site operations."
+msgstr "Настройка удалённых сайтов WordPress для работы в межсайтовом режиме."
+
+#: app/src/pages/settings/src/settings-config.js:118
+msgid "Remote Site Switcher Capability"
+msgstr "Возможность удалённого переключения между площадками"
+
+#: app/src/pages/settings/src/settings-config.js:119
+msgid ""
+"WordPress capability required to see the remote site switcher in the "
+"toolbar. Defaults to \"manage_options\" (admin users). Users with this "
+"capability or below will see the switcher."
+msgstr ""
+"Для отображения переключателя удаленных сайтов на панели инструментов "
+"требуется наличие соответствующих прав доступа WordPress. По умолчанию "
+"используется параметр \"manage_options\" (для администраторов). "
+"Пользователи с такими правами или более низким уровнем доступа увидят "
+"переключатель."
+
+#: app/src/pages/settings/src/settings-config.js:134
+msgid "Disable theme"
+msgstr "Отключить тему"
+
+#: app/src/pages/settings/src/settings-config.js:135
+msgid "Choose roles or usersnames to disable the theme for."
+msgstr "Выберите роли или имена пользователей, для которых нужно отключить тему."
+
+#: app/src/pages/settings/src/settings-config.js:149
+msgid "Search post types"
+msgstr "Поиск по типам записей"
+
+#: app/src/pages/settings/src/settings-config.js:150
+msgid "Choose which post types are available in the global search"
+msgstr "Выберите, какие типы записей доступны в глобальном поиске."
+
+#: app/src/pages/settings/src/settings-config.js:164
+msgid "Disable global search"
+msgstr "Отключить глобальный поиск"
+
+#: app/src/pages/settings/src/settings-config.js:165
+msgid "Disable global search for all users."
+msgstr "Отключить глобальный поиск для всех пользователей."
+
+#: app/src/pages/settings/src/settings-config.js:177
+msgid "Admin layout"
+msgstr "Макет административной панели"
+
+#: app/src/pages/settings/src/settings-config.js:178
+msgid "Choose your prefered admin layout"
+msgstr "Выберите предпочтительный макет административной панели."
+
+#: app/src/pages/settings/src/settings-config.js:191
+msgid "Modernise login page"
+msgstr "Модернизируйте страницу входа"
+
+#: app/src/pages/settings/src/settings-config.js:192
+msgid "When enabled, uiXpress will modernise the default login page."
+msgstr "При включении этой функции uiXpress обновит страницу входа по умолчанию."
+
+#: app/src/pages/settings/src/settings-config.js:206
+msgid "Login image"
+msgstr "Изображение для входа"
+
+#: app/src/pages/settings/src/settings-config.js:207
+msgid "Optional image that will be added to the empty panel in the login page"
+msgstr ""
+"Дополнительное изображение, которое будет добавлено в пустую панель на "
+"странице входа в систему."
+
+#: app/src/pages/settings/src/settings-config.js:213
+msgid "Image url"
+msgstr "URL изображения"
+
+#: app/src/pages/settings/src/settings-config.js:221
+msgid "Login path"
+msgstr "Путь входа"
+
+#: app/src/pages/settings/src/settings-config.js:222
+msgid ""
+"Change the login url from wp-login.php to a custom slug. Ensure you "
+"remember what you change this to."
+msgstr ""
+"Измените URL-адрес страницы входа с wp-login.php на пользовательский слаг. "
+"Убедитесь, что вы запомнили, на что именно вы его изменили."
+
+#: app/src/pages/settings/src/settings-config.js:238
+msgid "Hide language selector"
+msgstr "Скрыть селектор языка"
+
+#: app/src/pages/settings/src/settings-config.js:239
+msgid "When hidden the language selector on the login page will not be displayed"
+msgstr ""
+"Если переключатель языка скрыт на странице входа в систему, он отображаться "
+"не будет."
+
+#: app/src/pages/settings/src/settings-config.js:253
+msgid "Enable TurnStyle"
+msgstr "Включить стиль поворота"
+
+#: app/src/pages/settings/src/settings-config.js:254
+msgid ""
+"When enabled, a cloudflare turnstyle challenge will be displayed on the "
+"login page to enhance security. Cloudflare account is required"
+msgstr ""
+"При включении этой функции на странице входа в систему будет отображаться "
+"запрос подтверждения авторизации Cloudflare для повышения безопасности. "
+"Требуется учетная запись Cloudflare."
+
+#: app/src/pages/settings/src/settings-config.js:268
+msgid "Turnstyle site key"
+msgstr "Ключ от площадки Turnstyle"
+
+#: app/src/pages/settings/src/settings-config.js:269
+msgid ""
+"This is the site key for your turnstyle which can be created from your "
+"cloudflare dashboard."
+msgstr ""
+"Это ключ сайта для вашего турникета, который можно создать в панели "
+"управления Cloudflare."
+
+#: app/src/pages/settings/src/settings-config.js:286
+msgid "Turnstyle secret key"
+msgstr "Секретный ключ Turnstyle"
+
+#: app/src/pages/settings/src/settings-config.js:287
+msgid ""
+"This is the secret key for your turnstyle which can be created from your "
+"cloudflare dashboard."
+msgstr ""
+"Это секретный ключ для вашего турникета, который можно создать на панели "
+"управления Cloudflare."
+
+#: app/src/pages/settings/src/settings-config.js:308
+msgid "Force global theme"
+msgstr "Принудительное использование глобальной темы"
+
+#: app/src/pages/settings/src/settings-config.js:309
+msgid ""
+"When enabled, the light / dark toggle will be removed and the selected "
+"theme set for all users."
+msgstr ""
+"При включении этой функции переключатель светлой/темной темы будет "
+"отключен, и выбранная тема будет установлена для всех пользователей."
+
+#: app/src/pages/settings/src/settings-config.js:324
+msgid "Hide screen options"
+msgstr "Скрыть параметры экрана"
+
+#: app/src/pages/settings/src/settings-config.js:325
+msgid "Hide the screen options toggle in the toolbar"
+msgstr "Скрыть переключатель параметров экрана на панели инструментов."
+
+#: app/src/pages/settings/src/settings-config.js:339
+msgid "Hide help toggle"
+msgstr "Скрыть переключатель справки"
+
+#: app/src/pages/settings/src/settings-config.js:340
+msgid "Hide the help toggle in the toolbar"
+msgstr "Скрыть переключатель справки на панели инструментов"
+
+#: app/src/pages/settings/src/settings-config.js:351
+msgid "Base theme colors"
+msgstr "Основные цвета темы"
+
+#: app/src/pages/settings/src/settings-config.js:352
+msgid ""
+"Set a base color and uiXpress will automatically create a color scale for "
+"you."
+msgstr ""
+"Задайте базовый цвет, и uiXpress автоматически создаст для вас цветовую "
+"шкалу."
+
+#: app/src/pages/settings/src/settings-config.js:361
+msgid "Base"
+msgstr "База"
+
+#: app/src/pages/settings/src/settings-config.js:369
+msgid "Accent theme colors"
+msgstr "Цвета акцентной темы"
+
+#: app/src/pages/settings/src/settings-config.js:370
+msgid ""
+"Set a accent color and uiXpress will automatically create a color scale for "
+"you."
+msgstr ""
+"Задайте акцентный цвет, и uiXpress автоматически создаст для вас цветовую "
+"шкалу."
+
+#: app/src/pages/settings/src/settings-config.js:379
+msgid "Accent base"
+msgstr "Подставка"
+
+#: app/src/pages/settings/src/settings-config.js:387
+msgid "Custom css"
+msgstr "Пользовательский CSS"
+
+#: app/src/pages/settings/src/settings-config.js:388
+msgid "Custom css added here will only be added in the admin area and login page."
+msgstr ""
+"Добавленные здесь пользовательские CSS-стили будут добавлены только в "
+"административную панель и на страницу входа."
+
+#: app/src/pages/settings/src/settings-config.js:400
+msgid "External stylesheets"
+msgstr "Внешние таблицы стилей"
+
+#: app/src/pages/settings/src/settings-config.js:401
+msgid ""
+"Add URLs to any external stylesheets you want uiXpress to load into the "
+"admin"
+msgstr ""
+"Добавьте URL-адреса любых внешних таблиц стилей, которые вы хотите, чтобы "
+"uiXpress загружал в административную панель."
+
+#: app/src/pages/settings/src/settings-config.js:413
+msgid "Custom Font"
+msgstr "Пользовательский шрифт"
+
+#: app/src/pages/settings/src/settings-config.js:414
+msgid ""
+"Choose a custom font for the admin interface. Select from Google Fonts, "
+"enter a custom font URL, or upload your own font files."
+msgstr ""
+"Выберите пользовательский шрифт для административного интерфейса. Можно "
+"выбрать шрифт из Google Fonts, ввести URL-адрес пользовательского шрифта "
+"или загрузить собственные файлы шрифтов."
+
+#: app/src/pages/settings/src/settings-config.js:430
+msgid "Admin favicon"
+msgstr "значок администратора"
+
+#: app/src/pages/settings/src/settings-config.js:431
+msgid "Optional favicon to replace the WordPress favicon in the admin."
+msgstr ""
+"Дополнительный значок сайта (favicon) для замены стандартного значка сайта "
+"WordPress в административной панели."
+
+#: app/src/pages/settings/src/settings-config.js:437
+msgid "Favicon url"
+msgstr "URL значка сайта (Favicon url)"
+
+#: app/src/pages/settings/src/settings-config.js:445
+msgid "Rename uiXpress"
+msgstr "Переименовать uiXpress"
+
+#: app/src/pages/settings/src/settings-config.js:446
+msgid ""
+"This will rename uiXpress in the plugins list as well as renaming it's "
+"settings link."
+msgstr ""
+"Это переименует плагин uiXpress в списке плагинов, а также переименует "
+"ссылку на его настройки."
+
+#: app/src/pages/settings/src/settings-config.js:462
+msgid "Text Replacement"
+msgstr "Замена текста"
+
+#: app/src/pages/settings/src/settings-config.js:463
+msgid ""
+"Customize the text displayed in the WordPress admin area. Enter original "
+"words or phrases and their replacements to white-label the admin interface."
+msgstr ""
+"Настройте текст, отображаемый в административной панели WordPress. Введите "
+"оригинальные слова или фразы и их замены, чтобы придать административному "
+"интерфейсу индивидуальный стиль."
+
+#: app/src/pages/settings/src/settings-config.js:479
+msgid "Submenu style"
+msgstr "Стиль подменю"
+
+#: app/src/pages/settings/src/settings-config.js:480
+msgid "Choose from whether the submenu opens on click or hover."
+msgstr "Выберите, будет ли подменю открываться при щелчке или при наведении курсора."
+
+#: app/src/pages/settings/src/settings-config.js:495
+msgid "Enable Admin Menu Search"
+msgstr "Включить поиск в меню администратора"
+
+#: app/src/pages/settings/src/settings-config.js:496
+msgid "Enable search functionality in the admin menu to quickly find menu items."
+msgstr ""
+"Включите функцию поиска в административном меню, чтобы быстро находить "
+"пункты меню."
+
+#: app/src/pages/settings/src/settings-config.js:514
+msgid "Classic Post List View"
+msgstr "Классический вид списка записей"
+
+#: app/src/pages/settings/src/settings-config.js:515
+msgid ""
+"Switch to WordPress's traditional table layout for posts, removing the "
+"modern interface."
+msgstr ""
+"Перейдите на традиционную табличную структуру записей WordPress, "
+"отказавшись от современного интерфейса."
+
+#: app/src/pages/settings/src/settings-config.js:529
+msgid "Modern Post Editor"
+msgstr "Современный редактор постов"
+
+#: app/src/pages/settings/src/settings-config.js:530
+msgid ""
+"Replace the built-in WordPress editor with a modern, enhanced post editor "
+"interface."
+msgstr ""
+"Замените встроенный редактор WordPress современным, улучшенным интерфейсом "
+"редактора записей."
+
+#: app/src/pages/settings/src/settings-config.js:544
+msgid "Post Types for Modern Editor"
+msgstr "Типы записей для современного редактора"
+
+#: app/src/pages/settings/src/settings-config.js:545
+msgid ""
+"Choose which post types should use the modern post editor. Defaults to "
+"posts."
+msgstr ""
+"Выберите, для каких типов записей следует использовать современный редактор "
+"записей. По умолчанию — для записей."
+
+#: app/src/pages/settings/src/settings-config.js:560
+msgid "Real-time Collaboration"
+msgstr "Сотрудничество в режиме реального времени"
+
+#: app/src/pages/settings/src/settings-config.js:561
+msgid ""
+"Enable real-time collaboration in the modern post editor. Multiple users "
+"can edit the same post simultaneously with live cursor tracking and synced "
+"changes."
+msgstr ""
+"Включите совместную работу в режиме реального времени в современном "
+"редакторе записей. Несколько пользователей могут одновременно редактировать "
+"одну и ту же запись с отслеживанием курсора в реальном времени и "
+"синхронизацией изменений."
+
+#: app/src/pages/settings/src/settings-config.js:580
+msgid "Modern Plugin Manager"
+msgstr "Современный менеджер плагинов"
+
+#: app/src/pages/settings/src/settings-config.js:581
+msgid ""
+"Replace the classic plugins page with a modern plugin manager with plugin "
+"profiling and improved features."
+msgstr ""
+"Замените классическую страницу плагинов современным менеджером плагинов с "
+"функцией профилирования и улучшенными возможностями."
+
+#: app/src/pages/settings/src/settings-config.js:599
+msgid "Modern Media Library"
+msgstr "Современная медиатека"
+
+#: app/src/pages/settings/src/settings-config.js:600
+msgid ""
+"Replace the classic WordPress media library with a modern, responsive media "
+"manager with improved upload and organization features."
+msgstr ""
+"Замените классическую медиатеку WordPress на современный, адаптивный "
+"медиаменеджер с улучшенными функциями загрузки и организации медиафайлов."
+
+#: app/src/pages/settings/src/settings-config.js:614
+msgid "Enable SVG Uploads"
+msgstr "Включить загрузку SVG-файлов"
+
+#: app/src/pages/settings/src/settings-config.js:615
+msgid ""
+"Allow SVG (Scalable Vector Graphics) files to be uploaded to the media "
+"library. All SVG files are automatically sanitized before upload to remove "
+"potentially malicious code, ensuring safe handling of SVG files."
+msgstr ""
+"Разрешите загрузку файлов SVG (масштабируемой векторной графики) в "
+"медиатеку. Все файлы SVG автоматически проходят проверку перед загрузкой "
+"для удаления потенциально вредоносного кода, что обеспечивает безопасную "
+"обработку файлов SVG."
+
+#: app/src/pages/settings/src/settings-config.js:629
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:914
+msgid "Enable Font Uploads"
+msgstr "Включить загрузку шрифтов"
+
+#: app/src/pages/settings/src/settings-config.js:630
+msgid ""
+"Allow font files (.woff2, .woff, .ttf, .otf) to be uploaded to the media "
+"library. This enables custom font support for your site."
+msgstr ""
+"Разрешите загрузку файлов шрифтов (.woff2, .woff, .ttf, .otf) в медиатеку. "
+"Это позволит использовать пользовательские шрифты на вашем сайте."
+
+#: app/src/pages/settings/src/settings-config.js:649
+#: app/src/components/utility/remote-site-select/index.vue:234
+msgid "Modern Users Page"
+msgstr "Страница современных пользователей"
+
+#: app/src/pages/settings/src/settings-config.js:650
+msgid ""
+"Replace the classic WordPress users page with a modern, responsive user "
+"manager with improved features and better organization."
+msgstr ""
+"Замените классическую страницу пользователей WordPress на современный, "
+"адаптивный менеджер пользователей с улучшенными функциями и лучшей "
+"организацией."
+
+#: app/src/pages/settings/src/settings-config.js:664
+msgid "Modern Comments Page"
+msgstr "Современная страница комментариев"
+
+#: app/src/pages/settings/src/settings-config.js:665
+msgid ""
+"Replace the classic WordPress comments page with a modern, responsive "
+"comment manager with improved features and better organization."
+msgstr ""
+"Замените классическую страницу комментариев WordPress на современный, "
+"адаптивный менеджер комментариев с улучшенными функциями и лучшей "
+"организацией."
+
+#: app/src/pages/settings/src/settings-config.js:683
+msgid "Custom Dashboard"
+msgstr "Пользовательская панель управления"
+
+#: app/src/pages/settings/src/settings-config.js:684
+msgid ""
+"Replace the default WordPress dashboard with a modern, customizable "
+"dashboard interface."
+msgstr ""
+"Замените стандартную панель управления WordPress на современный, "
+"настраиваемый интерфейс."
+
+#: app/src/pages/settings/src/settings-config.js:702
+msgid "Enable uiXpress Analytics"
+msgstr "Включить аналитику uiXpress"
+
+#: app/src/pages/settings/src/settings-config.js:703
+msgid ""
+"Enable built-in analytics to track user behavior, page views, and "
+"performance metrics within your WordPress admin."
+msgstr ""
+"Включите встроенную аналитику для отслеживания поведения пользователей, "
+"просмотров страниц и показателей производительности в административной "
+"панели WordPress."
+
+#: app/src/pages/settings/src/settings-config.js:717
+msgid "Analytics Provider"
+msgstr "Поставщик аналитических услуг"
+
+#: app/src/pages/settings/src/settings-config.js:718
+msgid ""
+"Choose which analytics provider to use for dashboard data. Select Built-in "
+"Analytics to use the uiXpress tracking system, or Google Analytics to "
+"display data from your GA4 property."
+msgstr ""
+"Выберите поставщика аналитики для использования данных на панели "
+"мониторинга. Выберите «Встроенная аналитика», чтобы использовать систему "
+"отслеживания uiXpress, или Google Analytics, чтобы отображать данные из "
+"вашего ресурса GA4."
+
+#: app/src/pages/settings/src/settings-config.js:734
+msgid "Google Analytics Connection"
+msgstr "Подключение Google Analytics"
+
+#: app/src/pages/settings/src/settings-config.js:735
+msgid ""
+"Connect your Google Analytics 4 property to display analytics data in the "
+"dashboard. You will need to create OAuth credentials in Google Cloud "
+"Console."
+msgstr ""
+"Подключите свой ресурс Google Analytics 4, чтобы отображать аналитические "
+"данные на панели мониторинга. Вам потребуется создать учетные данные OAuth "
+"в консоли Google Cloud."
+
+#: app/src/pages/settings/src/settings-config.js:754
+msgid "Enable Database Explorer"
+msgstr "Включить обозреватель баз данных"
+
+#: app/src/pages/settings/src/settings-config.js:755
+msgid ""
+"Enable the modern database explorer interface to browse tables, view data, "
+"and execute SQL queries safely."
+msgstr ""
+"Включите современный интерфейс обозревателя баз данных для безопасного "
+"просмотра таблиц, просмотра данных и выполнения SQL-запросов."
+
+#: app/src/pages/settings/src/settings-config.js:773
+msgid "Enable Role Editor"
+msgstr "Включить редактор ролей"
+
+#: app/src/pages/settings/src/settings-config.js:774
+msgid ""
+"Enable the modern role editor interface to manage WordPress user roles and "
+"capabilities."
+msgstr ""
+"Включите современный интерфейс редактора ролей для управления ролями и "
+"возможностями пользователей WordPress."
+
+#: app/src/pages/settings/src/settings-config.js:792
+msgid "Enable Custom Post Types"
+msgstr "Включить пользовательские типы записей"
+
+#: app/src/pages/settings/src/settings-config.js:793
+msgid ""
+"Enable the custom post types creator to register and manage custom post "
+"types without code. Post types are stored in a JSON file for performance."
+msgstr ""
+"Предоставьте создателю пользовательских типов записей возможность "
+"регистрировать и управлять ими без написания кода. Для повышения "
+"производительности типы записей хранятся в JSON-файле."
+
+#: app/src/pages/settings/src/settings-config.js:811
+msgid "Enable Activity Logger"
+msgstr "Включить журнал активности"
+
+#: app/src/pages/settings/src/settings-config.js:812
+msgid ""
+"Track and log all admin actions including post changes, user updates, "
+"plugin activations, and more."
+msgstr ""
+"Отслеживайте и регистрируйте все действия администратора, включая изменения "
+"в записях, обновления данных пользователей, активацию плагинов и многое "
+"другое."
+
+#: app/src/pages/settings/src/settings-config.js:826
+msgid "Retention Period (Days)"
+msgstr "Срок хранения (дни)"
+
+#: app/src/pages/settings/src/settings-config.js:827
+msgid ""
+"How many days to keep activity logs before automatic cleanup. Default is 90 "
+"days."
+msgstr ""
+"Сколько дней следует хранить журналы активности до автоматической очистки. "
+"По умолчанию — 90 дней."
+
+#: app/src/pages/settings/src/settings-config.js:846
+msgid "Log Level"
+msgstr "Уровень лога"
+
+#: app/src/pages/settings/src/settings-config.js:847
+msgid ""
+"Choose which actions to log. \"All Actions\" logs everything, \"Important "
+"Only\" logs only critical actions like deletions and role changes."
+msgstr ""
+"Выберите, какие действия следует регистрировать. «Все действия» "
+"регистрирует все действия, «Только важные» — только критически важные, "
+"такие как удаление и изменение ролей."
+
+#: app/src/pages/settings/src/settings-config.js:855
+#: app/src/pages/activity-log/src/activity-list-view.vue:333
+msgid "All Actions"
+msgstr "Все действия"
+
+#: app/src/pages/settings/src/settings-config.js:856
+msgid "Important Only"
+msgstr "Важно лишь"
+
+#: app/src/pages/settings/src/settings-config.js:866
+msgid "Auto Cleanup"
+msgstr "Автоматическая очистка"
+
+#: app/src/pages/settings/src/settings-config.js:867
+msgid ""
+"Automatically delete logs older than the retention period. Disable to keep "
+"logs indefinitely."
+msgstr ""
+"Автоматически удалять журналы старше установленного срока хранения. "
+"Отключите эту функцию, чтобы хранить журналы неограниченно долго."
+
+#: app/src/pages/settings/src/useSettingsData.js:57
+msgid "Failed to load settings"
+msgstr "Не удалось загрузить настройки."
+
+#: app/src/pages/settings/src/useSettingsData.js:93 app/src/pages/settings/src/useSettingsData.js:105
+msgid "Unable to save settings"
+msgstr "Не удалось сохранить настройки."
+
+#: app/src/pages/settings/src/useSettingsData.js:100
+msgid "Settings updated!"
+msgstr "Настройки обновлены!"
+
+#: app/src/pages/settings/src/useSettingsData.js:142
+msgid "Please provide a valid JSON file"
+msgstr "Пожалуйста, предоставьте корректный JSON-файл."
+
+#: app/src/pages/settings/src/useSettingsData.js:157
+msgid "Invalid settings: must be an object"
+msgstr "Неверные настройки: должен быть объектом."
+
+#: app/src/pages/settings/src/useSettingsData.js:175
+msgid "Settings imported"
+msgstr "Импортированные настройки"
+
+#: app/src/pages/settings/src/useSettingsData.js:177 app/src/pages/settings/src/useSettingsData.js:180
+msgid "Import failed"
+msgstr "Импорт не удался"
+
+#: app/src/pages/settings/src/useLicense.js:42 app/src/pages/settings/src/useLicense.js:51
+msgid "Failed to activate key"
+msgstr "Не удалось активировать ключ."
+
+#: app/src/pages/settings/src/useLicense.js:65
+msgid "Key already activated for this site"
+msgstr "Ключ для этого сайта уже активирован."
+
+#: app/src/pages/settings/src/useLicense.js:66
+msgid "Key successfully activated"
+msgstr "Ключ успешно активирован"
+
+#: app/src/pages/settings/src/useLicense.js:73
+msgid "Network error during activation"
+msgstr "Сетевая ошибка во время активации"
+
+#: app/src/pages/settings/src/useLicense.js:127 app/src/pages/settings/src/useLicense.js:169
+msgid "Instance removed"
+msgstr "Экземпляр удален"
+
+#: app/src/pages/settings/src/useLicense.js:156 app/src/pages/settings/src/useLicense.js:165
+msgid "Failed to remove activation"
+msgstr "Не удалось удалить активацию"
+
+#: app/src/pages/settings/src/useLicense.js:178
+msgid "Network error during removal"
+msgstr "Сетевая ошибка во время удаления"
+
+#: app/src/pages/settings/src/settings-panel.vue:133
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:559
+#: app/src/components/app/menu/components/FavoritesSection.vue:166
+#: app/src/components/utility/image-editor/index.vue:2142
+msgid "Save"
+msgstr "Сохранять"
+
+#: app/src/pages/settings/src/settings-panel.vue:140
+msgid "Please add your licence key to unlock the plugin settings"
+msgstr ""
+"Пожалуйста, введите свой лицензионный ключ, чтобы разблокировать настройки "
+"плагина."
+
+#: app/src/pages/settings/src/settings-panel.vue:148
+msgid "Found"
+msgstr "Найденный"
+
+#: app/src/pages/settings/src/settings-panel.vue:150
+msgid "matching setting(s)"
+msgstr "соответствующие настройки"
+
+#: app/src/pages/settings/src/settings-panel.vue:163
+msgid "No settings match your search in this category."
+msgstr "В этой категории нет настроек, соответствующих вашему поисковому запросу."
+
+#: app/src/pages/settings/src/settings-panel.vue:164
+msgid "Try a different search term or check another category."
+msgstr "Попробуйте другой поисковый запрос или проверьте другую категорию."
+
+#: app/src/components/app/menu/index.vue:603
+msgid "Minify menu"
+msgstr "Свернуть меню"
+
+#: app/src/components/app/toolbar/index.vue:168
+msgid "Toggle menu"
+msgstr "Переключить меню"
+
+#: app/src/components/app/toolbar/index.vue:294
+#: app/src/components/app/menu/components/UserDetails.vue:467
+msgid "System"
+msgstr "Система"
+
+#: app/src/components/app/toolbar/index.vue:323 app/src/components/app/toolbar/index.vue:327
+msgid "Logout"
+msgstr "Выйти"
+
+#: app/src/pages/activity-log/src/activity-list-view.vue:319
+msgid "Search activities..."
+msgstr "Поиск действий..."
+
+#: app/src/pages/activity-log/src/activity-list-view.vue:327
+#: app/src/pages/settings/src/sections/RemoteSitesSection.vue:240
+msgid "Action"
+msgstr "Действие"
+
+#: app/src/pages/activity-log/src/activity-list-view.vue:345
+msgid "Object Type"
+msgstr "Тип объекта"
+
+#: app/src/pages/activity-log/src/activity-list-view.vue:351
+msgid "All Types"
+msgstr "Все типы"
+
+#: app/src/pages/activity-log/src/activity-list-view.vue:366
+#: app/src/pages/media/src/media-list-view.vue:1686
+msgid "item"
+msgstr "элемент"
+
+#: app/src/pages/activity-log/src/activity-list-view.vue:367
+#: app/src/pages/media/src/media-list-view.vue:1687
+msgid "items"
+msgstr "предметы"
+
+#: app/src/pages/activity-log/src/activity-list-view.vue:370
+#: app/src/pages/media/src/media-details-view.vue:1120
+msgid "Page"
+msgstr "Страница"
+
+#: app/src/pages/activity-log/src/activity-list-view.vue:380
+msgid "Previous"
+msgstr "Предыдущий"
+
+#: app/src/pages/activity-log/src/activity-list-view.vue:392
+msgid "Next"
+msgstr "Следующий"
+
+#: app/src/pages/activity-log/src/activity-list-view.vue:423
+msgid "Select an activity from the list to view detailed information."
+msgstr "Выберите действие из списка, чтобы просмотреть подробную информацию."
+
+#: app/src/pages/settings/src/custom-renders/layout-selector.vue:39
+msgid "Default"
+msgstr "По умолчанию"
+
+#: app/src/pages/settings/src/custom-renders/layout-selector.vue:43
+msgid "Rounded"
+msgstr "Закругленный"
+
+#: app/src/pages/settings/src/custom-renders/layout-selector.vue:47
+msgid "Bubble"
+msgstr "Пузырь"
+
+#: app/src/pages/settings/src/custom-renders/external-stylesheets.vue:91
+msgid "Add new"
+msgstr "Добавить новый"
+
+#: app/src/pages/settings/src/custom-renders/code-editor.vue:89
+msgid "Update settings"
+msgstr "Обновить настройки"
+
+#: app/src/pages/settings/src/custom-renders/code-editor.vue:100
+msgid "Loading editor..."
+msgstr "Загрузка редактора..."
+
+#: app/src/pages/settings/src/sections/RemoteSitesSection.vue:98
+msgid "Invalid Input"
+msgstr "Неверный ввод"
+
+#: app/src/pages/settings/src/sections/RemoteSitesSection.vue:99
+msgid "Site URL, username, and application password are required"
+msgstr ""
+"Для доступа к сайту необходимы: URL сайта, имя пользователя и пароль "
+"приложения."
+
+#: app/src/pages/settings/src/sections/RemoteSitesSection.vue:112
+msgid "Invalid URL"
+msgstr "Неверный URL"
+
+#: app/src/pages/settings/src/sections/RemoteSitesSection.vue:113
+msgid "Please provide a valid site URL"
+msgstr "Пожалуйста, укажите действительный URL-адрес сайта."
+
+#: app/src/pages/settings/src/sections/RemoteSitesSection.vue:127
+msgid "Duplicate Site"
+msgstr "Дубликат сайта"
+
+#: app/src/pages/settings/src/sections/RemoteSitesSection.vue:128
+msgid "This site URL already exists"
+msgstr "Этот URL-адрес сайта уже существует."
+
+#: app/src/pages/settings/src/sections/RemoteSitesSection.vue:162
+msgid "Remove Remote Site?"
+msgstr "Удалить удалённый сайт?"
+
+#: app/src/pages/settings/src/sections/RemoteSitesSection.vue:163
+msgid ""
+"Are you sure you want to remove this remote site? This action cannot be "
+"undone."
+msgstr "Вы уверены, что хотите удалить этот удалённый сайт? Это действие необратимо."
+
+#: app/src/pages/settings/src/sections/RemoteSitesSection.vue:167
+msgid "Yes, remove site"
+msgstr "Да, удалить сайт"
+
+#: app/src/pages/settings/src/sections/RemoteSitesSection.vue:182
+msgid "Site Removed"
+msgstr "Сайт удален"
+
+#: app/src/pages/settings/src/sections/RemoteSitesSection.vue:183
+msgid "Remote site has been removed successfully"
+msgstr "Удаленный сайт успешно удален."
+
+#: app/src/pages/settings/src/sections/RemoteSitesSection.vue:196
+msgid "Site URL (e.g., https://example.com)"
+msgstr "URL-адрес сайта (например, https://example.com)"
+
+#: app/src/pages/settings/src/sections/RemoteSitesSection.vue:206 app/src/pages/settings/src/sections/RemoteSitesSection.vue:238
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: app/src/pages/settings/src/sections/RemoteSitesSection.vue:216
+msgid "Application Password"
+msgstr "Пароль приложения"
+
+#: app/src/pages/settings/src/sections/RemoteSitesSection.vue:226
+msgid "Add Site"
+msgstr "Добавить сайт"
+
+#: app/src/pages/settings/src/sections/RemoteSitesSection.vue:237
+msgid "Site URL"
+msgstr "URL сайта"
+
+#: app/src/pages/settings/src/sections/RemoteSitesSection.vue:239
+msgid "Password"
+msgstr "Пароль"
+
+#: app/src/pages/settings/src/sections/RemoteSitesSection.vue:267
+msgid "No remote sites configured yet"
+msgstr "Удаленные сайты пока не настроены."
+
+#: app/src/pages/settings/src/sections/RemoteSitesSection.vue:269
+msgid ""
+"Application passwords can be created in WordPress under Users > Profile > "
+"Application Passwords"
+msgstr ""
+"Пароли для приложений можно создать в WordPress в разделе Пользователи > "
+"Профиль > Пароли для приложений."
+
+#: app/src/pages/settings/src/custom-renders/license-key.vue:57
+msgid "Licence Active"
+msgstr "Действующая лицензия"
+
+#: app/src/pages/settings/src/custom-renders/license-key.vue:66
+msgid "Remove key"
+msgstr "Извлечь ключ"
+
+#: app/src/pages/settings/src/custom-renders/license-key.vue:79
+msgid "uiXpress licence key"
+msgstr "лицензионный ключ uiXpress"
+
+#: app/src/pages/settings/src/custom-renders/license-key.vue:88
+msgid "Activate"
+msgstr "Активировать"
+
+#: app/src/pages/settings/src/custom-renders/license-key.vue:94
+msgid "Development server detected, no need to activate your licence key."
+msgstr "Обнаружен сервер разработки, активация лицензионного ключа не требуется."
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:230
+msgid "System Default"
+msgstr "Системные настройки по умолчанию"
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:231
+msgid "Google Fonts"
+msgstr "Google Fonts"
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:232
+msgid "Custom URL"
+msgstr "Пользовательский URL"
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:233
+msgid "Upload Font"
+msgstr "Загрузить шрифт"
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:645
+msgid "Font Source"
+msgstr "Источник шрифта"
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:679
+msgid "Select Font"
+msgstr "Выберите шрифт"
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:696
+msgid "Click to change"
+msgstr "Нажмите, чтобы изменить"
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:701
+#: app/src/pages/media/src/media-list-view.vue:1888
+msgid "Clear selection"
+msgstr "Четкий выбор"
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:715
+msgid "Search fonts..."
+msgstr "Поиск шрифтов..."
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:745
+msgid "No fonts found"
+msgstr "Шрифты не найдены"
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:804
+msgid "Or enter custom:"
+msgstr "Или введите пользовательский параметр:"
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:808
+msgid "Font name..."
+msgstr "Название шрифта..."
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:817
+msgid "Font Weights"
+msgstr "Толщина шрифта"
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:840
+msgid "Select weights to include. At least one is required."
+msgstr ""
+"Выберите веса, которые необходимо включить. Необходимо указать хотя бы один "
+"вес."
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:851
+msgid "Font Stylesheet URL"
+msgstr "URL таблицы стилей шрифта"
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:857
+msgid "https://fonts.googleapis.com/css2?family=..."
+msgstr "https://fonts.googleapis.com/css2?family=..."
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:868
+msgid "Enter the URL to an external font stylesheet (CSS file)"
+msgstr "Введите URL-адрес внешней таблицы стилей шрифта (CSS-файла)."
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:874 app/src/pages/settings/src/custom-renders/font-selector.vue:920
+msgid "Font Family Name"
+msgstr "Название семейства шрифтов"
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:878
+msgid "e.g., Inter, Roboto, Custom Font"
+msgstr "например, Inter, Roboto, Custom Font"
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:883
+msgid "The exact font-family name as defined in the stylesheet"
+msgstr "Точное название семейства шрифтов, определенное в таблице стилей."
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:901
+msgid "Font Uploads Disabled"
+msgstr "Загрузка шрифтов отключена."
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:902
+msgid ""
+"Font file uploads are currently disabled. Enable font uploads in the Media "
+"settings to upload custom font files (.woff2, .woff, .ttf, .otf)."
+msgstr ""
+"Загрузка файлов шрифтов в настоящее время отключена. Включите загрузку "
+"шрифтов в настройках мультимедиа, чтобы загружать пользовательские файлы "
+"шрифтов (.woff2, .woff, .ttf, .otf)."
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:924
+msgid "e.g., My Custom Font"
+msgstr "например, Мой пользовательский шрифт"
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:929
+msgid "Choose a name for your custom font family"
+msgstr "Выберите название для вашего пользовательского семейства шрифтов."
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:932
+msgid "Font Files"
+msgstr "Файлы шрифтов"
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:951 app/src/pages/settings/src/custom-renders/font-selector.vue:1017
+msgid "Opening Media Library..."
+msgstr "Открытие медиатеки..."
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:952
+msgid "Click to select font files"
+msgstr "Нажмите, чтобы выбрать файлы шрифтов."
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:953
+msgid "Supported formats: .woff2, .woff, .ttf, .otf"
+msgstr "Поддерживаемые форматы: .woff2, .woff, .ttf, .otf"
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:966
+msgid "Enable font uploads to add font files"
+msgstr "Включите загрузку шрифтов, чтобы добавлять файлы шрифтов."
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:1024
+msgid "Select Font File"
+msgstr "Выберите файл шрифта"
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:1033
+msgid ""
+"Select font files from your media library. Supported: .woff2, .woff, .ttf, "
+".otf"
+msgstr ""
+"Выберите файлы шрифтов из вашей медиатеки. Поддерживаются форматы: .woff2, "
+".woff, .ttf, .otf"
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:1056
+msgid "Loading font..."
+msgstr "Загрузка шрифта..."
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:1061
+msgid "Preview"
+msgstr "Предварительный просмотр"
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:1063
+msgid "Weight:"
+msgstr "Масса:"
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:1098
+msgid "weights loaded"
+msgstr "загруженные веса"
+
+#: app/src/pages/settings/src/custom-renders/font-selector.vue:1115
+msgid "Reset to system default"
+msgstr "Сброс до системных настроек по умолчанию."
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:235
+msgid "Please paste your service account JSON key"
+msgstr "Пожалуйста, вставьте JSON-ключ вашей учетной записи службы."
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:253
+msgid "Service account connected successfully"
+msgstr "Учетная запись службы успешно подключена."
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:262 app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:269
+msgid "Failed to save credentials"
+msgstr "Не удалось сохранить учетные данные."
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:300
+msgid ""
+"Could not load properties automatically. You can enter your Property ID "
+"manually below."
+msgstr ""
+"Не удалось автоматически загрузить объекты недвижимости. Вы можете ввести "
+"идентификатор объекта недвижимости вручную ниже."
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:313
+msgid "Please enter a Property ID"
+msgstr "Пожалуйста, введите идентификатор объекта недвижимости."
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:335 app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:376
+msgid "Property saved"
+msgstr "Сохраненное имущество"
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:352 app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:390
+msgid "Failed to save property"
+msgstr "Не удалось спасти имущество"
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:429
+msgid "Failed to disconnect"
+msgstr "Не удалось отключиться"
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:454
+msgid "Checking connection..."
+msgstr "Проверка соединения..."
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:461
+msgid "Connection Issue"
+msgstr "Проблема с подключением"
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:461
+msgid "Connected to Google Analytics"
+msgstr "Подключено к Google Analytics"
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:472
+msgid "Permission Issue Detected"
+msgstr "Обнаружена проблема с правами доступа."
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:483
+msgid "Learn more"
+msgstr "Узнать больше"
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:493
+msgid "Retest Connection"
+msgstr "Повторно проверьте соединение."
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:501
+msgid "Service Account:"
+msgstr "Учетная запись службы:"
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:507
+msgid "Select Property"
+msgstr "Выберите объект недвижимости"
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:514
+msgid "Select a property..."
+msgstr "Выберите объект недвижимости..."
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:526
+msgid "Property ID:"
+msgstr "Идентификатор объекта недвижимости:"
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:537
+msgid "Enter Property ID"
+msgstr "Введите идентификатор объекта недвижимости"
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:538
+msgid ""
+"Find your Property ID in Google Analytics: Admin → Property Settings → "
+"Property ID (a number like 123456789)"
+msgstr ""
+"Найдите идентификатор вашего объекта недвижимости в Google Analytics: "
+"Администрирование → Настройки объекта недвижимости → Идентификатор объекта "
+"недвижимости (число, например, 123456789)"
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:546
+msgid "e.g. 123456789"
+msgstr "например, 123456789"
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:568
+msgid "Property ID"
+msgstr "Идентификатор объекта недвижимости"
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:577
+msgid "Change"
+msgstr "Изменять"
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:587
+msgid "Loading properties..."
+msgstr "Загрузка свойств..."
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:602
+msgid "Disconnect"
+msgstr "Отключить"
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:618
+msgid "Setup Instructions"
+msgstr "Инструкции по установке"
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:623
+msgid "How to connect Google Analytics 4"
+msgstr "Как подключить Google Analytics 4"
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:626 app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:635
+msgid "Go to"
+msgstr "Перейти к"
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:627
+msgid "Google Cloud Console"
+msgstr "Консоль Google Cloud"
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:628
+msgid "and create a new project (or select existing)"
+msgstr "и создать новый проект (или выбрать существующий)."
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:631
+msgid "Enable the"
+msgstr "Включить"
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:632
+msgid "Google Analytics Data API"
+msgstr "API данных Google Analytics"
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:636
+msgid "Service Accounts"
+msgstr "Служебные аккаунты"
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:637
+msgid "and create a new service account"
+msgstr "и создать новую учетную запись службы."
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:639
+msgid ""
+"Click the service account, go to \"Keys\" tab, click \"Add Key\" → \"Create "
+"new key\" → JSON"
+msgstr ""
+"Щелкните по учетной записи службы, перейдите на вкладку «Ключи», нажмите "
+"«Добавить ключ» → «Создать новый ключ» → JSON"
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:643
+msgid "Download the JSON key file"
+msgstr "Загрузите JSON-файл ключа."
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:645
+msgid "In"
+msgstr "В"
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:646
+msgid "Google Analytics"
+msgstr "Google Аналитика"
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:647
+msgid ""
+"→ Admin → Property Access Management, add the service account email as a "
+"Viewer"
+msgstr ""
+"→ Администрирование → Управление доступом к ресурсам, добавьте адрес "
+"электронной почты учетной записи службы в качестве пользователя для "
+"просмотра."
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:652
+msgid "Paste the contents of the JSON key file below and enter your Property ID"
+msgstr ""
+"Вставьте содержимое файла JSON с ключами, расположенного ниже, и введите "
+"идентификатор вашего объекта недвижимости."
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:659
+msgid "Finding your Property ID:"
+msgstr "Как найти идентификатор вашего объекта недвижимости:"
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:660
+msgid ""
+"In Google Analytics, go to Admin → Property Settings. Your Property ID is "
+"the number shown (e.g. 123456789)."
+msgstr ""
+"В Google Analytics перейдите в раздел «Администрирование» → «Настройки "
+"объекта». Идентификатор вашего объекта — это указанный номер (например, "
+"123456789)."
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:668
+msgid "Important:"
+msgstr "Важный:"
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:669
+msgid ""
+"The service account email (found in the JSON file) must be added to your "
+"GA4 property with at least Viewer access for data to be retrieved."
+msgstr ""
+"Для получения данных необходимо добавить адрес электронной почты сервисной "
+"учетной записи (находящийся в JSON-файле) в ваше свойство GA4 с как минимум "
+"правами доступа «Просмотрщик»."
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:680
+msgid "Paste the contents of your service account JSON key file:"
+msgstr "Вставьте содержимое JSON-файла ключа вашей учетной записи службы:"
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:686
+msgid "Paste your service account JSON key here..."
+msgstr "Вставьте сюда JSON-ключ вашей учетной записи службы..."
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:705
+msgid "Connect"
+msgstr "Соединять"
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:717
+#: app/src/components/app/menu/components/FavoritesSection.vue:176
+#: app/src/components/utility/remote-site-select/index.vue:247
+#: app/src/components/app/search/layout-fix-dialog.vue:973
+#: app/src/pages/media/src/media-list-view.vue:1990
+#: app/src/components/utility/image-editor/index.vue:1489 app/src/components/utility/image-editor/index.vue:2133
+msgid "Cancel"
+msgstr "Отмена"
+
+#: app/src/pages/settings/src/custom-renders/google-analytics-connection.vue:737
+msgid "Connect Google Analytics"
+msgstr "Подключить Google Analytics"
+
+#: app/src/pages/settings/src/custom-renders/color-scale.vue:107
+msgid "Clear custom properties"
+msgstr "Очистить пользовательские свойства"
+
+#: app/src/components/app/menu/components/UserDetails.vue:227
+msgid "Edit Profile"
+msgstr "Редактировать профиль"
+
+#: app/src/components/app/menu/components/UserDetails.vue:234
+msgid "Visit site"
+msgstr "Посетите сайт"
+
+#: app/src/components/app/menu/components/UserDetails.vue:241
+msgid "Site Settings"
+msgstr "Настройки сайта"
+
+#: app/src/components/app/menu/components/UserDetails.vue:248
+msgid "Sign Out"
+msgstr "Выход"
+
+#: app/src/components/app/menu/components/UserDetails.vue:439
+msgid "Light Mode"
+msgstr "Светлый режим"
+
+#: app/src/components/app/menu/components/UserDetails.vue:453
+msgid "Dark Mode"
+msgstr "Темный режим"
+
+#: app/src/components/app/menu/components/UserDetails.vue:478
+#: app/src/components/app/search/components/QuickActions.vue:42
+msgid "Quick Actions"
+msgstr "Быстрые действия"
+
+#: app/src/components/app/menu/components/UserDetails.vue:491
+msgid "Focus Search"
+msgstr "Фокусированный поиск"
+
+#: app/src/components/app/menu/components/MenuSearch.vue:385
+msgid "Search menu..."
+msgstr "Меню поиска..."
+
+#: app/src/components/app/menu/components/MenuSearch.vue:437
+msgid "No menu items found"
+msgstr "Пункты меню не найдены"
+
+#: app/src/components/app/menu/components/MenuSearch.vue:479
+msgid "result"
+msgstr "результат"
+
+#: app/src/components/app/menu/components/MenuSearch.vue:480
+msgid "results"
+msgstr "результаты"
+
+#: app/src/components/app/menu/components/MenuSearch.vue:483
+#: app/src/components/app/search/components/EmptyStateInitial.vue:97
+msgid "Navigate"
+msgstr "Навигация"
+
+#: app/src/components/app/menu/components/MenuSearch.vue:485
+#: app/src/pages/media/src/media-list-view.vue:1904
+#: app/src/components/app/search/components/EmptyStateInitial.vue:101
+msgid "Select"
+msgstr "Выбирать"
+
+#: app/src/components/app/menu/components/FavoritesSection.vue:91
+msgid "Shortcuts"
+msgstr "Ярлыки"
+
+#: app/src/components/app/menu/components/FavoritesSection.vue:122
+msgid "Name"
+msgstr "Имя"
+
+#: app/src/components/app/menu/components/FavoritesSection.vue:128
+msgid "Shortcut name"
+msgstr "Название ярлыка"
+
+#: app/src/components/app/menu/components/FavoritesSection.vue:132
+msgid "URL"
+msgstr "URL"
+
+#: app/src/components/app/menu/components/FavoritesSection.vue:138
+msgid "https://example.com"
+msgstr "https://example.com"
+
+#: app/src/components/app/menu/components/FavoritesSection.vue:142
+msgid "Icon"
+msgstr "Икона"
+
+#: app/src/components/app/menu/components/FavoritesSection.vue:155
+msgid "icon name"
+msgstr "название значка"
+
+#: app/src/components/app/menu/components/FavoritesSection.vue:189
+#: app/src/pages/media/src/media-list-view.vue:1878
+#: app/src/pages/media/src/media-details-view.vue:332 app/src/pages/media/src/media-details-view.vue:1057
+#: app/src/pages/media/src/media-list.vue:437
+msgid "Delete"
+msgstr "Удалить"
+
+#: app/src/components/app/admin-notices/index.vue:147
+#: app/src/components/app/admin-notices/NotificationsPanel.vue:314
+msgid "Notifications"
+msgstr "Уведомления"
+
+#: app/src/components/utility/remote-site-select/index.vue:94 app/src/components/utility/remote-site-select/index.vue:114 app/src/components/utility/remote-site-select/index.vue:145 app/src/components/utility/remote-site-select/index.vue:358
+msgid "Local"
+msgstr "Местный"
+
+#: app/src/components/utility/remote-site-select/index.vue:219
+msgid ""
+"When you switch to a remote site, all API requests will be sent to that "
+"site instead of the local site."
+msgstr ""
+"При переключении на удалённый сайт все API-запросы будут отправляться на "
+"этот сайт, а не на локальный."
+
+#: app/src/components/utility/remote-site-select/index.vue:223
+msgid "Remote site switching works on:"
+msgstr "Удалённое переключение между сайтами работает на:"
+
+#: app/src/components/utility/remote-site-select/index.vue:226
+msgid "Modern Media Page"
+msgstr "Страница современных СМИ"
+
+#: app/src/components/utility/remote-site-select/index.vue:227
+msgid "Modern Plugins Page"
+msgstr "Страница современных плагинов"
+
+#: app/src/components/utility/remote-site-select/index.vue:229
+msgid "Modern Dashboard"
+msgstr "Современная панель управления"
+
+#: app/src/components/utility/remote-site-select/index.vue:238
+msgid ""
+"All default WordPress pages (Posts, Pages, Comments, etc.) will continue to "
+"show local content."
+msgstr ""
+"Все стандартные страницы WordPress (записи, страницы, комментарии и т. д.) "
+"будут по-прежнему отображать локальный контент."
+
+#: app/src/components/utility/remote-site-select/index.vue:244
+msgid "Remote Site Switching"
+msgstr "Удалённое переключение сайтов"
+
+#: app/src/components/utility/remote-site-select/index.vue:246
+msgid "I Understand"
+msgstr "Я понимаю"
+
+#: app/src/components/utility/remote-site-select/index.vue:383
+msgid "Search sites..."
+msgstr "Поиск по сайтам..."
+
+#: app/src/components/utility/remote-site-select/index.vue:432
+msgid "No sites found"
+msgstr "Сайты не найдены"
+
+#: app/src/components/app/admin-notices/NotificationsPanel.vue:301
+msgid "Back to menu"
+msgstr "Вернуться в меню"
+
+#: app/src/components/app/admin-notices/NotificationsPanel.vue:318
+msgid "unread"
+msgstr "непрочитано"
+
+#: app/src/components/app/admin-notices/NotificationsPanel.vue:330
+msgid "Updates Available"
+msgstr "Доступны обновления"
+
+#: app/src/components/app/admin-notices/NotificationsPanel.vue:403
+msgid "Awaiting moderation"
+msgstr "Ожидает модерации"
+
+#: app/src/components/app/admin-notices/NotificationsPanel.vue:424
+msgid "You're all caught up"
+msgstr "Вы всё успели!"
+
+#: app/src/components/app/admin-notices/NotificationsPanel.vue:425
+msgid "No new notifications"
+msgstr "Нет новых уведомлений"
+
+#: app/src/components/app/admin-notices/NotificationsPanel.vue:474
+msgid "Show less"
+msgstr "Показать меньше"
+
+#: app/src/components/app/admin-notices/NotificationsPanel.vue:475
+msgid "Show more"
+msgstr "Показать больше"
+
+#: app/src/pages/activity-log/src/activity-list.vue:317
+msgid "No activities found"
+msgstr "Действия не найдены"
+
+#: app/src/pages/settings/src/text-pairs.vue:41
+msgid "Find"
+msgstr "Находить"
+
+#: app/src/pages/settings/src/text-pairs.vue:47
+msgid "Replace"
+msgstr "Заменять"
+
+#: app/src/pages/settings/src/text-pairs.vue:67
+msgid "New item"
+msgstr "Новый товар"
+
+#: app/src/components/utility/code-editor/index.vue:222
+msgid "Edit CSS"
+msgstr "Редактировать CSS"
+
+#: app/src/components/utility/code-editor/index.vue:265
+msgid "Finished"
+msgstr "Законченный"
+
+#: app/src/components/utility/media-library-v2/index.vue:152
+#: app/src/pages/media/src/media-list-view.vue:1370
+msgid "Media Library"
+msgstr "Медиатека"
+
+#: app/src/components/utility/media-library-v2/index.vue:158
+#: app/src/pages/media/src/media-list-view.vue:1788
+msgid "Media Details"
+msgstr "Информация о СМИ"
+
+#: app/src/components/utility/media-library-v2/index.vue:164
+#: app/src/pages/media/src/media-details-view.vue:1044
+msgid "Edit Image"
+msgstr "Редактировать изображение"
+
+#: app/src/components/utility/multiselect-roles-and-users/index.vue:66
+msgid "Roles"
+msgstr "Роли"
+
+#: app/src/components/utility/multiselect-roles-and-users/index.vue:171
+#: app/src/components/utility/post-type-select/index.vue:114
+msgid "Items selected"
+msgstr "Выбранные товары"
+
+#: app/src/components/utility/multiselect-roles-and-users/index.vue:172
+msgid "Select users or roles"
+msgstr "Выберите пользователей или роли"
+
+#: app/src/components/utility/image-select/index.vue:106
+msgid "url"
+msgstr "url"
+
+#: app/src/components/utility/post-type-select/index.vue:115
+msgid "Select post types"
+msgstr "Выберите типы записей"
+
+#: app/src/components/utility/icon-select/index.vue:143
+msgid "Search icons"
+msgstr "Значки поиска"
+
+#: app/src/components/app/toolbar/src/buttons/view-site/component.vue:35
+#: app/src/components/app/search/composables/useQuickActions.js:61
+msgid "View site"
+msgstr "Посмотреть сайт"
+
+#: app/src/components/app/toolbar/src/buttons/view-site/component.vue:54
+#: app/src/components/app/search/composables/useQuickActions.js:55
+msgid "View dashboard"
+msgstr "Просмотреть панель управления"
+
+#: app/src/components/app/toolbar/src/buttons/help/component.vue:63
+msgid "Help"
+msgstr "Помощь"
+
+#: app/src/components/app/toolbar/src/buttons/screen-options/component.vue:64
+msgid "Screen options"
+msgstr "Параметры экрана"
+
+#: app/src/components/app/search/composables/useQuickActions.js:43
+msgid "New Post"
+msgstr "Новая запись"
+
+#: app/src/components/app/search/composables/useQuickActions.js:49
+msgid "New Page"
+msgstr "Новая страница"
+
+#: app/src/components/app/search/composables/useQuickActions.js:67
+msgid "Site settings"
+msgstr "Настройки сайта"
+
+#: app/src/components/app/search/composables/useQuickActions.js:74
+msgid "Dark mode"
+msgstr "Темный режим"
+
+#: app/src/components/app/search/composables/useQuickActions.js:81
+msgid "Light mode"
+msgstr "Светлый режим"
+
+#: app/src/components/app/search/composables/useQuickActions.js:88
+msgid "Enable magic dark mode for this page"
+msgstr "Включите волшебный темный режим для этой страницы."
+
+#: app/src/components/app/search/composables/useQuickActions.js:95
+msgid "Disable magic dark mode for this page"
+msgstr "Отключить волшебный темный режим для этой страницы"
+
+#: app/src/components/app/search/layout-fix-dialog.vue:111
+msgid "wpbody element not found"
+msgstr "Элемент wpbody не найден"
+
+#: app/src/components/app/search/layout-fix-dialog.vue:624
+msgid "CSS fix saved to custom CSS settings"
+msgstr "Исправление CSS сохранено в пользовательских настройках CSS."
+
+#: app/src/components/app/search/layout-fix-dialog.vue:630
+msgid "Failed to save CSS fix"
+msgstr "Не удалось сохранить исправление CSS."
+
+#: app/src/components/app/search/layout-fix-dialog.vue:686 app/src/components/app/search/layout-fix-dialog.vue:821
+msgid "Please describe the layout issue"
+msgstr "Пожалуйста, опишите проблему с компоновкой."
+
+#: app/src/components/app/search/layout-fix-dialog.vue:691
+msgid "Capturing screenshot..."
+msgstr "Создание скриншота..."
+
+#: app/src/components/app/search/layout-fix-dialog.vue:696
+msgid "Extracting HTML..."
+msgstr "Извлечение HTML..."
+
+#: app/src/components/app/search/layout-fix-dialog.vue:701
+msgid "Analyzing layout issues..."
+msgstr "Анализ проблем планировки..."
+
+#: app/src/components/app/search/layout-fix-dialog.vue:722
+msgid "Failed to fix layout and styling. Please try again later."
+msgstr "Не удалось исправить макет и стили. Пожалуйста, попробуйте позже."
+
+#: app/src/components/app/search/layout-fix-dialog.vue:728
+msgid "Daily limit exceeded. Please try again tomorrow."
+msgstr "Превышен дневной лимит. Пожалуйста, попробуйте завтра."
+
+#: app/src/components/app/search/layout-fix-dialog.vue:733
+msgid "Invalid request. Please check your input."
+msgstr "Неверный запрос. Пожалуйста, проверьте введенные данные."
+
+#: app/src/components/app/search/layout-fix-dialog.vue:738
+msgid ""
+"Could not find wpbody element. Please ensure you are on a WordPress admin "
+"page."
+msgstr ""
+"Не удалось найти элемент wpbody. Пожалуйста, убедитесь, что вы находитесь "
+"на странице административной панели WordPress."
+
+#: app/src/components/app/search/layout-fix-dialog.vue:773
+msgid "Layout fix removed"
+msgstr "Исправление макета удалено"
+
+#: app/src/components/app/search/layout-fix-dialog.vue:789
+msgid "CSS copied to clipboard"
+msgstr "CSS скопирован в буфер обмена"
+
+#: app/src/components/app/search/layout-fix-dialog.vue:795
+msgid "Failed to copy CSS"
+msgstr "Не удалось скопировать CSS."
+
+#: app/src/components/app/search/layout-fix-dialog.vue:924
+msgid "Layout and Styling"
+msgstr "Планировка и оформление"
+
+#: app/src/components/app/search/layout-fix-dialog.vue:926
+msgid "requests remaining"
+msgstr "оставшиеся запросы"
+
+#: app/src/components/app/search/layout-fix-dialog.vue:945
+msgid "Describe the layout or styling issue"
+msgstr "Опишите проблему с макетом или стилем."
+
+#: app/src/components/app/search/layout-fix-dialog.vue:950
+msgid "e.g., The header is overlapping with the content area"
+msgstr "Например, заголовок перекрывает область контента."
+
+#: app/src/components/app/search/layout-fix-dialog.vue:962
+msgid ""
+"A screenshot of the page will be captured and analyzed. The AI will provide "
+"CSS fixes based on your description."
+msgstr ""
+"Будет сделан и проанализирован скриншот страницы. Искусственный интеллект "
+"предложит исправления CSS на основе вашего описания."
+
+#: app/src/components/app/search/layout-fix-dialog.vue:983
+msgid "Fix Layout"
+msgstr "Исправить макет"
+
+#: app/src/components/app/search/layout-fix-dialog.vue:1027
+msgid "Layout and styling fix applied successfully!"
+msgstr "Исправление макета и стиля успешно применено!"
+
+#: app/src/components/app/search/layout-fix-dialog.vue:1031
+msgid "Would you like to keep this fix permanently or remove it?"
+msgstr "Вы хотите сохранить это исправление навсегда или удалить его?"
+
+#: app/src/components/app/search/layout-fix-dialog.vue:1048
+msgid "Hide Applied CSS"
+msgstr "Скрыть примененные CSS-стили"
+
+#: app/src/components/app/search/layout-fix-dialog.vue:1049
+msgid "View Applied CSS"
+msgstr "Просмотреть примененные CSS"
+
+#: app/src/components/app/search/layout-fix-dialog.vue:1060
+msgid "Copy CSS"
+msgstr "Скопировать CSS"
+
+#: app/src/components/app/search/layout-fix-dialog.vue:1080 app/src/components/app/search/layout-fix-dialog.vue:1109
+msgid "Keep Fix"
+msgstr "Keep Fix"
+
+#: app/src/components/app/search/layout-fix-dialog.vue:1081
+msgid "Saves to custom CSS settings for persistence."
+msgstr ""
+"Сохраняет данные в пользовательские настройки CSS для обеспечения "
+"постоянного сохранения."
+
+#: app/src/components/app/search/layout-fix-dialog.vue:1087
+msgid "Remove Fix"
+msgstr "Удалить исправление"
+
+#: app/src/components/app/search/layout-fix-dialog.vue:1088
+msgid "Removes the fix immediately."
+msgstr "Немедленно удаляет исправление."
+
+#: app/src/components/app/search/layout-fix-dialog.vue:1098
+msgid "Remove"
+msgstr "Удалять"
+
+#: app/src/components/app/search/layout-fix-dialog.vue:1132
+msgid "Failed to fix layout and styling"
+msgstr "Не удалось исправить макет и стиль."
+
+#: app/src/components/app/search/layout-fix-dialog.vue:1140
+#: app/src/components/app/search/components/EmptyStateInitial.vue:105
+msgid "Close"
+msgstr "Закрывать"
+
+#: app/src/pages/media/src/media-edit-view.vue:76
+#: app/src/pages/media/src/media-details-view.vue:209
+msgid "Media item not found"
+msgstr "Медиафайл не найден"
+
+#: app/src/pages/media/src/media-edit-view.vue:88
+#: app/src/pages/media/src/media-details-view.vue:581
+msgid "Only images can be edited"
+msgstr "Редактировать можно только изображения."
+
+#: app/src/pages/media/src/media-edit-view.vue:138
+msgid "Image saved successfully"
+msgstr "Изображение успешно сохранено."
+
+#: app/src/pages/media/src/media-edit-view.vue:151
+msgid "Failed to save image"
+msgstr "Не удалось сохранить изображение"
+
+#: app/src/pages/media/src/media-edit-view.vue:221
+msgid "Back"
+msgstr "Назад"
+
+#: app/src/pages/media/src/media-list-view.vue:452
+msgid "1 item selected"
+msgstr "Выбран 1 товар"
+
+#: app/src/pages/media/src/media-list-view.vue:453
+msgid "%d items selected"
+msgstr "%d выбранных элементов"
+
+#: app/src/pages/media/src/media-list-view.vue:660
+msgid "Files duplicated"
+msgstr "Файлы дублированы"
+
+#: app/src/pages/media/src/media-list-view.vue:666
+msgid "Error duplicating files"
+msgstr "Ошибка при дублировании файлов"
+
+#: app/src/pages/media/src/media-list-view.vue:747
+msgid "Media updated successfully"
+msgstr "Медиафайлы успешно обновлены."
+
+#: app/src/pages/media/src/media-list-view.vue:753
+msgid "Error updating media"
+msgstr "Ошибка обновления медиафайлов."
+
+#: app/src/pages/media/src/media-list-view.vue:795
+msgid "Download started"
+msgstr "Загрузка началась."
+
+#: app/src/pages/media/src/media-list-view.vue:816
+msgid "Files downloaded"
+msgstr "Загруженные файлы"
+
+#: app/src/pages/media/src/media-list-view.vue:823
+msgid "Error downloading files"
+msgstr "Ошибка при загрузке файлов"
+
+#: app/src/pages/media/src/media-list-view.vue:840
+msgid "this file"
+msgstr "этот файл"
+
+#: app/src/pages/media/src/media-list-view.vue:841
+msgid "these %d files"
+msgstr "эти %d файлы"
+
+#: app/src/pages/media/src/media-list-view.vue:845
+msgid "Are you sure?"
+msgstr "Вы уверены?"
+
+#: app/src/pages/media/src/media-list-view.vue:846
+msgid "Are you sure you want to delete %s? This action cannot be undone."
+msgstr "Вы уверены, что хотите удалить %s? Это действие необратимо."
+
+#: app/src/pages/media/src/media-list-view.vue:850
+msgid "Yes, delete"
+msgstr "Да, удалить"
+
+#: app/src/pages/media/src/media-list-view.vue:884
+msgid "Media deleted successfully!"
+msgstr "Медиафайлы успешно удалены!"
+
+#: app/src/pages/media/src/media-list-view.vue:892
+#: app/src/pages/media/src/media-details-view.vue:356
+msgid "Delete failed"
+msgstr "Удаление не удалось."
+
+#: app/src/pages/media/src/media-list-view.vue:1106 app/src/pages/media/src/media-list-view.vue:1132
+msgid "Upload failed"
+msgstr "Загрузка не удалась."
+
+#: app/src/pages/media/src/media-list-view.vue:1124
+msgid "Files uploaded successfully!"
+msgstr "Файлы успешно загружены!"
+
+#: app/src/pages/media/src/media-list-view.vue:1125
+msgid "%d file(s) uploaded"
+msgstr "%d файлов загружено"
+
+#: app/src/pages/media/src/media-list-view.vue:1427
+msgid "Search media..."
+msgstr "Поиск в СМИ..."
+
+#: app/src/pages/media/src/media-list-view.vue:1459
+msgid "Images"
+msgstr "Изображения"
+
+#: app/src/pages/media/src/media-list-view.vue:1471
+msgid "Videos"
+msgstr "Видео"
+
+#: app/src/pages/media/src/media-list-view.vue:1483
+msgid "Docs"
+msgstr "Документы"
+
+#: app/src/pages/media/src/media-list-view.vue:1495
+msgid "Fonts"
+msgstr "Шрифты"
+
+#: app/src/pages/media/src/media-list-view.vue:1517
+msgid "Grid View"
+msgstr "Сеточный вид"
+
+#: app/src/pages/media/src/media-list-view.vue:1518
+msgid "List View"
+msgstr "Просмотр списка"
+
+#: app/src/pages/media/src/media-list-view.vue:1562
+msgid "Sort By"
+msgstr "Сортировать по"
+
+#: app/src/pages/media/src/media-list-view.vue:1590
+msgid "Date Range"
+msgstr "Диапазон дат"
+
+#: app/src/pages/media/src/media-list-view.vue:1640
+#: app/src/components/utility/tag-input/index.vue:494
+msgid "No tags available"
+msgstr "Метки отсутствуют"
+
+#: app/src/pages/media/src/media-list-view.vue:1645
+msgid "Options"
+msgstr "Параметры"
+
+#: app/src/pages/media/src/media-list-view.vue:1660
+msgid "Unused Media Only"
+msgstr "Только неиспользованные носители"
+
+#: app/src/pages/media/src/media-list-view.vue:1676
+msgid "Clear All Filters"
+msgstr "Очистить все фильтры"
+
+#: app/src/pages/media/src/media-list-view.vue:1716
+msgid "Drop files to upload"
+msgstr "Перетащите файлы для загрузки"
+
+#: app/src/pages/media/src/media-list-view.vue:1717
+msgid "Release to start uploading"
+msgstr "Нажмите, чтобы начать загрузку."
+
+#: app/src/pages/media/src/media-list-view.vue:1732
+msgid "Loading media..."
+msgstr "Загрузка медиафайлов..."
+
+#: app/src/pages/media/src/media-list-view.vue:1743
+msgid "No media found"
+msgstr "Медиафайлы не найдены"
+
+#: app/src/pages/media/src/media-list-view.vue:1744
+msgid "No media files"
+msgstr "Нет медиафайлов"
+
+#: app/src/pages/media/src/media-list-view.vue:1750
+msgid "Clear filters"
+msgstr "Очистить фильтры"
+
+#: app/src/pages/media/src/media-list-view.vue:1789
+msgid "Select a media file from the list to view details and edit properties."
+msgstr ""
+"Выберите медиафайл из списка, чтобы просмотреть его подробные сведения и "
+"отредактировать свойства."
+
+#: app/src/pages/media/src/media-list-view.vue:1836
+msgid "View"
+msgstr "Вид"
+
+#: app/src/pages/media/src/media-list-view.vue:1846
+msgid "Bulk Edit"
+msgstr "Массовое редактирование"
+
+#: app/src/pages/media/src/media-list-view.vue:1857
+msgid "Download"
+msgstr "Скачать"
+
+#: app/src/pages/media/src/media-list-view.vue:1868
+msgid "Duplicate"
+msgstr "Дубликат"
+
+#: app/src/pages/media/src/media-list-view.vue:1933
+msgid "Bulk Edit Media"
+msgstr "Массовое редактирование медиафайлов"
+
+#: app/src/pages/media/src/media-list-view.vue:1940
+msgid "Editing 1 item. Leave fields empty to keep existing values."
+msgstr ""
+"Редактируется 1 элемент. Оставьте поля пустыми, чтобы сохранить "
+"существующие значения."
+
+#: app/src/pages/media/src/media-list-view.vue:1944
+msgid "Editing %d items. Leave fields empty to keep existing values."
+msgstr ""
+"Редактирование %d элементов. Оставьте поля пустыми, чтобы сохранить "
+"существующие значения."
+
+#: app/src/pages/media/src/media-list-view.vue:1950
+#: app/src/pages/media/src/media-details-view.vue:934
+msgid "Title"
+msgstr "Заголовок"
+
+#: app/src/pages/media/src/media-list-view.vue:1954 app/src/pages/media/src/media-list-view.vue:1962 app/src/pages/media/src/media-list-view.vue:1970 app/src/pages/media/src/media-list-view.vue:1979
+msgid "Leave empty to keep existing"
+msgstr "Оставьте пустым, чтобы продолжать существовать."
+
+#: app/src/pages/media/src/media-list-view.vue:1958
+#: app/src/pages/media/src/media-details-view.vue:943
+msgid "Alt Text"
+msgstr "Альтернативный текст"
+
+#: app/src/pages/media/src/media-list-view.vue:1966
+#: app/src/pages/media/src/media-details-view.vue:954
+msgid "Caption"
+msgstr "Подпись"
+
+#: app/src/pages/media/src/media-list-view.vue:1975
+msgid "Description"
+msgstr "Описание"
+
+#: app/src/pages/media/src/media-details-view.vue:301
+msgid "Saved"
+msgstr "Сохранено"
+
+#: app/src/pages/media/src/media-details-view.vue:308
+msgid "Save failed"
+msgstr "Сохранение не удалось"
+
+#: app/src/pages/media/src/media-details-view.vue:330
+msgid "Delete file"
+msgstr "Удалить файл"
+
+#: app/src/pages/media/src/media-details-view.vue:331
+msgid "This will permantantly delete the file. Proceed?"
+msgstr "Это навсегда удалит файл. Продолжить?"
+
+#: app/src/pages/media/src/media-details-view.vue:349
+msgid "Deleted"
+msgstr "Удалено"
+
+#: app/src/pages/media/src/media-details-view.vue:411
+msgid "Copy failed"
+msgstr "Копирование не удалось"
+
+#: app/src/pages/media/src/media-details-view.vue:443
+msgid "File replaced successfully"
+msgstr "Файл успешно заменен."
+
+#: app/src/pages/media/src/media-details-view.vue:457
+msgid "File replacement failed"
+msgstr "Замена файла не удалась."
+
+#: app/src/pages/media/src/media-details-view.vue:517
+msgid "Only images can be optimized"
+msgstr "Оптимизировать можно только изображения."
+
+#: app/src/pages/media/src/media-details-view.vue:524
+msgid "Optimise image"
+msgstr "Оптимизировать изображение"
+
+#: app/src/pages/media/src/media-details-view.vue:525
+msgid "This will permantantly optimise the image and convert to webp format."
+msgstr ""
+"Это позволит навсегда оптимизировать изображение и преобразовать его в "
+"формат webp."
+
+#: app/src/pages/media/src/media-details-view.vue:529
+msgid "Convert"
+msgstr "Преобразовать"
+
+#: app/src/pages/media/src/media-details-view.vue:559
+msgid "Image optimized"
+msgstr "Изображение оптимизировано"
+
+#: app/src/pages/media/src/media-details-view.vue:569
+msgid "Optimization failed"
+msgstr "Оптимизация не удалась"
+
+#: app/src/pages/media/src/media-details-view.vue:659
+msgid "Failed to add tag"
+msgstr "Не удалось добавить тег"
+
+#: app/src/pages/media/src/media-details-view.vue:691
+msgid "Failed to remove tag"
+msgstr "Не удалось удалить метку"
+
+#: app/src/pages/media/src/media-details-view.vue:719
+msgid "Tag created and added"
+msgstr "Тег создан и добавлен."
+
+#: app/src/pages/media/src/media-details-view.vue:725
+msgid "Failed to create tag"
+msgstr "Не удалось создать тег"
+
+#: app/src/pages/media/src/media-details-view.vue:768
+msgid "Failed to update tags"
+msgstr "Не удалось обновить теги."
+
+#: app/src/pages/media/src/media-details-view.vue:841
+msgid "Drop file to replace"
+msgstr "Перетащите файл для замены."
+
+#: app/src/pages/media/src/media-details-view.vue:842
+msgid "Keep the same ID and regenerate thumbnails"
+msgstr "Сохраните тот же идентификатор и заново сгенерируйте миниатюры."
+
+#: app/src/pages/media/src/media-details-view.vue:853
+msgid "Replacing file..."
+msgstr "Замена файла..."
+
+#: app/src/pages/media/src/media-details-view.vue:854
+msgid "Regenerating thumbnails"
+msgstr "Восстановление миниатюр"
+
+#: app/src/pages/media/src/media-details-view.vue:865
+msgid "Optimizing image..."
+msgstr "Оптимизация изображения..."
+
+#: app/src/pages/media/src/media-details-view.vue:883
+msgid "File replaced successfully!"
+msgstr "Файл успешно заменен!"
+
+#: app/src/pages/media/src/media-details-view.vue:884
+msgid "Thumbnails regenerated"
+msgstr "Восстановлены миниатюры"
+
+#: app/src/pages/media/src/media-details-view.vue:903
+msgid "Your browser does not support the video tag."
+msgstr "Ваш браузер не поддерживает тег video."
+
+#: app/src/pages/media/src/media-details-view.vue:927
+msgid "Uploaded"
+msgstr "Загружено"
+
+#: app/src/pages/media/src/media-details-view.vue:939
+msgid "Untitled"
+msgstr "Без названия"
+
+#: app/src/pages/media/src/media-details-view.vue:949
+msgid "Describe the image for screen readers"
+msgstr "Опишите изображение для программ чтения с экрана."
+
+#: app/src/pages/media/src/media-details-view.vue:959
+msgid "Add a caption"
+msgstr "Добавить подпись"
+
+#: app/src/pages/media/src/media-details-view.vue:972
+msgid "Add tags..."
+msgstr "Добавить теги..."
+
+#: app/src/pages/media/src/media-details-view.vue:978
+msgid "File URL"
+msgstr "URL файла"
+
+#: app/src/pages/media/src/media-details-view.vue:987
+msgid "Actions"
+msgstr "Действия"
+
+#: app/src/pages/media/src/media-details-view.vue:1003
+msgid "Optimizing..."
+msgstr "Оптимизация..."
+
+#: app/src/pages/media/src/media-details-view.vue:1004
+msgid "Optimize Image"
+msgstr "Оптимизировать изображение"
+
+#: app/src/pages/media/src/media-details-view.vue:1027
+msgid "Replacing..."
+msgstr "Замена..."
+
+#: app/src/pages/media/src/media-details-view.vue:1028
+msgid "Replace Image"
+msgstr "Заменить изображение"
+
+#: app/src/pages/media/src/media-details-view.vue:1068
+msgid "Filename"
+msgstr "Имя файла"
+
+#: app/src/pages/media/src/media-details-view.vue:1072
+msgid "ID"
+msgstr "ИДЕНТИФИКАТОР"
+
+#: app/src/pages/media/src/media-details-view.vue:1080
+msgid "File size"
+msgstr "размер файла"
+
+#: app/src/pages/media/src/media-details-view.vue:1086
+msgid "Used In"
+msgstr "Используется в"
+
+#: app/src/pages/media/src/media-details-view.vue:1095
+msgid "This media is not currently used anywhere."
+msgstr "Данный медиаконтент в настоящее время нигде не используется."
+
+#: app/src/pages/media/src/media-details-view.vue:1118
+msgid "Post"
+msgstr "Почта"
+
+#: app/src/pages/media/src/media-details-view.vue:1121
+msgid "Widget"
+msgstr "Виджет"
+
+#: app/src/pages/media/src/media-details-view.vue:1125
+#: app/src/components/app/search/state/constants.js:92
+msgid "Draft"
+msgstr "Черновик"
+
+#: app/src/pages/media/src/media-details-view.vue:1135
+msgid "Edit"
+msgstr "Редактировать"
+
+#: app/src/components/app/search/state/constants.js:26
+msgid "Search posts"
+msgstr "Поиск сообщений"
+
+#: app/src/components/app/search/state/constants.js:33
+msgid "Find users"
+msgstr "Найти пользователей"
+
+#: app/src/components/app/search/state/constants.js:40
+msgid "Quick actions"
+msgstr "Быстрые действия"
+
+#: app/src/components/app/search/state/constants.js:47
+msgid "View commands"
+msgstr "Просмотр команд"
+
+#: app/src/components/app/search/state/constants.js:93
+msgid "Pending"
+msgstr "В ожидании"
+
+#: app/src/components/app/search/state/constants.js:94
+msgid "Private"
+msgstr "Частный"
+
+#: app/src/components/app/search/components/SearchOnboarding.vue:55
+msgid "Welcome to Global Search"
+msgstr "Добро пожаловать в Global Search!"
+
+#: app/src/components/app/search/components/SearchOnboarding.vue:56
+msgid ""
+"Quickly find posts, pages, users, and more. Here are some tips to get "
+"started:"
+msgstr ""
+"Быстро находите публикации, страницы, пользователей и многое другое. Вот "
+"несколько советов для начала:"
+
+#: app/src/components/app/search/components/SearchOnboarding.vue:101
+msgid "Press"
+msgstr "Нажимать"
+
+#: app/src/components/app/search/components/SearchOnboarding.vue:103
+msgid "to open search"
+msgstr "открыть поиск"
+
+#: app/src/components/app/search/components/SearchOnboarding.vue:110
+msgid "Got it, thanks!"
+msgstr "Понял, спасибо!"
+
+#: app/src/components/app/search/components/SearchInput.vue:60
+msgid "Search posts, pages, categories, users..."
+msgstr "Поиск по записям, страницам, категориям, пользователям..."
+
+#: app/src/components/app/search/components/SearchHistory.vue:44
+msgid "Recent Searches"
+msgstr "Недавние поиски"
+
+#: app/src/components/app/search/components/SearchHistory.vue:48
+msgid "Clear"
+msgstr "Прозрачный"
+
+#: app/src/components/app/search/components/EmptyStateInitial.vue:64
+msgid "Start searching"
+msgstr "Начать поиск"
+
+#: app/src/components/app/search/components/EmptyStateInitial.vue:65
+msgid "Search for posts, pages, users, categories, or use quick actions."
+msgstr ""
+"Ищите записи, страницы, пользователей, категории или используйте быстрые "
+"действия."
+
+#: app/src/components/app/search/components/EmptyStateInitial.vue:70
+msgid "Try these:"
+msgstr "Попробуйте вот это:"
+
+#: app/src/components/app/search/components/EmptyStateInitial.vue:93
+msgid "Keyboard Shortcuts"
+msgstr "Клавиатурные сочетания"
+
+#: app/src/components/app/search/components/EmptyStateInitial.vue:109
+msgid "Open"
+msgstr "Открыть"
+
+#: app/src/components/app/search/components/EmptyStateInitial.vue:118
+msgid "Show tutorial again"
+msgstr "Показать обучающее видео еще раз"
+
+#: app/src/components/app/search/components/CommandHelp.vue:20
+msgid "Command Syntax"
+msgstr "Синтаксис команд"
+
+#: app/src/components/app/search/components/CommandHelp.vue:24
+msgid "Search only posts"
+msgstr "Поиск только сообщений"
+
+#: app/src/components/app/search/components/CommandHelp.vue:28
+msgid "Search only pages"
+msgstr "Поиск только по страницам"
+
+#: app/src/components/app/search/components/CommandHelp.vue:32
+msgid "Search only users"
+msgstr "Поиск только пользователей"
+
+#: app/src/components/app/search/components/CommandHelp.vue:36
+msgid "Search only categories"
+msgstr "Поиск только по категориям"
+
+#: app/src/components/app/search/components/CommandHelp.vue:40
+msgid "Show only quick actions"
+msgstr "Показывать только быстрые действия"
+
+#: app/src/components/app/search/components/EmptyStateNoResults.vue:37
+msgid "No results found"
+msgstr "Результаты не найдены"
+
+#: app/src/components/app/search/components/EmptyStateNoResults.vue:38
+msgid "Try a different search term or use command syntax to filter results."
+msgstr ""
+"Попробуйте другой поисковый запрос или используйте синтаксис команд для "
+"фильтрации результатов."
+
+#: app/src/components/app/search/components/EmptyStateNoResults.vue:46
+msgid "View Commands"
+msgstr "Просмотр команд"
+
+#: app/src/components/app/search/components/EmptyStateNoResults.vue:50
+msgid "Clear Search"
+msgstr "Очистить поиск"
+
+#: app/src/components/app/search/components/RecentlyAccessed.vue:46
+msgid "Recently Accessed"
+msgstr "Недавно просмотренные"
+
+#: app/src/components/app/search/components/FrequentlyUsed.vue:46
+msgid "Frequently Used"
+msgstr "Часто используемый"
+
+#: app/src/components/app/search/components/KeyboardShortcuts.vue:30
+msgid "to navigate"
+msgstr "для навигации"
+
+#: app/src/components/app/search/components/KeyboardShortcuts.vue:36
+msgid "to select"
+msgstr "выбрать"
+
+#: app/src/components/app/search/components/KeyboardShortcuts.vue:40
+msgid "to close"
+msgstr "закрыть"
+
+#: app/src/components/app/search/composables/useMagicDarkMode.js:85
+msgid "Magic dark mode enabled for this page"
+msgstr "Для этой страницы включен волшебный темный режим."
+
+#: app/src/components/app/search/composables/useMagicDarkMode.js:98
+msgid "Failed to enable magic dark mode"
+msgstr "Не удалось включить волшебный темный режим."
+
+#: app/src/components/app/search/composables/useMagicDarkMode.js:140
+msgid "Magic dark mode disabled for this page"
+msgstr "Для этой страницы отключен волшебный темный режим."
+
+#: app/src/components/app/search/composables/useMagicDarkMode.js:153
+msgid "Failed to disable magic dark mode"
+msgstr "Не удалось отключить волшебный темный режим."
+
+#: app/src/components/utility/image-editor/index.vue:248
+msgid "Free"
+msgstr "Бесплатно"
+
+#: app/src/components/utility/image-editor/index.vue:1446
+msgid "Loading image..."
+msgstr "Загрузка изображения..."
+
+#: app/src/components/utility/image-editor/index.vue:1479
+msgid "Apply"
+msgstr "Применять"
+
+#: app/src/components/utility/image-editor/index.vue:1498
+msgid "Image Editor"
+msgstr "Редактор изображений"
+
+#: app/src/components/utility/image-editor/index.vue:1554
+msgid "Luminosity"
+msgstr "Светимость"
+
+#: app/src/components/utility/image-editor/index.vue:1566
+msgid "Brightness"
+msgstr "Яркость"
+
+#: app/src/components/utility/image-editor/index.vue:1587
+msgid "Exposure"
+msgstr "Контакт"
+
+#: app/src/components/utility/image-editor/index.vue:1608
+msgid "Highlights"
+msgstr "Основные моменты"
+
+#: app/src/components/utility/image-editor/index.vue:1629
+msgid "Shadows"
+msgstr "Тени"
+
+#: app/src/components/utility/image-editor/index.vue:1650
+msgid "Contrast"
+msgstr "Контраст"
+
+#: app/src/components/utility/image-editor/index.vue:1677
+msgid "Color"
+msgstr "Цвет"
+
+#: app/src/components/utility/image-editor/index.vue:1687
+msgid "Saturation"
+msgstr "Насыщенность"
+
+#: app/src/components/utility/image-editor/index.vue:1708
+msgid "Vibrance"
+msgstr "Вибрация"
+
+#: app/src/components/utility/image-editor/index.vue:1729
+msgid "Hue"
+msgstr "Оттенок"
+
+#: app/src/components/utility/image-editor/index.vue:1750
+msgid "Temperature"
+msgstr "Температура"
+
+#: app/src/components/utility/image-editor/index.vue:1768
+msgid "Cool ← → Warm"
+msgstr "Прохладно ← → Тепло"
+
+#: app/src/components/utility/image-editor/index.vue:1772
+msgid "Tint"
+msgstr "Тонировка"
+
+#: app/src/components/utility/image-editor/index.vue:1790
+msgid "Green ← → Magenta"
+msgstr "Зеленый ← → Пурпурный"
+
+#: app/src/components/utility/image-editor/index.vue:1800
+msgid "Effects"
+msgstr "Эффекты"
+
+#: app/src/components/utility/image-editor/index.vue:1810
+msgid "Sharpness"
+msgstr "Острота"
+
+#: app/src/components/utility/image-editor/index.vue:1828
+msgid "Negative = blur, positive = sharpen"
+msgstr ""
+"Отрицательное значение = размытие, положительное значение = повышение "
+"резкости."
+
+#: app/src/components/utility/image-editor/index.vue:1832
+msgid "Blur"
+msgstr "Размытие"
+
+#: app/src/components/utility/image-editor/index.vue:1853
+msgid "Grain"
+msgstr "Зерно"
+
+#: app/src/components/utility/image-editor/index.vue:1874
+msgid "Vignette"
+msgstr "Виньетка"
+
+#: app/src/components/utility/image-editor/index.vue:1901
+msgid "Crop"
+msgstr "Обрезать"
+
+#: app/src/components/utility/image-editor/index.vue:1909
+msgid "Click and drag on the image to select crop area"
+msgstr "Щелкните и перетащите курсор по изображению, чтобы выбрать область обрезки."
+
+#: app/src/components/utility/image-editor/index.vue:1914
+msgid "Aspect Ratio"
+msgstr "Соотношение сторон"
+
+#: app/src/components/utility/image-editor/index.vue:1939
+msgid "Start Crop"
+msgstr "Начало посева"
+
+#: app/src/components/utility/image-editor/index.vue:1951
+msgid "Resize"
+msgstr "Изменить размер"
+
+#: app/src/components/utility/image-editor/index.vue:1968
+msgid "Lock aspect ratio"
+msgstr "Соотношение сторон замка"
+
+#: app/src/components/utility/image-editor/index.vue:1972
+msgid "Width"
+msgstr "Ширина"
+
+#: app/src/components/utility/image-editor/index.vue:1992
+msgid "Height"
+msgstr "Высота"
+
+#: app/src/components/utility/image-editor/index.vue:2016
+msgid "Apply Resize"
+msgstr "Изменить размер"
+
+#: app/src/components/utility/image-editor/index.vue:2028
+msgid "Transform"
+msgstr "Трансформация"
+
+#: app/src/components/utility/image-editor/index.vue:2049
+msgid "Left"
+msgstr "Левый"
+
+#: app/src/components/utility/image-editor/index.vue:2063
+msgid "Right"
+msgstr "Верно"
+
+#: app/src/components/utility/image-editor/index.vue:2080
+msgid "Flip H"
+msgstr "Перевернуть H"
+
+#: app/src/components/utility/image-editor/index.vue:2097
+msgid "Flip V"
+msgstr "Флип V"
+
+#: app/src/components/utility/image-editor/index.vue:2108
+msgid "Reset"
+msgstr "Перезагрузить"
+
+#: app/src/components/utility/image-editor/index.vue:2123
+msgid "Reset changes"
+msgstr "Сбросить изменения"
+
+#: app/src/pages/media/src/media-list.vue:413
+msgid "Loading more..."
+msgstr "Загрузка дополнительных данных..."
+
+#: app/src/pages/media/src/media-list.vue:416
+msgid "No more items"
+msgstr "Больше товаров нет."
+
+#: app/src/components/app/search/utils/formatRelativeDate.js:20
+msgid "minute"
+msgstr "минута"
+
+#: app/src/components/app/search/utils/formatRelativeDate.js:20
+msgid "minutes"
+msgstr "минут"
+
+#: app/src/components/app/search/utils/formatRelativeDate.js:21 app/src/components/app/search/utils/formatRelativeDate.js:25 app/src/components/app/search/utils/formatRelativeDate.js:29
+msgid "ago"
+msgstr "назад"
+
+#: app/src/components/app/search/utils/formatRelativeDate.js:24
+msgid "hour"
+msgstr "час"
+
+#: app/src/components/app/search/utils/formatRelativeDate.js:24
+msgid "hours"
+msgstr "часы"
+
+#: app/src/components/app/search/utils/formatRelativeDate.js:28
+msgid "day"
+msgstr "день"
+
+#: app/src/components/app/search/utils/formatRelativeDate.js:28
+msgid "days"
+msgstr "дни"
+
+#: app/src/components/utility/tag-input/index.vue:406
+msgid "Remove tag"
+msgstr "Удалить тег"
+
+#: app/src/components/utility/tag-input/index.vue:490
+msgid "Create tag"
+msgstr "Создать тег"
+
+#: admin/src/Rest/GoogleAnalyticsOAuth.php:140
+msgid "JSON must be a service account key (type should be \"service_account"
+msgstr ""
+"JSON должен представлять собой ключ учетной записи службы (тип должен быть "
+"\"service_account\")."
+
+#: admin/src/Rest/PostsTables.php:85
+msgid "You must be logged in to access this page."
+msgstr "Для доступа к этой странице необходимо войти в систему."
+
+#: admin/src/Rest/PostsTables.php:104
+msgid "Invalid request. Please refresh the page and try again."
+msgstr "Неверный запрос. Пожалуйста, обновите страницу и попробуйте снова."
+
+#: app/src/components/utility/multiselect-roles-and-users/index.vue:203
+msgid "Search"
+msgstr "Поиск"

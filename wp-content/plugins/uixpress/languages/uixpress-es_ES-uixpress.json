@@ -1,0 +1,2652 @@
+{
+  "domain": "uixpress",
+  "locale_data": {
+    "uixpress": {
+      "": {
+        "domain": "uixpress",
+        "lang": "es_ES",
+        "plural-forms": "nplurals=2; plural=(n != 1);"
+      },
+      "Every 30 Seconds": [
+        "Cada 30 segundos"
+      ],
+      "Every 30 Minutes": [
+        "Cada 30 minutos"
+      ],
+      "Google Analytics 4": [
+        "Google Analytics 4"
+      ],
+      "Could not authenticate with Google Analytics. Please check your service account credentials.": [
+        "No se pudo autenticar con Google Analytics. Verifique las credenciales de su cuenta de servicio."
+      ],
+      "Permission denied: The service account does not have access to this Google Analytics property. Please add the service account email to your GA4 property with Viewer access. Go to Google Analytics → Admin → Property Access Management and add the service account email.": [
+        "Permiso denegado: La cuenta de servicio no tiene acceso a esta propiedad de Google Analytics. Agregue el correo electrónico de la cuenta de servicio a su propiedad de GA4 con acceso de Visor. Vaya a Google Analytics → Administrador → Gestión de acceso a la propiedad y agregue el correo electrónico de la cuenta de servicio."
+      ],
+      "Authentication failed. The access token is invalid or expired. Please try reconnecting your Google Analytics account.": [
+        "Error de autenticación. El token de acceso no es válido o ha caducado. Intenta volver a conectar tu cuenta de Google Analytics."
+      ],
+      "The specified Google Analytics property was not found. Please check that the Property ID is correct.": [
+        "No se encontró la propiedad de Google Analytics especificada. Compruebe que el ID de la propiedad sea correcto."
+      ],
+      "Built-in Analytics": [
+        "Análisis integrado"
+      ],
+      "Unable to read SVG file for sanitization.": [
+        "No se puede leer el archivo SVG para su desinfección."
+      ],
+      "SVG file could not be sanitized. The file may be corrupted or contain invalid content.": [
+        "No se ha podido limpiar el archivo SVG. Es posible que el archivo esté dañado o contenga contenido no válido."
+      ],
+      "Unable to write sanitized SVG file.": [
+        "No se puede escribir el archivo SVG saneado."
+      ],
+      "Error sanitizing SVG file: %s": [
+        "Error al limpiar el archivo SVG: %s"
+      ],
+      "Activity Log": [
+        "Registro de actividades"
+      ],
+      "Welcome to WordPress": [
+        "Bienvenido a WordPress"
+      ],
+      "Welcome to your WordPress dashboard! This is your site management hub.": [
+        "¡Bienvenido a tu panel de control de WordPress! Este es el centro de gestión de tu sitio web."
+      ],
+      "Quick Draft": [
+        "Borrador rápido"
+      ],
+      "Create a new post quickly from here.": [
+        "Crea una nueva publicación rápidamente desde aquí."
+      ],
+      "Activity": [
+        "Actividad"
+      ],
+      "Recent activity on your site.": [
+        "Actividad reciente en tu sitio web."
+      ],
+      "Plugins": [
+        "Plugins"
+      ],
+      "Post Types": [
+        "Tipos de publicaciones"
+      ],
+      "Fields groups": [
+        "Grupos de campos"
+      ],
+      "Database Explorer": [
+        "Explorador de bases de datos"
+      ],
+      "Generate Dummy Analytics Data": [
+        "Generar datos analíticos ficticios"
+      ],
+      "Warning:": [
+        "Advertencia:"
+      ],
+      "This will delete all existing analytics data and replace it with dummy data for testing purposes.": [
+        "Esto eliminará todos los datos analíticos existentes y los sustituirá por datos ficticios con fines de prueba."
+      ],
+      "Generate Test Data": [
+        "Generar datos de prueba"
+      ],
+      "This tool will generate realistic dummy analytics data for the last 2 months to help you test the analytics features.": [
+        "Esta herramienta generará datos analíticos ficticios realistas de los últimos dos meses para ayudarte a probar las funciones analíticas."
+      ],
+      "Number of Months": [
+        "Número de Meses"
+      ],
+      "Select how many months of dummy data to generate.": [
+        "Seleccione cuántos meses de datos ficticios desea generar."
+      ],
+      "Generate Dummy Data": [
+        "Generar datos ficticios"
+      ],
+      "Are you sure? This will delete all existing analytics data.": [
+        "¿Está seguro? Esto eliminará todos los datos analíticos existentes."
+      ],
+      "What This Generates": [
+        "Lo que esto genera"
+      ],
+      "Page views from various devices (desktop, mobile, tablet)": [
+        "Páginas vistas desde distintos dispositivos (ordenador, móvil, tableta)"
+      ],
+      "Realistic browser and operating system data": [
+        "Datos realistas sobre navegadores y sistemas operativos"
+      ],
+      "Geographic data from different countries and cities": [
+        "Datos geográficos de diferentes países y ciudades"
+      ],
+      "Referrer data from search engines and social media": [
+        "Datos de referencia de motores de búsqueda y redes sociales"
+      ],
+      "Session tracking and unique visitor data": [
+        "Seguimiento de sesiones y datos de visitantes únicos"
+      ],
+      "Aggregated daily statistics": [
+        "Estadísticas diarias agregadas"
+      ],
+      "Current Analytics Status": [
+        "Estado actual de los análisis"
+      ],
+      "Analytics Enabled:": [
+        "Análisis habilitado:"
+      ],
+      "Tables Created:": [
+        "Tablas creadas:"
+      ],
+      "Analytics must be enabled in the UiXpress settings before generating dummy data.": [
+        "La analítica debe estar habilitada en la configuración de UiXpress antes de generar datos ficticios."
+      ],
+      "Security check failed.": [
+        "La comprobación de seguridad ha fallado."
+      ],
+      "You do not have sufficient permissions to access this page.": [
+        "No tienes suficientes permisos para acceder a esta página."
+      ],
+      "Analytics is not enabled. Please enable analytics in settings first.": [
+        "El análisis no está habilitado. Habilite primero el análisis en la configuración."
+      ],
+      "Invalid number of months. Please select between 1 and 12 months.": [
+        "Número de meses no válido. Seleccione entre 1 y 12 meses."
+      ],
+      "Error generating dummy data: ": [
+        "Error al generar datos ficticios: "
+      ],
+      "Menu Creator": [
+        "Creador de menús"
+      ],
+      "Add New Admin Menu": [
+        "Añadir Nuevo Menú de Administrador"
+      ],
+      "New Admin Menu": [
+        "Nuevo Menú de Administrador"
+      ],
+      "Edit Admin Menu": [
+        "Editar Menú de Administrador"
+      ],
+      "View Admin Menu": [
+        "Ver Menú de Administrador"
+      ],
+      "All Admin Menus": [
+        "Todos los Menús de Administrador"
+      ],
+      "Search Admin Menus": [
+        "Buscar Menú de Administrador"
+      ],
+      "No Admin Menus found.": [
+        "No Se Encontraron Menús de Administrador."
+      ],
+      "No Admin Menus found in Trash.": [
+        "No Se Encontraron Menús de Administrador en la Papelera."
+      ],
+      "Post type used for the uixpresss menus": [
+        "Tipo de publicación utilizado para los menús de uixpresss"
+      ],
+      "Role Editor": [
+        "Editor de perfiles"
+      ],
+      "Settings": [
+        "Ajustes"
+      ],
+      "Activity logger is not enabled.": [
+        "El registro de actividades no está habilitado."
+      ],
+      "Unknown": [
+        "Desconocido"
+      ],
+      "Log entry not found.": [
+        "Entrada de registro no encontrada."
+      ],
+      "Cleaned up %d old log entries.": [
+        "Se han limpiado %d entradas antiguas del registro."
+      ],
+      "Add New Admin Notice": [
+        "Añadir nuevo aviso administrativo"
+      ],
+      "Edit Admin Notice": [
+        "Editar aviso del administrador"
+      ],
+      "View Admin Notice": [
+        "Ver aviso del administrador"
+      ],
+      "All Admin Notices": [
+        "Todos los avisos administrativos"
+      ],
+      "Search Admin Notices": [
+        "Buscar avisos administrativos"
+      ],
+      "No Admin Notices found.": [
+        "No se han encontrado avisos administrativos."
+      ],
+      "Persistent admin notices for uiXpress.": [
+        "Notificaciones administrativas persistentes para uiXpress."
+      ],
+      "Admin Notices": [
+        "Avisos de administración"
+      ],
+      "Comments awaiting moderation": [
+        "Comentarios en espera de moderación"
+      ],
+      "Media": [
+        "Media"
+      ],
+      "User": [
+        "Usuario"
+      ],
+      "Invalid field group ID.": [
+        "ID de grupo de campos no válido."
+      ],
+      "Field group not found.": [
+        "Grupo de campo no encontrado."
+      ],
+      "Field group title is required.": [
+        "El título del grupo de campos es obligatorio."
+      ],
+      "Failed to save field group.": [
+        "No se pudo guardar el grupo de campos."
+      ],
+      "Field group created successfully.": [
+        "Grupo de campos creado exitosamente."
+      ],
+      "Field group updated successfully.": [
+        "Grupo de campos actualizado exitosamente."
+      ],
+      "Failed to delete field group.": [
+        "No se pudo eliminar el grupo de campos."
+      ],
+      "Field group deleted successfully.": [
+        "Grupo de campos eliminado exitosamente."
+      ],
+      "(Copy)": [
+        "(Copiar)"
+      ],
+      "Failed to duplicate field group.": [
+        "No se pudo duplicar el grupo de campos."
+      ],
+      "Field group duplicated successfully.": [
+        "El grupo de campos se duplicó correctamente."
+      ],
+      "Invalid import data. Expected an array of field groups.": [
+        "Datos de importación no válidos. Se esperaba una matriz de grupos de campos."
+      ],
+      "Invalid import mode. Use \"merge\" or \"replace\".": [
+        "Modo de importación no válido. Use \"combinar\" o \"reemplazar\"."
+      ],
+      "Field group at index %d is missing a title.": [
+        "Al grupo de campos en el índice %d le falta un título."
+      ],
+      "Failed to save imported field groups.": [
+        "No se pudieron guardar los grupos de campos importados."
+      ],
+      "Import completed successfully.": [
+        "Importación completada exitosamente."
+      ],
+      "Invalid or unauthorized function.": [
+        "Función no válida o no autorizada."
+      ],
+      "Field name is required.": [
+        "El nombre del campo es obligatorio."
+      ],
+      "Valid option page is required.": [
+        "Se requiere una página de opción válida."
+      ],
+      "Valid object ID is required.": [
+        "Se requiere un ID de objeto válido."
+      ],
+      "Helper function not available. Please ensure the plugin is properly initialized.": [
+        "Función auxiliar no disponible. Asegúrese de que el complemento esté inicializado correctamente."
+      ],
+      "(no title)": [
+        "(sin título)"
+      ],
+      "Add Row": [
+        "Agregar fila"
+      ],
+      "Default Template": [
+        "Plantilla predeterminada"
+      ],
+      "All": [
+        "Todo"
+      ],
+      "Standard": [
+        "Estándar"
+      ],
+      "No field groups are assigned to this option page. Create a field group and set its location to this option page.": [
+        "No hay ningún grupo de campos asignado a esta página de opciones. Cree un grupo de campos y ubique esta página de opciones."
+      ],
+      "Save Changes": [
+        "Guardar cambios"
+      ],
+      "You do not have permission to save these options.": [
+        "No tienes permiso para guardar estas opciones."
+      ],
+      "Invalid option page slug.": [
+        "Slug de página de opción no válida."
+      ],
+      "Option page not found.": [
+        "Página de opciones no encontrada."
+      ],
+      "Option page title is required.": [
+        "El título de la página de opciones es obligatorio."
+      ],
+      "An option page with this slug already exists.": [
+        "Ya existe una página de opciones con este slug."
+      ],
+      "Failed to save option page.": [
+        "No se pudo guardar la página de opciones."
+      ],
+      "Option page created successfully.": [
+        "Página de opciones creada exitosamente."
+      ],
+      "Option page updated successfully.": [
+        "Página de opciones actualizada exitosamente."
+      ],
+      "Failed to delete option page.": [
+        "No se pudo eliminar la página de opciones."
+      ],
+      "Option page deleted successfully.": [
+        "Página de opciones eliminada exitosamente."
+      ],
+      "Failed to duplicate option page.": [
+        "Error al duplicar la página de opciones."
+      ],
+      "Option page duplicated successfully.": [
+        "Página de opciones duplicada exitosamente."
+      ],
+      "Option Page Not Found": [
+        "Página de opciones no encontrada"
+      ],
+      "Tools": [
+        "Herramientas"
+      ],
+      "Appearance": [
+        "Apariencia"
+      ],
+      "Users": [
+        "Usuarios"
+      ],
+      "Comments": [
+        "Comentarios"
+      ],
+      "Posts": [
+        "Entradas"
+      ],
+      "Pages": [
+        "Páginas"
+      ],
+      "Dashboard": [
+        "Escritorio"
+      ],
+      "Administrator (manage_options)": [
+        "Administrador (administrar_opciones)"
+      ],
+      "Editor (edit_others_posts)": [
+        "Editor (edit_others_posts)"
+      ],
+      "Author (publish_posts)": [
+        "Autor (publicar_publicaciones)"
+      ],
+      "Contributor (edit_posts)": [
+        "Colaborador (edit_posts)"
+      ],
+      "Subscriber (read)": [
+        "Suscriptor (leer)"
+      ],
+      "Custom Fields": [
+        "Campos personalizados"
+      ],
+      "Invalid post type slug.": [
+        "Slug de tipo de publicación no válido."
+      ],
+      "Custom post type not found.": [
+        "No se encontró el tipo de publicación personalizada."
+      ],
+      "Post type slug is required.": [
+        "Se requiere el tipo de publicación slug."
+      ],
+      "Post type name is required.": [
+        "El nombre del tipo de publicación es obligatorio."
+      ],
+      "Invalid post type slug. Use only lowercase letters, numbers, and underscores. Maximum 20 characters.": [
+        "El tipo de publicación no es válido. Use solo letras minúsculas, números y guiones bajos. Máximo 20 caracteres."
+      ],
+      "This post type slug is reserved by WordPress.": [
+        "Este tipo de publicación está reservada por WordPress."
+      ],
+      "A custom post type with this slug already exists.": [
+        "Ya existe un tipo de publicación personalizada con este slug."
+      ],
+      "Failed to save custom post type.": [
+        "No se pudo guardar el tipo de publicación personalizada."
+      ],
+      "Custom post type created successfully.": [
+        "Tipo de publicación personalizada creada exitosamente."
+      ],
+      "Custom post type updated successfully.": [
+        "El tipo de publicación personalizada se actualizó correctamente."
+      ],
+      "Failed to delete custom post type.": [
+        "No se pudo eliminar el tipo de publicación personalizada."
+      ],
+      "Custom post type deleted successfully.": [
+        "Tipo de publicación personalizada eliminada exitosamente."
+      ],
+      "Invalid import data. Expected an array of post types.": [
+        "Datos de importación no válidos. Se esperaba una matriz de tipos de publicaciones."
+      ],
+      "Post type at index %d is missing required fields (slug or name).": [
+        "Al tipo de publicación en el índice %d le faltan los campos obligatorios (slug o nombre)."
+      ],
+      "Post type \"%s\" has an invalid slug format.": [
+        "El tipo de publicación \"%s\" tiene un formato de slug no válido."
+      ],
+      "Post type \"%s\" uses a reserved slug: %s": [
+        "El tipo de publicación \"%s\" utiliza un slug reservado: %s"
+      ],
+      "Import validation failed.": [
+        "Error en la validación de importación."
+      ],
+      "Failed to save imported post types.": [
+        "No se pudieron guardar los tipos de publicaciones importadas."
+      ],
+      "Add New": [
+        "Agregar nuevo"
+      ],
+      "Add New %s": [
+        "Agregar nuevo %s"
+      ],
+      "Edit %s": [
+        "Editar %s"
+      ],
+      "New %s": [
+        "Noticias"
+      ],
+      "View %s": [
+        "Ver %s"
+      ],
+      "Search %s": [
+        "Buscar %s"
+      ],
+      "No %s found": [
+        "No se encontraron %s"
+      ],
+      "No %s found in Trash": [
+        "No se encontró %s en la papelera"
+      ],
+      "Parent %s:": [
+        "Padres:"
+      ],
+      "All %s": [
+        "Todos los %s"
+      ],
+      "%s Archives": [
+        "%s Archivos"
+      ],
+      "%s Attributes": [
+        "%s Atributos"
+      ],
+      "Insert into %s": [
+        "Insertar en %s"
+      ],
+      "Uploaded to this %s": [
+        "Subido a este %s"
+      ],
+      "Featured image": [
+        "Imagen destacada"
+      ],
+      "Set featured image": [
+        "Establecer imagen destacada"
+      ],
+      "Remove featured image": [
+        "Eliminar imagen destacada"
+      ],
+      "Use as featured image": [
+        "Usar como imagen destacada"
+      ],
+      "Filter %s list": [
+        "Filtrar la lista %s"
+      ],
+      "%s list navigation": [
+        "%s navegación de lista"
+      ],
+      "%s list": [
+        "%s lista"
+      ],
+      "%s published.": [
+        "%s publicado."
+      ],
+      "%s published privately.": [
+        "%s publicado de forma privada."
+      ],
+      "%s reverted to draft.": [
+        "%s volvió al borrador."
+      ],
+      "%s scheduled.": [
+        "%s programado."
+      ],
+      "%s updated.": [
+        "%s actualizado."
+      ],
+      "Only SELECT queries are allowed for safety.": [
+        "Por motivos de seguridad, solo se permiten consultas SELECT."
+      ],
+      "Invalid table name.": [
+        "Nombre de tabla no válido."
+      ],
+      "Table not found.": [
+        "No se ha encontrado la tabla."
+      ],
+      "Unable to retrieve table structure.": [
+        "No se puede recuperar la estructura de la tabla."
+      ],
+      "Query contains prohibited SQL keywords.": [
+        "La consulta contiene palabras clave SQL prohibidas."
+      ],
+      "Multiple statements are not allowed.": [
+        "No se permiten declaraciones múltiples."
+      ],
+      "Query execution failed. Please check your SQL syntax.": [
+        "Error al ejecutar la consulta. Comprueba la sintaxis SQL."
+      ],
+      "Password is required.": [
+        "Se requiere contraseña."
+      ],
+      "Invalid password.": [
+        "Contraseña invalida."
+      ],
+      "Password verification failed.": [
+        "Error en la verificación de la contraseña."
+      ],
+      "WordPress core tables cannot be deleted.": [
+        "Las tablas principales de WordPress no se pueden eliminar."
+      ],
+      "System tables cannot be deleted.": [
+        "Las tablas del sistema no se pueden eliminar."
+      ],
+      "Password is required for this operation.": [
+        "Se requiere contraseña para esta operación."
+      ],
+      "Failed to delete table.": [
+        "No se ha podido eliminar la tabla."
+      ],
+      "Table '%s' has been deleted.": [
+        "La tabla '%s' ha sido eliminada."
+      ],
+      "Invalid JSON format": [
+        "Formato JSON no válido"
+      ],
+      "Missing required field: %s": [
+        "Falta el campo obligatorio: %s"
+      ],
+      "Failed to authenticate with Google. Please check your service account key.": [
+        "No se pudo autenticar con Google. Por favor, revise la clave de su cuenta de servicio."
+      ],
+      "Credentials are valid": [
+        "Las credenciales son válidas"
+      ],
+      "JSON must be a service account key": [
+        "JSON debe ser una clave de cuenta de servicio"
+      ],
+      "Service account credentials saved successfully": [
+        "Las credenciales de la cuenta de servicio se guardaron correctamente"
+      ],
+      "Google Analytics disconnected": [
+        "Google Analytics desconectado"
+      ],
+      "Not connected to Google Analytics": [
+        "No conectado a Google Analytics"
+      ],
+      "Failed to fetch properties. Make sure the service account has been added to your GA4 property.": [
+        "No se pudieron obtener las propiedades. Asegúrese de que la cuenta de servicio se haya agregado a su propiedad de GA4."
+      ],
+      "Property ID is required": [
+        "Se requiere identificación de la propiedad"
+      ],
+      "Property saved successfully": [
+        "Propiedad guardada exitosamente"
+      ],
+      "Return only unused media items (unattached and not used as featured image).": [
+        "Devuelve solo los elementos multimedia sin usar (sin adjuntar y sin usar como imagen destacada)."
+      ],
+      "Unused detection mode: shallow (default) or deep (scans post_content).": [
+        "Modo de detección no utilizado: superficial (predeterminado) o profundo (escanea post_content)."
+      ],
+      "Invalid request.": [
+        "Solicitud inválida."
+      ],
+      "Invalid media IDs provided.": [
+        "Se han proporcionado identificadores de medios no válidos."
+      ],
+      "Maximum 100 items can be downloaded at once.": [
+        "Se pueden descargar un máximo de 100 elementos a la vez."
+      ],
+      "ZIP functionality is not available on this server.": [
+        "La funcionalidad ZIP no está disponible en este servidor."
+      ],
+      "Failed to create ZIP file.": [
+        "No se ha podido crear el archivo ZIP."
+      ],
+      "No valid files found to download.": [
+        "No se han encontrado archivos válidos para descargar."
+      ],
+      "(Untitled)": [
+        "(Sin título)"
+      ],
+      "Media ID is required.": [
+        "Se requiere el ID de medios."
+      ],
+      "Media item not found.": [
+        "Elemento multimedia no encontrado."
+      ],
+      "You do not have permission to edit this media item.": [
+        "No tienes permiso para editar este elemento multimedia."
+      ],
+      "No file was uploaded.": [
+        "No se ha subido ningún archivo."
+      ],
+      "File upload failed. Please try again.": [
+        "Error al cargar el archivo. Inténtalo de nuevo."
+      ],
+      "File type not allowed.": [
+        "Tipo de archivo no permitido."
+      ],
+      "File content does not match file type.": [
+        "El contenido del archivo no coincide con el tipo de archivo."
+      ],
+      "File name contains invalid characters.": [
+        "El nombre del archivo contiene caracteres no válidos."
+      ],
+      "Original file not found.": [
+        "No se ha encontrado el archivo original."
+      ],
+      "Invalid file path.": [
+        "Ruta de archivo no válida."
+      ],
+      "Failed to move uploaded file.": [
+        "Fallo al mover el fichero subido."
+      ],
+      "File replaced successfully.": [
+        "Archivo reemplazado correctamente."
+      ],
+      "Filter media items by tag IDs.": [
+        "Filtrar elementos multimedia por ID de etiqueta."
+      ],
+      "Media Tags": [
+        "Etiquetas multimedia"
+      ],
+      "Media Tag": [
+        "Etiqueta multimedia"
+      ],
+      "Tags": [
+        "Etiquetas"
+      ],
+      "All Tags": [
+        "Todas las etiquetas"
+      ],
+      "Edit Tag": [
+        "Editar etiqueta"
+      ],
+      "View Tag": [
+        "Ver Etiqueta"
+      ],
+      "Update Tag": [
+        "Actualizar etiqueta"
+      ],
+      "Add New Tag": [
+        "Añadir nueva etiqueta"
+      ],
+      "New Tag Name": [
+        "Nuevo nombre de etiqueta"
+      ],
+      "Search Tags": [
+        "Buscar Etiquetas"
+      ],
+      "Popular Tags": [
+        "Etiquetas populares"
+      ],
+      "Separate tags with commas": [
+        "Separa las etiquetas con comas"
+      ],
+      "Add or remove tags": [
+        "Añadir o eliminar etiquetas"
+      ],
+      "Choose from the most used tags": [
+        "Elige de las etiquetas más utilizadas"
+      ],
+      "No tags found": [
+        "No se han encontrado etiquetas"
+      ],
+      "Tag name is required": [
+        "El nombre de la etiqueta es obligatorio"
+      ],
+      "Invalid media item": [
+        "Elemento multimedia no válido"
+      ],
+      "Menu cache key rotated successfully. All client caches have been invalidated.": [
+        "La clave de caché del menú se ha rotado correctamente. Se han invalidado todas las cachés de cliente."
+      ],
+      "Status": [
+        "Estado"
+      ],
+      "Published": [
+        "Publicado"
+      ],
+      "(No title)": [
+        "Tienda"
+      ],
+      "Scheduled": [
+        "Programado"
+      ],
+      "%s from now": [
+        "%s a partir de ahora"
+      ],
+      "Modified": [
+        "Modificado"
+      ],
+      "%s ago": [
+        "hace %s"
+      ],
+      "Authentication required. Please provide Basic Auth credentials.": [
+        "Se requiere autenticación. Proporcione sus credenciales de autenticación básica."
+      ],
+      "Invalid authentication credentials.": [
+        "Credenciales de autenticación no válidas."
+      ],
+      "Missing security token. Please refresh the page and try again.": [
+        "Falta el token de seguridad. Actualice la página y vuelva a intentarlo."
+      ],
+      "Invalid security token. Please refresh the page and try again.": [
+        "Token de seguridad no válido. Actualice la página y vuelva a intentarlo."
+      ],
+      "You must be logged in to access this endpoint.": [
+        "Debe iniciar sesión para acceder a este punto final."
+      ],
+      "You do not have permission to perform this action. Required capability: %s": [
+        "No tienes permiso para realizar esta acción. Capacidad requerida: %s"
+      ],
+      "Invalid role format.": [
+        "Formato de rol no válido."
+      ],
+      "Invalid role.": [
+        "Perfil no válido"
+      ],
+      "Capabilities must be an array.": [
+        "Las capacidades deben ser una matriz."
+      ],
+      "Role not found.": [
+        "Rol no encontrado."
+      ],
+      "Role capabilities updated successfully.": [
+        "Las capacidades de rol se han actualizado correctamente."
+      ],
+      "Role name cannot be empty.": [
+        "El nombre del rol no puede estar vacío."
+      ],
+      "Role name is too long.": [
+        "El nombre del rol es demasiado largo."
+      ],
+      "Role name updated successfully.": [
+        "Nombre del rol actualizado correctamente."
+      ],
+      "Role slug can only contain lowercase letters, numbers, hyphens, and underscores.": [
+        "El slug del rol solo puede contener letras minúsculas, números, guiones y guiones bajos."
+      ],
+      "Role slug is too long.": [
+        "La ruta de acceso del rol es demasiado larga."
+      ],
+      "A role with this slug already exists.": [
+        "Ya existe un rol con este nombre."
+      ],
+      "Failed to create role.": [
+        "No se ha podido crear el rol."
+      ],
+      "Role created successfully.": [
+        "Rol creado con éxito."
+      ],
+      "Cannot delete default WordPress roles.": [
+        "No se pueden eliminar los roles predeterminados de WordPress."
+      ],
+      "Cannot delete role. There are %d user(s) with this role. Please reassign users to another role first.": [
+        "No se puede eliminar el rol. Hay %d usuarios con este rol. Primero, reasigne a los usuarios a otro rol."
+      ],
+      "Role deleted successfully.": [
+        "Rol eliminado con éxito."
+      ],
+      "New Users": [
+        "Nuevos Usuarios"
+      ],
+      "Activity Log Details": [
+        "Detalles del registro de actividad"
+      ],
+      "General": [
+        "General"
+      ],
+      "Core plugin settings and license management": [
+        "Configuración básica del plugin y gestión de licencias"
+      ],
+      "Login": [
+        "Iniciar sesión"
+      ],
+      "Customize login page appearance and security": [
+        "Personalizar la apariencia y la seguridad de la página de inicio de sesión"
+      ],
+      "Theme": [
+        "Tema"
+      ],
+      "Colors, styling, and visual customization": [
+        "Colores, estilo y personalización visual"
+      ],
+      "White Label": [
+        "Marca blanca"
+      ],
+      "Rebrand and customize interface text and icons": [
+        "Renovar la marca y personalizar el texto y los iconos de la interfaz."
+      ],
+      "Menu": [
+        "Menú"
+      ],
+      "Admin menu behavior and interaction settings": [
+        "Configuración del comportamiento y la interacción del menú de administración"
+      ],
+      "Post management and display preferences": [
+        "Preferencias de gestión y visualización de publicaciones"
+      ],
+      "Plugin management interface options": [
+        "Opciones de la interfaz de gestión de complementos"
+      ],
+      "Custom dashboard and admin interface settings": [
+        "Configuración personalizada del panel de control y la interfaz de administración"
+      ],
+      "Analytics": [
+        "Analytics"
+      ],
+      "Built-in analytics and tracking settings": [
+        "Configuración integrada de análisis y seguimiento"
+      ],
+      "Media library and upload management settings": [
+        "Configuración de la biblioteca multimedia y la gestión de cargas"
+      ],
+      "User management and administration settings": [
+        "Configuración de gestión y administración de usuarios"
+      ],
+      "Comment management and administration settings": [
+        "Configuración de la gestión y administración de comentarios"
+      ],
+      "Security": [
+        "Seguridad"
+      ],
+      "Security settings and administration": [
+        "Configuración y administración de seguridad"
+      ],
+      "Database": [
+        "Base de datos"
+      ],
+      "Database explorer and management settings": [
+        "Explorador de bases de datos y configuración de gestión"
+      ],
+      "Search settings...": [
+        "Configuración de búsqueda..."
+      ],
+      "Loading settings...": [
+        "Cargando ajustes..."
+      ],
+      "No settings found": [
+        "No se han encontrado ajustes."
+      ],
+      "Try a different search term": [
+        "Prueba con otro término de búsqueda."
+      ],
+      "Loading Settings...": [
+        "Cargando ajustes..."
+      ],
+      "Settings Panel": [
+        "Panel de configuración"
+      ],
+      "Select a category from the list to configure your settings.": [
+        "Seleccione una categoría de la lista para configurar sus ajustes."
+      ],
+      "Activity log entry not found": [
+        "Entrada del registro de actividad no encontrada"
+      ],
+      "Just now": [
+        "Justo ahora"
+      ],
+      "1 minute ago": [
+        "Hace 1 minuto"
+      ],
+      "%d minutes ago": [
+        "Hace %d minutos"
+      ],
+      "1 hour ago": [
+        "hace 1 hora"
+      ],
+      "%d hours ago": [
+        "Hace %d horas"
+      ],
+      "1 day ago": [
+        "Hace 1 día"
+      ],
+      "%d days ago": [
+        "Hace %d días"
+      ],
+      "Loading...": [
+        "Cargando..."
+      ],
+      "Activity Details": [
+        "Detalles de la actividad"
+      ],
+      "User Information": [
+        "Información del usuario"
+      ],
+      "Timestamp": [
+        "Marca de tiempo"
+      ],
+      "IP Address": [
+        "Dirección IP"
+      ],
+      "User Agent": [
+        "Agente de usuario"
+      ],
+      "Changes": [
+        "Cambios"
+      ],
+      "Before": [
+        "Antes"
+      ],
+      "After": [
+        "Después"
+      ],
+      "Details": [
+        "Detalles"
+      ],
+      "Metadata": [
+        "Metadatos"
+      ],
+      "Remote Site Error": [
+        "Error de sitio remoto"
+      ],
+      "Invalid remote site configuration": [
+        "Configuración de sitio remoto no válida"
+      ],
+      "Click": [
+        "Click"
+      ],
+      "Hover": [
+        "Hover"
+      ],
+      "Off": [
+        "Apagado"
+      ],
+      "Light": [
+        "Claro"
+      ],
+      "Dark": [
+        "Oscuro"
+      ],
+      "Licence key": [
+        "Clave de licencia"
+      ],
+      "Activating uiXpress enables updates and features": [
+        "Al activar uiXpress, se habilitan las actualizaciones y funciones."
+      ],
+      "Logo": [
+        "Logo"
+      ],
+      "Optional logo for to be displayed in the menu": [
+        "Logotipo opcional para mostrar en el menú"
+      ],
+      "Logo url": [
+        "URL del logotipo"
+      ],
+      "Dark mode logo": [
+        "Logotipo del modo oscuro"
+      ],
+      "Set an alternative logo to use in dark mode. If one isn't set it will fall back to the standard logo.": [
+        "Establece un logotipo alternativo para usar en modo oscuro. Si no se establece ninguno, se utilizará el logotipo estándar."
+      ],
+      "Dark Logo url": [
+        "URL del logotipo oscuro"
+      ],
+      "Remote Sites": [
+        "Sitios remotos"
+      ],
+      "Configure remote WordPress sites for cross-site operations.": [
+        "Configurar sitios remotos de WordPress para operaciones entre sitios."
+      ],
+      "Remote Site Switcher Capability": [
+        "Capacidad de conmutación de sitios remotos"
+      ],
+      "WordPress capability required to see the remote site switcher in the toolbar. Defaults to \"manage_options\" (admin users). Users with this capability or below will see the switcher.": [
+        "Se requiere la función WordPress para ver el selector de sitios remotos en la barra de herramientas. El valor predeterminado es \"manage_options\" (usuarios administradores). Los usuarios con esta función o inferior verán el selector."
+      ],
+      "Disable theme": [
+        "Desactivar tema"
+      ],
+      "Choose roles or usersnames to disable the theme for.": [
+        "Elija los roles o nombres de usuario para los que desea desactivar el tema."
+      ],
+      "Search post types": [
+        "Buscar tipos de publicaciones"
+      ],
+      "Choose which post types are available in the global search": [
+        "Elige qué tipos de publicaciones están disponibles en la búsqueda global."
+      ],
+      "Disable global search": [
+        "Desactivar la búsqueda global"
+      ],
+      "Disable global search for all users.": [
+        "Desactivar la búsqueda global para todos los usuarios."
+      ],
+      "Admin layout": [
+        "Diseño de administración"
+      ],
+      "Choose your prefered admin layout": [
+        "Elige tu diseño de administración preferido"
+      ],
+      "Modernise login page": [
+        "Modernizar la página de inicio de sesión"
+      ],
+      "When enabled, uiXpress will modernise the default login page.": [
+        "Cuando se habilita, uiXpress modernizará la página de inicio de sesión predeterminada."
+      ],
+      "Login image": [
+        "Imagen de inicio de sesión"
+      ],
+      "Optional image that will be added to the empty panel in the login page": [
+        "Imagen opcional que se añadirá al panel vacío de la página de inicio de sesión."
+      ],
+      "Image url": [
+        "URL de la imagen"
+      ],
+      "Login path": [
+        "Ruta de inicio de sesión"
+      ],
+      "Change the login url from wp-login.php to a custom slug. Ensure you remember what you change this to.": [
+        "Cambia la URL de inicio de sesión de wp-login.php a una ruta personalizada. Asegúrate de recordar a qué la cambias."
+      ],
+      "Hide language selector": [
+        "Ocultar selector de idioma"
+      ],
+      "When hidden the language selector on the login page will not be displayed": [
+        "Cuando se oculta, el selector de idioma de la página de inicio de sesión no se mostrará."
+      ],
+      "Enable TurnStyle": [
+        "Habilitar TurnStyle"
+      ],
+      "When enabled, a cloudflare turnstyle challenge will be displayed on the login page to enhance security. Cloudflare account is required": [
+        "Cuando esté habilitado, se mostrará un desafío Cloudflare Turnstile en la página de inicio de sesión para mejorar la seguridad. Se requiere una cuenta Cloudflare."
+      ],
+      "Turnstyle site key": [
+        "Llave del sitio Turnstyle"
+      ],
+      "This is the site key for your turnstyle which can be created from your cloudflare dashboard.": [
+        "Esta es la clave del sitio para tu torniquete, que se puede crear desde tu panel de control de Cloudflare."
+      ],
+      "Turnstyle secret key": [
+        "Clave secreta del torniquete"
+      ],
+      "This is the secret key for your turnstyle which can be created from your cloudflare dashboard.": [
+        "Esta es la clave secreta para tu turnstyle, que se puede crear desde tu panel de control de Cloudflare."
+      ],
+      "Force global theme": [
+        "Forzar tema global"
+      ],
+      "When enabled, the light / dark toggle will be removed and the selected theme set for all users.": [
+        "Cuando se habilita, se eliminará el botón para alternar entre claro y oscuro y se establecerá el tema seleccionado para todos los usuarios."
+      ],
+      "Hide screen options": [
+        "Ocultar opciones de pantalla"
+      ],
+      "Hide the screen options toggle in the toolbar": [
+        "Ocultar el botón de opciones de pantalla en la barra de herramientas"
+      ],
+      "Hide help toggle": [
+        "Ocultar ayuda"
+      ],
+      "Hide the help toggle in the toolbar": [
+        "Ocultar el botón de ayuda en la barra de herramientas"
+      ],
+      "Base theme colors": [
+        "Colores base del tema"
+      ],
+      "Set a base color and uiXpress will automatically create a color scale for you.": [
+        "Establece un color base y uiXpress creará automáticamente una escala de colores para ti."
+      ],
+      "Base": [
+        "Base"
+      ],
+      "Accent theme colors": [
+        "Colores del tema de acento"
+      ],
+      "Set a accent color and uiXpress will automatically create a color scale for you.": [
+        "Establezca un color de acento y uiXpress creará automáticamente una escala de colores para usted."
+      ],
+      "Accent base": [
+        "Base de acento"
+      ],
+      "Custom css": [
+        "CSS personalizado"
+      ],
+      "Custom css added here will only be added in the admin area and login page.": [
+        "El CSS personalizado añadido aquí solo se añadirá en el área de administración y en la página de inicio de sesión."
+      ],
+      "External stylesheets": [
+        "Hojas de estilo externas"
+      ],
+      "Add URLs to any external stylesheets you want uiXpress to load into the admin": [
+        "Añade las URL de cualquier hoja de estilo externa que desees que uiXpress cargue en el administrador."
+      ],
+      "Custom Font": [
+        "Fuente personalizada"
+      ],
+      "Choose a custom font for the admin interface. Select from Google Fonts, enter a custom font URL, or upload your own font files.": [
+        "Elige una fuente personalizada para la interfaz de administración. Selecciona una de Google Fonts, introduce la URL de una fuente personalizada o sube tus propios archivos de fuente."
+      ],
+      "Admin favicon": [
+        "Favicon del administrador"
+      ],
+      "Optional favicon to replace the WordPress favicon in the admin.": [
+        "Favicon opcional para sustituir el favicon de WordPress en el administrador."
+      ],
+      "Favicon url": [
+        "URL del favicon"
+      ],
+      "Rename uiXpress": [
+        "Cambiar el nombre de uiXpress"
+      ],
+      "This will rename uiXpress in the plugins list as well as renaming it's settings link.": [
+        "Esto cambiará el nombre de uiXpress en la lista de complementos, así como el nombre de su enlace de configuración."
+      ],
+      "Text Replacement": [
+        "Sustitución de texto"
+      ],
+      "Customize the text displayed in the WordPress admin area. Enter original words or phrases and their replacements to white-label the admin interface.": [
+        "Personaliza el texto que se muestra en el área de administración de WordPress. Introduce palabras o frases originales y sus sustituciones para personalizar la interfaz de administración."
+      ],
+      "Submenu style": [
+        "Estilo del submenú"
+      ],
+      "Choose from whether the submenu opens on click or hover.": [
+        "Elige si el submenú se abre al hacer clic o al pasar el cursor por encima."
+      ],
+      "Enable Admin Menu Search": [
+        "Habilitar la búsqueda en el menú de administración"
+      ],
+      "Enable search functionality in the admin menu to quickly find menu items.": [
+        "Habilite la función de búsqueda en el menú de administración para encontrar rápidamente elementos del menú."
+      ],
+      "Classic Post List View": [
+        "Vista clásica de la lista de publicaciones"
+      ],
+      "Switch to WordPress's traditional table layout for posts, removing the modern interface.": [
+        "Cambia al diseño tradicional de tablas de WordPress para las entradas, eliminando la interfaz moderna."
+      ],
+      "Modern Post Editor": [
+        "Editor de publicaciones moderno"
+      ],
+      "Replace the built-in WordPress editor with a modern, enhanced post editor interface.": [
+        "Reemplace el editor integrado de WordPress con una interfaz de editor de publicaciones moderna y mejorada."
+      ],
+      "Post Types for Modern Editor": [
+        "Tipos de publicaciones para el editor moderno"
+      ],
+      "Choose which post types should use the modern post editor. Defaults to posts.": [
+        "Elige qué tipos de publicaciones deben usar el editor de publicaciones moderno. El valor predeterminado son publicaciones."
+      ],
+      "Real-time Collaboration": [
+        "Colaboración en tiempo real"
+      ],
+      "Enable real-time collaboration in the modern post editor. Multiple users can edit the same post simultaneously with live cursor tracking and synced changes.": [
+        "Habilite la colaboración en tiempo real en el editor de publicaciones moderno. Varios usuarios pueden editar la misma publicación simultáneamente con seguimiento del cursor en tiempo real y cambios sincronizados."
+      ],
+      "Modern Plugin Manager": [
+        "Administrador de complementos moderno"
+      ],
+      "Replace the classic plugins page with a modern plugin manager with plugin profiling and improved features.": [
+        "Reemplaza la página clásica de complementos por un gestor de complementos moderno con perfiles de complementos y funciones mejoradas."
+      ],
+      "Modern Media Library": [
+        "Biblioteca multimedia moderna"
+      ],
+      "Replace the classic WordPress media library with a modern, responsive media manager with improved upload and organization features.": [
+        "Reemplaza la biblioteca multimedia clásica de WordPress por un gestor multimedia moderno y adaptable con funciones mejoradas de carga y organización."
+      ],
+      "Enable SVG Uploads": [
+        "Habilitar cargas SVG"
+      ],
+      "Allow SVG (Scalable Vector Graphics) files to be uploaded to the media library. All SVG files are automatically sanitized before upload to remove potentially malicious code, ensuring safe handling of SVG files.": [
+        "Permitir la carga de archivos SVG (Scalable Vector Graphics) en la biblioteca multimedia. Todos los archivos SVG se limpian automáticamente antes de cargarlos para eliminar cualquier código potencialmente malicioso, lo que garantiza un manejo seguro de los archivos SVG."
+      ],
+      "Enable Font Uploads": [
+        "Habilitar la carga de fuentes"
+      ],
+      "Allow font files (.woff2, .woff, .ttf, .otf) to be uploaded to the media library. This enables custom font support for your site.": [
+        "Permite subir archivos de fuentes (.woff2, .woff, .ttf, .otf) a la biblioteca multimedia. Esto habilita la compatibilidad con fuentes personalizadas para tu sitio."
+      ],
+      "Modern Users Page": [
+        "Página de usuarios modernos"
+      ],
+      "Replace the classic WordPress users page with a modern, responsive user manager with improved features and better organization.": [
+        "Reemplaza la clásica página de usuarios de WordPress por un gestor de usuarios moderno y adaptable, con funciones mejoradas y una organización más eficaz."
+      ],
+      "Modern Comments Page": [
+        "Página de comentarios modernos"
+      ],
+      "Replace the classic WordPress comments page with a modern, responsive comment manager with improved features and better organization.": [
+        "Reemplaza la clásica página de comentarios de WordPress por un gestor de comentarios moderno y adaptable, con funciones mejoradas y una organización más eficaz."
+      ],
+      "Custom Dashboard": [
+        "Panel de control personalizado"
+      ],
+      "Replace the default WordPress dashboard with a modern, customizable dashboard interface.": [
+        "Reemplaza el panel de control predeterminado de WordPress por una interfaz moderna y personalizable."
+      ],
+      "Enable uiXpress Analytics": [
+        "Habilitar uiXpress Analytics"
+      ],
+      "Enable built-in analytics to track user behavior, page views, and performance metrics within your WordPress admin.": [
+        "Habilita las funciones de análisis integradas para realizar un seguimiento del comportamiento de los usuarios, las visitas a las páginas y las métricas de rendimiento dentro de tu administrador de WordPress."
+      ],
+      "Analytics Provider": [
+        "Proveedor de análisis"
+      ],
+      "Choose which analytics provider to use for dashboard data. Select Built-in Analytics to use the uiXpress tracking system, or Google Analytics to display data from your GA4 property.": [
+        "Elija el proveedor de análisis que desea usar para los datos del panel. Seleccione Análisis integrado para usar el sistema de seguimiento uiXpress o Google Analytics para mostrar los datos de su propiedad en GA4."
+      ],
+      "Google Analytics Connection": [
+        "Conexión de Google Analytics"
+      ],
+      "Connect your Google Analytics 4 property to display analytics data in the dashboard. You will need to create OAuth credentials in Google Cloud Console.": [
+        "Conecte su propiedad de Google Analytics 4 para mostrar datos de Analytics en el panel. Deberá crear credenciales de OAuth en Google Cloud Console."
+      ],
+      "Enable Database Explorer": [
+        "Habilitar el Explorador de bases de datos"
+      ],
+      "Enable the modern database explorer interface to browse tables, view data, and execute SQL queries safely.": [
+        "Habilite la moderna interfaz del explorador de bases de datos para navegar por las tablas, ver datos y ejecutar consultas SQL de forma segura."
+      ],
+      "Enable Role Editor": [
+        "Habilitar el editor de roles"
+      ],
+      "Enable the modern role editor interface to manage WordPress user roles and capabilities.": [
+        "Habilita la moderna interfaz del editor de roles para gestionar los roles y capacidades de los usuarios de WordPress."
+      ],
+      "Enable Custom Post Types": [
+        "Habilitar tipos de publicaciones personalizados"
+      ],
+      "Enable the custom post types creator to register and manage custom post types without code. Post types are stored in a JSON file for performance.": [
+        "Permite que el creador de tipos de publicaciones personalizadas registre y administre tipos de publicaciones personalizadas sin código. Los tipos de publicaciones se almacenan en un archivo JSON para mejorar el rendimiento."
+      ],
+      "Enable Activity Logger": [
+        "Habilitar el registrador de actividad"
+      ],
+      "Track and log all admin actions including post changes, user updates, plugin activations, and more.": [
+        "Realiza un seguimiento y registra todas las acciones administrativas, incluyendo cambios en las publicaciones, actualizaciones de usuarios, activaciones de plugins y mucho más."
+      ],
+      "Retention Period (Days)": [
+        "Período de retención (días)"
+      ],
+      "How many days to keep activity logs before automatic cleanup. Default is 90 days.": [
+        "Cuántos días se deben conservar los registros de actividad antes de la limpieza automática. El valor predeterminado es 90 días."
+      ],
+      "Log Level": [
+        "Nivel de registro"
+      ],
+      "Choose which actions to log. \"All Actions\" logs everything, \"Important Only\" logs only critical actions like deletions and role changes.": [
+        "Elija qué acciones registrar. «Todas las acciones» registra todo, «Solo importantes» registra solo acciones críticas como eliminaciones y cambios de rol."
+      ],
+      "All Actions": [
+        "Todas las Acciones"
+      ],
+      "Important Only": [
+        "Importante Solo"
+      ],
+      "Auto Cleanup": [
+        "Limpieza automática"
+      ],
+      "Automatically delete logs older than the retention period. Disable to keep logs indefinitely.": [
+        "Eliminar automáticamente los registros más antiguos que el período de retención. Desactivar para conservar los registros indefinidamente."
+      ],
+      "Failed to load settings": [
+        "No se pudo cargar la configuración"
+      ],
+      "Unable to save settings": [
+        "No se pueden guardar las configuraciones"
+      ],
+      "Settings updated!": [
+        "Ajustes guardados!"
+      ],
+      "Please provide a valid JSON file": [
+        "Por favor, proporcione un archivo JSON válido."
+      ],
+      "Invalid settings: must be an object": [
+        "Configuración no válida: debe ser un objeto."
+      ],
+      "Settings imported": [
+        "Ajustes importados"
+      ],
+      "Import failed": [
+        "La importación ha fallado"
+      ],
+      "Failed to activate key": [
+        "No se ha podido activar la clave."
+      ],
+      "Key already activated for this site": [
+        "Clave ya activada para este sitio."
+      ],
+      "Key successfully activated": [
+        "Clave activada correctamente"
+      ],
+      "Network error during activation": [
+        "Error de red durante la activación"
+      ],
+      "Instance removed": [
+        "Instancia eliminada"
+      ],
+      "Failed to remove activation": [
+        "No se ha podido eliminar la activación."
+      ],
+      "Network error during removal": [
+        "Error de red durante la eliminación"
+      ],
+      "Save": [
+        "Guardar"
+      ],
+      "Please add your licence key to unlock the plugin settings": [
+        "Añade tu clave de licencia para desbloquear la configuración del plugin."
+      ],
+      "Found": [
+        "Encontrado"
+      ],
+      "matching setting(s)": [
+        "ajustes correspondientes"
+      ],
+      "No settings match your search in this category.": [
+        "No hay ajustes que coincidan con tu búsqueda en esta categoría."
+      ],
+      "Try a different search term or check another category.": [
+        "Prueba con otro término de búsqueda o consulta otra categoría."
+      ],
+      "Minify menu": [
+        "Minimizar menú"
+      ],
+      "Toggle menu": [
+        "Alternar menú"
+      ],
+      "System": [
+        "Sistema"
+      ],
+      "Logout": [
+        "Cerrar sesión"
+      ],
+      "Search activities...": [
+        "Buscar actividades..."
+      ],
+      "Action": [
+        "Acción"
+      ],
+      "Object Type": [
+        "Tipo de objeto"
+      ],
+      "All Types": [
+        "Todos los tipos"
+      ],
+      "item": [
+        "artículo"
+      ],
+      "items": [
+        "artículos"
+      ],
+      "Page": [
+        "Página"
+      ],
+      "Previous": [
+        "Anterior"
+      ],
+      "Next": [
+        "Siguiente"
+      ],
+      "Select an activity from the list to view detailed information.": [
+        "Seleccione una actividad de la lista para ver información detallada."
+      ],
+      "Default": [
+        "Por defecto"
+      ],
+      "Rounded": [
+        "Redondeado"
+      ],
+      "Bubble": [
+        "Burbuja"
+      ],
+      "Add new": [
+        "Añadir nuevo"
+      ],
+      "Update settings": [
+        "Actualizar configurción"
+      ],
+      "Loading editor...": [
+        "Cargando editor..."
+      ],
+      "Invalid Input": [
+        "Entrada no válida"
+      ],
+      "Site URL, username, and application password are required": [
+        "Se requieren la URL del sitio, el nombre de usuario y la contraseña de la aplicación."
+      ],
+      "Invalid URL": [
+        "URL no válida"
+      ],
+      "Please provide a valid site URL": [
+        "Proporcione una URL de sitio válida"
+      ],
+      "Duplicate Site": [
+        "Sitio duplicado"
+      ],
+      "This site URL already exists": [
+        "La URL de este sitio ya existe"
+      ],
+      "Remove Remote Site?": [
+        "¿Eliminar sitio remoto?"
+      ],
+      "Are you sure you want to remove this remote site? This action cannot be undone.": [
+        "¿Seguro que desea eliminar este sitio remoto? Esta acción no se puede deshacer."
+      ],
+      "Yes, remove site": [
+        "Sí, eliminar el sitio"
+      ],
+      "Site Removed": [
+        "Sitio eliminado"
+      ],
+      "Remote site has been removed successfully": [
+        "El sitio remoto se ha eliminado correctamente"
+      ],
+      "Site URL (e.g., https://example.com)": [
+        "URL del sitio (por ejemplo, https://example.com)"
+      ],
+      "Username": [
+        "Nombre de usuario"
+      ],
+      "Application Password": [
+        "Contraseña de la aplicación"
+      ],
+      "Add Site": [
+        "Agregar sitio"
+      ],
+      "Site URL": [
+        "URL del sitio"
+      ],
+      "Password": [
+        "Contraseña"
+      ],
+      "No remote sites configured yet": [
+        "Aún no hay sitios remotos configurados"
+      ],
+      "Application passwords can be created in WordPress under Users > Profile > Application Passwords": [
+        "Las contraseñas de aplicaciones se pueden crear en WordPress en Usuarios > Perfil > Contraseñas de aplicaciones"
+      ],
+      "Licence Active": [
+        "Licencia activa"
+      ],
+      "Remove key": [
+        "Quitar la llave"
+      ],
+      "uiXpress licence key": [
+        "Clave de licencia de uiXpress"
+      ],
+      "Activate": [
+        "Activar"
+      ],
+      "Development server detected, no need to activate your licence key.": [
+        "Se ha detectado un servidor de desarrollo, no es necesario activar su clave de licencia."
+      ],
+      "System Default": [
+        "Valor predeterminado del sistema"
+      ],
+      "Google Fonts": [
+        "Fuentes de Google"
+      ],
+      "Custom URL": [
+        "URL personalizada"
+      ],
+      "Upload Font": [
+        "Subir fuente"
+      ],
+      "Font Source": [
+        "Fuente de la fuente"
+      ],
+      "Select Font": [
+        "Seleccionar fuente"
+      ],
+      "Click to change": [
+        "Haga clic para cambiar"
+      ],
+      "Clear selection": [
+        "Limpiar selección"
+      ],
+      "Search fonts...": [
+        "Buscar fuentes..."
+      ],
+      "No fonts found": [
+        "No se encontraron fuentes"
+      ],
+      "Or enter custom:": [
+        "O ingrese personalizado:"
+      ],
+      "Font name...": [
+        "Nombre de la fuente..."
+      ],
+      "Font Weights": [
+        "Pesos de fuente"
+      ],
+      "Select weights to include. At least one is required.": [
+        "Seleccione los pesos que desea incluir. Se requiere al menos uno."
+      ],
+      "Font Stylesheet URL": [
+        "URL de la hoja de estilo de fuente"
+      ],
+      "https://fonts.googleapis.com/css2?family=...": [
+        "https://fonts.googleapis.com/css2?family=..."
+      ],
+      "Enter the URL to an external font stylesheet (CSS file)": [
+        "Introduzca la URL de una hoja de estilo de fuente externa (archivo CSS)"
+      ],
+      "Font Family Name": [
+        "Nombre de la familia de fuentes"
+      ],
+      "e.g., Inter, Roboto, Custom Font": [
+        "p. ej., Inter, Roboto, fuente personalizada"
+      ],
+      "The exact font-family name as defined in the stylesheet": [
+        "El nombre exacto de la familia de fuentes tal como se define en la hoja de estilo"
+      ],
+      "Font Uploads Disabled": [
+        "Carga de fuentes deshabilitada"
+      ],
+      "Font file uploads are currently disabled. Enable font uploads in the Media settings to upload custom font files (.woff2, .woff, .ttf, .otf).": [
+        "La carga de archivos de fuentes está deshabilitada. Habilítela en la configuración de Medios para cargar archivos de fuentes personalizados (.woff2, .woff, .ttf, .otf)."
+      ],
+      "e.g., My Custom Font": [
+        "p. ej., Mi fuente personalizada"
+      ],
+      "Choose a name for your custom font family": [
+        "Elija un nombre para su familia de fuentes personalizada"
+      ],
+      "Font Files": [
+        "Archivos de fuentes"
+      ],
+      "Opening Media Library...": [
+        "Abriendo la biblioteca multimedia..."
+      ],
+      "Click to select font files": [
+        "Haga clic para seleccionar archivos de fuentes"
+      ],
+      "Supported formats: .woff2, .woff, .ttf, .otf": [
+        "Formatos admitidos: .woff2, .woff, .ttf, .otf"
+      ],
+      "Enable font uploads to add font files": [
+        "Habilitar la carga de fuentes para agregar archivos de fuentes"
+      ],
+      "Select Font File": [
+        "Seleccionar archivo de fuente"
+      ],
+      "Select font files from your media library. Supported: .woff2, .woff, .ttf, .otf": [
+        "Seleccione archivos de fuentes de su biblioteca multimedia. Compatibles: .woff2, .woff, .ttf, .otf"
+      ],
+      "Loading font...": [
+        "Cargando fuente..."
+      ],
+      "Preview": [
+        "Vista previa"
+      ],
+      "Weight:": [
+        "Peso:"
+      ],
+      "weights loaded": [
+        "pesos cargados"
+      ],
+      "Reset to system default": [
+        "Restablecer los valores predeterminados del sistema"
+      ],
+      "Please paste your service account JSON key": [
+        "Pegue la clave JSON de su cuenta de servicio"
+      ],
+      "Service account connected successfully": [
+        "La cuenta de servicio se conectó correctamente"
+      ],
+      "Failed to save credentials": [
+        "No se pudieron guardar las credenciales"
+      ],
+      "Could not load properties automatically. You can enter your Property ID manually below.": [
+        "No se pudieron cargar las propiedades automáticamente. Puede ingresar el ID de su propiedad manualmente a continuación."
+      ],
+      "Please enter a Property ID": [
+        "Por favor ingrese un ID de propiedad"
+      ],
+      "Property saved": [
+        "Propiedad salvada"
+      ],
+      "Failed to save property": [
+        "No se pudo guardar la propiedad"
+      ],
+      "Failed to disconnect": [
+        "No se pudo desconectar"
+      ],
+      "Checking connection...": [
+        "Comprobando conexión..."
+      ],
+      "Connection Issue": [
+        "Problema de conexión"
+      ],
+      "Connected to Google Analytics": [
+        "Conectado a Google Analytics"
+      ],
+      "Permission Issue Detected": [
+        "Problema de permiso detectado"
+      ],
+      "Learn more": [
+        "Más información"
+      ],
+      "Retest Connection": [
+        "Volver a probar la conexión"
+      ],
+      "Service Account:": [
+        "Cuenta de servicio:"
+      ],
+      "Select Property": [
+        "Seleccionar propiedad"
+      ],
+      "Select a property...": [
+        "Seleccione una propiedad..."
+      ],
+      "Property ID:": [
+        "Identificación de la propiedad:"
+      ],
+      "Enter Property ID": [
+        "Ingrese el ID de la propiedad"
+      ],
+      "Find your Property ID in Google Analytics: Admin → Property Settings → Property ID (a number like 123456789)": [
+        "Encuentre el ID de su propiedad en Google Analytics: Administrador → Configuración de la propiedad → ID de la propiedad (un número como 123456789)"
+      ],
+      "e.g. 123456789": [
+        "p. ej. 123456789"
+      ],
+      "Property ID": [
+        "Identificación de la propiedad"
+      ],
+      "Change": [
+        "Cambiar"
+      ],
+      "Loading properties...": [
+        "Cargando propiedades..."
+      ],
+      "Disconnect": [
+        "Desconectar"
+      ],
+      "Setup Instructions": [
+        "Instrucciones de configuración"
+      ],
+      "How to connect Google Analytics 4": [
+        "Cómo conectar Google Analytics 4"
+      ],
+      "Go to": [
+        "Ir a"
+      ],
+      "Google Cloud Console": [
+        "Consola de Google Cloud"
+      ],
+      "and create a new project (or select existing)": [
+        "y crear un nuevo proyecto (o seleccionar uno existente)"
+      ],
+      "Enable the": [
+        "Habilitar el"
+      ],
+      "Google Analytics Data API": [
+        "API de datos de Google Analytics"
+      ],
+      "Service Accounts": [
+        "Cuentas de servicio"
+      ],
+      "and create a new service account": [
+        "y crear una nueva cuenta de servicio"
+      ],
+      "Click the service account, go to \"Keys\" tab, click \"Add Key\" → \"Create new key\" → JSON": [
+        "Haga clic en la cuenta de servicio, vaya a la pestaña \"Claves\", haga clic en \"Agregar clave\" → \"Crear nueva clave\" → JSON"
+      ],
+      "Download the JSON key file": [
+        "Descargar el archivo de clave JSON"
+      ],
+      "In": [
+        "En"
+      ],
+      "Google Analytics": [
+        "Google Analytics"
+      ],
+      "→ Admin → Property Access Management, add the service account email as a Viewer": [
+        "→ Admin → Administración de acceso a la propiedad, agregue el correo electrónico de la cuenta de servicio como Visor"
+      ],
+      "Paste the contents of the JSON key file below and enter your Property ID": [
+        "Pegue el contenido del archivo de clave JSON a continuación e ingrese su ID de propiedad"
+      ],
+      "Finding your Property ID:": [
+        "Cómo encontrar el ID de su propiedad:"
+      ],
+      "In Google Analytics, go to Admin → Property Settings. Your Property ID is the number shown (e.g. 123456789).": [
+        "En Google Analytics, vaya a Administración → Configuración de la propiedad. El ID de su propiedad es el número que se muestra (p. ej., 123456789)."
+      ],
+      "Important:": [
+        "Importante:"
+      ],
+      "The service account email (found in the JSON file) must be added to your GA4 property with at least Viewer access for data to be retrieved.": [
+        "El correo electrónico de la cuenta de servicio (que se encuentra en el archivo JSON) debe agregarse a su propiedad GA4 con al menos acceso de Visor para que se puedan recuperar los datos."
+      ],
+      "Paste the contents of your service account JSON key file:": [
+        "Pegue el contenido del archivo de clave JSON de su cuenta de servicio:"
+      ],
+      "Paste your service account JSON key here...": [
+        "Pegue aquí la clave JSON de su cuenta de servicio..."
+      ],
+      "Connect": [
+        "Conectar"
+      ],
+      "Cancel": [
+        "Cancelar"
+      ],
+      "Connect Google Analytics": [
+        "Conectar Google Analytics"
+      ],
+      "Clear custom properties": [
+        "Borrar propiedades personalizadas"
+      ],
+      "Edit Profile": [
+        "Editar Perfil"
+      ],
+      "Visit site": [
+        "Visitar sitio"
+      ],
+      "Site Settings": [
+        "Configuración del sitio"
+      ],
+      "Sign Out": [
+        "Cerrar sesión"
+      ],
+      "Light Mode": [
+        "Modo de luz"
+      ],
+      "Dark Mode": [
+        "Modo oscuro"
+      ],
+      "Quick Actions": [
+        "Acciones rápidas"
+      ],
+      "Focus Search": [
+        "Búsqueda por enfoque"
+      ],
+      "Search menu...": [
+        "Menú de búsqueda..."
+      ],
+      "No menu items found": [
+        "No se encontraron elementos de menú"
+      ],
+      "result": [
+        "resultado"
+      ],
+      "results": [
+        "resultados"
+      ],
+      "Navigate": [
+        "Navegar"
+      ],
+      "Select": [
+        "Seleccionar"
+      ],
+      "Shortcuts": [
+        "Atajos"
+      ],
+      "Name": [
+        "Nombre"
+      ],
+      "Shortcut name": [
+        "Nombre del acceso directo"
+      ],
+      "URL": [
+        "URL"
+      ],
+      "https://example.com": [
+        "https://ejemplo.com"
+      ],
+      "Icon": [
+        "Icono"
+      ],
+      "icon name": [
+        "nombre del icono"
+      ],
+      "Delete": [
+        "Borrar"
+      ],
+      "Notifications": [
+        "Notificaciones"
+      ],
+      "Local": [
+        "Local"
+      ],
+      "When you switch to a remote site, all API requests will be sent to that site instead of the local site.": [
+        "Cuando cambia a un sitio remoto, todas las solicitudes de API se enviarán a ese sitio en lugar del sitio local."
+      ],
+      "Remote site switching works on:": [
+        "El cambio de sitio remoto funciona en:"
+      ],
+      "Modern Media Page": [
+        "Página de medios modernos"
+      ],
+      "Modern Plugins Page": [
+        "Página de complementos modernos"
+      ],
+      "Modern Dashboard": [
+        "Tablero moderno"
+      ],
+      "All default WordPress pages (Posts, Pages, Comments, etc.) will continue to show local content.": [
+        "Todas las páginas predeterminadas de WordPress (publicaciones, páginas, comentarios, etc.) continuarán mostrando contenido local."
+      ],
+      "Remote Site Switching": [
+        "Cambio de sitio remoto"
+      ],
+      "I Understand": [
+        "Entiendo"
+      ],
+      "Search sites...": [
+        "Buscar sitios..."
+      ],
+      "No sites found": [
+        "No se encontraron sitios"
+      ],
+      "Back to menu": [
+        "Volver al menú"
+      ],
+      "unread": [
+        "no leído"
+      ],
+      "Updates Available": [
+        "Actualizaciones disponibles"
+      ],
+      "Awaiting moderation": [
+        "En espera de moderación"
+      ],
+      "You're all caught up": [
+        "Ya estás al día."
+      ],
+      "No new notifications": [
+        "No hay notificaciones nuevas"
+      ],
+      "Show less": [
+        "Mostrar menos"
+      ],
+      "Show more": [
+        "Mostrar más"
+      ],
+      "No activities found": [
+        "No se encontraron actividades"
+      ],
+      "Find": [
+        "Encontrar"
+      ],
+      "Replace": [
+        "Reemplazar"
+      ],
+      "New item": [
+        "Nuevo elemento"
+      ],
+      "Edit CSS": [
+        "Editar CSS"
+      ],
+      "Finished": [
+        "Finalizado"
+      ],
+      "Media Library": [
+        "Librería Multimedia"
+      ],
+      "Media Details": [
+        "Detalles de los medios"
+      ],
+      "Edit Image": [
+        "Editar imagen"
+      ],
+      "Roles": [
+        "Roles"
+      ],
+      "Items selected": [
+        "Artículos seleccionados"
+      ],
+      "Select users or roles": [
+        "Seleccionar usuarios o roles"
+      ],
+      "url": [
+        "url"
+      ],
+      "Select post types": [
+        "Seleccionar tipos de post"
+      ],
+      "Search icons": [
+        "Buscar íconos"
+      ],
+      "View site": [
+        "Ver sitio"
+      ],
+      "View dashboard": [
+        "Ver dashboard"
+      ],
+      "Help": [
+        "Ayuda"
+      ],
+      "Screen options": [
+        "Opciones de pantalla"
+      ],
+      "New Post": [
+        "Nuevo Post"
+      ],
+      "New Page": [
+        "Nueva página"
+      ],
+      "Site settings": [
+        "Editar configuración"
+      ],
+      "Dark mode": [
+        "Modo oscuro"
+      ],
+      "Light mode": [
+        "Modo claro"
+      ],
+      "Enable magic dark mode for this page": [
+        "Habilitar el modo oscuro mágico para esta página"
+      ],
+      "Disable magic dark mode for this page": [
+        "Desactivar el modo oscuro mágico para esta página"
+      ],
+      "wpbody element not found": [
+        "Elemento wpbody no encontrado"
+      ],
+      "CSS fix saved to custom CSS settings": [
+        "Corrección de CSS guardada en la configuración de CSS personalizada"
+      ],
+      "Failed to save CSS fix": [
+        "No se pudo guardar la corrección CSS"
+      ],
+      "Please describe the layout issue": [
+        "Por favor describa el problema de diseño."
+      ],
+      "Capturing screenshot...": [
+        "Capturando captura de pantalla..."
+      ],
+      "Extracting HTML...": [
+        "Extrayendo HTML..."
+      ],
+      "Analyzing layout issues...": [
+        "Analizando problemas de diseño..."
+      ],
+      "Failed to fix layout and styling. Please try again later.": [
+        "No se pudo corregir el diseño ni el estilo. Inténtalo de nuevo más tarde."
+      ],
+      "Daily limit exceeded. Please try again tomorrow.": [
+        "Se superó el límite diario. Inténtalo de nuevo mañana."
+      ],
+      "Invalid request. Please check your input.": [
+        "Solicitud no válida. Por favor, revise su entrada."
+      ],
+      "Could not find wpbody element. Please ensure you are on a WordPress admin page.": [
+        "No se encontró el elemento wpbody. Asegúrate de estar en la página de administración de WordPress."
+      ],
+      "Layout fix removed": [
+        "Corrección de diseño eliminada"
+      ],
+      "CSS copied to clipboard": [
+        "CSS copiado al portapapeles"
+      ],
+      "Failed to copy CSS": [
+        "No se pudo copiar el CSS"
+      ],
+      "Layout and Styling": [
+        "Diseño y estilo"
+      ],
+      "requests remaining": [
+        "solicitudes restantes"
+      ],
+      "Describe the layout or styling issue": [
+        "Describe el problema de diseño o estilo."
+      ],
+      "e.g., The header is overlapping with the content area": [
+        "Por ejemplo, el encabezado se superpone con el área de contenido."
+      ],
+      "A screenshot of the page will be captured and analyzed. The AI will provide CSS fixes based on your description.": [
+        "Se capturará y analizará una captura de pantalla de la página. La IA proporcionará correcciones CSS según tu descripción."
+      ],
+      "Fix Layout": [
+        "Arreglar el diseño"
+      ],
+      "Layout and styling fix applied successfully!": [
+        "¡La corrección de diseño y estilo se aplicó exitosamente!"
+      ],
+      "Would you like to keep this fix permanently or remove it?": [
+        "¿Desea conservar esta solución de forma permanente o eliminarla?"
+      ],
+      "Hide Applied CSS": [
+        "Ocultar CSS aplicado"
+      ],
+      "View Applied CSS": [
+        "Ver CSS aplicado"
+      ],
+      "Copy CSS": [
+        "Copiar CSS"
+      ],
+      "Keep Fix": [
+        "Mantener fijo"
+      ],
+      "Saves to custom CSS settings for persistence.": [
+        "Guarda la configuración CSS personalizada para persistencia."
+      ],
+      "Remove Fix": [
+        "Eliminar corrección"
+      ],
+      "Removes the fix immediately.": [
+        "Elimina la corrección inmediatamente."
+      ],
+      "Remove": [
+        "Eliminar"
+      ],
+      "Failed to fix layout and styling": [
+        "No se pudo arreglar el diseño ni el estilo"
+      ],
+      "Close": [
+        "Cerrar"
+      ],
+      "Media item not found": [
+        "Elemento multimedia no encontrado"
+      ],
+      "Only images can be edited": [
+        "Solo se pueden editar imágenes"
+      ],
+      "Image saved successfully": [
+        "Imagen guardada exitosamente"
+      ],
+      "Failed to save image": [
+        "No se pudo guardar la imagen"
+      ],
+      "Back": [
+        "Atrás"
+      ],
+      "1 item selected": [
+        "1 artículo seleccionado"
+      ],
+      "%d items selected": [
+        "%d elementos seleccionados"
+      ],
+      "Files duplicated": [
+        "Archivos duplicados"
+      ],
+      "Error duplicating files": [
+        "Error al duplicar archivos"
+      ],
+      "Media updated successfully": [
+        "Medios actualizados exitosamente"
+      ],
+      "Error updating media": [
+        "Error al actualizar los medios"
+      ],
+      "Download started": [
+        "Descarga iniciada"
+      ],
+      "Files downloaded": [
+        "Archivos descargados"
+      ],
+      "Error downloading files": [
+        "Error al descargar archivos"
+      ],
+      "this file": [
+        "este archivo"
+      ],
+      "these %d files": [
+        "estos %d archivos"
+      ],
+      "Are you sure?": [
+        "¿Estás seguro?"
+      ],
+      "Are you sure you want to delete %s? This action cannot be undone.": [
+        "¿Seguro que desea eliminar %s? Esta acción no se puede deshacer."
+      ],
+      "Yes, delete": [
+        "Sí, eliminar"
+      ],
+      "Media deleted successfully!": [
+        "¡Medio eliminado exitosamente!"
+      ],
+      "Delete failed": [
+        "Error al eliminar"
+      ],
+      "Upload failed": [
+        "Error en la carga"
+      ],
+      "Files uploaded successfully!": [
+        "¡Archivos cargados exitosamente!"
+      ],
+      "%d file(s) uploaded": [
+        "%d archivos cargados"
+      ],
+      "Search media...": [
+        "Buscar medios..."
+      ],
+      "Images": [
+        "Imágenes"
+      ],
+      "Videos": [
+        "Vídeos"
+      ],
+      "Docs": [
+        "Documentos"
+      ],
+      "Fonts": [
+        "Fuentes"
+      ],
+      "Grid View": [
+        "Vista de cuadrícula"
+      ],
+      "List View": [
+        "Vista de lista"
+      ],
+      "Sort By": [
+        "Ordenar por"
+      ],
+      "Date Range": [
+        "Rango de fechas"
+      ],
+      "No tags available": [
+        "No hay etiquetas disponibles"
+      ],
+      "Options": [
+        "Opciones"
+      ],
+      "Unused Media Only": [
+        "Solo medios no utilizados"
+      ],
+      "Clear All Filters": [
+        "Borrar todos los filtros"
+      ],
+      "Drop files to upload": [
+        "Suelta archivos para cargar"
+      ],
+      "Release to start uploading": [
+        "Suelte para comenzar a cargar"
+      ],
+      "Loading media...": [
+        "Cargando medios..."
+      ],
+      "No media found": [
+        "No se encontraron medios"
+      ],
+      "No media files": [
+        "No hay archivos multimedia"
+      ],
+      "Clear filters": [
+        "Borrar filtros"
+      ],
+      "Select a media file from the list to view details and edit properties.": [
+        "Seleccione un archivo multimedia de la lista para ver detalles y editar propiedades."
+      ],
+      "View": [
+        "Ver"
+      ],
+      "Bulk Edit": [
+        "Edición masiva"
+      ],
+      "Download": [
+        "Descargar"
+      ],
+      "Duplicate": [
+        "Duplicar"
+      ],
+      "Bulk Edit Media": [
+        "Edición masiva de medios"
+      ],
+      "Editing 1 item. Leave fields empty to keep existing values.": [
+        "Editando 1 elemento. Deje los campos vacíos para conservar los valores existentes."
+      ],
+      "Editing %d items. Leave fields empty to keep existing values.": [
+        "Editando %d elementos. Deje los campos vacíos para conservar los valores existentes."
+      ],
+      "Title": [
+        "Título"
+      ],
+      "Leave empty to keep existing": [
+        "Déjelo vacío para mantener el existente"
+      ],
+      "Alt Text": [
+        "Texto alternativo"
+      ],
+      "Caption": [
+        "Subtítulo"
+      ],
+      "Description": [
+        "Descripción"
+      ],
+      "Saved": [
+        "Guardado"
+      ],
+      "Save failed": [
+        "Error al guardar"
+      ],
+      "Delete file": [
+        "Borrar archivo"
+      ],
+      "This will permantantly delete the file. Proceed?": [
+        "Esto eliminará el archivo permanentemente. ¿Continuar?"
+      ],
+      "Deleted": [
+        "Eliminado"
+      ],
+      "Copy failed": [
+        "Copia fallida"
+      ],
+      "File replaced successfully": [
+        "Archivo reemplazado exitosamente"
+      ],
+      "File replacement failed": [
+        "Error en el reemplazo del archivo"
+      ],
+      "Only images can be optimized": [
+        "Sólo se pueden optimizar las imágenes"
+      ],
+      "Optimise image": [
+        "Optimizar la imagen"
+      ],
+      "This will permantantly optimise the image and convert to webp format.": [
+        "Esto optimizará permanentemente la imagen y la convertirá al formato webp."
+      ],
+      "Convert": [
+        "Convertir"
+      ],
+      "Image optimized": [
+        "Imagen optimizada"
+      ],
+      "Optimization failed": [
+        "La optimización falló"
+      ],
+      "Failed to add tag": [
+        "No se pudo agregar la etiqueta"
+      ],
+      "Failed to remove tag": [
+        "No se pudo eliminar la etiqueta"
+      ],
+      "Tag created and added": [
+        "Etiqueta creada y agregada"
+      ],
+      "Failed to create tag": [
+        "No se pudo crear la etiqueta"
+      ],
+      "Failed to update tags": [
+        "No se pudieron actualizar las etiquetas"
+      ],
+      "Drop file to replace": [
+        "Soltar archivo para reemplazar"
+      ],
+      "Keep the same ID and regenerate thumbnails": [
+        "Mantener la misma ID y regenerar miniaturas"
+      ],
+      "Replacing file...": [
+        "Reemplazar archivo..."
+      ],
+      "Regenerating thumbnails": [
+        "Regenerando miniaturas"
+      ],
+      "Optimizing image...": [
+        "Optimizando imagen..."
+      ],
+      "File replaced successfully!": [
+        "¡Archivo reemplazado exitosamente!"
+      ],
+      "Thumbnails regenerated": [
+        "Miniaturas regeneradas"
+      ],
+      "Your browser does not support the video tag.": [
+        "Su navegador no soporta la etiqueta de vídeo."
+      ],
+      "Uploaded": [
+        "Subido"
+      ],
+      "Untitled": [
+        "Sin título"
+      ],
+      "Describe the image for screen readers": [
+        "Describe la imagen para los lectores de pantalla."
+      ],
+      "Add a caption": [
+        "Añadir un título"
+      ],
+      "Add tags...": [
+        "Añadir etiquetas..."
+      ],
+      "File URL": [
+        "URL del archivo"
+      ],
+      "Actions": [
+        "Comportamiento"
+      ],
+      "Optimizing...": [
+        "Optimizando..."
+      ],
+      "Optimize Image": [
+        "Optimizar imagen"
+      ],
+      "Replacing...": [
+        "Reemplazando..."
+      ],
+      "Replace Image": [
+        "Reemplazar imagen"
+      ],
+      "Filename": [
+        "Nombre del archivo"
+      ],
+      "ID": [
+        "ID"
+      ],
+      "File size": [
+        "Tamaño del archivo"
+      ],
+      "Used In": [
+        "Usado en"
+      ],
+      "This media is not currently used anywhere.": [
+        "Este medio no se utiliza actualmente en ningún lugar."
+      ],
+      "Post": [
+        "Correo"
+      ],
+      "Widget": [
+        "Widget"
+      ],
+      "Draft": [
+        "Borrador"
+      ],
+      "Edit": [
+        "Editar"
+      ],
+      "Search posts": [
+        "Buscar publicaciones"
+      ],
+      "Find users": [
+        "Buscar usuarios"
+      ],
+      "Quick actions": [
+        "Acciones rapidas"
+      ],
+      "View commands": [
+        "Ver comandos"
+      ],
+      "Pending": [
+        "Pendiente"
+      ],
+      "Private": [
+        "Privado"
+      ],
+      "Welcome to Global Search": [
+        "Bienvenido a Global Search"
+      ],
+      "Quickly find posts, pages, users, and more. Here are some tips to get started:": [
+        "Encuentra rápidamente publicaciones, páginas, usuarios y mucho más. Aquí tienes algunos consejos para empezar:"
+      ],
+      "Press": [
+        "Prensa"
+      ],
+      "to open search": [
+        "para abrir la búsqueda"
+      ],
+      "Got it, thanks!": [
+        "¡Entendido, Gracias!"
+      ],
+      "Search posts, pages, categories, users...": [
+        "Buscar entradas, páginas, categorías, usuarios..."
+      ],
+      "Recent Searches": [
+        "Búsquedas recientes"
+      ],
+      "Clear": [
+        "Limpiar"
+      ],
+      "Start searching": [
+        "Comenzar la búsqueda"
+      ],
+      "Search for posts, pages, users, categories, or use quick actions.": [
+        "Busca entradas, páginas, usuarios, categorías o utiliza acciones rápidas."
+      ],
+      "Try these:": [
+        "Prueba estos:"
+      ],
+      "Keyboard Shortcuts": [
+        "Atajos de teclado"
+      ],
+      "Open": [
+        "Abierto"
+      ],
+      "Show tutorial again": [
+        "Mostrar tutorial de nuevo"
+      ],
+      "Command Syntax": [
+        "Sintaxis del comando"
+      ],
+      "Search only posts": [
+        "Buscar solo en publicaciones"
+      ],
+      "Search only pages": [
+        "Buscar solo en páginas"
+      ],
+      "Search only users": [
+        "Buscar solo usuarios"
+      ],
+      "Search only categories": [
+        "Buscar solo en categorías"
+      ],
+      "Show only quick actions": [
+        "Mostrar solo acciones rápidas"
+      ],
+      "No results found": [
+        "No se han encontrado resultados"
+      ],
+      "Try a different search term or use command syntax to filter results.": [
+        "Prueba con otro término de búsqueda o utiliza la sintaxis de comandos para filtrar los resultados."
+      ],
+      "View Commands": [
+        "Ver comandos"
+      ],
+      "Clear Search": [
+        "Limpiar busqueda"
+      ],
+      "Recently Accessed": [
+        "Accedido recientemente"
+      ],
+      "Frequently Used": [
+        "De uso frecuente"
+      ],
+      "to navigate": [
+        "navegar"
+      ],
+      "to select": [
+        "para seleccionar"
+      ],
+      "to close": [
+        "cerrar"
+      ],
+      "Magic dark mode enabled for this page": [
+        "Modo oscuro mágico habilitado para esta página"
+      ],
+      "Failed to enable magic dark mode": [
+        "No se ha podido habilitar el modo oscuro mágico."
+      ],
+      "Magic dark mode disabled for this page": [
+        "Modo oscuro mágico desactivado para esta página"
+      ],
+      "Failed to disable magic dark mode": [
+        "No se ha podido desactivar el modo oscuro mágico."
+      ],
+      "Free": [
+        "Gratis"
+      ],
+      "Loading image...": [
+        "Cargando imagen..."
+      ],
+      "Apply": [
+        "Aplicar"
+      ],
+      "Image Editor": [
+        "Editor de imágenes"
+      ],
+      "Luminosity": [
+        "Luminosidad"
+      ],
+      "Brightness": [
+        "Brillo"
+      ],
+      "Exposure": [
+        "Exposición"
+      ],
+      "Highlights": [
+        "Reflejos"
+      ],
+      "Shadows": [
+        "Oscuridad"
+      ],
+      "Contrast": [
+        "Contraste"
+      ],
+      "Color": [
+        "Color"
+      ],
+      "Saturation": [
+        "Saturación"
+      ],
+      "Vibrance": [
+        "Vibración"
+      ],
+      "Hue": [
+        "Matiz"
+      ],
+      "Temperature": [
+        "Temperatura"
+      ],
+      "Cool ← → Warm": [
+        "Fresco ← → Cálido"
+      ],
+      "Tint": [
+        "Tinte"
+      ],
+      "Green ← → Magenta": [
+        "Verde ← → Magenta"
+      ],
+      "Effects": [
+        "Efectos"
+      ],
+      "Sharpness": [
+        "Nitidez"
+      ],
+      "Negative = blur, positive = sharpen": [
+        "Negativo = desenfocar, positivo = enfocar"
+      ],
+      "Blur": [
+        "Difuminar"
+      ],
+      "Grain": [
+        "Grano"
+      ],
+      "Vignette": [
+        "Viñeta"
+      ],
+      "Crop": [
+        "Cultivo"
+      ],
+      "Click and drag on the image to select crop area": [
+        "Haga clic y arrastre la imagen para seleccionar el área de recorte"
+      ],
+      "Aspect Ratio": [
+        "Relación de aspecto"
+      ],
+      "Start Crop": [
+        "Iniciar cultivo"
+      ],
+      "Resize": [
+        "Cambiar el tamaño"
+      ],
+      "Lock aspect ratio": [
+        "Bloquear relación de aspecto"
+      ],
+      "Width": [
+        "Ancho"
+      ],
+      "Height": [
+        "Altura"
+      ],
+      "Apply Resize": [
+        "Aplicar cambio de tamaño"
+      ],
+      "Transform": [
+        "Transformar"
+      ],
+      "Left": [
+        "Izquierda"
+      ],
+      "Right": [
+        "Bien"
+      ],
+      "Flip H": [
+        "Voltear H"
+      ],
+      "Flip V": [
+        "Voltear V"
+      ],
+      "Reset": [
+        "Reiniciar"
+      ],
+      "Reset changes": [
+        "Restablecer cambios"
+      ],
+      "Loading more...": [
+        "Cargando más..."
+      ],
+      "No more items": [
+        "No hay más artículos"
+      ],
+      "minute": [
+        "minuto"
+      ],
+      "minutes": [
+        "minutos"
+      ],
+      "ago": [
+        "hace"
+      ],
+      "hour": [
+        "hora"
+      ],
+      "hours": [
+        "horas"
+      ],
+      "day": [
+        "día"
+      ],
+      "days": [
+        "dias"
+      ],
+      "Remove tag": [
+        "Eliminar etiqueta"
+      ],
+      "Create tag": [
+        "Crear etiqueta"
+      ],
+      "JSON must be a service account key (type should be \"service_account": [
+        "JSON debe ser una clave de cuenta de servicio (el tipo debe ser \"service_account\")."
+      ],
+      "You must be logged in to access this page.": [
+        "Necesitas estar logueado para acceder a esta página."
+      ],
+      "Invalid request. Please refresh the page and try again.": [
+        "Solicitud no válida. Actualice la página e inténtelo de nuevo."
+      ],
+      "Search": [
+        "Buscar"
+      ]
+    }
+  }
+}

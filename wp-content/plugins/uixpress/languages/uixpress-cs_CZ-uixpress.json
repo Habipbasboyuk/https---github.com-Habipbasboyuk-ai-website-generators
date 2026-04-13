@@ -1,0 +1,2652 @@
+{
+  "domain": "uixpress",
+  "locale_data": {
+    "uixpress": {
+      "": {
+        "domain": "uixpress",
+        "lang": "cs_CZ",
+        "plural-forms": "nplurals=2; plural=(n != 1);"
+      },
+      "Every 30 Seconds": [
+        "Každých 30 sekund"
+      ],
+      "Every 30 Minutes": [
+        "Každých 30 minut"
+      ],
+      "Google Analytics 4": [
+        "Google Analytics 4"
+      ],
+      "Could not authenticate with Google Analytics. Please check your service account credentials.": [
+        "Nepodařilo se ověřit pomocí služby Google Analytics. Zkontrolujte prosím přihlašovací údaje k vašemu servisnímu účtu."
+      ],
+      "Permission denied: The service account does not have access to this Google Analytics property. Please add the service account email to your GA4 property with Viewer access. Go to Google Analytics → Admin → Property Access Management and add the service account email.": [
+        "Přístup zamítnut: Servisní účet nemá přístup k této službě Google Analytics. Přidejte prosím e-mail servisního účtu do své služby GA4 s přístupem pro prohlížení. Přejděte do sekce Google Analytics → Správa → Správa přístupu k službám a přidejte e-mail servisního účtu."
+      ],
+      "Authentication failed. The access token is invalid or expired. Please try reconnecting your Google Analytics account.": [
+        "Ověření se nezdařilo. Přístupový token je neplatný nebo jeho platnost vypršela. Zkuste prosím znovu připojit svůj účet Google Analytics."
+      ],
+      "The specified Google Analytics property was not found. Please check that the Property ID is correct.": [
+        "Zadaná služba Google Analytics nebyla nalezena. Zkontrolujte prosím, zda je ID služby správné."
+      ],
+      "Built-in Analytics": [
+        "Vestavěná analytika"
+      ],
+      "Unable to read SVG file for sanitization.": [
+        "Nelze přečíst soubor SVG pro sanitizaci."
+      ],
+      "SVG file could not be sanitized. The file may be corrupted or contain invalid content.": [
+        "Soubor SVG se nepodařilo očistit. Soubor může být poškozen nebo obsahuje neplatný obsah."
+      ],
+      "Unable to write sanitized SVG file.": [
+        "Nelze zapsat upravený soubor SVG."
+      ],
+      "Error sanitizing SVG file: %s": [
+        "Chyba při čištění souboru SVG: %s"
+      ],
+      "Activity Log": [
+        "Záznam aktivit"
+      ],
+      "Welcome to WordPress": [
+        "Vítejte ve WordPressu"
+      ],
+      "Welcome to your WordPress dashboard! This is your site management hub.": [
+        "Vítejte na vašem dashboardu WordPressu! Toto je vaše centrum pro správu webu."
+      ],
+      "Quick Draft": [
+        "Rychlý koncept"
+      ],
+      "Create a new post quickly from here.": [
+        "Vytvořte si zde rychle nový příspěvek."
+      ],
+      "Activity": [
+        "Aktivita"
+      ],
+      "Recent activity on your site.": [
+        "Nedávná aktivita na vašem webu."
+      ],
+      "Plugins": [
+        "Pluginy"
+      ],
+      "Post Types": [
+        "Typy příspěvků"
+      ],
+      "Fields groups": [
+        "Skupiny polí"
+      ],
+      "Database Explorer": [
+        "Průzkumník databáze"
+      ],
+      "Generate Dummy Analytics Data": [
+        "Generování fiktivních analytických dat"
+      ],
+      "Warning:": [
+        "Varování:"
+      ],
+      "This will delete all existing analytics data and replace it with dummy data for testing purposes.": [
+        "Tímto se smažou všechna existující analytická data a pro účely testování je nahradí fiktivními daty."
+      ],
+      "Generate Test Data": [
+        "Generování testovacích dat"
+      ],
+      "This tool will generate realistic dummy analytics data for the last 2 months to help you test the analytics features.": [
+        "Tento nástroj vygeneruje realistická analytická data za poslední 2 měsíce, která vám pomohou otestovat analytické funkce."
+      ],
+      "Number of Months": [
+        "Počet měsíců"
+      ],
+      "Select how many months of dummy data to generate.": [
+        "Vyberte, kolik měsíců fiktivních dat se má generovat."
+      ],
+      "Generate Dummy Data": [
+        "Generování fiktivních dat"
+      ],
+      "Are you sure? This will delete all existing analytics data.": [
+        "Jste si jistý/á? Tímto smažete všechna existující analytická data."
+      ],
+      "What This Generates": [
+        "Co to generuje"
+      ],
+      "Page views from various devices (desktop, mobile, tablet)": [
+        "Zobrazení stránek z různých zařízení (stolní počítač, mobil, tablet)"
+      ],
+      "Realistic browser and operating system data": [
+        "Realistické údaje o prohlížeči a operačním systému"
+      ],
+      "Geographic data from different countries and cities": [
+        "Geografická data z různých zemí a měst"
+      ],
+      "Referrer data from search engines and social media": [
+        "Data o odkazujících stránkách z vyhledávačů a sociálních médií"
+      ],
+      "Session tracking and unique visitor data": [
+        "Sledování relací a data o unikátních návštěvnících"
+      ],
+      "Aggregated daily statistics": [
+        "Souhrnné denní statistiky"
+      ],
+      "Current Analytics Status": [
+        "Aktuální stav analytických nástrojů"
+      ],
+      "Analytics Enabled:": [
+        "Analytika povolena:"
+      ],
+      "Tables Created:": [
+        "Vytvořené tabulky:"
+      ],
+      "Analytics must be enabled in the UiXpress settings before generating dummy data.": [
+        "Před generováním fiktivních dat musí být v nastavení UiXpress povolena analytika."
+      ],
+      "Security check failed.": [
+        "Bezpečnostní kontrola selhala."
+      ],
+      "You do not have sufficient permissions to access this page.": [
+        "Nemáte dostatečná oprávnění pro přístup k této stránce."
+      ],
+      "Analytics is not enabled. Please enable analytics in settings first.": [
+        "Analytika není povolena. Nejprve ji prosím povolte v nastavení."
+      ],
+      "Invalid number of months. Please select between 1 and 12 months.": [
+        "Neplatný počet měsíců. Vyberte prosím mezi 1 a 12 měsíci."
+      ],
+      "Error generating dummy data: ": [
+        "Chyba při generování fiktivních dat:"
+      ],
+      "Menu Creator": [
+        "Tvůrce menu"
+      ],
+      "Add New Admin Menu": [
+        "Přidat novou nabídku pro správu"
+      ],
+      "New Admin Menu": [
+        "Nové menu pro správu"
+      ],
+      "Edit Admin Menu": [
+        "Upravit nabídku administrátora"
+      ],
+      "View Admin Menu": [
+        "Zobrazit nabídku administrátora"
+      ],
+      "All Admin Menus": [
+        "Všechna menu pro správu"
+      ],
+      "Search Admin Menus": [
+        "Vyhledávání v administrátorských nabídkách"
+      ],
+      "No Admin Menus found.": [
+        "Nebyly nalezeny žádné nabídky pro správu."
+      ],
+      "No Admin Menus found in Trash.": [
+        "V koši nebyly nalezeny žádné nabídky pro správu."
+      ],
+      "Post type used for the uixpresss menus": [
+        "Typ příspěvku použitý pro nabídky uixpress"
+      ],
+      "Role Editor": [
+        "Editor rolí"
+      ],
+      "Settings": [
+        "Nastavení"
+      ],
+      "Activity logger is not enabled.": [
+        "Záznamník aktivit není povolen."
+      ],
+      "Unknown": [
+        "Neznámý"
+      ],
+      "Log entry not found.": [
+        "Záznam v protokolu nebyl nalezen."
+      ],
+      "Cleaned up %d old log entries.": [
+        "Vyčištěno %d starých položek protokolu."
+      ],
+      "Add New Admin Notice": [
+        "Přidat oznámení pro nového administrátora"
+      ],
+      "Edit Admin Notice": [
+        "Upravit oznámení pro administrátora"
+      ],
+      "View Admin Notice": [
+        "Zobrazit oznámení pro administrátora"
+      ],
+      "All Admin Notices": [
+        "Všechna oznámení pro administrátory"
+      ],
+      "Search Admin Notices": [
+        "Vyhledávání oznámení pro administrátory"
+      ],
+      "No Admin Notices found.": [
+        "Nenalezena žádná oznámení od administrátora."
+      ],
+      "Persistent admin notices for uiXpress.": [
+        "Trvalá oznámení pro administrátora v uiXpress."
+      ],
+      "Admin Notices": [
+        "Oznámení pro administrátory"
+      ],
+      "Comments awaiting moderation": [
+        "Komentáře čekající na moderování"
+      ],
+      "Media": [
+        "Média"
+      ],
+      "User": [
+        "Uživatel"
+      ],
+      "Invalid field group ID.": [
+        "Neplatné ID skupiny polí."
+      ],
+      "Field group not found.": [
+        "Skupina polí nenalezena."
+      ],
+      "Field group title is required.": [
+        "Název skupiny polí je povinný."
+      ],
+      "Failed to save field group.": [
+        "Uložení skupiny polí se nezdařilo."
+      ],
+      "Field group created successfully.": [
+        "Skupina polí byla úspěšně vytvořena."
+      ],
+      "Field group updated successfully.": [
+        "Skupina polí byla úspěšně aktualizována."
+      ],
+      "Failed to delete field group.": [
+        "Skupinu polí se nepodařilo smazat."
+      ],
+      "Field group deleted successfully.": [
+        "Skupina polí byla úspěšně smazána."
+      ],
+      "(Copy)": [
+        "(Kopie)"
+      ],
+      "Failed to duplicate field group.": [
+        "Nepodařilo se duplikovat skupinu polí."
+      ],
+      "Field group duplicated successfully.": [
+        "Skupina polí byla úspěšně duplikována."
+      ],
+      "Invalid import data. Expected an array of field groups.": [
+        "Neplatná data importu. Očekávalo se pole skupin polí."
+      ],
+      "Invalid import mode. Use \"merge\" or \"replace\".": [
+        "Neplatný režim importu. Použijte „sloučení“ nebo „nahrazení“."
+      ],
+      "Field group at index %d is missing a title.": [
+        "Skupině polí na indexu %d chybí název."
+      ],
+      "Failed to save imported field groups.": [
+        "Uložení importovaných skupin polí se nezdařilo."
+      ],
+      "Import completed successfully.": [
+        "Import byl úspěšně dokončen."
+      ],
+      "Invalid or unauthorized function.": [
+        "Neplatná nebo neoprávněná funkce."
+      ],
+      "Field name is required.": [
+        "Název pole je povinný."
+      ],
+      "Valid option page is required.": [
+        "Je vyžadována platná stránka s možnostmi."
+      ],
+      "Valid object ID is required.": [
+        "Je vyžadováno platné ID objektu."
+      ],
+      "Helper function not available. Please ensure the plugin is properly initialized.": [
+        "Pomocná funkce není k dispozici. Ujistěte se prosím, že je plugin správně inicializován."
+      ],
+      "(no title)": [
+        "(bez názvu)"
+      ],
+      "Add Row": [
+        "Přidat řádek"
+      ],
+      "Default Template": [
+        "Výchozí šablona"
+      ],
+      "All": [
+        "Vše"
+      ],
+      "Standard": [
+        "Norma"
+      ],
+      "No field groups are assigned to this option page. Create a field group and set its location to this option page.": [
+        "K této stránce možností nejsou přiřazeny žádné skupiny polí. Vytvořte skupinu polí a nastavte její umístění na tuto stránku možností."
+      ],
+      "Save Changes": [
+        "Uložit změny"
+      ],
+      "You do not have permission to save these options.": [
+        "Nemáte oprávnění k uložení těchto možností."
+      ],
+      "Invalid option page slug.": [
+        "Neplatný popisek stránky s možnostmi."
+      ],
+      "Option page not found.": [
+        "Stránka s možnostmi nenalezena."
+      ],
+      "Option page title is required.": [
+        "Název stránky s možnostmi je povinný."
+      ],
+      "An option page with this slug already exists.": [
+        "Stránka s možnostmi pro tento slug již existuje."
+      ],
+      "Failed to save option page.": [
+        "Uložení stránky s možnostmi se nezdařilo."
+      ],
+      "Option page created successfully.": [
+        "Stránka s možnostmi byla úspěšně vytvořena."
+      ],
+      "Option page updated successfully.": [
+        "Stránka s možnostmi byla úspěšně aktualizována."
+      ],
+      "Failed to delete option page.": [
+        "Nepodařilo se smazat stránku s možnostmi."
+      ],
+      "Option page deleted successfully.": [
+        "Stránka s možnostmi byla úspěšně smazána."
+      ],
+      "Failed to duplicate option page.": [
+        "Nepodařilo se duplikovat stránku s možnostmi."
+      ],
+      "Option page duplicated successfully.": [
+        "Stránka s možnostmi byla úspěšně duplikována."
+      ],
+      "Option Page Not Found": [
+        "Stránka s možnostmi nenalezena"
+      ],
+      "Tools": [
+        "Nástroje"
+      ],
+      "Appearance": [
+        "Vzhled"
+      ],
+      "Users": [
+        "Uživatelé"
+      ],
+      "Comments": [
+        "Komentáře"
+      ],
+      "Posts": [
+        "Příspěvky"
+      ],
+      "Pages": [
+        "Stránky"
+      ],
+      "Dashboard": [
+        "Dashboard"
+      ],
+      "Administrator (manage_options)": [
+        "Administrátor (manage_options)"
+      ],
+      "Editor (edit_others_posts)": [
+        "Editor (edit_others_posts)"
+      ],
+      "Author (publish_posts)": [
+        "Autor (publish_posts)"
+      ],
+      "Contributor (edit_posts)": [
+        "Přispěvatel (edit_posts)"
+      ],
+      "Subscriber (read)": [
+        "Předplatitel (čtení)"
+      ],
+      "Custom Fields": [
+        "Vlastní pole"
+      ],
+      "Invalid post type slug.": [
+        "Neplatný typ příspěvku."
+      ],
+      "Custom post type not found.": [
+        "Vlastní typ příspěvku nebyl nalezen."
+      ],
+      "Post type slug is required.": [
+        "Je vyžadován slug typu příspěvku."
+      ],
+      "Post type name is required.": [
+        "Název typu příspěvku je povinný."
+      ],
+      "Invalid post type slug. Use only lowercase letters, numbers, and underscores. Maximum 20 characters.": [
+        "Neplatný popis typu příspěvku. Používejte pouze malá písmena, číslice a podtržítka. Maximálně 20 znaků."
+      ],
+      "This post type slug is reserved by WordPress.": [
+        "Tento typ příspěvku je rezervován WordPressem."
+      ],
+      "A custom post type with this slug already exists.": [
+        "Vlastní typ příspěvku s tímto slugem již existuje."
+      ],
+      "Failed to save custom post type.": [
+        "Uložení vlastního typu příspěvku se nezdařilo."
+      ],
+      "Custom post type created successfully.": [
+        "Vlastní typ příspěvku byl úspěšně vytvořen."
+      ],
+      "Custom post type updated successfully.": [
+        "Typ vlastního příspěvku byl úspěšně aktualizován."
+      ],
+      "Failed to delete custom post type.": [
+        "Nepodařilo se smazat vlastní typ příspěvku."
+      ],
+      "Custom post type deleted successfully.": [
+        "Vlastní typ příspěvku byl úspěšně smazán."
+      ],
+      "Invalid import data. Expected an array of post types.": [
+        "Neplatná data importu. Očekávalo se pole typů příspěvků."
+      ],
+      "Post type at index %d is missing required fields (slug or name).": [
+        "Typ příspěvku na indexu %d postrádá povinná pole (slug nebo název)."
+      ],
+      "Post type \"%s\" has an invalid slug format.": [
+        "Typ příspěvku „%s“ má neplatný formát textového popisku."
+      ],
+      "Post type \"%s\" uses a reserved slug: %s": [
+        "Typ příspěvku „%s“ používá rezervovaný slug: %s"
+      ],
+      "Import validation failed.": [
+        "Ověření importu se nezdařilo."
+      ],
+      "Failed to save imported post types.": [
+        "Uložení importovaných typů příspěvků se nezdařilo."
+      ],
+      "Add New": [
+        "Přidat nové"
+      ],
+      "Add New %s": [
+        "Přidat nové %s"
+      ],
+      "Edit %s": [
+        "Upravit %s"
+      ],
+      "New %s": [
+        "Nové %s"
+      ],
+      "View %s": [
+        "Zobrazit %s"
+      ],
+      "Search %s": [
+        "Hledat %s"
+      ],
+      "No %s found": [
+        "Nenalezeny žádné %s"
+      ],
+      "No %s found in Trash": [
+        "V koši nebyl nalezen žádný %s"
+      ],
+      "Parent %s:": [
+        "Nadřazený %s:"
+      ],
+      "All %s": [
+        "Všechna %s"
+      ],
+      "%s Archives": [
+        "%s Archivy"
+      ],
+      "%s Attributes": [
+        "%s atributů"
+      ],
+      "Insert into %s": [
+        "Vložit do %s"
+      ],
+      "Uploaded to this %s": [
+        "Nahráno do tohoto %s"
+      ],
+      "Featured image": [
+        "Doporučený obrázek"
+      ],
+      "Set featured image": [
+        "Nastavit doporučený obrázek"
+      ],
+      "Remove featured image": [
+        "Odebrat vybraný obrázek"
+      ],
+      "Use as featured image": [
+        "Použít jako doporučený obrázek"
+      ],
+      "Filter %s list": [
+        "Filtrovat seznam %s"
+      ],
+      "%s list navigation": [
+        "%s navigace v seznamu"
+      ],
+      "%s list": [
+        "%s seznam"
+      ],
+      "%s published.": [
+        "Publikováno %s."
+      ],
+      "%s published privately.": [
+        "%s publikováno soukromě."
+      ],
+      "%s reverted to draft.": [
+        "%s se vrátilo do stavu konceptu."
+      ],
+      "%s scheduled.": [
+        "%s naplánováno."
+      ],
+      "%s updated.": [
+        "%s aktualizováno."
+      ],
+      "Only SELECT queries are allowed for safety.": [
+        "Z bezpečnostních důvodů jsou povoleny pouze dotazy SELECT."
+      ],
+      "Invalid table name.": [
+        "Neplatný název tabulky."
+      ],
+      "Table not found.": [
+        "Tabulka nenalezena."
+      ],
+      "Unable to retrieve table structure.": [
+        "Nelze načíst strukturu tabulky."
+      ],
+      "Query contains prohibited SQL keywords.": [
+        "Dotaz obsahuje zakázaná klíčová slova SQL."
+      ],
+      "Multiple statements are not allowed.": [
+        "Vícenásobné výpisy nejsou povoleny."
+      ],
+      "Query execution failed. Please check your SQL syntax.": [
+        "Provedení dotazu se nezdařilo. Zkontrolujte prosím syntaxi SQL."
+      ],
+      "Password is required.": [
+        "Je vyžadováno heslo."
+      ],
+      "Invalid password.": [
+        "Neplatné heslo."
+      ],
+      "Password verification failed.": [
+        "Ověření hesla se nezdařilo."
+      ],
+      "WordPress core tables cannot be deleted.": [
+        "Základní tabulky WordPressu nelze smazat."
+      ],
+      "System tables cannot be deleted.": [
+        "Systémové tabulky nelze odstranit."
+      ],
+      "Password is required for this operation.": [
+        "Pro tuto operaci je vyžadováno heslo."
+      ],
+      "Failed to delete table.": [
+        "Nepodařilo se smazat tabulku."
+      ],
+      "Table '%s' has been deleted.": [
+        "Tabulka '%s' byla smazána."
+      ],
+      "Invalid JSON format": [
+        "Neplatný formát JSON"
+      ],
+      "Missing required field: %s": [
+        "Chybí povinné pole: %s"
+      ],
+      "Failed to authenticate with Google. Please check your service account key.": [
+        "Ověření u Googlu se nezdařilo. Zkontrolujte prosím klíč servisního účtu."
+      ],
+      "Credentials are valid": [
+        "Pověření jsou platná"
+      ],
+      "JSON must be a service account key": [
+        "JSON musí být klíčem servisního účtu."
+      ],
+      "Service account credentials saved successfully": [
+        "Přihlašovací údaje k servisnímu účtu byly úspěšně uloženy."
+      ],
+      "Google Analytics disconnected": [
+        "Google Analytics odpojeno"
+      ],
+      "Not connected to Google Analytics": [
+        "Není připojeno ke službě Google Analytics"
+      ],
+      "Failed to fetch properties. Make sure the service account has been added to your GA4 property.": [
+        "Načtení vlastností se nezdařilo. Ujistěte se, že byl servisní účet přidán do vaší služby GA4."
+      ],
+      "Property ID is required": [
+        "ID nemovitosti je vyžadováno"
+      ],
+      "Property saved successfully": [
+        "Vlastnost byla úspěšně uložena"
+      ],
+      "Return only unused media items (unattached and not used as featured image).": [
+        "Vraťte pouze nepoužité mediální položky (nepřiložené a nepoužité jako hlavní obrázek)."
+      ],
+      "Unused detection mode: shallow (default) or deep (scans post_content).": [
+        "Nepoužitý režim detekce: mělká (výchozí) nebo hluboká (skenuje post_content)."
+      ],
+      "Invalid request.": [
+        "Neplatný požadavek."
+      ],
+      "Invalid media IDs provided.": [
+        "Zadali jste neplatná ID médií."
+      ],
+      "Maximum 100 items can be downloaded at once.": [
+        "Najednou lze stáhnout maximálně 100 položek."
+      ],
+      "ZIP functionality is not available on this server.": [
+        "Funkce ZIP není na tomto serveru k dispozici."
+      ],
+      "Failed to create ZIP file.": [
+        "Nepodařilo se vytvořit soubor ZIP."
+      ],
+      "No valid files found to download.": [
+        "Nebyly nalezeny žádné platné soubory ke stažení."
+      ],
+      "(Untitled)": [
+        "(Bez názvu)"
+      ],
+      "Media ID is required.": [
+        "Je vyžadováno ID média."
+      ],
+      "Media item not found.": [
+        "Mediální položka nenalezena."
+      ],
+      "You do not have permission to edit this media item.": [
+        "Nemáte oprávnění k úpravě této mediální položky."
+      ],
+      "No file was uploaded.": [
+        "Nebyl nahrán žádný soubor."
+      ],
+      "File upload failed. Please try again.": [
+        "Nahrávání souboru se nezdařilo. Zkuste to prosím znovu."
+      ],
+      "File type not allowed.": [
+        "Typ souboru není povolen."
+      ],
+      "File content does not match file type.": [
+        "Obsah souboru neodpovídá typu souboru."
+      ],
+      "File name contains invalid characters.": [
+        "Název souboru obsahuje neplatné znaky."
+      ],
+      "Original file not found.": [
+        "Původní soubor nebyl nalezen."
+      ],
+      "Invalid file path.": [
+        "Neplatná cesta k souboru."
+      ],
+      "Failed to move uploaded file.": [
+        "Přesunutí nahraného souboru se nezdařilo."
+      ],
+      "File replaced successfully.": [
+        "Soubor byl úspěšně nahrazen."
+      ],
+      "Filter media items by tag IDs.": [
+        "Filtrovat mediální položky podle ID tagů."
+      ],
+      "Media Tags": [
+        "Štítky médií"
+      ],
+      "Media Tag": [
+        "Štítek média"
+      ],
+      "Tags": [
+        "Štítky"
+      ],
+      "All Tags": [
+        "Všechny štítky"
+      ],
+      "Edit Tag": [
+        "Upravit štítek"
+      ],
+      "View Tag": [
+        "Zobrazit štítek"
+      ],
+      "Update Tag": [
+        "Aktualizovat značku"
+      ],
+      "Add New Tag": [
+        "Přidat novou značku"
+      ],
+      "New Tag Name": [
+        "Název nového štítku"
+      ],
+      "Search Tags": [
+        "Vyhledávání štítků"
+      ],
+      "Popular Tags": [
+        "Oblíbené štítky"
+      ],
+      "Separate tags with commas": [
+        "Oddělte tagy čárkami"
+      ],
+      "Add or remove tags": [
+        "Přidání nebo odebrání štítků"
+      ],
+      "Choose from the most used tags": [
+        "Vyberte si z nejpoužívanějších tagů"
+      ],
+      "No tags found": [
+        "Nenalezeny žádné štítky"
+      ],
+      "Tag name is required": [
+        "Název štítku je povinný"
+      ],
+      "Invalid media item": [
+        "Neplatná mediální položka"
+      ],
+      "Menu cache key rotated successfully. All client caches have been invalidated.": [
+        "Klíč mezipaměti nabídky byl úspěšně rotován. Všechny mezipaměti klientů byly zneplatněny."
+      ],
+      "Status": [
+        "Postavení"
+      ],
+      "Published": [
+        "Publikováno"
+      ],
+      "(No title)": [
+        "(Bez názvu)"
+      ],
+      "Scheduled": [
+        "Naplánováno"
+      ],
+      "%s from now": [
+        "%s od teď"
+      ],
+      "Modified": [
+        "Upraveno"
+      ],
+      "%s ago": [
+        "Před %s"
+      ],
+      "Authentication required. Please provide Basic Auth credentials.": [
+        "Je vyžadováno ověření. Zadejte prosím základní ověřovací údaje."
+      ],
+      "Invalid authentication credentials.": [
+        "Neplatné ověřovací údaje."
+      ],
+      "Missing security token. Please refresh the page and try again.": [
+        "Chybí bezpečnostní token. Aktualizujte stránku a zkuste to znovu."
+      ],
+      "Invalid security token. Please refresh the page and try again.": [
+        "Neplatný bezpečnostní token. Aktualizujte stránku a zkuste to znovu."
+      ],
+      "You must be logged in to access this endpoint.": [
+        "Pro přístup k tomuto koncovému bodu se musíte přihlásit."
+      ],
+      "You do not have permission to perform this action. Required capability: %s": [
+        "Nemáte oprávnění k provedení této akce. Požadovaná oprávnění: %s"
+      ],
+      "Invalid role format.": [
+        "Neplatný formát role."
+      ],
+      "Invalid role.": [
+        "Neplatná role."
+      ],
+      "Capabilities must be an array.": [
+        "Schopnosti musí být pole."
+      ],
+      "Role not found.": [
+        "Role nenalezena."
+      ],
+      "Role capabilities updated successfully.": [
+        "Možnosti role byly úspěšně aktualizovány."
+      ],
+      "Role name cannot be empty.": [
+        "Název role nemůže být prázdný."
+      ],
+      "Role name is too long.": [
+        "Název role je příliš dlouhý."
+      ],
+      "Role name updated successfully.": [
+        "Název role byl úspěšně aktualizován."
+      ],
+      "Role slug can only contain lowercase letters, numbers, hyphens, and underscores.": [
+        "Popis role může obsahovat pouze malá písmena, číslice, pomlčky a podtržítka."
+      ],
+      "Role slug is too long.": [
+        "Popis role je příliš dlouhý."
+      ],
+      "A role with this slug already exists.": [
+        "Role s tímto slugem již existuje."
+      ],
+      "Failed to create role.": [
+        "Vytvoření role se nezdařilo."
+      ],
+      "Role created successfully.": [
+        "Role byla úspěšně vytvořena."
+      ],
+      "Cannot delete default WordPress roles.": [
+        "Nelze smazat výchozí role WordPressu."
+      ],
+      "Cannot delete role. There are %d user(s) with this role. Please reassign users to another role first.": [
+        "Roli nelze smazat. Existuje %d uživatelů s touto rolí. Nejprve prosím přeřaďte uživatele do jiné role."
+      ],
+      "Role deleted successfully.": [
+        "Role byla úspěšně smazána."
+      ],
+      "New Users": [
+        "Noví uživatelé"
+      ],
+      "Activity Log Details": [
+        "Podrobnosti protokolu aktivit"
+      ],
+      "General": [
+        "Generál"
+      ],
+      "Core plugin settings and license management": [
+        "Nastavení základních pluginů a správa licencí"
+      ],
+      "Login": [
+        "Přihlášení"
+      ],
+      "Customize login page appearance and security": [
+        "Přizpůsobení vzhledu a zabezpečení přihlašovací stránky"
+      ],
+      "Theme": [
+        "Téma"
+      ],
+      "Colors, styling, and visual customization": [
+        "Barvy, styl a vizuální úpravy"
+      ],
+      "White Label": [
+        "Bílý štítek"
+      ],
+      "Rebrand and customize interface text and icons": [
+        "Změňte značku a upravte text a ikony rozhraní"
+      ],
+      "Menu": [
+        "Menu"
+      ],
+      "Admin menu behavior and interaction settings": [
+        "Nastavení chování a interakce v administrátorské nabídce"
+      ],
+      "Post management and display preferences": [
+        "Předvolby správy a zobrazení příspěvků"
+      ],
+      "Plugin management interface options": [
+        "Možnosti rozhraní pro správu pluginů"
+      ],
+      "Custom dashboard and admin interface settings": [
+        "Vlastní nastavení řídicího panelu a administrátorského rozhraní"
+      ],
+      "Analytics": [
+        "Analytika"
+      ],
+      "Built-in analytics and tracking settings": [
+        "Vestavěná nastavení analýzy a sledování"
+      ],
+      "Media library and upload management settings": [
+        "Nastavení mediální knihovny a správy nahrávání"
+      ],
+      "User management and administration settings": [
+        "Nastavení správy a administrace uživatelů"
+      ],
+      "Comment management and administration settings": [
+        "Nastavení správy a administrace komentářů"
+      ],
+      "Security": [
+        "Zabezpečení"
+      ],
+      "Security settings and administration": [
+        "Nastavení zabezpečení a správa"
+      ],
+      "Database": [
+        "Databáze"
+      ],
+      "Database explorer and management settings": [
+        "Průzkumník databáze a nastavení správy"
+      ],
+      "Search settings...": [
+        "Nastavení vyhledávání..."
+      ],
+      "Loading settings...": [
+        "Načítání nastavení..."
+      ],
+      "No settings found": [
+        "Nenalezena žádná nastavení"
+      ],
+      "Try a different search term": [
+        "Zkuste jiný hledaný výraz"
+      ],
+      "Loading Settings...": [
+        "Načítání nastavení..."
+      ],
+      "Settings Panel": [
+        "Panel nastavení"
+      ],
+      "Select a category from the list to configure your settings.": [
+        "Vyberte kategorii ze seznamu pro konfiguraci nastavení."
+      ],
+      "Activity log entry not found": [
+        "Záznam v protokolu aktivit nenalezen"
+      ],
+      "Just now": [
+        "Právě teď"
+      ],
+      "1 minute ago": [
+        "Před 1 minutou"
+      ],
+      "%d minutes ago": [
+        "Před %d minutami"
+      ],
+      "1 hour ago": [
+        "Před 1 hodinou"
+      ],
+      "%d hours ago": [
+        "Před %d hodinami"
+      ],
+      "1 day ago": [
+        "Před 1 dnem"
+      ],
+      "%d days ago": [
+        "Před %d dny"
+      ],
+      "Loading...": [
+        "Načítání..."
+      ],
+      "Activity Details": [
+        "Podrobnosti o aktivitě"
+      ],
+      "User Information": [
+        "Informace o uživateli"
+      ],
+      "Timestamp": [
+        "Časové razítko"
+      ],
+      "IP Address": [
+        "IP adresa"
+      ],
+      "User Agent": [
+        "Uživatelský agent"
+      ],
+      "Changes": [
+        "Změny"
+      ],
+      "Before": [
+        "Před"
+      ],
+      "After": [
+        "Po"
+      ],
+      "Details": [
+        "Podrobnosti"
+      ],
+      "Metadata": [
+        "Metadata"
+      ],
+      "Remote Site Error": [
+        "Chyba vzdáleného webu"
+      ],
+      "Invalid remote site configuration": [
+        "Neplatná konfigurace vzdáleného webu"
+      ],
+      "Click": [
+        "Klikněte"
+      ],
+      "Hover": [
+        "Vznášet se"
+      ],
+      "Off": [
+        "Vypnuto"
+      ],
+      "Light": [
+        "Světlo"
+      ],
+      "Dark": [
+        "Tmavý"
+      ],
+      "Licence key": [
+        "Licenční klíč"
+      ],
+      "Activating uiXpress enables updates and features": [
+        "Aktivace uiXpressu umožňuje aktualizace a funkce"
+      ],
+      "Logo": [
+        "Logo"
+      ],
+      "Optional logo for to be displayed in the menu": [
+        "Volitelné logo pro zobrazení v nabídce"
+      ],
+      "Logo url": [
+        "URL adresa loga"
+      ],
+      "Dark mode logo": [
+        "Logo tmavého režimu"
+      ],
+      "Set an alternative logo to use in dark mode. If one isn't set it will fall back to the standard logo.": [
+        "Nastavte alternativní logo pro použití v tmavém režimu. Pokud žádné nenastavíte, vrátí se k původnímu logu."
+      ],
+      "Dark Logo url": [
+        "URL tmavého loga"
+      ],
+      "Remote Sites": [
+        "Vzdálené lokality"
+      ],
+      "Configure remote WordPress sites for cross-site operations.": [
+        "Nakonfigurujte vzdálené weby WordPress pro operace napříč weby."
+      ],
+      "Remote Site Switcher Capability": [
+        "Možnost přepínání vzdálených lokalit"
+      ],
+      "WordPress capability required to see the remote site switcher in the toolbar. Defaults to \"manage_options\" (admin users). Users with this capability or below will see the switcher.": [
+        "Pro zobrazení přepínače vzdálených webů v panelu nástrojů je vyžadována podpora WordPressu. Výchozí nastavení je „manage_options“ (uživatelé s oprávněním administrátora). Přepínač uvidí uživatelé s touto nebo nižší podporou."
+      ],
+      "Disable theme": [
+        "Zakázat motiv"
+      ],
+      "Choose roles or usersnames to disable the theme for.": [
+        "Vyberte role nebo uživatelská jména, pro která chcete šablonu zakázat."
+      ],
+      "Search post types": [
+        "Vyhledávání typů příspěvků"
+      ],
+      "Choose which post types are available in the global search": [
+        "Vyberte, které typy příspěvků jsou k dispozici v globálním vyhledávání"
+      ],
+      "Disable global search": [
+        "Zakázat globální vyhledávání"
+      ],
+      "Disable global search for all users.": [
+        "Zakázat globální vyhledávání pro všechny uživatele."
+      ],
+      "Admin layout": [
+        "Rozvržení pro administraci"
+      ],
+      "Choose your prefered admin layout": [
+        "Vyberte si preferované rozvržení administrace"
+      ],
+      "Modernise login page": [
+        "Modernizujte přihlašovací stránku"
+      ],
+      "When enabled, uiXpress will modernise the default login page.": [
+        "Pokud je tato funkce povolena, uiXpress modernizuje výchozí přihlašovací stránku."
+      ],
+      "Login image": [
+        "Přihlašovací obrázek"
+      ],
+      "Optional image that will be added to the empty panel in the login page": [
+        "Volitelný obrázek, který bude přidán do prázdného panelu na přihlašovací stránce"
+      ],
+      "Image url": [
+        "URL obrázku"
+      ],
+      "Login path": [
+        "Přihlašovací cesta"
+      ],
+      "Change the login url from wp-login.php to a custom slug. Ensure you remember what you change this to.": [
+        "Změňte přihlašovací URL z wp-login.php na vlastní slug. Ujistěte se, že si pamatujete, na co jste to změnili."
+      ],
+      "Hide language selector": [
+        "Skrýt výběr jazyka"
+      ],
+      "When hidden the language selector on the login page will not be displayed": [
+        "Pokud je skrytý, nebude se na přihlašovací stránce zobrazovat výběr jazyka."
+      ],
+      "Enable TurnStyle": [
+        "Povolit TurnStyle"
+      ],
+      "When enabled, a cloudflare turnstyle challenge will be displayed on the login page to enhance security. Cloudflare account is required": [
+        "Pokud je tato možnost povolena, na přihlašovací stránce se pro zvýšení bezpečnosti zobrazí výzva cloudflare turnstyle. Je vyžadován účet Cloudflare."
+      ],
+      "Turnstyle site key": [
+        "Klíč staveniště Turnstyle"
+      ],
+      "This is the site key for your turnstyle which can be created from your cloudflare dashboard.": [
+        "Toto je klíč webu pro váš styl otáčení, který lze vytvořit z vašeho dashboardu Cloudflare."
+      ],
+      "Turnstyle secret key": [
+        "Tajný klíč Turnstyle"
+      ],
+      "This is the secret key for your turnstyle which can be created from your cloudflare dashboard.": [
+        "Toto je tajný klíč pro váš styl otáčení, který lze vytvořit z vašeho dashboardu Cloudflare."
+      ],
+      "Force global theme": [
+        "Vynutit globální téma"
+      ],
+      "When enabled, the light / dark toggle will be removed and the selected theme set for all users.": [
+        "Pokud je povoleno, přepínač světlý/tmavý bude odstraněn a vybraný motiv bude nastaven pro všechny uživatele."
+      ],
+      "Hide screen options": [
+        "Skrýt možnosti obrazovky"
+      ],
+      "Hide the screen options toggle in the toolbar": [
+        "Skrýt přepínač možností obrazovky v panelu nástrojů"
+      ],
+      "Hide help toggle": [
+        "Skrýt přepínač nápovědy"
+      ],
+      "Hide the help toggle in the toolbar": [
+        "Skrýt přepínač nápovědy v panelu nástrojů"
+      ],
+      "Base theme colors": [
+        "Základní barvy motivu"
+      ],
+      "Set a base color and uiXpress will automatically create a color scale for you.": [
+        "Nastavte základní barvu a uiXpress automaticky vytvoří barevnou škálu."
+      ],
+      "Base": [
+        "Báze"
+      ],
+      "Accent theme colors": [
+        "Barvy zvýrazněného motivu"
+      ],
+      "Set a accent color and uiXpress will automatically create a color scale for you.": [
+        "Nastavte zvýrazňující barvu a uiXpress automaticky vytvoří barevnou škálu."
+      ],
+      "Accent base": [
+        "Akcentová základna"
+      ],
+      "Custom css": [
+        "Vlastní CSS"
+      ],
+      "Custom css added here will only be added in the admin area and login page.": [
+        "Vlastní CSS přidané zde bude přidáno pouze v administrátorské sekci a na přihlašovací stránce."
+      ],
+      "External stylesheets": [
+        "Externí stylové šablony"
+      ],
+      "Add URLs to any external stylesheets you want uiXpress to load into the admin": [
+        "Přidejte URL adresy do všech externích stylů, které chcete, aby uiXpress načetl do administrace."
+      ],
+      "Custom Font": [
+        "Vlastní písmo"
+      ],
+      "Choose a custom font for the admin interface. Select from Google Fonts, enter a custom font URL, or upload your own font files.": [
+        "Vyberte si vlastní písmo pro administrátorské rozhraní. Vyberte z Google Fonts, zadejte URL adresu vlastního písma nebo nahrajte vlastní soubory písem."
+      ],
+      "Admin favicon": [
+        "Favicon pro administrátora"
+      ],
+      "Optional favicon to replace the WordPress favicon in the admin.": [
+        "Volitelná favicona, která nahradí faviconu WordPressu v administraci."
+      ],
+      "Favicon url": [
+        "URL faviconu"
+      ],
+      "Rename uiXpress": [
+        "Přejmenovat uiXpress"
+      ],
+      "This will rename uiXpress in the plugins list as well as renaming it's settings link.": [
+        "Tím se v seznamu pluginů přejmenuje uiXpress a také se přejmenuje jeho odkaz na nastavení."
+      ],
+      "Text Replacement": [
+        "Nahrazení textu"
+      ],
+      "Customize the text displayed in the WordPress admin area. Enter original words or phrases and their replacements to white-label the admin interface.": [
+        "Upravte text zobrazený v administrační oblasti WordPressu. Zadejte původní slova nebo fráze a jejich náhrady pro white-labelování administračního rozhraní."
+      ],
+      "Submenu style": [
+        "Styl podnabídky"
+      ],
+      "Choose from whether the submenu opens on click or hover.": [
+        "Vyberte, zda se podnabídka otevře kliknutím nebo najetím myší."
+      ],
+      "Enable Admin Menu Search": [
+        "Povolit vyhledávání v nabídce správce"
+      ],
+      "Enable search functionality in the admin menu to quickly find menu items.": [
+        "Povolte funkci vyhledávání v administrátorské nabídce pro rychlé nalezení položek nabídky."
+      ],
+      "Classic Post List View": [
+        "Klasické zobrazení seznamu příspěvků"
+      ],
+      "Switch to WordPress's traditional table layout for posts, removing the modern interface.": [
+        "Přepněte na tradiční tabulkové rozvržení příspěvků ve WordPressu a odstraňte moderní rozhraní."
+      ],
+      "Modern Post Editor": [
+        "Moderní editor příspěvků"
+      ],
+      "Replace the built-in WordPress editor with a modern, enhanced post editor interface.": [
+        "Nahraďte vestavěný editor WordPressu moderním a vylepšeným rozhraním editoru příspěvků."
+      ],
+      "Post Types for Modern Editor": [
+        "Typy příspěvků pro moderní editor"
+      ],
+      "Choose which post types should use the modern post editor. Defaults to posts.": [
+        "Vyberte, které typy příspěvků mají používat moderní editor příspěvků. Výchozí nastavení je příspěvky."
+      ],
+      "Real-time Collaboration": [
+        "Spolupráce v reálném čase"
+      ],
+      "Enable real-time collaboration in the modern post editor. Multiple users can edit the same post simultaneously with live cursor tracking and synced changes.": [
+        "Umožněte spolupráci v reálném čase v moderním editoru příspěvků. Více uživatelů může upravovat stejný příspěvek současně díky sledování kurzoru v reálném čase a synchronizovaným změnám."
+      ],
+      "Modern Plugin Manager": [
+        "Moderní správce pluginů"
+      ],
+      "Replace the classic plugins page with a modern plugin manager with plugin profiling and improved features.": [
+        "Nahraďte klasickou stránku s pluginy moderním správcem pluginů s profilováním pluginů a vylepšenými funkcemi."
+      ],
+      "Modern Media Library": [
+        "Moderní mediální knihovna"
+      ],
+      "Replace the classic WordPress media library with a modern, responsive media manager with improved upload and organization features.": [
+        "Nahraďte klasickou mediální knihovnu WordPressu moderním, responzivním správcem médií s vylepšenými funkcemi pro nahrávání a organizaci."
+      ],
+      "Enable SVG Uploads": [
+        "Povolit nahrávání SVG"
+      ],
+      "Allow SVG (Scalable Vector Graphics) files to be uploaded to the media library. All SVG files are automatically sanitized before upload to remove potentially malicious code, ensuring safe handling of SVG files.": [
+        "Povolit nahrávání souborů SVG (škálovatelná vektorová grafika) do knihovny médií. Všechny soubory SVG jsou před nahráním automaticky ošetřeny, aby se odstranil potenciálně škodlivý kód, a tím je zajištěna bezpečná manipulace se soubory SVG."
+      ],
+      "Enable Font Uploads": [
+        "Povolit nahrávání písem"
+      ],
+      "Allow font files (.woff2, .woff, .ttf, .otf) to be uploaded to the media library. This enables custom font support for your site.": [
+        "Povolte nahrávání souborů písem (.woff2, .woff, .ttf, .otf) do knihovny médií. To umožní podporu vlastních písem pro váš web."
+      ],
+      "Modern Users Page": [
+        "Stránka moderních uživatelů"
+      ],
+      "Replace the classic WordPress users page with a modern, responsive user manager with improved features and better organization.": [
+        "Nahraďte klasickou uživatelskou stránku WordPressu moderním, responzivním správcem uživatelů s vylepšenými funkcemi a lepší organizací."
+      ],
+      "Modern Comments Page": [
+        "Moderní stránka s komentáři"
+      ],
+      "Replace the classic WordPress comments page with a modern, responsive comment manager with improved features and better organization.": [
+        "Nahraďte klasickou stránku s komentáři ve WordPressu moderním, responzivním správcem komentářů s vylepšenými funkcemi a lepší organizací."
+      ],
+      "Custom Dashboard": [
+        "Vlastní řídicí panel"
+      ],
+      "Replace the default WordPress dashboard with a modern, customizable dashboard interface.": [
+        "Nahraďte výchozí dashboard WordPressu moderním, přizpůsobitelným rozhraním dashboardu."
+      ],
+      "Enable uiXpress Analytics": [
+        "Povolit analytiku uiXpress"
+      ],
+      "Enable built-in analytics to track user behavior, page views, and performance metrics within your WordPress admin.": [
+        "Povolte vestavěnou analytiku pro sledování chování uživatelů, zobrazení stránek a metrik výkonu v administraci WordPressu."
+      ],
+      "Analytics Provider": [
+        "Poskytovatel analytických služeb"
+      ],
+      "Choose which analytics provider to use for dashboard data. Select Built-in Analytics to use the uiXpress tracking system, or Google Analytics to display data from your GA4 property.": [
+        "Vyberte poskytovatele analytických služeb, které chcete použít pro data z řídicího panelu. Vyberte možnost Vestavěná analytika, chcete-li používat sledovací systém uiXpress, nebo Google Analytics, chcete-li zobrazit data z vaší služby GA4."
+      ],
+      "Google Analytics Connection": [
+        "Propojení s Google Analytics"
+      ],
+      "Connect your Google Analytics 4 property to display analytics data in the dashboard. You will need to create OAuth credentials in Google Cloud Console.": [
+        "Pro zobrazení analytických dat v dashboardu propojte svou službu Google Analytics 4. V Google Cloud Console budete muset vytvořit přihlašovací údaje OAuth."
+      ],
+      "Enable Database Explorer": [
+        "Povolit Průzkumník databáze"
+      ],
+      "Enable the modern database explorer interface to browse tables, view data, and execute SQL queries safely.": [
+        "Povolte moderní rozhraní Průzkumníka databází pro bezpečné procházení tabulek, zobrazení dat a provádění dotazů SQL."
+      ],
+      "Enable Role Editor": [
+        "Povolit editor rolí"
+      ],
+      "Enable the modern role editor interface to manage WordPress user roles and capabilities.": [
+        "Povolte moderní rozhraní editoru rolí pro správu rolí a funkcí uživatelů WordPressu."
+      ],
+      "Enable Custom Post Types": [
+        "Povolit vlastní typy příspěvků"
+      ],
+      "Enable the custom post types creator to register and manage custom post types without code. Post types are stored in a JSON file for performance.": [
+        "Umožněte tvůrci vlastních typů příspěvků registrovat a spravovat vlastní typy příspěvků bez kódu. Typy příspěvků jsou pro zvýšení výkonu uloženy v souboru JSON."
+      ],
+      "Enable Activity Logger": [
+        "Povolit protokolování aktivit"
+      ],
+      "Track and log all admin actions including post changes, user updates, plugin activations, and more.": [
+        "Sledujte a zaznamenávejte všechny administrátorské akce včetně změn příspěvků, aktualizací uživatelů, aktivací pluginů a dalších."
+      ],
+      "Retention Period (Days)": [
+        "Doba uchovávání (dny)"
+      ],
+      "How many days to keep activity logs before automatic cleanup. Default is 90 days.": [
+        "Kolik dní se mají uchovávat protokoly aktivit před automatickým čištěním. Výchozí hodnota je 90 dní."
+      ],
+      "Log Level": [
+        "Úroveň protokolu"
+      ],
+      "Choose which actions to log. \"All Actions\" logs everything, \"Important Only\" logs only critical actions like deletions and role changes.": [
+        "Vyberte, které akce se mají zaznamenávat. Možnost „Všechny akce“ zaznamenává vše, možnost „Pouze důležité“ zaznamenává pouze kritické akce, jako jsou smazání a změny rolí."
+      ],
+      "All Actions": [
+        "Všechny akce"
+      ],
+      "Important Only": [
+        "Pouze důležité"
+      ],
+      "Auto Cleanup": [
+        "Automatické čištění"
+      ],
+      "Automatically delete logs older than the retention period. Disable to keep logs indefinitely.": [
+        "Automaticky mazat protokoly starší než je doba uchovávání. Zakázat chcete protokoly uchovávat na dobu neurčitou."
+      ],
+      "Failed to load settings": [
+        "Nastavení se nepodařilo načíst"
+      ],
+      "Unable to save settings": [
+        "Nelze uložit nastavení"
+      ],
+      "Settings updated!": [
+        "Nastavení aktualizováno!"
+      ],
+      "Please provide a valid JSON file": [
+        "Prosím, zadejte platný soubor JSON"
+      ],
+      "Invalid settings: must be an object": [
+        "Neplatné nastavení: musí se jednat o objekt"
+      ],
+      "Settings imported": [
+        "Nastavení importováno"
+      ],
+      "Import failed": [
+        "Import se nezdařil"
+      ],
+      "Failed to activate key": [
+        "Aktivace klíče se nezdařilo"
+      ],
+      "Key already activated for this site": [
+        "Klíč je již pro tento web aktivován"
+      ],
+      "Key successfully activated": [
+        "Klíč byl úspěšně aktivován"
+      ],
+      "Network error during activation": [
+        "Chyba sítě během aktivace"
+      ],
+      "Instance removed": [
+        "Instance odstraněna"
+      ],
+      "Failed to remove activation": [
+        "Aktivaci se nepodařilo odstranit"
+      ],
+      "Network error during removal": [
+        "Chyba sítě během odstraňování"
+      ],
+      "Save": [
+        "Uložit"
+      ],
+      "Please add your licence key to unlock the plugin settings": [
+        "Pro odemknutí nastavení pluginu prosím přidejte licenční klíč."
+      ],
+      "Found": [
+        "Nalezeno"
+      ],
+      "matching setting(s)": [
+        "odpovídající nastavení"
+      ],
+      "No settings match your search in this category.": [
+        "V této kategorii neodpovídá žádné nastavení vašemu vyhledávání."
+      ],
+      "Try a different search term or check another category.": [
+        "Zkuste jiný hledaný výraz nebo zkontrolujte jinou kategorii."
+      ],
+      "Minify menu": [
+        "Nabídka Minifikovat"
+      ],
+      "Toggle menu": [
+        "Přepnout nabídku"
+      ],
+      "System": [
+        "Systém"
+      ],
+      "Logout": [
+        "Odhlásit se"
+      ],
+      "Search activities...": [
+        "Hledat aktivity..."
+      ],
+      "Action": [
+        "Akce"
+      ],
+      "Object Type": [
+        "Typ objektu"
+      ],
+      "All Types": [
+        "Všechny typy"
+      ],
+      "item": [
+        "položka"
+      ],
+      "items": [
+        "položky"
+      ],
+      "Page": [
+        "Strana"
+      ],
+      "Previous": [
+        "Předchozí"
+      ],
+      "Next": [
+        "Další"
+      ],
+      "Select an activity from the list to view detailed information.": [
+        "Vyberte aktivitu ze seznamu pro zobrazení podrobných informací."
+      ],
+      "Default": [
+        "Výchozí"
+      ],
+      "Rounded": [
+        "Zaoblený"
+      ],
+      "Bubble": [
+        "Bublina"
+      ],
+      "Add new": [
+        "Přidat nové"
+      ],
+      "Update settings": [
+        "Nastavení aktualizace"
+      ],
+      "Loading editor...": [
+        "Načítání editoru..."
+      ],
+      "Invalid Input": [
+        "Neplatný vstup"
+      ],
+      "Site URL, username, and application password are required": [
+        "URL adresa webu, uživatelské jméno a heslo aplikace jsou povinné"
+      ],
+      "Invalid URL": [
+        "Neplatná adresa URL"
+      ],
+      "Please provide a valid site URL": [
+        "Zadejte prosím platnou URL adresu webu"
+      ],
+      "Duplicate Site": [
+        "Duplicitní web"
+      ],
+      "This site URL already exists": [
+        "Tato adresa URL webu již existuje."
+      ],
+      "Remove Remote Site?": [
+        "Odebrat vzdálený web?"
+      ],
+      "Are you sure you want to remove this remote site? This action cannot be undone.": [
+        "Opravdu chcete tento vzdálený web odstranit? Tuto akci nelze vrátit zpět."
+      ],
+      "Yes, remove site": [
+        "Ano, odstranit web"
+      ],
+      "Site Removed": [
+        "Stránka odstraněna"
+      ],
+      "Remote site has been removed successfully": [
+        "Vzdálený web byl úspěšně odstraněn."
+      ],
+      "Site URL (e.g., https://example.com)": [
+        "Adresa URL webu (např. https://example.com)"
+      ],
+      "Username": [
+        "Uživatelské jméno"
+      ],
+      "Application Password": [
+        "Heslo aplikace"
+      ],
+      "Add Site": [
+        "Přidat web"
+      ],
+      "Site URL": [
+        "URL adresa webu"
+      ],
+      "Password": [
+        "Heslo"
+      ],
+      "No remote sites configured yet": [
+        "Zatím nejsou nakonfigurovány žádné vzdálené lokality"
+      ],
+      "Application passwords can be created in WordPress under Users > Profile > Application Passwords": [
+        "Hesla aplikací lze ve WordPressu vytvořit v sekci Uživatelé > Profil > Hesla aplikací"
+      ],
+      "Licence Active": [
+        "Licence aktivní"
+      ],
+      "Remove key": [
+        "Vyjměte klíč"
+      ],
+      "uiXpress licence key": [
+        "Licenční klíč uiXpress"
+      ],
+      "Activate": [
+        "Aktivovat"
+      ],
+      "Development server detected, no need to activate your licence key.": [
+        "Detekován vývojový server, není třeba aktivovat licenční klíč."
+      ],
+      "System Default": [
+        "Výchozí nastavení systému"
+      ],
+      "Google Fonts": [
+        "Fonty Google"
+      ],
+      "Custom URL": [
+        "Vlastní URL"
+      ],
+      "Upload Font": [
+        "Nahrát písmo"
+      ],
+      "Font Source": [
+        "Zdroj písma"
+      ],
+      "Select Font": [
+        "Vyberte písmo"
+      ],
+      "Click to change": [
+        "Kliknutím změníte"
+      ],
+      "Clear selection": [
+        "Vymazat výběr"
+      ],
+      "Search fonts...": [
+        "Hledat fonty..."
+      ],
+      "No fonts found": [
+        "Nenalezena žádná písma"
+      ],
+      "Or enter custom:": [
+        "Nebo zadejte vlastní:"
+      ],
+      "Font name...": [
+        "Název písma..."
+      ],
+      "Font Weights": [
+        "Váhy písma"
+      ],
+      "Select weights to include. At least one is required.": [
+        "Vyberte váhy, které chcete zahrnout. Je vyžadována alespoň jedna."
+      ],
+      "Font Stylesheet URL": [
+        "URL stylu písma"
+      ],
+      "https://fonts.googleapis.com/css2?family=...": [
+        "https://fonts.googleapis.com/css2?family=..."
+      ],
+      "Enter the URL to an external font stylesheet (CSS file)": [
+        "Zadejte URL adresu externího stylu písma (soubor CSS)"
+      ],
+      "Font Family Name": [
+        "Název rodiny písma"
+      ],
+      "e.g., Inter, Roboto, Custom Font": [
+        "např. Inter, Roboto, Vlastní písmo"
+      ],
+      "The exact font-family name as defined in the stylesheet": [
+        "Přesný název rodiny písem, jak je definován ve stylovém listu"
+      ],
+      "Font Uploads Disabled": [
+        "Nahrávání písem zakázáno"
+      ],
+      "Font file uploads are currently disabled. Enable font uploads in the Media settings to upload custom font files (.woff2, .woff, .ttf, .otf).": [
+        "Nahrávání souborů písem je momentálně zakázáno. Povolte nahrávání písem v nastavení Média, abyste mohli nahrávat vlastní soubory písem (.woff2, .woff, .ttf, .otf)."
+      ],
+      "e.g., My Custom Font": [
+        "např. Moje vlastní písmo"
+      ],
+      "Choose a name for your custom font family": [
+        "Vyberte název pro svou vlastní rodinu písem"
+      ],
+      "Font Files": [
+        "Soubory písem"
+      ],
+      "Opening Media Library...": [
+        "Otevírání mediální knihovny..."
+      ],
+      "Click to select font files": [
+        "Kliknutím vyberete soubory písem"
+      ],
+      "Supported formats: .woff2, .woff, .ttf, .otf": [
+        "Podporované formáty: .woff2, .woff, .ttf, .otf"
+      ],
+      "Enable font uploads to add font files": [
+        "Povolit nahrávání písem pro přidání souborů písem"
+      ],
+      "Select Font File": [
+        "Vyberte soubor písma"
+      ],
+      "Select font files from your media library. Supported: .woff2, .woff, .ttf, .otf": [
+        "Vyberte soubory písem z vaší knihovny médií. Podporované formáty: .woff2, .woff, .ttf, .otf"
+      ],
+      "Loading font...": [
+        "Načítání písma..."
+      ],
+      "Preview": [
+        "Náhled"
+      ],
+      "Weight:": [
+        "Hmotnost:"
+      ],
+      "weights loaded": [
+        "naložených závaží"
+      ],
+      "Reset to system default": [
+        "Obnovit výchozí nastavení systému"
+      ],
+      "Please paste your service account JSON key": [
+        "Vložte prosím klíč JSON vašeho servisního účtu"
+      ],
+      "Service account connected successfully": [
+        "Servisní účet byl úspěšně připojen"
+      ],
+      "Failed to save credentials": [
+        "Uložení přihlašovacích údajů se nezdařilo"
+      ],
+      "Could not load properties automatically. You can enter your Property ID manually below.": [
+        "Nemovitosti se nepodařilo automaticky načíst. ID nemovitosti můžete zadat ručně níže."
+      ],
+      "Please enter a Property ID": [
+        "Zadejte prosím ID nemovitosti"
+      ],
+      "Property saved": [
+        "Nemovitost uložena"
+      ],
+      "Failed to save property": [
+        "Uložení vlastnosti se nezdařilo"
+      ],
+      "Failed to disconnect": [
+        "Odpojení se nezdařilo"
+      ],
+      "Checking connection...": [
+        "Kontrola připojení..."
+      ],
+      "Connection Issue": [
+        "Problém s připojením"
+      ],
+      "Connected to Google Analytics": [
+        "Propojeno s Google Analytics"
+      ],
+      "Permission Issue Detected": [
+        "Zjištěn problém s oprávněním"
+      ],
+      "Learn more": [
+        "Zjistěte více"
+      ],
+      "Retest Connection": [
+        "Znovu otestujte připojení"
+      ],
+      "Service Account:": [
+        "Servisní účet:"
+      ],
+      "Select Property": [
+        "Vyberte nemovitost"
+      ],
+      "Select a property...": [
+        "Vyberte nemovitost..."
+      ],
+      "Property ID:": [
+        "ID nemovitosti:"
+      ],
+      "Enter Property ID": [
+        "Zadejte ID nemovitosti"
+      ],
+      "Find your Property ID in Google Analytics: Admin → Property Settings → Property ID (a number like 123456789)": [
+        "Vyhledejte ID své nemovitosti v Google Analytics: Administrace → Nastavení nemovitosti → ID nemovitosti (číslo například 123456789)"
+      ],
+      "e.g. 123456789": [
+        "např. 123456789"
+      ],
+      "Property ID": [
+        "ID nemovitosti"
+      ],
+      "Change": [
+        "Přeměna"
+      ],
+      "Loading properties...": [
+        "Načítání vlastností..."
+      ],
+      "Disconnect": [
+        "Odpojit"
+      ],
+      "Setup Instructions": [
+        "Pokyny k nastavení"
+      ],
+      "How to connect Google Analytics 4": [
+        "Jak propojit Google Analytics 4"
+      ],
+      "Go to": [
+        "Jdi na"
+      ],
+      "Google Cloud Console": [
+        "Konzole Google Cloud"
+      ],
+      "and create a new project (or select existing)": [
+        "a vytvořte nový projekt (nebo vyberte existující)"
+      ],
+      "Enable the": [
+        "Povolit"
+      ],
+      "Google Analytics Data API": [
+        "API dat Google Analytics"
+      ],
+      "Service Accounts": [
+        "Servisní účty"
+      ],
+      "and create a new service account": [
+        "a vytvořit nový servisní účet"
+      ],
+      "Click the service account, go to \"Keys\" tab, click \"Add Key\" → \"Create new key\" → JSON": [
+        "Klikněte na servisní účet, přejděte na kartu „Klíče“, klikněte na „Přidat klíč“ → „Vytvořit nový klíč“ → JSON"
+      ],
+      "Download the JSON key file": [
+        "Stáhněte si soubor s klíčem JSON"
+      ],
+      "In": [
+        "V"
+      ],
+      "Google Analytics": [
+        "Google Analytics"
+      ],
+      "→ Admin → Property Access Management, add the service account email as a Viewer": [
+        "→ Administrace → Správa přístupu k nemovitostem, přidejte e-mail servisního účtu jako Prohlížeč"
+      ],
+      "Paste the contents of the JSON key file below and enter your Property ID": [
+        "Vložte níže obsah souboru s klíčem JSON a zadejte ID své vlastnosti."
+      ],
+      "Finding your Property ID:": [
+        "Nalezení ID vaší nemovitosti:"
+      ],
+      "In Google Analytics, go to Admin → Property Settings. Your Property ID is the number shown (e.g. 123456789).": [
+        "V Google Analytics přejděte do sekce Správa → Nastavení služby. Zobrazené číslo bude ID vaší služby (např. 123456789)."
+      ],
+      "Important:": [
+        "Důležité:"
+      ],
+      "The service account email (found in the JSON file) must be added to your GA4 property with at least Viewer access for data to be retrieved.": [
+        "Aby bylo možné načíst data, musí být do služby GA4 přidán e-mail servisního účtu (který se nachází v souboru JSON) s alespoň oprávněním pro prohlížení."
+      ],
+      "Paste the contents of your service account JSON key file:": [
+        "Vložte obsah souboru JSON s klíčem vašeho servisního účtu:"
+      ],
+      "Paste your service account JSON key here...": [
+        "Sem vložte klíč JSON vašeho servisního účtu..."
+      ],
+      "Connect": [
+        "Připojit"
+      ],
+      "Cancel": [
+        "Zrušit"
+      ],
+      "Connect Google Analytics": [
+        "Propojení Google Analytics"
+      ],
+      "Clear custom properties": [
+        "Vymazat vlastní vlastnosti"
+      ],
+      "Edit Profile": [
+        "Upravit profil"
+      ],
+      "Visit site": [
+        "Navštivte stránky"
+      ],
+      "Site Settings": [
+        "Nastavení webu"
+      ],
+      "Sign Out": [
+        "Odhlásit se"
+      ],
+      "Light Mode": [
+        "Světelný režim"
+      ],
+      "Dark Mode": [
+        "Tmavý režim"
+      ],
+      "Quick Actions": [
+        "Rychlé akce"
+      ],
+      "Focus Search": [
+        "Hledání fokusu"
+      ],
+      "Search menu...": [
+        "Hledat v menu..."
+      ],
+      "No menu items found": [
+        "Nenalezeny žádné položky v nabídce"
+      ],
+      "result": [
+        "výsledek"
+      ],
+      "results": [
+        "výsledky"
+      ],
+      "Navigate": [
+        "Navigovat"
+      ],
+      "Select": [
+        "Vybrat"
+      ],
+      "Shortcuts": [
+        "Zkratky"
+      ],
+      "Name": [
+        "Jméno"
+      ],
+      "Shortcut name": [
+        "Název zkratky"
+      ],
+      "URL": [
+        "URL"
+      ],
+      "https://example.com": [
+        "https://example.com"
+      ],
+      "Icon": [
+        "Ikona"
+      ],
+      "icon name": [
+        "název ikony"
+      ],
+      "Delete": [
+        "Vymazat"
+      ],
+      "Notifications": [
+        "Oznámení"
+      ],
+      "Local": [
+        "Místní"
+      ],
+      "When you switch to a remote site, all API requests will be sent to that site instead of the local site.": [
+        "Když přepnete na vzdálený web, všechny požadavky API budou odesílány na tento web, nikoli na lokální web."
+      ],
+      "Remote site switching works on:": [
+        "Vzdálené přepínání pracovišť funguje na:"
+      ],
+      "Modern Media Page": [
+        "Stránka moderních médií"
+      ],
+      "Modern Plugins Page": [
+        "Stránka s moderními pluginy"
+      ],
+      "Modern Dashboard": [
+        "Moderní řídicí panel"
+      ],
+      "All default WordPress pages (Posts, Pages, Comments, etc.) will continue to show local content.": [
+        "Všechny výchozí stránky WordPressu (příspěvky, stránky, komentáře atd.) budou i nadále zobrazovat lokální obsah."
+      ],
+      "Remote Site Switching": [
+        "Vzdálené přepínání lokalit"
+      ],
+      "I Understand": [
+        "Rozumím"
+      ],
+      "Search sites...": [
+        "Hledat weby..."
+      ],
+      "No sites found": [
+        "Nenalezeny žádné weby"
+      ],
+      "Back to menu": [
+        "Zpět do menu"
+      ],
+      "unread": [
+        "nepřečtený"
+      ],
+      "Updates Available": [
+        "Dostupné aktualizace"
+      ],
+      "Awaiting moderation": [
+        "Čeká na moderování"
+      ],
+      "You're all caught up": [
+        "Všechno máte v plánu"
+      ],
+      "No new notifications": [
+        "Žádná nová oznámení"
+      ],
+      "Show less": [
+        "Zobrazit méně"
+      ],
+      "Show more": [
+        "Zobrazit více"
+      ],
+      "No activities found": [
+        "Nenalezeny žádné aktivity"
+      ],
+      "Find": [
+        "Nalézt"
+      ],
+      "Replace": [
+        "Nahradit"
+      ],
+      "New item": [
+        "Nová položka"
+      ],
+      "Edit CSS": [
+        "Upravit CSS"
+      ],
+      "Finished": [
+        "Dokončeno"
+      ],
+      "Media Library": [
+        "Mediální knihovna"
+      ],
+      "Media Details": [
+        "Podrobnosti o médiích"
+      ],
+      "Edit Image": [
+        "Upravit obrázek"
+      ],
+      "Roles": [
+        "Role"
+      ],
+      "Items selected": [
+        "Vybrané položky"
+      ],
+      "Select users or roles": [
+        "Vyberte uživatele nebo role"
+      ],
+      "url": [
+        "URL"
+      ],
+      "Select post types": [
+        "Vyberte typy příspěvků"
+      ],
+      "Search icons": [
+        "Ikony vyhledávání"
+      ],
+      "View site": [
+        "Zobrazit web"
+      ],
+      "View dashboard": [
+        "Zobrazit řídicí panel"
+      ],
+      "Help": [
+        "Pomoc"
+      ],
+      "Screen options": [
+        "Možnosti obrazovky"
+      ],
+      "New Post": [
+        "Nový příspěvek"
+      ],
+      "New Page": [
+        "Nová stránka"
+      ],
+      "Site settings": [
+        "Nastavení webu"
+      ],
+      "Dark mode": [
+        "Tmavý režim"
+      ],
+      "Light mode": [
+        "Světelný režim"
+      ],
+      "Enable magic dark mode for this page": [
+        "Povolit pro tuto stránku magický tmavý režim"
+      ],
+      "Disable magic dark mode for this page": [
+        "Zakázat pro tuto stránku magický tmavý režim"
+      ],
+      "wpbody element not found": [
+        "Element wpbody nebyl nalezen"
+      ],
+      "CSS fix saved to custom CSS settings": [
+        "Oprava CSS uložena do vlastního nastavení CSS"
+      ],
+      "Failed to save CSS fix": [
+        "Nepodařilo se uložit opravu CSS"
+      ],
+      "Please describe the layout issue": [
+        "Popište prosím problém s rozvržením"
+      ],
+      "Capturing screenshot...": [
+        "Pořizování snímku obrazovky..."
+      ],
+      "Extracting HTML...": [
+        "Extrahování HTML..."
+      ],
+      "Analyzing layout issues...": [
+        "Analýza problémů s rozvržením..."
+      ],
+      "Failed to fix layout and styling. Please try again later.": [
+        "Nepodařilo se opravit rozvržení a styl. Zkuste to prosím znovu později."
+      ],
+      "Daily limit exceeded. Please try again tomorrow.": [
+        "Denní limit překročen. Zkuste to prosím znovu zítra."
+      ],
+      "Invalid request. Please check your input.": [
+        "Neplatný požadavek. Zkontrolujte prosím zadané údaje."
+      ],
+      "Could not find wpbody element. Please ensure you are on a WordPress admin page.": [
+        "Nelze najít element wpbody. Ujistěte se, že jste na stránce administrace WordPressu."
+      ],
+      "Layout fix removed": [
+        "Oprava rozvržení odstraněna"
+      ],
+      "CSS copied to clipboard": [
+        "CSS zkopírován do schránky"
+      ],
+      "Failed to copy CSS": [
+        "Kopírování CSS se nezdařilo"
+      ],
+      "Layout and Styling": [
+        "Rozvržení a styling"
+      ],
+      "requests remaining": [
+        "zbývající požadavky"
+      ],
+      "Describe the layout or styling issue": [
+        "Popište problém s rozvržením nebo stylem"
+      ],
+      "e.g., The header is overlapping with the content area": [
+        "např. záhlaví se překrývá s oblastí obsahu"
+      ],
+      "A screenshot of the page will be captured and analyzed. The AI will provide CSS fixes based on your description.": [
+        "Bude pořízen a analyzován snímek obrazovky stránky. Umělá inteligence na základě vašeho popisu poskytne opravy CSS."
+      ],
+      "Fix Layout": [
+        "Opravit rozvržení"
+      ],
+      "Layout and styling fix applied successfully!": [
+        "Oprava rozvržení a stylu byla úspěšně provedena!"
+      ],
+      "Would you like to keep this fix permanently or remove it?": [
+        "Chcete tuto opravu ponechat trvale, nebo ji odstranit?"
+      ],
+      "Hide Applied CSS": [
+        "Skrýt použitý CSS"
+      ],
+      "View Applied CSS": [
+        "Zobrazit použitý CSS"
+      ],
+      "Copy CSS": [
+        "Kopírovat CSS"
+      ],
+      "Keep Fix": [
+        "Ponechat opravu"
+      ],
+      "Saves to custom CSS settings for persistence.": [
+        "Ukládá do vlastního nastavení CSS pro zajištění trvalosti."
+      ],
+      "Remove Fix": [
+        "Odebrat opravu"
+      ],
+      "Removes the fix immediately.": [
+        "Okamžitě odstraní opravu."
+      ],
+      "Remove": [
+        "Odstranit"
+      ],
+      "Failed to fix layout and styling": [
+        "Nepodařilo se opravit rozvržení a styl"
+      ],
+      "Close": [
+        "Blízko"
+      ],
+      "Media item not found": [
+        "Mediální položka nenalezena"
+      ],
+      "Only images can be edited": [
+        "Upravovat lze pouze obrázky"
+      ],
+      "Image saved successfully": [
+        "Obrázek byl úspěšně uložen"
+      ],
+      "Failed to save image": [
+        "Uložení obrázku se nezdařilo"
+      ],
+      "Back": [
+        "Zadní"
+      ],
+      "1 item selected": [
+        "Vybrána 1 položka"
+      ],
+      "%d items selected": [
+        "Vybráno %d položek"
+      ],
+      "Files duplicated": [
+        "Soubory duplikovány"
+      ],
+      "Error duplicating files": [
+        "Chyba při duplikování souborů"
+      ],
+      "Media updated successfully": [
+        "Média byla úspěšně aktualizována"
+      ],
+      "Error updating media": [
+        "Chyba při aktualizaci média"
+      ],
+      "Download started": [
+        "Stahování zahájeno"
+      ],
+      "Files downloaded": [
+        "Stažené soubory"
+      ],
+      "Error downloading files": [
+        "Chyba při stahování souborů"
+      ],
+      "this file": [
+        "tento soubor"
+      ],
+      "these %d files": [
+        "těchto %d souborů"
+      ],
+      "Are you sure?": [
+        "Jsi si jistý/á?"
+      ],
+      "Are you sure you want to delete %s? This action cannot be undone.": [
+        "Opravdu chcete smazat %s? Tuto akci nelze vrátit zpět."
+      ],
+      "Yes, delete": [
+        "Ano, smazat"
+      ],
+      "Media deleted successfully!": [
+        "Médium úspěšně smazáno!"
+      ],
+      "Delete failed": [
+        "Smazání se nezdařilo"
+      ],
+      "Upload failed": [
+        "Nahrávání se nezdařilo"
+      ],
+      "Files uploaded successfully!": [
+        "Soubory byly úspěšně nahrány!"
+      ],
+      "%d file(s) uploaded": [
+        "Nahráno %d souborů"
+      ],
+      "Search media...": [
+        "Hledat média..."
+      ],
+      "Images": [
+        "Obrázky"
+      ],
+      "Videos": [
+        "Videa"
+      ],
+      "Docs": [
+        "Dokumenty"
+      ],
+      "Fonts": [
+        "Fonty"
+      ],
+      "Grid View": [
+        "Zobrazení mřížky"
+      ],
+      "List View": [
+        "Zobrazení seznamu"
+      ],
+      "Sort By": [
+        "Seřadit podle"
+      ],
+      "Date Range": [
+        "Rozsah dat"
+      ],
+      "No tags available": [
+        "Žádné štítky nejsou k dispozici"
+      ],
+      "Options": [
+        "Možnosti"
+      ],
+      "Unused Media Only": [
+        "Pouze nepoužitá média"
+      ],
+      "Clear All Filters": [
+        "Vymazat všechny filtry"
+      ],
+      "Drop files to upload": [
+        "Přetáhněte soubory k nahrání"
+      ],
+      "Release to start uploading": [
+        "Uvolněte pro zahájení nahrávání"
+      ],
+      "Loading media...": [
+        "Načítání médií..."
+      ],
+      "No media found": [
+        "Nenalezena žádná média"
+      ],
+      "No media files": [
+        "Žádné mediální soubory"
+      ],
+      "Clear filters": [
+        "Vymazat filtry"
+      ],
+      "Select a media file from the list to view details and edit properties.": [
+        "Vyberte mediální soubor ze seznamu pro zobrazení podrobností a úpravu vlastností."
+      ],
+      "View": [
+        "Pohled"
+      ],
+      "Bulk Edit": [
+        "Hromadná úprava"
+      ],
+      "Download": [
+        "Stáhnout"
+      ],
+      "Duplicate": [
+        "Duplikát"
+      ],
+      "Bulk Edit Media": [
+        "Hromadná úprava médií"
+      ],
+      "Editing 1 item. Leave fields empty to keep existing values.": [
+        "Úprava 1 položky. Ponechte pole prázdná, chcete-li zachovat stávající hodnoty."
+      ],
+      "Editing %d items. Leave fields empty to keep existing values.": [
+        "Upravuji %d položek. Chcete-li zachovat stávající hodnoty, ponechte pole prázdná."
+      ],
+      "Title": [
+        "Titul"
+      ],
+      "Leave empty to keep existing": [
+        "Nechte prázdné, pokud chcete zachovat stávající"
+      ],
+      "Alt Text": [
+        "Alternativní text"
+      ],
+      "Caption": [
+        "Titulek"
+      ],
+      "Description": [
+        "Popis"
+      ],
+      "Saved": [
+        "Uloženo"
+      ],
+      "Save failed": [
+        "Uložení se nezdařilo"
+      ],
+      "Delete file": [
+        "Smazat soubor"
+      ],
+      "This will permantantly delete the file. Proceed?": [
+        "Tímto se soubor trvale smaže. Pokračovat?"
+      ],
+      "Deleted": [
+        "Smazáno"
+      ],
+      "Copy failed": [
+        "Kopírování se nezdařilo"
+      ],
+      "File replaced successfully": [
+        "Soubor byl úspěšně nahrazen"
+      ],
+      "File replacement failed": [
+        "Nahrazení souboru selhalo"
+      ],
+      "Only images can be optimized": [
+        "Optimalizovat lze pouze obrázky"
+      ],
+      "Optimise image": [
+        "Optimalizace obrazu"
+      ],
+      "This will permantantly optimise the image and convert to webp format.": [
+        "Tím se obrázek trvale optimalizuje a převede do formátu WebP."
+      ],
+      "Convert": [
+        "Konvertovat"
+      ],
+      "Image optimized": [
+        "Optimalizovaný obraz"
+      ],
+      "Optimization failed": [
+        "Optimalizace selhala"
+      ],
+      "Failed to add tag": [
+        "Přidání štítku se nezdařilo"
+      ],
+      "Failed to remove tag": [
+        "Odstranění štítku se nezdařilo"
+      ],
+      "Tag created and added": [
+        "Štítek vytvořen a přidán"
+      ],
+      "Failed to create tag": [
+        "Vytvoření štítku se nezdařilo"
+      ],
+      "Failed to update tags": [
+        "Aktualizace štítků se nezdařilo"
+      ],
+      "Drop file to replace": [
+        "Přetáhněte soubor, který chcete nahradit"
+      ],
+      "Keep the same ID and regenerate thumbnails": [
+        "Zachovat stejné ID a znovu vytvořit miniatury"
+      ],
+      "Replacing file...": [
+        "Nahrazení souboru..."
+      ],
+      "Regenerating thumbnails": [
+        "Obnovení miniatur"
+      ],
+      "Optimizing image...": [
+        "Optimalizace obrázku..."
+      ],
+      "File replaced successfully!": [
+        "Soubor byl úspěšně nahrazen!"
+      ],
+      "Thumbnails regenerated": [
+        "Miniatury byly regenerovány"
+      ],
+      "Your browser does not support the video tag.": [
+        "Váš prohlížeč nepodporuje tag videa."
+      ],
+      "Uploaded": [
+        "Nahráno"
+      ],
+      "Untitled": [
+        "Bez názvu"
+      ],
+      "Describe the image for screen readers": [
+        "Popište obrázek pro čtečky obrazovky"
+      ],
+      "Add a caption": [
+        "Přidat popisek"
+      ],
+      "Add tags...": [
+        "Přidat štítky..."
+      ],
+      "File URL": [
+        "URL souboru"
+      ],
+      "Actions": [
+        "Akce"
+      ],
+      "Optimizing...": [
+        "Optimalizace..."
+      ],
+      "Optimize Image": [
+        "Optimalizace obrázku"
+      ],
+      "Replacing...": [
+        "Výměna..."
+      ],
+      "Replace Image": [
+        "Nahradit obrázek"
+      ],
+      "Filename": [
+        "Název souboru"
+      ],
+      "ID": [
+        "Průkaz totožnosti"
+      ],
+      "File size": [
+        "Velikost souboru"
+      ],
+      "Used In": [
+        "Používá se v"
+      ],
+      "This media is not currently used anywhere.": [
+        "Toto médium se v současné době nikde nepoužívá."
+      ],
+      "Post": [
+        "Zveřejnit"
+      ],
+      "Widget": [
+        "Widget"
+      ],
+      "Draft": [
+        "Návrh"
+      ],
+      "Edit": [
+        "Upravit"
+      ],
+      "Search posts": [
+        "Hledat příspěvky"
+      ],
+      "Find users": [
+        "Najít uživatele"
+      ],
+      "Quick actions": [
+        "Rychlé akce"
+      ],
+      "View commands": [
+        "Zobrazit příkazy"
+      ],
+      "Pending": [
+        "Čeká na vyřízení"
+      ],
+      "Private": [
+        "Soukromé"
+      ],
+      "Welcome to Global Search": [
+        "Vítejte v Globálním vyhledávání"
+      ],
+      "Quickly find posts, pages, users, and more. Here are some tips to get started:": [
+        "Rychle najděte příspěvky, stránky, uživatele a další. Zde je několik tipů pro začátek:"
+      ],
+      "Press": [
+        "Tisk"
+      ],
+      "to open search": [
+        "otevřít vyhledávání"
+      ],
+      "Got it, thanks!": [
+        "Rozumím, díky!"
+      ],
+      "Search posts, pages, categories, users...": [
+        "Hledat příspěvky, stránky, kategorie, uživatele..."
+      ],
+      "Recent Searches": [
+        "Nedávná vyhledávání"
+      ],
+      "Clear": [
+        "Jasný"
+      ],
+      "Start searching": [
+        "Začít hledat"
+      ],
+      "Search for posts, pages, users, categories, or use quick actions.": [
+        "Vyhledávejte příspěvky, stránky, uživatele, kategorie nebo používejte rychlé akce."
+      ],
+      "Try these:": [
+        "Vyzkoušejte tyto:"
+      ],
+      "Keyboard Shortcuts": [
+        "Klávesové zkratky"
+      ],
+      "Open": [
+        "OTEVŘENO"
+      ],
+      "Show tutorial again": [
+        "Zobrazit tutoriál znovu"
+      ],
+      "Command Syntax": [
+        "Syntaxe příkazů"
+      ],
+      "Search only posts": [
+        "Hledat pouze příspěvky"
+      ],
+      "Search only pages": [
+        "Hledat pouze na stránkách"
+      ],
+      "Search only users": [
+        "Hledat pouze uživatele"
+      ],
+      "Search only categories": [
+        "Hledat pouze kategorie"
+      ],
+      "Show only quick actions": [
+        "Zobrazit pouze rychlé akce"
+      ],
+      "No results found": [
+        "Nenalezeny žádné výsledky"
+      ],
+      "Try a different search term or use command syntax to filter results.": [
+        "Zkuste jiný hledaný výraz nebo použijte syntaxi příkazu k filtrování výsledků."
+      ],
+      "View Commands": [
+        "Zobrazit příkazy"
+      ],
+      "Clear Search": [
+        "Vymazat vyhledávání"
+      ],
+      "Recently Accessed": [
+        "Nedávno přístupné"
+      ],
+      "Frequently Used": [
+        "Často používané"
+      ],
+      "to navigate": [
+        "navigovat"
+      ],
+      "to select": [
+        "vybrat"
+      ],
+      "to close": [
+        "zavřít"
+      ],
+      "Magic dark mode enabled for this page": [
+        "Pro tuto stránku je povolen magický tmavý režim"
+      ],
+      "Failed to enable magic dark mode": [
+        "Nepodařilo se zapnout magický tmavý režim"
+      ],
+      "Magic dark mode disabled for this page": [
+        "Magický tmavý režim je pro tuto stránku zakázán."
+      ],
+      "Failed to disable magic dark mode": [
+        "Nepodařilo se vypnout magický tmavý režim"
+      ],
+      "Free": [
+        "Uvolnit"
+      ],
+      "Loading image...": [
+        "Načítání obrázku..."
+      ],
+      "Apply": [
+        "Použít"
+      ],
+      "Image Editor": [
+        "Editor obrázků"
+      ],
+      "Luminosity": [
+        "Zářivost"
+      ],
+      "Brightness": [
+        "Jas"
+      ],
+      "Exposure": [
+        "Vystavení"
+      ],
+      "Highlights": [
+        "Hlavní body"
+      ],
+      "Shadows": [
+        "Stíny"
+      ],
+      "Contrast": [
+        "Kontrast"
+      ],
+      "Color": [
+        "Barva"
+      ],
+      "Saturation": [
+        "Nasycení"
+      ],
+      "Vibrance": [
+        "Živost"
+      ],
+      "Hue": [
+        "Odstín"
+      ],
+      "Temperature": [
+        "Teplota"
+      ],
+      "Cool ← → Warm": [
+        "Chladno ← → Teplo"
+      ],
+      "Tint": [
+        "Nádech"
+      ],
+      "Green ← → Magenta": [
+        "Zelená ← → Purpurová"
+      ],
+      "Effects": [
+        "Efekty"
+      ],
+      "Sharpness": [
+        "Ostrost"
+      ],
+      "Negative = blur, positive = sharpen": [
+        "Negativní = rozmazání, pozitivní = zaostření"
+      ],
+      "Blur": [
+        "Rozmazat"
+      ],
+      "Grain": [
+        "Obilí"
+      ],
+      "Vignette": [
+        "Viněta"
+      ],
+      "Crop": [
+        "Plodina"
+      ],
+      "Click and drag on the image to select crop area": [
+        "Kliknutím a tažením myši na obrázek vyberte oblast oříznutí"
+      ],
+      "Aspect Ratio": [
+        "Poměr stran"
+      ],
+      "Start Crop": [
+        "Zahájit ořez"
+      ],
+      "Resize": [
+        "Změnit velikost"
+      ],
+      "Lock aspect ratio": [
+        "Zamknout poměr stran"
+      ],
+      "Width": [
+        "Šířka"
+      ],
+      "Height": [
+        "Výška"
+      ],
+      "Apply Resize": [
+        "Použít změnu velikosti"
+      ],
+      "Transform": [
+        "Transformace"
+      ],
+      "Left": [
+        "Vlevo"
+      ],
+      "Right": [
+        "Právo"
+      ],
+      "Flip H": [
+        "Otočit H"
+      ],
+      "Flip V": [
+        "Otočit V."
+      ],
+      "Reset": [
+        "Obnovit"
+      ],
+      "Reset changes": [
+        "Obnovit změny"
+      ],
+      "Loading more...": [
+        "Načítání dalších..."
+      ],
+      "No more items": [
+        "Žádné další položky"
+      ],
+      "minute": [
+        "minuta"
+      ],
+      "minutes": [
+        "zápis"
+      ],
+      "ago": [
+        "před"
+      ],
+      "hour": [
+        "hodina"
+      ],
+      "hours": [
+        "hodiny"
+      ],
+      "day": [
+        "den"
+      ],
+      "days": [
+        "dny"
+      ],
+      "Remove tag": [
+        "Odebrat štítek"
+      ],
+      "Create tag": [
+        "Vytvořit štítek"
+      ],
+      "JSON must be a service account key (type should be \"service_account": [
+        "JSON musí být klíč servisního účtu (typ by měl být „service_account“"
+      ],
+      "You must be logged in to access this page.": [
+        "Pro přístup na tuto stránku se musíte přihlásit."
+      ],
+      "Invalid request. Please refresh the page and try again.": [
+        "Neplatný požadavek. Aktualizujte stránku a zkuste to znovu."
+      ],
+      "Search": [
+        "Vyhledávání"
+      ]
+    }
+  }
+}

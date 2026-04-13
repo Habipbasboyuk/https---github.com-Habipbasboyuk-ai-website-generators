@@ -1,0 +1,13 @@
+.am-portal { max-width: 980px; margin: 0 auto; }
+.am-box { border: 1px solid #e5e5e5; padding: 16px; border-radius: 8px; margin: 16px 0; background: #fff; }
+.am-table { width: 100%; border-collapse: collapse; }
+.am-table th, .am-table td { border-bottom: 1px solid #eee; padding: 8px; text-align: left; }
+.am-list { margin: 0; padding-left: 18px; }
+.am-content { margin-top: 8px; }
+.am-form { margin-top: 12px; display: grid; gap: 8px; }
+.am-form input[type="file"], .am-form select, .am-form textarea { width: 100%; }
+.am-form button { width: fit-content; padding: 8px 12px; }
+.am-comments { list-style: none; padding: 0; }
+.am-comments li { border-top: 1px solid #eee; padding: 10px 0; }
+.am-comment-meta { font-size: 12px; opacity: 0.7; }
+.am-note { font-size: 12px; opacity: 0.7; }

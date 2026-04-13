@@ -1,0 +1,2652 @@
+{
+  "domain": "uixpress",
+  "locale_data": {
+    "uixpress": {
+      "": {
+        "domain": "uixpress",
+        "lang": "nl_NL",
+        "plural-forms": "nplurals=2; plural=(n != 1);"
+      },
+      "Every 30 Seconds": [
+        "Elke 30 seconden"
+      ],
+      "Every 30 Minutes": [
+        "Om de 30 minuten"
+      ],
+      "Google Analytics 4": [
+        "Google Analytics 4"
+      ],
+      "Could not authenticate with Google Analytics. Please check your service account credentials.": [
+        "Authenticatie met Google Analytics is mislukt. Controleer uw serviceaccountgegevens."
+      ],
+      "Permission denied: The service account does not have access to this Google Analytics property. Please add the service account email to your GA4 property with Viewer access. Go to Google Analytics → Admin → Property Access Management and add the service account email.": [
+        "Toegang geweigerd: Het serviceaccount heeft geen toegang tot deze Google Analytics-property. Voeg het e-mailadres van het serviceaccount toe aan uw GA4-property met kijkrechten. Ga naar Google Analytics → Beheer → Propertytoegangsbeheer en voeg het e-mailadres van het serviceaccount toe."
+      ],
+      "Authentication failed. The access token is invalid or expired. Please try reconnecting your Google Analytics account.": [
+        "Authenticatie mislukt. Het toegangstoken is ongeldig of verlopen. Probeer opnieuw verbinding te maken met uw Google Analytics-account."
+      ],
+      "The specified Google Analytics property was not found. Please check that the Property ID is correct.": [
+        "De opgegeven Google Analytics-property is niet gevonden. Controleer of de property-ID correct is."
+      ],
+      "Built-in Analytics": [
+        "Ingebouwde analyses"
+      ],
+      "Unable to read SVG file for sanitization.": [
+        "Kan SVG-bestand niet lezen voor opschoning."
+      ],
+      "SVG file could not be sanitized. The file may be corrupted or contain invalid content.": [
+        "Het SVG-bestand kon niet worden opgeschoond. Het bestand is mogelijk beschadigd of bevat ongeldige inhoud."
+      ],
+      "Unable to write sanitized SVG file.": [
+        "Kan geen opgeschoond SVG-bestand schrijven."
+      ],
+      "Error sanitizing SVG file: %s": [
+        "Fout bij het opschonen van SVG-bestand: %s"
+      ],
+      "Activity Log": [
+        "Activiteitlog"
+      ],
+      "Welcome to WordPress": [
+        "Welkom bij Wordpress"
+      ],
+      "Welcome to your WordPress dashboard! This is your site management hub.": [
+        "Welkom bij uw WordPress-dashboard! Dit is uw centrum voor het beheer van uw website."
+      ],
+      "Quick Draft": [
+        "Snel Concept"
+      ],
+      "Create a new post quickly from here.": [
+        "Maak hier snel een nieuw bericht aan."
+      ],
+      "Activity": [
+        "Activiteit"
+      ],
+      "Recent activity on your site.": [
+        "Recente activiteit op uw site."
+      ],
+      "Plugins": [
+        "Plugins"
+      ],
+      "Post Types": [
+        "Berichttypen"
+      ],
+      "Fields groups": [
+        "Veldgroepen"
+      ],
+      "Database Explorer": [
+        "Database-verkenner"
+      ],
+      "Generate Dummy Analytics Data": [
+        "Dummy-analysegegevens genereren"
+      ],
+      "Warning:": [
+        "Waarschuwing:"
+      ],
+      "This will delete all existing analytics data and replace it with dummy data for testing purposes.": [
+        "Hierdoor worden alle bestaande analysegegevens verwijderd en vervangen door dummygegevens voor testdoeleinden."
+      ],
+      "Generate Test Data": [
+        "Testgegevens genereren"
+      ],
+      "This tool will generate realistic dummy analytics data for the last 2 months to help you test the analytics features.": [
+        "Deze tool genereert realistische dummy-analysegegevens voor de afgelopen 2 maanden, zodat u de analysefuncties kunt testen."
+      ],
+      "Number of Months": [
+        "Aantal maanden"
+      ],
+      "Select how many months of dummy data to generate.": [
+        "Selecteer hoeveel maanden dummygegevens u wilt genereren."
+      ],
+      "Generate Dummy Data": [
+        "Dummygegevens genereren"
+      ],
+      "Are you sure? This will delete all existing analytics data.": [
+        "Weet u het zeker? Hiermee worden alle bestaande analysegegevens verwijderd."
+      ],
+      "What This Generates": [
+        "Wat dit oplevert"
+      ],
+      "Page views from various devices (desktop, mobile, tablet)": [
+        "Paginaweergaven vanaf verschillende apparaten (desktop, mobiel, tablet)"
+      ],
+      "Realistic browser and operating system data": [
+        "Realistische browser- en besturingssysteemgegevens"
+      ],
+      "Geographic data from different countries and cities": [
+        "Geografische gegevens van verschillende landen en steden"
+      ],
+      "Referrer data from search engines and social media": [
+        "Verwijzingsgegevens van zoekmachines en sociale media"
+      ],
+      "Session tracking and unique visitor data": [
+        "Sessietracking en unieke bezoekersgegevens"
+      ],
+      "Aggregated daily statistics": [
+        "Geaggregeerde dagelijkse statistieken"
+      ],
+      "Current Analytics Status": [
+        "Huidige analysestatus"
+      ],
+      "Analytics Enabled:": [
+        "Analytics ingeschakeld:"
+      ],
+      "Tables Created:": [
+        "Gemaakte tabellen:"
+      ],
+      "Analytics must be enabled in the UiXpress settings before generating dummy data.": [
+        "Analytics moet worden ingeschakeld in de UiXpress-instellingen voordat dummygegevens kunnen worden gegenereerd."
+      ],
+      "Security check failed.": [
+        "Beveiligingscontrole is mislukt."
+      ],
+      "You do not have sufficient permissions to access this page.": [
+        "Je hebt niet voldoende rechten om deze pagina te bekijken."
+      ],
+      "Analytics is not enabled. Please enable analytics in settings first.": [
+        "Analytics is niet ingeschakeld. Schakel analytics eerst in via de instellingen."
+      ],
+      "Invalid number of months. Please select between 1 and 12 months.": [
+        "Ongeldig aantal maanden. Selecteer een waarde tussen 1 en 12 maanden."
+      ],
+      "Error generating dummy data: ": [
+        "Fout bij het genereren van dummygegevens: "
+      ],
+      "Menu Creator": [
+        "Menu Creator"
+      ],
+      "Add New Admin Menu": [
+        "Nieuw beheerdersmenu toevoegen"
+      ],
+      "New Admin Menu": [
+        "Nieuw beheerdersmenu"
+      ],
+      "Edit Admin Menu": [
+        "Beheermenu bewerken"
+      ],
+      "View Admin Menu": [
+        "Beheermenu bekijken"
+      ],
+      "All Admin Menus": [
+        "Alle beheerdersmenu's"
+      ],
+      "Search Admin Menus": [
+        "Zoek in beheerdersmenu's"
+      ],
+      "No Admin Menus found.": [
+        "Geen beheerdersmenu's gevonden."
+      ],
+      "No Admin Menus found in Trash.": [
+        "Geen beheerdersmenu's gevonden in de prullenbak."
+      ],
+      "Post type used for the uixpresss menus": [
+        "Posttype gebruikt voor de uixpresss-menu's"
+      ],
+      "Role Editor": [
+        "Rol Editor"
+      ],
+      "Settings": [
+        "Instellingen"
+      ],
+      "Activity logger is not enabled.": [
+        "Activiteitenlogboek is niet ingeschakeld."
+      ],
+      "Unknown": [
+        "Onbekend"
+      ],
+      "Log entry not found.": [
+        "Logboekvermelding niet gevonden."
+      ],
+      "Cleaned up %d old log entries.": [
+        "Oude logboekvermeldingen opgeschoond %d."
+      ],
+      "Add New Admin Notice": [
+        "Nieuwe beheerdersmelding toevoegen"
+      ],
+      "Edit Admin Notice": [
+        "Beheermededeling bewerken"
+      ],
+      "View Admin Notice": [
+        "Bekijk beheerdersbericht"
+      ],
+      "All Admin Notices": [
+        "Alle administratieve mededelingen"
+      ],
+      "Search Admin Notices": [
+        "Zoeken in beheerdersberichten"
+      ],
+      "No Admin Notices found.": [
+        "Geen beheerdersberichten gevonden."
+      ],
+      "Persistent admin notices for uiXpress.": [
+        "Aanhoudende beheerdersmeldingen voor uiXpress."
+      ],
+      "Admin Notices": [
+        "Admin mededelingen"
+      ],
+      "Comments awaiting moderation": [
+        "Reacties die nog gemodereerd moeten worden."
+      ],
+      "Media": [
+        "Media"
+      ],
+      "User": [
+        "Gebruiker"
+      ],
+      "Invalid field group ID.": [
+        "Ongeldige veldgroep-ID."
+      ],
+      "Field group not found.": [
+        "Veldgroep niet gevonden."
+      ],
+      "Field group title is required.": [
+        "De veldgroeptitel is vereist."
+      ],
+      "Failed to save field group.": [
+        "Het opslaan van de veldgroep is mislukt."
+      ],
+      "Field group created successfully.": [
+        "Veldgroep succesvol aangemaakt."
+      ],
+      "Field group updated successfully.": [
+        "Veldgroep succesvol bijgewerkt."
+      ],
+      "Failed to delete field group.": [
+        "Het verwijderen van de veldgroep is mislukt."
+      ],
+      "Field group deleted successfully.": [
+        "Veldgroep succesvol verwijderd."
+      ],
+      "(Copy)": [
+        "(Kopiëren)"
+      ],
+      "Failed to duplicate field group.": [
+        "Het dupliceren van de veldgroep is mislukt."
+      ],
+      "Field group duplicated successfully.": [
+        "Veldgroep succesvol gedupliceerd."
+      ],
+      "Invalid import data. Expected an array of field groups.": [
+        "Ongeldige importgegevens. Er werd een array met veldgroepen verwacht."
+      ],
+      "Invalid import mode. Use \"merge\" or \"replace\".": [
+        "Ongeldige importmodus. Gebruik 'samenvoegen' of 'vervangen'."
+      ],
+      "Field group at index %d is missing a title.": [
+        "De veldgroep op index %d heeft geen titel."
+      ],
+      "Failed to save imported field groups.": [
+        "Het opslaan van de geïmporteerde veldgroepen is mislukt."
+      ],
+      "Import completed successfully.": [
+        "Import succesvol afgerond."
+      ],
+      "Invalid or unauthorized function.": [
+        "Ongeldige of ongeautoriseerde functie."
+      ],
+      "Field name is required.": [
+        "Veldnaam is verplicht."
+      ],
+      "Valid option page is required.": [
+        "Een geldige optiepagina is vereist."
+      ],
+      "Valid object ID is required.": [
+        "Een geldig object-ID is vereist."
+      ],
+      "Helper function not available. Please ensure the plugin is properly initialized.": [
+        "Hulpfunctie niet beschikbaar. Zorg ervoor dat de plugin correct is geïnitialiseerd."
+      ],
+      "(no title)": [
+        "(geen titel)"
+      ],
+      "Add Row": [
+        "Voeg een rij toe"
+      ],
+      "Default Template": [
+        "Standaardsjabloon"
+      ],
+      "All": [
+        "Alle"
+      ],
+      "Standard": [
+        "Standaard"
+      ],
+      "No field groups are assigned to this option page. Create a field group and set its location to this option page.": [
+        "Aan deze optiepagina zijn geen veldgroepen toegewezen. Maak een veldgroep aan en stel de locatie ervan in op deze optiepagina."
+      ],
+      "Save Changes": [
+        "Wijzigingen opslaan"
+      ],
+      "You do not have permission to save these options.": [
+        "Je hebt geen toestemming om deze opties op te slaan."
+      ],
+      "Invalid option page slug.": [
+        "Ongeldige slug voor de optiepagina."
+      ],
+      "Option page not found.": [
+        "Optiepagina niet gevonden."
+      ],
+      "Option page title is required.": [
+        "De titel van de optiepagina is verplicht."
+      ],
+      "An option page with this slug already exists.": [
+        "Er bestaat al een optiepagina met deze slug."
+      ],
+      "Failed to save option page.": [
+        "Het opslaan van de optiepagina is mislukt."
+      ],
+      "Option page created successfully.": [
+        "Optiepagina succesvol aangemaakt."
+      ],
+      "Option page updated successfully.": [
+        "De optiepagina is succesvol bijgewerkt."
+      ],
+      "Failed to delete option page.": [
+        "Het verwijderen van de optiepagina is mislukt."
+      ],
+      "Option page deleted successfully.": [
+        "Optiepagina succesvol verwijderd."
+      ],
+      "Failed to duplicate option page.": [
+        "Het is niet gelukt om de optiepagina te dupliceren."
+      ],
+      "Option page duplicated successfully.": [
+        "De optiepagina is succesvol gedupliceerd."
+      ],
+      "Option Page Not Found": [
+        "Optiepagina niet gevonden"
+      ],
+      "Tools": [
+        "Hulpmiddelen"
+      ],
+      "Appearance": [
+        "Verschijning"
+      ],
+      "Users": [
+        "Gebruikers"
+      ],
+      "Comments": [
+        "Reacties"
+      ],
+      "Posts": [
+        "Berichten"
+      ],
+      "Pages": [
+        "Pagina's"
+      ],
+      "Dashboard": [
+        "Dashboard"
+      ],
+      "Administrator (manage_options)": [
+        "Beheerder (beheeropties)"
+      ],
+      "Editor (edit_others_posts)": [
+        "Redacteur (edit_others_posts)"
+      ],
+      "Author (publish_posts)": [
+        "Auteur (publiceren_berichten)"
+      ],
+      "Contributor (edit_posts)": [
+        "Bijdrager (edit_posts)"
+      ],
+      "Subscriber (read)": [
+        "Abonnee (lezen)"
+      ],
+      "Custom Fields": [
+        "Aangepaste velden"
+      ],
+      "Invalid post type slug.": [
+        "Ongeldige slug voor het posttype."
+      ],
+      "Custom post type not found.": [
+        "Aangepast berichttype niet gevonden."
+      ],
+      "Post type slug is required.": [
+        "Het type bericht moet worden opgegeven."
+      ],
+      "Post type name is required.": [
+        "De naam van het berichttype is verplicht."
+      ],
+      "Invalid post type slug. Use only lowercase letters, numbers, and underscores. Maximum 20 characters.": [
+        "Ongeldige slug voor het posttype. Gebruik alleen kleine letters, cijfers en underscores. Maximaal 20 tekens."
+      ],
+      "This post type slug is reserved by WordPress.": [
+        "Deze slug voor dit berichttype is gereserveerd door WordPress."
+      ],
+      "A custom post type with this slug already exists.": [
+        "Er bestaat al een aangepast berichttype met deze slug."
+      ],
+      "Failed to save custom post type.": [
+        "Het opslaan van het aangepaste berichttype is mislukt."
+      ],
+      "Custom post type created successfully.": [
+        "Aangepast berichttype succesvol aangemaakt."
+      ],
+      "Custom post type updated successfully.": [
+        "Aangepast berichttype succesvol bijgewerkt."
+      ],
+      "Failed to delete custom post type.": [
+        "Het verwijderen van het aangepaste berichttype is mislukt."
+      ],
+      "Custom post type deleted successfully.": [
+        "Aangepast berichttype succesvol verwijderd."
+      ],
+      "Invalid import data. Expected an array of post types.": [
+        "Ongeldige importgegevens. Er werd een array met berichttypen verwacht."
+      ],
+      "Post type at index %d is missing required fields (slug or name).": [
+        "Bij het berichttype op index %d ontbreken verplichte velden (slug of naam)."
+      ],
+      "Post type \"%s\" has an invalid slug format.": [
+        "Berichttype \"%s\" heeft een ongeldige slug-indeling."
+      ],
+      "Post type \"%s\" uses a reserved slug: %s": [
+        "Berichttype \"%s\" gebruikt een gereserveerde slug: %s"
+      ],
+      "Import validation failed.": [
+        "Importvalidatie mislukt."
+      ],
+      "Failed to save imported post types.": [
+        "Het opslaan van de geïmporteerde berichttypen is mislukt."
+      ],
+      "Add New": [
+        "Nieuwe toevoegen"
+      ],
+      "Add New %s": [
+        "Nieuwe %s toevoegen"
+      ],
+      "Edit %s": [
+        "Bewerk %s"
+      ],
+      "New %s": [
+        "Nieuws"
+      ],
+      "View %s": [
+        "Weergave %s"
+      ],
+      "Search %s": [
+        "Zoeken %s"
+      ],
+      "No %s found": [
+        "Geen percentages gevonden"
+      ],
+      "No %s found in Trash": [
+        "Geen %s gevonden in de prullenbak."
+      ],
+      "Parent %s:": [
+        "Ouders:"
+      ],
+      "All %s": [
+        "Alle %s"
+      ],
+      "%s Archives": [
+        "%s Archief"
+      ],
+      "%s Attributes": [
+        "%s Attributen"
+      ],
+      "Insert into %s": [
+        "Invoegen in %s"
+      ],
+      "Uploaded to this %s": [
+        "Geüpload naar deze %s"
+      ],
+      "Featured image": [
+        "Uitgelichte afbeelding"
+      ],
+      "Set featured image": [
+        "Stel de uitgelichte afbeelding in"
+      ],
+      "Remove featured image": [
+        "Verwijder de uitgelichte afbeelding"
+      ],
+      "Use as featured image": [
+        "Gebruik als uitgelichte afbeelding"
+      ],
+      "Filter %s list": [
+        "Filter %s lijst"
+      ],
+      "%s list navigation": [
+        "%s lijstnavigatie"
+      ],
+      "%s list": [
+        "%s lijst"
+      ],
+      "%s published.": [
+        "%s gepubliceerd."
+      ],
+      "%s published privately.": [
+        "%s privé gepubliceerd."
+      ],
+      "%s reverted to draft.": [
+        "%s zijn teruggezet naar concept."
+      ],
+      "%s scheduled.": [
+        "%s gepland."
+      ],
+      "%s updated.": [
+        "%s bijgewerkt."
+      ],
+      "Only SELECT queries are allowed for safety.": [
+        "Om veiligheidsredenen zijn alleen SELECT-query's toegestaan."
+      ],
+      "Invalid table name.": [
+        "Ongeldige tabelnaam."
+      ],
+      "Table not found.": [
+        "Tabel niet gevonden."
+      ],
+      "Unable to retrieve table structure.": [
+        "Kan tabelstructuur niet ophalen."
+      ],
+      "Query contains prohibited SQL keywords.": [
+        "Query bevat verboden SQL-sleutelwoorden."
+      ],
+      "Multiple statements are not allowed.": [
+        "Meerdere verklaringen zijn niet toegestaan."
+      ],
+      "Query execution failed. Please check your SQL syntax.": [
+        "Query-uitvoering mislukt. Controleer uw SQL-syntaxis."
+      ],
+      "Password is required.": [
+        "Wachtwoord is verplicht."
+      ],
+      "Invalid password.": [
+        "Ongeldig wachtwoord."
+      ],
+      "Password verification failed.": [
+        "Wachtwoordverificatie mislukt."
+      ],
+      "WordPress core tables cannot be deleted.": [
+        "WordPress-kern tabellen kunnen niet worden verwijderd."
+      ],
+      "System tables cannot be deleted.": [
+        "Systeemtabellen kunnen niet worden verwijderd."
+      ],
+      "Password is required for this operation.": [
+        "Voor deze handeling is een wachtwoord vereist."
+      ],
+      "Failed to delete table.": [
+        "Kan tabel niet verwijderen."
+      ],
+      "Table '%s' has been deleted.": [
+        "Table '%s' is verwijderd."
+      ],
+      "Invalid JSON format": [
+        "Ongeldig JSON-formaat"
+      ],
+      "Missing required field: %s": [
+        "Ontbrekend verplicht veld: %s"
+      ],
+      "Failed to authenticate with Google. Please check your service account key.": [
+        "Authenticatie met Google is mislukt. Controleer uw serviceaccountsleutel."
+      ],
+      "Credentials are valid": [
+        "De inloggegevens zijn geldig."
+      ],
+      "JSON must be a service account key": [
+        "JSON moet een serviceaccountsleutel zijn."
+      ],
+      "Service account credentials saved successfully": [
+        "Serviceaccountgegevens succesvol opgeslagen"
+      ],
+      "Google Analytics disconnected": [
+        "Google Analytics is losgekoppeld"
+      ],
+      "Not connected to Google Analytics": [
+        "Niet gekoppeld aan Google Analytics"
+      ],
+      "Failed to fetch properties. Make sure the service account has been added to your GA4 property.": [
+        "Het ophalen van eigenschappen is mislukt. Zorg ervoor dat het serviceaccount is toegevoegd aan uw GA4-eigenschap."
+      ],
+      "Property ID is required": [
+        "Een eigendoms-ID is vereist."
+      ],
+      "Property saved successfully": [
+        "Eigenschap succesvol opgeslagen"
+      ],
+      "Return only unused media items (unattached and not used as featured image).": [
+        "Retourneer alleen ongebruikte media-items (niet gekoppeld en niet gebruikt als uitgelichte afbeelding)."
+      ],
+      "Unused detection mode: shallow (default) or deep (scans post_content).": [
+        "Ongebruikte detectiemodus: oppervlakkig (standaard) of diepgaand (scant post_content)."
+      ],
+      "Invalid request.": [
+        "Ongeldig verzoek."
+      ],
+      "Invalid media IDs provided.": [
+        "Ongeldige media-ID's opgegeven."
+      ],
+      "Maximum 100 items can be downloaded at once.": [
+        "Er kunnen maximaal 100 items tegelijk worden gedownload."
+      ],
+      "ZIP functionality is not available on this server.": [
+        "ZIP-functionaliteit is niet beschikbaar op deze server."
+      ],
+      "Failed to create ZIP file.": [
+        "Het maken van het ZIP-bestand is mislukt."
+      ],
+      "No valid files found to download.": [
+        "Er zijn geen geldige bestanden gevonden om te downloaden."
+      ],
+      "(Untitled)": [
+        "(Zonder titel)"
+      ],
+      "Media ID is required.": [
+        "Media-ID is vereist."
+      ],
+      "Media item not found.": [
+        "Media-item niet gevonden."
+      ],
+      "You do not have permission to edit this media item.": [
+        "Je hebt geen toestemming om dit media-item te bewerken."
+      ],
+      "No file was uploaded.": [
+        "Er is geen bestand geüploadet."
+      ],
+      "File upload failed. Please try again.": [
+        "Het uploaden van het bestand is mislukt. Probeer het opnieuw."
+      ],
+      "File type not allowed.": [
+        "Bestandstype niet toegestaan."
+      ],
+      "File content does not match file type.": [
+        "De inhoud van het bestand komt niet overeen met het bestandstype."
+      ],
+      "File name contains invalid characters.": [
+        "Bestandsnaam bevat ongeldige tekens."
+      ],
+      "Original file not found.": [
+        "Origineel bestand niet gevonden."
+      ],
+      "Invalid file path.": [
+        "Ongeldig bestandspad."
+      ],
+      "Failed to move uploaded file.": [
+        "Het geüploade bestand kan niet worden verplaatst."
+      ],
+      "File replaced successfully.": [
+        "Bestand succesvol vervangen."
+      ],
+      "Filter media items by tag IDs.": [
+        "Filter media-items op tag-ID's."
+      ],
+      "Media Tags": [
+        "Mediatags"
+      ],
+      "Media Tag": [
+        "Media-tag"
+      ],
+      "Tags": [
+        "Tags"
+      ],
+      "All Tags": [
+        "Alle tags"
+      ],
+      "Edit Tag": [
+        "Tag bewerken"
+      ],
+      "View Tag": [
+        "Bekijk trefwoord"
+      ],
+      "Update Tag": [
+        "Tag bijwerken"
+      ],
+      "Add New Tag": [
+        "Voeg nieuwe tag toe"
+      ],
+      "New Tag Name": [
+        "Nieuwe Tag Naam"
+      ],
+      "Search Tags": [
+        "Zoek tags"
+      ],
+      "Popular Tags": [
+        "Populaire tags"
+      ],
+      "Separate tags with commas": [
+        "Labels scheiden met comma’s"
+      ],
+      "Add or remove tags": [
+        "Toevoegen of verwijderen van tags"
+      ],
+      "Choose from the most used tags": [
+        "Kies uit de meest gebruikte tags"
+      ],
+      "No tags found": [
+        "Geen trefwoorden gevonden"
+      ],
+      "Tag name is required": [
+        "Tagnaam is vereist"
+      ],
+      "Invalid media item": [
+        "Ongeldig media-item"
+      ],
+      "Menu cache key rotated successfully. All client caches have been invalidated.": [
+        "De menucache-sleutel is succesvol geroteerd. Alle clientcaches zijn ongeldig gemaakt."
+      ],
+      "Status": [
+        "Status"
+      ],
+      "Published": [
+        "Gepubliceerd"
+      ],
+      "(No title)": [
+        "(Geen titel)"
+      ],
+      "Scheduled": [
+        "Ingepland"
+      ],
+      "%s from now": [
+        "%s vanaf nu"
+      ],
+      "Modified": [
+        "Gewijzigd"
+      ],
+      "%s ago": [
+        "%s geleden"
+      ],
+      "Authentication required. Please provide Basic Auth credentials.": [
+        "Authenticatie vereist. Geef uw Basic Auth-gegevens op."
+      ],
+      "Invalid authentication credentials.": [
+        "Ongeldige authenticatiegegevens."
+      ],
+      "Missing security token. Please refresh the page and try again.": [
+        "Beveiligingstoken ontbreekt. Vernieuw de pagina en probeer het opnieuw."
+      ],
+      "Invalid security token. Please refresh the page and try again.": [
+        "Ongeldig beveiligingstoken. Vernieuw de pagina en probeer het opnieuw."
+      ],
+      "You must be logged in to access this endpoint.": [
+        "Je moet ingelogd zijn om toegang te krijgen tot dit eindpunt."
+      ],
+      "You do not have permission to perform this action. Required capability: %s": [
+        "U hebt geen toestemming om deze actie uit te voeren. Vereiste bevoegdheid: %s"
+      ],
+      "Invalid role format.": [
+        "Ongeldig rolformaat."
+      ],
+      "Invalid role.": [
+        "Ongeldige rol."
+      ],
+      "Capabilities must be an array.": [
+        "Capabilities moet een array zijn."
+      ],
+      "Role not found.": [
+        "Rol niet gevonden."
+      ],
+      "Role capabilities updated successfully.": [
+        "Rolcapaciteiten succesvol bijgewerkt."
+      ],
+      "Role name cannot be empty.": [
+        "De naam van de rol mag niet leeg zijn."
+      ],
+      "Role name is too long.": [
+        "De naam van de rol is te lang."
+      ],
+      "Role name updated successfully.": [
+        "Rolnaam succesvol bijgewerkt."
+      ],
+      "Role slug can only contain lowercase letters, numbers, hyphens, and underscores.": [
+        "De rol-slug mag alleen kleine letters, cijfers, koppeltekens en onderstrepingstekens bevatten."
+      ],
+      "Role slug is too long.": [
+        "De rol-slug is te lang."
+      ],
+      "A role with this slug already exists.": [
+        "Er bestaat al een rol met deze slug."
+      ],
+      "Failed to create role.": [
+        "Kan rol niet aanmaken."
+      ],
+      "Role created successfully.": [
+        "Rol succesvol aangemaakt."
+      ],
+      "Cannot delete default WordPress roles.": [
+        "Standaard WordPress-rollen kunnen niet worden verwijderd."
+      ],
+      "Cannot delete role. There are %d user(s) with this role. Please reassign users to another role first.": [
+        "De rol kan niet worden verwijderd. Er zijn %d gebruikers met deze rol. Wijs gebruikers eerst een andere rol toe."
+      ],
+      "Role deleted successfully.": [
+        "Rol succesvol verwijderd."
+      ],
+      "New Users": [
+        "Nieuwe gebruikers"
+      ],
+      "Activity Log Details": [
+        "Details van het activiteitenlogboek"
+      ],
+      "General": [
+        "Algemeen"
+      ],
+      "Core plugin settings and license management": [
+        "Kerninstellingen van de plug-in en licentiebeheer"
+      ],
+      "Login": [
+        "Inloggen"
+      ],
+      "Customize login page appearance and security": [
+        "Het uiterlijk en de beveiliging van de inlogpagina aanpassen"
+      ],
+      "Theme": [
+        "Thema"
+      ],
+      "Colors, styling, and visual customization": [
+        "Kleuren, styling en visuele aanpassingen"
+      ],
+      "White Label": [
+        "WhiteLabel"
+      ],
+      "Rebrand and customize interface text and icons": [
+        "Interfacetekst en pictogrammen opnieuw ontwerpen en aanpassen"
+      ],
+      "Menu": [
+        "Menu"
+      ],
+      "Admin menu behavior and interaction settings": [
+        "Instellingen voor het gedrag en de interactie van het beheerdersmenu"
+      ],
+      "Post management and display preferences": [
+        "Voorkeuren voor berichtbeheer en weergave"
+      ],
+      "Plugin management interface options": [
+        "Opties voor de interface voor plug-inbeheer"
+      ],
+      "Custom dashboard and admin interface settings": [
+        "Aangepaste instellingen voor dashboard en beheerdersinterface"
+      ],
+      "Analytics": [
+        "Analytics"
+      ],
+      "Built-in analytics and tracking settings": [
+        "Ingebouwde analyse- en trackinginstellingen"
+      ],
+      "Media library and upload management settings": [
+        "Instellingen voor mediabibliotheek en uploadbeheer"
+      ],
+      "User management and administration settings": [
+        "Gebruikersbeheer en administratie-instellingen"
+      ],
+      "Comment management and administration settings": [
+        "Instellingen voor commentaarbeheer en administratie"
+      ],
+      "Security": [
+        "Beveiliging"
+      ],
+      "Security settings and administration": [
+        "Beveiligingsinstellingen en beheer"
+      ],
+      "Database": [
+        "Database"
+      ],
+      "Database explorer and management settings": [
+        "Database-verkenner en beheerinstellingen"
+      ],
+      "Search settings...": [
+        "Zoekinstellingen..."
+      ],
+      "Loading settings...": [
+        "Instellingen laden..."
+      ],
+      "No settings found": [
+        "Geen instellingen gevonden"
+      ],
+      "Try a different search term": [
+        "Probeer een andere zoekterm"
+      ],
+      "Loading Settings...": [
+        "Instellingen laden..."
+      ],
+      "Settings Panel": [
+        "Instellingenpaneel"
+      ],
+      "Select a category from the list to configure your settings.": [
+        "Selecteer een categorie uit de lijst om uw instellingen te configureren."
+      ],
+      "Activity log entry not found": [
+        "Activiteitenlogboekvermelding niet gevonden"
+      ],
+      "Just now": [
+        "Zojuist"
+      ],
+      "1 minute ago": [
+        "1 minuut geleden"
+      ],
+      "%d minutes ago": [
+        "%d minuten geleden"
+      ],
+      "1 hour ago": [
+        "1 uur geleden"
+      ],
+      "%d hours ago": [
+        "%d uur geleden"
+      ],
+      "1 day ago": [
+        "1 dag geleden"
+      ],
+      "%d days ago": [
+        "%d dagen geleden"
+      ],
+      "Loading...": [
+        "Laden..."
+      ],
+      "Activity Details": [
+        "Activiteitsdetails"
+      ],
+      "User Information": [
+        "Gebruikersinformatie"
+      ],
+      "Timestamp": [
+        "Tijdstempel"
+      ],
+      "IP Address": [
+        "IP-adres"
+      ],
+      "User Agent": [
+        "Gebruikersagent"
+      ],
+      "Changes": [
+        "Wijzigingen"
+      ],
+      "Before": [
+        "Voor"
+      ],
+      "After": [
+        "Na"
+      ],
+      "Details": [
+        "Details"
+      ],
+      "Metadata": [
+        "Metadata"
+      ],
+      "Remote Site Error": [
+        "Fout op externe site"
+      ],
+      "Invalid remote site configuration": [
+        "Ongeldige configuratie van de externe site"
+      ],
+      "Click": [
+        "Klik"
+      ],
+      "Hover": [
+        "Hover"
+      ],
+      "Off": [
+        "Uit"
+      ],
+      "Light": [
+        "Light"
+      ],
+      "Dark": [
+        "Donker"
+      ],
+      "Licence key": [
+        "Licentiesleutel"
+      ],
+      "Activating uiXpress enables updates and features": [
+        "Door uiXpress te activeren, worden updates en functies ingeschakeld."
+      ],
+      "Logo": [
+        "Logo"
+      ],
+      "Optional logo for to be displayed in the menu": [
+        "Optioneel logo dat in het menu kan worden weergegeven"
+      ],
+      "Logo url": [
+        "Logo-url"
+      ],
+      "Dark mode logo": [
+        "Donkere modus-logo"
+      ],
+      "Set an alternative logo to use in dark mode. If one isn't set it will fall back to the standard logo.": [
+        "Stel een alternatief logo in voor gebruik in de donkere modus. Als er geen alternatief logo is ingesteld, wordt het standaardlogo gebruikt."
+      ],
+      "Dark Logo url": [
+        "Donker logo url"
+      ],
+      "Remote Sites": [
+        "Externe locaties"
+      ],
+      "Configure remote WordPress sites for cross-site operations.": [
+        "Configureer externe WordPress-sites voor cross-site-bewerkingen."
+      ],
+      "Remote Site Switcher Capability": [
+        "Mogelijkheid tot externe siteswitching"
+      ],
+      "WordPress capability required to see the remote site switcher in the toolbar. Defaults to \"manage_options\" (admin users). Users with this capability or below will see the switcher.": [
+        "Om de optie voor het wisselen van externe sites in de werkbalk te zien, is WordPress-functionaliteit vereist. Standaard is dit \"manage_options\" (voor beheerders). Gebruikers met deze of lagere functionaliteit zien de optie."
+      ],
+      "Disable theme": [
+        "Thema uitschakelen"
+      ],
+      "Choose roles or usersnames to disable the theme for.": [
+        "Kies rollen of gebruikersnamen waarvoor je het thema wilt uitschakelen."
+      ],
+      "Search post types": [
+        "Zoek berichttypen"
+      ],
+      "Choose which post types are available in the global search": [
+        "Kies welke berichttypen beschikbaar zijn in de algemene zoekfunctie"
+      ],
+      "Disable global search": [
+        "Globale zoekfunctie uitschakelen"
+      ],
+      "Disable global search for all users.": [
+        "Schakel het algemene zoeken voor alle gebruikers uit."
+      ],
+      "Admin layout": [
+        "Beheerderslay-out"
+      ],
+      "Choose your prefered admin layout": [
+        "Kies uw gewenste beheerlay-out"
+      ],
+      "Modernise login page": [
+        "Moderniseer de inlogpagina"
+      ],
+      "When enabled, uiXpress will modernise the default login page.": [
+        "Wanneer deze optie is ingeschakeld, zal uiXpress de standaard inlogpagina moderniseren."
+      ],
+      "Login image": [
+        "Login afbeelding"
+      ],
+      "Optional image that will be added to the empty panel in the login page": [
+        "Optionele afbeelding die wordt toegevoegd aan het lege paneel op de inlogpagina"
+      ],
+      "Image url": [
+        "URL afbeelding"
+      ],
+      "Login path": [
+        "Inlogpad"
+      ],
+      "Change the login url from wp-login.php to a custom slug. Ensure you remember what you change this to.": [
+        "Wijzig de inlog-URL van wp-login.php naar een aangepaste slug. Zorg ervoor dat u onthoudt waarnaar u deze wijzigt."
+      ],
+      "Hide language selector": [
+        "Taalkeuze verbergen"
+      ],
+      "When hidden the language selector on the login page will not be displayed": [
+        "Wanneer verborgen, wordt de taalkeuzeknop op de inlogpagina niet weergegeven."
+      ],
+      "Enable TurnStyle": [
+        "TurnStyle inschakelen"
+      ],
+      "When enabled, a cloudflare turnstyle challenge will be displayed on the login page to enhance security. Cloudflare account is required": [
+        "Wanneer deze optie is ingeschakeld, wordt er een Cloudflare-turnstile-uitdaging weergegeven op de inlogpagina om de veiligheid te verbeteren. Een Cloudflare-account is vereist."
+      ],
+      "Turnstyle site key": [
+        "Turnstyle-locatiesleutel"
+      ],
+      "This is the site key for your turnstyle which can be created from your cloudflare dashboard.": [
+        "Dit is de sitesleutel voor uw tourniquet, die u kunt aanmaken vanuit uw Cloudflare-dashboard."
+      ],
+      "Turnstyle secret key": [
+        "Turnstyle geheime sleutel"
+      ],
+      "This is the secret key for your turnstyle which can be created from your cloudflare dashboard.": [
+        "Dit is de geheime sleutel voor uw tourniquet, die u kunt aanmaken vanuit uw Cloudflare-dashboard."
+      ],
+      "Force global theme": [
+        "Globaal thema afdwingen"
+      ],
+      "When enabled, the light / dark toggle will be removed and the selected theme set for all users.": [
+        "Wanneer deze optie is ingeschakeld, wordt de schakelaar voor licht/donker verwijderd en wordt het geselecteerde thema voor alle gebruikers ingesteld."
+      ],
+      "Hide screen options": [
+        "Schermopties verbergen"
+      ],
+      "Hide the screen options toggle in the toolbar": [
+        "Verberg de schakelaar voor schermopties in de werkbalk"
+      ],
+      "Hide help toggle": [
+        "Hulp verbergen"
+      ],
+      "Hide the help toggle in the toolbar": [
+        "Verberg de hulpknop in de werkbalk"
+      ],
+      "Base theme colors": [
+        "Basisthema kleuren"
+      ],
+      "Set a base color and uiXpress will automatically create a color scale for you.": [
+        "Stel een basiskleur in en uiXpress maakt automatisch een kleurenschaal voor u."
+      ],
+      "Base": [
+        "Basis"
+      ],
+      "Accent theme colors": [
+        "Accentkleuren van het thema"
+      ],
+      "Set a accent color and uiXpress will automatically create a color scale for you.": [
+        "Stel een accentkleur in en uiXpress maakt automatisch een kleurenschaal voor u."
+      ],
+      "Accent base": [
+        "Accentbasis"
+      ],
+      "Custom css": [
+        "Aangepaste CSS"
+      ],
+      "Custom css added here will only be added in the admin area and login page.": [
+        "Aangepaste css die hier wordt toegevoegd, wordt alleen toegevoegd in het beheergedeelte en op de inlogpagina."
+      ],
+      "External stylesheets": [
+        "Externe stylesheets"
+      ],
+      "Add URLs to any external stylesheets you want uiXpress to load into the admin": [
+        "Voeg URL's toe aan externe stylesheets die u wilt dat uiXpress in de admin laadt."
+      ],
+      "Custom Font": [
+        "Aangepast lettertype"
+      ],
+      "Choose a custom font for the admin interface. Select from Google Fonts, enter a custom font URL, or upload your own font files.": [
+        "Kies een aangepast lettertype voor de beheerdersinterface. Selecteer een lettertype uit Google Fonts, voer een URL voor een aangepast lettertype in of upload uw eigen lettertypebestanden."
+      ],
+      "Admin favicon": [
+        "Beheerder favicon"
+      ],
+      "Optional favicon to replace the WordPress favicon in the admin.": [
+        "Optionele favicon om de WordPress-favicon in de admin te vervangen."
+      ],
+      "Favicon url": [
+        "Favicon-url"
+      ],
+      "Rename uiXpress": [
+        "Hernoem uiXpress"
+      ],
+      "This will rename uiXpress in the plugins list as well as renaming it's settings link.": [
+        "Hierdoor wordt uiXpress in de lijst met plug-ins hernoemd en wordt ook de link naar de instellingen hernoemd."
+      ],
+      "Text Replacement": [
+        "Tekstvervanging"
+      ],
+      "Customize the text displayed in the WordPress admin area. Enter original words or phrases and their replacements to white-label the admin interface.": [
+        "Pas de tekst aan die wordt weergegeven in het WordPress-beheergedeelte. Voer originele woorden of zinnen en hun vervangingen in om de beheerdersinterface te voorzien van een white label."
+      ],
+      "Submenu style": [
+        "Submenu-stijl"
+      ],
+      "Choose from whether the submenu opens on click or hover.": [
+        "Kies of het submenu wordt geopend wanneer je erop klikt of wanneer je er met de muis overheen gaat."
+      ],
+      "Enable Admin Menu Search": [
+        "Schakel de zoekfunctie in het beheerdersmenu in."
+      ],
+      "Enable search functionality in the admin menu to quickly find menu items.": [
+        "Schakel de zoekfunctie in het beheerdersmenu in om menu-items snel te vinden."
+      ],
+      "Classic Post List View": [
+        "Klassieke lijstweergave van berichten"
+      ],
+      "Switch to WordPress's traditional table layout for posts, removing the modern interface.": [
+        "Schakel over naar de traditionele tabelindeling van WordPress voor berichten en verwijder de moderne interface."
+      ],
+      "Modern Post Editor": [
+        "Modern Post-redacteur"
+      ],
+      "Replace the built-in WordPress editor with a modern, enhanced post editor interface.": [
+        "Vervang de ingebouwde WordPress-editor door een moderne, verbeterde interface voor het bewerken van berichten."
+      ],
+      "Post Types for Modern Editor": [
+        "Berichttypen voor de moderne editor"
+      ],
+      "Choose which post types should use the modern post editor. Defaults to posts.": [
+        "Kies welke berichttypen de moderne berichteditor moeten gebruiken. Standaard zijn dit berichten."
+      ],
+      "Real-time Collaboration": [
+        "Realtime samenwerking"
+      ],
+      "Enable real-time collaboration in the modern post editor. Multiple users can edit the same post simultaneously with live cursor tracking and synced changes.": [
+        "Maak realtime samenwerking mogelijk in de moderne berichteditor. Meerdere gebruikers kunnen tegelijkertijd hetzelfde bericht bewerken met live cursor-tracking en gesynchroniseerde wijzigingen."
+      ],
+      "Modern Plugin Manager": [
+        "Moderne plug-inbeheerder"
+      ],
+      "Replace the classic plugins page with a modern plugin manager with plugin profiling and improved features.": [
+        "Vervang de klassieke plug-inpagina door een moderne plug-inmanager met plug-inprofilering en verbeterde functies."
+      ],
+      "Modern Media Library": [
+        "Moderne mediabibliotheek"
+      ],
+      "Replace the classic WordPress media library with a modern, responsive media manager with improved upload and organization features.": [
+        "Vervang de klassieke WordPress-mediabibliotheek door een moderne, responsieve mediabeheerder met verbeterde upload- en organisatie functies."
+      ],
+      "Enable SVG Uploads": [
+        "SVG-uploads inschakelen"
+      ],
+      "Allow SVG (Scalable Vector Graphics) files to be uploaded to the media library. All SVG files are automatically sanitized before upload to remove potentially malicious code, ensuring safe handling of SVG files.": [
+        "Sta toe dat SVG-bestanden (Scalable Vector Graphics) worden geüpload naar de mediabibliotheek. Alle SVG-bestanden worden automatisch opgeschoond voordat ze worden geüpload om potentieel schadelijke code te verwijderen, waardoor een veilige verwerking van SVG-bestanden wordt gegarandeerd."
+      ],
+      "Enable Font Uploads": [
+        "Lettertype-uploads inschakelen"
+      ],
+      "Allow font files (.woff2, .woff, .ttf, .otf) to be uploaded to the media library. This enables custom font support for your site.": [
+        "Sta toe dat lettertypebestanden (.woff2, .woff, .ttf, .otf) naar de mediabibliotheek worden geüpload. Dit maakt ondersteuning voor aangepaste lettertypen voor uw website mogelijk."
+      ],
+      "Modern Users Page": [
+        "Moderne gebruikerspagina"
+      ],
+      "Replace the classic WordPress users page with a modern, responsive user manager with improved features and better organization.": [
+        "Vervang de klassieke WordPress-gebruikerspagina door een moderne, responsieve gebruikersbeheerder met verbeterde functies en een betere organisatie."
+      ],
+      "Modern Comments Page": [
+        "Moderne commentaarpagina"
+      ],
+      "Replace the classic WordPress comments page with a modern, responsive comment manager with improved features and better organization.": [
+        "Vervang de klassieke WordPress-commentaarpagina door een moderne, responsieve commentaarmanager met verbeterde functies en een betere organisatie."
+      ],
+      "Custom Dashboard": [
+        "Aangepast dashboard"
+      ],
+      "Replace the default WordPress dashboard with a modern, customizable dashboard interface.": [
+        "Vervang het standaard WordPress-dashboard door een moderne, aanpasbare dashboardinterface."
+      ],
+      "Enable uiXpress Analytics": [
+        "Schakel uiXpress Analytics in"
+      ],
+      "Enable built-in analytics to track user behavior, page views, and performance metrics within your WordPress admin.": [
+        "Schakel ingebouwde analyses in om gebruikersgedrag, paginaweergaven en prestatiestatistieken bij te houden binnen uw WordPress-beheeromgeving."
+      ],
+      "Analytics Provider": [
+        "Analyseprovider"
+      ],
+      "Choose which analytics provider to use for dashboard data. Select Built-in Analytics to use the uiXpress tracking system, or Google Analytics to display data from your GA4 property.": [
+        "Kies welke analyseprovider u wilt gebruiken voor dashboardgegevens. Selecteer 'Ingebouwde analyses' om het uiXpress-trackingsysteem te gebruiken, of 'Google Analytics' om gegevens van uw GA4-property weer te geven."
+      ],
+      "Google Analytics Connection": [
+        "Google Analytics-koppeling"
+      ],
+      "Connect your Google Analytics 4 property to display analytics data in the dashboard. You will need to create OAuth credentials in Google Cloud Console.": [
+        "Verbind uw Google Analytics 4-property om analysedata in het dashboard weer te geven. U moet hiervoor OAuth-referenties aanmaken in de Google Cloud Console."
+      ],
+      "Enable Database Explorer": [
+        "Database Explorer inschakelen"
+      ],
+      "Enable the modern database explorer interface to browse tables, view data, and execute SQL queries safely.": [
+        "Schakel de moderne database-explorerinterface in om veilig door tabellen te bladeren, gegevens te bekijken en SQL-query's uit te voeren."
+      ],
+      "Enable Role Editor": [
+        "Rol-editor inschakelen"
+      ],
+      "Enable the modern role editor interface to manage WordPress user roles and capabilities.": [
+        "Schakel de moderne rolbewerkingsinterface in om WordPress-gebruikersrollen en -mogelijkheden te beheren."
+      ],
+      "Enable Custom Post Types": [
+        "Aangepaste berichttypen inschakelen"
+      ],
+      "Enable the custom post types creator to register and manage custom post types without code. Post types are stored in a JSON file for performance.": [
+        "Schakel de maker van aangepaste berichttypen in om deze te registreren en te beheren zonder code. Berichttypen worden voor betere prestaties opgeslagen in een JSON-bestand."
+      ],
+      "Enable Activity Logger": [
+        "Activiteitenlogboek inschakelen"
+      ],
+      "Track and log all admin actions including post changes, user updates, plugin activations, and more.": [
+        "Volg en registreer alle beheerdersacties, waaronder wijzigingen in berichten, gebruikersupdates, activeringen van plug-ins en meer."
+      ],
+      "Retention Period (Days)": [
+        "Bewaartermijn (dagen)"
+      ],
+      "How many days to keep activity logs before automatic cleanup. Default is 90 days.": [
+        "Hoeveel dagen moeten activiteitenlogboeken worden bewaard voordat ze automatisch worden opgeschoond? De standaardinstelling is 90 dagen."
+      ],
+      "Log Level": [
+        "Logboekniveau"
+      ],
+      "Choose which actions to log. \"All Actions\" logs everything, \"Important Only\" logs only critical actions like deletions and role changes.": [
+        "Kies welke acties u wilt loggen. \"Alle acties\" logt alles, \"Alleen belangrijk\" logt alleen kritieke acties zoals verwijderingen en rolwijzigingen."
+      ],
+      "All Actions": [
+        "Prijsklasse"
+      ],
+      "Important Only": [
+        "Belangrijk Alleen"
+      ],
+      "Auto Cleanup": [
+        "Automatische opschoning"
+      ],
+      "Automatically delete logs older than the retention period. Disable to keep logs indefinitely.": [
+        "Verwijder automatisch logbestanden die ouder zijn dan de bewaartermijn. Schakel deze optie uit om logbestanden onbeperkt te bewaren."
+      ],
+      "Failed to load settings": [
+        "Instellingen laden mislukt"
+      ],
+      "Unable to save settings": [
+        "Instellingen kunnen niet worden opgeslagen"
+      ],
+      "Settings updated!": [
+        "Instellingen bijgewerkt!"
+      ],
+      "Please provide a valid JSON file": [
+        "Geef een geldig JSON-bestand op."
+      ],
+      "Invalid settings: must be an object": [
+        "Ongeldige instellingen: moet een object zijn"
+      ],
+      "Settings imported": [
+        "Instellingen geïmporteerd"
+      ],
+      "Import failed": [
+        "Importeren mislukt"
+      ],
+      "Failed to activate key": [
+        "Kan sleutel niet activeren"
+      ],
+      "Key already activated for this site": [
+        "Sleutel al geactiveerd voor deze site"
+      ],
+      "Key successfully activated": [
+        "Sleutel succesvol geactiveerd"
+      ],
+      "Network error during activation": [
+        "Netwerkfout tijdens activering"
+      ],
+      "Instance removed": [
+        "Instantie verwijderd"
+      ],
+      "Failed to remove activation": [
+        "Activering kan niet worden verwijderd"
+      ],
+      "Network error during removal": [
+        "Netwerkfout tijdens verwijdering"
+      ],
+      "Save": [
+        "Opslaan"
+      ],
+      "Please add your licence key to unlock the plugin settings": [
+        "Voeg uw licentiesleutel toe om de instellingen van de plug-in te ontgrendelen."
+      ],
+      "Found": [
+        "Gevonden"
+      ],
+      "matching setting(s)": [
+        "overeenkomende instelling(en)"
+      ],
+      "No settings match your search in this category.": [
+        "Er zijn geen instellingen die overeenkomen met uw zoekopdracht in deze categorie."
+      ],
+      "Try a different search term or check another category.": [
+        "Probeer een andere zoekterm of kijk in een andere categorie."
+      ],
+      "Minify menu": [
+        "Menu verkleinen"
+      ],
+      "Toggle menu": [
+        "Menu togglen"
+      ],
+      "System": [
+        "Systeem"
+      ],
+      "Logout": [
+        "Uitloggen"
+      ],
+      "Search activities...": [
+        "Zoekactiviteiten..."
+      ],
+      "Action": [
+        "Actie"
+      ],
+      "Object Type": [
+        "Objecttype"
+      ],
+      "All Types": [
+        "Alle soorten"
+      ],
+      "item": [
+        "item"
+      ],
+      "items": [
+        "items"
+      ],
+      "Page": [
+        "Pagina"
+      ],
+      "Previous": [
+        "Vorige"
+      ],
+      "Next": [
+        "Volgende"
+      ],
+      "Select an activity from the list to view detailed information.": [
+        "Selecteer een activiteit uit de lijst om gedetailleerde informatie te bekijken."
+      ],
+      "Default": [
+        "Standaard"
+      ],
+      "Rounded": [
+        "Afgerond"
+      ],
+      "Bubble": [
+        "Bubbel"
+      ],
+      "Add new": [
+        "Nieuwe toevoegen"
+      ],
+      "Update settings": [
+        "Instellingen opslaan"
+      ],
+      "Loading editor...": [
+        "Editor wordt geladen..."
+      ],
+      "Invalid Input": [
+        "Ongeldige invoer"
+      ],
+      "Site URL, username, and application password are required": [
+        "De URL van de website, de gebruikersnaam en het wachtwoord van de applicatie zijn vereist."
+      ],
+      "Invalid URL": [
+        "Ongeldige URL"
+      ],
+      "Please provide a valid site URL": [
+        "Geef een geldige website-URL op."
+      ],
+      "Duplicate Site": [
+        "Dubbele site"
+      ],
+      "This site URL already exists": [
+        "Deze site-URL bestaat al"
+      ],
+      "Remove Remote Site?": [
+        "Externe site verwijderen?"
+      ],
+      "Are you sure you want to remove this remote site? This action cannot be undone.": [
+        "Weet u zeker dat u deze externe site wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt."
+      ],
+      "Yes, remove site": [
+        "Ja, site verwijderen"
+      ],
+      "Site Removed": [
+        "Website verwijderd"
+      ],
+      "Remote site has been removed successfully": [
+        "De externe site is succesvol verwijderd."
+      ],
+      "Site URL (e.g., https://example.com)": [
+        "Site-URL (bijvoorbeeld https://example.com)"
+      ],
+      "Username": [
+        "Gebruikersnaam"
+      ],
+      "Application Password": [
+        "Applicatiewachtwoord"
+      ],
+      "Add Site": [
+        "Site toevoegen"
+      ],
+      "Site URL": [
+        "Site-URL"
+      ],
+      "Password": [
+        "Wachtwoord"
+      ],
+      "No remote sites configured yet": [
+        "Er zijn nog geen externe sites geconfigureerd."
+      ],
+      "Application passwords can be created in WordPress under Users > Profile > Application Passwords": [
+        "Applicatiewachtwoorden kunnen in WordPress worden aangemaakt via Gebruikers > Profiel > Applicatiewachtwoorden."
+      ],
+      "Licence Active": [
+        "Licentie actief"
+      ],
+      "Remove key": [
+        "Code verwijderen"
+      ],
+      "uiXpress licence key": [
+        "uiXpress-licentiesleutel"
+      ],
+      "Activate": [
+        "Activeren"
+      ],
+      "Development server detected, no need to activate your licence key.": [
+        "Ontwikkelingsserver gedetecteerd, u hoeft uw licentiesleutel niet te activeren."
+      ],
+      "System Default": [
+        "Systeemstandaard"
+      ],
+      "Google Fonts": [
+        "Google Fonts"
+      ],
+      "Custom URL": [
+        "Aangepaste URL"
+      ],
+      "Upload Font": [
+        "Lettertype uploaden"
+      ],
+      "Font Source": [
+        "Lettertypebron"
+      ],
+      "Select Font": [
+        "Lettertype selecteren"
+      ],
+      "Click to change": [
+        "Klik om te wijzigen"
+      ],
+      "Clear selection": [
+        "Wis selectie"
+      ],
+      "Search fonts...": [
+        "Zoek naar lettertypen..."
+      ],
+      "No fonts found": [
+        "Geen lettertypen gevonden"
+      ],
+      "Or enter custom:": [
+        "Of voer een aangepaste invoer in:"
+      ],
+      "Font name...": [
+        "Lettertypenaam..."
+      ],
+      "Font Weights": [
+        "Lettertypegewichten"
+      ],
+      "Select weights to include. At least one is required.": [
+        "Selecteer de gewichten die u wilt opnemen. Minimaal één gewicht is vereist."
+      ],
+      "Font Stylesheet URL": [
+        "URL van het lettertype-stijlbestand"
+      ],
+      "https://fonts.googleapis.com/css2?family=...": [
+        "https://fonts.googleapis.com/css2?family=..."
+      ],
+      "Enter the URL to an external font stylesheet (CSS file)": [
+        "Voer de URL in van een extern CSS-bestand (font stylesheet)."
+      ],
+      "Font Family Name": [
+        "Naam van de lettertypefamilie"
+      ],
+      "e.g., Inter, Roboto, Custom Font": [
+        "bijv. Inter, Roboto, Aangepast lettertype"
+      ],
+      "The exact font-family name as defined in the stylesheet": [
+        "De exacte naam van de lettertypefamilie zoals gedefinieerd in het stylesheet."
+      ],
+      "Font Uploads Disabled": [
+        "Het uploaden van lettertypen is uitgeschakeld."
+      ],
+      "Font file uploads are currently disabled. Enable font uploads in the Media settings to upload custom font files (.woff2, .woff, .ttf, .otf).": [
+        "Het uploaden van lettertypebestanden is momenteel uitgeschakeld. Schakel het uploaden van lettertypebestanden in via de media-instellingen om aangepaste lettertypebestanden (.woff2, .woff, .ttf, .otf) te uploaden."
+      ],
+      "e.g., My Custom Font": [
+        "bijv. Mijn aangepaste lettertype"
+      ],
+      "Choose a name for your custom font family": [
+        "Kies een naam voor uw aangepaste lettertypefamilie."
+      ],
+      "Font Files": [
+        "Lettertypebestanden"
+      ],
+      "Opening Media Library...": [
+        "De mediabibliotheek openen..."
+      ],
+      "Click to select font files": [
+        "Klik om lettertypebestanden te selecteren"
+      ],
+      "Supported formats: .woff2, .woff, .ttf, .otf": [
+        "Ondersteunde formaten: .woff2, .woff, .ttf, .otf"
+      ],
+      "Enable font uploads to add font files": [
+        "Schakel het uploaden van lettertypen in om lettertypebestanden toe te voegen."
+      ],
+      "Select Font File": [
+        "Selecteer lettertypebestand"
+      ],
+      "Select font files from your media library. Supported: .woff2, .woff, .ttf, .otf": [
+        "Selecteer lettertypebestanden uit uw mediabibliotheek. Ondersteunde formaten: .woff2, .woff, .ttf, .otf"
+      ],
+      "Loading font...": [
+        "Lettertype laden..."
+      ],
+      "Preview": [
+        "Voorbeeld"
+      ],
+      "Weight:": [
+        "Gewicht:"
+      ],
+      "weights loaded": [
+        "gewichten geladen"
+      ],
+      "Reset to system default": [
+        "Terugzetten naar de systeeminstellingen"
+      ],
+      "Please paste your service account JSON key": [
+        "Plak hier uw JSON-sleutel voor uw serviceaccount."
+      ],
+      "Service account connected successfully": [
+        "Serviceaccount succesvol verbonden"
+      ],
+      "Failed to save credentials": [
+        "Het opslaan van de inloggegevens is mislukt."
+      ],
+      "Could not load properties automatically. You can enter your Property ID manually below.": [
+        "De eigenschappen konden niet automatisch worden geladen. U kunt uw eigenschaps-ID hieronder handmatig invoeren."
+      ],
+      "Please enter a Property ID": [
+        "Voer een object-ID in."
+      ],
+      "Property saved": [
+        "Eigendom opgeslagen"
+      ],
+      "Failed to save property": [
+        "Het opslaan van de eigenschap is mislukt."
+      ],
+      "Failed to disconnect": [
+        "Verbinding verbreken mislukt"
+      ],
+      "Checking connection...": [
+        "Verbinding controleren..."
+      ],
+      "Connection Issue": [
+        "Verbindingsprobleem"
+      ],
+      "Connected to Google Analytics": [
+        "Gekoppeld aan Google Analytics"
+      ],
+      "Permission Issue Detected": [
+        "Toegangsprobleem gedetecteerd"
+      ],
+      "Learn more": [
+        "Leer meer"
+      ],
+      "Retest Connection": [
+        "Verbinding opnieuw testen"
+      ],
+      "Service Account:": [
+        "Serviceaccount:"
+      ],
+      "Select Property": [
+        "Selecteer eigenschap"
+      ],
+      "Select a property...": [
+        "Selecteer een woning..."
+      ],
+      "Property ID:": [
+        "Eigendoms-ID:"
+      ],
+      "Enter Property ID": [
+        "Voer het object-ID in"
+      ],
+      "Find your Property ID in Google Analytics: Admin → Property Settings → Property ID (a number like 123456789)": [
+        "Je vindt je vastgoed-ID in Google Analytics: Beheer → Vastgoedinstellingen → Vastgoed-ID (een nummer zoals 123456789)"
+      ],
+      "e.g. 123456789": [
+        "bijv. 123456789"
+      ],
+      "Property ID": [
+        "Eigendoms-ID"
+      ],
+      "Change": [
+        "Wijziging"
+      ],
+      "Loading properties...": [
+        "Eigenschappen laden..."
+      ],
+      "Disconnect": [
+        "Verbinding verbreken"
+      ],
+      "Setup Instructions": [
+        "Installatie-instructies"
+      ],
+      "How to connect Google Analytics 4": [
+        "Hoe verbind je Google Analytics 4?"
+      ],
+      "Go to": [
+        "Ga naar"
+      ],
+      "Google Cloud Console": [
+        "Google Cloud Console"
+      ],
+      "and create a new project (or select existing)": [
+        "en een nieuw project aanmaken (of een bestaand project selecteren)"
+      ],
+      "Enable the": [
+        "Schakel de"
+      ],
+      "Google Analytics Data API": [
+        "Google Analytics Data API"
+      ],
+      "Service Accounts": [
+        "Serviceaccounts"
+      ],
+      "and create a new service account": [
+        "en een nieuw serviceaccount aanmaken"
+      ],
+      "Click the service account, go to \"Keys\" tab, click \"Add Key\" → \"Create new key\" → JSON": [
+        "Klik op het serviceaccount, ga naar het tabblad 'Sleutels', klik op 'Sleutel toevoegen' → 'Nieuwe sleutel maken' → JSON"
+      ],
+      "Download the JSON key file": [
+        "Download het JSON-sleutelbestand"
+      ],
+      "In": [
+        "In"
+      ],
+      "Google Analytics": [
+        "Google Analytics"
+      ],
+      "→ Admin → Property Access Management, add the service account email as a Viewer": [
+        "→ Beheerder → Toegangsbeheer voor eigendommen, voeg het e-mailadres van het serviceaccount toe als kijker"
+      ],
+      "Paste the contents of the JSON key file below and enter your Property ID": [
+        "Plak de inhoud van het JSON-sleutelbestand hieronder en voer uw object-ID in."
+      ],
+      "Finding your Property ID:": [
+        "Uw object-ID vinden:"
+      ],
+      "In Google Analytics, go to Admin → Property Settings. Your Property ID is the number shown (e.g. 123456789).": [
+        "Ga in Google Analytics naar Beheer → Vastgoedinstellingen. Uw vastgoed-ID is het weergegeven nummer (bijv. 123456789)."
+      ],
+      "Important:": [
+        "Belangrijk:"
+      ],
+      "The service account email (found in the JSON file) must be added to your GA4 property with at least Viewer access for data to be retrieved.": [
+        "Het e-mailadres van het serviceaccount (te vinden in het JSON-bestand) moet aan uw GA4-property worden toegevoegd met minimaal toegang als 'Viewer' om gegevens te kunnen ophalen."
+      ],
+      "Paste the contents of your service account JSON key file:": [
+        "Plak hier de inhoud van uw JSON-sleutelbestand voor uw serviceaccount:"
+      ],
+      "Paste your service account JSON key here...": [
+        "Plak hier de JSON-sleutel van uw serviceaccount..."
+      ],
+      "Connect": [
+        "Verbinden"
+      ],
+      "Cancel": [
+        "Annuleren"
+      ],
+      "Connect Google Analytics": [
+        "Google Analytics koppelen"
+      ],
+      "Clear custom properties": [
+        "Aangepaste eigenschappen wissen"
+      ],
+      "Edit Profile": [
+        "Bewerk profiel"
+      ],
+      "Visit site": [
+        "Bezoek site"
+      ],
+      "Site Settings": [
+        "Site-instellingen"
+      ],
+      "Sign Out": [
+        "Afmelden"
+      ],
+      "Light Mode": [
+        "Lichtmodus"
+      ],
+      "Dark Mode": [
+        "Donkere modus"
+      ],
+      "Quick Actions": [
+        "Snelle acties"
+      ],
+      "Focus Search": [
+        "Focus zoeken"
+      ],
+      "Search menu...": [
+        "Zoekmenu..."
+      ],
+      "No menu items found": [
+        "Geen menu-items gevonden"
+      ],
+      "result": [
+        "resultaat"
+      ],
+      "results": [
+        "resultaten"
+      ],
+      "Navigate": [
+        "Navigeren"
+      ],
+      "Select": [
+        "Selecteer"
+      ],
+      "Shortcuts": [
+        "Snelkoppelingen"
+      ],
+      "Name": [
+        "Naam"
+      ],
+      "Shortcut name": [
+        "Snelkoppelingnaam"
+      ],
+      "URL": [
+        "URL"
+      ],
+      "https://example.com": [
+        "https://voorbeeld.com"
+      ],
+      "Icon": [
+        "Icoon"
+      ],
+      "icon name": [
+        "pictogramnaam"
+      ],
+      "Delete": [
+        "Verwijderen"
+      ],
+      "Notifications": [
+        "Meldingen"
+      ],
+      "Local": [
+        "Lokaal"
+      ],
+      "When you switch to a remote site, all API requests will be sent to that site instead of the local site.": [
+        "Wanneer u overschakelt naar een externe site, worden alle API-verzoeken naar die site verzonden in plaats van naar de lokale site."
+      ],
+      "Remote site switching works on:": [
+        "Schakelen tussen externe locaties werkt op:"
+      ],
+      "Modern Media Page": [
+        "Moderne Media Pagina"
+      ],
+      "Modern Plugins Page": [
+        "Moderne Plugins-pagina"
+      ],
+      "Modern Dashboard": [
+        "Modern dashboard"
+      ],
+      "All default WordPress pages (Posts, Pages, Comments, etc.) will continue to show local content.": [
+        "Alle standaard WordPress-pagina's (berichten, pagina's, reacties, enz.) blijven lokale content weergeven."
+      ],
+      "Remote Site Switching": [
+        "Externe locatieomschakeling"
+      ],
+      "I Understand": [
+        "Ik begrijp"
+      ],
+      "Search sites...": [
+        "Zoek op sites..."
+      ],
+      "No sites found": [
+        "Geen sites gevonden"
+      ],
+      "Back to menu": [
+        "Terug naar het menu"
+      ],
+      "unread": [
+        "ongelezen"
+      ],
+      "Updates Available": [
+        "Updates beschikbaar"
+      ],
+      "Awaiting moderation": [
+        "In afwachting van goedkeuring"
+      ],
+      "You're all caught up": [
+        "Je bent helemaal bij."
+      ],
+      "No new notifications": [
+        "Geen nieuwe meldingen"
+      ],
+      "Show less": [
+        "Minder weergeven"
+      ],
+      "Show more": [
+        "Meer weergeven"
+      ],
+      "No activities found": [
+        "Geen activiteiten gevonden"
+      ],
+      "Find": [
+        "Zoek"
+      ],
+      "Replace": [
+        "Vervangen"
+      ],
+      "New item": [
+        "Nieuw item"
+      ],
+      "Edit CSS": [
+        "CSS bewerken"
+      ],
+      "Finished": [
+        "Afgerond"
+      ],
+      "Media Library": [
+        "Mediabibliotheek"
+      ],
+      "Media Details": [
+        "Mediagegevens"
+      ],
+      "Edit Image": [
+        "Afbeelding bewerken"
+      ],
+      "Roles": [
+        "Rollen"
+      ],
+      "Items selected": [
+        "Geselecteerde items"
+      ],
+      "Select users or roles": [
+        "Selecteer gebruikers of rollen"
+      ],
+      "url": [
+        "url"
+      ],
+      "Select post types": [
+        "Selecteer post types"
+      ],
+      "Search icons": [
+        "Zoekpictogrammen"
+      ],
+      "View site": [
+        "Bekijk de site"
+      ],
+      "View dashboard": [
+        "Dashboard bekijken"
+      ],
+      "Help": [
+        "Help"
+      ],
+      "Screen options": [
+        "Schermopties"
+      ],
+      "New Post": [
+        "Nieuw Bericht"
+      ],
+      "New Page": [
+        "Nieuwe pagina"
+      ],
+      "Site settings": [
+        "Site instellingen"
+      ],
+      "Dark mode": [
+        "Donkere modus"
+      ],
+      "Light mode": [
+        "Lichte modus"
+      ],
+      "Enable magic dark mode for this page": [
+        "Schakel de magische donkere modus in voor deze pagina"
+      ],
+      "Disable magic dark mode for this page": [
+        "Schakel de magische donkere modus voor deze pagina uit"
+      ],
+      "wpbody element not found": [
+        "wpbody-element niet gevonden"
+      ],
+      "CSS fix saved to custom CSS settings": [
+        "CSS-correctie opgeslagen in aangepaste CSS-instellingen"
+      ],
+      "Failed to save CSS fix": [
+        "Het opslaan van de CSS-correctie is mislukt."
+      ],
+      "Please describe the layout issue": [
+        "Beschrijf het lay-outprobleem."
+      ],
+      "Capturing screenshot...": [
+        "Schermafbeelding maken..."
+      ],
+      "Extracting HTML...": [
+        "HTML extraheren..."
+      ],
+      "Analyzing layout issues...": [
+        "Analyse van lay-outproblemen..."
+      ],
+      "Failed to fix layout and styling. Please try again later.": [
+        "Het is niet gelukt om de lay-out en styling aan te passen. Probeer het later opnieuw."
+      ],
+      "Daily limit exceeded. Please try again tomorrow.": [
+        "Dagelijkse limiet overschreden. Probeer het morgen opnieuw."
+      ],
+      "Invalid request. Please check your input.": [
+        "Ongeldig verzoek. Controleer uw invoer."
+      ],
+      "Could not find wpbody element. Please ensure you are on a WordPress admin page.": [
+        "Het wpbody-element kon niet worden gevonden. Zorg ervoor dat u zich op een WordPress-beheerpagina bevindt."
+      ],
+      "Layout fix removed": [
+        "Lay-outcorrectie verwijderd"
+      ],
+      "CSS copied to clipboard": [
+        "CSS-code gekopieerd naar het klembord."
+      ],
+      "Failed to copy CSS": [
+        "Het kopiëren van de CSS is mislukt."
+      ],
+      "Layout and Styling": [
+        "Vormgeving en styling"
+      ],
+      "requests remaining": [
+        "resterende verzoeken"
+      ],
+      "Describe the layout or styling issue": [
+        "Beschrijf het lay-out- of stylingprobleem."
+      ],
+      "e.g., The header is overlapping with the content area": [
+        "Bijvoorbeeld: De koptekst overlapt het inhoudsgebied."
+      ],
+      "A screenshot of the page will be captured and analyzed. The AI will provide CSS fixes based on your description.": [
+        "Er wordt een schermafbeelding van de pagina gemaakt en geanalyseerd. De AI zal op basis van uw beschrijving CSS-correcties voorstellen."
+      ],
+      "Fix Layout": [
+        "Lay-out corrigeren"
+      ],
+      "Layout and styling fix applied successfully!": [
+        "Lay-out en styling zijn succesvol aangepast!"
+      ],
+      "Would you like to keep this fix permanently or remove it?": [
+        "Wilt u deze oplossing permanent behouden of verwijderen?"
+      ],
+      "Hide Applied CSS": [
+        "Verberg toegepaste CSS"
+      ],
+      "View Applied CSS": [
+        "Bekijk toegepaste CSS"
+      ],
+      "Copy CSS": [
+        "CSS kopiëren"
+      ],
+      "Keep Fix": [
+        "Keep Fix"
+      ],
+      "Saves to custom CSS settings for persistence.": [
+        "Wordt opgeslagen in aangepaste CSS-instellingen voor permanente bewaring."
+      ],
+      "Remove Fix": [
+        "Verwijder Fix"
+      ],
+      "Removes the fix immediately.": [
+        "Verwijdert de oplossing onmiddellijk."
+      ],
+      "Remove": [
+        "Verwijderen"
+      ],
+      "Failed to fix layout and styling": [
+        "Lay-out en styling konden niet worden gecorrigeerd."
+      ],
+      "Close": [
+        "Sluiten"
+      ],
+      "Media item not found": [
+        "Media-item niet gevonden"
+      ],
+      "Only images can be edited": [
+        "Alleen afbeeldingen kunnen worden bewerkt."
+      ],
+      "Image saved successfully": [
+        "Afbeelding succesvol opgeslagen"
+      ],
+      "Failed to save image": [
+        "Het opslaan van de afbeelding is mislukt."
+      ],
+      "Back": [
+        "Rug"
+      ],
+      "1 item selected": [
+        "1 artikel geselecteerd"
+      ],
+      "%d items selected": [
+        "%d items geselecteerd"
+      ],
+      "Files duplicated": [
+        "Bestanden gedupliceerd"
+      ],
+      "Error duplicating files": [
+        "Fout bij het dupliceren van bestanden"
+      ],
+      "Media updated successfully": [
+        "Media succesvol bijgewerkt"
+      ],
+      "Error updating media": [
+        "Fout bij het bijwerken van de media"
+      ],
+      "Download started": [
+        "Download gestart"
+      ],
+      "Files downloaded": [
+        "Gedownloade bestanden"
+      ],
+      "Error downloading files": [
+        "Fout bij het downloaden van bestanden"
+      ],
+      "this file": [
+        "dit bestand"
+      ],
+      "these %d files": [
+        "deze %d-bestanden"
+      ],
+      "Are you sure?": [
+        "Weet je het zeker?"
+      ],
+      "Are you sure you want to delete %s? This action cannot be undone.": [
+        "Weet je zeker dat je %s wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt."
+      ],
+      "Yes, delete": [
+        "Ja, verwijderen"
+      ],
+      "Media deleted successfully!": [
+        "Media succesvol verwijderd!"
+      ],
+      "Delete failed": [
+        "Verwijderen mislukt"
+      ],
+      "Upload failed": [
+        "Uploaden mislukt"
+      ],
+      "Files uploaded successfully!": [
+        "Bestanden succesvol geüpload!"
+      ],
+      "%d file(s) uploaded": [
+        "%d bestand(en) geüpload"
+      ],
+      "Search media...": [
+        "Media doorzoeken..."
+      ],
+      "Images": [
+        "Afbeeldingen"
+      ],
+      "Videos": [
+        "Video's"
+      ],
+      "Docs": [
+        "Dokters"
+      ],
+      "Fonts": [
+        "Lettertypen"
+      ],
+      "Grid View": [
+        "Rasterweergave"
+      ],
+      "List View": [
+        "Lijstweergave"
+      ],
+      "Sort By": [
+        "Sorteren op"
+      ],
+      "Date Range": [
+        "Datumbereik"
+      ],
+      "No tags available": [
+        "Geen tags beschikbaar"
+      ],
+      "Options": [
+        "Opties"
+      ],
+      "Unused Media Only": [
+        "Alleen ongebruikte media"
+      ],
+      "Clear All Filters": [
+        "Wis alle filters"
+      ],
+      "Drop files to upload": [
+        "Sleep de bestanden hierheen om ze te uploaden."
+      ],
+      "Release to start uploading": [
+        "Geef het commando om te beginnen met uploaden."
+      ],
+      "Loading media...": [
+        "Media laden..."
+      ],
+      "No media found": [
+        "Geen media gevonden"
+      ],
+      "No media files": [
+        "Geen mediabestanden"
+      ],
+      "Clear filters": [
+        "Filters wissen"
+      ],
+      "Select a media file from the list to view details and edit properties.": [
+        "Selecteer een mediabestand uit de lijst om details te bekijken en eigenschappen te bewerken."
+      ],
+      "View": [
+        "Bekijk"
+      ],
+      "Bulk Edit": [
+        "Bulk bewerken"
+      ],
+      "Download": [
+        "Download"
+      ],
+      "Duplicate": [
+        "Kopiëren"
+      ],
+      "Bulk Edit Media": [
+        "Media in bulk bewerken"
+      ],
+      "Editing 1 item. Leave fields empty to keep existing values.": [
+        "1 item bewerken. Laat velden leeg om bestaande waarden te behouden."
+      ],
+      "Editing %d items. Leave fields empty to keep existing values.": [
+        "%d items bewerken. Laat velden leeg om bestaande waarden te behouden."
+      ],
+      "Title": [
+        "Titel"
+      ],
+      "Leave empty to keep existing": [
+        "Laat leeg om bestaande inhoud te behouden"
+      ],
+      "Alt Text": [
+        "Alternatieve tekst"
+      ],
+      "Caption": [
+        "Onderschrift"
+      ],
+      "Description": [
+        "Omschrijving"
+      ],
+      "Saved": [
+        "Opgeslagen"
+      ],
+      "Save failed": [
+        "Opslaan mislukt"
+      ],
+      "Delete file": [
+        "Verwijder bestand"
+      ],
+      "This will permantantly delete the file. Proceed?": [
+        "Hiermee wordt het bestand permanent verwijderd. Doorgaan?"
+      ],
+      "Deleted": [
+        "Verwijderd"
+      ],
+      "Copy failed": [
+        "Kopieerfout"
+      ],
+      "File replaced successfully": [
+        "Bestand succesvol vervangen"
+      ],
+      "File replacement failed": [
+        "Bestandsvervanging mislukt"
+      ],
+      "Only images can be optimized": [
+        "Alleen afbeeldingen kunnen worden geoptimaliseerd."
+      ],
+      "Optimise image": [
+        "Optimaliseer afbeelding"
+      ],
+      "This will permantantly optimise the image and convert to webp format.": [
+        "Dit optimaliseert de afbeelding permanent en converteert deze naar webp-formaat."
+      ],
+      "Convert": [
+        "Overzetten"
+      ],
+      "Image optimized": [
+        "Afbeelding geoptimaliseerd"
+      ],
+      "Optimization failed": [
+        "Optimalisatie mislukt"
+      ],
+      "Failed to add tag": [
+        "Het toevoegen van de tag is mislukt."
+      ],
+      "Failed to remove tag": [
+        "Het verwijderen van de tag is mislukt."
+      ],
+      "Tag created and added": [
+        "Tag aangemaakt en toegevoegd"
+      ],
+      "Failed to create tag": [
+        "Het aanmaken van de tag is mislukt."
+      ],
+      "Failed to update tags": [
+        "Tags bijwerken mislukt"
+      ],
+      "Drop file to replace": [
+        "Sleep het bestand dat u wilt vervangen naar dit slepen"
+      ],
+      "Keep the same ID and regenerate thumbnails": [
+        "Behoud dezelfde ID en genereer nieuwe miniaturen."
+      ],
+      "Replacing file...": [
+        "Bestand vervangen..."
+      ],
+      "Regenerating thumbnails": [
+        "Miniatuurafbeeldingen opnieuw genereren"
+      ],
+      "Optimizing image...": [
+        "Afbeelding optimaliseren..."
+      ],
+      "File replaced successfully!": [
+        "Bestand succesvol vervangen!"
+      ],
+      "Thumbnails regenerated": [
+        "Miniatuurafbeeldingen opnieuw gegenereerd"
+      ],
+      "Your browser does not support the video tag.": [
+        "Uw browser ondersteunt de videotag niet."
+      ],
+      "Uploaded": [
+        "Geüpload"
+      ],
+      "Untitled": [
+        "Naamloos"
+      ],
+      "Describe the image for screen readers": [
+        "Beschrijf de afbeelding voor schermlezers."
+      ],
+      "Add a caption": [
+        "Voeg een onderschrift toe"
+      ],
+      "Add tags...": [
+        "Tags toevoegen..."
+      ],
+      "File URL": [
+        "Bestands-URL"
+      ],
+      "Actions": [
+        "Acties"
+      ],
+      "Optimizing...": [
+        "Optimaliseren..."
+      ],
+      "Optimize Image": [
+        "Optimaliseer afbeelding"
+      ],
+      "Replacing...": [
+        "Vervangen..."
+      ],
+      "Replace Image": [
+        "Afbeelding vervangen"
+      ],
+      "Filename": [
+        "Bestandsnaam"
+      ],
+      "ID": [
+        "ID"
+      ],
+      "File size": [
+        "Bestandsgrootte"
+      ],
+      "Used In": [
+        "Gebruikt in"
+      ],
+      "This media is not currently used anywhere.": [
+        "Dit medium wordt momenteel nergens gebruikt."
+      ],
+      "Post": [
+        "Na"
+      ],
+      "Widget": [
+        "Widget"
+      ],
+      "Draft": [
+        "Concept"
+      ],
+      "Edit": [
+        "Bewerken"
+      ],
+      "Search posts": [
+        "Zoek in Berichten"
+      ],
+      "Find users": [
+        "Gebruikers zoeken"
+      ],
+      "Quick actions": [
+        "Snelle acties"
+      ],
+      "View commands": [
+        "Commando's bekijken"
+      ],
+      "Pending": [
+        "In afwachting"
+      ],
+      "Private": [
+        "Privé"
+      ],
+      "Welcome to Global Search": [
+        "Welkom bij Global Search"
+      ],
+      "Quickly find posts, pages, users, and more. Here are some tips to get started:": [
+        "Vind snel berichten, pagina's, gebruikers en meer. Hier zijn enkele tips om aan de slag te gaan:"
+      ],
+      "Press": [
+        "Pers"
+      ],
+      "to open search": [
+        "zoekopdracht openen"
+      ],
+      "Got it, thanks!": [
+        "Snap het, bedankt!"
+      ],
+      "Search posts, pages, categories, users...": [
+        "Zoek berichten, pagina's, categorieën, gebruikers..."
+      ],
+      "Recent Searches": [
+        "Recente zoekopdrachten"
+      ],
+      "Clear": [
+        "Wissen"
+      ],
+      "Start searching": [
+        "Begin met zoeken"
+      ],
+      "Search for posts, pages, users, categories, or use quick actions.": [
+        "Zoek naar berichten, pagina's, gebruikers, categorieën of gebruik snelle acties."
+      ],
+      "Try these:": [
+        "Probeer deze eens:"
+      ],
+      "Keyboard Shortcuts": [
+        "Toetsenbord sneltoetsen"
+      ],
+      "Open": [
+        "Open"
+      ],
+      "Show tutorial again": [
+        "Tutorial opnieuw weergeven"
+      ],
+      "Command Syntax": [
+        "Commando-syntaxis"
+      ],
+      "Search only posts": [
+        "Zoek alleen berichten"
+      ],
+      "Search only pages": [
+        "Alleen pagina's zoeken"
+      ],
+      "Search only users": [
+        "Alleen gebruikers zoeken"
+      ],
+      "Search only categories": [
+        "Alleen categorieën zoeken"
+      ],
+      "Show only quick actions": [
+        "Alleen snelle acties weergeven"
+      ],
+      "No results found": [
+        "Geen resultaten gevonden"
+      ],
+      "Try a different search term or use command syntax to filter results.": [
+        "Probeer een andere zoekterm of gebruik de commandosyntaxis om de resultaten te filteren."
+      ],
+      "View Commands": [
+        "Commando's bekijken"
+      ],
+      "Clear Search": [
+        "Zoekopdracht wissen"
+      ],
+      "Recently Accessed": [
+        "Onlangs bekeken"
+      ],
+      "Frequently Used": [
+        "Veelgebruikte"
+      ],
+      "to navigate": [
+        "navigeren"
+      ],
+      "to select": [
+        "selecteren"
+      ],
+      "to close": [
+        "sluiten"
+      ],
+      "Magic dark mode enabled for this page": [
+        "Magische donkere modus ingeschakeld voor deze pagina"
+      ],
+      "Failed to enable magic dark mode": [
+        "Kan de magische donkere modus niet inschakelen"
+      ],
+      "Magic dark mode disabled for this page": [
+        "Magische donkere modus uitgeschakeld voor deze pagina"
+      ],
+      "Failed to disable magic dark mode": [
+        "Kan de magische donkere modus niet uitschakelen"
+      ],
+      "Free": [
+        "Vrij"
+      ],
+      "Loading image...": [
+        "Afbeelding laden..."
+      ],
+      "Apply": [
+        "Toepassen"
+      ],
+      "Image Editor": [
+        "Afbeeldingseditor"
+      ],
+      "Luminosity": [
+        "Helderheid"
+      ],
+      "Brightness": [
+        "Helderheid"
+      ],
+      "Exposure": [
+        "Blootstelling"
+      ],
+      "Highlights": [
+        "Hoogtepunten"
+      ],
+      "Shadows": [
+        "Schaduwen"
+      ],
+      "Contrast": [
+        "Contrast"
+      ],
+      "Color": [
+        "Kleur"
+      ],
+      "Saturation": [
+        "Verzadiging"
+      ],
+      "Vibrance": [
+        "Vitaliteit"
+      ],
+      "Hue": [
+        "Tint"
+      ],
+      "Temperature": [
+        "Temperatuur"
+      ],
+      "Cool ← → Warm": [
+        "Koel ← → Warm"
+      ],
+      "Tint": [
+        "Tint"
+      ],
+      "Green ← → Magenta": [
+        "Groen ← → Magenta"
+      ],
+      "Effects": [
+        "Effecten"
+      ],
+      "Sharpness": [
+        "Scherpte"
+      ],
+      "Negative = blur, positive = sharpen": [
+        "Negatief = onscherp, positief = scherp"
+      ],
+      "Blur": [
+        "Vervagen"
+      ],
+      "Grain": [
+        "Korrel"
+      ],
+      "Vignette": [
+        "Vignet"
+      ],
+      "Crop": [
+        "Gewas"
+      ],
+      "Click and drag on the image to select crop area": [
+        "Klik en sleep op de afbeelding om het uitsnijgebied te selecteren."
+      ],
+      "Aspect Ratio": [
+        "Beeldverhouding"
+      ],
+      "Start Crop": [
+        "Begin met het oogsten"
+      ],
+      "Resize": [
+        "Formaat wijzigen"
+      ],
+      "Lock aspect ratio": [
+        "Lock aspect ratio"
+      ],
+      "Width": [
+        "Breedte"
+      ],
+      "Height": [
+        "Hoogte"
+      ],
+      "Apply Resize": [
+        "Formaat wijzigen toepassen"
+      ],
+      "Transform": [
+        "Transformeren"
+      ],
+      "Left": [
+        "Links"
+      ],
+      "Right": [
+        "Rechts"
+      ],
+      "Flip H": [
+        "Flip H"
+      ],
+      "Flip V": [
+        "Flip V"
+      ],
+      "Reset": [
+        "Reset"
+      ],
+      "Reset changes": [
+        "Wijzigingen resetten"
+      ],
+      "Loading more...": [
+        "Meer laden..."
+      ],
+      "No more items": [
+        "Geen artikelen meer beschikbaar"
+      ],
+      "minute": [
+        "minuut"
+      ],
+      "minutes": [
+        "minuten"
+      ],
+      "ago": [
+        "geleden"
+      ],
+      "hour": [
+        "uur"
+      ],
+      "hours": [
+        "uren"
+      ],
+      "day": [
+        "dag"
+      ],
+      "days": [
+        "dagen"
+      ],
+      "Remove tag": [
+        "Tag verwijderen"
+      ],
+      "Create tag": [
+        "Tag aanmaken"
+      ],
+      "JSON must be a service account key (type should be \"service_account": [
+        "De JSON moet een serviceaccountsleutel zijn (het type moet \"service_account\" zijn)."
+      ],
+      "You must be logged in to access this page.": [
+        "Je moet ingelogd zijn om toegang te krijgen tot deze pagina."
+      ],
+      "Invalid request. Please refresh the page and try again.": [
+        "Ongeldige aanvraag. Vernieuw de pagina en probeer het opnieuw."
+      ],
+      "Search": [
+        "Zoeken"
+      ]
+    }
+  }
+}

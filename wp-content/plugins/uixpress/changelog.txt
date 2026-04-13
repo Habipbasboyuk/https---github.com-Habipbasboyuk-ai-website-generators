@@ -1,0 +1,819 @@
+== Changelog ==
+
+= 1.2.20 =
+* Release Date 11 March 2026 *
+
+*Hot fix for '.fixed' class causing issues on post tables.
+
+= 1.2.19 =
+* Release Date 11 March 2026 *
+
+* Fixed toolbar items not showing on hover *
+* Fixed conflict with VITEPOS *
+* Fixed frontend links display in the toolbar *
+* Fixed hidden Product type selector in woocommerce. *
+* Fixed font selection for google that would bug out when a font was set. *
+* Fixed conflict with woocommerce class 'fixed' which does not mean position fixed. *
+* Fixed issue with RankMath not displaying in the menu *
+* Improved admin menu hover behavior by disabling hover menu behaviour on mobile *
+* When creating new role in role editor, it gives you option to Choose a role here if you want a starting point instead of building capabilities from scratch. *
+* Added stability improvements to menu creator and better cache and invalidation logic. *
+* Added important flag in the Admin Notices UI so you can flag notices to show at the top of the admin page. *
+
+
+
+= 1.2.18 =
+* Release Date * February 2026 *
+
+* Fixed Activity Log timestamp timezone display
+  - Activity Log timestamps were showing incorrect times (+6 hours) for sites with non-UTC timezones
+  - REST API now converts MySQL datetimes to ISO 8601 with site timezone for correct frontend display
+  - Timestamps now display correctly regardless of WordPress timezone setting in Settings
+
+* Removed user avatar dropdown and icon from toolbar
+  - Removed the circular avatar/gravatar element and associated context menu from the main toolbar
+  - Removed Theme switcher and Logout options that were in the dropdown (may be relocated elsewhere)
+
+* Improved style layering and CSS scoping
+  - Excluded Bricks and MailerPress plugin styles from uixpress style layering to prevent conflicts
+  - Scoped CSS custom properties (--radius, --background, etc.) to :where(.wp-admin, .uixpress-isolation) to prevent conflicts with third-party themes and plugins
+
+* Improved WordPress toolbar integration
+  - Changed WP toolbar host element ID from wpadminbar to uix-wp-toolbar-host to avoid conflicts
+  - Added retry logic when moving toolbar items (delays at 100ms, 300ms, 600ms) for async-loaded toolbar content
+  - moveToolbar now returns boolean to indicate success for retry logic
+
+* Simplified frontend toolbar wrapper
+  - Removed toolbar container and toolbar classes from frontend wrapper for cleaner markup
+
+* Improved global search keyboard handling
+  - Search keydown listener now uses capture: true for more reliable keyboard shortcut handling
+
+* Dashboard layout improvements
+  - Restructured dashboard page layout with improved nesting and background styling
+  - Added bg-zinc-50 dark:bg-zinc-950 background to dashboard and activity log pages for consistent appearance
+
+* Fixed community feedback
+  - Theme base colors not persisting after save/refresh (scoped CSS properties fix)
+  - Bricks and Advanced Themer toggle styling conflicts (Bricks style exclusion)
+  - MailerPress sidebar text not visible in light/dark theme (MailerPress style exclusion)
+  - WordPress command bar opening alongside uiXpress on Ctrl+K (search uses capture phase)
+
+= 1.2.17 =
+* Release Date 30 January 2026 *
+
+* NEW: Add New Content Toolbar Button
+  - Added modern "Add New" dropdown button to the left side of the toolbar
+  - Replaces the default WordPress admin bar "New Content" menu with a cleaner design
+  - Dynamically extracts available post types from WordPress admin bar
+  - Shows appropriate icons for each content type (posts, pages, media, users, etc.)
+  - Respects user permissions - only shows content types the user can create
+  - Supports custom post types registered by plugins
+
+* NEW: Detailed Updates in Notifications Panel
+  - Updates section now shows individual items instead of just counts
+  - WordPress core updates display current and new version numbers
+  - Each plugin with available update is listed with name and version transition
+  - Each theme with available update is listed with name and version transition
+  - Color-coded icons: blue for core, orange for plugins, purple for themes
+  - Direct links to appropriate update pages for each item
+  - Created new REST API endpoint (uixpress/v1/admin-status) for update and comment data
+  - Respects user capabilities (update_core, update_plugins, update_themes, moderate_comments)
+
+* Fixed style conflict with elemnetor admin ui
+* Fixed issue with Gravity forms where new form modals were not showing
+* Improved css scoping to prevent some style conflicts
+* Added new translations: Czech, Japanese, Korean, Polish, Russian, Turkish, and Chinese (Traditional)
+* Dashboard analytics category now only shows when analytics is enabled in settings
+* Fixed dashboard card layout issue where card wrappers were rendered even when user lacked required capabilities or plugins
+
+= 1.2.16 =
+* Release Date 23 January 2026 *
+
+* NEW: Admin Menu Search - Powerful search functionality for admin menu navigation
+  - Added comprehensive menu search component with real-time filtering
+  - Searches through all menu items including top-level and submenu items
+  - Searches by menu name, URL, and ID for comprehensive results
+  - Auto-selects first result for quick keyboard navigation
+  - Keyboard navigation support: Arrow keys to navigate, Enter to select, Escape to close
+  - Highlights matching text in search results for better visibility
+  - Shows parent menu context for submenu items
+  - Displays menu icons alongside search results
+  - Refined UI matching the existing menu design system with dark mode support
+  - Toggle option available in Settings > Menu > Enable Admin Menu Search
+  - Search input always visible when feature is enabled (no button required)
+  - Results dropdown with smooth animations and custom scrollbar
+  - Click outside or Escape key to close search
+  - Automatically filters out hidden menu items
+  - Results sorted by relevance: exact matches first, then name matches, then URL matches
+  - Top-level items prioritized over submenu items in results
+  - Integrated seamlessly into admin menu sidebar
+
+* Merged WordPress Notifications into Admin Notices Panel
+  - Integrated WordPress native notifications into the unified admin notices panel for better UX
+  - WordPress notifications now appear alongside custom admin notices in a single notification center
+  - Created useWpNotifications composable for shared notification count tracking across components
+  - Extracted WordPress notification logic into separate wp-notifications.vue component within admin-notices directory
+  - WordPress notifications preserve their original styling and functionality
+  - Implemented count locking mechanism to prevent notifications from disappearing after being moved to drawer
+  - Added KeepAlive wrapper to drawer to prevent component remounting and preserve moved notification nodes
+  - Notification count runs immediately on component mount, independent of drawer state
+  - Improved notification polling to only check for new notifications without resetting existing count
+  - WordPress notifications are automatically hidden from page and displayed in the notification drawer
+
+* Updated User Details Dropdown with Shadow DOM Isolation
+  - Refactored user-details.vue to use Teleport and ShadowRoot for style isolation
+  - Added smooth enter/leave animations for dropdown menu
+  - Improved hover handling with cancellable timeouts for reliable show/hide behavior
+  - Fixed positioning to appear above the trigger container with 8px gap
+  - Added cleanup on component unmount to prevent memory leaks
+
+* Enhanced Create User Form with Password Features
+  - Added "Generate Password" button to create user form for quick strong password generation
+  - Added password visibility toggle button to show/hide password text
+  - Added real-time password validation dropdown that appears above password input when focused
+  - Password validation shows visual indicators (green ticks) for each requirement:
+    * Minimum 8 characters
+    * At least one uppercase letter
+    * At least one lowercase letter
+    * At least one number
+    * At least one special character
+  - Created password generator utility function for secure random password generation
+  - Created password validation utility function for real-time strength checking
+  - Validation dropdown automatically appears when password field is focused and contains text
+  - Improved user experience for creating secure passwords
+
+* Improved Menu Cache System with Rotating Cache Keys
+  - Implemented server-side cache key system for menu caching
+  - Cache keys now include both user ID and rotating server-side key
+  - Added REST API endpoint to rotate cache keys (uixpress/v1/menu-cache/rotate)
+  - When cache is flushed, the server rotates the cache key, invalidating all client caches
+  - All users automatically see fresh menu data after cache rotation
+  - Cache key is passed from WordPress to frontend via script tag attribute
+  - Updated all cache functions to use the new cache key format
+  - Added "Clear Cache" button to menu list view header for manual cache clearing
+  - Button rotates cache key on server, ensuring all users get fresh data
+  - Improved cache invalidation strategy for better multi-user support
+  - Menu cache is automatically cleared when saving or deleting a menu
+  - Menu component listens for cache rotation events and automatically refreshes
+  - Real-time menu updates for all users when menu is saved or deleted
+
+* Fixed Hidden Submenu Items Still Showing in Main Menu
+  - Fixed issue where submenu items marked as hidden in menu creator were still displayed
+  - Added filtering for hidden submenu items in returnMenuItems computed property
+  - Hidden submenu items are now properly filtered in both normal and remote site modes
+  - Ensures submenu items respect the hidden setting from menu creator
+
+* Fixed Submenu Toggle Not Working When Top-Level Item Not Active
+  - Fixed issue where submenus could only be toggled when the top-level item was active
+  - Changed submenu toggle to use 'open' property instead of 'active' for manual toggling
+  - Submenus can now be manually toggled open/closed regardless of active state
+  - Preserved 'open' property when filtering menu items to maintain toggle state
+  - Updated shouldShowSubMenu function to check 'open' property for manual toggles
+
+* Fixed layout issue with fluent cart
+* Fixed shadow on login page
+
+* Added WooCommerce Customer Data Integration to User Details View
+  - Added automatic detection of WooCommerce plugin installation
+  - Created WooCommerceCustomer REST API endpoint to fetch customer data
+  - Endpoint checks if WooCommerce is active before attempting to fetch data
+  - Fetches customer data by user ID or email address
+  - Displays WooCommerce customer information in user details view including:
+    * Customer orders count and total spent
+    * Paying customer status badge
+    * Complete billing address with company, email, and phone
+    * Complete shipping address
+    * Customer creation and modification dates
+* Enhanced WooCommerce Customer Component with Order Analytics
+  - Updated woocommerce-customer.vue to fetch orders using WooCommerce REST API (/wp-json/wc/v3/orders)
+  - Added comprehensive order analytics including:
+    * Total orders count
+    * Total spent (from completed and processing orders)
+    * Average order value calculation
+    * Total items purchased across all orders
+    * Order status breakdown with visual badges
+    * Recent orders list (last 5 orders)
+  - Orders are fetched filtered by customer ID with sorting by date (descending)
+  - Added order status labels and color-coded badges for visual status identification
+  - Displays order currency dynamically from order data
+  - Recent orders show order number, status, date, and total amount
+  - Analytics are calculated reactively using computed properties for optimal performance
+  - Gracefully handles cases where WooCommerce is not installed or user has no customer record
+  - Uses WooCommerce REST API and database queries for reliable data retrieval
+  - Styled to match existing dark mode design system
+
+* Added User Details Components Registration API
+  - Created extensible component registration system for user details view
+  - Supports Vue.js 3 and React components (via veaury)
+  - Components can be registered to specific tab categories (Details, Activity, Commerce, or custom)
+  - Added category registration filter: uixpress/user-details/categories/register
+  - Added component registration filter: uixpress/user-details/components/register
+  - Components receive userId, userData, appData, and id props automatically
+  - Supports capability-based component visibility control
+  - Components handle their own data fetching and logic internally
+  - Enhanced component-render.vue to use useAttrs() for flexible prop passing
+  - Allows external plugins to register custom components and categories
+  - Follows same pattern as Dashboard Cards API for consistency
+  - Added comprehensive documentation for developers
+  * Fixed issue where user flyout menu in the sidebar would sometimes get cutoff but nodes in the body.
+
+* NEW: Custom Font Selector - Advanced font customization for the admin interface
+  - Visual font selector with support for Google Fonts, custom font URLs, and font file uploads
+  - Browse and search from 1000+ Google Fonts with live preview
+  - Select multiple font weights for Google Fonts (400, 700, and custom weights)
+  - Upload custom font files (.woff, .woff2, .ttf, .otf) with automatic font-face generation
+  - Enter custom font URLs for external font services
+  - Real-time preview of selected fonts in the admin interface
+  - System font option to use default WordPress fonts
+  - Font family name input for custom fonts with validation
+  - Automatic CSS generation for uploaded fonts
+  - Accessible via Settings > Theme > Custom Font
+  - Supports all font sources: Google Fonts, Custom URL, Upload, and System fonts
+
+* NEW: Google Analytics 4 Provider - Integrate Google Analytics data into uiXpress Analytics
+  - Connect Google Analytics 4 properties to uiXpress Analytics dashboard
+  - Service account authentication with encrypted credential storage
+  - Automatic property detection and selection from connected Google Analytics account
+  - Fetches analytics data from Google Analytics Data API (GA4)
+  - Supports all analytics endpoints: overview stats, pages, devices, countries, referrers, and geographic data
+  - Seamless switching between uiXpress built-in analytics and Google Analytics
+  - Provider router automatically selects active provider based on configuration
+  - Error handling with user-friendly messages for authentication and permission issues
+  - OAuth-style connection flow with disconnect functionality
+  - Property validation and status checking
+  - All dashboard cards automatically work with Google Analytics data format
+  - Accessible via Settings > Analytics > Analytics Provider
+  - Requires Google Analytics service account with Viewer access to GA4 property
+
+  * Updated all translation files. 
+
+= 1.2.15 =
+* Release Date 27 November 2025 *
+
+* Added Remote Site Switcher feature
+  - Added ability to configure remote WordPress sites in global settings
+  - Remote sites require URL, username, and application password
+  - Added remote site switcher UI in toolbar for quick site switching
+  - Selected site is saved in localStorage and persists across sessions
+  - Modified lmnFetch function to handle fetching to remote sites using Basic Auth
+  - Added capability-based visibility control for remote site switcher (defaults to admin users)
+  - Remote site switcher only appears when remote sites are configured and user has required capability
+  - Switching sites triggers page reload to refresh app context
+  - Added first-time explanation dialog when switching to remote sites
+
+* Enhanced REST API Security with Unified Permission System
+  - Created RestPermissionChecker utility class for consistent permission validation
+  - Local requests: Validates nonce for CSRF protection
+  - Remote requests: Validates Basic Auth with application password authentication
+  - Automatically detects request origin (local vs remote) and applies appropriate security
+  - Updated all REST endpoints to use the unified permission system
+  - Maintains security standards while supporting remote site operations
+  - Supports WordPress application passwords for secure remote authentication
+
+* Security: Fixed potential password exposure in remote sites options
+  - Added capability check before outputting remote_sites and remote_site_switcher_capability to frontend
+  - Prevents users without required capability from accessing remote site passwords
+  - Uses remote_site_switcher_capability setting (defaults to manage_options) for access control
+* Enhanced Remote Site Menu Filtering
+  - When a remote site is active, menu now shows only top-level uiXpress app pages
+  - Only displays pages that are enabled in settings (respects feature toggles)
+  - Supported pages: Modern Media Page, Modern Plugins Page, Menu Creator, Modern Dashboard, Activity Log, Database Explorer, Admin Notices, Role Editor, and Modern Users Page
+  - uiXpress top-level menu (Settings) and its submenu items are preserved when remote site is active
+  - Submenu items under uiXpress Settings are filtered based on enabled features
+  - All other submenus are hidden when remote site is active for cleaner navigation
+  - Menu automatically updates when switching between local and remote sites
+* Fixed Media Library Uploads for Remote Sites
+  - Updated media upload function to use lmnFetch instead of direct fetch calls
+  - Media uploads now properly work when viewing remote sites
+  - Uploads are correctly sent to the selected remote site instead of local site
+  - Supports Basic Auth authentication for remote site uploads
+* Fixed scroll issue with latepoint
+* Fixed back to dashboard button on frontend toolbar
+* Added function existence checks for disk_free_space() and disk_total_space() in server health to prevent fatal errors on systems where these PHP functions are unavailable
+* Fixed issue on safari where gutenburg in full screen mode was overlayed.
+
+
+= 1.2.14 =
+* Release Date 23 November 2025 *
+
+* Added minimal animated progress indicator panel for plugin uploads
+  - Replaced small spinner in upload button with elegant progress panel
+  - Shows file name being uploaded with animated progress bar
+  - Minimal dark design with zinc color palette
+  - Smooth slide-up animation when upload starts
+  - Positioned at bottom center of screen for visibility
+  - Follows dark minimalist design system
+
+* Redesigned Magic Dark Mode with per-page opt-in system
+  - Replaced global toggle with per-page opt-in approach for better control
+  - Uses CSS-based invert filter (`filter: invert(1) hue-rotate(180deg)`) for efficient dark mode conversion
+  - Added quick actions in global search to enable/disable magic dark mode per page
+  - Pages can be individually added to magic dark mode list via search actions
+  - Automatically excludes images, videos, iframes, and media elements
+  - Better performance with no DOM manipulation overhead
+  - Smooth transitions when toggling dark mode
+  - Handles dynamically added content automatically
+  - Added comprehensive exclusions for charts, code blocks, and color pickers
+  - Removed global "Magic dark mode" toggle from settings (now per-page only)
+  - Fixed settings persistence and reactivity issues
+  - Magic dark mode now properly saves and loads on page refresh
+
+* Improved Menu Scrollbar Styling
+  - Updated menu component with modern slimline scrollbar design
+  - 6px width scrollbar with smooth transitions
+  - Enhanced dark mode support with appropriate color schemes
+  - Always visible when content overflows (removed hover-only behavior)
+  - Cross-browser support for Webkit and Firefox
+  - Applied to both minimized and standard menu states
+
+* Made adoptedStyleSheets globally available via Vue provide/inject
+  - Created useAdoptedStyleSheets composable for easy access to shared stylesheet
+  - Provided adoptedStyleSheets from menu-wrapper.vue root component
+  - Child components can now inject and reuse the same stylesheet instance
+  - Reduces code duplication and ensures consistent styling across ShadowRoot components
+
+* Updated all language translation files.
+
+* Fixed menu link URL encoding and active state detection
+  - Fixed issue where menu links were being double-encoded (e.g., %2F for / in query parameters)
+  - Added URL formatting logic to decode URLs before rendering to prevent encoding issues
+  - Improved active link detection to check window.location against menu item URLs
+  - Added support for checking both encoded and decoded versions of URLs and window.location
+  - Implemented precedence logic where direct location matches take priority over WordPress native active state
+  - Direct matches now properly deactivate conflicting menu items at the same level
+  - Fixed WooCommerce analytics link names disappearing issue caused by URL encoding mismatches
+  - Centralized URL matching logic in reusable utility function (isCurrentLocationMatch.js)
+  - Applied fixes to both top-level menu items and submenu items
+
+* Updated app to tailwind v4 
+
+= 1.2.13 =
+* Release Date 20 November 2024 * 
+
+* Refactored app entry files to use centralized setGlobalProperties function
+  - Created enhanced setGlobalProperties function that accepts optional script tag selectors
+  - Added support for secondary script tags (e.g., dashboard-script, posts-script, plugins-script)
+  - Created setVueGlobalProperties helper function to eliminate code duplication
+  - Updated all 17 app entry files to use the centralized functions
+  - Added support for additional data attributes: postTypes, mimeTypes, currentUser, dashboard_data, supports_categories, supports_tags, postStatuses, pluginsList
+  - Reduced code duplication by ~20-30 lines per file
+  - Improved maintainability with single source of truth for data attribute parsing
+
+* Updated all plugin URL references to use pluginBase instead of hardcoded paths
+  - Replaced all instances of `${appStore.state.siteURL}/wp-content/plugins/uixpress/` with `appStore.state.pluginBase`
+  - Updated 11 Vue components that dynamically load stylesheets
+  - Fixed hardcoded CSS mask URL in plugin-inspect.vue to use dynamic CSS variable
+  - Now properly supports custom wp-content directory names via WordPress plugins_url() function
+  - All plugin asset URLs now use consistent, centralized source
+
+* Updated Vite configuration for better compatibility
+  - Changed base path from absolute `/wp-content/plugins/uixpress/app/dist/` to relative `./`
+  - Ensures compatibility with WordPress installations that use custom wp-content directory names
+  - WordPress plugins_url() function now handles full URL construction correctly
+
+* NEW: License key system overhaul
+  - Removed LemonSqueezy integration (admin/src/Rest/LemonSqueezy.php deleted)
+  - Migrated to new license key API endpoint
+  - License key and instance_id are no longer exposed to frontend JavaScript (security improvement)
+  - Updated license activation, validation, and removal functions in settings panel
+  - Improved error handling and user feedback for license operations
+  - License validation now uses validate-activate endpoint which returns existing activation if already activated
+
+* Fixed issue with submenu items unable to be added as a favourite.
+* Fixed style conflicts with fluent cart
+* Analytics: Disabled caching for active users endpoint to ensure real-time data
+  - Added cache control headers (no-cache, no-store, must-revalidate) to active users REST endpoint
+  - Active users count now always returns fresh data without any caching layer
+* Fixed fatal error when deleting plugins in Activity Logger
+  - Fixed ArgumentCountError in log_plugin_deleted() method
+  - Made second parameter optional with default value to match WordPress delete_plugin hook behavior
+  - Updated hook registration to accept only 1 argument as WordPress provides
+* Fixed Force Global Theme setting not working properly
+  - Fixed issue where light theme couldn't be forced when browser was in dark mode
+  - Global override now properly takes precedence over browser preference
+  - Added watcher to update theme when force_global_theme setting changes
+  - Media query listener no longer overrides global theme setting
+
+= 1.2.12 =
+* Release Date 17 November 2025 * 
+
+* Documentation: Comprehensive documentation updates for all uiXpress features
+  - Updated general-features documentation to include all 14 settings categories (was 11)
+  - Added Comments category documentation (README.md, features.md, INDEX.md)
+  - Added Security category documentation (README.md, features.md, INDEX.md) covering Role Editor and Activity Logger
+  - Added SVG uploads feature documentation to Media Library docs
+  - Updated SUMMARY.md and INDEX.md to reflect 14 categories instead of 11
+  - Updated settings-features.md with complete feature documentation for all categories
+  - Organized API documentation into dedicated docs/api/ folder
+  - Moved sidebar-render-api.md and toolbar-render-api.md to docs/api/
+  - Added dashboard-cards-api.md and quick-actions-api.md to docs/api/
+  - Created docs/api/INDEX.md with comprehensive API documentation index
+  - Updated all cross-references to point to new API documentation locations
+  - Added frontmatter (YAML) to all main documentation files for Docus compatibility
+  - Created docs/index.md landing page with card grid layout
+  - Added navigation metadata and SEO descriptions to all README files
+  - Created docs/DOCUS_SETUP.md guide for Docus integration
+  - Updated Activity Logger documentation with comprehensive user guide
+  - Created docs/activity-logger/README.md with complete feature documentation
+  - Created docs/activity-logger/features.md with detailed features
+  - Created docs/activity-logger/INDEX.md for navigation
+  - Documented all tracked actions, security features, API endpoints, and best practices
+  - All features now fully documented and optimized for Docus documentation site
+
+* Fixed code editor component issues in settings
+  - Fixed buttons not always showing due to async component loading (added Suspense wrapper)
+  - Fixed code changes not being saved properly (added proper event handling and model synchronization)
+  - Improved editor initialization timing to prevent race conditions
+  - Added proper model value watching to sync editor with external changes
+  - Fixed reactivity issues with computed properties in code editor custom render component
+  - Ensured parent component properly listens to model updates from code editor
+
+* Fixed issue with post status filter on modern posts view
+* NEW: Added Database category to settings with option to enable/disable Database Explorer (off by default)
+* NEW: Created centralized Settings class (UiXpress\Options\Settings) for retrieving uixpress_settings with caching support
+* NEW: Modern Comments Page - Replace the classic WordPress comments page with a modern, responsive comment manager
+  - Sidebar list view with search, filtering, and sorting capabilities
+  - Comment details panel with full editing capabilities
+  - TipTap rich text editor for comment content editing
+  - Bulk actions for approving, spamming, trashing, and deleting comments
+  - Status filtering (All, Approved, Pending, Spam, Trash)
+  - Sort by date, author, or post
+  - Modern UI matching the design principles of other uiXpress apps
+  - Accessible via Settings > Posts > Modern Comments Page toggle
+* NEW: Activity Logger & Audit Trail - Comprehensive user activity logging and audit trail system
+  - Tracks all admin actions: posts, users, comments, plugins, settings, media, login/logout
+  - Stores detailed information including user ID, action type, object details, IP address, user agent
+  - Before/after comparison for changes (only changed fields stored)
+  - Modern Vue.js interface with sidebar list view and detail panel
+  - Advanced filtering by action type, object type, user, and date range
+  - Search functionality across all log fields
+  - Pagination and sorting capabilities
+  - Automatic cleanup of old logs based on retention policy (configurable, default 90 days)
+  - Log level options: All Actions or Important Only
+  - Accessible via Tools > Activity Log (when enabled)
+  - Settings available in Settings > Security category
+  - Secure: Only users with manage_options capability can view logs
+  - Sensitive data (passwords, API keys) automatically redacted
+  - Security: Enhanced SQL injection protection with whitelist validation for ORDER BY clauses
+  - Security: User email addresses only visible to users with list_users capability (GDPR/privacy compliance)
+  - Security: Stricter input validation for orderby and order parameters
+  - Security: Activity logger enabled check added to REST API permission callback
+* NEW: React Component Support for Dashboard Cards - Dashboard cards now support React components via veaury integration
+  - Cards can specify `language: 'react'` in metadata to use React components
+  - React components are automatically wrapped and integrated into Vue dashboard
+  - Maintains full compatibility with existing Vue-based dashboard cards
+  - Enables developers to build dashboard cards using React while leveraging the existing dashboard API
+* NEW: Global Search Quick Actions API - Extensible quick actions system for global search
+  - External plugins can now register, modify, or remove quick actions using filter hooks
+  - Uses `uixpress/search/quickActions/register` filter hook (similar to dashboard cards API)
+  - Supports adding custom actions, modifying existing actions, and conditional visibility
+  - Dispatches `uixpress/search/ready` event when search component is ready for plugin registration
+  - Comprehensive API documentation added in docs/global-search/quick-actions-api.md
+  - Enables plugins to extend global search functionality with custom quick actions
+* NEW: Role Editor Toggle Setting - Added option to enable/disable Role Editor app
+  - New setting in Settings > Security category: "Enable Role Editor"
+  - Role Editor app and REST API endpoints only load when enabled (off by default)
+  - Improves performance by not loading unnecessary code when feature is not needed
+  - Follows same pattern as Database Explorer toggle for consistency
+* NEW: Shortcuts Management in Admin Menu - Enhanced shortcuts functionality with editing capabilities
+  - Edit shortcuts directly in the admin menu by clicking the edit icon on any shortcut
+  - Reorder shortcuts via drag-and-drop (already supported, now disabled during editing)
+  - Set custom icons for shortcuts using the icon picker or manual icon name entry
+  - Edit shortcut name, URL, and icon all in one place
+  - Changes are automatically saved to localStorage and persist across sessions
+  - Improved shortcuts management UX with inline editing interface
+* NEW: Sidebar Render API - Extensible sidebar component system for admin menu
+  - Two filter hooks: `uixpress/sidebar/render/premenu` and `uixpress/sidebar/render/postmenu`
+  - Support for both Vue.js and React components (via veaury integration)
+  - Reusable component renderer handles Vue/React component wrapping automatically
+  - Components can be injected before menu items (premenu) or after menu items (postmenu)
+  - Capability-based visibility control for components
+  - Dispatches `uixpress/sidebar/ready` event when sidebar is ready for plugin registration
+  - Follows same API pattern as Dashboard Cards for consistency
+  - Comprehensive API documentation added in docs/sidebar-render-api.md
+  - Enables plugins to extend sidebar functionality with custom components
+* NEW: Toolbar Render API - Extensible toolbar component system for admin toolbar
+  - Two filter hooks: `uixpress/toolbar/render/left` and `uixpress/toolbar/render/right`
+  - Support for both Vue.js and React components (via veaury integration)
+  - Reusable component renderer handles Vue/React component wrapping automatically
+  - Components can be injected on the left side (before logo/WpToolBar) or right side (after search, before notifications)
+  - Existing toolbar buttons (Screen Options, Help, View Site/Dashboard) extracted into standalone components
+  - All toolbar buttons now registered via API hooks, allowing plugins to disable/remove them
+  - Capability-based visibility control for components
+  - Dispatches `uixpress/toolbar/ready` event when toolbar is ready for plugin registration
+  - Follows same API pattern as Dashboard Cards and Sidebar Render API for consistency
+  - Enables plugins to extend toolbar functionality with custom components or modify existing buttons
+* IMPROVED: Refactored component renderer to shared component - Consolidated duplicate component renderers
+  - Created shared `app/src/components/app/component-render/index.vue` component
+  - Menu and Toolbar components now use the shared renderer instead of duplicate code
+  - Reduces code duplication and improves maintainability
+  - All component renderers now use consistent logic for Vue/React component handling
+
+
+
+= 1.2.11 =
+* Release Date 14 November 2025 *
+
+* Fixed issue with latepoint overlap.
+* Fixed issue with overlap of some plugins with submenu hover mode.
+* NEW: Database Explorer - Modern database explorer interface similar to Supabase, built with Vue.js
+  - Browse all database tables with row counts and size information
+  - View detailed table structure including columns, indexes, and foreign keys
+  - Explore table data with pagination, sorting, and search functionality
+  - SQL query editor with read-only SELECT query execution for safety
+  - Modern, refined UI matching the design principles of other uiXpress apps
+  - REST API endpoints for secure database operations
+  - Accessible via uiXpress admin menu under "Database Explorer"
+* NEW: Role Editor - Comprehensive role and capability management interface
+  - View and edit WordPress user roles and capabilities
+  - Create new custom roles with specific capabilities
+  - Delete custom roles (with safety checks for roles with users)
+  - Modern, intuitive interface with capability grouping and search
+  - Security: Full authentication and authorization checks (manage_options capability required)
+  - Security: Input validation and sanitization on both frontend and backend
+  - Security: CSRF protection via nonce verification on all REST API endpoints
+  - Security: Role slug format validation to prevent injection attacks
+  - Security: Capability format validation to ensure only valid WordPress capabilities
+  - Security: Proper escaping of user data in script tag attributes
+  - Security: Frontend validation of route parameters and user input
+
+= 1.2.1 =
+* Release Date 13 November 2025 *
+
+* NEW: Modern Media Library - Complete redesign with improved filtering, search, and bulk operations
+* NEW: Enhanced User Management - Redesigned user interface with advanced filtering, bulk actions, and improved user management workflows
+* NEW: Built-in Analytics System - Comprehensive analytics tracking with page views, visitor insights, device analytics, and geographic data
+* NEW: Refined UI Styles - Updated design system with improved dark mode support, better spacing, and modern component styling
+* NEW: Updated Global Search - Enhanced search functionality with improved results, better keyboard navigation, and expanded search capabilities
+* NEW: Modern Posts Tables with Sidebar Layout - Redesigned posts/pages tables with new sidebar layout for improved navigation and content management
+* Fixed force_global_theme setting to use select dropdown instead of toggle
+* Fixed submenu_style setting to use select dropdown instead of toggle
+* Added select component support to settings system
+* Created comprehensive settings test validation documentation
+* Security: Moved user capabilities (allcaps) from DOM output to REST API endpoint for improved security
+* Added new REST API endpoint /uixpress/v1/user-capabilities to fetch current user capabilities
+* Dashboard now fetches user capabilities asynchronously via REST API and caches them in the store
+* Fixed analytics tracking for unauthenticated users - removed nonce requirement for public analytics tracking while maintaining security through rate limiting
+* Replaced PHP session handling with cookie-based session tracking for better REST API compatibility
+* Added client-side session ID support and improved error handling in analytics tracking
+* Fixed REST API validation errors for optional parameters (referrer, user_agent, page_title) - now properly handles null/empty values
+* Fixed issue with notifications not being removed from site until notification panel is opened
+
+
+= 1.0.24 =
+* Release Date 3 September 2025 *
+
+* Fixed issue with admin layouts not responding correctly
+* Fixed compatability issue with Gravity Forms
+
+= 1.0.23 =
+* Release Date 2 September 2025 *
+
+* Fixed issue where some notifications were not caught until you opened the notification panel.
+* Improved various ui component styles
+* Added a new action links popout to the bottom left user bar
+* Improved plugin page styles
+* Improved ui and design of admin notices
+* Fixed various plugin conflicts
+* Fixed issue where it wasn't possible for plugins to be uploaded as an update in modern plugin manager
+* Performance improvements
+* Fixed various issues with woo and menu links
+* Fixed a PHP error warning about a missing type param
+
+= 1.0.22 =
+* Release Date 27 June 2025 *
+
+* Fixed issue with toolbar icon for CMP - coming soon plugin
+* Fixed conflict with sureforms plugin settings
+* Added new feature. Admin Notices allows you to create custom notices and that display to given user groups. Can be dismissable or sticky.
+
+= 1.0.21 =
+* Release Date 05 March 2025 *
+
+* Fixed issue on modern post lists where CPTs without a specific rest base couldn't be duplicated or deleted
+* Fixed sort order indicator arrow which would sometimes indicate incorrect order (asc / desc)
+* Fixed issue with woocommerce new order product select
+* Added uiXpress logo on frontend toolbar when no site logo is set
+* Fixed issue with custom CSS where special characters were getting encoded
+
+= 1.0.20 =
+* Release Date 27 January 2025 *
+
+* Added fix for woo order items dropdown
+* Fixed miss-aligned button on site health screen
+* Added import / export for settings
+* Added option to disable language selector on the login page
+* Added style fix for independent analytics
+* Added style fix for sirv image plugin
+* Style fix for ACF sticky header
+* Fixed issue with login email confirmation from wordfence
+* Patched issue that could cause some submenu links not to work (wowstore for eg)
+* Added new plugin manager with plugin metrics
+* Added new modern posts / pages tables
+
+= 1.0.19 =
+* Release Date 09 December 2024 *
+
+* Added catch for settings css missing
+* Fixed icon's on frontend toolbar for edit page and customize
+* Fixed conflicts with SureTriggers and Defender plugins
+* Fixed style conflict with slider revolution plugin
+* Added option to disable global search
+* Dark mode / theme change will now apply to VendBase (update to VendBase will be required)
+* Fixed issue in global search where clicking on a user would send you to the wrong link
+* Menu items in global search now respect custom menus
+
+= 1.0.18 =
+* Release Date 03 December 2024 *
+
+* Fixed missing icons issue for some menu items
+* Fixed contrast on menu icons when they are active
+* Logo now loads on the frontend toolbar
+* Fixed issue that could change the relative font size of your frontend when logged in
+* External stylesheets are now loaded inside of the shadowdoms uiXpress uses
+* Fixed issue with admin columns pro dropdowns
+* Fixed issue with magic dark mode where applied styles would not match current theme
+* Added the ability to rearange menu shortcuts
+* Added option to enable hover for submenus (default wp style)
+* Added 'view site' quick action to the command bar (search)
+
+= 1.0.17 =
+* Release Date 27 November 2024 *
+
+* Added fix for compatibility with FlowMattic plugin
+* Added style fix for surecart
+* Added option to load external stylesheets / css
+* Added global theme option for light / dark modes
+* uiXpress now loads the updated toolbar from the admin area on the frontend
+* Updated some missing translation strings
+
+= 1.0.16 =
+* Release Date 11 November 2024 *
+
+* Added fix for issues uiXpress could cause when using wp CLI
+* Updated language files and added Chinese translation
+* Added import export options for menu creator
+* Removed dev error_logs
+* Added fix for learndash course editor in full screen 
+* Fixed issue with fluent support toolbar
+* uiXpress settings now live update on change
+* Added fix for notification count showing when there are no notifications
+* Notifications panel is now resizable
+
+= 1.0.15 =
+* Release Date 07 November 2024 *
+
+* Enhanced white label text replacement to work with plugins using js translation functions
+* Added option to change admin side site favicon
+* Fixed issue with logout url not always redirecting to the logout page
+* Fixed layout issue with WP HTML mail plugin
+* Added options to hide screen options toggle and help toggle
+
+= 1.0.14 =
+* Release Date 21 September 2024 *
+
+* Fixed issue with Advanced themer settings page where it would change the base font size
+* Fixed issue where the site editor was not usable with uixpress
+* Added new css property (--uixp-toolbar-height) for aligning other plugins that need it
+* Fixed top position of SEOpress header
+* Fixed checkboxes in dark mode
+* Fixed issue where the custom logo on the login page would only show if there was a dark mode logo set as well
+* Fixed issue with new admin layout where menu would not overflow properly
+* Added style fixes for cookieYes plugin
+
+= 1.0.13 =
+* Release Date 11 September 2024 *
+
+* Added new admin layout
+* Added menu links to global search for full keyboard navigation
+* Added layout fix for seopress
+
+= 1.0.12 =
+* Release Date 03 September 2024 *
+
+* Fixed issue where some menu icons would be displayed as a url string instead of the icon it's self.
+* Fixed issue with fluentCRM where the links would be incorrectly displayed on the toolbar menu
+* Added catch for potential login redirect issue when a custom slug is set.
+* Added catch to stop alt text ai plugin from affecting uiXpress dark mode
+* Fixed issue with latepoint and some other fullscreen plugins where avatars were interfering with the ui
+* Added a fix for an issue where uiXpress settings, licences and menu editor didn't work when permalinks are set to plain.
+
+= 1.0.11 =
+* Release Date 02 September 2024 *
+
+* Fixed updating icon on plugin install
+* Fixed issue where adding a custom menu link would just have a title of separator when editing
+* Fixed menu icon issues for elementor, funnelkit and others
+* Added new notifications center
+* Added fixes to support more menu icons
+* Style tweaks
+* Rewrote wp toolbar logic to ensure compatability with most toolbar items regardless of how they are added.
+* Added style fixes for groundhogg email editor
+
+= 1.0.10 =
+* Release Date 28 August 2024 *
+
+* Fixed style issues with voxel theme
+* Added option to enable cloudflare turnstyle on the login page
+* Added option to choose admin layout
+* Fixed issues with mobile menu
+
+
+= 1.0.9 =
+* Release Date 24 August 2024 *
+
+* Fixed style issues with elementor and independent analytics settings page
+* Added option to change the login URL
+* Added text replacement feature for white labelling other plugins / wordpress
+* Further improvement of styles t reduce conflicts
+* Tweaks to styles to address issues with bookingpress plugin
+* Fixed Gutenberg styles with blocksy theme
+* Improved load times of menu and toolbar
+* Added loading indicator
+* Fixed non scrollable menu when minimised
+
+= 1.0.8 =
+* Release Date 21 August 2024 *
+
+* Fixed style issues with gravity forms
+* Fixed issue where settings page styles were broken when theme was disabled.
+* Added fix for mainwp dashboard
+* Added styles updates for frontend adminbar and added dark logo (if set)
+
+= 1.0.7 =
+* Release Date 19 August 2024 *
+
+* Fixed issues with wpcodebox and wordfence
+* Applied changes to core css to minmise general styling conflicts
+* Fixed issue where dark mode logo was not loading on login page
+* Added options to modify color scheme in uiXpress
+* Login page now respects user preferance for light / dark mode
+* Fixed search modal on smaller screens
+* Fixed toolbar icon alignment
+* Added custom css option
+* Added theme color options
+* improved ui of uixpress settings and added tabbed categories
+
+* Added fix for slim seo in dark mode
+
+= 1.0.6 =
+* Release Date 13 August 2024 *
+
+* Added fix for slim seo in dark mode
+* Added style fix for woocommerce pages
+* Fixed mailpoet issues
+* Fixed issue with wp amelia overlays
+* Fixed issue with title inputs on classic editor pages
+* Fixed issue with batch update plugins themes through update.php where the menu would load inside framed progress
+* Fixed issue with some plugin icons not showing up correctly in the menu
+* Added option to add an image to the login page
+
+= 1.0.5 =
+* Release Date * August 2024 *
+
+* Fixed block editor title size when used with bricks
+* Added fix for query monitor
+* Added new menu creator
+* Updated translations
+* Fixed theme styles
+* Fixed customizer styles
+* Fixed style conflict with bricks toggles
+* Updated strings
+* Fixed styles in gutenburg when using bricks
+
+
+= 1.0.4 =
+* Release Date 2 August 2024 *
+
+* Added auto update option to the plugin
+* Added post type select for global search
+* Fixed global search links when clicking
+* Fixed issues with woocommerce styles
+* Fixed layout issue with quick actions on tables
+
+= 1.0.3 =
+* Release Date 1 August 2024*
+
+* Fixed broken screen options and help links
+* Fixed issue with some menu icons not showing from custom plugins
+* Fixed issue with northcommerce where the page would be blank on overview
+* Global search now searches through post, page and user meta for better results 
+* Help and screen options links now don't show if there is no help or screen options available on the page
+* Added Italian translations
+
+= 1.0.2 =
+* Release Date 31 July 2024*
+
+* Fixed issue with plugin renaming in plugin table
+
+= 1.0.1 =
+* Release Date 31 July 2024*
+
+* Fixed styles with block editor
+* Fixed style issue with theme search
+
+= 1.0.0 =
+* Release Date 31 July 2024*
+
+* Initial public release
