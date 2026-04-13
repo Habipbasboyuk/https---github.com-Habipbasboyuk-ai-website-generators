@@ -5,7 +5,7 @@ if (!defined('ABSPATH')) exit;
 class AISB_Installer {
 
   const DB_VERSION_OPT = 'aisb_db_version';
-  const DB_VERSION = 2;
+  const DB_VERSION = 1;
 
   public static function activate(): void {
     self::maybe_install();
@@ -28,7 +28,6 @@ class AISB_Installer {
       section_type VARCHAR(50) NOT NULL,
       layout_key VARCHAR(100) NOT NULL,
       source_url TEXT NULL,
-      tags TEXT NULL,
       bricks_json LONGTEXT NOT NULL,
       preview_schema LONGTEXT NOT NULL,
       signature VARCHAR(255) NOT NULL,

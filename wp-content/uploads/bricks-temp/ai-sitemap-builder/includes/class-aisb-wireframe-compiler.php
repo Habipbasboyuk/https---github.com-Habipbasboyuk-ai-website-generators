@@ -23,37 +23,18 @@ class AISB_Wireframe_Compiler {
 
     foreach ($sections as $sec) {
       if (!is_array($sec)) continue;
-
-      // --- Primary: Bricks template post (from the live Bricks library) ---
-      $bricks_post_id = isset($sec['bricks_template_id']) ? (int) $sec['bricks_template_id'] : 0;
-      if ($bricks_post_id > 0) {
-        $bricks_data = get_post_meta($bricks_post_id, '_bricks_data', true);
-        if (is_array($bricks_data) && !empty($bricks_data)) {
-          $tpl_content = array_values(array_filter($bricks_data, function($n) {
-            return is_array($n) && (($n['name'] ?? '') !== 'code');
-          }));
-          $rekeyed = $this->re_id_bricks_nodes($tpl_content);
-          $rekeyed = $this->force_root_parent_zero($rekeyed);
-          $final_content = array_merge($final_content, $rekeyed);
-          continue;
-        }
-        // Bricks template post exists but has no _bricks_data — skip gracefully.
-        continue;
-      }
-
-      // --- Fallback: custom aisb_section_templates library ---
-      $layout_key = (string) ($sec['layout_key'] ?? '');
+      $layout_key = (string)($sec['layout_key'] ?? '');
       if ($layout_key === '') continue;
 
       $tpl = $this->tpl_lib->get_template_by_layout_key($layout_key);
       if (!$tpl || empty($tpl['bricks_json'])) continue;
 
-      $decoded = json_decode((string) $tpl['bricks_json'], true);
+      $decoded = json_decode((string)$tpl['bricks_json'], true);
       if (!is_array($decoded)) continue;
 
       $tpl_content = isset($decoded['content']) && is_array($decoded['content']) ? $decoded['content'] : [];
       // Strip code nodes
-      $tpl_content = array_values(array_filter($tpl_content, function($n) {
+      $tpl_content = array_values(array_filter($tpl_content, function($n){
         return is_array($n) && (($n['name'] ?? '') !== 'code');
       }));
 

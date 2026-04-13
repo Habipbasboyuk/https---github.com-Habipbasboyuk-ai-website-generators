@@ -1,0 +1,1 @@
+<?php require 'wp-load.php'; $args=array('post_type'=>'bricks_template','post_status'=>'publish','posts_per_page'=>100); $posts=get_posts($args); foreach($posts as $p) { echo $p->ID . ' - ' . $p->post_title . '\n'; }

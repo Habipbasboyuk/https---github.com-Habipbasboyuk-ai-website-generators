@@ -84,30 +84,30 @@ class AISB_Ajax {
     ]);
 
     if (empty($settings['api_key'])) {
-      $demo = $this->prompts()->demo_structure_response();
-      $demo = $this->enforcer()->enforce_structure_only($demo);
-      $demo['structure_only'] = true;
-
+      $demo = $this->demo_response();
+      $demo = $this->enforce_rules_on_data($demo);
+      
       $this->append_debug_log([
-        'event'          => 'generate_demo_structure',
+        'event' => 'generate_demo',
         'frontend_brief' => $this->redact_large_text($prompt, 12000),
+        'system_prompt' => $this->redact_large_text($this->system_prompt(), 12000),
+        'user_prompt' => $this->redact_large_text($prompt, 12000),
         'raw_ai_content' => '(demo_mode)',
         'decoded_json_ok' => true,
         'enforced_output' => $demo,
       ]);
 
-      wp_send_json_success(['data' => $demo, 'demo' => true, 'structure_only' => true]);
+      wp_send_json_success(['data' => $demo, 'demo' => true]);
     }
 
     $meta = "Constraints:\n"
       . "- Languages: " . (!empty($languages) ? implode(', ', $languages) : "Not specified") . "\n"
       . "- Desired number of pages: " . $page_count . "\n\n";
-
+    
     $augmented_prompt = $meta . $prompt;
-
-    $openai  = new AISB_OpenAI();
-    $sys_prompt = $this->prompts()->structure_only_system_prompt();
-    $result  = $openai->call_openai_chat_completions($augmented_prompt, $settings, $sys_prompt);
+    
+    $openai = new AISB_OpenAI();
+    $result = $openai->call_openai_chat_completions($augmented_prompt, $settings);
 
     if (is_wp_error($result)) wp_send_json_error(['message' => $result->get_error_message()], 500);
 
@@ -115,16 +115,16 @@ class AISB_Ajax {
     if (!is_array($decoded)) {
       wp_send_json_error([
         'message' => 'The AI response was not valid JSON. Check your model/settings.',
-        'raw'     => $result,
+        'raw' => $result
       ], 500);
     }
 
-    $decoded = $this->enforcer()->enforce_structure_only($decoded);
-    $decoded['structure_only'] = true;
+    $enforcer = new AISB_Enforcer();
+    $decoded = $enforcer->enforce_rules_on_data($decoded);
 
     // Create project if needed
     if (!$project_id) {
-      $title      = $decoded['website_name'] ?? 'New project';
+      $title = $decoded['website_name'] ?? 'New project';
       $project_id = $this->aisb_create_project(
         sanitize_text_field($title),
         $prompt,
@@ -141,16 +141,17 @@ class AISB_Ajax {
       }
     }
 
-    // Save structure-only snapshot
+    // Save version snapshot
     $settings = $this->get_settings();
     $save = $this->aisb_create_sitemap_version($project_id, $decoded, [
-      'source'      => 'ai',
-      'label'       => 'Structure generated',
-      'prompt'      => $augmented_prompt,
-      'model'       => $settings['model'] ?? '',
-      'endpoint'    => $settings['endpoint'] ?? '',
+      'source' => 'ai',
+      'label' => 'Initial generation',
+      'prompt' => $augmented_prompt,
+      'model' => $settings['model'] ?? '',
+      'endpoint' => $settings['endpoint'] ?? '',
       'temperature' => 0.4,
-      'status'      => 'structure_only',
+      // optional: elapsed_ms if you measure
+      'status' => 'generated',
     ]);
 
     if (is_wp_error($save)) {
@@ -158,12 +159,11 @@ class AISB_Ajax {
     }
 
     wp_send_json_success([
-      'project_id'     => (int)$project_id,
-      'sitemap_id'     => (int)$save['sitemap_id'],
-      'version'        => (int)$save['version'],
-      'data'           => $decoded,
-      'demo'           => false,
-      'structure_only' => true,
+      'project_id' => (int)$project_id,
+      'sitemap_id' => (int)$save['sitemap_id'],
+      'version' => (int)$save['version'],
+      'data' => $decoded,
+      'demo' => false
     ]);
   }
 
@@ -292,111 +292,6 @@ class AISB_Ajax {
       wp_send_json_success(['page' => $enforced_page, 'demo' => false]);
     }
 
-  /**
-   * Step 2: generate sections for an already-approved page structure.
-   */
-  public function ajax_fill_sections() {
-    $this->aisb_require_login();
-    check_ajax_referer(AISB_Plugin::NONCE_ACTION, 'nonce');
-
-    $settings   = $this->get_settings();
-    $project_id = isset($_POST['project_id']) ? (int)$_POST['project_id'] : 0;
-
-    if (!$project_id) wp_send_json_error(['message' => 'Missing project_id.'], 400);
-    if (!$this->aisb_user_can_access_project($project_id)) wp_send_json_error(['message' => 'Forbidden.'], 403);
-
-    $json_raw = isset($_POST['sitemap_json']) ? wp_unslash($_POST['sitemap_json']) : '';
-    $structure = json_decode($json_raw, true);
-    if (!is_array($structure)) wp_send_json_error(['message' => 'Invalid sitemap_json.'], 400);
-
-    // Strip the structure_only flag before passing to AI / saving
-    unset($structure['structure_only']);
-
-    $this->append_debug_log([
-      'event'      => 'fill_sections_start',
-      'ip'         => isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 'unknown',
-      'user_id'    => get_current_user_id(),
-      'project_id' => $project_id,
-      'demo_mode'  => empty($settings['api_key']),
-      'page_count' => count($structure['sitemap'] ?? []),
-    ]);
-
-    if (empty($settings['api_key'])) {
-      // Demo mode: run full enforcement to add default sections to every page
-      $full = $this->enforcer()->enforce_rules_on_data($structure);
-
-      $this->append_debug_log([
-        'event'          => 'fill_sections_demo',
-        'raw_ai_content' => '(demo_mode)',
-        'enforced_output' => $full,
-      ]);
-
-      $save = $this->aisb_create_sitemap_version($project_id, $full, [
-        'source' => 'ai',
-        'label'  => 'Sections generated',
-        'status' => 'generated',
-      ]);
-
-      if (is_wp_error($save)) {
-        wp_send_json_error(['message' => $save->get_error_message()], 500);
-      }
-
-      wp_send_json_success([
-        'project_id' => (int)$project_id,
-        'sitemap_id' => (int)$save['sitemap_id'],
-        'version'    => (int)$save['version'],
-        'data'       => $full,
-        'demo'       => true,
-      ]);
-    }
-
-    // Build user prompt with existing structure
-    $structure_json  = wp_json_encode($structure, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-    $user_prompt     = $this->prompts()->fill_sections_user_prompt($structure_json);
-    $system_prompt   = $this->prompts()->system_prompt(); // full prompt knows the section schema
-
-    $openai = new AISB_OpenAI();
-    $result = $openai->call_openai_chat_completions($user_prompt, $settings, $system_prompt);
-
-    if (is_wp_error($result)) {
-      wp_send_json_error(['message' => $result->get_error_message()], 500);
-    }
-
-    $decoded = json_decode($result, true);
-    if (!is_array($decoded)) {
-      wp_send_json_error([
-        'message' => 'The AI response was not valid JSON for fill-sections.',
-        'raw'     => $result,
-      ], 500);
-    }
-
-    // Strip structure_only flag if AI echoed it back
-    unset($decoded['structure_only']);
-
-    $decoded = $this->enforcer()->enforce_rules_on_data($decoded);
-
-    $save = $this->aisb_create_sitemap_version($project_id, $decoded, [
-      'source'      => 'ai',
-      'label'       => 'Sections generated',
-      'model'       => $settings['model'] ?? '',
-      'endpoint'    => $settings['endpoint'] ?? '',
-      'temperature' => 0.4,
-      'status'      => 'generated',
-    ]);
-
-    if (is_wp_error($save)) {
-      wp_send_json_error(['message' => $save->get_error_message()], 500);
-    }
-
-    wp_send_json_success([
-      'project_id' => (int)$project_id,
-      'sitemap_id' => (int)$save['sitemap_id'],
-      'version'    => (int)$save['version'],
-      'data'       => $decoded,
-      'demo'       => false,
-    ]);
-  }
-
       public function ajax_create_project() {
     $this->aisb_require_login();
     check_ajax_referer(AISB_Plugin::NONCE_ACTION, 'nonce');
@@ -420,7 +315,6 @@ class AISB_Ajax {
 
     wp_send_json_success([
       'project_id' => (int)$project_id,
-      'projects'   => $this->aisb_get_user_projects(),
     ]);
   }
 

@@ -64,11 +64,6 @@ class AISB_Template_Library {
             <input id="aisb_tpl_key" class="regular-text" type="text" placeholder="brixies_hero_07" />
           </p>
           <p>
-            <label><strong>Tags (comma separated)</strong></label><br />
-            <input id="aisb_tpl_tags" class="regular-text" type="text" placeholder="modern, clean, medical" />
-            <span style="color:#666;">Used to match the project concept.</span>
-          </p>
-          <p>
             <label><strong>Source URL (optional)</strong></label><br />
             <input id="aisb_tpl_source" class="regular-text" type="text" placeholder="https://brixies.co/..." />
           </p>
@@ -92,7 +87,6 @@ class AISB_Template_Library {
         const elJson  = document.getElementById('aisb_tpl_json');
         const elType  = document.getElementById('aisb_tpl_type');
         const elKey   = document.getElementById('aisb_tpl_key');
-        const elTags  = document.getElementById('aisb_tpl_tags');
         const elSrc   = document.getElementById('aisb_tpl_source');
         const elBtn   = document.getElementById('aisb_tpl_save');
         const elStat  = document.getElementById('aisb_tpl_status');
@@ -127,14 +121,11 @@ class AISB_Template_Library {
             return;
           }
           elList.innerHTML = rows.map(r => {
-            const tags = (r.tags||'').toString().split(',').map(t => t.trim()).filter(Boolean);
-            const tagsHtml = tags.length ? ('<div style="margin-top:6px; display:flex; gap:6px; flex-wrap:wrap;">' + tags.map(t => badge(t)).join('') + '</div>') : '';
             return (
               '<div style="padding:8px 0; border-bottom:1px solid #eee;">'
               + '<div style="display:flex; justify-content:space-between; gap:8px;">'
               + '<div><strong>'+ (r.layout_key||'') +'</strong><br />'
               + badge(r.section_type||'') + ' ' + badge('score ' + (r.complexity_score||0))
-              + tagsHtml
               + '</div>'
               + '<button class="button button-small" data-del="'+r.id+'">Delete</button>'
               + '</div>'
@@ -160,7 +151,6 @@ class AISB_Template_Library {
             bricks_json: elJson.value,
             section_type: elType.value,
             layout_key: elKey.value,
-            tags: elTags.value,
             source_url: elSrc.value,
           });
           if (out && out.success) {
@@ -168,7 +158,6 @@ class AISB_Template_Library {
             elJson.value = '';
             elType.value = '';
             elKey.value = '';
-            elTags.value = '';
             elSrc.value = '';
             refresh();
           } else {
@@ -190,7 +179,7 @@ class AISB_Template_Library {
     $table = $wpdb->prefix . 'aisb_section_templates';
     $section_type = sanitize_key($section_type);
     $rows = $wpdb->get_results($wpdb->prepare(
-      "SELECT id, section_type, layout_key, source_url, tags, bricks_json, preview_schema, signature, complexity_score FROM {$table} WHERE section_type=%s",
+      "SELECT id, section_type, layout_key, bricks_json, preview_schema, signature, complexity_score FROM {$table} WHERE section_type=%s",
       $section_type
     ), ARRAY_A);
     return is_array($rows) ? $rows : [];
@@ -227,81 +216,6 @@ class AISB_Template_Library {
 
     if (!$filtered) $filtered = $templates;
     return $filtered[array_rand($filtered)];
-  }
-
-  /**
-   * Pick template that best matches the provided context.
-   * @param array $context {brief,page_title,page_slug,section_type}
-   * @param string[] $exclude_layout_keys
-   */
-  public function pick_best_match(string $section_type, array $context, array $exclude_layout_keys = [], ?int $min_complexity = null): ?array {
-    $templates = $this->get_templates_by_type($section_type);
-    if (!$templates) return null;
-
-    $exclude = array_flip(array_map('strval', $exclude_layout_keys));
-    $context_text = implode(' ', array_filter([
-      (string)($context['brief'] ?? ''),
-      (string)($context['page_title'] ?? ''),
-      (string)($context['page_slug'] ?? ''),
-      (string)($context['section_type'] ?? ''),
-    ]));
-    $context_tokens = $this->tokenize($context_text);
-
-    $pref = $this->infer_complexity_preference($context_tokens);
-    $best = null;
-    $best_score = -INF;
-
-    foreach ($templates as $t) {
-      if (isset($exclude[(string)($t['layout_key'] ?? '')])) continue;
-      if ($min_complexity !== null && (int)($t['complexity_score'] ?? 0) < $min_complexity) continue;
-
-      $score = 0.0;
-      $tags = (string)($t['tags'] ?? '');
-      $tag_tokens = $this->tokenize($tags);
-      foreach ($tag_tokens as $tok) {
-        if (isset($context_tokens[$tok])) $score += 3.0;
-      }
-
-      $key_tokens = $this->tokenize((string)($t['layout_key'] ?? ''));
-      foreach ($key_tokens as $tok) {
-        if (isset($context_tokens[$tok])) $score += 1.0;
-      }
-
-      $src_tokens = $this->tokenize((string)($t['source_url'] ?? ''));
-      foreach ($src_tokens as $tok) {
-        if (isset($context_tokens[$tok])) $score += 0.5;
-      }
-
-      $schema = [];
-      if (!empty($t['preview_schema']) && is_string($t['preview_schema'])) {
-        $schema = json_decode((string)$t['preview_schema'], true);
-        if (!is_array($schema)) $schema = [];
-      }
-      $flags = isset($schema['flags']) && is_array($schema['flags']) ? $schema['flags'] : [];
-      $has_media = !empty($flags['has_media']);
-      $is_testi = !empty($flags['is_testimonialish']);
-
-      if ($this->context_has_any($context_tokens, ['video','image','images','photo','photos','gallery'])) {
-        $score += $has_media ? 2.0 : -0.5;
-      }
-      if ($this->context_has_any($context_tokens, ['testimonial','testimonials','review','reviews'])) {
-        $score += $is_testi ? 2.5 : -0.5;
-      }
-
-      if ($pref !== null) {
-        $complexity = (int)($t['complexity_score'] ?? 0);
-        $score -= min(10.0, abs($complexity - $pref) / 10.0);
-      }
-
-      if ($score > $best_score) {
-        $best_score = $score;
-        $best = $t;
-      }
-    }
-
-    if (!$best) return $this->pick_random($section_type, $exclude_layout_keys, $min_complexity);
-    $best['_match_score'] = $best_score;
-    return $best;
   }
 
   /* ------------------ AJAX handlers ------------------ */
@@ -372,7 +286,7 @@ class AISB_Template_Library {
     $this->check_nonce();
     global $wpdb;
     $table = $wpdb->prefix . 'aisb_section_templates';
-    $rows = $wpdb->get_results("SELECT id, section_type, layout_key, tags, bricks_json, preview_schema, signature, complexity_score, created_at FROM {$table} ORDER BY created_at DESC LIMIT 500", ARRAY_A);
+    $rows = $wpdb->get_results("SELECT id, section_type, layout_key, bricks_json, preview_schema, signature, complexity_score, created_at FROM {$table} ORDER BY created_at DESC LIMIT 500", ARRAY_A);
     if (!$rows) wp_send_json_success([]);
 
     // Lazily backfill missing preview schemas.
@@ -449,7 +363,6 @@ class AISB_Template_Library {
     $bricks_json_raw = isset($_POST['bricks_json']) ? wp_unslash($_POST['bricks_json']) : '';
     $layout_key = isset($_POST['layout_key']) ? sanitize_text_field(wp_unslash($_POST['layout_key'])) : '';
     $section_type = isset($_POST['section_type']) ? sanitize_text_field(wp_unslash($_POST['section_type'])) : '';
-    $tags_raw = isset($_POST['tags']) ? wp_unslash($_POST['tags']) : '';
     $source_url = isset($_POST['source_url']) ? esc_url_raw(wp_unslash($_POST['source_url'])) : '';
 
     if (trim($bricks_json_raw) === '') wp_send_json_error(['message' => 'Missing JSON'], 400);
@@ -466,7 +379,6 @@ class AISB_Template_Library {
     $bricks_json = wp_json_encode($decoded, JSON_UNESCAPED_SLASHES);
     $signature = (string)($analysis['signature'] ?? $final_type);
     $complexity = (int)($analysis['complexity_score'] ?? 0);
-    $tags = $this->normalize_tags($tags_raw);
 
     global $wpdb;
     $table = $wpdb->prefix . 'aisb_section_templates';
@@ -478,7 +390,6 @@ class AISB_Template_Library {
       'section_type' => $final_type,
       'layout_key' => $layout_key,
       'source_url' => $source_url,
-      'tags' => $tags,
       'bricks_json' => $bricks_json,
       'preview_schema' => $preview_schema,
       'signature' => $signature,
@@ -488,60 +399,15 @@ class AISB_Template_Library {
 
     if ($existing) {
       $wpdb->update($table, $data, ['id' => (int)$existing], [
-        '%s','%s','%s','%s','%s','%s','%s','%d','%s'
+        '%s','%s','%s','%s','%s','%s','%d','%s'
       ], ['%d']);
       wp_send_json_success(['id' => (int)$existing, 'updated' => 1, 'section_type' => $final_type]);
     }
 
     $data['created_at'] = $now;
     $wpdb->insert($table, $data, [
-      '%s','%s','%s','%s','%s','%s','%s','%d','%s','%s'
+      '%s','%s','%s','%s','%s','%s','%d','%s','%s'
     ]);
     wp_send_json_success(['id' => (int)$wpdb->insert_id, 'created' => 1, 'section_type' => $final_type]);
-  }
-
-  private function normalize_tags(string $raw): string {
-    $raw = strtolower($raw);
-    $parts = preg_split('/[\n,;|]+/', $raw) ?: [];
-    $clean = [];
-    foreach ($parts as $p) {
-      $p = trim((string)$p);
-      if ($p === '') continue;
-      $p = preg_replace('/[^a-z0-9_-]+/', ' ', $p);
-      $p = trim((string)$p);
-      if ($p === '') continue;
-      $clean[] = $p;
-    }
-    $clean = array_values(array_unique($clean));
-    return implode(', ', $clean);
-  }
-
-  /**
-   * @return array<string,bool>
-   */
-  private function tokenize(string $text): array {
-    $text = strtolower($text);
-    $text = preg_replace('/[^a-z0-9]+/', ' ', $text);
-    $parts = preg_split('/\s+/', (string)$text) ?: [];
-    $out = [];
-    foreach ($parts as $p) {
-      $p = trim($p);
-      if ($p === '' || strlen($p) < 3) continue;
-      $out[$p] = true;
-    }
-    return $out;
-  }
-
-  private function context_has_any(array $tokens, array $needles): bool {
-    foreach ($needles as $n) {
-      if (isset($tokens[$n])) return true;
-    }
-    return false;
-  }
-
-  private function infer_complexity_preference(array $tokens): ?int {
-    if ($this->context_has_any($tokens, ['minimal','clean','simple','basic','light'])) return 20;
-    if ($this->context_has_any($tokens, ['rich','complex','detailed','premium','luxury','editorial'])) return 80;
-    return null;
   }
 }

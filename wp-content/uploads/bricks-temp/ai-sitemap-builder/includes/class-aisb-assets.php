@@ -243,7 +243,7 @@ class AISB_Assets {
 
         <div class="aisb-steps">
           <a class="aisb-step-tab <?php echo $step === 1 ? 'is-active' : ''; ?>" href="<?php echo esc_url($tab1_url); ?>">Step 1 · Sitemap</a>
-          <a class="aisb-step-tab <?php echo $step === 2 ? 'is-active' : ''; ?>" href="<?php echo esc_url($tab2_url); ?>" data-aisb-step2-tab>Step 2 · Wireframes</a>
+          <a class="aisb-step-tab <?php echo $step === 2 ? 'is-active' : ''; ?>" href="<?php echo esc_url($tab2_url); ?>">Step 2 · Wireframes</a>
         </div>
 
         <div class="aisb-step-panel" data-aisb-step-panel="1" style="<?php echo $step === 1 ? '' : 'display:none;'; ?>">
@@ -293,9 +293,6 @@ class AISB_Assets {
           <div class="aisb-output-head">
             <h3 class="aisb-output-title">Generated sitemap</h3>
             <div class="aisb-actions">
-              <button class="aisb-btn" type="button" data-aisb-approve style="display:none;">
-                Ziet er goed uit? Genereer sectie-inhoud →
-              </button>
               <button class="aisb-btn-secondary" type="button" data-aisb-add-page>
                 <span class="aisb-plus">+</span> Add page
               </button>
@@ -304,7 +301,6 @@ class AISB_Assets {
               <button class="aisb-btn-secondary" type="button" data-aisb-zoomin>+</button>
               <button class="aisb-btn-secondary" type="button" data-aisb-copy>Copy JSON</button>
               <button class="aisb-btn-secondary" type="button" data-aisb-save>Save version</button>
-              <a class="aisb-btn" data-aisb-go-wireframes href="#" style="display:none; text-decoration:none;">→ Wireframes</a>
               <button class="aisb-btn-secondary" type="button" data-aisb-reset>Reset</button>
             </div>
           </div>
@@ -353,12 +349,7 @@ class AISB_Assets {
             <?php if (!is_user_logged_in()) : ?>
               <p>You must be logged in to use wireframes.</p>
             <?php elseif (!$project_id || !$sitemap_id) : ?>
-              <div style="background: #fafafa; border: 1px solid #e6e6e6; border-radius: 12px; padding: 24px; text-align: center;">
-                <p class="aisb-wf-muted" style="margin:top:0; margin-bottom: 24px; font-size: 15px;">Please select one of your projects below to start generating wireframes.</p>
-                <div style="text-align: left; max-width: 800px; margin: 0 auto;">
-                  <?php echo $this->render_my_projects_shortcode(['title' => '']); ?>
-                </div>
-              </div>
+              <p class="aisb-wf-muted">Open a project + sitemap version first (e.g. via <code>[my-projects]</code>), then click the Wireframes tab.</p>
             <?php else : ?>
               <div class="aisb-wf-layout">
                 <div class="aisb-wf-pages">
@@ -435,7 +426,6 @@ class AISB_Assets {
       'nonce'   => wp_create_nonce(AISB_Plugin::NONCE_ACTION),
       'action'  => AISB_Plugin::AJAX_ACTION,
       'actionAddPage' => AISB_Plugin::AJAX_ADD_PAGE,
-      'actionFillSections' => AISB_Plugin::AJAX_FILL_SECTIONS,
       'actionGetLatestSitemap' => AISB_Plugin::AJAX_GET_LATEST_SITEMAP,
       'actionGetSitemapById'   => AISB_Plugin::AJAX_GET_SITEMAP_BY_ID,
       'maxPromptChars' => 4000,
@@ -924,10 +914,7 @@ CSS;
 
   const btnCopy = root.querySelector('[data-aisb-copy]');
   const btnSave = root.querySelector('[data-aisb-save]');
-  const btnApprove = root.querySelector('[data-aisb-approve]');
   const btnReset = root.querySelector('[data-aisb-reset]');
-  const btnGoWireframes = root.querySelector('[data-aisb-go-wireframes]');
-  const step2TabEl = document.querySelector('[data-aisb-step2-tab]');
   const btnFit = root.querySelector('[data-aisb-fit]');
   const btnZoomIn = root.querySelector('[data-aisb-zoomin]');
   const btnZoomOut = root.querySelector('[data-aisb-zoomout]');
@@ -1017,21 +1004,6 @@ CSS;
   const setLoading = (loading) => {
     btnGen.disabled = !!loading;
     btnGen.textContent = loading ? 'Generating…' : 'Generate sitemap';
-  };
-
-  const updateWireframesLinks = () => {
-    if (!state.projectId || !state.sitemapId) return;
-    const wfUrlObj = new URL(window.location.href);
-    wfUrlObj.searchParams.set('aisb_step', '2');
-    wfUrlObj.searchParams.set('aisb_project', state.projectId);
-    wfUrlObj.searchParams.set('aisb_sitemap', state.sitemapId);
-    const wfUrl = wfUrlObj.toString();
-    
-    if (step2TabEl) step2TabEl.href = wfUrl;
-    if (btnGoWireframes) {
-      btnGoWireframes.href = wfUrl;
-      btnGoWireframes.style.display = '';
-    }
   };
 
   const normalizeSlug = (s) => (s ?? '').toString().trim().replace(/^\/+/, '').replace(/\/+$/, '');
@@ -1308,7 +1280,6 @@ CSS;
     sitemapId: null,
     version: 0,
     savingVersion: false,
-    structureOnly: false,
     baselineData: null,
     data: null,
     pages: [],
@@ -1462,16 +1433,9 @@ CSS;
       </div>
     `;
 
-    const pagePurpose = page.page_purpose ? `<div style="margin:10px 0 8px 0; padding:10px 12px; background:#f9f9f9; border-radius:10px; font-size:12px; color:#444; line-height:1.5;">${esc(page.page_purpose)}</div>` : '';
-
-    const structureHint = (state.structureOnly && sections.length === 0)
-      ? `<div style="padding:12px; border:1px dashed rgba(0,0,0,.18); border-radius:10px; font-size:12px; color:#666; text-align:center; margin-top:8px;">Secties worden gegenereerd na goedkeuring van de structuur.</div>`
-      : '';
-
     detailBodyEl.innerHTML = `
       <div class="aisb-page-meta">${metaPills}</div>
-      ${pagePurpose}
-      <div class="aisb-sections" data-aisb-sections-editor>${sectionsHtml}${structureHint}</div>
+      <div class="aisb-sections" data-aisb-sections-editor>${sectionsHtml}</div>
       ${seoHtml}
     `;
   };
@@ -1920,11 +1884,9 @@ CSS;
           return;
         }
         state.version = parseInt(json.data.version, 10) || state.version;
-        if (json.data && json.data.sitemap_id) state.sitemapId = parseInt(json.data.sitemap_id, 10) || state.sitemapId;
         state.baselineData = deepClone(state.data);
-        updateWireframesLinks();
         renderSummary(state.data);
-        setStatus('<div class="aisb-ok">Saved as version v'+esc(state.version)+' · <a href="'+esc(btnGoWireframes ? btnGoWireframes.href : '#')+'" style="color:inherit;font-weight:700;">→ Go to Wireframes</a></div>');
+        setStatus('<div class="aisb-ok">Saved as version v'+esc(state.version)+'</div>');
       } catch (e) {
         setStatus('<div class="aisb-error">'+esc(e.message || 'Save failed')+'</div>');
       }
@@ -2452,18 +2414,9 @@ CSS;
       state.sitemapId = payload.sitemap_id ? parseInt(payload.sitemap_id, 10) : (Number.isFinite(sid) ? sid : null);
       state.version = payload.version ? parseInt(payload.version, 10) : 0;
 
-      const isStructureOnly = payload.data.structure_only === true;
-      state.structureOnly = isStructureOnly;
-
       // Optional: hydrate prompt area with saved brief (we do not fetch it here).
       renderAll(payload.data);
-
-      if (isStructureOnly && btnApprove) {
-        btnApprove.style.display = 'inline-flex';
-        setStatus('<div class="aisb-ok">Structuur geladen. Klik op <strong>Ziet er goed uit? Genereer sectie-inhoud →</strong> om secties te genereren.</div>');
-      } else {
-        setStatus('<div class="aisb-ok">Loaded.</div>');
-      }
+      setStatus('<div class="aisb-ok">Loaded.</div>');
     } catch (e) {
       setStatus('<div class="aisb-error">'+esc(e.message || 'Failed to load sitemap')+'</div>');
     } finally {
@@ -2539,92 +2492,16 @@ CSS;
         const v = parseInt(json.data.version, 10);
         state.version = Number.isFinite(v) && v > 0 ? v : 0;
       }
-      updateWireframesLinks();
 
       const data = json.data.data;
-      const isStructureOnly = json.data.structure_only === true;
-
-      state.structureOnly = isStructureOnly;
-      if (btnApprove) btnApprove.style.display = isStructureOnly ? 'inline-flex' : 'none';
-
       renderAll(data);
-
-      if (isStructureOnly) {
-        setStatus('<div class="aisb-ok">Paginastructuur gegenereerd. Controleer de pagina\'s en klik op <strong>Ziet er goed uit? Genereer sectie-inhoud →</strong> om verder te gaan.</div>');
-      } else {
-        setStatus('<div class="aisb-ok">Done.</div>');
-      }
+      setStatus('<div class="aisb-ok">Done.</div>');
     } catch (e) {
       setStatus('<div class="aisb-error">'+esc(e.message || 'Request failed')+'</div>');
     } finally {
       setLoading(false);
     }
   };
-
-  const doFillSections = async () => {
-    if (!state.data || !state.projectId) {
-      setStatus('<div class="aisb-error">Geen structuur geladen. Genereer eerst een sitemap.</div>');
-      return;
-    }
-
-    setStatus('Sectie-inhoud genereren voor alle pagina\'s… Dit kan even duren.');
-    if (btnApprove) { btnApprove.disabled = true; }
-
-    const form = new FormData();
-    form.append('action', AISB.actionFillSections);
-    form.append('nonce', AISB.nonce);
-    form.append('project_id', state.projectId || '');
-    form.append('sitemap_json', JSON.stringify(state.data));
-
-    try {
-      const res = await fetch(AISB.ajaxUrl, { method: 'POST', credentials: 'same-origin', body: form });
-      const text = await res.text();
-
-      let json = null;
-      try {
-        json = JSON.parse(text);
-      } catch (e) {
-        setStatus(
-          '<div class="aisb-error">Server retourneerde geen JSON.</div>' +
-          '<pre class="aisb-pre">' + esc(text.slice(0, 300)) + '</pre>'
-        );
-        if (btnApprove) { btnApprove.disabled = false; }
-        return;
-      }
-
-      if (!res.ok || !json || json.success !== true) {
-        const msg = (json && json.data && json.data.message) ? json.data.message : 'Onverwachte fout.';
-        setStatus('<div class="aisb-error">'+esc(msg)+'</div>');
-        if (btnApprove) { btnApprove.disabled = false; }
-        return;
-      }
-
-      if (json.data && typeof json.data.project_id !== 'undefined') {
-        const pid = parseInt(json.data.project_id, 10);
-        state.projectId = Number.isFinite(pid) && pid > 0 ? pid : null;
-      }
-      if (json.data && typeof json.data.sitemap_id !== 'undefined') {
-        const sid = parseInt(json.data.sitemap_id, 10);
-        state.sitemapId = Number.isFinite(sid) && sid > 0 ? sid : null;
-      }
-      if (json.data && typeof json.data.version !== 'undefined') {
-        const v = parseInt(json.data.version, 10);
-        state.version = Number.isFinite(v) && v > 0 ? v : 0;
-      }
-
-      state.structureOnly = false;
-      updateWireframesLinks();
-      if (btnApprove) { btnApprove.style.display = 'none'; btnApprove.disabled = false; }
-
-      renderAll(json.data.data);
-      setStatus('<div class="aisb-ok">Secties gegenereerd voor alle pagina\'s.</div>');
-    } catch (e) {
-      setStatus('<div class="aisb-error">'+esc(e.message || 'Request mislukt')+'</div>');
-      if (btnApprove) { btnApprove.disabled = false; }
-    }
-  };
-
-  btnApprove?.addEventListener('click', doFillSections);
 
   promptEl.addEventListener('input', () => {
     const len = (promptEl.value || '').length;
@@ -2649,12 +2526,9 @@ CSS;
     summaryEl.innerHTML = '';
     nodesEl.innerHTML = '';
     edgesSvg.innerHTML = '';
-    state = { projectId:null, sitemapId:null, version:0, savingVersion:false, structureOnly:false, baselineData:null, data:null, pages:[], bySlug:{}, tree:[], activeSlug:null, edges:[], openInlineFormFor:null };
-    if (btnGoWireframes) btnGoWireframes.style.display = 'none';
-    if (step2TabEl) step2TabEl.removeAttribute('href');
-    if (btnApprove) { btnApprove.style.display = 'none'; btnApprove.disabled = false; }
+    state = { projectId:null, sitemapId:null, version:0, baselineData:null, data:null, pages:[], bySlug:{}, tree:[], activeSlug:null, edges:[], openInlineFormFor:null };
     detailTitleEl.textContent = 'Select a page';
-    detailSubEl.textContent = 'We\'ll show sections + SEO for that page.';
+    detailSubEl.textContent = 'We’ll show sections + SEO for that page.';
     detailBodyEl.innerHTML = '';
     setStatus('');
   });
