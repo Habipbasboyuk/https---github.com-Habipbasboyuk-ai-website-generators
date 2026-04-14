@@ -231,6 +231,7 @@ class AISB_Assets {
     }
     $tab1_url = remove_query_arg(['aisb_step'], $base_url);
     $tab2_url = add_query_arg(['aisb_step' => 2], $base_url);
+    $tab3_url = add_query_arg(['aisb_step' => 3], $base_url);
 
     ob_start(); ?>
       <div class="aisb-wrap" data-aisb data-aisb-step="<?php echo esc_attr($step); ?>">
@@ -244,6 +245,7 @@ class AISB_Assets {
         <div class="aisb-steps">
           <a class="aisb-step-tab <?php echo $step === 1 ? 'is-active' : ''; ?>" href="<?php echo esc_url($tab1_url); ?>">Step 1 · Sitemap</a>
           <a class="aisb-step-tab <?php echo $step === 2 ? 'is-active' : ''; ?>" href="<?php echo esc_url($tab2_url); ?>" data-aisb-step2-tab>Step 2 · Wireframes</a>
+          <a class="aisb-step-tab <?php echo $step === 3 ? 'is-active' : ''; ?>" href="<?php echo esc_url($tab3_url); ?>">Step 3 · Style Guide</a>
         </div>
 
         <div class="aisb-step-panel" data-aisb-step-panel="1" style="<?php echo $step === 1 ? '' : 'display:none;'; ?>">
@@ -396,6 +398,58 @@ class AISB_Assets {
             <?php endif; ?>
           </div>
         </div><!-- /Step 2 panel -->
+        <?php endif; ?>
+
+        <?php if ($step === 3) : ?>
+        <div class="aisb-step-panel" data-aisb-step-panel="3">
+          <div class="aisb-card" data-aisb-style-guide
+               data-project-id="<?php echo esc_attr($project_id); ?>">
+            <div class="aisb-sg-head">
+              <div>
+                <h3 class="aisb-output-title" style="margin:0;">Style Guide</h3>
+                <p class="aisb-subtitle" style="margin-top:6px;">Brand colours · typography · component tokens</p>
+              </div>
+            </div>
+
+            <?php if (!is_user_logged_in()) : ?>
+              <p>You must be logged in to use the Style Guide.</p>
+            <?php elseif (!$project_id) : ?>
+              <div style="background:#fafafa; border:1px solid #e6e6e6; border-radius:12px; padding:24px; text-align:center; margin-top:14px;">
+                <p class="aisb-sg-muted" style="font-size:15px;">Please select a project first.</p>
+              </div>
+            <?php else : ?>
+              <div class="aisb-sg-status" data-aisb-sg-status></div>
+
+              <div class="aisb-sg-layout">
+                <section class="aisb-sg-section" id="aisb-sg-colours">
+                  <h3 class="aisb-sg-section-title">Colours</h3>
+                  <div class="aisb-sg-swatches" data-aisb-sg-swatches>
+                    <div class="aisb-sg-empty-state">No colours defined yet.</div>
+                  </div>
+                </section>
+
+                <section class="aisb-sg-section" id="aisb-sg-typography">
+                  <h3 class="aisb-sg-section-title">Typography</h3>
+                  <div class="aisb-sg-type-preview" data-aisb-sg-type>
+                    <div class="aisb-sg-empty-state">No typography defined yet.</div>
+                  </div>
+                </section>
+
+                <section class="aisb-sg-section" id="aisb-sg-components">
+                  <h3 class="aisb-sg-section-title">Components</h3>
+                  <div class="aisb-sg-components" data-aisb-sg-components>
+                    <div class="aisb-sg-empty-state">No components defined yet.</div>
+                  </div>
+                </section>
+              </div>
+
+              <div class="aisb-sg-actions" style="margin-top:20px;">
+                <button class="aisb-btn" type="button" data-aisb-sg-generate>Generate Style Guide</button>
+                <button class="aisb-btn-secondary" type="button" data-aisb-sg-save>Save</button>
+              </div>
+            <?php endif; ?>
+          </div>
+        </div><!-- /Step 3 panel -->
         <?php endif; ?>
       </div>
     <?php

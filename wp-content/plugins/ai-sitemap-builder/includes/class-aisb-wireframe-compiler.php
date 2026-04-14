@@ -24,7 +24,23 @@ class AISB_Wireframe_Compiler {
     foreach ($sections as $sec) {
       if (!is_array($sec)) continue;
 
-      // --- Primary: Bricks template post (from the live Bricks library) ---
+      // --- Prioriteit A: AI wireframe post (ai_wireframe CPT met AI-gegenereerde Bricks elementen) ---
+      $ai_wireframe_id = isset($sec['ai_wireframe_id']) ? (int) $sec['ai_wireframe_id'] : 0;
+      if ($ai_wireframe_id > 0) {
+        // Bricks elementen ophalen uit de ai_wireframe post
+        $ai_data = get_post_meta($ai_wireframe_id, '_bricks_page_content_2', true);
+        if (is_array($ai_data) && !empty($ai_data)) {
+          $tpl_content = array_values(array_filter($ai_data, function($n) {
+            return is_array($n) && (($n['name'] ?? '') !== 'code');
+          }));
+          $rekeyed = $this->re_id_bricks_nodes($tpl_content);
+          $rekeyed = $this->force_root_parent_zero($rekeyed);
+          $final_content = array_merge($final_content, $rekeyed);
+          continue;
+        }
+      }
+
+      // --- Prioriteit B: Bricks template post (uit de Bricks template bibliotheek) ---
       $bricks_post_id = isset($sec['bricks_template_id']) ? (int) $sec['bricks_template_id'] : 0;
       if ($bricks_post_id > 0) {
         $bricks_data = get_post_meta($bricks_post_id, '_bricks_data', true);

@@ -51,6 +51,15 @@ class AISB_Wireframes {
     $id = (int)$_GET['aisb_bricks_preview'];
     if (!$id) wp_die('No valid Bricks ID provided');
 
+    $post = get_post($id);
+    if (!$post) wp_die('Post not found');
+
+    // Zowel bricks_template als ai_wireframe posts toestaan voor preview
+    $allowed_types = ['bricks_template', 'ai_wireframe'];
+    if (!in_array($post->post_type, $allowed_types, true)) {
+      wp_die('Invalid post type for preview');
+    }
+
     if (function_exists('bricks_enqueue_scripts')) {
       bricks_enqueue_scripts();
     }
@@ -93,7 +102,24 @@ class AISB_Wireframes {
     </head>
     <body <?php body_class(); ?>>
       <div class="aisb-bricks-preview-wrap" id="aisb-preview">
-        <?php echo do_shortcode('[bricks_template id="' . $id . '"]'); ?>
+        <?php
+        if ($post->post_type === 'ai_wireframe') {
+          // AI wireframe: Bricks elementen direct renderen (geen shortcode, want het is geen bricks_template)
+          if (class_exists('\Bricks\Frontend')) {
+            $elements = get_post_meta($id, '_bricks_page_content_2', true);
+            if (is_array($elements) && !empty($elements)) {
+              echo \Bricks\Frontend::render_data($elements);
+            } else {
+              echo '<p style="padding:20px;color:#999;">Geen Bricks elementen gevonden in deze AI wireframe.</p>';
+            }
+          } else {
+            echo '<p style="padding:20px;color:#999;">Bricks Builder is vereist om AI wireframes te bekijken.</p>';
+          }
+        } else {
+          // Bricks template: via de standaard Bricks shortcode renderen
+          echo do_shortcode('[bricks_template id="' . $id . '"]');
+        }
+        ?>
       </div>
       <?php wp_footer(); ?>
       <script>
@@ -459,7 +485,7 @@ class AISB_Wireframes {
     }
 
     $post = get_post($template_id);
-    if (!$post || $post->post_type !== 'bricks_template') {
+    if (!$post || !in_array($post->post_type, ['bricks_template', 'ai_wireframe'], true)) {
       wp_send_json_error(['message' => 'Template not found'], 404);
     }
 

@@ -55,6 +55,13 @@ class AISB_Plugin {
 		// Data model
 		add_action('init', [$this, 'register_cpts']);
 
+		// AI Wireframe admin kolommen & filters voor de wp-admin lijstpagina
+		add_filter('manage_ai_wireframe_posts_columns', [$this, 'ai_wireframe_columns']);            // Extra kolommen toevoegen
+		add_action('manage_ai_wireframe_posts_custom_column', [$this, 'ai_wireframe_column_content'], 10, 2); // Inhoud van de kolommen vullen
+		add_filter('manage_edit-ai_wireframe_sortable_columns', [$this, 'ai_wireframe_sortable_columns']);    // Kolommen sorteerbaar maken
+		add_action('restrict_manage_posts', [$this, 'ai_wireframe_filter_dropdown']);                 // Filter-dropdown bovenaan de lijst
+		add_action('pre_get_posts', [$this, 'ai_wireframe_filter_query']);                            // DB-query aanpassen bij filteren/sorteren
+
 		// AJAX (logged-in)
 		add_action('wp_ajax_' . self::AJAX_ACTION,               [$this, 'ajax_generate']);
 		add_action('wp_ajax_' . self::AJAX_ADD_PAGE,             [$this, 'ajax_add_page']);
@@ -103,6 +110,126 @@ class AISB_Plugin {
 			'capability_type' => 'post',
 			'menu_icon'       => 'dashicons-networking',
 		]);
+
+		// AI Wireframe CPT — slaat AI-gegenereerde Bricks secties op (per sectie 1 post)
+		register_post_type('ai_wireframe', [
+			'labels' => [
+				'name'          => 'AI Wireframes',
+				'singular_name' => 'AI Wireframe',
+				'add_new'       => 'Add new ai_wireframe',
+				'add_new_item'  => 'Add new AI Wireframe',
+				'edit_item'     => 'Edit AI Wireframe',
+			],
+			'public'          => false,   // Niet zichtbaar op de frontend
+			'show_ui'         => true,    // Wel zichtbaar in wp-admin
+			'show_in_menu'    => true,
+			'supports'        => ['title', 'author', 'custom-fields'],
+			'capability_type' => 'post',
+			'menu_icon'       => 'dashicons-layout',
+		]);
+	}
+
+	/* ---------------------------
+	 * AI Wireframe admin lijstpagina
+	 * Voegt kolommen, filters en sortering toe
+	 * ------------------------- */
+
+	// Kolommen toevoegen na 'title': Project, Page en Source Template
+	public function ai_wireframe_columns(array $columns): array {
+		$new = [];
+		foreach ($columns as $key => $label) {
+			$new[$key] = $label;
+			if ($key === 'title') {
+				$new['aisb_project'] = 'Project';          // Bij welk project hoort deze wireframe
+				$new['aisb_page']    = 'Page';              // Voor welke pagina (bv. 'homepage')
+				$new['aisb_source']  = 'Source Template';   // Welk Bricks template als basis is gebruikt
+			}
+		}
+		return $new;
+	}
+
+	// Inhoud van de extra kolommen per rij invullen
+	public function ai_wireframe_column_content(string $column, int $post_id): void {
+		// Projectnaam ophalen + klikbare link die filtert op dit project
+		if ($column === 'aisb_project') {
+			$pid = (int) get_post_meta($post_id, '_aisb_project_id', true);
+			if ($pid) {
+				$project = get_post($pid);
+				// Naam + ID tonen zodat projecten met dezelfde naam te onderscheiden zijn
+				$name = $project ? esc_html($project->post_title) . ' (#' . $pid . ')' : "#{$pid}";
+				$filter_url = add_query_arg(['post_type' => 'ai_wireframe', 'aisb_project_filter' => $pid], admin_url('edit.php'));
+				echo '<a href="' . esc_url($filter_url) . '">' . $name . '</a>';
+			} else {
+				echo '—';
+			}
+		}
+		// Page slug tonen (bv. 'homepage', 'about')
+		if ($column === 'aisb_page') {
+			$slug = get_post_meta($post_id, '_aisb_page_slug', true);
+			echo $slug ? esc_html($slug) : '—';
+		}
+		// Origineel Bricks template tonen dat als basis is gebruikt
+		if ($column === 'aisb_source') {
+			$src = (int) get_post_meta($post_id, '_aisb_source_template_id', true);
+			if ($src) {
+				$tpl = get_post($src);
+				echo $tpl ? esc_html($tpl->post_title) . " (#{$src})" : "#{$src}";
+			} else {
+				echo '—';
+			}
+		}
+	}
+
+	// Project en Page kolommen sorteerbaar maken (klikbaar in de tabelkop)
+	public function ai_wireframe_sortable_columns(array $columns): array {
+		$columns['aisb_project'] = 'aisb_project';
+		$columns['aisb_page']    = 'aisb_page';
+		return $columns;
+	}
+
+	// Dropdown filter bovenaan de admin lijst — filter wireframes per project
+	public function ai_wireframe_filter_dropdown(string $post_type): void {
+		if ($post_type !== 'ai_wireframe') return;
+		global $wpdb;
+		// Alle unieke project IDs ophalen die aan wireframes gekoppeld zijn
+		$project_ids = $wpdb->get_col(
+			"SELECT DISTINCT meta_value FROM $wpdb->postmeta WHERE meta_key = '_aisb_project_id' AND meta_value != '' ORDER BY meta_value"
+		);
+		if (empty($project_ids)) return;
+
+		$current = isset($_GET['aisb_project_filter']) ? (int) $_GET['aisb_project_filter'] : 0;
+		echo '<select name="aisb_project_filter"><option value="">All Projects</option>';
+		foreach ($project_ids as $pid) {
+			$project = get_post((int) $pid);
+			// Naam + ID zodat dubbele projectnamen te onderscheiden zijn
+			$label = $project ? esc_html($project->post_title) . ' (#' . (int) $pid . ')' : "Project #{$pid}";
+			$selected = ((int) $pid === $current) ? ' selected' : '';
+			echo '<option value="' . esc_attr($pid) . '"' . $selected . '>' . $label . '</option>';
+		}
+		echo '</select>';
+	}
+
+	// WP_Query aanpassen wanneer de gebruiker filtert of sorteert op de admin lijst
+	public function ai_wireframe_filter_query(\WP_Query $query): void {
+		if (!is_admin() || !$query->is_main_query()) return;
+		if (($query->get('post_type') ?? '') !== 'ai_wireframe') return;
+
+		// Filteren op geselecteerd project uit de dropdown
+		if (!empty($_GET['aisb_project_filter'])) {
+			$query->set('meta_key', '_aisb_project_id');
+			$query->set('meta_value', (int) $_GET['aisb_project_filter']);
+		}
+
+		// Sorteren op project (numeriek) of pagina (alfabetisch)
+		$orderby = $query->get('orderby');
+		if ($orderby === 'aisb_project') {
+			$query->set('meta_key', '_aisb_project_id');
+			$query->set('orderby', 'meta_value_num');
+		}
+		if ($orderby === 'aisb_page') {
+			$query->set('meta_key', '_aisb_page_slug');
+			$query->set('orderby', 'meta_value');
+		}
 	}
 
 	/* ---------------------------

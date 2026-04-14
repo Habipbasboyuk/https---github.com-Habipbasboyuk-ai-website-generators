@@ -34,6 +34,9 @@ require_once __DIR__ . '/includes/class-aisb-wireframes-bricks.php';
 require_once __DIR__ . '/includes/class-aisb-wireframes-ai.php';
 require_once __DIR__ . '/includes/class-aisb-wireframes.php';
 
+// Step 3 (Style Guide)
+require_once __DIR__ . '/includes/class-aisb-style-guide.php';
+
 register_activation_hook(__FILE__, ['AISB_Installer', 'activate']);
 
 add_action('plugins_loaded', function () {
@@ -52,9 +55,13 @@ add_action('plugins_loaded', function () {
   $compiler  = new AISB_Wireframe_Compiler($tpl_lib);
   $wireframes= new AISB_Wireframes($tpl_lib, $compiler);
 
+  // Step 3 (Style Guide)
+  $style_guide = new AISB_Style_Guide();
+
   // Main plugin wires everything together
   $plugin   = new AISB_Plugin($settings, $assets, $ajax, $logger);
 
   $plugin->init();
   $wireframes->init();
+  $style_guide->init();
 });

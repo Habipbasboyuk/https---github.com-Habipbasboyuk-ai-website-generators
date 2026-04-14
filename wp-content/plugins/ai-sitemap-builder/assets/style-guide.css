@@ -1,0 +1,148 @@
+/* ─── Style Guide layout ─────────────────────────────────────── */
+.aisb-sg-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.aisb-sg-status {
+  padding: 10px 12px;
+  font-size: 13px;
+  min-height: 36px;
+}
+.aisb-sg-muted {
+  font-size: 12px;
+  color: #666;
+}
+.aisb-sg-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.aisb-sg-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-top: 20px;
+}
+
+/* ─── Section blocks ─────────────────────────────────────────── */
+.aisb-sg-section {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 14px;
+  padding: 20px 20px 24px;
+  background: #fff;
+}
+.aisb-sg-section-title {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(0, 0, 0, 0.45);
+  margin: 0 0 16px;
+}
+
+/* ─── Empty state ────────────────────────────────────────────── */
+.aisb-sg-empty-state {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.38);
+  font-style: italic;
+}
+
+/* ─── Colour swatches ────────────────────────────────────────── */
+.aisb-sg-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.aisb-sg-swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.aisb-sg-swatch-block {
+  width: 72px;
+  height: 72px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+.aisb-sg-swatch-label {
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.55);
+  text-align: center;
+  max-width: 80px;
+  word-break: break-all;
+}
+
+/* ─── Typography preview ─────────────────────────────────────── */
+.aisb-sg-type-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.aisb-sg-type-row {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+.aisb-sg-type-meta {
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.38);
+  min-width: 110px;
+  flex-shrink: 0;
+}
+.aisb-sg-type-sample {
+  color: rgba(0, 0, 0, 0.82);
+}
+.aisb-sg-type-sample.h1 {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+.aisb-sg-type-sample.h2 {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+.aisb-sg-type-sample.h3 {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.aisb-sg-type-sample.body {
+  font-size: 15px;
+  line-height: 1.55;
+}
+.aisb-sg-type-sample.small {
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+/* ─── Components ─────────────────────────────────────────────── */
+.aisb-sg-components {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-start;
+}
+.aisb-sg-component-card {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  padding: 16px 18px;
+  background: #fafafa;
+  min-width: 180px;
+}
+.aisb-sg-component-name {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(0, 0, 0, 0.4);
+  margin-bottom: 10px;
+}

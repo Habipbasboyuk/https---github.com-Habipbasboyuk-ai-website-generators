@@ -452,7 +452,7 @@
   }
 
   function bricksTemplatePreview(section) {
-    const id = section.bricks_template_id;
+    const id = section.ai_wireframe_id || section.bricks_template_id;
     if (!id)
       return '<div class="aisb-wf-bricks-notfound">No Bricks template assigned.</div>';
     const title = section.bricks_template_title || "Template #" + id;
@@ -497,7 +497,8 @@
       if (!sectionCard || !state.model) return;
       const uuid = sectionCard.getAttribute("data-uuid");
       const section = (state.model.sections || []).find((s) => s.uuid === uuid);
-      if (!section || !section.bricks_template_id) return;
+      if (!section || !(section.ai_wireframe_id || section.bricks_template_id))
+        return;
 
       const changes = e.data.changes || [];
       if (changes.length === 0) {
@@ -507,7 +508,8 @@
 
       // Save via AJAX
       post("aisb_save_section_text", {
-        bricks_template_id: section.bricks_template_id,
+        bricks_template_id:
+          section.ai_wireframe_id || section.bricks_template_id,
         changes: JSON.stringify(changes),
       }).then((out) => {
         if (out && out.success) {
@@ -547,10 +549,13 @@
         const locked = !!s.locked;
         const schema = schemaFromSection(s);
         const lockTxt = locked ? "Unlock" : "Lock";
-        const isBricks = !!s.bricks_template_id;
-        const bricksBadge = isBricks
-          ? `<span style="display:inline-block;margin-left:8px;padding:1px 7px;border-radius:999px;font-size:11px;background:#111;color:#fff;font-weight:600;vertical-align:middle;">Bricks #${escapeHtml(String(s.bricks_template_id))}</span>`
-          : "";
+        const isBricks = !!s.bricks_template_id || !!s.ai_wireframe_id;
+        const previewId = s.ai_wireframe_id || s.bricks_template_id;
+        const bricksBadge = s.ai_wireframe_id
+          ? `<span style="display:inline-block;margin-left:8px;padding:1px 7px;border-radius:999px;font-size:11px;background:#6d28d9;color:#fff;font-weight:600;vertical-align:middle;">AI #${escapeHtml(String(s.ai_wireframe_id))}</span>`
+          : isBricks
+            ? `<span style="display:inline-block;margin-left:8px;padding:1px 7px;border-radius:999px;font-size:11px;background:#111;color:#fff;font-weight:600;vertical-align:middle;">Bricks #${escapeHtml(String(s.bricks_template_id))}</span>`
+            : "";
         const score =
           !isBricks && s.match_score !== undefined && s.match_score !== null
             ? " · score " + Math.round(parseFloat(s.match_score) * 10) / 10
