@@ -159,8 +159,15 @@ class AISB_Wireframe_Compiler {
     }
     foreach ($incoming as $c) {
       if (!is_array($c)) continue;
+      
+      // Fix undefined array key 'name' issues in Bricks: Force a name if missing
+      if (!isset($c['name'])) {
+        $c['name'] = $c['id'] ?? 'aisb-class-' . uniqid();
+      }
+
       $key = (string)($c['name'] ?? ($c['id'] ?? ''));
       if ($key === '' || isset($seen[$key])) continue;
+      
       $acc[] = $c;
       $seen[$key] = true;
     }

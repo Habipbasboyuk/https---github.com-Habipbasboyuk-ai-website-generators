@@ -30,6 +30,8 @@ require_once __DIR__ . '/includes/class-aisb-installer.php';
 require_once __DIR__ . '/includes/class-aisb-template-analyzer.php';
 require_once __DIR__ . '/includes/class-aisb-template-library.php';
 require_once __DIR__ . '/includes/class-aisb-wireframe-compiler.php';
+require_once __DIR__ . '/includes/class-aisb-wireframes-bricks.php';
+require_once __DIR__ . '/includes/class-aisb-wireframes-ai.php';
 require_once __DIR__ . '/includes/class-aisb-wireframes.php';
 
 register_activation_hook(__FILE__, ['AISB_Installer', 'activate']);
