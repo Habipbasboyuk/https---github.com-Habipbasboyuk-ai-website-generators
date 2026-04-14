@@ -1,0 +1,94 @@
+/* Output section: header, actions, summary pills, status, hints, counters, raw JSON */
+
+.aisb-hint {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #666;
+  font-size: 12px;
+}
+.aisb-counter {
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #f2f2f2;
+}
+.aisb-demo-note {
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #fff4cc;
+  border: 1px solid #ffe08a;
+  color: #5a4500;
+}
+.aisb-status {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #333;
+}
+.aisb-status .aisb-error {
+  color: #b00020;
+  font-weight: 600;
+}
+.aisb-status .aisb-ok {
+  color: #0b6b2f;
+  font-weight: 600;
+}
+
+.aisb-output-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.aisb-output-title {
+  margin: 0;
+  font-size: 18px;
+}
+.aisb-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.aisb-summary {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.aisb-pill {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: #f6f6f6;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: 12px;
+}
+.aisb-pill strong {
+  font-size: 12px;
+}
+
+.aisb-output-card {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.aisb-pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  background: #0b0b0b;
+  color: #eaeaea;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  overflow: auto;
+}
+.aisb-raw summary {
+  cursor: pointer;
+  margin-top: 14px;
+  font-weight: 800;
+}

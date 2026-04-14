@@ -15,27 +15,29 @@ define('AISB_PLUGIN_FILE', __FILE__);
 define('AISB_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('AISB_PLUGIN_URL', plugin_dir_url(__FILE__));
 
-// Load classes (your list)
-require_once __DIR__ . '/includes/class-aisb-plugin.php';
-require_once __DIR__ . '/includes/class-aisb-settings.php';
-require_once __DIR__ . '/includes/class-aisb-ajax.php';
-require_once __DIR__ . '/includes/class-aisb-openai.php';
-require_once __DIR__ . '/includes/class-aisb-logger.php';
-require_once __DIR__ . '/includes/class-aisb-prompts.php';
-require_once __DIR__ . '/includes/class-aisb-enforcer.php';
-require_once __DIR__ . '/includes/class-aisb-assets.php';
+// Core
+require_once __DIR__ . '/includes/core/class-aisb-plugin.php';
+require_once __DIR__ . '/includes/core/class-aisb-settings.php';
+require_once __DIR__ . '/includes/core/class-aisb-openai.php';
+require_once __DIR__ . '/includes/core/class-aisb-logger.php';
+require_once __DIR__ . '/includes/core/class-aisb-installer.php';
+
+// Step 1 (Sitemap)
+require_once __DIR__ . '/includes/step1-sitemap/class-aisb-ajax.php';
+require_once __DIR__ . '/includes/step1-sitemap/class-aisb-prompts.php';
+require_once __DIR__ . '/includes/step1-sitemap/class-aisb-enforcer.php';
+require_once __DIR__ . '/includes/step1-sitemap/class-aisb-assets.php';
 
 // Step 2 (Wireframes)
-require_once __DIR__ . '/includes/class-aisb-installer.php';
-require_once __DIR__ . '/includes/class-aisb-template-analyzer.php';
-require_once __DIR__ . '/includes/class-aisb-template-library.php';
-require_once __DIR__ . '/includes/class-aisb-wireframe-compiler.php';
-require_once __DIR__ . '/includes/class-aisb-wireframes-bricks.php';
-require_once __DIR__ . '/includes/class-aisb-wireframes-ai.php';
-require_once __DIR__ . '/includes/class-aisb-wireframes.php';
+require_once __DIR__ . '/includes/step2-wireframes/class-aisb-template-analyzer.php';
+require_once __DIR__ . '/includes/step2-wireframes/class-aisb-template-library.php';
+require_once __DIR__ . '/includes/step2-wireframes/class-aisb-wireframe-compiler.php';
+require_once __DIR__ . '/includes/step2-wireframes/class-aisb-wireframes-bricks.php';
+require_once __DIR__ . '/includes/step2-wireframes/class-aisb-wireframes-ai.php';
+require_once __DIR__ . '/includes/step2-wireframes/class-aisb-wireframes.php';
 
 // Step 3 (Style Guide)
-require_once __DIR__ . '/includes/class-aisb-style-guide.php';
+require_once __DIR__ . '/includes/step3-style-guide/class-aisb-style-guide.php';
 
 register_activation_hook(__FILE__, ['AISB_Installer', 'activate']);
 

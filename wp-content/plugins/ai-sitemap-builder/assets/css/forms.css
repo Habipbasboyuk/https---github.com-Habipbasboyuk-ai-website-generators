@@ -1,0 +1,137 @@
+/* Form elements: labels, textareas, selects, edit grid, inline forms, fields */
+
+.aisb-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+.aisb-textarea {
+  width: 100%;
+  resize: vertical;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 14px;
+  line-height: 1.4;
+  outline: none;
+}
+.aisb-textarea:focus {
+  border-color: rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.06);
+}
+
+.aisb-brief-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+@media (max-width: 820px) {
+  .aisb-brief-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.aisb-field .aisb-help {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #666;
+}
+
+.aisb-select {
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 14px;
+  outline: none;
+  background: #fff;
+}
+
+.aisb-select:focus {
+  border-color: rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.06);
+}
+
+.aisb-edit-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+.aisb-edit-row {
+  display: grid;
+  gap: 6px;
+}
+.aisb-edit-row label {
+  font-size: 11px;
+  font-weight: 800;
+  color: #333;
+}
+.aisb-edit-input,
+.aisb-edit-textarea,
+.aisb-edit-select {
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-size: 12px;
+  outline: none;
+  background: #fff;
+  line-height: 12px;
+}
+.aisb-edit-textarea {
+  resize: vertical;
+  min-height: 56px;
+}
+.aisb-edit-select {
+  appearance: auto;
+}
+.aisb-edit-help {
+  font-size: 11px;
+  color: #666;
+  margin-top: 6px;
+}
+
+.aisb-inline-form {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px dashed rgba(0, 0, 0, 0.18);
+  border-radius: 12px;
+  background: #fcfcfc;
+}
+.aisb-inline-form label {
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  margin: 0 0 6px 0;
+}
+.aisb-inline-form input,
+.aisb-inline-form textarea {
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-size: 12px;
+  outline: none;
+}
+.aisb-inline-form textarea {
+  resize: vertical;
+  min-height: 56px;
+}
+.aisb-inline-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  align-items: center;
+}
+.aisb-inline-row .aisb-mini-btn {
+  flex: 0 0 auto;
+}
+.aisb-inline-row .aisb-inline-note {
+  font-size: 11px;
+  color: #666;
+  margin-left: auto;
+}

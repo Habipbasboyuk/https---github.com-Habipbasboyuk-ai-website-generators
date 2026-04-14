@@ -1,0 +1,57 @@
+/* Button styles: primary, secondary, plus icon, mini buttons */
+
+.aisb-btn {
+  appearance: none;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-weight: 700;
+  cursor: pointer;
+  background: #111;
+  color: #fff;
+}
+.aisb-btn:hover {
+  opacity: 0.92;
+}
+.aisb-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.aisb-btn-secondary {
+  appearance: none;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 12px;
+  padding: 8px 12px;
+  background: #fff;
+  cursor: pointer;
+  font-weight: 600;
+}
+.aisb-btn-secondary:hover {
+  background: #fafafa;
+}
+.aisb-plus {
+  display: inline-block;
+  font-weight: 900;
+  margin-right: 6px;
+}
+.aisb-mini-btn {
+  appearance: none;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  padding: 7px 10px;
+  background: #fff;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 12px;
+}
+.aisb-mini-btn:hover {
+  background: #fafafa;
+}
+.aisb-mini-btn.primary {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
+.aisb-mini-btn.primary:hover {
+  opacity: 0.92;
+}

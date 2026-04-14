@@ -29,6 +29,104 @@
   margin-top: 20px;
 }
 
+/* ─── Sub-tabs (With Logo / Without Logo) ────────────────────── */
+.aisb-sg-subtabs {
+  display: flex;
+  gap: 6px;
+  margin: 16px 0;
+}
+.aisb-sg-subtab {
+  padding: 8px 18px;
+  border: 1px solid #e6e6e6;
+  border-radius: 999px;
+  background: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  color: #111;
+}
+.aisb-sg-subtab:hover {
+  background: #fafafa;
+}
+.aisb-sg-subtab.is-active {
+  border-color: #111;
+  background: #111;
+  color: #fff;
+}
+
+/* ─── Upload zone (logo) ─────────────────────────────────────── */
+.aisb-sg-mode-panel {
+  margin-bottom: 20px;
+}
+.aisb-sg-upload-zone {
+  border: 2px dashed #d4d4d4;
+  border-radius: 14px;
+  padding: 32px;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+}
+.aisb-sg-upload-zone:hover {
+  border-color: #a0a0a0;
+}
+.aisb-sg-upload-zone.drag-over {
+  border-color: #4f46e5;
+  background: rgba(79, 70, 229, 0.04);
+}
+.aisb-sg-upload-placeholder {
+  font-size: 14px;
+  color: #666;
+}
+.aisb-sg-upload-placeholder a {
+  color: #4f46e5;
+  font-weight: 600;
+  text-decoration: none;
+}
+.aisb-sg-upload-placeholder a:hover {
+  text-decoration: underline;
+}
+.aisb-sg-logo-preview {
+  max-width: 200px;
+  max-height: 120px;
+  margin: 12px auto 0;
+  display: block;
+  border-radius: 8px;
+}
+.aisb-sg-extracted {
+  margin-top: 16px;
+  padding: 16px;
+  background: #fafafa;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+}
+
+/* ─── Colour picker row (manual) ─────────────────────────────── */
+.aisb-sg-color-picker-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.aisb-sg-color-picker-row input[type="color"] {
+  width: 44px;
+  height: 44px;
+  border: 1px solid #d4d4d4;
+  border-radius: 10px;
+  padding: 2px;
+  cursor: pointer;
+  background: none;
+}
+.aisb-sg-hex-input {
+  width: 90px;
+  padding: 8px 10px;
+  font-family: monospace;
+  border: 1px solid #d4d4d4;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
 /* ─── Section blocks ─────────────────────────────────────────── */
 .aisb-sg-section {
   border: 1px solid rgba(0, 0, 0, 0.08);
@@ -77,6 +175,12 @@
   text-align: center;
   max-width: 80px;
   word-break: break-all;
+}
+.aisb-sg-swatch-hex {
+  font-size: 10px;
+  font-family: monospace;
+  color: rgba(0, 0, 0, 0.38);
+  text-align: center;
 }
 
 /* ─── Typography preview ─────────────────────────────────────── */
@@ -145,4 +249,189 @@
   letter-spacing: 0.05em;
   color: rgba(0, 0, 0, 0.4);
   margin-bottom: 10px;
+}
+
+/* ─── Live Preview (wireframe skeleton) ──────────────────────── */
+.aisb-sg-live-preview {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 14px;
+  overflow: hidden;
+  font-size: 14px;
+}
+
+/* Sectie-container */
+.aisb-lp-section {
+  padding: 28px 24px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+.aisb-lp-section:last-child {
+  border-bottom: none;
+}
+
+/* Hero sectie */
+.aisb-lp-hero {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  background: var(--aisb-light, #eef2ff);
+}
+.aisb-lp-hero-left {
+  flex: 1;
+}
+.aisb-lp-hero-right {
+  flex: 0 0 40%;
+}
+.aisb-lp-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--aisb-accent, #6366f1);
+  margin-bottom: 8px;
+}
+.aisb-lp-h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--aisb-dark, #312e81);
+  margin: 0 0 10px;
+  line-height: 1.15;
+}
+.aisb-lp-h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--aisb-dark, #312e81);
+  margin: 0 0 8px;
+}
+.aisb-lp-h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--aisb-dark, #312e81);
+  margin: 0 0 6px;
+}
+.aisb-lp-p {
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(0, 0, 0, 0.65);
+  margin: 0 0 12px;
+}
+.aisb-lp-btn-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.aisb-lp-btn {
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid var(--aisb-primary, #4f46e5);
+  color: var(--aisb-primary, #4f46e5);
+  background: transparent;
+}
+.aisb-lp-btn.primary {
+  background: var(--aisb-primary, #4f46e5);
+  color: #fff;
+  border-color: var(--aisb-primary, #4f46e5);
+}
+.aisb-lp-media {
+  background: var(--aisb-neutral, #f0f0f0);
+  border: 1px dashed rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+  padding: 32px;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.3);
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Cards */
+.aisb-lp-cards {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.aisb-lp-card {
+  flex: 1;
+  min-width: 120px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  padding: 14px;
+  background: var(--aisb-neutral, #fafafa);
+}
+.aisb-lp-cardtitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--aisb-dark, #312e81);
+  margin-bottom: 4px;
+}
+.aisb-lp-cardtxt {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.55);
+  line-height: 1.4;
+}
+
+/* List items */
+.aisb-lp-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+.aisb-lp-listitem {
+  padding: 10px 14px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
+  background: var(--aisb-neutral, #fafafa);
+}
+
+/* Section-type achtergronden */
+.aisb-lp-cta {
+  background: var(--aisb-primary, #4f46e5);
+  text-align: center;
+}
+.aisb-lp-cta .aisb-lp-h2 {
+  color: #fff;
+}
+.aisb-lp-cta .aisb-lp-p {
+  color: rgba(255, 255, 255, 0.8);
+}
+.aisb-lp-cta .aisb-lp-btn.primary {
+  background: #fff;
+  color: var(--aisb-primary, #4f46e5);
+  border-color: #fff;
+}
+.aisb-lp-footer {
+  background: var(--aisb-dark, #1e1b4b);
+}
+.aisb-lp-footer .aisb-lp-p {
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+/* "meer secties" melding */
+.aisb-lp-more {
+  padding: 12px 24px;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.38);
+  text-align: center;
+  font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .aisb-lp-hero {
+    flex-direction: column;
+  }
+  .aisb-lp-hero-right {
+    flex: none;
+    width: 100%;
+  }
+  .aisb-lp-cards {
+    flex-direction: column;
+  }
 }

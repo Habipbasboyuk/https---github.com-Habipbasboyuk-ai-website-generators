@@ -1,0 +1,95 @@
+/* Canvas workspace: layout, detail panel, canvas element, viewport, edges, nodes */
+
+.aisb-workspace {
+  margin-top: 14px;
+  display: flex;
+  gap: 12px;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.aisb-detail-panel {
+  width: 350px;
+  flex: 0 0 350px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.aisb-detail-head {
+  padding: 14px;
+  background: linear-gradient(180deg, #fafafa, #fff);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+.aisb-detail-title {
+  font-weight: 900;
+  font-size: 14px;
+  margin: 0;
+}
+.aisb-detail-sub {
+  margin-top: 6px;
+  color: #666;
+  font-size: 12px;
+}
+.aisb-detail-body {
+  padding: 14px;
+  overflow: auto;
+  min-height: 0;
+}
+
+.aisb-canvas-wrap {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+}
+.aisb-canvas {
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  height: 100%;
+  min-height: 0;
+  background:
+    radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.08) 1px, transparent 1px)
+      0 0 / 18px 18px,
+    #fff;
+}
+.aisb-canvas-hint {
+  position: absolute;
+  left: 12px;
+  bottom: 10px;
+  font-size: 12px;
+  color: #666;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 6px 10px;
+  border-radius: 999px;
+  pointer-events: none;
+}
+.aisb-viewport {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: 0 0;
+}
+.aisb-edges {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.aisb-nodes {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
