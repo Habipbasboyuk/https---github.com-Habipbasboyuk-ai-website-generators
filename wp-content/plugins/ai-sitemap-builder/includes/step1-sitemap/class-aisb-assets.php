@@ -120,17 +120,14 @@ class AISB_Assets {
     ?>
     <div class="aisb-wrap">
       <div class="aisb-card">
-        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
-          <h3 style="margin:0;"><?php echo esc_html($atts['title']); ?></h3>
-          <div style="font-size:13px; color:#555;">
-            Tip: put <code>[my-projects]</code> above <code>[ai_sitemap_builder]</code> so clicking a version instantly loads it.
-          </div>
-        </div>
+        <?php if (!empty($atts['title'])) : ?>
+          <h3 class="aisb-projects-title"><?php echo esc_html($atts['title']); ?></h3>
+        <?php endif; ?>
 
         <?php if (empty($project_ids)) : ?>
-          <p style="margin-top:10px;">You don't have any projects yet. Generate a sitemap first to create your first project.</p>
+          <p class="aisb-projects-empty">You don't have any projects yet. Generate a sitemap first to create your first project.</p>
         <?php else : ?>
-          <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(320px, 1fr)); gap:14px; margin-top:14px;">
+          <div class="aisb-projects-grid">
             <?php foreach ($project_ids as $pid) : ?>
               <?php
                 $title = get_the_title($pid);
@@ -138,12 +135,12 @@ class AISB_Assets {
                 $versions = $versions_by_project[$pid] ?? [];
                 $latest = $versions[0]['id'] ?? 0;
               ?>
-              <div style="border:1px solid #e6e6e6; border-radius:12px; padding:14px; background:#fff;">
-                <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:10px;">
+              <div class="aisb-project-card">
+                <div class="aisb-project-card-head">
                   <div>
-                    <div style="font-weight:700; font-size:15px; line-height:1.2;"><?php echo esc_html($title ?: ('Project #' . (int)$pid)); ?></div>
+                    <div class="aisb-project-card-title"><?php echo esc_html($title ?: ('Project #' . (int)$pid)); ?></div>
                     <?php if (!empty($brief)) : ?>
-                      <div style="margin-top:6px; font-size:13px; color:#555; white-space:pre-wrap;"><?php echo esc_html($brief); ?></div>
+                      <div class="aisb-project-card-brief"><?php echo esc_html($brief); ?></div>
                     <?php endif; ?>
                   </div>
                   <?php if ($latest) : ?>
@@ -159,19 +156,19 @@ class AISB_Assets {
                         'aisb_step'    => 2,
                       ], $wireframes_url);
                     ?>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                      <a class="aisb-btn-secondary" style="text-decoration:none;" href="<?php echo esc_url($latest_url); ?>">Open sitemap</a>
-                      <a class="aisb-btn" style="text-decoration:none;" href="<?php echo esc_url($latest_wf_url); ?>">Wireframes</a>
+                    <div class="aisb-project-card-actions">
+                      <a class="aisb-btn-secondary" href="<?php echo esc_url($latest_url); ?>">Open sitemap</a>
+                      <a class="aisb-btn" href="<?php echo esc_url($latest_wf_url); ?>">Wireframes</a>
                     </div>
                   <?php endif; ?>
                 </div>
 
-                <div style="margin-top:12px;">
-                  <div style="font-size:12px; font-weight:600; color:#666; margin-bottom:6px;">Versions</div>
+                <div class="aisb-project-versions">
+                  <div class="aisb-project-versions-label">Versions</div>
                   <?php if (empty($versions)) : ?>
-                    <div style="font-size:13px; color:#777;">No versions yet.</div>
+                    <div class="aisb-project-versions-empty">No versions yet.</div>
                   <?php else : ?>
-                    <div style="display:flex; flex-wrap:wrap; gap:8px;">
+                    <div class="aisb-project-versions-list">
                       <?php foreach ($versions as $v) : ?>
                         <?php
                           $v_label = 'v' . (int) $v['version'];
@@ -188,11 +185,11 @@ class AISB_Assets {
                             'aisb_step'    => 2,
                           ], $wireframes_url);
                         ?>
-                        <span style="display:inline-flex; align-items:center; gap:6px;">
-                          <a href="<?php echo esc_url($v_url); ?>" style="display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border:1px solid #e6e6e6; border-radius:999px; font-size:12px; text-decoration:none; color:#111;">
+                        <span class="aisb-project-version-group">
+                          <a href="<?php echo esc_url($v_url); ?>" class="aisb-project-version-link">
                             <?php echo esc_html($v_label); ?>
                           </a>
-                          <a href="<?php echo esc_url($v_wf_url); ?>" title="Wireframes" style="display:inline-flex; align-items:center; padding:6px 10px; border:1px solid #e6e6e6; border-radius:999px; font-size:12px; text-decoration:none; color:#111; background:#fafafa;">WF</a>
+                          <a href="<?php echo esc_url($v_wf_url); ?>" title="Wireframes" class="aisb-project-version-wf">WF</a>
                         </span>
                       <?php endforeach; ?>
                     </div>
@@ -347,54 +344,98 @@ class AISB_Assets {
                data-sitemap-id="<?php echo esc_attr($sitemap_id); ?>">
             <div class="aisb-wf-head">
               <div>
-                <h3 class="aisb-output-title" style="margin:0;">Wireframes</h3>
-                <p class="aisb-subtitle" style="margin-top:6px;">Relume-like preview · Brixies sections · fast skeleton rendering</p>
+                <h3 class="aisb-output-title">Wireframes</h3>
+                <p class="aisb-subtitle">Relume-like preview · Brixies sections · fast skeleton rendering</p>
               </div>
             </div>
 
             <?php if (!is_user_logged_in()) : ?>
               <p>You must be logged in to use wireframes.</p>
             <?php elseif (!$project_id || !$sitemap_id) : ?>
-              <div style="background: #fafafa; border: 1px solid #e6e6e6; border-radius: 12px; padding: 24px; text-align: center;">
-                <p class="aisb-wf-muted" style="margin:top:0; margin-bottom: 24px; font-size: 15px;">Please select one of your projects below to start generating wireframes.</p>
-                <div style="text-align: left; max-width: 800px; margin: 0 auto;">
+              <div class="aisb-wf-no-project">
+                <p class="aisb-wf-no-project-msg">Please select one of your projects below to start generating wireframes.</p>
+                <div class="aisb-wf-no-project-inner">
                   <?php echo $this->render_my_projects_shortcode(['title' => '']); ?>
                 </div>
               </div>
             <?php else : ?>
-              <div class="aisb-wf-layout">
-                <div class="aisb-wf-pages">
-                  <div class="aisb-wf-pages-head">
-                    <strong>Pages</strong>
-                    <span class="aisb-wf-muted" data-aisb-wf-pages-meta></span>
-                  </div>
-                  <div class="aisb-wf-pages-list" data-aisb-wf-pages></div>
-                </div>
 
-                <div class="aisb-wf-canvas">
-                  <div class="aisb-wf-canvas-head">
-                    <div>
-                      <div class="aisb-wf-canvas-title" data-aisb-wf-page-title>Select a page</div>
-                      <div class="aisb-wf-muted" data-aisb-wf-page-sub>Generate a wireframe to start editing.</div>
-                    </div>
-                    <div class="aisb-wf-actions">
-                      <select data-aisb-wf-pattern class="aisb-select" style="min-width:220px;"></select>
-                      <button class="aisb-btn-secondary" type="button" data-aisb-wf-generate>Generate wireframe</button>
-                      <button class="aisb-btn-secondary" type="button" data-aisb-wf-shuffle-page>Shuffle unlocked</button>
-                      <button class="aisb-btn" type="button" data-aisb-wf-save>Save</button>
-                      <button class="aisb-btn-secondary" type="button" data-aisb-wf-compile>Compile JSON</button>
-                    </div>
-                  </div>
-
-                  <div class="aisb-wf-status" data-aisb-wf-status></div>
-                  <div class="aisb-wf-sections" data-aisb-wf-sections></div>
-
-                  <details class="aisb-wf-raw">
-                    <summary>Compiled Bricks JSON (latest)</summary>
-                    <pre class="aisb-pre" data-aisb-wf-compiled></pre>
-                  </details>
+              <!-- Toolbar -->
+              <div class="aisb-wf-toolbar">
+                <div class="aisb-wf-toolbar-right">
+                  <button class="aisb-btn generate-wireframe__all" type="button" data-aisb-wf-generate-all>Generate all</button>
+                  <button class="aisb-btn" type="button" data-aisb-wf-save-all>Save all</button>
                 </div>
               </div>
+
+              <div class="aisb-wf-status" data-aisb-wf-status></div>
+
+              <!-- Whiteboard -->
+              <div class="aisb-wf-whiteboard" data-aisb-wf-whiteboard></div>
+
+              <!-- Expanded page panel (hidden by default) -->
+              <div class="aisb-wf-expanded" data-aisb-wf-expanded>
+                <div class="aisb-wf-expanded-head">
+                  <div>
+                    <div class="aisb-wf-canvas-title" data-aisb-wf-page-title></div>
+                    <div class="aisb-wf-muted" data-aisb-wf-page-sub></div>
+                  </div>
+                  <div class="aisb-wf-actions">
+                    <button class="aisb-btn-secondary" type="button" data-aisb-wf-generate>Generate wireframe</button>
+                    <button class="aisb-btn-secondary" type="button" data-aisb-wf-shuffle-page>Shuffle unlocked</button>
+                    <button class="aisb-btn" type="button" data-aisb-wf-save>Save</button>
+                    <button class="aisb-btn-secondary" type="button" data-aisb-wf-compile>Compile JSON</button>
+                    <button class="aisb-btn-secondary" type="button" data-aisb-wf-close-expanded>✕ Close</button>
+                  </div>
+                </div>
+                <div class="aisb-wf-sections" data-aisb-wf-sections></div>
+                <details class="aisb-wf-raw">
+                  <summary>Compiled Bricks JSON (latest)</summary>
+                  <pre class="aisb-pre" data-aisb-wf-compiled></pre>
+                </details>
+              </div>
+
+              <!-- Hidden legacy elements for JS compatibility -->
+              <div class="aisb-wf-legacy-pages" data-aisb-wf-pages></div>
+
+              <!-- Templates -->
+              <template data-tpl="page-card">
+                <div class="aisb-wf-page-card" data-wb-page>
+                  <div class="aisb-wf-page-card-head">
+                    <div>
+                      <div class="aisb-wf-page-card-title"></div>
+                      <div class="aisb-wf-page-card-slug"></div>
+                    </div>
+                    <span class="aisb-wf-page-card-badge"></span>
+                  </div>
+                  <div class="aisb-wf-page-card-body">
+                    <div class="aisb-wf-page-card-sections"></div>
+                  </div>
+                </div>
+              </template>
+
+              <template data-tpl="section-card">
+                <div class="aisb-wf-section" data-uuid>
+                  <div class="aisb-wf-section-toolbar">
+                    <button class="aisb-wf-tbtn" data-act="up" title="Move up">↑</button>
+                    <button class="aisb-wf-tbtn" data-act="down" title="Move down">↓</button>
+                    <button class="aisb-wf-tbtn" data-act="shuffle" title="Shuffle layout">⟳</button>
+                    <button class="aisb-wf-tbtn" data-act="lock" title="Lock">🔒</button>
+                    <button class="aisb-wf-tbtn" data-act="edit" title="Edit text">✏️</button>
+                    <button class="aisb-wf-tbtn" data-act="dup" title="Duplicate">⧉</button>
+                    <button class="aisb-wf-tbtn aisb-wf-tbtn-del" data-act="del" title="Delete">✕</button>
+                  </div>
+                  <div class="aisb-wf-body"></div>
+                </div>
+              </template>
+
+              <template data-tpl="section-label">
+                <div class="aisb-wf-section-label">
+                  <span class="aisb-wf-section-label-type"></span>
+                  <span class="aisb-wf-section-label-badge"></span>
+                </div>
+              </template>
+
             <?php endif; ?>
           </div>
         </div><!-- /Step 2 panel -->
@@ -406,8 +447,8 @@ class AISB_Assets {
                data-project-id="<?php echo esc_attr($project_id); ?>">
             <div class="aisb-sg-head">
               <div>
-                <h3 class="aisb-output-title" style="margin:0;">Style Guide</h3>
-                <p class="aisb-subtitle" style="margin-top:6px;">Brand colours · typography · component tokens</p>
+                <h3 class="aisb-output-title">Style Guide</h3>
+                <p class="aisb-subtitle">Brand colours · typography · component tokens</p>
               </div>
             </div>
 
@@ -444,7 +485,7 @@ class AISB_Assets {
 
     $settings = $this->get_settings();
 
-    // --- CSS (7 files, no dependencies between them) ---
+    // --- CSS (8 files, no dependencies between them) ---
     $css_files = [
       'aisb-base'       => 'css/base.css',
       'aisb-forms'      => 'css/forms.css',
@@ -453,6 +494,7 @@ class AISB_Assets {
       'aisb-canvas'     => 'css/canvas.css',
       'aisb-node-cards' => 'css/node-cards.css',
       'aisb-sections'   => 'css/sections.css',
+      'aisb-frontend'   => 'frontend.css',
     ];
     foreach ($css_files as $handle => $file) {
       wp_enqueue_style($handle, AISB_PLUGIN_URL . 'assets/' . $file, [], AISB_VERSION);
