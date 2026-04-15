@@ -35,6 +35,21 @@ class AISB_Wireframes_AI {
     }
     
     $page_title = $page_info['page_title'] ?? $page_info['nav_label'] ?? $page_slug;
+    $page_purpose = $page_info['page_purpose'] ?? '';
+    $page_type = $page_info['page_type'] ?? '';
+
+    // Sectie-context uit de sitemap ophalen (purpose + key_content per sectie)
+    $section_hints = [];
+    if (!empty($page_info['sections']) && is_array($page_info['sections'])) {
+        foreach ($page_info['sections'] as $s) {
+            $name = $s['section_name'] ?? $s['section_type'] ?? '';
+            $purpose = $s['purpose'] ?? '';
+            if ($name && $purpose) {
+                $section_hints[] = "- {$name}: {$purpose}";
+            }
+        }
+    }
+
     // Bricks settings-keys die tekst bevatten
     $text_keys = ['text', 'title', 'subtitle', 'description', 'heading', 'content', 'label'];
     
@@ -106,8 +121,19 @@ class AISB_Wireframes_AI {
     error_log('[AISB] to_translate has ' . count($to_translate) . ' section(s) — sending to OpenAI');
 
     // 3. Teksten naar OpenAI sturen voor professionele copy
-    $prompt = "You are a copywriter. Replace the placeholder texts in the following JSON with professional copy for: $brief. \n";
-    $prompt .= "Page: $page_title. Return ONLY the JSON with updated 'settings' values.";
+    $prompt = "You are a copywriter. Replace the placeholder texts in the following JSON with professional copy.\n\n";
+    $prompt .= "Project: {$brief}\n";
+    $prompt .= "Page: {$page_title}";
+    if ($page_type) $prompt .= " (type: {$page_type})";
+    $prompt .= "\n";
+    if ($page_purpose) {
+        $prompt .= "Page purpose: {$page_purpose}\n";
+    }
+    if (!empty($section_hints)) {
+        $prompt .= "Section context:\n" . implode("\n", $section_hints) . "\n";
+    }
+    $prompt .= "\nIMPORTANT: Write copy that is specific to this page. Do NOT use generic welcome/landing page text unless this is actually the Home page.\n";
+    $prompt .= "Return ONLY the JSON with updated 'settings' values.";
     $prompt .= "\n\nTarget JSON:\n" . wp_json_encode($to_translate);
 
     $settings = get_option('aisb_settings', []);
