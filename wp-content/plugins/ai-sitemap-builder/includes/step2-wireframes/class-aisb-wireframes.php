@@ -68,6 +68,29 @@ class AISB_Wireframes {
     }
 
     show_admin_bar(false);
+
+    // Set up post context for Bricks rendering
+    global $post;
+    $post = get_post($id);
+    setup_postdata($post);
+
+    if (class_exists('\Bricks\Database')) {
+      \Bricks\Database::set_active_templates($id);
+    }
+
+    wp_enqueue_style(
+      'aisb-wireframes-preview',
+      AISB_PLUGIN_URL . 'assets/wireframes-preview.css',
+      [],
+      AISB_VERSION
+    );
+    wp_enqueue_script(
+      'aisb-wireframes-preview',
+      AISB_PLUGIN_URL . 'assets/wireframes-preview.js',
+      [],
+      AISB_VERSION,
+      true
+    );
     ?>
     <!DOCTYPE html>
     <html <?php language_attributes(); ?>>
@@ -75,36 +98,11 @@ class AISB_Wireframes {
       <meta charset="<?php bloginfo('charset'); ?>">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <?php wp_head(); ?>
-      <style>
-        html, body {
-          margin: 0 !important;
-          padding: 0 !important;
-          background: transparent !important;
-          overflow: hidden !important;
-        }
-        .aisb-bricks-preview-wrap {
-          pointer-events: none;
-        }
-        body.aisb-edit-mode .aisb-bricks-preview-wrap {
-          pointer-events: auto;
-        }
-        body.aisb-edit-mode [contenteditable="true"] {
-          outline: 2px dashed rgba(59,130,246,.5);
-          outline-offset: 2px;
-          cursor: text;
-          min-height: 1em;
-        }
-        body.aisb-edit-mode [contenteditable="true"]:focus {
-          outline: 2px solid rgba(59,130,246,.8);
-          background: rgba(59,130,246,.04);
-        }
-      </style>
     </head>
     <body <?php body_class(); ?>>
       <div class="aisb-bricks-preview-wrap" id="aisb-preview">
         <?php
         if ($post->post_type === 'ai_wireframe') {
-          // AI wireframe: Bricks elementen direct renderen (geen shortcode, want het is geen bricks_template)
           if (class_exists('\Bricks\Frontend')) {
             $elements = get_post_meta($id, '_bricks_page_content_2', true);
             if (is_array($elements) && !empty($elements)) {
@@ -116,85 +114,12 @@ class AISB_Wireframes {
             echo '<p style="padding:20px;color:#999;">Bricks Builder is vereist om AI wireframes te bekijken.</p>';
           }
         } else {
-          // Bricks template: via de standaard Bricks shortcode renderen
+          // Bricks template: header/footer/section via shortcode
           echo do_shortcode('[bricks_template id="' . $id . '"]');
         }
         ?>
       </div>
       <?php wp_footer(); ?>
-      <script>
-      (function() {
-        var TEXT_TAGS = ['H1','H2','H3','H4','H5','H6','P','SPAN','A','LI','BUTTON','LABEL','BLOCKQUOTE','TD','TH','FIGCAPTION','LEGEND'];
-        var originalTexts = {};
-
-        function reportHeight() {
-          var wrap = document.getElementById('aisb-preview');
-          var h = wrap ? wrap.getBoundingClientRect().height : document.body.scrollHeight;
-          window.parent.postMessage({ type: 'aisb_iframe_height', height: h }, '*');
-        }
-        window.addEventListener('load', reportHeight);
-        if (window.ResizeObserver) {
-          new ResizeObserver(reportHeight).observe(document.body);
-        }
-        setTimeout(reportHeight, 500);
-        setTimeout(reportHeight, 2000);
-
-        window.addEventListener('message', function(e) {
-          if (!e.data || !e.data.type) return;
-
-          if (e.data.type === 'aisb_enable_edit') {
-            document.body.classList.add('aisb-edit-mode');
-            document.body.style.overflow = 'auto';
-            originalTexts = {};
-            var wrap = document.getElementById('aisb-preview');
-            var els = wrap.querySelectorAll(TEXT_TAGS.join(','));
-            var editIdx = 0;
-            els.forEach(function(el) {
-              var text = (el.textContent || '').trim();
-              if (text.length > 0 && text.length < 2000 && !el.querySelector(TEXT_TAGS.join(','))) {
-                el.setAttribute('contenteditable', 'true');
-                el.setAttribute('spellcheck', 'false');
-                el.setAttribute('data-aisb-edit-idx', editIdx);
-                originalTexts[editIdx] = el.innerHTML;
-                editIdx++;
-              }
-            });
-            reportHeight();
-          }
-
-          if (e.data.type === 'aisb_disable_edit') {
-            document.body.classList.remove('aisb-edit-mode');
-            document.body.style.overflow = 'hidden';
-            var editables = document.querySelectorAll('[contenteditable="true"]');
-            editables.forEach(function(el) {
-              el.removeAttribute('contenteditable');
-              el.removeAttribute('spellcheck');
-            });
-            reportHeight();
-          }
-
-          if (e.data.type === 'aisb_get_edited_content') {
-            var changes = [];
-            var editables = document.querySelectorAll('[data-aisb-edit-idx]');
-            editables.forEach(function(el) {
-              var idx = el.getAttribute('data-aisb-edit-idx');
-              var current = el.innerHTML;
-              var original = originalTexts[idx] || '';
-              if (current !== original) {
-                changes.push({
-                  original: original,
-                  updated: current
-                });
-              }
-            });
-            window.parent.postMessage({
-              type: 'aisb_edited_content',
-              changes: changes
-            }, '*');
-          }
-        });
-      })();
-      </script>
     </body>
     </html>
     <?php
@@ -218,19 +143,36 @@ class AISB_Wireframes {
       AISB_VERSION
     );
 
-    wp_enqueue_script(
-      'aisb-wireframes',
-      AISB_PLUGIN_URL . 'assets/wireframes.js',
-      [],
-      AISB_VERSION,
-      true
-    );
-    wp_localize_script('aisb-wireframes', 'AISB_WF', [
+    // Wireframe JS modules — loaded in dependency order
+    $wf_modules = [
+      'state',
+      'helpers',
+      'canvas',
+      'whiteboard',
+      'expanded',
+      'sections',
+      'sitemap',
+      'generate',
+      'actions',
+      'init',
+    ];
+    $prev = [];
+    foreach ($wf_modules as $mod) {
+      $handle = "aisb-wf-{$mod}";
+      wp_enqueue_script(
+        $handle,
+        AISB_PLUGIN_URL . "assets/js/wireframes/{$mod}.js",
+        $prev,
+        AISB_VERSION,
+        true
+      );
+      $prev = [$handle];
+    }
+    wp_localize_script('aisb-wf-state', 'AISB_WF', [
       'ajaxUrl' => admin_url('admin-ajax.php'),
       'previewUrl' => home_url('/?aisb_bricks_preview='),
       'nonce'   => wp_create_nonce('aisb_wf_nonce'),
       'coreNonce' => wp_create_nonce('aisb_nonce_action'),
-      'patterns'     => $this->patterns(),
       'sectionTypes' => $this->bricks->get_all_section_types(),
     ]);
   }
@@ -251,8 +193,8 @@ class AISB_Wireframes {
       <div class="aisb-card">
         <div class="aisb-wf-head">
           <div>
-            <h2 class="aisb-title" style="margin:0;">Wireframes</h2>
-            <p class="aisb-subtitle" style="margin-top:6px;">Relume-like preview · Brixies sections · fast skeleton rendering</p>
+            <h2 class="aisb-title">Wireframes</h2>
+            <p class="aisb-subtitle">Relume-like preview · Brixies sections · fast skeleton rendering</p>
           </div>
           <div class="aisb-wf-top-actions">
             <a class="aisb-btn-secondary" href="<?php echo esc_url(remove_query_arg(['aisb_step'])); ?>">Back to sitemap</a>
@@ -260,47 +202,90 @@ class AISB_Wireframes {
         </div>
 
         <?php if (!$project_id || !$sitemap_id) : ?>
-          <div style="background: #fafafa; border: 1px solid #e6e6e6; border-radius: 12px; padding: 24px; text-align: center; margin-top: 14px;">
-            <p class="aisb-wf-muted" style="margin-top:0; margin-bottom: 24px; font-size: 15px;">Please select one of your projects below to start generating wireframes.</p>
-            <div style="text-align: left; max-width: 800px; margin: 0 auto;">
+          <div class="aisb-wf-no-project">
+            <p class="aisb-wf-no-project-msg">Please select one of your projects below to start generating wireframes.</p>
+            <div class="aisb-wf-no-project-inner">
               <?php echo do_shortcode('[my-projects title=""]'); ?>
             </div>
           </div>
         <?php else : ?>
-        <div class="aisb-wf-layout">
-          <div class="aisb-wf-pages">
-            <div class="aisb-wf-pages-head">
-              <strong>Pages</strong>
-              <span class="aisb-wf-muted" data-aisb-wf-pages-meta></span>
-            </div>
-            <div class="aisb-wf-pages-list" data-aisb-wf-pages></div>
-          </div>
 
-          <div class="aisb-wf-canvas">
-            <div class="aisb-wf-canvas-head">
-              <div>
-                <div class="aisb-wf-canvas-title" data-aisb-wf-page-title>Select a page</div>
-                <div class="aisb-wf-muted" data-aisb-wf-page-sub>Generate a wireframe to start editing.</div>
-              </div>
-              <div class="aisb-wf-actions">
-                <select data-aisb-wf-pattern class="aisb-select" style="min-width:220px;"></select>
-                <button class="aisb-btn-secondary" type="button" data-aisb-wf-generate>Generate wireframe</button>
-                <button class="aisb-btn" style="background:#0b6b2f;" type="button" data-aisb-wf-generate-all>Generate all</button>
-                <button class="aisb-btn-secondary" type="button" data-aisb-wf-shuffle-page>Shuffle unlocked</button>
-                <button class="aisb-btn" type="button" data-aisb-wf-save>Save</button>
-                <button class="aisb-btn-secondary" type="button" data-aisb-wf-compile>Compile JSON</button>
-              </div>
-            </div>
-
-            <div class="aisb-wf-status" data-aisb-wf-status></div>
-            <div class="aisb-wf-sections" data-aisb-wf-sections></div>
-
-            <details class="aisb-wf-raw">
-              <summary>Compiled Bricks JSON (latest)</summary>
-              <pre class="aisb-pre" data-aisb-wf-compiled></pre>
-            </details>
+        <!-- Toolbar -->
+        <div class="aisb-wf-toolbar">
+          <div class="aisb-wf-toolbar-right">
+            <button class="aisb-btn generate-wireframe__all" type="button" data-aisb-wf-generate-all>Generate all</button>
+            <button class="aisb-btn" type="button" data-aisb-wf-save-all>Save all</button>
           </div>
         </div>
+
+        <div class="aisb-wf-status" data-aisb-wf-status></div>
+
+        <!-- Whiteboard -->
+        <div class="aisb-wf-whiteboard" data-aisb-wf-whiteboard></div>
+
+        <!-- Expanded page panel (hidden by default) -->
+        <div class="aisb-wf-expanded" data-aisb-wf-expanded>
+          <div class="aisb-wf-expanded-head">
+            <div>
+              <div class="aisb-wf-canvas-title" data-aisb-wf-page-title></div>
+              <div class="aisb-wf-muted" data-aisb-wf-page-sub></div>
+            </div>
+            <div class="aisb-wf-actions">
+              <button class="aisb-btn-secondary" type="button" data-aisb-wf-generate>Generate wireframe</button>
+              <button class="aisb-btn-secondary" type="button" data-aisb-wf-shuffle-page>Shuffle unlocked</button>
+              <button class="aisb-btn" type="button" data-aisb-wf-save>Save</button>
+              <button class="aisb-btn-secondary" type="button" data-aisb-wf-compile>Compile JSON</button>
+              <button class="aisb-btn-secondary" type="button" data-aisb-wf-close-expanded>✕ Close</button>
+            </div>
+          </div>
+          <div class="aisb-wf-sections" data-aisb-wf-sections></div>
+          <details class="aisb-wf-raw">
+            <summary>Compiled Bricks JSON (latest)</summary>
+            <pre class="aisb-pre" data-aisb-wf-compiled></pre>
+          </details>
+        </div>
+
+        <!-- Hidden legacy elements for JS compatibility -->
+        <div class="aisb-wf-legacy-pages" data-aisb-wf-pages></div>
+
+        <!-- Templates -->
+        <template data-tpl="page-card">
+          <div class="aisb-wf-page-card" data-wb-page>
+            <div class="aisb-wf-page-card-head">
+              <div>
+                <div class="aisb-wf-page-card-title"></div>
+                <div class="aisb-wf-page-card-slug"></div>
+              </div>
+              <span class="aisb-wf-page-card-badge"></span>
+            </div>
+            <div class="aisb-wf-page-card-body">
+              <div class="aisb-wf-page-card-sections"></div>
+            </div>
+          </div>
+        </template>
+
+        <template data-tpl="section-card">
+          <div class="aisb-wf-section" data-uuid>
+            <div class="aisb-wf-section-toolbar">
+              <button class="aisb-wf-tbtn" data-act="up" title="Move up">↑</button>
+              <button class="aisb-wf-tbtn" data-act="down" title="Move down">↓</button>
+              <button class="aisb-wf-tbtn" data-act="shuffle" title="Shuffle layout">⟳</button>
+              <button class="aisb-wf-tbtn" data-act="lock" title="Lock">🔒</button>
+              <button class="aisb-wf-tbtn" data-act="edit" title="Edit text">✏️</button>
+              <button class="aisb-wf-tbtn" data-act="dup" title="Duplicate">⧉</button>
+              <button class="aisb-wf-tbtn aisb-wf-tbtn-del" data-act="del" title="Delete">✕</button>
+            </div>
+            <div class="aisb-wf-body"></div>
+          </div>
+        </template>
+
+        <template data-tpl="section-label">
+          <div class="aisb-wf-section-label">
+            <span class="aisb-wf-section-label-type"></span>
+            <span class="aisb-wf-section-label-badge"></span>
+          </div>
+        </template>
+
         <?php endif; ?>
       </div>
     </div>
@@ -394,11 +379,11 @@ class AISB_Wireframes {
     $project_id = isset($_POST['project_id']) ? (int)$_POST['project_id'] : 0;
     $sitemap_version_id = isset($_POST['sitemap_version_id']) ? (int)$_POST['sitemap_version_id'] : 0;
     $page_slug = isset($_POST['page_slug']) ? sanitize_title(wp_unslash($_POST['page_slug'])) : '';
-    $pattern = isset($_POST['pattern']) ? sanitize_key(wp_unslash($_POST['pattern'])) : 'generic';
     $this->assert_project_ownership($project_id);
     if (!$sitemap_version_id || !$page_slug) wp_send_json_error(['message' => 'Missing params'], 400);
 
-    $types = $this->patterns()[$pattern] ?? $this->patterns()['generic'];
+    $pattern = $this->detect_pattern($page_slug);
+    $types = $this->patterns()[$pattern];
     $model = [
       'page' => ['slug' => $page_slug, 'title' => ucfirst(str_replace('-', ' ', $page_slug))],
       'pattern' => $pattern,
@@ -409,7 +394,30 @@ class AISB_Wireframes {
     $used_bricks_ids  = [];
     $used_layout_keys = [];
 
+    // Hergebruik dezelfde header/footer template over alle pagina's
+    $shared_templates = $this->find_shared_templates($project_id, $sitemap_version_id, $page_slug);
+
     foreach ($types as $t) {
+      // Header/footer: consistente template hergebruiken als die al bestaat
+      if (in_array($t, ['header', 'footer'], true) && !empty($shared_templates[$t])) {
+        $shared = $shared_templates[$t];
+        $used_bricks_ids[] = (int) $shared['bricks_template_id'];
+        $model['sections'][] = [
+          'uuid'                  => wp_generate_uuid4(),
+          'type'                  => $t,
+          'layout_key'            => 'bricks_' . $shared['bricks_template_id'],
+          'bricks_template_id'    => $shared['bricks_template_id'],
+          'bricks_template_title' => $shared['bricks_template_title'],
+          'bricks_template_ttype' => $shared['bricks_template_ttype'] ?? '',
+          'bricks_shortcode'      => $shared['bricks_shortcode'] ?? '',
+          'locked'                => false,
+          'preview_schema'        => null,
+          'match_score'           => null,
+          'match_tags'            => $shared['match_tags'] ?? '',
+        ];
+        continue;
+      }
+
       $bricks_tpl = $this->bricks->pick_bricks_template($t, $bricks_by_type, $used_bricks_ids);
 
       if ($bricks_tpl) {
@@ -705,6 +713,35 @@ class AISB_Wireframes {
 
   /* ------------------- Helpers ------------------- */
 
+  /**
+   * Zoek bestaande header/footer templates uit andere pagina's in hetzelfde project.
+   * Zo blijft de navbar en footer consistent over alle pagina's.
+   */
+  private function find_shared_templates(int $project_id, int $sitemap_version_id, string $exclude_slug): array {
+    global $wpdb;
+    $table = $this->table_wireframes();
+    $rows = $wpdb->get_results($wpdb->prepare(
+      "SELECT model_json FROM {$table} WHERE project_id=%d AND sitemap_version_id=%d AND page_slug!=%s AND model_json IS NOT NULL",
+      $project_id, $sitemap_version_id, $exclude_slug
+    ), ARRAY_A);
+
+    $shared = [];
+    foreach ($rows as $row) {
+      $model = json_decode($row['model_json'] ?? '', true);
+      if (!is_array($model) || empty($model['sections'])) continue;
+      foreach ($model['sections'] as $sec) {
+        $type = $sec['type'] ?? '';
+        if (!in_array($type, ['header', 'footer'], true)) continue;
+        if (empty($sec['bricks_template_id'])) continue;
+        if (!isset($shared[$type])) {
+          $shared[$type] = $sec;
+        }
+      }
+      if (isset($shared['header']) && isset($shared['footer'])) break;
+    }
+    return $shared;
+  }
+
   private function save_model(int $project_id, int $sitemap_version_id, string $page_slug, array $model, bool $clear_compiled): void {
     global $wpdb;
     $table = $this->table_wireframes();
@@ -727,12 +764,33 @@ class AISB_Wireframes {
 
   public function patterns(): array {
     return [
-      'homepage'     => ['hero','social_proof','features','testimonials','pricing','faq','cta'],
-      'service_page' => ['hero','features','process','testimonials','faq','cta'],
-      'about'        => ['hero','story','team','values','testimonials','cta'],
-      'contact'      => ['hero','contact_form','locations','faq','cta'],
-      'generic'      => ['hero','features','faq','cta'],
+      'homepage'     => ['header','hero','social_proof','features','testimonials','pricing','faq','cta','footer'],
+      'service_page' => ['header','hero','features','process','testimonials','faq','cta','footer'],
+      'about'        => ['header','hero','story','team','values','testimonials','cta','footer'],
+      'contact'      => ['header','hero','contact_form','locations','faq','cta','footer'],
+      'generic'      => ['header','hero','features','faq','cta','footer'],
     ];
+  }
+
+  /**
+   * Auto-detect the best pattern for a page based on its slug.
+   */
+  private function detect_pattern(string $slug): string {
+    $slug = strtolower($slug);
+    $map = [
+      'homepage'     => ['home', 'homepage', 'index', 'front', 'frontpage', 'start'],
+      'service_page' => ['service', 'services', 'diensten', 'oplossingen', 'solutions', 'product', 'products', 'aanbod'],
+      'about'        => ['about', 'about-us', 'over', 'over-ons', 'team', 'ons-verhaal', 'our-story', 'who-we-are'],
+      'contact'      => ['contact', 'contact-us', 'get-in-touch', 'neem-contact-op', 'bereik-ons'],
+    ];
+    foreach ($map as $pattern => $keywords) {
+      foreach ($keywords as $kw) {
+        if ($slug === $kw || str_contains($slug, $kw)) {
+          return $pattern;
+        }
+      }
+    }
+    return 'generic';
   }
 
   private function current_page_has_shortcode(string $shortcode): bool {
