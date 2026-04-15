@@ -565,44 +565,6 @@ class AISB_Assets {
   }
 
   public function section_types():array {
-    $types = [
-      'Banner Section',
-      'Blog Sections',
-      'Career Sections',
-      'Category Filters',
-      'Contact Sections',
-      'Content Sections',
-      'CTA Sections',
-      'Event Sections',
-      'FAQ Sections',
-      'Feature Sections',
-      'Footers',
-      'Gallery Sections',
-      'Headers',
-      'Hero Sections',
-      'Intro Sections',
-      'Logo Sections',
-      'Megamenu Sections - part of header section',
-      'Portfolio Sections',
-      'Pricing Sections',
-      'Process Sections',
-      'Products Sections',
-      'Property Sections',
-      'Single Event Sections',
-      'Single Portfolio Sections',
-      'Single Post Hero',
-      'Single Post Sections',
-      'Single Product Sections',
-      'Single Property Sections',
-      'Single Team Sections',
-      'Team Sections',
-      'Testimonial Sections',
-      'Timeline Sections',
-    ];
-
-    // Allow overriding via filter, but guarantee an array return
-    $filtered = apply_filters('aisb_section_types', $types);
-
-    return is_array($filtered) ? array_values($filtered) : $types;
+    return AISB_Enforcer::section_types();
   }
 }

@@ -60,22 +60,24 @@ class AISB_Wireframes {
       wp_die('Invalid post type for preview');
     }
 
-    if (function_exists('bricks_enqueue_scripts')) {
-      bricks_enqueue_scripts();
-    }
-    if (class_exists('\Bricks\Assets')) {
-      \Bricks\Assets::generate_inline_css();
-    }
-
     show_admin_bar(false);
 
-    // Set up post context for Bricks rendering
+    // Set up post context BEFORE CSS generation so Bricks knows which elements need CSS
     global $post;
     $post = get_post($id);
     setup_postdata($post);
 
-    if (class_exists('\Bricks\Database')) {
-      \Bricks\Database::set_active_templates($id);
+    if (function_exists('bricks_enqueue_scripts')) {
+      bricks_enqueue_scripts();
+    }
+
+    // Generate element-specific CSS (flex-direction, grid, etc.) for the template
+    if (class_exists('\Bricks\Assets')) {
+      $elements = get_post_meta($id, '_bricks_page_content_2', true);
+      if (is_array($elements) && !empty($elements)) {
+        \Bricks\Assets::$post_id = $id;
+        \Bricks\Assets::generate_css_from_elements($elements, 'content');
+      }
     }
 
     wp_enqueue_style(
@@ -97,6 +99,11 @@ class AISB_Wireframes {
     <head>
       <meta charset="<?php bloginfo('charset'); ?>">
       <meta name="viewport" content="width=1200, initial-scale=1">
+      <script>
+      /* Spoof viewport width BEFORE any Bricks JS runs so all breakpoint checks see 1200px */
+      Object.defineProperty(window, 'innerWidth', { get: function(){ return 1200; }, configurable: true });
+      Object.defineProperty(document.documentElement, 'clientWidth', { get: function(){ return 1200; }, configurable: true });
+      </script>
       <?php wp_head(); ?>
     </head>
     <body <?php body_class(); ?>>
@@ -139,21 +146,46 @@ class AISB_Wireframes {
       </div>
       <?php wp_footer(); ?>
       <script>
-      /* Force desktop: remove all max-width media query rules from all stylesheets */
+      /* Force desktop: strip max-width media queries from all stylesheets, continuously */
       (function(){
-        try {
-          for (var i = 0; i < document.styleSheets.length; i++) {
-            var sheet = document.styleSheets[i];
-            try { var rules = sheet.cssRules || sheet.rules; } catch(e) { continue; }
-            if (!rules) continue;
-            for (var j = rules.length - 1; j >= 0; j--) {
-              var rule = rules[j];
-              if (rule.type === CSSRule.MEDIA_RULE && rule.conditionText && rule.conditionText.indexOf('max-width') !== -1) {
-                sheet.deleteRule(j);
+        function stripMaxWidth(){
+          try {
+            for(var i=0;i<document.styleSheets.length;i++){
+              var s=document.styleSheets[i];
+              try{var r=s.cssRules||s.rules;}catch(e){continue;}
+              if(!r)continue;
+              for(var j=r.length-1;j>=0;j--){
+                if(r[j].type===CSSRule.MEDIA_RULE&&r[j].conditionText&&r[j].conditionText.indexOf('max-width')!==-1){
+                  s.deleteRule(j);
+                }
+              }
+            }
+          }catch(e){}
+        }
+        /* Run immediately */
+        stripMaxWidth();
+        /* Re-run when any existing <link> stylesheet finishes loading */
+        document.querySelectorAll('link[rel="stylesheet"]').forEach(function(link){
+          link.addEventListener('load', function(){ setTimeout(stripMaxWidth,0); });
+        });
+        /* Watch for new <style>/<link> elements added later */
+        new MutationObserver(function(mutations){
+          for(var m=0;m<mutations.length;m++){
+            for(var n=0;n<mutations[m].addedNodes.length;n++){
+              var node=mutations[m].addedNodes[n];
+              if(node.tagName==='STYLE'){ setTimeout(stripMaxWidth,0); return; }
+              if(node.tagName==='LINK'){
+                node.addEventListener('load', function(){ setTimeout(stripMaxWidth,0); });
+                return;
               }
             }
           }
-        } catch(e) {}
+        }).observe(document.documentElement,{childList:true,subtree:true});
+        /* Safety net: re-run a few times during page load */
+        setTimeout(stripMaxWidth, 500);
+        setTimeout(stripMaxWidth, 1500);
+        setTimeout(stripMaxWidth, 3000);
+        window.addEventListener('load', function(){ setTimeout(stripMaxWidth, 100); });
       })();
       </script>
     </body>

@@ -26,7 +26,7 @@ class AISB_Enforcer {
     return $this->section_type_from_name($fallback_name);
   }
 
-  public function section_types():array {
+  public static function section_types():array {
     $types = [
       'Banner Section',
       'Blog Sections',

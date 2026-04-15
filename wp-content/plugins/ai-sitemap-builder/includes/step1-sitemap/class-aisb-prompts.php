@@ -96,44 +96,7 @@ PROMPT;
   }
 
   public function section_types():array {
-    $types = [
-      'Banner Section',
-      'Blog Sections',
-      'Career Sections',
-      'Category Filters',
-      'Contact Sections',
-      'Content Sections',
-      'CTA Sections',
-      'Event Sections',
-      'FAQ Sections',
-      'Feature Sections',
-      'Footers',
-      'Gallery Sections',
-      'Headers',
-      'Hero Sections',
-      'Intro Sections',
-      'Logo Sections',
-      'Megamenu Sections - part of header section',
-      'Portfolio Sections',
-      'Pricing Sections',
-      'Process Sections',
-      'Products Sections',
-      'Property Sections',
-      'Single Event Sections',
-      'Single Portfolio Sections',
-      'Single Post Hero',
-      'Single Post Sections',
-      'Single Product Sections',
-      'Single Property Sections',
-      'Single Team Sections',
-      'Team Sections',
-      'Testimonial Sections',
-      'Timeline Sections',
-    ];
-
-    // Ensure stable array
-  $types = array_values(array_filter(array_map('trim', $types)));
-  return $types;
+    return AISB_Enforcer::section_types();
   }
 
   /**

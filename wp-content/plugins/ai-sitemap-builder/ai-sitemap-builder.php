@@ -2,7 +2,7 @@
 /**
  * Plugin Name: AI Sitemap Builder (Shortcode)
  * Description: Shortcode that generates a sitemap + navigation hierarchy + page sections from a prompt using the OpenAI API. Includes a draggable/zoomable canvas with linked connectors and inline add-child forms. Sections are editable (title, description, type).
- * Version: 1.4.1
+ * Version: 1.6.5
  * Author: Archer Websites
  * Requires at least: 6.0
  * Requires PHP: 7.4
@@ -10,7 +10,7 @@
 
 if (!defined('ABSPATH')) exit;
 
-define('AISB_VERSION', '1.5.9');
+define('AISB_VERSION', '1.6.5');
 define('AISB_PLUGIN_FILE', __FILE__);
 define('AISB_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('AISB_PLUGIN_URL', plugin_dir_url(__FILE__));
