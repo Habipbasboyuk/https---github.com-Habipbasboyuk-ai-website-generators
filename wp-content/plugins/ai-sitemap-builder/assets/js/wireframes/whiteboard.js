@@ -94,6 +94,10 @@
         if (!cardBody) continue;
         const scale = cardBody.offsetWidth / 1200;
         preview.style.setProperty("--wb-scale", scale.toFixed(4));
+        // With transform: scale(), layout size stays 1200px.
+        // Set body height to the scaled preview height.
+        const iframeCount = preview.querySelectorAll("iframe").length || 1;
+        cardBody.style.height = Math.ceil(iframeCount * 600 * scale) + "px";
       }
       app.fitToView();
     });

@@ -96,10 +96,28 @@ class AISB_Wireframes {
     <html <?php language_attributes(); ?>>
     <head>
       <meta charset="<?php bloginfo('charset'); ?>">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="width=1200, initial-scale=1">
       <?php wp_head(); ?>
     </head>
     <body <?php body_class(); ?>>
+      <style id="aisb-force-desktop">
+        /* Override ALL Bricks responsive breakpoints to force desktop layout */
+        @media (max-width: 1320px) {
+          .brxe-section, .brxe-container, .brxe-block, .brxe-div { flex-wrap: nowrap !important; }
+        }
+        @media (max-width: 991px) {
+          .brxe-section, .brxe-container, .brxe-block, .brxe-div { flex-wrap: nowrap !important; }
+          [class*="brxe-"] { width: unset !important; max-width: unset !important; flex-basis: unset !important; flex-direction: unset !important; }
+        }
+        @media (max-width: 767px) {
+          .brxe-section, .brxe-container, .brxe-block, .brxe-div { flex-wrap: nowrap !important; }
+          [class*="brxe-"] { width: unset !important; max-width: unset !important; flex-basis: unset !important; flex-direction: unset !important; }
+        }
+        @media (max-width: 478px) {
+          .brxe-section, .brxe-container, .brxe-block, .brxe-div { flex-wrap: nowrap !important; }
+          [class*="brxe-"] { width: unset !important; max-width: unset !important; flex-basis: unset !important; flex-direction: unset !important; }
+        }
+      </style>
       <div class="aisb-bricks-preview-wrap" id="aisb-preview">
         <?php
         if ($post->post_type === 'ai_wireframe') {
@@ -120,6 +138,24 @@ class AISB_Wireframes {
         ?>
       </div>
       <?php wp_footer(); ?>
+      <script>
+      /* Force desktop: remove all max-width media query rules from all stylesheets */
+      (function(){
+        try {
+          for (var i = 0; i < document.styleSheets.length; i++) {
+            var sheet = document.styleSheets[i];
+            try { var rules = sheet.cssRules || sheet.rules; } catch(e) { continue; }
+            if (!rules) continue;
+            for (var j = rules.length - 1; j >= 0; j--) {
+              var rule = rules[j];
+              if (rule.type === CSSRule.MEDIA_RULE && rule.conditionText && rule.conditionText.indexOf('max-width') !== -1) {
+                sheet.deleteRule(j);
+              }
+            }
+          }
+        } catch(e) {}
+      })();
+      </script>
     </body>
     </html>
     <?php

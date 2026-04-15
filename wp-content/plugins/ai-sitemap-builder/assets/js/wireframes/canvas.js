@@ -33,8 +33,7 @@
   };
 
   function applyCanvasTransform() {
-    inner.style.transform = `translate(${app.canvas.tx}px, ${app.canvas.ty}px)`;
-    inner.style.zoom = app.canvas.scale;
+    inner.style.transform = `translate(${app.canvas.tx}px, ${app.canvas.ty}px) scale(${app.canvas.scale})`;
   }
   app.applyCanvasTransform = applyCanvasTransform;
 

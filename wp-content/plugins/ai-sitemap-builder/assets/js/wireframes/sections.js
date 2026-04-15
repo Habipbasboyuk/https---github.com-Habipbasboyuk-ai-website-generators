@@ -4,6 +4,20 @@
 (function (app) {
   if (!app) return;
 
+  // --- Rescale expanded-view iframes on resize ---
+  window.addEventListener("resize", () => {
+    document.querySelectorAll(".aisb-wf-iframe-wrap").forEach((wrap) => {
+      const body = wrap.closest(".aisb-wf-body");
+      const iframe = wrap.querySelector("iframe");
+      if (body && iframe) {
+        const scale = body.offsetWidth / 1200;
+        wrap.style.setProperty("--exp-scale", scale.toFixed(4));
+        const h = parseInt(iframe.style.height, 10) || 400;
+        body.style.height = `${Math.ceil(h * scale)}px`;
+      }
+    });
+  });
+
   // --- Iframe auto-resize + edit responses ---
   window.addEventListener("message", (e) => {
     if (!e.data?.type) return;
@@ -14,6 +28,31 @@
       )) {
         if (iframe.contentWindow === e.source) {
           iframe.style.height = `${e.data.height}px`;
+
+          // Expanded view: scale wrapper and body
+          const wrap = iframe.closest(".aisb-wf-iframe-wrap");
+          const body = iframe.closest(".aisb-wf-body");
+          if (wrap && body) {
+            const scale = body.offsetWidth / 1200;
+            wrap.style.setProperty("--exp-scale", scale.toFixed(4));
+            body.style.height = `${Math.ceil(e.data.height * scale)}px`;
+          }
+
+          // Whiteboard card: update card body height based on total scaled preview height
+          const preview = iframe.closest(".aisb-wf-page-card-preview");
+          if (preview) {
+            const cardBody = preview.parentElement;
+            if (cardBody) {
+              const scale =
+                parseFloat(preview.style.getPropertyValue("--wb-scale")) ||
+                cardBody.offsetWidth / 1200;
+              let totalH = 0;
+              for (const f of preview.querySelectorAll("iframe")) {
+                totalH += parseInt(f.style.height, 10) || 600;
+              }
+              cardBody.style.height = Math.ceil(totalH * scale) + "px";
+            }
+          }
           break;
         }
       }

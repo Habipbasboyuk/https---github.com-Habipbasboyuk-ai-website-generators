@@ -44,9 +44,12 @@
       const body = card.querySelector(".aisb-wf-body");
       const isBricks = !!(s.bricks_template_id || s.ai_wireframe_id);
       if (isBricks) {
-        body.appendChild(
+        const wrap = document.createElement("div");
+        wrap.className = "aisb-wf-iframe-wrap";
+        wrap.appendChild(
           createBricksIframe(s.ai_wireframe_id || s.bricks_template_id),
         );
+        body.appendChild(wrap);
       } else {
         const label = document.createElement("div");
         label.className = "aisb-wf-section-type-label";
@@ -58,6 +61,16 @@
     });
 
     app.el.sections.replaceChildren(frag);
+
+    // Set initial desktop scale for all iframe wrappers
+    app.el.sections.querySelectorAll(".aisb-wf-iframe-wrap").forEach((wrap) => {
+      const body = wrap.closest(".aisb-wf-body");
+      if (body) {
+        const scale = body.offsetWidth / 1200;
+        wrap.style.setProperty("--exp-scale", scale.toFixed(4));
+        body.style.height = `${Math.ceil(400 * scale)}px`;
+      }
+    });
   };
 
   app.openExpandedPage = async function (slug) {

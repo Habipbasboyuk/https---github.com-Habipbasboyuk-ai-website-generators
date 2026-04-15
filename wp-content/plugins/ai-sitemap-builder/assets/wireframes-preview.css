@@ -4,6 +4,10 @@ body {
   padding: 0 !important;
   background: transparent !important;
   overflow: hidden !important;
+  min-width: 1200px !important;
+}
+#aisb-preview {
+  min-width: 1200px;
 }
 .aisb-bricks-preview-wrap {
   pointer-events: none;
@@ -23,5 +27,5 @@ body {
 }
 
 .aisb-btn {
-    background-color: #3b82f6;
+  background-color: #3b82f6;
 }
