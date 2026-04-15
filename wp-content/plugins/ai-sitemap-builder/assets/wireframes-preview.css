@@ -1,0 +1,27 @@
+html,
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  overflow: hidden !important;
+}
+.aisb-bricks-preview-wrap {
+  pointer-events: none;
+}
+.aisb-edit-mode .aisb-bricks-preview-wrap {
+  pointer-events: auto;
+}
+.aisb-edit-mode [contenteditable="true"] {
+  outline: 2px dashed rgba(59, 130, 246, 0.5);
+  outline-offset: 2px;
+  cursor: text;
+  min-height: 1em;
+}
+.aisb-edit-mode [contenteditable="true"]:focus {
+  outline: 2px solid rgba(59, 130, 246, 0.8);
+  background: rgba(59, 130, 246, 0.04);
+}
+
+.aisb-btn {
+    background-color: #3b82f6;
+}
