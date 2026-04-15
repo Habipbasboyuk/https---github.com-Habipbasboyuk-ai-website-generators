@@ -62,6 +62,14 @@ class AISB_Plugin {
 		add_action('restrict_manage_posts', [$this, 'ai_wireframe_filter_dropdown']);                 // Filter-dropdown bovenaan de lijst
 		add_action('pre_get_posts', [$this, 'ai_wireframe_filter_query']);                            // DB-query aanpassen bij filteren/sorteren
 
+		// Forceer Bricks om inline CSS te renderen voor ai_wireframe posts (geen cached CSS-bestand)
+		add_filter('bricks/posts/force_render', function($force, $post_id) {
+			if (get_post_type($post_id) === 'ai_wireframe') {
+				return true;
+			}
+			return $force;
+		}, 10, 2);
+
 		// AJAX (logged-in)
 		add_action('wp_ajax_' . self::AJAX_ACTION,               [$this, 'ajax_generate']);
 		add_action('wp_ajax_' . self::AJAX_ADD_PAGE,             [$this, 'ajax_add_page']);
@@ -120,7 +128,7 @@ class AISB_Plugin {
 				'add_new_item'  => 'Add new AI Wireframe',
 				'edit_item'     => 'Edit AI Wireframe',
 			],
-			'public'          => false,   // Niet zichtbaar op de frontend
+			'public'          => true,   // Niet zichtbaar op de frontend
 			'show_ui'         => true,    // Wel zichtbaar in wp-admin
 			'show_in_menu'    => true,
 			'supports'        => ['title', 'author', 'custom-fields'],
