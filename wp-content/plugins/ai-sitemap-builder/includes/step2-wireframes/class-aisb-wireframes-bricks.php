@@ -152,6 +152,7 @@ class AISB_Wireframes_Bricks {
       'team'         => ['staff', 'people'],
       'contact_form' => ['contact', 'form', 'contact-form'],
       'header'       => ['nav', 'navigation', 'navbar', 'menu'],
+      'footer'       => ['foot', 'bottom'],
     ];
   }
 
