@@ -359,16 +359,17 @@
   font-size: 13px;
 }
 .aisb-wf-sections {
-  padding: 0;
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 32px;
 }
 .aisb-wf-section {
   position: relative;
   width: 100%;
   overflow: hidden;
-  border: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
 .aisb-wf-section:hover {
   outline: 2px solid rgba(59, 130, 246, 0.35);
