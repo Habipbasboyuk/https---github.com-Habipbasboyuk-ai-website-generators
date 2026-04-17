@@ -365,6 +365,7 @@ class AISB_Assets {
                 <div class="aisb-wf-toolbar-right">
                   <button class="aisb-btn generate-wireframe__all" type="button" data-aisb-wf-generate-all>Generate all</button>
                   <button class="aisb-btn" type="button" data-aisb-wf-save-all>Save all</button>
+                  <a href="<?php echo esc_url(add_query_arg(['aisb_step' => 3], $base_url)); ?>" class="aisb-btn styleguide-link__button" data-aisb-wf-style>Style your wireframes</a>
                 </div>
               </div>
 
@@ -443,8 +444,8 @@ class AISB_Assets {
 
         <?php if ($step === 3) : ?>
         <div class="aisb-step-panel" data-aisb-step-panel="3">
-          <div class="aisb-card" data-aisb-style-guide
-               data-project-id="<?php echo esc_attr($project_id); ?>">
+          <div class="aisb-card" data-styleguide
+               data-styleguide-project="<?php echo esc_attr($project_id); ?>">
             <div class="aisb-sg-head">
               <div>
                 <h3 class="aisb-output-title">Style Guide</h3>

@@ -62,6 +62,12 @@ class AISB_Wireframes {
 
     show_admin_bar(false);
 
+    // ─── Navigatie-menu vullen met sitemap-pagina's ─────────
+    // Bricks nav-menu elementen verwijzen naar een WP menu.
+    // Als dat menu niet bestaat of leeg is, is de navigatie leeg.
+    // Hier maken we een tijdelijk menu aan met de pagina's uit de sitemap.
+    $this->setup_wireframe_nav_menu($id, $post->post_type);
+
     // Set up post context BEFORE CSS generation so Bricks knows which elements need CSS
     global $post;
     $post = get_post($id);
@@ -194,6 +200,120 @@ class AISB_Wireframes {
     exit;
   }
 
+  /**
+   * Maakt een tijdelijk WP navigatie-menu aan met pagina's uit de sitemap
+   * en zorgt dat alle nav-menu's in de Bricks preview dit menu gebruiken.
+   */
+  private function setup_wireframe_nav_menu(int $post_id, string $post_type): void {
+    // Alleen voor ai_wireframe posts (die hebben project metadata)
+    // Voor gewone bricks_template posts: probeer het toch via alle ai_wireframe posts
+    $project_id = 0;
+    if ($post_type === 'ai_wireframe') {
+      $project_id = (int) get_post_meta($post_id, '_aisb_project_id', true);
+    }
+    if (!$project_id) return;
+
+    // Haal de sitemap op via het project
+    $sitemap_id = (int) get_post_meta($project_id, 'aisb_latest_sitemap_id', true);
+    if (!$sitemap_id) return;
+
+    $sitemap_json = get_post_meta($sitemap_id, 'aisb_sitemap_json', true);
+    $sitemap_data = $sitemap_json ? json_decode((string) $sitemap_json, true) : [];
+
+    // Pagina's uit de sitemap halen
+    $sitemap_pages = [];
+    if (!empty($sitemap_data['sitemap']) && is_array($sitemap_data['sitemap'])) {
+      $sitemap_pages = $sitemap_data['sitemap'];
+    } elseif (!empty($sitemap_data['pages']) && is_array($sitemap_data['pages'])) {
+      $sitemap_pages = $sitemap_data['pages'];
+    }
+
+    if (empty($sitemap_pages)) return;
+
+    // Alleen top-level pagina's (geen child pages) voor de hoofdnavigatie
+    $nav_items = [];
+    foreach ($sitemap_pages as $page) {
+      $parent = $page['parent_slug'] ?? $page['parent'] ?? '';
+      // Alleen top-level pagina's nemen (max 7 items)
+      if (!empty($parent)) continue;
+      $title = $page['nav_label'] ?? $page['page_title'] ?? $page['title'] ?? '';
+      if (!$title) continue;
+      $nav_items[] = $title;
+      if (count($nav_items) >= 7) break;
+    }
+
+    if (empty($nav_items)) {
+      // Fallback: pak de eerste 6 pagina's ongeacht parent
+      foreach ($sitemap_pages as $page) {
+        $title = $page['nav_label'] ?? $page['page_title'] ?? $page['title'] ?? '';
+        if (!$title) continue;
+        $nav_items[] = $title;
+        if (count($nav_items) >= 6) break;
+      }
+    }
+
+    if (empty($nav_items)) return;
+
+    // Maak het menu aan (of hergebruik bestaand)
+    $menu_name = 'AISB Wireframe Nav ' . $project_id;
+    $menu = wp_get_nav_menu_object($menu_name);
+    if (!$menu) {
+      $menu_id = wp_create_nav_menu($menu_name);
+      if (is_wp_error($menu_id)) return;
+    } else {
+      $menu_id = $menu->term_id;
+      // Bestaande items verwijderen voor een schone update
+      $existing = wp_get_nav_menu_items($menu_id);
+      if ($existing) {
+        foreach ($existing as $item) {
+          wp_delete_post($item->ID, true);
+        }
+      }
+    }
+
+    // Navigatie-items toevoegen
+    $position = 0;
+    foreach ($nav_items as $title) {
+      $position++;
+      wp_update_nav_menu_item($menu_id, 0, [
+        'menu-item-title'    => sanitize_text_field($title),
+        'menu-item-url'      => '#',
+        'menu-item-status'   => 'publish',
+        'menu-item-position' => $position,
+        'menu-item-type'     => 'custom',
+      ]);
+    }
+
+    // Filter: forceer dit menu voor alle wp_nav_menu calls in deze preview
+    add_filter('wp_nav_menu_args', function ($args) use ($menu_id) {
+      $args['menu'] = $menu_id;
+      return $args;
+    }, 9999);
+
+    // Filter: ook het Bricks nav-menu element forceren (Bricks gebruikt soms theme_location)
+    add_filter('pre_wp_nav_menu', function ($output, $args) use ($menu_id) {
+      if ($output !== null) return $output;
+      return null;
+    }, 10, 2);
+
+    // Bricks nav-menu element settings overschrijven
+    add_filter('bricks/element/settings', function ($settings, $element) use ($menu_id) {
+      // $element kan een object of array zijn, afhankelijk van Bricks versie
+      $name = '';
+      if (is_object($element) && isset($element->name)) {
+        $name = $element->name;
+      } elseif (is_object($element) && method_exists($element, 'get_name')) {
+        $name = $element->get_name();
+      } elseif (is_array($element) && isset($element['name'])) {
+        $name = $element['name'];
+      }
+      if ($name === 'nav-menu' || $name === 'navigation') {
+        $settings['menu'] = (string) $menu_id;
+      }
+      return $settings;
+    }, 10, 2);
+  }
+
   public function enqueue_assets(): void {
     $is_step2 = ((int)($_GET['aisb_step'] ?? 0) === 2);
     $has_project_ctx = isset($_GET['aisb_project']) && isset($_GET['aisb_sitemap']);
@@ -283,6 +403,7 @@ class AISB_Wireframes {
           <div class="aisb-wf-toolbar-right">
             <button class="aisb-btn generate-wireframe__all" type="button" data-aisb-wf-generate-all>Generate all</button>
             <button class="aisb-btn" type="button" data-aisb-wf-save-all>Save all</button>
+            <button class="aisb-btn" type="button" data-aisb-wf-something>Style your wireframes</button>
           </div>
         </div>
 

@@ -146,7 +146,7 @@ class AISB_Wireframes_AI {
     if (!empty($section_hints)) {
         $prompt .= "Section context:\n" . implode("\n", $section_hints) . "\n";
     }
-    $prompt .= "\nIMPORTANT: Write copy that is specific to this page. Do NOT use generic welcome/landing page text unless this is actually the Home page.\n";
+    $prompt .= "\nIMPORTANT: Write copy that is specific to the page you're on. Do NOT use generic welcome/landing page text unless this is actually the Home page.Look very good on wich page you're on so you only generate texts that are relevant to the current page. Dont generate de same text for different sections!\n";
     $prompt .= "CRITICAL: Preserve the EXACT JSON structure. Keep all keys (section_0, module IDs, setting names) exactly as they are. Only replace the text VALUES — do not add, remove, or rename any keys.\n";
     $prompt .= "Return ONLY the JSON with updated 'settings' values.";
     $prompt .= "\n\nTarget JSON:\n" . wp_json_encode($to_translate);
