@@ -1,5 +1,5 @@
 (function () {
-  var TEXT_TAGS = [
+  const TEXT_TAGS = [
     "H1",
     "H2",
     "H3",
@@ -18,11 +18,11 @@
     "FIGCAPTION",
     "LEGEND",
   ];
-  var originalTexts = {};
+  let originalTexts = {};
 
   function reportHeight() {
-    var wrap = document.getElementById("aisb-preview");
-    var h = wrap
+    const wrap = document.getElementById("aisb-preview");
+    const h = wrap
       ? wrap.getBoundingClientRect().height
       : document.body.scrollHeight;
     window.parent.postMessage({ type: "aisb_iframe_height", height: h }, "*");
@@ -41,11 +41,11 @@
       document.body.classList.add("aisb-edit-mode");
       document.body.style.overflow = "auto";
       originalTexts = {};
-      var wrap = document.getElementById("aisb-preview");
-      var els = wrap.querySelectorAll(TEXT_TAGS.join(","));
-      var editIdx = 0;
+      const wrap = document.getElementById("aisb-preview");
+      const els = wrap.querySelectorAll(TEXT_TAGS.join(","));
+      let editIdx = 0;
       els.forEach(function (el) {
-        var text = (el.textContent || "").trim();
+        const text = (el.textContent || "").trim();
         if (
           text.length > 0 &&
           text.length < 2000 &&
@@ -64,7 +64,7 @@
     if (e.data.type === "aisb_disable_edit") {
       document.body.classList.remove("aisb-edit-mode");
       document.body.style.overflow = "hidden";
-      var editables = document.querySelectorAll('[contenteditable="true"]');
+      const editables = document.querySelectorAll('[contenteditable="true"]');
       editables.forEach(function (el) {
         el.removeAttribute("contenteditable");
         el.removeAttribute("spellcheck");
@@ -73,12 +73,12 @@
     }
 
     if (e.data.type === "aisb_get_edited_content") {
-      var changes = [];
-      var editables = document.querySelectorAll("[data-aisb-edit-idx]");
+      const changes = [];
+      const editables = document.querySelectorAll("[data-aisb-edit-idx]");
       editables.forEach(function (el) {
-        var idx = el.getAttribute("data-aisb-edit-idx");
-        var current = el.innerHTML;
-        var original = originalTexts[idx] || "";
+        const idx = el.getAttribute("data-aisb-edit-idx");
+        const current = el.innerHTML;
+        const original = originalTexts[idx] || "";
         if (current !== original) {
           changes.push({
             original: original,
