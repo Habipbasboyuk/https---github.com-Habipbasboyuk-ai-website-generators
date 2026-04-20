@@ -26,15 +26,44 @@ class AISB_Design {
       AISB_VERSION
     );
 
+    // Design scripts gesplitst over 5 bestanden: core → overrides → images → canvas → init
     wp_enqueue_script(
-      'aisb-design',
-      AISB_PLUGIN_URL . 'assets/js/design.js',
+      'aisb-design-core',
+      AISB_PLUGIN_URL . 'assets/js/design/core.js',
       [],
       AISB_VERSION,
       true
     );
+    wp_enqueue_script(
+      'aisb-design-overrides',
+      AISB_PLUGIN_URL . 'assets/js/design/overrides.js',
+      ['aisb-design-core'],
+      AISB_VERSION,
+      true
+    );
+    wp_enqueue_script(
+      'aisb-design-images',
+      AISB_PLUGIN_URL . 'assets/js/design/images.js',
+      ['aisb-design-core'],
+      AISB_VERSION,
+      true
+    );
+    wp_enqueue_script(
+      'aisb-design-canvas',
+      AISB_PLUGIN_URL . 'assets/js/design/canvas.js',
+      ['aisb-design-overrides', 'aisb-design-images'],
+      AISB_VERSION,
+      true
+    );
+    wp_enqueue_script(
+      'aisb-design',
+      AISB_PLUGIN_URL . 'assets/js/design/init.js',
+      ['aisb-design-canvas'],
+      AISB_VERSION,
+      true
+    );
 
-    wp_localize_script('aisb-design', 'AISB_DESIGN', [
+    wp_localize_script('aisb-design-core', 'AISB_DESIGN', [
       'ajaxUrl'    => admin_url('admin-ajax.php'),
       'nonce'      => wp_create_nonce('aisb_sg_nonce'),
       'previewUrl' => home_url('/?aisb_bricks_preview='),
