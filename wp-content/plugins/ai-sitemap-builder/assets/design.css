@@ -102,8 +102,20 @@
   width: 1200px;
   min-height: 200px;
   border: none;
-  /* pointer-events: none so all mouse/wheel events pass to the canvas */
-  pointer-events: none;
+  /* pointer-events standaard auto zodat :hover en muisgebeurtenissen werken.
+     setupPanZoom zet dit tijdelijk op none tijdens een pan-actie. */
+}
+
+/* Transparante overlay op elk iframe voor hover-detectie */
+.aisb-iframe-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: auto;
+  cursor: default;
 }
 
 /* ── Empty / loading state ─────────────────────────────────── */

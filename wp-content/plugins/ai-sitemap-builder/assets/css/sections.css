@@ -7,6 +7,11 @@
   padding: 8px 9px;
   margin-top: 8px;
 }
+
+.aisb-hover-element {
+  outline: 8px solid rgba(213, 0, 0, 0.12);
+  outline-offset: -2px;
+}
 .aisb-section-mini:first-child {
   margin-top: 0;
 }

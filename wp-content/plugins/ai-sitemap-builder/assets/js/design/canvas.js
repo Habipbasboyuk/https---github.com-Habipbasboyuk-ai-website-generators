@@ -87,6 +87,51 @@
             iframe.style.height = "500px";
             wrap.style.height = "500px";
           }
+
+          // Injecteer CSS :hover-highlight in het iframe-document.
+          // pointer-events staat op auto (zie design.css) zodat de browser
+          // de :hover natively afhandelt. Tijdens panning zet setupPanZoom
+          // de iframes tijdelijk op pointer-events:none.
+          try {
+            const doc = iframe.contentDocument;
+            let hoverStyle = doc.getElementById("aisb-hover-style");
+            if (!hoverStyle) {
+              hoverStyle = doc.createElement("style");
+              hoverStyle.id = "aisb-hover-style";
+              doc.head.appendChild(hoverStyle);
+            }
+            hoverStyle.textContent =
+              "*:not(html):not(body){pointer-events:auto !important;}" +
+              "*:hover:not(html):not(body):not(:has(*:hover)){outline:6px solid #118cf0 !important;" +
+              "outline-offset:-2px !important; transition: 0.2s ease-in-out !important;}";
+
+            // Stuur wheel-events vanuit het iframe door naar de canvas
+            // zodat scrollen / Ctrl+zoom ook werkt als de muis over een iframe staat.
+            doc.addEventListener(
+              "wheel",
+              (e) => {
+                e.preventDefault();
+                const iframeRect = iframe.getBoundingClientRect();
+                canvasEl.dispatchEvent(
+                  new WheelEvent("wheel", {
+                    bubbles: true,
+                    cancelable: true,
+                    deltaX: e.deltaX,
+                    deltaY: e.deltaY,
+                    deltaZ: e.deltaZ,
+                    deltaMode: e.deltaMode,
+                    ctrlKey: e.ctrlKey,
+                    shiftKey: e.shiftKey,
+                    clientX: iframeRect.left + e.clientX,
+                    clientY: iframeRect.top + e.clientY,
+                  }),
+                );
+              },
+              { passive: false },
+            );
+          } catch (err) {
+            /* cross-origin – skip */
+          }
         });
 
         wrap.appendChild(iframe);
@@ -156,7 +201,14 @@
     canvas._designFitToView = fitToView;
     requestAnimationFrame(fitToView);
 
-    // Pan — sleep overal op de canvas (iframes zijn pointer-events:none)
+    function setIframePointerEvents(value) {
+      for (const iframe of D.allIframes) {
+        iframe.style.pointerEvents = value;
+      }
+    }
+
+    // Pan — tijdens slepen: iframes op pointer-events:none zodat
+    // mousemove-events de canvas bereiken in plaats van de iframe.
     canvas.addEventListener("mousedown", (e) => {
       if (e.target.closest(".aisb-design-page-head")) return;
       state.isPanning = true;
@@ -166,6 +218,7 @@
         tx: state.translateX,
         ty: state.translateY,
       };
+      setIframePointerEvents("none");
       canvas.classList.add("is-panning");
       e.preventDefault();
     });
@@ -180,12 +233,14 @@
     canvas.addEventListener("mouseleave", () => {
       if (!state.isPanning) return;
       state.isPanning = false;
+      setIframePointerEvents("auto");
       canvas.classList.remove("is-panning");
     });
 
     window.addEventListener("mouseup", () => {
       if (!state.isPanning) return;
       state.isPanning = false;
+      setIframePointerEvents("auto");
       canvas.classList.remove("is-panning");
     });
 
@@ -206,23 +261,10 @@
           state.scale = next;
           applyTransform();
         } else {
-          // Normaal scrollen → canvas pannen
-          const newTX = state.translateX - e.deltaX;
-          const newTY = state.translateY - e.deltaY;
-          const contentW = inner.scrollWidth * state.scale;
-          const contentH = inner.scrollHeight * state.scale;
-          const viewW = canvas.getBoundingClientRect().width;
-          const viewH = canvas.getBoundingClientRect().height;
-          const clampedTX = D.clamp(newTX, Math.min(40, viewW - contentW), 40);
-          const clampedTY = D.clamp(newTY, Math.min(40, viewH - contentH), 40);
-          if (
-            Math.abs(clampedTX - state.translateX) < 0.5 &&
-            Math.abs(clampedTY - state.translateY) < 0.5
-          )
-            return;
+          // Normaal scrollen → canvas pannen zonder positie te resetten
           e.preventDefault();
-          state.translateX = clampedTX;
-          state.translateY = clampedTY;
+          state.translateX -= e.deltaX;
+          state.translateY -= e.deltaY;
           applyTransform();
         }
       },
