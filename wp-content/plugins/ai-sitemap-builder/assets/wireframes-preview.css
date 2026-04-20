@@ -7,6 +7,10 @@ body {
   min-width: 1200px !important;
 }
 #aisb-preview {
+  padding: 2rem !important;
+  box-sizing: border-box !important;
+}
+#aisb-preview {
   min-width: 1200px;
 }
 .aisb-bricks-preview-wrap {

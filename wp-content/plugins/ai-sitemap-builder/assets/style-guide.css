@@ -202,6 +202,17 @@
   pointer-events: none;
   transform: none;
 }
+/* Click-to-swap overlay that sits on top of injected images */
+.aisb-img-click-overlay {
+  position: absolute;
+  z-index: 5;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+.aisb-img-click-overlay:hover {
+  outline: 2px solid rgba(59, 130, 246, 0.7);
+  background: rgba(59, 130, 246, 0.1);
+}
 .aisb-sg-empty-state {
   text-align: center;
   color: #999;
