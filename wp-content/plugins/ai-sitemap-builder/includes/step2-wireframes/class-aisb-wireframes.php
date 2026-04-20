@@ -101,7 +101,7 @@ class AISB_Wireframes {
     );
     ?>
     <!DOCTYPE html>
-    <html <?php language_attributes(); ?>>
+    <html <?php language_attributes(); ?> class="aisb-bricks-preview-html">
     <head>
       <meta charset="<?php bloginfo('charset'); ?>">
       <meta name="viewport" content="width=1200, initial-scale=1">
@@ -231,25 +231,44 @@ class AISB_Wireframes {
     if (empty($sitemap_pages)) return;
 
     // Alleen top-level pagina's (geen child pages) voor de hoofdnavigatie
-    $nav_items = [];
+    $nav_raw = []; // [ ['label' => ..., 'page_title' => ..., 'slug' => ...] ]
     foreach ($sitemap_pages as $page) {
       $parent = $page['parent_slug'] ?? $page['parent'] ?? '';
-      // Alleen top-level pagina's nemen (max 7 items)
       if (!empty($parent)) continue;
-      $title = $page['nav_label'] ?? $page['page_title'] ?? $page['title'] ?? '';
-      if (!$title) continue;
-      $nav_items[] = $title;
-      if (count($nav_items) >= 7) break;
+      $slug  = sanitize_title($page['slug'] ?? $page['page_slug'] ?? $page['url'] ?? $page['path'] ?? '');
+      $label = $page['nav_label'] ?? $page['page_title'] ?? $page['title'] ?? $page['name'] ?? $page['label'] ?? '';
+      $ptitle = $page['page_title'] ?? $page['title'] ?? $page['name'] ?? '';
+      if (!$label && $slug) $label = ucwords(str_replace('-', ' ', $slug));
+      if (!$label) continue;
+      $nav_raw[] = ['label' => $label, 'page_title' => $ptitle, 'slug' => $slug];
+      if (count($nav_raw) >= 7) break;
     }
 
-    if (empty($nav_items)) {
+    if (empty($nav_raw)) {
       // Fallback: pak de eerste 6 pagina's ongeacht parent
       foreach ($sitemap_pages as $page) {
-        $title = $page['nav_label'] ?? $page['page_title'] ?? $page['title'] ?? '';
-        if (!$title) continue;
-        $nav_items[] = $title;
-        if (count($nav_items) >= 6) break;
+        $slug  = sanitize_title($page['slug'] ?? $page['page_slug'] ?? $page['url'] ?? $page['path'] ?? '');
+        $label = $page['nav_label'] ?? $page['page_title'] ?? $page['title'] ?? $page['name'] ?? '';
+        $ptitle = $page['page_title'] ?? $page['title'] ?? $page['name'] ?? '';
+        if (!$label && $slug) $label = ucwords(str_replace('-', ' ', $slug));
+        if (!$label) continue;
+        $nav_raw[] = ['label' => $label, 'page_title' => $ptitle, 'slug' => $slug];
+        if (count($nav_raw) >= 6) break;
       }
+    }
+
+    // De-duplicate: als nav labels duplicaten bevatten, gebruik page_title of slug als fallback
+    $seen_labels = [];
+    $nav_items   = [];
+    foreach ($nav_raw as $item) {
+      $label = $item['label'];
+      if (in_array(strtolower($label), $seen_labels, true)) {
+        // Probeer page_title, dan slug
+        $fallback = $item['page_title'] ?: ($item['slug'] ? ucwords(str_replace('-', ' ', $item['slug'])) : '');
+        if ($fallback) $label = $fallback;
+      }
+      $seen_labels[] = strtolower($label);
+      $nav_items[]   = $label;
     }
 
     if (empty($nav_items)) return;

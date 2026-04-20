@@ -229,6 +229,7 @@ class AISB_Assets {
     $tab1_url = remove_query_arg(['aisb_step'], $base_url);
     $tab2_url = add_query_arg(['aisb_step' => 2], $base_url);
     $tab3_url = add_query_arg(['aisb_step' => 3], $base_url);
+    $tab4_url = add_query_arg(['aisb_step' => 4], $base_url);
 
     ob_start(); ?>
       <div class="aisb-wrap" data-aisb data-aisb-step="<?php echo esc_attr($step); ?>">
@@ -243,6 +244,7 @@ class AISB_Assets {
           <a class="aisb-step-tab <?php echo $step === 1 ? 'is-active' : ''; ?>" href="<?php echo esc_url($tab1_url); ?>">Step 1 · Sitemap</a>
           <a class="aisb-step-tab <?php echo $step === 2 ? 'is-active' : ''; ?>" href="<?php echo esc_url($tab2_url); ?>" data-aisb-step2-tab>Step 2 · Wireframes</a>
           <a class="aisb-step-tab <?php echo $step === 3 ? 'is-active' : ''; ?>" href="<?php echo esc_url($tab3_url); ?>">Step 3 · Style Guide</a>
+          <a class="aisb-step-tab <?php echo $step === 4 ? 'is-active' : ''; ?>" href="<?php echo esc_url($tab4_url); ?>">Step 4 · Design</a>
         </div>
 
         <div class="aisb-step-panel" data-aisb-step-panel="1" style="<?php echo $step === 1 ? '' : 'display:none;'; ?>">
@@ -456,6 +458,21 @@ class AISB_Assets {
             <?php AISB_Style_Guide::render_style_guide_html($project_id); ?>
           </div>
         </div><!-- /Step 3 panel -->
+        <?php endif; ?>
+
+        <?php if ($step === 4) : ?>
+        <div class="aisb-step-panel" data-aisb-step-panel="4">
+          <div class="aisb-card">
+            <div class="aisb-sg-head">
+              <div>
+                <h3 class="aisb-output-title">Design</h3>
+                <p class="aisb-subtitle">Full preview with your style guide applied</p>
+              </div>
+            </div>
+
+            <?php AISB_Design::render_design_html($project_id); ?>
+          </div>
+        </div><!-- /Step 4 panel -->
         <?php endif; ?>
       </div>
     <?php

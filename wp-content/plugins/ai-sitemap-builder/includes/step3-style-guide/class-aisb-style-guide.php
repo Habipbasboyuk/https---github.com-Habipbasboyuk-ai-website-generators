@@ -22,6 +22,7 @@ class AISB_Style_Guide {
     add_action('wp_ajax_aisb_get_unsplash_images',   [$this, 'ajax_get_unsplash_images']);
     add_action('wp_ajax_aisb_search_similar_images', [$this, 'ajax_search_similar_images']);
     add_action('wp_ajax_aisb_upload_images',          [$this, 'ajax_upload_images']);
+    add_action('wp_ajax_aisb_upload_logo',            [$this, 'ajax_upload_logo']);
   }
 
   // Shortcode voor standalone gebruik van de Style Guide
@@ -277,7 +278,7 @@ class AISB_Style_Guide {
 
         <div class="aisb-sg-wizard-nav">
           <button class="aisb-btn-secondary" type="button" data-wizard-prev="2">← Back</button>
-          <button class="aisb-btn" type="button" data-save-button>Save &amp; Finish</button>
+          <a class="aisb-btn" href="<?php echo esc_url(add_query_arg(['aisb_step' => 4], remove_query_arg(['aisb_step']))); ?>" data-save-button>Save &amp; Design</a>
         </div>
       </div>
 
@@ -322,9 +323,13 @@ class AISB_Style_Guide {
     $this->assert_project_ownership($project_id);
 
     $guide = get_post_meta($project_id, 'aisb_style_guide', true);
-    $data  = $guide ? json_decode((string)$guide, true) : [];
-    if (!is_array($data)) $data = [];
-    wp_send_json_success(['style_guide' => $data]);
+    $data  = $guide ? json_decode((string)$guide, true) : null;
+    // Ensure we always return a JSON object {}, never a JSON array []
+    if (!is_array($data) || array_keys($data) === range(0, count($data) - 1)) {
+      // Either null, or a sequential (indexed) array — treat as empty object
+      $data = [];
+    }
+    wp_send_json_success(['style_guide' => (object) $data]);
   }
 
   public function ajax_save_style_guide(): void {
@@ -972,6 +977,37 @@ class AISB_Style_Guide {
     }
 
     wp_send_json_success(['images' => $results]);
+  }
+
+  /**
+   * AJAX: Upload logo to WP Media Library. Returns the attachment URL.
+   */
+  public function ajax_upload_logo(): void {
+    $this->require_login();
+    $this->check_nonce();
+
+    if (empty($_FILES['logo'])) {
+      wp_send_json_error(['message' => 'No file uploaded.'], 400);
+    }
+
+    require_once ABSPATH . 'wp-admin/includes/image.php';
+    require_once ABSPATH . 'wp-admin/includes/file.php';
+    require_once ABSPATH . 'wp-admin/includes/media.php';
+
+    $file  = $_FILES['logo'];
+    $check = wp_check_filetype($file['name']);
+    if (empty($check['type']) || strpos($check['type'], 'image/') !== 0) {
+      wp_send_json_error(['message' => 'Invalid file type — only images allowed.'], 400);
+    }
+
+    $_FILES['aisb_logo'] = $file;
+    $attachment_id = media_handle_upload('aisb_logo', 0);
+    if (is_wp_error($attachment_id)) {
+      wp_send_json_error(['message' => $attachment_id->get_error_message()], 500);
+    }
+
+    $url = wp_get_attachment_image_url($attachment_id, 'full') ?: wp_get_attachment_url($attachment_id);
+    wp_send_json_success(['url' => $url, 'attachment_id' => $attachment_id]);
   }
 
   private function current_page_has_shortcode(string $shortcode): bool {
