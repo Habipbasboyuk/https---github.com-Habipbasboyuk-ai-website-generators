@@ -152,6 +152,22 @@
       if (el.logoInput.files[0]) handleLogoFile(el.logoInput.files[0]);
     });
 
+  // upload logo to WP media library, saves URL to SG.guide.logoUrl
+  async function uploadLogoToLibrary(file) {
+    try {
+      const formData = new FormData();
+      formData.append("action", "aisb_upload_logo");
+      formData.append("nonce", AISB_SG.nonce);
+      formData.append("logo", file);
+      const r = await fetch(AISB_SG.ajaxUrl, { method: "POST", body: formData });
+      const out = await r.json();
+      if (out && out.success && out.data.url) {
+        SG.guide.logoUrl = out.data.url;
+        SG.applyOverridesToAllIframes();
+      }
+    } catch (e) {}
+  }
+
   // verwerkt logo-bestand: toont preview, extraheert kleuren met ColorThief
   function handleLogoFile(file) {
     // alleen afbeeldingen toestaan
@@ -197,10 +213,8 @@
         SG.fontsAssigned = false;
         // CSS-overrides in alle iframes bijwerken
         SG.applyOverridesToAllIframes();
-        SG.setStatus(
-          "Colours extracted from logo. Click Next to continue.",
-          "ok",
-        );
+        // logo uploaden naar WP media library voor persistentie
+        uploadLogoToLibrary(file);
       } catch (err) {
         SG.setStatus("Could not extract colours: " + err.message, "err");
       }
