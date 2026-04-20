@@ -10,7 +10,7 @@
 
 if (!defined('ABSPATH')) exit;
 
-define('AISB_VERSION', '1.6.6');
+define('AISB_VERSION', '1.6.7');
 define('AISB_PLUGIN_FILE', __FILE__);
 define('AISB_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('AISB_PLUGIN_URL', plugin_dir_url(__FILE__));
@@ -39,6 +39,9 @@ require_once __DIR__ . '/includes/step2-wireframes/class-aisb-wireframes.php';
 // Step 3 (Style Guide)
 require_once __DIR__ . '/includes/step3-style-guide/class-aisb-style-guide.php';
 
+// Step 4 (Design)
+require_once __DIR__ . '/includes/step4-design/class-aisb-design.php';
+
 register_activation_hook(__FILE__, ['AISB_Installer', 'activate']);
 
 add_action('plugins_loaded', function () {
@@ -60,10 +63,14 @@ add_action('plugins_loaded', function () {
   // Step 3 (Style Guide)
   $style_guide = new AISB_Style_Guide();
 
+  // Step 4 (Design)
+  $design = new AISB_Design();
+
   // Main plugin wires everything together
   $plugin   = new AISB_Plugin($settings, $assets, $ajax, $logger);
 
   $plugin->init();
   $wireframes->init();
   $style_guide->init();
+  $design->init();
 });
