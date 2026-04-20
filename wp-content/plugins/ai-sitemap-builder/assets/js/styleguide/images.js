@@ -75,6 +75,7 @@
       });
   }
 
+  SG.renderUploadedGrid = renderUploadedGrid;
   function renderUploadedGrid() {
     if (!el.uploadedGrid || !el.uploadedGridInner) return;
     if (!SG.uploadedImages.length) {
@@ -235,6 +236,10 @@
     // Store images in guide for saving + injection
     SG.guide.images = images.slice(0, total);
 
+    // Persist immediately so the save handler always has images even if the
+    // user clicks Save & Design before the draft auto-save fires.
+    if (SG.saveDraft) SG.saveDraft();
+
     // Inject images into all loaded iframes
     SG.applyImagesToAllIframes();
   };
@@ -262,6 +267,65 @@
     return map;
   }
 
+  /* ── Compute global image-array base index for a section ──── */
+  function getGlobalImageIdxBase(pageSlug, sectionIdx) {
+    let base = 0;
+    for (let pi = 0; pi < SG.wireframePages.length; pi++) {
+      const page = SG.wireframePages[pi];
+      const sections = page.sections || [];
+      for (let si = 0; si < sections.length; si++) {
+        if (page.slug === pageSlug && si === sectionIdx) return base;
+        base += sections[si].media_count || 0;
+      }
+    }
+    return base;
+  }
+
+  /* ── Create click-to-swap overlays over each injected image ─ */
+  function createImageOverlays(iframe) {
+    const wrapper = iframe.parentElement;
+    if (!wrapper) return;
+    // Remove old overlays
+    wrapper.querySelectorAll(".aisb-img-click-overlay").forEach(function (o) {
+      o.remove();
+    });
+    if (!SG.guide.images || !SG.guide.images.length) return;
+    try {
+      const doc = iframe.contentDocument || iframe.contentWindow.document;
+      if (!doc) return;
+      const base = getGlobalImageIdxBase(iframe._pageSlug, iframe._sectionIdx);
+      doc.querySelectorAll("img[data-aisb-img-ui]").forEach(function (img) {
+        const ui = parseInt(img.getAttribute("data-aisb-img-ui"), 10);
+        if (isNaN(ui)) return;
+        const globalIdx = base + ui;
+        if (!SG.guide.images[globalIdx]) return;
+        const rect = img.getBoundingClientRect();
+        if (!rect.width || !rect.height) return;
+        const overlay = document.createElement("div");
+        overlay.className = "aisb-img-click-overlay";
+        overlay.setAttribute("data-aisb-overlay-idx", globalIdx);
+        overlay.style.cssText =
+          "position:absolute;top:" +
+          rect.top +
+          "px;left:" +
+          rect.left +
+          "px;width:" +
+          rect.width +
+          "px;height:" +
+          rect.height +
+          "px;";
+        overlay.title = "Click to swap image";
+        overlay.addEventListener("click", function (e) {
+          e.stopPropagation();
+          openImageSwapModal(globalIdx);
+        });
+        wrapper.appendChild(overlay);
+      });
+    } catch (e) {
+      /* cross-origin */
+    }
+  }
+
   SG.injectImagesIntoIframe = function (iframe) {
     if (!SG.guide.images || !SG.guide.images.length) return;
     try {
@@ -279,12 +343,15 @@
           img.src = urls[ui];
           img.srcset = "";
           img.style.objectFit = "cover";
+          img.setAttribute("data-aisb-img-ui", ui);
           ui++;
         }
       });
     } catch (e) {
       /* cross-origin */
     }
+    // Build click overlays after injection (runs outside try-catch)
+    createImageOverlays(iframe);
   };
 
   SG.applyImagesToAllIframes = function () {
@@ -520,7 +587,10 @@
     // Click to pick an uploaded image
     grid.querySelectorAll("[data-modal-pick-upload]").forEach(function (opt) {
       opt.addEventListener("click", function () {
-        const pickIdx = parseInt(opt.getAttribute("data-modal-pick-upload"), 10);
+        const pickIdx = parseInt(
+          opt.getAttribute("data-modal-pick-upload"),
+          10,
+        );
         const picked = SG.uploadedImages[pickIdx];
         if (!picked) return;
         applyPickedImage(picked, overlay);

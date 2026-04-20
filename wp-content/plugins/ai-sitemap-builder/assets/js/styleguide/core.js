@@ -402,15 +402,21 @@
         };
         const palLight = findByName("Light");
         const palNeutral = findByName("Neutral");
-        // even secties: wit, oneven: light kleur uit palet (of neutral als fallback)
+        // even secties: lichte paletkleur (of sectionBg1 als fallback), oneven: neutral/sectionBg2
         let secBg;
         if (sIdx % 2 === 0) {
-          secBg = "#ffffff";
+          secBg = palLight || SG.guide.sectionBg1 || "#ffffff";
         } else {
-          secBg = palLight || palNeutral || SG.guide.sectionBg2 || "#f0f4ff";
+          secBg = palNeutral || palLight || SG.guide.sectionBg2 || "#f0f4ff";
         }
+        // Sectie- en container-achtergrond overschrijven met paletkleur.
+        // Gebruik !important om Bricks ID-selector CSS te overrulen.
+        // Uitzondering: elementen met een inline background-image behouden die.
         overrideCss +=
-          ".brxe-section{background-color:" + secBg + " !important;}";
+          ".brxe-section:not([style*='background-image'])," +
+          ".brxe-container:not([style*='background-image'])," +
+          ".brxe-block:not([style*='background-image'])" +
+          "{background-color:" + secBg + " !important;}";
         overrideCss += "body{background-color:" + secBg + " !important;}";
 
         // contrast-bewuste tekst- en headingkleur per sectie
@@ -446,10 +452,35 @@
             "a:not(.brxe-button){color:" +
             (palLight || "#ffffff") +
             " !important;}";
+        } else {
+          // lichte sectie-achtergrond: knoptekst baseren op contrast t.o.v. primary knopkleur
+          const primary = paletteColours.length ? paletteColours[0].hex : null;
+          if (primary) {
+            const btnTextColour =
+              SG.getLuminance(primary) < 0.4 ? "#ffffff" : "#1a1a1a";
+            overrideCss +=
+              ".brxe-button,.bricks-button{color:" +
+              btnTextColour +
+              " !important;}";
+          }
         }
       }
 
       style.textContent = overrideCss;
+
+      // Logo injecteren in header/nav secties (sectionIdx 0 = eerste sectie per pagina)
+      if (SG.guide.logoUrl && sIdx === 0) {
+        const logoImgs = iframeDocument.querySelectorAll(
+          ".brxe-nav-menu img, nav img, header img, [class*='logo'] img, .brxe-image img"
+        );
+        if (logoImgs.length) {
+          logoImgs[0].src = SG.guide.logoUrl;
+          logoImgs[0].srcset = "";
+          logoImgs[0].style.maxHeight = "60px";
+          logoImgs[0].style.width = "auto";
+          logoImgs[0].style.objectFit = "contain";
+        }
+      }
 
       // Google Fonts als <link> injecteren (niet als @import in <style>,
       // want @import na andere regels wordt door browsers genegeerd)

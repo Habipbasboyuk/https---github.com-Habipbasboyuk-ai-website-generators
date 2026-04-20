@@ -115,17 +115,19 @@
 
   function populateFontSelect(selectEl, currentFont) {
     if (!selectEl) return;
-    // Build option list: current AI font first, then popular fonts
-    let opts = '<option value="">— AI suggestion —</option>';
+    // Show "AI suggestion" placeholder only when no font has been chosen yet.
+    // Once a font is set (by AI on first visit or manually), it is locked in
+    // and only manual changes are allowed — no AI re-pick.
+    let opts = currentFont ? "" : '<option value="">— AI suggestion —</option>';
     const seen = {};
-    // Add AI-chosen font at top if not in the popular list
+    // Add current font at top if it is not in the popular list
     if (currentFont && popularFonts.indexOf(currentFont) === -1) {
       opts +=
         '<option value="' +
         SG.escapeHtml(currentFont) +
         '" selected>' +
         SG.escapeHtml(currentFont) +
-        " (AI)</option>";
+        "</option>";
       seen[currentFont] = true;
     }
     popularFonts.forEach(function (f) {
@@ -214,10 +216,49 @@
     applyFontSelectStyles(bodySelect);
   };
 
-  /* ─── Auto-assign fonts (AI picks automatically) ───────────── */
+  /* ─── Auto-assign fonts (AI picks automatisch bij eerste bezoek) ──── */
+
+  function restoreFontsFromGuide() {
+    SG.fontsAssigned = true;
+    SG.loadGoogleFonts(SG.guide.headingFont, SG.guide.bodyFont);
+    if (SG.guide.typography && SG.guide.typography.length) {
+      SG.renderTypography(SG.guide.typography);
+      if (SG.el.typographyResult) SG.el.typographyResult.style.display = "";
+    }
+    if (SG.el.typographyStatus) SG.el.typographyStatus.style.display = "none";
+    if (SG.initFontPickers) SG.initFontPickers();
+  }
+  SG.restoreFontsFromGuide = restoreFontsFromGuide;
 
   SG.autoAssignFonts = async function () {
-    if (SG.fontsAssigned || SG.fontsLoading) return;
+    if (SG.fontsLoading) return;
+
+    // 1. Al toegewezen via loadGuide of pre-check
+    if (SG.fontsAssigned) {
+      restoreFontsFromGuide();
+      return;
+    }
+
+    // 2. fontsAssigned kan gereset zijn door een kleurwijziging; lees draft opnieuw
+    try {
+      const raw = localStorage.getItem(SG.draftKey);
+      if (raw) {
+        const d = JSON.parse(raw);
+        if (d && d.guide && (d.guide.headingFont || d.guide.bodyFont)) {
+          Object.assign(SG.guide, d.guide);
+          restoreFontsFromGuide();
+          return;
+        }
+      }
+    } catch (e) {}
+
+    // 3. Fonts al in guide (server-save)
+    if (SG.guide.headingFont || SG.guide.bodyFont) {
+      restoreFontsFromGuide();
+      return;
+    }
+
+    // 4. Geen kleuren beschikbaar → kan geen fonts toewijzen
     if (!SG.extractedColours.length) return;
 
     SG.fontsLoading = true;
@@ -247,6 +288,7 @@
       if (el.typographyStatus) el.typographyStatus.style.display = "none";
       SG.applyOverridesToAllIframes();
       SG.fontsAssigned = true;
+      if (SG.saveDraft) SG.saveDraft();
       SG.initFontPickers();
     } else {
       if (el.typographyStatus) {
