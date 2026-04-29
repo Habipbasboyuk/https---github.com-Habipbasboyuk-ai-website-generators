@@ -70,8 +70,13 @@
         iframe.scrolling = "yes";
         iframe._loaded = false;
         iframe._pageSlug = page.slug;
+        iframe._sitemapVersionId = page.sitemap_version_id || 0;
         iframe._sectionIdx = globalSectionIdx++; // globale teller voor afwisselende achtergronden
         iframe._localSectionIdx = sIdx; // per-pagina index voor de afbeeldingskaart
+        iframe._sectionType = section.type || ""; // hero, features, footer, ...
+        iframe._sectionPostId = postId; // huidige template/wireframe id
+        iframe._sectionData = section; // ruwe sectie data voor evt. herstel
+        iframe.dataset.aisbSection = "1";
 
         iframe.addEventListener("load", () => {
           iframe._loaded = true;
@@ -104,6 +109,28 @@
               "*:not(html):not(body){pointer-events:auto !important;}" +
               "*:hover:not(html):not(body):not(:has(*:hover)){outline:6px solid #118cf0 !important;" +
               "outline-offset:-2px !important; transition: 0.2s ease-in-out !important;}";
+
+            // Klik op een element → open het editor-paneel
+            // Shift+klik, klik op body, of klik op de sectie-root/container → sectie-paneel
+            doc.addEventListener("click", (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              const el = e.target;
+              if (!el) return;
+              const tag = (el.tagName || "").toLowerCase();
+              const cls = String(el.className || "");
+              const isSectionRoot =
+                tag === "section" ||
+                /\bbrxe-section\b/.test(cls) ||
+                el === doc.body ||
+                el === doc.documentElement;
+              const isSectionClick = e.shiftKey || isSectionRoot;
+              if (isSectionClick) {
+                if (D.selectSection) D.selectSection(iframe, doc);
+                return;
+              }
+              if (D.selectElement) D.selectElement(el, doc, iframe);
+            });
 
             // Stuur wheel-events vanuit het iframe door naar de canvas
             // zodat scrollen / Ctrl+zoom ook werkt als de muis over een iframe staat.
