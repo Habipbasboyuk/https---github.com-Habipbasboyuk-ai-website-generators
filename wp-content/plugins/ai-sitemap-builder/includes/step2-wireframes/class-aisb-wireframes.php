@@ -821,6 +821,10 @@ class AISB_Wireframes {
   public function ajax_replace_section_type(): void {
     $this->require_login();
     $this->check_nonce();
+    // Voldoende tijd voor de OpenAI-aanroep (nieuw template → AI-tekst → opslaan).
+    set_time_limit(180);
+    ignore_user_abort(true);
+
     $project_id = isset($_POST['project_id']) ? (int)$_POST['project_id'] : 0;
     $sitemap_version_id = isset($_POST['sitemap_version_id']) ? (int)$_POST['sitemap_version_id'] : 0;
     $page_slug = isset($_POST['page_slug']) ? sanitize_title(wp_unslash($_POST['page_slug'])) : '';
@@ -828,6 +832,8 @@ class AISB_Wireframes {
     $new_type = isset($_POST['new_type']) ? sanitize_key(wp_unslash($_POST['new_type'])) : '';
     $this->assert_project_ownership($project_id);
     if (!$sitemap_version_id || !$page_slug || !$uuid || !$new_type) wp_send_json_error(['message' => 'Missing params'], 400);
+
+    error_log('[AISB] ajax_replace_section_type: uuid=' . $uuid . ' new_type=' . $new_type . ' page=' . $page_slug);
 
     $row = $this->get_or_create_wireframe_row($project_id, $sitemap_version_id, $page_slug);
     $model = json_decode((string)($row['model_json'] ?? '{}'), true);
@@ -847,7 +853,14 @@ class AISB_Wireframes {
       if (!is_array($s)) continue;
       if (($s['uuid'] ?? '') !== $uuid) continue;
 
-      $model['sections'][$i]['type'] = $new_type;
+      // Oude ai_wireframe post (van de vervangen template) opruimen.
+      $old_ai_wireframe_id = isset($s['ai_wireframe_id']) ? (int) $s['ai_wireframe_id'] : 0;
+      if ($old_ai_wireframe_id > 0) {
+        wp_delete_post($old_ai_wireframe_id, true);
+      }
+
+      $model['sections'][$i]['type']            = $new_type;
+      $model['sections'][$i]['ai_wireframe_id'] = null;
 
       $bricks_tpl = $this->bricks->pick_bricks_template($new_type, $bricks_by_type, $used_bricks_ids);
       if ($bricks_tpl) {
@@ -876,6 +889,12 @@ class AISB_Wireframes {
     }
 
     $this->save_model($project_id, $sitemap_version_id, $page_slug, $model, true);
+
+    // AI-tekst (en padding/logo) regenereren voor uitsluitend de vervangen sectie,
+    // zodat die niet leeg of met lorem ipsum blijft.
+    $model = $this->ai->populate_bricks_content_with_ai($model, $project_id, $sitemap_version_id, $page_slug, [$uuid]);
+    $this->save_model($project_id, $sitemap_version_id, $page_slug, $model, true);
+
     wp_send_json_success(['wireframe' => $model]);
   }
 

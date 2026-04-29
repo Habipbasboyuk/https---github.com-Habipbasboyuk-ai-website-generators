@@ -12,15 +12,22 @@ class AISB_Wireframes_AI {
   /**
    * Vervangt placeholder teksten in Bricks secties met AI-gegenereerde copy.
    * Maakt voor elke sectie een ai_wireframe post aan, originelen blijven onaangetast.
+   *
+   * @param array $only_uuids Optioneel: alleen secties met deze uuids verwerken
+   *                          (gebruikt door 'replace section' om één sectie te
+   *                          regenereren zonder de rest aan te tasten).
    */
-  public function populate_bricks_content_with_ai(array $model, int $project_id, int $sitemap_version_id, string $page_slug): array {
+  public function populate_bricks_content_with_ai(array $model, int $project_id, int $sitemap_version_id, string $page_slug, array $only_uuids = []): array {
     // Project brief en sitemap ophalen voor context aan OpenAI
     $brief = (string) get_post_meta($project_id, 'aisb_project_brief', true);
     $sitemap_json = get_post_meta($sitemap_version_id, 'aisb_sitemap_json', true);
     $sitemap_data = json_decode((string)$sitemap_json, true) ?: [];
 
+    // Project logo (uit style guide) — wordt later in elke 'logo' node geïnjecteerd.
+    $project_logo = $this->get_project_logo($project_id);
+
     $sections_with_id = array_filter($model['sections'] ?? [], fn($s) => !empty($s['bricks_template_id']));
-    error_log('[AISB] populate_bricks_content_with_ai START: page=' . $page_slug . ' total_sections=' . count($model['sections'] ?? []) . ' sections_with_bricks_id=' . count($sections_with_id));
+    error_log('[AISB] populate_bricks_content_with_ai START: page=' . $page_slug . ' total_sections=' . count($model['sections'] ?? []) . ' sections_with_bricks_id=' . count($sections_with_id) . ' only_uuids=' . count($only_uuids));
     
     // 1. Pagina-info zoeken in de sitemap (titel, secties)
     $page_info = ['page_title' => $page_slug, 'sections' => []];
@@ -63,6 +70,10 @@ class AISB_Wireframes_AI {
     foreach ($model['sections'] as $idx => $sec) {
         if (empty($sec['bricks_template_id'])) {
             error_log('[AISB] Section ' . $idx . ' (type=' . ($sec['type'] ?? '?') . ') has no bricks_template_id — skipped');
+            continue;
+        }
+        // Filter op uuid (incremental fill, bv. na 'replace section')
+        if (!empty($only_uuids) && !in_array((string)($sec['uuid'] ?? ''), $only_uuids, true)) {
             continue;
         }
         
@@ -237,6 +248,19 @@ class AISB_Wireframes_AI {
         if (is_wp_error($new_post_id) || !$new_post_id) {
             error_log('[AISB] wp_insert_post (ai_wireframe) FAILED for section ' . $idx . ': ' . (is_wp_error($new_post_id) ? $new_post_id->get_error_message() : 'returned 0'));
         } else {
+            // Forceer ruime top/bottom padding op het root-element van de sectie
+            // (Relume-style spacing) voordat we opslaan, zodat de live preview het toont.
+            // Header/footer laten we ongemoeid — die hebben hun eigen layout.
+            $sec_type = strtolower((string)($model['sections'][$idx]['type'] ?? ''));
+            if (!in_array($sec_type, ['header', 'footer'], true)) {
+                $cloned_data = $this->apply_section_padding_to_nodes($cloned_data);
+            }
+
+            // Project-logo injecteren in alle Bricks 'logo' elementen.
+            if (!empty($project_logo)) {
+                $cloned_data = $this->inject_project_logo($cloned_data, $project_logo);
+            }
+
             // Bricks elementen opslaan in de post meta
             update_post_meta($new_post_id, '_bricks_page_content_2', $cloned_data);
             // Metadata voor groepering en herleidbaarheid
@@ -312,5 +336,82 @@ class AISB_Wireframes_AI {
     $slug = trim($slug);
     $slug = preg_replace('/^\/+/', '', $slug);
     return (string)$slug;
+  }
+
+  /**
+   * Lees logo-info uit de project style guide (door step 3 opgeslagen).
+   * Returnt ['id' => attachment_id|0, 'url' => url|''] of [] als geen logo.
+   */
+  private function get_project_logo(int $project_id): array {
+    $raw = (string) get_post_meta($project_id, 'aisb_style_guide', true);
+    if ($raw === '') return [];
+    $sg = json_decode($raw, true);
+    if (!is_array($sg)) return [];
+    $url = (string)($sg['logoUrl'] ?? '');
+    $id  = (int)($sg['logoAttachmentId'] ?? 0);
+    if ($url === '' && $id === 0) return [];
+    return ['id' => $id, 'url' => $url];
+  }
+
+  /**
+   * Vervangt het 'logo' image-attribuut in alle Bricks 'logo' elementen
+   * door de logo van het project (uit de style guide).
+   */
+  private function inject_project_logo(array $nodes, array $project_logo): array {
+    foreach ($nodes as $i => $n) {
+      if (!is_array($n)) continue;
+      if (($n['name'] ?? '') !== 'logo') continue;
+      if (!isset($n['settings']) || !is_array($n['settings'])) {
+        $nodes[$i]['settings'] = [];
+      }
+      $logo_setting = [
+        'url'  => $project_logo['url'],
+        'size' => 'full',
+      ];
+      if (!empty($project_logo['id'])) {
+        $logo_setting['id'] = (int) $project_logo['id'];
+      }
+      $nodes[$i]['settings']['logo'] = $logo_setting;
+    }
+    return $nodes;
+  }
+
+  /**
+   * Forceer ruime top/bottom padding (Relume-style) op het root section/container
+   * element van een sectie, zodat zowel de preview als de gepubliceerde pagina
+   * voldoende ademruimte heeft tussen secties.
+   */
+  private function apply_section_padding_to_nodes(array $nodes): array {
+    $top    = '3rem';
+    $bottom = '3rem';
+
+    foreach ($nodes as $i => $n) {
+      if (!is_array($n)) continue;
+      $name = $n['name'] ?? '';
+      $is_root_wrapper = in_array($name, ['section', 'container', 'block'], true)
+                         && (int)($n['parent'] ?? 0) === 0;
+      if (!$is_root_wrapper) continue;
+
+      $settings = isset($n['settings']) && is_array($n['settings']) ? $n['settings'] : [];
+      $existing = isset($settings['_padding']) && is_array($settings['_padding']) ? $settings['_padding'] : [];
+
+      $existing['top']    = $top;
+      $existing['bottom'] = $bottom;
+      if (!isset($existing['left']))  $existing['left']  = '';
+      if (!isset($existing['right'])) $existing['right'] = '';
+
+      $settings['_padding'] = $existing;
+
+      // Verwijder breakpoint-overrides (bv. _padding:tablet_portrait) die anders
+      // op kleinere schermen alsnog onze waarde overschrijven.
+      foreach (array_keys($settings) as $k) {
+        if (is_string($k) && strpos($k, '_padding:') === 0) {
+          unset($settings[$k]);
+        }
+      }
+
+      $nodes[$i]['settings'] = $settings;
+    }
+    return $nodes;
   }
 }

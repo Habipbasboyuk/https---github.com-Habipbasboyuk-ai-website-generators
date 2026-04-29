@@ -24,6 +24,10 @@ class AISB_Wireframe_Compiler {
     foreach ($sections as $sec) {
       if (!is_array($sec)) continue;
 
+      // Header/footer secties laten we origineel — geen extra padding overrides.
+      $sec_type = strtolower((string)($sec['type'] ?? ''));
+      $skip_padding = in_array($sec_type, ['header', 'footer'], true);
+
       // --- Prioriteit A: AI wireframe post (ai_wireframe CPT met AI-gegenereerde Bricks elementen) ---
       $ai_wireframe_id = isset($sec['ai_wireframe_id']) ? (int) $sec['ai_wireframe_id'] : 0;
       if ($ai_wireframe_id > 0) {
@@ -35,6 +39,8 @@ class AISB_Wireframe_Compiler {
           }));
           $rekeyed = $this->re_id_bricks_nodes($tpl_content);
           $rekeyed = $this->force_root_parent_zero($rekeyed);
+          $rekeyed = $this->neutralize_accordion_query_loops($rekeyed);
+          if (!$skip_padding) $rekeyed = $this->apply_section_padding($rekeyed);
           $final_content = array_merge($final_content, $rekeyed);
           continue;
         }
@@ -50,6 +56,8 @@ class AISB_Wireframe_Compiler {
           }));
           $rekeyed = $this->re_id_bricks_nodes($tpl_content);
           $rekeyed = $this->force_root_parent_zero($rekeyed);
+          $rekeyed = $this->neutralize_accordion_query_loops($rekeyed);
+          if (!$skip_padding) $rekeyed = $this->apply_section_padding($rekeyed);
           $final_content = array_merge($final_content, $rekeyed);
           continue;
         }
@@ -77,6 +85,8 @@ class AISB_Wireframe_Compiler {
       $rekeyed = $this->re_id_bricks_nodes($tpl_content);
       // Ensure root section parent is 0
       $rekeyed = $this->force_root_parent_zero($rekeyed);
+      $rekeyed = $this->neutralize_accordion_query_loops($rekeyed);
+      if (!$skip_padding) $rekeyed = $this->apply_section_padding($rekeyed);
 
       // Merge
       $final_content = array_merge($final_content, $rekeyed);
@@ -158,6 +168,81 @@ class AISB_Wireframe_Compiler {
       }
     }
     return $nodes;
+  }
+
+  /**
+   * Forceer ruime top/bottom padding op root <section> nodes (Relume-style spacing).
+   * Overschrijft bestaande top/bottom — horizontale paddings uit het template
+   * blijven behouden.
+   */
+  private function apply_section_padding(array $nodes): array {
+    $top    = '3rem';
+    $bottom = '3rem';
+
+    foreach ($nodes as $i => $n) {
+      if (!is_array($n)) continue;
+      $is_root_wrapper = in_array(($n['name'] ?? ''), ['section', 'container', 'block'], true)
+                         && (int)($n['parent'] ?? 0) === 0;
+      if (!$is_root_wrapper) continue;
+
+      $settings = isset($n['settings']) && is_array($n['settings']) ? $n['settings'] : [];
+      $existing = isset($settings['_padding']) && is_array($settings['_padding']) ? $settings['_padding'] : [];
+
+      // Forceer top/bottom — laat horizontale waarden ongemoeid.
+      $existing['top']    = $top;
+      $existing['bottom'] = $bottom;
+      if (!isset($existing['left']))  $existing['left']   = '';
+      if (!isset($existing['right'])) $existing['right']  = '';
+
+      $settings['_padding'] = $existing;
+
+      // Responsive overrides die hetzelfde mechanisme gebruiken (Bricks slaat
+      // breakpoint-overrides op als _padding:tablet_portrait, :mobile_portrait etc.).
+      // Verwijder deze zodat onze waarde niet alsnog door een breakpoint
+      // overschreven wordt.
+      foreach (array_keys($settings) as $k) {
+        if (is_string($k) && strpos($k, '_padding:') === 0) {
+          unset($settings[$k]);
+        }
+      }
+
+      $nodes[$i]['settings'] = $settings;
+    }
+    return $nodes;
+  }
+
+  /**
+   * FAQ-templates gebruiken vaak een Bricks Query Loop binnen een accordion-nested:
+   * één child-block met een `query` setting dat in de frontend over een (vaak lege)
+   * CPT loopt, waardoor de AI-gevulde placeholder-tekst onzichtbaar blijft.
+   * We strippen de loop op blocks die directe kinderen zijn van een accordion-nested,
+   * zodat het template één keer statisch rendert mét de AI-tekst.
+   */
+  private function neutralize_accordion_query_loops(array $nodes): array {
+    // Verzamel ID's van accordion-nested elementen.
+    $accordion_ids = [];
+    foreach ($nodes as $n) {
+      if (!is_array($n)) continue;
+      if (($n['name'] ?? '') === 'accordion-nested') {
+        $id = (string)($n['id'] ?? '');
+        if ($id !== '') $accordion_ids[$id] = true;
+      }
+    }
+    if (!$accordion_ids) return $nodes;
+
+    foreach ($nodes as $i => $n) {
+      if (!is_array($n)) continue;
+      $parent = (string)($n['parent'] ?? '');
+      if (!isset($accordion_ids[$parent])) continue;
+      if (!isset($n['settings']) || !is_array($n['settings'])) continue;
+      if (!isset($n['settings']['query'])) continue;
+
+      // Verwijder de query-loop zodat het block zich gedraagt als statische container.
+      unset($nodes[$i]['settings']['query']);
+      if (isset($nodes[$i]['settings']['hasLoop']))   unset($nodes[$i]['settings']['hasLoop']);
+      if (isset($nodes[$i]['settings']['_query']))    unset($nodes[$i]['settings']['_query']);
+    }
+    return array_values($nodes);
   }
 
   /**

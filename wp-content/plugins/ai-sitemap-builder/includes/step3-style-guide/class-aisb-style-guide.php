@@ -127,160 +127,165 @@ class AISB_Style_Guide {
     <?php else : ?>
       <div class="aisb-sg-status" data-status-bar></div>
 
-      <!-- Onboarding wizard step indicators -->
-      <div class="aisb-sg-wizard-steps" data-wizard-steps>
-        <button class="aisb-sg-wizard-step is-active" type="button" data-wizard-step="1">
-          <span class="aisb-sg-wizard-step-num">1</span>
-          <span class="aisb-sg-wizard-step-label">Colours</span>
-        </button>
-        <div class="aisb-sg-wizard-divider"></div>
-        <button class="aisb-sg-wizard-step" type="button" data-wizard-step="2">
-          <span class="aisb-sg-wizard-step-num">2</span>
-          <span class="aisb-sg-wizard-step-label">Typography</span>
-        </button>
-        <div class="aisb-sg-wizard-divider"></div>
-        <button class="aisb-sg-wizard-step" type="button" data-wizard-step="3">
-          <span class="aisb-sg-wizard-step-num">3</span>
-          <span class="aisb-sg-wizard-step-label">Images</span>
-        </button>
-      </div>
+      <!-- Two-column layout: left = wizard controls, right = permanent canvas -->
+      <div class="aisb-sg-split">
 
-      <!-- ═══════════════ STEP 1: Colours ═══════════════ -->
-      <div class="aisb-sg-wizard-panel" data-wizard-panel="1">
-        <h3 class="aisb-sg-panel-title">Choose your brand colours</h3>
-        <p class="aisb-sg-panel-desc">Upload your logo to automatically extract colours, or pick a primary colour manually.</p>
+        <!-- ── LEFT: wizard ─────────────────────────────────── -->
+        <div class="aisb-sg-split-left">
 
-        <!-- Sub-tabs: Met Logo / Zonder Logo -->
-        <div class="aisb-sg-subtabs" data-colour-tabs>
-          <button class="aisb-sg-subtab is-active" type="button" data-colour-mode="logo">With Logo</button>
-          <button class="aisb-sg-subtab" type="button" data-colour-mode="manual">Without Logo</button>
-        </div>
-
-        <!-- Panel: Met Logo -->
-        <div class="aisb-sg-mode-panel" data-colour-panel="logo">
-          <div class="aisb-sg-upload-zone" data-logo-dropzone>
-            <input type="file" accept="image/*" data-logo-input style="display:none;">
-            <div class="aisb-sg-upload-placeholder" data-logo-placeholder>
-              <span>Drop your logo here or <a href="#" data-logo-browse>browse</a></span>
-            </div>
-            <img data-logo-preview class="aisb-sg-logo-preview" style="display:none;" alt="Logo preview" crossorigin="anonymous">
-          </div>
-          <div class="aisb-sg-extracted" data-colours-extracted style="display:none;">
-            <h4 style="margin:0 0 10px;">Extracted Colours</h4>
-            <div class="aisb-sg-swatches" data-colours-swatches></div>
-            <button type="button" class="aisb-btn aisb-btn--outline aisb-sg-shuffle-btn" data-shuffle-colours>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
-              Shuffle unlocked
+          <!-- Onboarding wizard step indicators -->
+          <div class="aisb-sg-wizard-steps" data-wizard-steps>
+            <button class="aisb-sg-wizard-step is-active" type="button" data-wizard-step="1">
+              <span class="aisb-sg-wizard-step-num">1</span>
+              <span class="aisb-sg-wizard-step-label">Colours</span>
+            </button>
+            <div class="aisb-sg-wizard-divider"></div>
+            <button class="aisb-sg-wizard-step" type="button" data-wizard-step="2">
+              <span class="aisb-sg-wizard-step-num">2</span>
+              <span class="aisb-sg-wizard-step-label">Typography</span>
+            </button>
+            <div class="aisb-sg-wizard-divider"></div>
+            <button class="aisb-sg-wizard-step" type="button" data-wizard-step="3">
+              <span class="aisb-sg-wizard-step-num">3</span>
+              <span class="aisb-sg-wizard-step-label">Images</span>
             </button>
           </div>
-        </div>
 
-        <!-- Panel: Zonder Logo -->
-        <div class="aisb-sg-mode-panel" data-colour-panel="manual" style="display:none;">
-          <label class="aisb-label">Primary colour</label>
-          <div class="aisb-sg-color-picker-row">
-            <input type="color" value="#4F46E5" data-colour-picker>
-            <input type="text" value="#4F46E5" data-colour-hex class="aisb-sg-hex-input" maxlength="7" placeholder="#HEX">
-          </div>
-          <div class="aisb-sg-swatches" data-manual-swatches style="margin-top:14px;"></div>
-          <button type="button" class="aisb-btn aisb-btn--outline aisb-sg-shuffle-btn" data-shuffle-colours>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
-            Shuffle unlocked
-          </button>
-        </div>
+          <!-- ═══════════════ STEP 1: Colours ═══════════════ -->
+          <div class="aisb-sg-wizard-panel" data-wizard-panel="1">
+            <h3 class="aisb-sg-panel-title">Choose your brand colours</h3>
+            <p class="aisb-sg-panel-desc">Upload your logo to automatically extract colours, or pick a primary colour manually.</p>
 
-        <!-- Live preview for colour step -->
-        <div class="aisb-sg-step-preview" data-step-preview="1">
-          <h4 class="aisb-sg-preview-label">Preview</h4>
-          <div class="aisb-sg-live-preview" data-preview-colours></div>
-        </div>
+            <!-- Sub-tabs: Met Logo / Zonder Logo -->
+            <div class="aisb-sg-subtabs" data-colour-tabs>
+              <button class="aisb-sg-subtab is-active" type="button" data-colour-mode="logo">With Logo</button>
+              <button class="aisb-sg-subtab" type="button" data-colour-mode="manual">Without Logo</button>
+            </div>
 
-        <div class="aisb-sg-wizard-nav">
-          <span></span>
-          <button class="aisb-btn" type="button" data-wizard-next="2">Next: Typography →</button>
-        </div>
-      </div>
-
-      <!-- ═══════════════ STEP 2: Typography ═══════════════ -->
-      <div class="aisb-sg-wizard-panel" data-wizard-panel="2" style="display:none;">
-        <h3 class="aisb-sg-panel-title">Typography</h3>
-        <p class="aisb-sg-panel-desc">AI automatically picks the best Google Fonts pairing based on your brand colours and website topic.</p>
-
-        <div class="aisb-sg-type-auto-status" data-typography-status>
-          <div class="aisb-sg-empty-state">Fonts will be generated automatically when you arrive at this step…</div>
-        </div>
-
-        <div class="aisb-sg-type-result" data-typography-result style="display:none;">
-          <section class="aisb-sg-section">
-            <h4 class="aisb-sg-section-title">Typography</h4>
-            <div class="aisb-sg-type-preview" data-typography-preview></div>
-          </section>
-
-          <!-- Manual font override -->
-          <section class="aisb-sg-section aisb-sg-font-pickers">
-            <h4 class="aisb-sg-section-title">Change fonts</h4>
-            <p class="aisb-sg-panel-desc" style="margin-bottom:12px;">Pick a different font if you prefer — or keep the AI suggestion.</p>
-            <div class="aisb-sg-font-picker-row">
-              <div class="aisb-sg-font-picker-col">
-                <label class="aisb-sg-font-picker-label">Heading font</label>
-                <select class="aisb-sg-font-select" data-font-select-heading></select>
+            <!-- Panel: Met Logo -->
+            <div class="aisb-sg-mode-panel" data-colour-panel="logo">
+              <div class="aisb-sg-upload-zone" data-logo-dropzone>
+                <input type="file" accept="image/*" data-logo-input style="display:none;">
+                <div class="aisb-sg-upload-placeholder" data-logo-placeholder>
+                  <span>Drop your logo here or <a href="#" data-logo-browse>browse</a></span>
+                </div>
+                <img data-logo-preview class="aisb-sg-logo-preview" style="display:none;" alt="Logo preview" crossorigin="anonymous">
               </div>
-              <div class="aisb-sg-font-picker-col">
-                <label class="aisb-sg-font-picker-label">Body font</label>
-                <select class="aisb-sg-font-select" data-font-select-body></select>
+              <div class="aisb-sg-extracted" data-colours-extracted style="display:none;">
+                <h4 style="margin:0 0 10px;">Extracted Colours</h4>
+                <div class="aisb-sg-swatches" data-colours-swatches></div>
+                <button type="button" class="aisb-btn aisb-btn--outline aisb-sg-shuffle-btn" data-shuffle-colours>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+                  Shuffle unlocked
+                </button>
               </div>
             </div>
-          </section>
-        </div>
 
-        <!-- Live preview for typography step -->
-        <div class="aisb-sg-step-preview" data-step-preview="2">
-          <h4 class="aisb-sg-preview-label">Preview</h4>
-          <div class="aisb-sg-live-preview" data-preview-typography></div>
-        </div>
+            <!-- Panel: Zonder Logo -->
+            <div class="aisb-sg-mode-panel" data-colour-panel="manual" style="display:none;">
+              <label class="aisb-label">Primary colour</label>
+              <div class="aisb-sg-color-picker-row">
+                <input type="color" value="#4F46E5" data-colour-picker>
+                <input type="text" value="#4F46E5" data-colour-hex class="aisb-sg-hex-input" maxlength="7" placeholder="#HEX">
+              </div>
+              <div class="aisb-sg-swatches" data-manual-swatches style="margin-top:14px;"></div>
+              <button type="button" class="aisb-btn aisb-btn--outline aisb-sg-shuffle-btn" data-shuffle-colours>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+                Shuffle unlocked
+              </button>
+            </div>
 
-        <div class="aisb-sg-wizard-nav">
-          <button class="aisb-btn-secondary" type="button" data-wizard-prev="1">← Back</button>
-          <button class="aisb-btn" type="button" data-wizard-next="3">Next: Images →</button>
-        </div>
-      </div>
-
-      <!-- ═══════════════ STEP 3: Images ═══════════════ -->
-      <div class="aisb-sg-wizard-panel" data-wizard-panel="3" style="display:none;">
-        <h3 class="aisb-sg-panel-title">Image style</h3>
-        <p class="aisb-sg-panel-desc">Upload your own images or let AI find matching stock photos. If you upload fewer than needed, AI fills the rest from Unsplash.</p>
-
-        <!-- Upload zone -->
-        <div class="aisb-sg-upload-zone" data-upload-zone>
-          <div class="aisb-sg-upload-zone-inner">
-            <span class="aisb-sg-upload-icon">📁</span>
-            <p class="aisb-sg-upload-text">Drag &amp; drop images here or <label class="aisb-sg-upload-label">browse<input type="file" multiple accept="image/*" data-upload-input style="display:none;"></label></p>
-            <p class="aisb-sg-upload-hint" data-upload-hint>0 images uploaded · <span data-total-needed>0</span> needed total</p>
+            <div class="aisb-sg-wizard-nav">
+              <span></span>
+              <button class="aisb-btn" type="button" data-wizard-next="2">Next: Typography →</button>
+            </div>
           </div>
-        </div>
 
-        <!-- Uploaded images -->
-        <div class="aisb-sg-uploaded-images" data-uploaded-grid style="display:none;">
-          <h5 class="aisb-sg-auto-group-title">Your uploads <span class="aisb-sg-auto-group-count" data-uploaded-count></span></h5>
-          <div class="aisb-sg-auto-grid" data-uploaded-grid-inner></div>
-        </div>
+          <!-- ═══════════════ STEP 2: Typography ═══════════════ -->
+          <div class="aisb-sg-wizard-panel" data-wizard-panel="2" style="display:none;">
+            <h3 class="aisb-sg-panel-title">Typography</h3>
+            <p class="aisb-sg-panel-desc">AI automatically picks the best Google Fonts pairing based on your brand colours and website topic.</p>
 
-        <!-- Auto-assigned images grid — populated by JS -->
-        <div class="aisb-sg-auto-images" data-images-grid>
-          <div class="aisb-sg-empty-state">Images will be loaded automatically…</div>
-        </div>
+            <div class="aisb-sg-type-auto-status" data-typography-status>
+              <div class="aisb-sg-empty-state">Fonts will be generated automatically when you arrive at this step…</div>
+            </div>
 
-        <!-- Live preview for images step -->
-        <div class="aisb-sg-step-preview" data-step-preview="3">
-          <h4 class="aisb-sg-preview-label">Preview</h4>
-          <div class="aisb-sg-live-preview" data-preview-images></div>
-        </div>
+            <div class="aisb-sg-type-result" data-typography-result style="display:none;">
+              <section class="aisb-sg-section">
+                <h4 class="aisb-sg-section-title">Typography</h4>
+                <div class="aisb-sg-type-preview" data-typography-preview></div>
+              </section>
 
-        <div class="aisb-sg-wizard-nav">
-          <button class="aisb-btn-secondary" type="button" data-wizard-prev="2">← Back</button>
-          <a class="aisb-btn" href="<?php echo esc_url(add_query_arg(['aisb_step' => 4], remove_query_arg(['aisb_step']))); ?>" data-save-button>Save &amp; Design</a>
-        </div>
-      </div>
+              <!-- Manual font override -->
+              <section class="aisb-sg-section aisb-sg-font-pickers">
+                <h4 class="aisb-sg-section-title">Change fonts</h4>
+                <p class="aisb-sg-panel-desc" style="margin-bottom:12px;">Pick a different font if you prefer — or keep the AI suggestion.</p>
+                <div class="aisb-sg-font-picker-row">
+                  <div class="aisb-sg-font-picker-col">
+                    <label class="aisb-sg-font-picker-label">Heading font</label>
+                    <select class="aisb-sg-font-select" data-font-select-heading></select>
+                  </div>
+                  <div class="aisb-sg-font-picker-col">
+                    <label class="aisb-sg-font-picker-label">Body font</label>
+                    <select class="aisb-sg-font-select" data-font-select-body></select>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <div class="aisb-sg-wizard-nav">
+              <button class="aisb-btn-secondary" type="button" data-wizard-prev="1">← Back</button>
+              <button class="aisb-btn" type="button" data-wizard-next="3">Next: Images →</button>
+            </div>
+          </div>
+
+          <!-- ═══════════════ STEP 3: Images ═══════════════ -->
+          <div class="aisb-sg-wizard-panel" data-wizard-panel="3" style="display:none;">
+            <h3 class="aisb-sg-panel-title">Image style</h3>
+            <p class="aisb-sg-panel-desc">Upload your own images or let AI find matching stock photos.</p>
+
+            <!-- Upload zone -->
+            <div class="aisb-sg-upload-zone" data-upload-zone>
+              <div class="aisb-sg-upload-zone-inner">
+                <span class="aisb-sg-upload-icon">📁</span>
+                <p class="aisb-sg-upload-text">Drag &amp; drop images here or <label class="aisb-sg-upload-label">browse<input type="file" multiple accept="image/*" data-upload-input style="display:none;"></label></p>
+                <p class="aisb-sg-upload-hint" data-upload-hint>0 images uploaded · <span data-total-needed>0</span> needed total</p>
+              </div>
+            </div>
+
+            <!-- Uploaded images -->
+            <div class="aisb-sg-uploaded-images" data-uploaded-grid style="display:none;">
+              <h5 class="aisb-sg-auto-group-title">Your uploads <span class="aisb-sg-auto-group-count" data-uploaded-count></span></h5>
+              <div class="aisb-sg-auto-grid" data-uploaded-grid-inner></div>
+            </div>
+
+            <!-- Auto-assigned images grid — populated by JS -->
+            <div class="aisb-sg-auto-images" data-images-grid>
+              <div class="aisb-sg-empty-state">Images will be loaded automatically…</div>
+            </div>
+
+            <div class="aisb-sg-wizard-nav">
+              <button class="aisb-btn-secondary" type="button" data-wizard-prev="2">← Back</button>
+              <a class="aisb-btn" href="<?php echo esc_url(add_query_arg(['aisb_step' => 4], remove_query_arg(['aisb_step']))); ?>" data-save-button>Save &amp; Design</a>
+            </div>
+          </div>
+
+        </div><!-- /.aisb-sg-split-left -->
+
+        <!-- ── RIGHT: shared live canvas (always visible) ──── -->
+        <div class="aisb-sg-split-right">
+          <div class="aisb-sg-preview-header">
+            <span class="aisb-sg-preview-label">Live Preview</span>
+            <span class="aisb-sg-preview-hint">Scroll · Ctrl+scroll to zoom</span>
+          </div>
+          <!-- Single canvas used by all three steps -->
+          <div class="aisb-sg-live-preview"
+               data-preview-colours
+               data-preview-typography
+               data-preview-images></div>
+        </div><!-- /.aisb-sg-split-right -->
+
+      </div><!-- /.aisb-sg-split -->
 
     <?php endif;
   }
@@ -650,10 +655,11 @@ class AISB_Style_Guide {
     }
 
     $page = isset($_POST['page']) ? max(1, (int)$_POST['page']) : 1;
+    $per_page = isset($_POST['per_page']) ? max(1, min(30, (int)$_POST['per_page'])) : 12;
 
     $api_url = add_query_arg([
       'query'       => $keyword,
-      'per_page'    => 12,
+      'per_page'    => $per_page,
       'page'        => $page,
       'orientation' => 'landscape',
     ], 'https://api.unsplash.com/search/photos');
@@ -771,10 +777,13 @@ class AISB_Style_Guide {
             }
           }
         }
+        // Hard cap per section: no real section ever needs more than 8 unique stock photos.
+        $media_count = min($media_count, 8);
         $total_media += $media_count;
 
         $sections[] = [
           'type'               => $s['type'] ?? 'generic',
+          'uuid'               => $s['uuid'] ?? '',
           'ai_wireframe_id'    => $ai_id,
           'bricks_template_id' => $tmpl_id,
           'layout_key'         => $s['layout_key'] ?? '',
@@ -782,9 +791,10 @@ class AISB_Style_Guide {
         ];
       }
       $result_pages[] = [
-        'slug'     => $slug,
-        'title'    => $model['page']['title'] ?? ucfirst(str_replace('-', ' ', $slug)),
-        'sections' => $sections,
+        'slug'               => $slug,
+        'title'              => $model['page']['title'] ?? ucfirst(str_replace('-', ' ', $slug)),
+        'sitemap_version_id' => $sitemap_id,
+        'sections'           => $sections,
       ];
     }
 
@@ -843,9 +853,19 @@ class AISB_Style_Guide {
         continue;
       }
 
-      // Images / video
-      if (in_array($name, ['image', 'video', 'svg'], true)) {
+      // Images / video — galleries get one media entry per image inside them
+      if (in_array($name, ['image', 'video', 'svg', 'photo', 'media', 'background-image', 'post-image', 'featured-image', 'logo', 'icon'], true)) {
         $schema_elements[] = ['tag' => 'media', 'text' => ucfirst($name)];
+        continue;
+      }
+      if (in_array($name, ['image-gallery', 'image-slider', 'image-carousel'], true)) {
+        $stored = !empty($s['images']) && is_array($s['images']) ? count($s['images']) : 1;
+        // Cap at 6: gallery templates often store many placeholder images; the
+        // rendered section rarely shows more than 6 unique visible slots.
+        $img_count = min(max(1, $stored), 6);
+        for ($gi = 0; $gi < $img_count; $gi++) {
+          $schema_elements[] = ['tag' => 'media', 'text' => 'Gallery image'];
+        }
         continue;
       }
 
