@@ -12,6 +12,7 @@ class AISB_Design {
     add_action('wp_enqueue_scripts', [$this, 'enqueue_assets']);
     add_action('wp_ajax_aisb_design_list_templates',   [$this, 'ajax_list_templates']);
     add_action('wp_ajax_aisb_design_replace_section',  [$this, 'ajax_design_replace_section']);
+    add_action('wp_ajax_aisb_design_save_patch',       [$this, 'ajax_save_design_patch']);
   }
 
   /**
@@ -189,6 +190,63 @@ class AISB_Design {
     ]);
   }
 
+  /**
+   * AJAX: Sla design-patches op voor een of meerdere ai_wireframe posts.
+   * Een patch is een JSON-array van bewerkingen:
+   *   [{type:'text'|'css'|'img'|'mirror', selector, ...}, ...]
+   * Elke post krijgt zijn patches opgeslagen als '_aisb_design_patch' post meta.
+   */
+  public function ajax_save_design_patch(): void {
+    if (!is_user_logged_in()) wp_send_json_error(['message' => 'Not logged in'], 401);
+    $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
+    if (!$nonce || !wp_verify_nonce($nonce, 'aisb_sg_nonce')) {
+      wp_send_json_error(['message' => 'Bad nonce'], 403);
+    }
+
+    $project_id = isset($_POST['project_id']) ? (int) $_POST['project_id'] : 0;
+    if (!$project_id) wp_send_json_error(['message' => 'Missing project_id'], 400);
+
+    // Eigenaarschapscontrole op project
+    $project = get_post($project_id);
+    if (!$project || $project->post_type !== 'aisb_project' || (int) $project->post_author !== (int) get_current_user_id()) {
+      wp_send_json_error(['message' => 'Forbidden'], 403);
+    }
+
+    $patches_raw = isset($_POST['patches']) ? wp_unslash($_POST['patches']) : '[]';
+    $patches = json_decode($patches_raw, true);
+    if (!is_array($patches)) wp_send_json_error(['message' => 'Invalid patches JSON'], 400);
+
+    $saved = 0;
+    foreach ($patches as $item) {
+      $post_id = isset($item['post_id']) ? (int) $item['post_id'] : 0;
+      $patch   = isset($item['patch']) && is_array($item['patch']) ? $item['patch'] : [];
+      if (!$post_id) continue;
+
+      // Controleer of dit een ai_wireframe post is
+      $p = get_post($post_id);
+      if (!$p || $p->post_type !== 'ai_wireframe') continue;
+
+      // Saneer elke patch-operatie
+      $clean = [];
+      foreach ($patch as $op) {
+        if (!isset($op['type'])) continue;
+        $type = sanitize_key($op['type']);
+        $entry = ['type' => $type];
+        if (isset($op['selector'])) $entry['selector'] = sanitize_text_field($op['selector']);
+        if ($type === 'text')   $entry['text']  = wp_kses_post($op['text'] ?? '');
+        if ($type === 'css')  { $entry['prop']  = sanitize_key($op['prop'] ?? ''); $entry['value'] = sanitize_text_field($op['value'] ?? ''); }
+        if ($type === 'img')    $entry['src']   = esc_url_raw($op['src'] ?? '');
+        if ($type === 'mirror') $entry['mirrored'] = (bool) ($op['mirrored'] ?? false);
+        $clean[] = $entry;
+      }
+
+      update_post_meta($post_id, '_aisb_design_patch', wp_json_encode($clean, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
+      $saved++;
+    }
+
+    wp_send_json_success(['saved' => $saved]);
+  }
+
   public function enqueue_assets(): void {    $is_step4 = ((int)($_GET['aisb_step'] ?? 0) === 4);
     $has_ctx  = isset($_GET['aisb_project']);
     $is_builder = $this->current_page_has_shortcode('ai_sitemap_builder');
@@ -278,6 +336,10 @@ class AISB_Design {
     <div class="aisb-design-wrap" data-design
          data-design-project="<?php echo esc_attr($project_id); ?>"
          data-design-guide="<?php echo esc_attr($guide_raw ?: '{}'); ?>">
+      <div class="aisb-design-toolbar">
+        <span class="aisb-design-toolbar-title">Design Canvas</span>
+        <button id="aisb-design-save-btn" class="aisb-design-save-btn" type="button" title="Alle wijzigingen opslaan">&#128190; Opslaan</button>
+      </div>
       <div class="aisb-design-canvas" data-design-canvas></div>
       <p class="aisb-design-hint">Scroll to pan · Ctrl+scroll to zoom · Double-click to fit all</p>
     </div>

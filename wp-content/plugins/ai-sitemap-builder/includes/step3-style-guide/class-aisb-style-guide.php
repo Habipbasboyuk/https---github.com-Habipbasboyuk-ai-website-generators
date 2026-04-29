@@ -781,6 +781,11 @@ class AISB_Style_Guide {
         $media_count = min($media_count, 8);
         $total_media += $media_count;
 
+        // Laad eerder opgeslagen design-patches (tekst/stijl/afbeelding-aanpassingen).
+        $patch_raw  = $ai_id ? (string) get_post_meta($ai_id, '_aisb_design_patch', true) : '';
+        $patch_data = ($patch_raw !== '') ? json_decode($patch_raw, true) : [];
+        if (!is_array($patch_data)) $patch_data = [];
+
         $sections[] = [
           'type'               => $s['type'] ?? 'generic',
           'uuid'               => $s['uuid'] ?? '',
@@ -788,6 +793,7 @@ class AISB_Style_Guide {
           'bricks_template_id' => $tmpl_id,
           'layout_key'         => $s['layout_key'] ?? '',
           'media_count'        => $media_count,
+          'patch'              => $patch_data,
         ];
       }
       $result_pages[] = [

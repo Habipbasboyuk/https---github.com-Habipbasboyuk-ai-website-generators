@@ -109,6 +109,9 @@
     if (mirrorBtn) {
       mirrorBtn.addEventListener("click", () => {
         D.toggleSectionMirror(iframe);
+        D._trackPatch(iframe, "mirror", null, {
+          mirrored: !!iframe._aisbMirrored,
+        });
         D._renderSectionPanel(iframe);
       });
     }
@@ -733,6 +736,9 @@
           D._selectedEl.src = fullUrl;
           D._selectedEl.srcset = "";
           D._selectedEl.style.objectFit = "cover";
+          D._trackPatch(D._selectedIframe, "img", D._selectedEl, {
+            src: fullUrl,
+          });
           // Visuele feedback in het image element (als er toevallig nog iets open staat)
           const smGrid = document.getElementById("aisb-ep-unsplash-results");
           if (smGrid)
@@ -761,6 +767,7 @@
     const textarea = document.getElementById("aisb-ep-text");
     textarea.addEventListener("input", () => {
       el.innerText = textarea.value;
+      D._trackPatch(D._selectedIframe, "text", el, { text: textarea.value });
     });
 
     // Kleur
@@ -769,6 +776,10 @@
     colorInput.addEventListener("input", () => {
       el.style.setProperty("color", colorInput.value, "important");
       colorVal.textContent = colorInput.value;
+      D._trackPatch(D._selectedIframe, "css", el, {
+        prop: "color",
+        value: colorInput.value,
+      });
     });
 
     // Lettertype
@@ -780,6 +791,10 @@
         .forEach((b) => b.classList.remove("is-active"));
       btn.classList.add("is-active");
       el.style.setProperty("font-family", btn.dataset.font, "important");
+      D._trackPatch(D._selectedIframe, "css", el, {
+        prop: "font-family",
+        value: btn.dataset.font,
+      });
     });
 
     // Grootte
@@ -788,10 +803,18 @@
     sizeRange.addEventListener("input", () => {
       sizeNum.value = sizeRange.value;
       el.style.setProperty("font-size", sizeRange.value + "px", "important");
+      D._trackPatch(D._selectedIframe, "css", el, {
+        prop: "font-size",
+        value: sizeRange.value + "px",
+      });
     });
     sizeNum.addEventListener("input", () => {
       sizeRange.value = sizeNum.value;
       el.style.setProperty("font-size", sizeNum.value + "px", "important");
+      D._trackPatch(D._selectedIframe, "css", el, {
+        prop: "font-size",
+        value: sizeNum.value + "px",
+      });
     });
 
     // Gewicht
@@ -803,6 +826,10 @@
         .forEach((b) => b.classList.remove("is-active"));
       btn.classList.add("is-active");
       el.style.setProperty("font-weight", btn.dataset.weight, "important");
+      D._trackPatch(D._selectedIframe, "css", el, {
+        prop: "font-weight",
+        value: btn.dataset.weight,
+      });
     });
 
     // Uitlijning
@@ -814,6 +841,10 @@
         .forEach((b) => b.classList.remove("is-active"));
       btn.classList.add("is-active");
       el.style.setProperty("text-align", btn.dataset.align, "important");
+      D._trackPatch(D._selectedIframe, "css", el, {
+        prop: "text-align",
+        value: btn.dataset.align,
+      });
     });
 
     // Regelafstand
@@ -822,6 +853,10 @@
     lhRange.addEventListener("input", () => {
       lhVal.textContent = parseFloat(lhRange.value).toFixed(2);
       el.style.setProperty("line-height", lhRange.value, "important");
+      D._trackPatch(D._selectedIframe, "css", el, {
+        prop: "line-height",
+        value: lhRange.value,
+      });
     });
   };
 
@@ -929,6 +964,7 @@
           el.src = fullUrl;
           el.srcset = "";
           el.style.objectFit = "cover";
+          D._trackPatch(D._selectedIframe, "img", el, { src: fullUrl });
           // Update ook direct border als feedback (visueel)
           unResults
             .querySelectorAll("img")
@@ -968,6 +1004,7 @@
             el.src = url;
             el.srcset = "";
             el.style.objectFit = "cover";
+            D._trackPatch(D._selectedIframe, "img", el, { src: url });
             if (srcInput) srcInput.value = url;
             uploadStatus.textContent = "Afbeelding geüpload ✓";
             uploadInput.value = "";
@@ -1018,6 +1055,10 @@
     bgInput.addEventListener("input", () => {
       el.style.setProperty("background-color", bgInput.value, "important");
       bgVal.textContent = bgInput.value;
+      D._trackPatch(D._selectedIframe, "css", el, {
+        prop: "background-color",
+        value: bgInput.value,
+      });
     });
 
     D._bindSharedControls(el);
@@ -1036,6 +1077,10 @@
           radiusRange.value + "px",
           "important",
         );
+        D._trackPatch(D._selectedIframe, "css", el, {
+          prop: "border-radius",
+          value: radiusRange.value + "px",
+        });
       });
     }
 
@@ -1046,6 +1091,10 @@
         opacityVal.textContent =
           Math.round(parseFloat(opacityRange.value) * 100) + "%";
         el.style.setProperty("opacity", opacityRange.value, "important");
+        D._trackPatch(D._selectedIframe, "css", el, {
+          prop: "opacity",
+          value: opacityRange.value,
+        });
       });
     }
   };

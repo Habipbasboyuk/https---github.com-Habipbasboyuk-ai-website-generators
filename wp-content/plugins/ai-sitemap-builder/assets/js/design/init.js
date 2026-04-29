@@ -82,6 +82,19 @@
         "[AISB design] wireframe pages loaded:",
         D.wireframePages.length,
       );
+
+      // Bouw _savedPatches: postId → patch-array, afkomstig uit de wireframe-response.
+      D._savedPatches = {};
+      D.wireframePages.forEach(function (page) {
+        (page.sections || []).forEach(function (section) {
+          const postId = String(
+            section.ai_wireframe_id || section.bricks_template_id || "",
+          );
+          if (postId && Array.isArray(section.patch) && section.patch.length) {
+            D._savedPatches[postId] = section.patch;
+          }
+        });
+      });
     } else {
       console.warn("[AISB design] wireframe sections failed:", wfRes);
     }
@@ -121,6 +134,14 @@
       JSON.parse(JSON.stringify(D.guide)),
     );
     D.buildCanvas();
+
+    // Koppel de opslaan-knop in de toolbar aan D.saveAllPatches().
+    const saveBtn = document.getElementById("aisb-design-save-btn");
+    if (saveBtn) {
+      saveBtn.addEventListener("click", function () {
+        if (D.saveAllPatches) D.saveAllPatches();
+      });
+    }
   }
 
   init();

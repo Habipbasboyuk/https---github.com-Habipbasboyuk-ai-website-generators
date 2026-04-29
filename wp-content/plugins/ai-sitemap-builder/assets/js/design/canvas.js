@@ -82,6 +82,8 @@
           iframe._loaded = true;
           D.injectOverride(iframe);
           D.injectImages(iframe);
+          // Pas eerder opgeslagen design-patches toe (tekst/stijl/afbeelding/spiegel)
+          if (D.applyPatch) D.applyPatch(iframe);
           // Iframe hoogte aanpassen aan volledige inhoudshoogte
           try {
             const h =
