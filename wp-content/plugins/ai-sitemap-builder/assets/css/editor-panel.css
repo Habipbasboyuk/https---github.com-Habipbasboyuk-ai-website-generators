@@ -1,0 +1,983 @@
+/* ── Editor Panel v3 ──────────────────────────────────────────── */
+/* Full dark, right-docked, glass + neon accent                    */
+
+.aisb-editor-panel {
+  /* Tokens — dark theme */
+  --ep-bg: rgba(17, 19, 26, 0.85);
+  --ep-bg-solid: #11131a;
+  --ep-surface: rgba(255, 255, 255, 0.04);
+  --ep-surface-2: rgba(255, 255, 255, 0.07);
+  --ep-surface-hover: rgba(255, 255, 255, 0.1);
+  --ep-border: rgba(255, 255, 255, 0.08);
+  --ep-border-strong: rgba(255, 255, 255, 0.14);
+  --ep-text: #f1f3f7;
+  --ep-text-muted: #a1a5b3;
+  --ep-text-subtle: #6c7080;
+  --ep-accent: #1b143a;
+  --ep-accent-2: #08201c;
+  --ep-accent-soft: rgba(124, 92, 255, 0.18);
+  --ep-success: #34d399;
+  --ep-radius: 14px;
+  --ep-radius-sm: 8px;
+  --ep-radius-xs: 4px;
+  --ep-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.45), 0 4px 16px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+  /* Right-docked floating glass panel */
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  left: auto;
+  width: 320px;
+  height: calc(100vh - 32px);
+  background: var(--ep-bg);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  border: 1px solid var(--ep-border);
+  border-radius: var(--ep-radius);
+  box-shadow: var(--ep-shadow);
+  display: none;
+  flex-direction: column;
+  z-index: 99999;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  font-size: 12.5px;
+  color: var(--ep-text);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+/* Fallback for browsers without backdrop-filter */
+@supports not (
+  (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+) {
+  .aisb-editor-panel {
+    background: var(--ep-bg-solid);
+  }
+}
+
+.aisb-editor-panel.is-open {
+  display: flex;
+  animation: aisb-ep-in 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes aisb-ep-in {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ── Header ────────────────────────────────────────────────────── */
+.aisb-ep-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--ep-border);
+}
+
+/* Subtle gradient accent stripe under the header */
+.aisb-ep-header::after {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: -1px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--ep-accent) 30%,
+    var(--ep-accent-2) 70%,
+    transparent
+  );
+  opacity: 0.55;
+}
+
+.aisb-ep-title {
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--ep-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 220px;
+  font-family: "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+}
+
+.aisb-ep-close {
+  background: var(--ep-surface);
+  border: 1px solid var(--ep-border);
+  cursor: pointer;
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: var(--ep-text-muted);
+  border-radius: 50%;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+.aisb-ep-close:hover {
+  background: var(--ep-surface-hover);
+  color: var(--ep-text);
+  transform: rotate(90deg);
+}
+
+/* ── Body ──────────────────────────────────────────────────────── */
+.aisb-ep-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 18px 16px 24px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+}
+.aisb-ep-body::-webkit-scrollbar {
+  width: 6px;
+}
+.aisb-ep-body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 3px;
+}
+.aisb-ep-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.aisb-ep-empty {
+  color: var(--ep-text-subtle);
+  font-size: 12px;
+  text-align: center;
+  margin-top: 48px;
+  padding: 0 24px;
+  line-height: 1.5;
+}
+
+/* ── Groups (card-like sections) ───────────────────────────────── */
+.aisb-ep-group {
+  margin-bottom: 14px;
+  padding: 12px 12px 14px;
+  background: var(--ep-surface);
+  border: 1px solid var(--ep-border);
+  border-radius: var(--ep-radius-sm);
+  transition: border-color 0.15s;
+}
+.aisb-ep-group:hover {
+  border-color: var(--ep-border-strong);
+}
+.aisb-ep-group:last-child {
+  margin-bottom: 0;
+}
+
+.aisb-ep-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ep-text-muted);
+  margin-bottom: 10px;
+}
+/* Tiny accent dot before each label */
+.aisb-ep-label::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  background: var(--ep-accent);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--ep-accent);
+  flex-shrink: 0;
+}
+
+.aisb-ep-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ── Color picker ──────────────────────────────────────────────── */
+.aisb-ep-color {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--ep-border-strong);
+  border-radius: var(--ep-radius-sm);
+  padding: 3px;
+  cursor: pointer;
+  flex-shrink: 0;
+  background: var(--ep-bg-solid);
+}
+.aisb-ep-color::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+.aisb-ep-color::-webkit-color-swatch {
+  border: none;
+  border-radius: 4px;
+}
+
+.aisb-ep-color-val {
+  font-size: 12px;
+  color: var(--ep-text-muted);
+  font-family: "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+  letter-spacing: 0.02em;
+}
+
+/* ── Inputs / Select ──────────────────────────────────────────── */
+.aisb-ep-select,
+.aisb-ep-input {
+  width: 100%;
+  height: 34px;
+  padding: 0 12px;
+  border: 1px solid var(--ep-border-strong);
+  border-radius: var(--ep-radius-sm);
+  font-size: 12.5px;
+  background: var(--ep-bg-solid);
+  color: var(--ep-text);
+  box-sizing: border-box;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+.aisb-ep-select {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'><path fill='%23a1a5b3' d='M5 7L1 3h8z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 28px;
+}
+.aisb-ep-select:focus,
+.aisb-ep-input:focus {
+  outline: none;
+  border-color: var(--ep-accent);
+  box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.18);
+}
+
+.aisb-ep-number {
+  width: 60px;
+  height: 30px;
+  padding: 0 10px;
+  border: 1px solid var(--ep-border-strong);
+  border-radius: var(--ep-radius-sm);
+  font-size: 12px;
+  text-align: right;
+  background: var(--ep-bg-solid);
+  color: var(--ep-text);
+  font-family: "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+  font-variant-numeric: tabular-nums;
+  transition: all 0.15s;
+}
+.aisb-ep-number:focus {
+  outline: none;
+  border-color: var(--ep-accent);
+  box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.18);
+}
+
+/* ── Range slider (custom thumb) ──────────────────────────────── */
+.aisb-ep-range {
+  flex: 1;
+  height: 4px;
+  appearance: none;
+  -webkit-appearance: none;
+  background: var(--ep-surface-2);
+  border-radius: 2px;
+  cursor: pointer;
+  outline: none;
+}
+.aisb-ep-range::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--ep-accent), var(--ep-accent-2));
+}
+.aisb-ep-range::-moz-range-track {
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--ep-accent), var(--ep-accent-2));
+}
+.aisb-ep-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border: 2px solid var(--ep-accent);
+  border-radius: 50%;
+  margin-top: -6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  cursor: grab;
+  transition: transform 0.12s;
+}
+.aisb-ep-range::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+.aisb-ep-range::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border: 2px solid var(--ep-accent);
+  border-radius: 50%;
+  cursor: grab;
+}
+
+/* ── Textarea ──────────────────────────────────────────────────── */
+.aisb-ep-textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--ep-border);
+  border-radius: var(--ep-radius-sm);
+  font-size: 13px;
+  color: var(--ep-text);
+  background: var(--ep-surface);
+  resize: vertical;
+  box-sizing: border-box;
+  font-family: inherit;
+  line-height: 1.6;
+  min-height: 90px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+}
+.aisb-ep-textarea:hover {
+  border-color: var(--ep-border-strong);
+}
+.aisb-ep-textarea:focus {
+  outline: none;
+  border-color: var(--ep-accent);
+  background: var(--ep-surface);
+  box-shadow: 0 0 0 3px var(--ep-accent-soft);
+}
+
+/* ── Upload button (gradient) ──────────────────────────────────── */
+.aisb-ep-upload-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 14px;
+  background: linear-gradient(135deg, var(--ep-accent), #5b8cf5);
+  color: #fff;
+  border-radius: var(--ep-radius-sm);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  box-sizing: border-box;
+  transition:
+    transform 0.12s,
+    box-shadow 0.12s,
+    filter 0.12s;
+  box-shadow: 0 4px 14px rgba(124, 92, 255, 0.35);
+}
+.aisb-ep-upload-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+  box-shadow: 0 6px 18px rgba(124, 92, 255, 0.45);
+}
+.aisb-ep-upload-btn:active {
+  transform: translateY(0);
+}
+
+.aisb-ep-upload-status {
+  display: block;
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--ep-success);
+}
+
+/* ── Alignment buttons (icon-style segmented) ──────────────────── */
+.aisb-ep-align-btns {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  background: var(--ep-bg-solid);
+  border: 1px solid var(--ep-border-strong);
+  padding: 3px;
+  border-radius: var(--ep-radius-sm);
+}
+
+.aisb-ep-align-btn {
+  padding: 7px 4px;
+  border: none;
+  border-radius: 5px;
+  background: transparent;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: center;
+  color: var(--ep-text-muted);
+  transition: all 0.15s;
+  text-transform: lowercase;
+  letter-spacing: 0.02em;
+}
+.aisb-ep-align-btn:hover {
+  color: var(--ep-text);
+}
+.aisb-ep-align-btn.is-active {
+  background: linear-gradient(135deg, var(--ep-accent), #5b8cf5);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(124, 92, 255, 0.4);
+}
+
+/* ── Font grid (2-col chips with big Aa preview) ───────────────── */
+.aisb-ep-font-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.aisb-ep-font-btn {
+  padding: 14px 8px 10px;
+  border: 1px solid var(--ep-border-strong);
+  border-radius: var(--ep-radius-sm);
+  background: var(--ep-bg-solid);
+  cursor: pointer;
+  text-align: center;
+  color: var(--ep-text);
+  transition: all 0.15s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  box-sizing: border-box;
+  min-height: 78px;
+  justify-content: center;
+  overflow: hidden;
+}
+.aisb-ep-font-aa {
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ep-text);
+}
+.aisb-ep-font-name {
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif !important;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--ep-text-subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+.aisb-ep-font-btn:hover {
+  background: var(--ep-surface-hover);
+  border-color: var(--ep-border-strong);
+  transform: translateY(-1px);
+}
+.aisb-ep-font-btn.is-active {
+  background: var(--ep-accent-soft);
+  border-color: var(--ep-accent);
+  box-shadow:
+    0 0 0 1px var(--ep-accent),
+    0 4px 12px rgba(124, 92, 255, 0.2);
+}
+.aisb-ep-font-btn.is-active .aisb-ep-font-name {
+  color: var(--ep-accent);
+}
+
+/* ── Weight grid (4-col big chips) ─────────────────────────────── */
+.aisb-ep-weight-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.aisb-ep-weight-btn {
+  padding: 10px 4px 8px;
+  border: 1px solid var(--ep-border-strong);
+  border-radius: var(--ep-radius-sm);
+  background: var(--ep-bg-solid);
+  cursor: pointer;
+  color: var(--ep-text);
+  transition: all 0.15s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  box-sizing: border-box;
+  min-height: 58px;
+  overflow: hidden;
+}
+.aisb-ep-weight-num {
+  font-family: "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+  font-size: 14px;
+  color: var(--ep-text);
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+.aisb-ep-weight-name {
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif !important;
+  font-size: 9px;
+  font-weight: 500;
+  color: var(--ep-text-subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+.aisb-ep-weight-btn:hover {
+  background: var(--ep-surface-hover);
+  transform: translateY(-1px);
+}
+.aisb-ep-weight-btn.is-active {
+  background: linear-gradient(135deg, var(--ep-accent), #5b8cf5);
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(24, 18, 49, 0.35);
+}
+
+/* ── Editor Panel ─────────────────────────────────────────────── */
+/* Clean modern sidebar (Figma / VS Code inspired)                 */
+
+.aisb-editor-panel {
+  /* Tokens */
+  --ep-bg: #f9fafb;
+  --ep-surface: #ffffff;
+  --ep-surface-2: #f0f1f3;
+  --ep-border: #e4e5e9;
+  --ep-border-strong: #d0d1d6;
+  --ep-header-bg: #1e2029;
+  --ep-header-text: #e8eaed;
+  --ep-header-muted: #8b8fa8;
+  --ep-text: #1c1e26;
+  --ep-text-muted: #6b6e7e;
+  --ep-text-subtle: #9b9eae;
+  --ep-accent: #5b8cf5;
+  --ep-accent-hover: #4a7ae4;
+  --ep-accent-soft: #ebf0ff;
+  --ep-success: #10b981;
+  --ep-radius: 10px;
+  --ep-radius-sm: 6px;
+  --ep-shadow: 0 8px 32px rgba(0, 0, 0, 0.16), 0 2px 8px rgba(0, 0, 0, 0.08);
+
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  width: 300px;
+  height: calc(100vh - 32px);
+  background: var(--ep-bg);
+  border: 1px solid var(--ep-border);
+  border-radius: var(--ep-radius);
+  box-shadow: var(--ep-shadow);
+  display: none;
+  flex-direction: column;
+  z-index: 99999;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  font-size: 13px;
+  color: var(--ep-text);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+.aisb-editor-panel.is-open {
+  display: flex;
+}
+
+/* ── Header (dark) ─────────────────────────────────────────────── */
+.aisb-ep-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 14px;
+  background: var(--ep-header-bg);
+  flex-shrink: 0;
+  border-radius: var(--ep-radius) var(--ep-radius) 0 0;
+}
+
+.aisb-ep-title {
+  font-weight: 500;
+  font-size: 12.5px;
+  letter-spacing: 0.01em;
+  color: var(--ep-header-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 220px;
+}
+
+.aisb-ep-close {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: var(--ep-header-muted);
+  border-radius: 4px;
+  line-height: 1;
+  flex-shrink: 0;
+  transition:
+    background 0.12s,
+    color 0.12s;
+}
+.aisb-ep-close:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--ep-header-text);
+}
+
+/* ── Body ──────────────────────────────────────────────────────── */
+.aisb-ep-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  scrollbar-width: thin;
+  scrollbar-color: #d4d4d8 transparent;
+}
+.aisb-ep-body::-webkit-scrollbar {
+  width: 8px;
+}
+.aisb-ep-body::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+  border-radius: 4px;
+  border: 2px solid var(--ep-bg);
+}
+.aisb-ep-body::-webkit-scrollbar-thumb:hover {
+  background: #b4b4ba;
+}
+
+.aisb-ep-empty {
+  color: var(--ep-text-subtle);
+  font-size: 12px;
+  text-align: center;
+  margin-top: 32px;
+}
+
+/* ── Groups ────────────────────────────────────────────────────── */
+.aisb-ep-group {
+  margin-bottom: 18px;
+}
+.aisb-ep-group:last-child {
+  margin-bottom: 0;
+}
+
+.aisb-ep-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ep-text-subtle);
+  margin-bottom: 8px;
+}
+
+/* Row helper */
+.aisb-ep-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ── Color picker ──────────────────────────────────────────────── */
+.aisb-ep-color {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--ep-border-strong);
+  border-radius: var(--ep-radius-sm);
+  padding: 2px;
+  cursor: pointer;
+  flex-shrink: 0;
+  background: var(--ep-bg);
+}
+.aisb-ep-color::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+.aisb-ep-color::-webkit-color-swatch {
+  border: none;
+  border-radius: 3px;
+}
+
+.aisb-ep-color-val {
+  font-size: 12px;
+  color: var(--ep-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Inputs / Select ──────────────────────────────────────────── */
+.aisb-ep-select,
+.aisb-ep-input {
+  width: 100%;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--ep-border-strong);
+  border-radius: var(--ep-radius-sm);
+  font-size: 12.5px;
+  background: var(--ep-bg);
+  color: var(--ep-text);
+  box-sizing: border-box;
+  transition:
+    border-color 0.12s,
+    box-shadow 0.12s;
+}
+.aisb-ep-select {
+  cursor: pointer;
+}
+
+.aisb-ep-select:focus,
+.aisb-ep-input:focus {
+  outline: none;
+  border-color: var(--ep-accent);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.aisb-ep-number {
+  width: 56px;
+  height: 28px;
+  padding: 0 8px;
+  border: 1px solid var(--ep-border-strong);
+  border-radius: var(--ep-radius-sm);
+  font-size: 12px;
+  text-align: right;
+  background: var(--ep-bg);
+  color: var(--ep-text);
+  font-variant-numeric: tabular-nums;
+  transition:
+    border-color 0.12s,
+    box-shadow 0.12s;
+}
+.aisb-ep-number:focus {
+  outline: none;
+  border-color: var(--ep-accent);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* ── Range slider ──────────────────────────────────────────────── */
+.aisb-ep-range {
+  flex: 1;
+  accent-color: var(--ep-accent);
+  cursor: pointer;
+  height: 4px;
+}
+
+/* ── Textarea ──────────────────────────────────────────────────── */
+.aisb-ep-textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--ep-border);
+  border-radius: var(--ep-radius-sm);
+  font-size: 13px;
+  color: var(--ep-text);
+  background: var(--ep-surface);
+  resize: vertical;
+  box-sizing: border-box;
+  font-family: inherit;
+  line-height: 1.6;
+  min-height: 90px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease;
+}
+.aisb-ep-textarea:hover {
+  border-color: var(--ep-border-strong);
+}
+.aisb-ep-textarea:focus {
+  outline: none;
+  border-color: var(--ep-accent);
+  background: var(--ep-surface);
+  box-shadow: 0 0 0 3px var(--ep-accent-soft);
+}
+
+/* ── Upload button ─────────────────────────────────────────────── */
+.aisb-ep-upload-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: var(--ep-accent);
+  color: #fff;
+  border-radius: var(--ep-radius-sm);
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  box-sizing: border-box;
+  transition: background 0.12s;
+}
+.aisb-ep-upload-btn:hover {
+  background: var(--ep-accent-hover);
+}
+
+.aisb-ep-upload-status {
+  display: block;
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--ep-success);
+}
+
+/* ── Alignment buttons (segmented control) ─────────────────────── */
+.aisb-ep-align-btns {
+  display: flex;
+  gap: 0;
+  background: var(--ep-surface-2);
+  padding: 3px;
+  border-radius: var(--ep-radius-sm);
+}
+
+.aisb-ep-align-btn {
+  flex: 1;
+  padding: 6px 4px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  font-size: 11.5px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: center;
+  color: var(--ep-text-muted);
+  transition:
+    background 0.12s,
+    color 0.12s;
+}
+.aisb-ep-align-btn:hover {
+  color: var(--ep-text);
+}
+.aisb-ep-align-btn.is-active {
+  background: #a9bff0;
+  color: var(--ep-text);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+}
+
+/* ── Font grid ────────────────────────────────────────────────── */
+.aisb-ep-font-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.aisb-ep-font-btn {
+  padding: 10px 12px 8px;
+  border: 1px solid var(--ep-border-strong);
+  border-radius: var(--ep-radius-sm);
+  background: var(--ep-bg);
+  font-size: 15px;
+  cursor: pointer;
+  text-align: left;
+  color: var(--ep-text);
+  transition:
+    background 0.12s,
+    border-color 0.12s,
+    color 0.12s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  box-sizing: border-box;
+}
+.aisb-ep-font-btn::after {
+  content: attr(title);
+  font-size: 9.5px;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  color: var(--ep-text-subtle);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.aisb-ep-font-btn:hover {
+  background: var(--ep-surface);
+  border-color: var(--ep-border-strong);
+}
+.aisb-ep-font-btn.is-active {
+  background: var(--ep-accent-soft);
+  border-color: var(--ep-accent);
+  color: var(--ep-accent);
+}
+.aisb-ep-font-btn.is-active::after {
+  color: var(--ep-accent);
+  opacity: 0.8;
+}
+
+/* ── Weight grid ──────────────────────────────────────────────── */
+.aisb-ep-weight-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.aisb-ep-weight-btn {
+  padding: 10px 4px 8px;
+  border: 1px solid var(--ep-border-strong);
+  border-radius: var(--ep-radius-sm);
+  background: var(--ep-bg);
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+  color: var(--ep-text);
+  transition:
+    background 0.12s,
+    border-color 0.12s,
+    color 0.12s;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  box-sizing: border-box;
+}
+.aisb-ep-weight-btn::after {
+  content: attr(title);
+  font-size: 9.5px;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-weight: 400 !important;
+  color: var(--ep-text-subtle);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.aisb-ep-weight-btn:hover {
+  background: var(--ep-surface);
+}
+.aisb-ep-weight-btn.is-active {
+  background: var(--ep-accent-soft);
+  border-color: var(--ep-accent);
+  color: var(--ep-accent);
+}
+.aisb-ep-weight-btn.is-active::after {
+  color: var(--ep-accent);
+  opacity: 0.8;
+}
