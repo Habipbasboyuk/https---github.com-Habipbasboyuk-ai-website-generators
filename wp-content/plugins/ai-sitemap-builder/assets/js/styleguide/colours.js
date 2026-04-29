@@ -131,6 +131,14 @@
 
   // drag & drop zone voor logo-bestanden
   if (el.dropzone) {
+    // Klikken op de dropzone (ook als de preview al zichtbaar is) opent altijd
+    // de file-dialog — zo kan de gebruiker het logo vervangen door ergens te klikken.
+    el.dropzone.addEventListener("click", function (e) {
+      // De browse-link heeft al zijn eigen handler; niet dubbel triggeren.
+      if (e.target.closest("[data-logo-browse]")) return;
+      el.logoInput && el.logoInput.click();
+    });
+
     el.dropzone.addEventListener("dragover", function (e) {
       e.preventDefault();
       el.dropzone.classList.add("drag-over"); // visuele feedback
@@ -159,10 +167,18 @@
       formData.append("action", "aisb_upload_logo");
       formData.append("nonce", AISB_SG.nonce);
       formData.append("logo", file);
-      const r = await fetch(AISB_SG.ajaxUrl, { method: "POST", body: formData });
+      const r = await fetch(AISB_SG.ajaxUrl, {
+        method: "POST",
+        body: formData,
+      });
       const out = await r.json();
       if (out && out.success && out.data.url) {
         SG.guide.logoUrl = out.data.url;
+        // Sla ook attachment_id op zodat we het logo aan WP kunnen koppelen
+        // (nodig om het logo in Bricks-elementen te injecteren via de AI fill).
+        if (out.data.attachment_id) {
+          SG.guide.logoAttachmentId = parseInt(out.data.attachment_id, 10) || 0;
+        }
         SG.applyOverridesToAllIframes();
       }
     } catch (e) {}
@@ -256,7 +272,9 @@
   SG.root.addEventListener("click", function (e) {
     const editBtn = e.target.closest("[data-edit-idx]");
     if (!editBtn) return;
-    const picker = editBtn.parentElement.querySelector(".aisb-sg-swatch-picker");
+    const picker = editBtn.parentElement.querySelector(
+      ".aisb-sg-swatch-picker",
+    );
     if (picker) picker.click();
   });
 
