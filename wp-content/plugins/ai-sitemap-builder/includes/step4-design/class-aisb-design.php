@@ -13,6 +13,7 @@ class AISB_Design {
     add_action('wp_ajax_aisb_design_list_templates',   [$this, 'ajax_list_templates']);
     add_action('wp_ajax_aisb_design_replace_section',  [$this, 'ajax_design_replace_section']);
     add_action('wp_ajax_aisb_design_save_patch',       [$this, 'ajax_save_design_patch']);
+    add_action('wp_ajax_aisb_design_insert_section',   [$this, 'ajax_insert_section']);
   }
 
   /**
@@ -245,6 +246,134 @@ class AISB_Design {
     }
 
     wp_send_json_success(['saved' => $saved]);
+  }
+
+  /**
+   * AJAX: Voeg een nieuwe sectie toe na een bestaande sectie (op basis van uuid).
+   * Maakt gebruik van een Bricks-template en vult de tekst via AI.
+   */
+  public function ajax_insert_section(): void {
+    if (!is_user_logged_in()) wp_send_json_error(['message' => 'Not logged in'], 401);
+    $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
+    if (!$nonce || !wp_verify_nonce($nonce, 'aisb_sg_nonce')) {
+      wp_send_json_error(['message' => 'Bad nonce'], 403);
+    }
+
+    set_time_limit(180);
+    ignore_user_abort(true);
+
+    $project_id         = isset($_POST['project_id'])         ? (int) $_POST['project_id']                                : 0;
+    $sitemap_version_id = isset($_POST['sitemap_version_id']) ? (int) $_POST['sitemap_version_id']                        : 0;
+    $page_slug          = isset($_POST['page_slug'])          ? sanitize_title(wp_unslash($_POST['page_slug']))           : '';
+    $after_uuid         = isset($_POST['after_uuid'])         ? sanitize_text_field(wp_unslash($_POST['after_uuid']))     : '';
+    $bricks_template_id = isset($_POST['bricks_template_id']) ? (int) $_POST['bricks_template_id']                       : 0;
+
+    if (!$project_id || !$sitemap_version_id || !$page_slug || !$bricks_template_id) {
+      wp_send_json_error(['message' => 'Missing params'], 400);
+    }
+
+    // Eigenaarschapscontrole
+    $project = get_post($project_id);
+    if (!$project || $project->post_type !== 'aisb_project' || (int) $project->post_author !== (int) get_current_user_id()) {
+      wp_send_json_error(['message' => 'Forbidden'], 403);
+    }
+
+    // Bricks template valideren
+    $tpl_post = get_post($bricks_template_id);
+    if (!$tpl_post || $tpl_post->post_type !== 'bricks_template') {
+      wp_send_json_error(['message' => 'Template not found'], 404);
+    }
+
+    $tags_raw  = get_the_terms($bricks_template_id, 'template_tag');
+    $tags      = (!empty($tags_raw) && !is_wp_error($tags_raw)) ? wp_list_pluck($tags_raw, 'slug') : [];
+    $ttype     = (string)(get_post_meta($bricks_template_id, '_bricks_template_type', true) ?: '');
+    $type_keys = array_map('strtolower', $tags);
+    if (empty($type_keys) && $ttype !== '') $type_keys = [strtolower($ttype)];
+    $section_type = !empty($type_keys) ? $type_keys[0] : 'section';
+
+    // Wireframe model laden
+    global $wpdb;
+    $table = $wpdb->prefix . 'aisb_wireframes';
+    $row = $wpdb->get_row($wpdb->prepare(
+      "SELECT * FROM {$table} WHERE project_id=%d AND sitemap_version_id=%d AND page_slug=%s",
+      $project_id, $sitemap_version_id, $page_slug
+    ), ARRAY_A);
+
+    if (!$row) wp_send_json_error(['message' => 'Wireframe not found'], 404);
+
+    $model = json_decode((string)($row['model_json'] ?? '{}'), true);
+    if (!is_array($model)) wp_send_json_error(['message' => 'Invalid model'], 500);
+
+    // Nieuwe unieke UUID aanmaken
+    $new_uuid = function_exists('wp_generate_uuid4')
+      ? wp_generate_uuid4()
+      : sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+          mt_rand(0, 0xffff), mt_rand(0, 0xffff),
+          mt_rand(0, 0xffff),
+          mt_rand(0, 0x0fff) | 0x4000,
+          mt_rand(0, 0x3fff) | 0x8000,
+          mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff));
+
+    $new_section = [
+      'uuid'                  => $new_uuid,
+      'type'                  => $section_type,
+      'bricks_template_id'    => $bricks_template_id,
+      'bricks_template_title' => $tpl_post->post_title,
+      'bricks_template_ttype' => $ttype,
+      'layout_key'            => 'bricks_' . $bricks_template_id,
+      'match_tags'            => implode(', ', $tags),
+      'preview_schema'        => null,
+      'ai_wireframe_id'       => null,
+    ];
+
+    // Sectie invoegen na after_uuid (of toevoegen aan het einde)
+    $sections  = $model['sections'] ?? [];
+    $insert_at = count($sections); // default: append
+    if ($after_uuid) {
+      foreach ($sections as $i => $s) {
+        if (is_array($s) && ($s['uuid'] ?? '') === $after_uuid) {
+          $insert_at = $i + 1;
+          break;
+        }
+      }
+    }
+    array_splice($sections, $insert_at, 0, [$new_section]);
+    $model['sections'] = $sections;
+
+    // Model opslaan (compiled cache wissen)
+    $wpdb->update($table,
+      ['model_json' => wp_json_encode($model, JSON_UNESCAPED_SLASHES), 'compiled_bricks_json' => null, 'updated_at' => current_time('mysql')],
+      ['project_id' => $project_id, 'sitemap_version_id' => $sitemap_version_id, 'page_slug' => $page_slug],
+      ['%s', '%s', '%s'], ['%d', '%d', '%s']
+    );
+
+    // AI fill voor uitsluitend de nieuwe sectie
+    $ai    = new AISB_Wireframes_AI();
+    $model = $ai->populate_bricks_content_with_ai($model, $project_id, $sitemap_version_id, $page_slug, [$new_uuid]);
+
+    // Bijgewerkt model opslaan
+    $wpdb->update($table,
+      ['model_json' => wp_json_encode($model, JSON_UNESCAPED_SLASHES), 'updated_at' => current_time('mysql')],
+      ['project_id' => $project_id, 'sitemap_version_id' => $sitemap_version_id, 'page_slug' => $page_slug],
+      ['%s', '%s'], ['%d', '%d', '%s']
+    );
+
+    // ai_wireframe_id ophalen
+    $new_ai_id = 0;
+    foreach (($model['sections'] ?? []) as $s) {
+      if (!is_array($s) || ($s['uuid'] ?? '') !== $new_uuid) continue;
+      $new_ai_id = (int)($s['ai_wireframe_id'] ?? 0);
+      break;
+    }
+
+    error_log('[AISB] ajax_insert_section: new_uuid=' . $new_uuid . ' ai_id=' . $new_ai_id);
+
+    wp_send_json_success([
+      'ai_wireframe_id'    => $new_ai_id,
+      'uuid'               => $new_uuid,
+      'type'               => $section_type,
+      'bricks_template_id' => $bricks_template_id,
+    ]);
   }
 
   public function enqueue_assets(): void {    $is_step4 = ((int)($_GET['aisb_step'] ?? 0) === 4);

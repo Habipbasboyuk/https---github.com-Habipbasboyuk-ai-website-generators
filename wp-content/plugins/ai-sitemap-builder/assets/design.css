@@ -13,7 +13,7 @@
   justify-content: space-between;
   padding: 8px 12px;
   background: #1a1f2e;
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-bottom: none;
   border-radius: 10px 10px 0 0;
   gap: 12px;
@@ -22,7 +22,7 @@
 .aisb-design-toolbar-title {
   font-size: 12px;
   font-weight: 600;
-  color: rgba(255,255,255,0.45);
+  color: rgba(255, 255, 255, 0.45);
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
@@ -39,7 +39,10 @@
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.15s, opacity 0.15s, transform 0.1s;
+  transition:
+    background 0.15s,
+    opacity 0.15s,
+    transform 0.1s;
   white-space: nowrap;
   line-height: 1;
 }
@@ -170,6 +173,45 @@
   z-index: 1;
   pointer-events: auto;
   cursor: default;
+}
+
+/* ── Sectie toevoegen knop (Relume-stijl) ──────────────────── */
+.aisb-add-section-btn {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.18s,
+    transform 0.15s;
+  background: #118cf0;
+  color: #fff;
+  border: 2.5px solid rgba(255, 255, 255, 0.85);
+  border-radius: 24px;
+  padding: 7px 20px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 4px 18px rgba(17, 140, 240, 0.5);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+}
+
+.aisb-design-iframe-wrap:hover .aisb-add-section-btn {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.aisb-add-section-btn:hover {
+  background: #0d78d4;
+  transform: translateX(-50%) scale(1.05);
 }
 
 /* ── Empty / loading state ─────────────────────────────────── */

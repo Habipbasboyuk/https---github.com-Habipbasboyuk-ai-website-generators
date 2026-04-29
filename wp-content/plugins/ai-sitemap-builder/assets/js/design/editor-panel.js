@@ -1113,4 +1113,345 @@
   };
 
   document.addEventListener("DOMContentLoaded", () => D.initEditorPanel());
+
+  /* ═══════════════════════════════════════════════════════════════
+   * Sectie toevoegen — Relume-stijl modal
+   * Geopend door de "+Sectie" hover-knop op elk iframe-wrap.
+   * ═══════════════════════════════════════════════════════════════ */
+
+  /**
+   * Opent de template-kiezer modal voor het toevoegen van een nieuwe sectie
+   * na `afterIframe` op de `page`.
+   */
+  D.openAddSectionModal = function (afterIframe, pageBody, page) {
+    let modal = document.getElementById("aisb-add-section-modal");
+
+    if (!modal) {
+      modal = document.createElement("div");
+      modal.id = "aisb-add-section-modal";
+      modal.style.cssText =
+        "position:fixed;top:0;left:0;width:100%;height:100%;" +
+        "background:rgba(10,15,23,0.88);z-index:199999;" +
+        "display:flex;align-items:center;justify-content:center;" +
+        "backdrop-filter:blur(6px);padding:24px;box-sizing:border-box;";
+      document.body.appendChild(modal);
+
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) modal.style.display = "none";
+      });
+    }
+
+    modal.style.display = "flex";
+    modal.innerHTML = `
+      <div style="background:#3f3f46;width:100%;max-width:1100px;height:88vh;
+        border-radius:14px;border:1px solid rgba(255,255,255,0.10);
+        display:flex;flex-direction:column;overflow:hidden;
+        box-shadow:0 24px 64px rgba(0,0,0,0.55);">
+        <div class="aisb-ep-header" style="flex-shrink:0;background:#27272a;">
+          <span class="aisb-ep-title">Sectie toevoegen</span>
+          <button class="aisb-ep-close" id="aisb-add-sec-close">✕</button>
+        </div>
+        <div style="padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.08);
+          display:flex;gap:10px;align-items:center;flex-shrink:0;background:#3f3f46;">
+          <input type="text" class="aisb-ep-input" id="aisb-add-sec-search"
+            placeholder="Zoek template…" style="flex:1;margin:0;">
+        </div>
+        <div id="aisb-add-sec-grid"
+          style="flex:1;overflow-y:auto;padding:18px;
+          display:grid;grid-template-columns:1fr 1fr;gap:18px;align-content:start;background:#52525b;">
+          <div style="grid-column:1/-1;text-align:center;padding:24px;color:#e6e9ef;font-size:13px;">
+            Templates laden…
+          </div>
+        </div>
+      </div>
+    `;
+
+    modal.querySelector("#aisb-add-sec-close").addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+
+    const grid = modal.querySelector("#aisb-add-sec-grid");
+    const search = modal.querySelector("#aisb-add-sec-search");
+
+    function renderGrid(items) {
+      if (!items.length) {
+        grid.innerHTML =
+          '<div style="grid-column:1/-1;text-align:center;padding:24px;color:#9aa3b2;font-size:13px;">Geen templates gevonden.</div>';
+        return;
+      }
+      const previewW = 1200;
+      const previewH = 700;
+      const previewDisplayH = 480; // vaste hoogte in px voor de preview-box
+
+      grid.innerHTML = items
+        .map((t) => {
+          const tag = (t.tags && t.tags[0]) || t.ttype || "";
+          const src =
+            ((window.AISB_DESIGN && AISB_DESIGN.previewUrl) || "") + t.id;
+          return `<button type="button" class="aisb-ep-tpl-card"
+              data-id="${t.id}" data-src="${src}" data-type="${D.escapeHtml(tag)}"
+              style="padding:0 !important;margin:0 !important;border:2px solid rgba(255,255,255,0.10);
+              border-radius:10px;overflow:hidden;background:#fff;cursor:pointer;
+              display:flex !important;flex-direction:column;width:100%;text-align:left;
+              height:auto !important;min-height:${previewDisplayH + 64}px;
+              transition:border-color 0.18s,transform 0.15s,box-shadow 0.18s;
+              box-shadow:0 4px 14px rgba(0,0,0,0.35);
+              font-family:inherit;line-height:1;">
+              <div class="aisb-ep-tpl-preview"
+                style="position:relative;display:block;width:100%;
+                height:${previewDisplayH}px !important;min-height:${previewDisplayH}px !important;
+                overflow:hidden;background:#fff;pointer-events:none;flex-shrink:0;"></div>
+              <div style="padding:10px 12px;background:#0a0f17;
+                border-top:1px solid rgba(255,255,255,0.07);flex-shrink:0;">
+                <div style="color:#e6e9ef;font-size:13px;font-weight:600;
+                  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.3;">
+                  ${D.escapeHtml(t.title)}
+                </div>
+                <div style="margin-top:5px;display:flex;gap:5px;flex-wrap:wrap;">
+                  ${
+                    tag
+                      ? `<span style="background:rgba(17,140,240,0.18);color:#7cc0ff;
+                    padding:2px 7px;border-radius:4px;font-size:10px;font-weight:500;">${D.escapeHtml(tag)}</span>`
+                      : ""
+                  }
+                </div>
+              </div>
+            </button>`;
+        })
+        .join("");
+
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const card = entry.target;
+            io.unobserve(card);
+            const pw = card.querySelector(".aisb-ep-tpl-preview");
+            if (!pw || pw.querySelector("iframe")) return;
+            requestAnimationFrame(() => {
+              const w =
+                pw.offsetWidth || pw.getBoundingClientRect().width || 400;
+              const scale = w / previewW;
+              const scaledH = previewH * scale;
+              // Top-uitlijnen zodat de bovenkant van de sectie zichtbaar is
+              const offsetY = Math.max(0, (scaledH - previewDisplayH) / 2);
+              const pif = document.createElement("iframe");
+              pif.src = card.dataset.src;
+              pif.loading = "lazy";
+              pif.scrolling = "no";
+              pif.setAttribute(
+                "style",
+                `border:0!important;` +
+                  `width:${previewW}px!important;` +
+                  `height:${previewH}px!important;` +
+                  `max-width:none!important;max-height:none!important;` +
+                  `min-width:${previewW}px!important;` +
+                  `transform:scale(${scale}) translateY(-${offsetY / scale}px);` +
+                  `transform-origin:0 0;` +
+                  `pointer-events:none;display:block;position:absolute;top:0;left:0;`,
+              );
+              pw.appendChild(pif);
+            });
+          });
+        },
+        { root: grid, rootMargin: "300px" },
+      );
+
+      grid.querySelectorAll(".aisb-ep-tpl-card").forEach((card) => {
+        io.observe(card);
+        card.addEventListener("mouseenter", () => {
+          card.style.borderColor = "#118cf0";
+          card.style.transform = "translateY(-3px)";
+          card.style.boxShadow = "0 8px 28px rgba(17,140,240,0.35)";
+        });
+        card.addEventListener("mouseleave", () => {
+          card.style.borderColor = "rgba(255,255,255,0.10)";
+          card.style.transform = "none";
+          card.style.boxShadow = "0 4px 14px rgba(0,0,0,0.35)";
+        });
+        card.addEventListener("click", () => {
+          const tplId = card.dataset.id;
+          const tplType = card.dataset.type;
+          if (!tplId) return;
+          modal.style.display = "none";
+          D._doInsertSection(afterIframe, pageBody, page, tplId, tplType);
+        });
+      });
+    }
+
+    function applyFilter() {
+      const q = (search.value || "").toLowerCase().trim();
+      const items = (D._templatesCache || []).filter(
+        (t) => !q || (t.title || "").toLowerCase().includes(q),
+      );
+      renderGrid(items);
+    }
+
+    search.addEventListener("input", applyFilter);
+
+    if (D._templatesCache) {
+      applyFilter();
+    } else {
+      const fd = new FormData();
+      fd.append("action", "aisb_design_list_templates");
+      fd.append("nonce", (window.AISB_DESIGN && AISB_DESIGN.nonce) || "");
+      fetch(
+        (window.AISB_DESIGN && AISB_DESIGN.ajaxUrl) ||
+          "/wp-admin/admin-ajax.php",
+        { method: "POST", credentials: "same-origin", body: fd },
+      )
+        .then((r) => r.json())
+        .then((j) => {
+          if (j && j.success && Array.isArray(j.data && j.data.templates)) {
+            D._templatesCache = j.data.templates;
+            applyFilter();
+          } else {
+            grid.innerHTML =
+              '<div style="grid-column:1/-1;text-align:center;padding:24px;color:#ff8a8a;font-size:13px;">Fout bij laden.</div>';
+          }
+        })
+        .catch(() => {
+          grid.innerHTML =
+            '<div style="grid-column:1/-1;text-align:center;padding:24px;color:#ff8a8a;font-size:13px;">Netwerkfout.</div>';
+        });
+    }
+  };
+
+  /* ── Verwerkt de template-keuze: roept PHP aan en voegt iframe toe ── */
+
+  D._doInsertSection = async function (
+    afterIframe,
+    pageBody,
+    page,
+    tplId,
+    tplType,
+  ) {
+    // Korte status-notificatie onderaan het scherm
+    const notify = document.createElement("div");
+    notify.style.cssText =
+      "position:fixed;bottom:28px;left:50%;transform:translateX(-50%);" +
+      "background:#1a1f2e;color:#e6e9ef;padding:12px 22px;" +
+      "border-radius:10px;font-size:13px;font-weight:500;z-index:299999;" +
+      "box-shadow:0 4px 20px rgba(0,0,0,0.45);" +
+      "border:1px solid rgba(255,255,255,0.09);white-space:nowrap;";
+    notify.textContent = "⏳ Sectie aanmaken…";
+    document.body.appendChild(notify);
+
+    try {
+      const out = await D.post("aisb_design_insert_section", {
+        project_id: D.projectId,
+        sitemap_version_id: afterIframe._sitemapVersionId || 0,
+        page_slug: afterIframe._pageSlug || (page && page.slug) || "",
+        after_uuid:
+          (afterIframe._sectionData && afterIframe._sectionData.uuid) || "",
+        bricks_template_id: tplId,
+      });
+
+      if (!out || !out.success || !out.data.ai_wireframe_id) {
+        throw new Error(
+          (out && out.data && out.data.message) || "Onbekende fout",
+        );
+      }
+
+      const newSection = {
+        type: out.data.type || tplType || "section",
+        uuid: out.data.uuid,
+        ai_wireframe_id: out.data.ai_wireframe_id,
+        bricks_template_id: parseInt(tplId, 10),
+        layout_key: "bricks_" + tplId,
+        media_count: 0,
+        patch: [],
+      };
+
+      // Lokale wireframe-data bijwerken
+      if (page && page.sections) {
+        const afterUuid =
+          afterIframe._sectionData && afterIframe._sectionData.uuid;
+        const idx = page.sections.findIndex((s) => s.uuid === afterUuid);
+        if (idx >= 0) page.sections.splice(idx + 1, 0, newSection);
+        else page.sections.push(newSection);
+      }
+
+      // DOM bijwerken
+      D._insertSectionAfterWrap(
+        afterIframe.parentElement,
+        newSection,
+        page,
+        pageBody,
+      );
+
+      notify.textContent = "✓ Sectie toegevoegd";
+      notify.style.background = "#16a34a";
+      setTimeout(() => notify.remove(), 2200);
+    } catch (err) {
+      console.error("[AISB] insert section error:", err);
+      notify.textContent = "⚠ Mislukt: " + (err.message || "Onbekend");
+      notify.style.borderColor = "#ef4444";
+      setTimeout(() => notify.remove(), 3500);
+    }
+  };
+
+  /* ── Maakt de nieuwe iframe-wrap aan en voegt hem in na afterWrap ── */
+
+  D._insertSectionAfterWrap = function (afterWrap, section, page, pageBody) {
+    const postId = section.ai_wireframe_id || section.bricks_template_id;
+    if (!postId) return;
+
+    const wrap = document.createElement("div");
+    wrap.className = "aisb-design-iframe-wrap";
+
+    const iframe = document.createElement("iframe");
+    iframe.src =
+      ((window.AISB_DESIGN && AISB_DESIGN.previewUrl) || "") + postId;
+    iframe.className = "aisb-design-iframe";
+    iframe.scrolling = "yes";
+    iframe._loaded = false;
+    iframe._pageSlug = page ? page.slug : "";
+    iframe._sitemapVersionId = page ? page.sitemap_version_id || 0 : 0;
+    iframe._sectionIdx = D.allIframes.length;
+    iframe._localSectionIdx =
+      page && page.sections ? page.sections.length - 1 : 0;
+    iframe._sectionType = section.type || "";
+    iframe._sectionPostId = postId;
+    iframe._sectionData = section;
+    iframe.dataset.aisbSection = "1";
+
+    iframe.addEventListener("load", () => {
+      iframe._loaded = true;
+      if (D.injectOverride) D.injectOverride(iframe);
+      if (D.injectImages) D.injectImages(iframe);
+      if (D.applyPatch) D.applyPatch(iframe);
+      try {
+        const h = iframe.contentDocument.documentElement.scrollHeight || 400;
+        iframe.style.height = h + "px";
+        wrap.style.height = h + "px";
+      } catch (e) {
+        iframe.style.height = "500px";
+        wrap.style.height = "500px";
+      }
+      if (D._setupIframeInteractivity) D._setupIframeInteractivity(iframe);
+    });
+
+    // + Sectie knop op de nieuwe wrap
+    const addBtn = document.createElement("button");
+    addBtn.className = "aisb-add-section-btn";
+    addBtn.type = "button";
+    addBtn.innerHTML = "<span>+</span> Sectie";
+    addBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (D.openAddSectionModal) D.openAddSectionModal(iframe, pageBody, page);
+    });
+
+    wrap.appendChild(iframe);
+    wrap.appendChild(addBtn);
+
+    // Invoegen na afterWrap
+    if (afterWrap && afterWrap.parentNode === pageBody) {
+      afterWrap.after(wrap);
+    } else if (pageBody) {
+      pageBody.appendChild(wrap);
+    }
+
+    D.allIframes.push(iframe);
+  };
 })();

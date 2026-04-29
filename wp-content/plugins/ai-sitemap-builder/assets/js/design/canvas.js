@@ -95,75 +95,27 @@
             wrap.style.height = "500px";
           }
 
-          // Injecteer CSS :hover-highlight in het iframe-document.
-          // pointer-events staat op auto (zie design.css) zodat de browser
-          // de :hover natively afhandelt. Tijdens panning zet setupPanZoom
-          // de iframes tijdelijk op pointer-events:none.
+          // Injecteer CSS :hover-highlight en klik/wheel listeners.
           try {
-            const doc = iframe.contentDocument;
-            let hoverStyle = doc.getElementById("aisb-hover-style");
-            if (!hoverStyle) {
-              hoverStyle = doc.createElement("style");
-              hoverStyle.id = "aisb-hover-style";
-              doc.head.appendChild(hoverStyle);
-            }
-            hoverStyle.textContent =
-              "*:not(html):not(body){pointer-events:auto !important;}" +
-              "*:hover:not(html):not(body):not(:has(*:hover)){outline:6px solid #118cf0 !important;" +
-              "outline-offset:-2px !important; transition: 0.2s ease-in-out !important;}";
-
-            // Klik op een element → open het editor-paneel
-            // Shift+klik, klik op body, of klik op de sectie-root/container → sectie-paneel
-            doc.addEventListener("click", (e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              const el = e.target;
-              if (!el) return;
-              const tag = (el.tagName || "").toLowerCase();
-              const cls = String(el.className || "");
-              const isSectionRoot =
-                tag === "section" ||
-                /\bbrxe-section\b/.test(cls) ||
-                el === doc.body ||
-                el === doc.documentElement;
-              const isSectionClick = e.shiftKey || isSectionRoot;
-              if (isSectionClick) {
-                if (D.selectSection) D.selectSection(iframe, doc);
-                return;
-              }
-              if (D.selectElement) D.selectElement(el, doc, iframe);
-            });
-
-            // Stuur wheel-events vanuit het iframe door naar de canvas
-            // zodat scrollen / Ctrl+zoom ook werkt als de muis over een iframe staat.
-            doc.addEventListener(
-              "wheel",
-              (e) => {
-                e.preventDefault();
-                const iframeRect = iframe.getBoundingClientRect();
-                canvasEl.dispatchEvent(
-                  new WheelEvent("wheel", {
-                    bubbles: true,
-                    cancelable: true,
-                    deltaX: e.deltaX,
-                    deltaY: e.deltaY,
-                    deltaZ: e.deltaZ,
-                    deltaMode: e.deltaMode,
-                    ctrlKey: e.ctrlKey,
-                    shiftKey: e.shiftKey,
-                    clientX: iframeRect.left + e.clientX,
-                    clientY: iframeRect.top + e.clientY,
-                  }),
-                );
-              },
-              { passive: false },
-            );
+            D._setupIframeInteractivity(iframe);
           } catch (err) {
             /* cross-origin – skip */
           }
         });
 
         wrap.appendChild(iframe);
+
+        // ➕ Sectie toevoegen knop (Relume-stijl, zichtbaar bij hover)
+        const addBtn = document.createElement("button");
+        addBtn.className = "aisb-add-section-btn";
+        addBtn.type = "button";
+        addBtn.innerHTML = "<span>+</span> Sectie";
+        addBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          if (D.openAddSectionModal) D.openAddSectionModal(iframe, body, page);
+        });
+        wrap.appendChild(addBtn);
+
         body.appendChild(wrap);
         D.allIframes.push(iframe);
       });
@@ -173,6 +125,69 @@
     });
 
     D.setupPanZoom(canvasEl, inner);
+  };
+
+  /* ── Iframe interactiviteit instellen ──────────────────────── */
+
+  D._setupIframeInteractivity = function (iframe) {
+    try {
+      const doc = iframe.contentDocument;
+      if (!doc || !doc.head) return;
+      let hoverStyle = doc.getElementById("aisb-hover-style");
+      if (!hoverStyle) {
+        hoverStyle = doc.createElement("style");
+        hoverStyle.id = "aisb-hover-style";
+        doc.head.appendChild(hoverStyle);
+      }
+      hoverStyle.textContent =
+        "*:not(html):not(body){pointer-events:auto !important;}" +
+        "*:hover:not(html):not(body):not(:has(*:hover)){outline:6px solid #118cf0 !important;" +
+        "outline-offset:-2px !important; transition: 0.2s ease-in-out !important;}";
+
+      doc.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const el = e.target;
+        if (!el) return;
+        const tag = (el.tagName || "").toLowerCase();
+        const cls = String(el.className || "");
+        const isSectionRoot =
+          tag === "section" ||
+          /\bbrxe-section\b/.test(cls) ||
+          el === doc.body ||
+          el === doc.documentElement;
+        if (e.shiftKey || isSectionRoot) {
+          if (D.selectSection) D.selectSection(iframe, doc);
+          return;
+        }
+        if (D.selectElement) D.selectElement(el, doc, iframe);
+      });
+
+      doc.addEventListener(
+        "wheel",
+        (e) => {
+          e.preventDefault();
+          const iframeRect = iframe.getBoundingClientRect();
+          D.canvasEl.dispatchEvent(
+            new WheelEvent("wheel", {
+              bubbles: true,
+              cancelable: true,
+              deltaX: e.deltaX,
+              deltaY: e.deltaY,
+              deltaZ: e.deltaZ,
+              deltaMode: e.deltaMode,
+              ctrlKey: e.ctrlKey,
+              shiftKey: e.shiftKey,
+              clientX: iframeRect.left + e.clientX,
+              clientY: iframeRect.top + e.clientY,
+            }),
+          );
+        },
+        { passive: false },
+      );
+    } catch (err) {
+      /* cross-origin – skip */
+    }
   };
 
   /* ── Pan / zoom ─────────────────────────────────────────────── */
