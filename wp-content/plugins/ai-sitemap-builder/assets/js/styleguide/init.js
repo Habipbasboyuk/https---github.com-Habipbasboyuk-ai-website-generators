@@ -152,7 +152,8 @@
     if (SG.guide.logoUrl && SG.el.logoPreview) {
       SG.el.logoPreview.src = SG.guide.logoUrl;
       SG.el.logoPreview.style.display = "block";
-      if (SG.el.uploadPlaceholder) SG.el.uploadPlaceholder.style.display = "none";
+      if (SG.el.uploadPlaceholder)
+        SG.el.uploadPlaceholder.style.display = "none";
       if (SG.el.extractedContainer) SG.el.extractedContainer.style.display = "";
     }
 
@@ -170,6 +171,12 @@
 
     _skipNextSave = true;
     SG.applyOverridesToAllIframes();
+    // Als de guide al afbeeldingen heeft (hersteld uit draft of server), zet
+    // imagesLoaded zodat autoAssignImages geen onnodige Unsplash-fetch doet.
+    // De injectie zelf gebeurt via de load-handlers van de iframes.
+    if (SG.guide.images && SG.guide.images.length) {
+      SG.imagesLoaded = true;
+    }
   }
 
   /* ─── Save button ──────────────────────────────────────────── */
