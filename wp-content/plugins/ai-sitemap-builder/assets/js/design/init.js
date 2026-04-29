@@ -60,9 +60,13 @@
       console.error("[AISB design] preview key parse failed:", e);
     }
 
-    // ── 3. Wireframes komen altijd via AJAX; guide via AJAX alleen als
-    //    inline data noch preview-sleutel kleuren had.
-    const needsGuide = !D.guide.colours || !D.guide.colours.length;
+    // ── 3. Wireframes komen altijd via AJAX; guide via AJAX als inline/preview
+    //    geen kleuren óf geen afbeeldingen had.
+    const needsGuide =
+      !D.guide.colours ||
+      !D.guide.colours.length ||
+      !D.guide.images ||
+      !D.guide.images.length;
     console.log("[AISB design] needsGuide (AJAX fallback):", needsGuide);
     const reqs = [
       D.post("aisb_get_wireframe_sections", { project_id: D.projectId }),
@@ -85,6 +89,12 @@
       const sg = guideRes.data.style_guide;
       // Guard: PHP kan [] (JSON array) teruggeven voor een lege guide
       if (sg && !Array.isArray(sg)) Object.assign(D.guide, sg);
+      // Re-inject images into any iframes that already loaded before the guide arrived
+      if (D.guide.images && D.guide.images.length && D.allIframes) {
+        D.allIframes.forEach((iframe) => {
+          if (iframe._loaded) D.injectImages(iframe);
+        });
+      }
     }
 
     // ── 4. localStorage draft-sleutel — laatste redmiddel als alles hierboven

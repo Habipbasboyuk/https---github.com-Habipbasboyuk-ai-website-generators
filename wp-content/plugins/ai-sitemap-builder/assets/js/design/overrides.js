@@ -237,14 +237,16 @@
 
       style.textContent = css;
 
-      // Logo injecteren in eerste sectie per pagina (sIdx 0 = header/nav)
-      if (guide.logoUrl && sIdx === 0) {
+      // Logo injecteren in elke sectie die een logo-element bevat
+      // (niet alleen sIdx 0 — ook niet-header secties kunnen een logo tonen)
+      if (guide.logoUrl) {
         const logoImgs = doc.querySelectorAll(
-          ".brxe-nav-menu img, nav img, header img, [class*='logo'] img, .brxe-image img",
+          ".brxe-logo img, .bricks-site-logo, .brxe-nav-menu img, nav img, header img, [class*='logo'] img",
         );
         if (logoImgs.length) {
           logoImgs[0].src = guide.logoUrl;
           logoImgs[0].srcset = "";
+          logoImgs[0].setAttribute("data-aisb-logo", "1");
           logoImgs[0].style.cssText +=
             ";max-height:60px;width:auto;object-fit:contain";
         }
