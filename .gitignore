@@ -1,3 +1,4 @@
+# ── WordPress core bestanden ─────────────────────────────────────
 /.htaccess
 /index.php
 /license.txt
@@ -23,22 +24,44 @@
 /wp-trackback.php
 /xmlrpc.php
 
-# Environment files
+# ── Themes (third-party zoals Bricks) ────────────────────────────
+wp-content/themes/
+
+# ── Plugins (alles behalve eigen plugin) ─────────────────────────
+wp-content/plugins/*
+!wp-content/plugins/ai-sitemap-builder/
+
+# ── Uploads, cache & gegenereerde bestanden ──────────────────────
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/backup-db/
+wp-content/backups/
+wp-content/advanced-cache.php
+wp-content/wp-cache-config.php
+wp-content/object-cache.php
+
+# ── Environment files ─────────────────────────────────────────────
 .env
 .env.local
 .env.*.local
 
-# Build and generated assets
+# ── Build en gegenereerde assets ──────────────────────────────────
 wp-content/plugins/uixpress/app/dist/
 *.map
 
-# Node/Vendor
+# ── Node/Vendor ───────────────────────────────────────────────────
 node_modules/
 vendor/
 
-# Logs
+# ── Logs ──────────────────────────────────────────────────────────
 *.log
 
-# OS files
+# ── OS bestanden ──────────────────────────────────────────────────
 .DS_Store
 Thumbs.db
+desktop.ini
+
+# ── Editor bestanden ──────────────────────────────────────────────
+.vscode/
+.idea/
