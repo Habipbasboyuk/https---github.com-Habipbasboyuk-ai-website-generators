@@ -184,55 +184,6 @@
 
     SG.imagesLoaded = true;
 
-    // Render the images grid
-    if (images.length) {
-      let imgIdx = 0;
-      let html = "";
-      SG.wireframePages.forEach(function (page) {
-        const pageImages = [];
-        const pageIndices = [];
-        (page.sections || []).forEach(function (s) {
-          let count = s.media_count || 0;
-          for (let i = 0; i < count; i++) {
-            if (imgIdx < images.length) {
-              pageImages.push(images[imgIdx]);
-              pageIndices.push(imgIdx);
-              imgIdx++;
-            }
-          }
-        });
-        if (!pageImages.length) return;
-
-        html +=
-          '<div class="aisb-sg-auto-group">' +
-          '<h5 class="aisb-sg-auto-group-title">' +
-          SG.escapeHtml(page.title || page.slug) +
-          ' <span class="aisb-sg-auto-group-count">' +
-          pageImages.length +
-          " images</span></h5>" +
-          '<div class="aisb-sg-auto-grid">';
-        pageImages.forEach(function (img, i) {
-          html +=
-            '<div class="aisb-sg-auto-card" data-image-index="' +
-            pageIndices[i] +
-            '">' +
-            '<img src="' +
-            SG.escapeHtml(img.thumb) +
-            '" alt="' +
-            SG.escapeHtml(img.alt || keyword) +
-            '" loading="lazy">' +
-            '<div class="aisb-sg-auto-credit">' +
-            SG.escapeHtml(img.photographer) +
-            "</div></div>";
-        });
-        html += "</div></div>";
-      });
-      autoImagesContainer.innerHTML = html;
-    } else {
-      autoImagesContainer.innerHTML =
-        '<div class="aisb-sg-empty-state">Could not load images from Unsplash.</div>';
-    }
-
     // Store images in guide for saving + injection
     SG.guide.images = images.slice(0, total);
 
@@ -331,21 +282,53 @@
     try {
       const doc = iframe.contentDocument || iframe.contentWindow.document;
       if (!doc) return;
-      const key = iframe._pageSlug + ":" + iframe._sectionIdx;
-      const map = buildImageMap();
-      const urls = map[key];
-      if (!urls || !urls.length) return;
 
       const imgs = doc.querySelectorAll("img");
-      let ui = 0;
-      imgs.forEach(function (img) {
-        if (ui < urls.length) {
-          img.src = urls[ui];
-          img.srcset = "";
-          img.style.objectFit = "cover";
-          img.setAttribute("data-aisb-img-ui", ui);
-          ui++;
+      if (!imgs.length) return;
+
+      const key = iframe._pageSlug + ":" + iframe._sectionIdx;
+      const map = buildImageMap();
+      let urls = map[key];
+
+      // Fallback: als media_count = 0 maar er zijn wél <img> tags, gebruik
+      // de guide-afbeeldingen cyclisch verdeeld op basis van de globale sectie-index.
+      if (!urls || !urls.length) {
+        const globalIdx =
+          typeof iframe._sectionIdx === "number" ? iframe._sectionIdx : 0;
+        const allImgs = SG.guide.images;
+        const start = globalIdx % allImgs.length;
+        const needed = imgs.length;
+        urls = [];
+        for (var i = 0; i < needed; i++) {
+          var img = allImgs[(start + i) % allImgs.length];
+          urls.push(img.full || img.thumb || "");
         }
+      }
+
+      // Als er meer <img> slots zijn dan toegewezen URLs (bijv. een gallerij),
+      // vul de extra slots met unieke afbeeldingen uit de volledige pool.
+      var allPool = SG.guide.images;
+      if (imgs.length > urls.length && allPool.length > 1) {
+        var poolOffset = 0;
+        outer: for (var pi = 0; pi < SG.wireframePages.length; pi++) {
+          var pg = SG.wireframePages[pi];
+          var secs = pg.sections || [];
+          for (var si = 0; si < secs.length; si++) {
+            if (pg.slug === iframe._pageSlug && si === iframe._sectionIdx)
+              break outer;
+            poolOffset += secs[si].media_count || 0;
+          }
+        }
+        while (urls.length < imgs.length) {
+          var extra = allPool[(poolOffset + urls.length) % allPool.length];
+          urls.push(extra.full || extra.thumb || "");
+        }
+      }
+      imgs.forEach(function (img, ui) {
+        img.src = urls[ui] || urls[ui % urls.length];
+        img.srcset = "";
+        img.style.objectFit = "cover";
+        img.setAttribute("data-aisb-img-ui", ui);
       });
     } catch (e) {
       /* cross-origin */

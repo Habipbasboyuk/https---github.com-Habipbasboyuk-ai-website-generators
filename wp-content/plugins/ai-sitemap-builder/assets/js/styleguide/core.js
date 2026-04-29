@@ -416,7 +416,9 @@
           ".brxe-section:not([style*='background-image'])," +
           ".brxe-container:not([style*='background-image'])," +
           ".brxe-block:not([style*='background-image'])" +
-          "{background-color:" + secBg + " !important;}";
+          "{background-color:" +
+          secBg +
+          " !important;}";
         overrideCss += "body{background-color:" + secBg + " !important;}";
 
         // contrast-bewuste tekst- en headingkleur per sectie
@@ -471,7 +473,7 @@
       // Logo injecteren in header/nav secties (sectionIdx 0 = eerste sectie per pagina)
       if (SG.guide.logoUrl && sIdx === 0) {
         const logoImgs = iframeDocument.querySelectorAll(
-          ".brxe-nav-menu img, nav img, header img, [class*='logo'] img, .brxe-image img"
+          ".brxe-nav-menu img, nav img, header img, [class*='logo'] img, .brxe-image img",
         );
         if (logoImgs.length) {
           logoImgs[0].src = SG.guide.logoUrl;
@@ -837,12 +839,16 @@
   //   stap 1 (kleuren), stap 2 (typografie), stap 3 (afbeeldingen)
   // wordt aangeroepen nadat wireframe-secties zijn geladen van de server
   SG.renderStepPreview = function () {
+    // All three data-preview-* attributes now point to the same shared canvas element.
+    // Deduplicate so buildCanvasForContainer is only called once per unique element.
+    const seen = new Set();
     [
       SG.el.coloursPreview,
       SG.el.typographyPreview,
       SG.el.imagesPreview,
     ].forEach((container) => {
-      if (!container) return;
+      if (!container || seen.has(container)) return;
+      seen.add(container);
       SG.buildCanvasForContainer(container);
     });
   };
@@ -868,7 +874,16 @@
       SG.wireframePages = response.data.pages;
       SG.renderStepPreview();
       // als images.js geladen is, wijs afbeeldingen automatisch toe aan secties
-      if (SG.autoAssignImages) SG.autoAssignImages();
+      if (SG.autoAssignImages) await SG.autoAssignImages();
+      // Re-injecteer na Unsplash/upload: iframes die snel laadden krijgen
+      // alsnog afbeeldingen als autoAssignImages ze al had overgeslagen.
+      if (
+        SG.guide.images &&
+        SG.guide.images.length &&
+        SG.applyImagesToAllIframes
+      ) {
+        SG.applyImagesToAllIframes();
+      }
     }
   };
 
