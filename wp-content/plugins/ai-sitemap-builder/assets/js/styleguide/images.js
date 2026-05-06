@@ -160,20 +160,73 @@
     let keyword = SG.guide._imageKeyword || "";
 
     autoImagesContainer.innerHTML =
-      '<div class="aisb-sg-empty-state">Loading ' +
+      '<div class="aisb-sg-img-loader">' +
+      '<p class="aisb-sg-img-loader__text">Loading ' +
       total +
-      " images from Unsplash…</div>";
+      " images from Unsplash\u2026</p>" +
+      '<div class="aisb-sg-img-loader__track"><div class="aisb-sg-img-loader__bar"></div></div>' +
+      '<div class="aisb-sg-img-loader__meta"><span class="aisb-sg-img-loader__pct">0%</span></div>' +
+      "</div>";
 
-    const out = await SG.post("aisb_get_unsplash_images", {
-      project_id: SG.projectId,
-      total_needed: total,
+    // Use querySelector on the container (not document) so the scope is correct
+    var loadBar = autoImagesContainer.querySelector(".aisb-sg-img-loader__bar");
+    var loadPctEl = autoImagesContainer.querySelector(
+      ".aisb-sg-img-loader__pct",
+    );
+    var loadPct = 0;
+    var loadTick = setInterval(function () {
+      loadPct = Math.min(
+        loadPct +
+          (loadPct < 40 ? 10 : loadPct < 70 ? 5 : loadPct < 85 ? 1.5 : 0.3),
+        88,
+      );
+      if (loadBar) loadBar.style.width = loadPct.toFixed(0) + "%";
+      if (loadPctEl) loadPctEl.textContent = loadPct.toFixed(0) + "%";
+    }, 150);
+
+    // Run fetch + minimum 2.5s display time in parallel so the bar always animates
+    var results = await Promise.all([
+      SG.post("aisb_get_unsplash_images", {
+        project_id: SG.projectId,
+        total_needed: total,
+      }),
+      new Promise(function (resolve) {
+        setTimeout(resolve, 2500);
+      }),
+    ]);
+    var out = results[0];
+
+    clearInterval(loadTick);
+    if (loadBar) loadBar.style.width = "100%";
+    if (loadPctEl) loadPctEl.textContent = "100%";
+    // Brief pause so user sees 100% before results replace the bar
+    await new Promise(function (resolve) {
+      setTimeout(resolve, 350);
     });
 
     let images = [];
-    if (out && out.success && out.data.images && out.data.images.length) {
+    if (
+      out &&
+      out.success &&
+      out.data &&
+      out.data.images &&
+      out.data.images.length
+    ) {
       images = out.data.images;
       keyword = out.data.keyword || "";
       SG.guide._imageKeyword = keyword;
+    } else if (!out || !out.success) {
+      var errMsg =
+        out && out.data && out.data.message
+          ? out.data.message
+          : out
+            ? JSON.stringify(out)
+            : "No response from server";
+      autoImagesContainer.innerHTML =
+        '<div class="aisb-sg-empty-state" style="color:#c00;">Error: ' +
+        errMsg +
+        "</div>";
+      return;
     }
 
     // If Unsplash didn't return enough, fill remaining slots from uploads
@@ -186,6 +239,27 @@
 
     // Store images in guide for saving + injection
     SG.guide.images = images.slice(0, total);
+
+    // Render the image cards into the container so the loader is replaced
+    if (SG.guide.images.length) {
+      var cardsHtml = "";
+      SG.guide.images.forEach(function (img, i) {
+        cardsHtml +=
+          '<div class="aisb-sg-auto-card" data-image-index="' +
+          i +
+          '" title="Click to swap">' +
+          '<img src="' +
+          SG.escapeHtml(img.thumb || img.full || "") +
+          '" alt="' +
+          SG.escapeHtml(img.alt || "") +
+          '" loading="lazy">' +
+          "</div>";
+      });
+      autoImagesContainer.innerHTML = cardsHtml;
+    } else {
+      autoImagesContainer.innerHTML =
+        '<div class="aisb-sg-empty-state">No images returned. Try uploading some.</div>';
+    }
 
     // Persist immediately so the save handler always has images even if the
     // user clicks Save & Design before the draft auto-save fires.
@@ -347,6 +421,9 @@
 
   let swapModalPage = 1;
   let swapModalKeyword = "";
+  // Register step 3 enter callback — images are only fetched when user navigates to step 3
+  SG.onStep3Enter = SG.autoAssignImages;
+
   let swapModalIdx = -1;
 
   // Delegated click on image cards

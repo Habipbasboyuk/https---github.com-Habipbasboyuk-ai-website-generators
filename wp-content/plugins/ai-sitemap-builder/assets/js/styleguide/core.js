@@ -74,6 +74,7 @@
       wizardStepButtons: root.querySelectorAll("[data-wizard-step]"),
     },
     onStep2Enter: null,
+    onStep3Enter: null,
   };
 
   // maak SG beschikbaar als globale variabele zodat andere scripts
@@ -126,9 +127,13 @@
     }
 
     // bij stap 2: typografie automatisch toewijzen als dat nog niet is gebeurd
-    // onStep2Enter wordt door typography.js ingesteld bij het laden
     if (step === 2 && SG.onStep2Enter) {
       SG.onStep2Enter();
+    }
+
+    // bij stap 3: afbeeldingen ophalen als dat nog niet is gebeurd
+    if (step === 3 && SG.onStep3Enter) {
+      SG.onStep3Enter();
     }
   };
 
@@ -873,10 +878,8 @@
     ) {
       SG.wireframePages = response.data.pages;
       SG.renderStepPreview();
-      // als images.js geladen is, wijs afbeeldingen automatisch toe aan secties
-      if (SG.autoAssignImages) await SG.autoAssignImages();
-      // Re-injecteer na Unsplash/upload: iframes die snel laadden krijgen
-      // alsnog afbeeldingen als autoAssignImages ze al had overgeslagen.
+      // Afbeeldingen worden pas opgehaald als de gebruiker naar stap 3 gaat.
+      // Als er al images zijn (herladen), injecteren we ze direct.
       if (
         SG.guide.images &&
         SG.guide.images.length &&
