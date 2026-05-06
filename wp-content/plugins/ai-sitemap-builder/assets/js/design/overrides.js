@@ -2,10 +2,10 @@
  * design/overrides.js — CSS-override injectie in de preview-iframes.
  *
  * Verantwoordelijk voor:
- *   - buildOverrideCss()     — bouwt een volledige CSS-string met kleur- en fontoverrides
+ *   - buildStyleGuideCSS()  — bouwt een volledige CSS-string met kleur- en fontoverrides
  *   - buildGoogleFontsUrl()  — maakt de Google Fonts URL voor heading- en bodyfont
  *   - getLuminance()         — WCAG-luminantieberekening (0 = zwart, 1 = wit)
- *   - injectOverride()       — injecteert de CSS én Google Fonts in één iframe
+ *   - injectStyleGuide()     — injecteert de CSS én Google Fonts in één iframe
  */
 (function () {
   "use strict";
@@ -15,7 +15,7 @@
 
   /* ── Kleur- en font-override CSS bouwen ─────────────────────── */
 
-  D.buildOverrideCss = function () {
+  D.buildStyleGuideCSS = function () {
     const guide = D.guide;
     const colours = guide.colours && guide.colours.length ? guide.colours : [];
     const find = (name) => (colours.find((c) => c.name === name) || {}).hex;
@@ -122,6 +122,10 @@
         guide.bodyFont +
         ",sans-serif !important;}";
     }
+    // Geïnjecteerd logo (data-aisb-logo="1") consistent stijlen — vroeger
+    // werd dit als inline style.cssText op het element gezet.
+    css +=
+      'img[data-aisb-logo="1"]{max-height:60px !important;width:auto !important;object-fit:contain !important;}';
     return css;
   };
 
@@ -155,7 +159,7 @@
 
   /* ── Override injecteren in één iframe ──────────────────────── */
 
-  D.injectOverride = function (iframe) {
+  D.injectStyleGuide = function (iframe) {
     try {
       const guide = D.guide;
       const doc = iframe.contentDocument || iframe.contentWindow.document;
@@ -168,16 +172,20 @@
         doc.head.appendChild(style);
       }
 
-      let css = D.buildOverrideCss();
+      let css = D.buildStyleGuideCSS();
 
       const sIdx =
         typeof iframe._sectionIdx === "number" ? iframe._sectionIdx : -1;
+      // Bevroren bg_index uit het wireframe-model wint van de live volgorde,
+      // zodat reorder de kleur niet meer flipt na refresh.
+      const bgIdx =
+        typeof iframe._bgIndex === "number" ? iframe._bgIndex : sIdx;
       if (sIdx >= 0) {
         const colours =
           guide.colours && guide.colours.length ? guide.colours : [];
         const find = (name) => (colours.find((c) => c.name === name) || {}).hex;
 
-        // Gebruik dezelfde logica als core.js / injectOverrideIntoIframe:
+        // Gebruik dezelfde logica als core.js / injectStyleGuideIntoIframe:
         // even secties → palLight | sectionBg1-fallback
         // oneven secties → palNeutral | palLight | sectionBg2-fallback
         const palDark = find("Dark") || (colours[3] ? colours[3].hex : "");
@@ -186,7 +194,7 @@
         const palLight = find("Light") || (colours[4] ? colours[4].hex : "");
 
         let secBg;
-        if (sIdx % 2 === 0) {
+        if (bgIdx % 2 === 0) {
           secBg = palLight || guide.sectionBg1 || "#ffffff";
         } else {
           secBg = palNeutral || palLight || guide.sectionBg2 || "#f0f4ff";
@@ -235,7 +243,67 @@
         }
       }
 
+      // Header/footer secties: padding boven/onder weghalen zodat ze strak
+      // tegen de volgende/vorige sectie staan (geen leeg blok eronder).
+      // Bricks-secties hebben hun eigen interne padding — die ook nullen.
+      // Uitzondering: header krijgt nog wat padding-bottom en footer wat
+      // padding-top zodat de inhoud niet tegen de buur-sectie aan plakt.
+      const secType = String(iframe._sectionType || "").toLowerCase();
+      if (secType === "header" || secType === "footer") {
+        css +=
+          "html,body{padding:0 !important;margin:0 !important;min-height:0 !important;}" +
+          ".brxe-section,section,header,footer,.brxe-container,.brxe-block" +
+          "{padding-top:0 !important;padding-bottom:0 !important;" +
+          "margin-top:0 !important;margin-bottom:0 !important;" +
+          "min-height:0 !important;}";
+
+        if (secType === "header") {
+          // Haal padding bottom ook uit header weg als gevraagd
+          // css +=
+          //   "body > .brxe-section:last-child," +
+          //   "body > section:last-child," +
+          //   "body > header:last-child," +
+          //   "body > .brxe-container:last-child" +
+          //   "{padding-bottom:0px !important;}";
+        } else {
+          // Iets ademruimte bovenin de footer
+          css +=
+            "body > .brxe-section:first-child," +
+            "body > section:first-child," +
+            "body > footer:first-child," +
+            "body > .brxe-container:first-child" +
+            "{padding-top:24px !important;}";
+        }
+      }
+
       style.textContent = css;
+
+      // Header/footer: forceer iframe-hoogte op werkelijke content-hoogte ná
+      // dat de override toegepast is, omdat scrollHeight in canvas.js al
+      // gemeten was vóór deze padding-reset.
+      if (secType === "header" || secType === "footer") {
+        try {
+          requestAnimationFrame(function () {
+            try {
+              const cands = Array.from(doc.body.children).filter(function (n) {
+                return n.nodeType === 1;
+              });
+              let h = 0;
+              cands.forEach(function (n) {
+                const r = n.getBoundingClientRect();
+                if (r.bottom > h) h = r.bottom;
+              });
+              if (!h) h = doc.body.scrollHeight || 0;
+              if (h > 0) {
+                iframe.style.height = h + "px";
+                if (iframe.parentElement) {
+                  iframe.parentElement.style.height = h + "px";
+                }
+              }
+            } catch (_) {}
+          });
+        } catch (_) {}
+      }
 
       // Logo injecteren in elke sectie die een logo-element bevat
       // (niet alleen sIdx 0 — ook niet-header secties kunnen een logo tonen)
@@ -247,8 +315,6 @@
           logoImgs[0].src = guide.logoUrl;
           logoImgs[0].srcset = "";
           logoImgs[0].setAttribute("data-aisb-logo", "1");
-          logoImgs[0].style.cssText +=
-            ";max-height:60px;width:auto;object-fit:contain";
         }
       }
 
