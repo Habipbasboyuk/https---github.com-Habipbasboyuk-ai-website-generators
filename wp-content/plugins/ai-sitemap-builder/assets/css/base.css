@@ -9,12 +9,12 @@
 
 .aisb-wrap {
   font-family:
+    "Archivo",
     ui-sans-serif,
     system-ui,
     -apple-system,
-    Segoe UI,
-    Roboto,
-    Arial;
+    Arial,
+    sans-serif;
   max-width: 100%;
   margin: 24px auto;
   padding: 0 14px;
@@ -70,6 +70,12 @@
   margin: 0;
   color: #555;
   font-size: 14px;
+}
+
+.aisb-wrap p,
+.aisb-wrap .aisb-subtitle,
+.aisb-wrap .aisb-detail-body {
+  font-family: "Hind Siliguri", ui-sans-serif, system-ui, Arial, sans-serif;
 }
 .aisb-card {
   background: #fff;

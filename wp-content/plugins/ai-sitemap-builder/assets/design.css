@@ -32,8 +32,8 @@
   align-items: center;
   gap: 6px;
   padding: 6px 14px;
-  background: #118cf0;
-  color: #fff;
+  background: #ffffff;
+  color: #323232;
   border: none;
   border-radius: 7px;
   font-size: 13px;
@@ -47,7 +47,7 @@
   line-height: 1;
 }
 .aisb-design-save-btn:hover:not(:disabled) {
-  background: #0d78d4;
+  background: #d7d7d7;
   transform: translateY(-1px);
 }
 .aisb-design-save-btn:disabled {
@@ -56,6 +56,127 @@
 }
 .aisb-design-save-btn.is-saved {
   background: #16a34a;
+}
+
+/* ── Unsaved-changes waarschuwing modal ──────────────────── */
+.aisb-unsaved-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(3px);
+  animation: aisb-fade-in 0.18s ease;
+}
+
+@keyframes aisb-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.aisb-unsaved-dialog {
+  background: #1a1f2e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 32px 28px 24px;
+  max-width: 420px;
+  width: calc(100% - 32px);
+  text-align: center;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+  animation: aisb-slide-up 0.2s ease;
+}
+
+@keyframes aisb-slide-up {
+  from {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.aisb-unsaved-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+  color: #f59e0b;
+}
+
+.aisb-unsaved-title {
+  margin: 0 0 10px;
+  font-size: 17px;
+  font-weight: 700;
+  color: #f1f3f8;
+}
+
+.aisb-unsaved-body {
+  margin: 0 0 22px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.aisb-unsaved-body strong {
+  color: #f87171;
+}
+
+.aisb-unsaved-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.aisb-unsaved-btn-save,
+.aisb-unsaved-btn-leave,
+.aisb-unsaved-btn-cancel {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    opacity 0.15s,
+    transform 0.1s;
+}
+
+.aisb-unsaved-btn-save {
+  background: #16a34a;
+  color: #fff;
+}
+
+.aisb-unsaved-btn-save:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.aisb-unsaved-btn-leave {
+  background: rgba(248, 113, 113, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(248, 113, 113, 0.3);
+}
+
+.aisb-unsaved-btn-leave:hover {
+  background: rgba(248, 113, 113, 0.25);
+}
+
+.aisb-unsaved-btn-cancel {
+  background: rgba(255, 255, 255, 0.07);
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.aisb-unsaved-btn-cancel:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 /* Verwijder de bovenste border-radius van het canvas als toolbar aanwezig is */
@@ -157,7 +278,6 @@
 .aisb-design-iframe {
   display: block;
   width: 1200px;
-  min-height: 200px;
   border: none;
   /* pointer-events standaard auto zodat :hover en muisgebeurtenissen werken.
      setupPanZoom zet dit tijdelijk op none tijdens een pan-actie. */
@@ -187,18 +307,19 @@
   transition:
     opacity 0.18s,
     transform 0.15s;
-  background: #118cf0;
-  color: #fff;
+  background: #e7e7e7;
+  color: #373737;
   border: 2.5px solid rgba(255, 255, 255, 0.85);
   border-radius: 24px;
-  padding: 7px 20px;
-  font-size: 13px;
+  padding: 10px 25px;
+  font-size: 20px;
   font-weight: 700;
   cursor: pointer;
   white-space: nowrap;
-  box-shadow: 0 4px 18px rgba(17, 140, 240, 0.5);
+  box-shadow: 0 4px 18px rgba(98, 98, 98, 0.5);
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
   line-height: 1;
   letter-spacing: 0.01em;
@@ -209,9 +330,80 @@
   pointer-events: auto;
 }
 
+/* Knop verbergen wanneer de cursor in het midden van de sectie zit
+   (canvas.js zet `aisb-iframe-active` zodra de muis het iframe binnenkomt).
+   Maar weer tonen zodra de muis in de onderste rand zit
+   (`aisb-edge-bottom`) — dat is daar waar je een nieuwe sectie zou
+   willen toevoegen. */
+.aisb-design-iframe-wrap.aisb-iframe-active .aisb-add-section-btn {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+.aisb-design-iframe-wrap.aisb-iframe-active.aisb-edge-bottom
+  .aisb-add-section-btn {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
 .aisb-add-section-btn:hover {
-  background: #0d78d4;
+  background: #bdbdbd;
   transform: translateX(-50%) scale(1.05);
+}
+
+/* ── Drag handle (versleep sectie om te herordenen) ─────────── */
+.aisb-section-drag-handle {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 55;
+  width: 32px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  border-radius: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  background: #cdcece;
+  color: #2e2e2e;
+  cursor: grab;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.18s,
+    background 0.15s,
+    transform 0.12s;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+}
+
+.aisb-design-iframe-wrap:hover .aisb-section-drag-handle {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.aisb-section-drag-handle:hover {
+  background: #999999;
+  transform: scale(1.05);
+}
+
+.aisb-section-drag-handle:active {
+  cursor: grabbing;
+}
+
+.aisb-design-iframe-wrap.is-dragging {
+  opacity: 0.55;
+  outline: 2px dashed #118cf0;
+  outline-offset: -2px;
+}
+
+body.aisb-is-reordering,
+body.aisb-is-reordering * {
+  cursor: grabbing !important;
+}
+
+body.aisb-is-reordering .aisb-design-iframe-wrap {
+  transition: transform 0.15s ease;
 }
 
 /* ── Empty / loading state ─────────────────────────────────── */
@@ -233,4 +425,265 @@
   color: rgba(0, 0, 0, 0.35);
   text-align: center;
   margin-top: 8px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+ * Template-card grid (sectie-paneel & "+ sectie" modal)
+ * Vroeger via inline style="..." in JS — nu als reusable klasses.
+ * ═══════════════════════════════════════════════════════════════ */
+.aisb-ep-tpl-card {
+  padding: 0;
+  margin: 0;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: 100%;
+  font-family: inherit;
+  line-height: 1;
+  transition:
+    border-color 0.18s,
+    transform 0.15s,
+    box-shadow 0.18s;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+.aisb-ep-tpl-card:hover {
+  border-color: #c6c9cc;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(180, 183, 185, 0.35);
+}
+.aisb-ep-tpl-card.is-current {
+  border-color: #a3aab0;
+}
+.aisb-ep-tpl-preview {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  background: #f4f5f7;
+  height: 100%;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+.aisb-ep-tpl-card__footer {
+  padding: 6px 10px;
+  background: #c5c5c5;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  flex-shrink: 0;
+}
+.aisb-ep-tpl-card__title {
+  color: #616161;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+}
+.aisb-ep-tpl-card__meta {
+  color: #9aa3b2;
+  font-size: 11px;
+  margin-top: 3px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.aisb-ep-tpl-card__tag {
+  background: rgba(61, 61, 61, 0.18);
+  color: #ffffff;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 500;
+}
+.aisb-ep-tpl-card__current {
+  color: #fcfcfc;
+  font-weight: 600;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+ * "+ Sectie" modal (template-kiezer)
+ * ═══════════════════════════════════════════════════════════════ */
+.aisb-add-section-modal {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(212, 212, 212, 0.88);
+  z-index: 199999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(6px);
+  padding: 24px;
+  box-sizing: border-box;
+}
+.aisb-add-section-modal__inner {
+  background: #fefefe;
+  width: 100%;
+  max-width: 1100px;
+  height: 88vh;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55);
+}
+.aisb-add-section-modal__header {
+  flex-shrink: 0;
+  background: #808080;
+}
+.aisb-add-section-modal__toolbar {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-shrink: 0;
+  background: #3f3f46;
+}
+.aisb-add-section-modal__toolbar .aisb-ep-input {
+  flex: 1;
+  margin: 0;
+}
+.aisb-add-section-modal__grid {
+  flex: 1;
+  overflow-y: auto;
+  padding: 18px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  align-content: start;
+  align-items: start; /* voorkom dat kortere kaart uitgerekt wordt naar de hoogte van de langste in die rij */
+  background: #52525b;
+}
+.aisb-add-section-modal__msg {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 24px;
+  color: #e6e9ef;
+  font-size: 13px;
+}
+.aisb-add-section-modal__msg--muted {
+  color: #9aa3b2;
+}
+.aisb-add-section-modal__msg--error {
+  color: #ff8a8a;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+ * Unsplash uitgebreide bibliotheek modal
+ * ═══════════════════════════════════════════════════════════════ */
+.aisb-ep-unsplash-modal {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(17, 19, 26, 0.85);
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+  padding: 20px;
+  box-sizing: border-box;
+}
+.aisb-ep-unsplash-modal__inner {
+  background: var(--ep-bg);
+  width: 100%;
+  max-width: 900px;
+  height: 80vh;
+  border-radius: var(--ep-radius);
+  border: 1px solid var(--ep-border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: var(--ep-shadow);
+}
+.aisb-ep-unsplash-modal__toolbar {
+  padding: 16px;
+  border-bottom: 1px solid var(--ep-border-strong);
+  display: flex;
+  gap: 10px;
+}
+.aisb-ep-unsplash-modal__toolbar .aisb-ep-upload-btn {
+  width: auto;
+  padding: 0 20px;
+}
+.aisb-ep-unsplash-modal__results {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+  align-items: start;
+}
+.aisb-ep-unsplash-modal__msg {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 20px;
+  color: var(--ep-text-subtle);
+}
+.aisb-ep-unsplash-modal__msg--error {
+  color: #ef4444;
+}
+.aisb-ep-unsplash-modal__item {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--ep-border);
+}
+.aisb-ep-unsplash-modal__item img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.2s;
+}
+.aisb-ep-unsplash-modal__item:hover img {
+  transform: scale(1.05);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+ * Toast / notify (sectie-toevoegen status)
+ * ═══════════════════════════════════════════════════════════════ */
+.aisb-design-notify {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1a1f2e;
+  color: #e6e9ef;
+  padding: 12px 22px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  z-index: 299999;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  white-space: nowrap;
+}
+.aisb-design-notify--success {
+  background: #16a34a;
+}
+.aisb-design-notify--error {
+  border-color: #ef4444;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+ * Geïnjecteerd logo (overrides.js)
+ * ═══════════════════════════════════════════════════════════════ */
+img[data-aisb-logo="1"] {
+  max-height: 60px;
+  width: auto;
+  object-fit: contain;
 }

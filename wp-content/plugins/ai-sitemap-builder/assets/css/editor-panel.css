@@ -307,12 +307,10 @@
 .aisb-ep-range::-webkit-slider-runnable-track {
   height: 4px;
   border-radius: 2px;
-  background: linear-gradient(90deg, var(--ep-accent), var(--ep-accent-2));
 }
 .aisb-ep-range::-moz-range-track {
   height: 4px;
   border-radius: 2px;
-  background: linear-gradient(90deg, var(--ep-accent), var(--ep-accent-2));
 }
 .aisb-ep-range::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -320,7 +318,7 @@
   width: 16px;
   height: 16px;
   background: #fff;
-  border: 2px solid var(--ep-accent);
+  border: 2px solid rgb(66, 66, 66);
   border-radius: 50%;
   margin-top: -6px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
@@ -980,4 +978,199 @@
 .aisb-ep-weight-btn.is-active::after {
   color: var(--ep-accent);
   opacity: 0.8;
+}
+
+/* ── Accordion (details / summary) ────────────────────────────── */
+.aisb-ep-accordion {
+  margin-bottom: 4px;
+  border: 1px solid var(--ep-border);
+  border-radius: var(--ep-radius-sm);
+  background: var(--ep-surface);
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
+.aisb-ep-accordion:last-child {
+  margin-bottom: 0;
+}
+.aisb-ep-accordion[open] {
+  border-color: var(--ep-border-strong);
+}
+
+.aisb-ep-accordion > summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ep-text-muted);
+  cursor: pointer;
+  user-select: none;
+  letter-spacing: 0.02em;
+  transition:
+    color 0.12s,
+    background 0.12s;
+}
+.aisb-ep-accordion > summary::-webkit-details-marker {
+  display: none;
+}
+.aisb-ep-accordion > summary::before {
+  content: "";
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><path fill='%236b6e7e' d='M3 2l4 3-4 3z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+  flex-shrink: 0;
+  transition: transform 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.aisb-ep-accordion[open] > summary::before {
+  transform: rotate(90deg);
+}
+.aisb-ep-accordion > summary:hover {
+  color: var(--ep-text);
+  background: var(--ep-surface-2);
+}
+.aisb-ep-accordion[open] > summary {
+  color: var(--ep-text);
+  border-bottom: 1px solid var(--ep-border);
+}
+
+.aisb-ep-accordion-body {
+  padding: 12px;
+}
+.aisb-ep-accordion-body--grid {
+  padding: 10px;
+}
+
+/* ── Template category buttons ─────────────────────────────────── */
+.aisb-ep-tpl-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 4px;
+}
+.aisb-ep-cat-btn {
+  padding: 4px 10px;
+  border: 1px solid var(--ep-border-strong);
+  border-radius: 99px;
+  background: var(--ep-bg);
+  color: var(--ep-text-muted);
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  text-transform: capitalize;
+  transition:
+    background 0.12s,
+    border-color 0.12s,
+    color 0.12s;
+  white-space: nowrap;
+}
+.aisb-ep-cat-btn:hover {
+  background: var(--ep-surface-2);
+  color: var(--ep-text);
+}
+.aisb-ep-cat-btn.is-active {
+  background: var(--ep-accent);
+  border-color: var(--ep-accent);
+  color: #fff;
+}
+
+/* ── Upload zone (drag & drop) ─────────────────────────────────── */
+.aisb-ep-upload-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 1rem;
+  padding: 20px 12px;
+  border: 1.5px dashed var(--ep-border-strong);
+  border-radius: var(--ep-radius-sm);
+  background: var(--ep-surface);
+  color: var(--ep-text-muted);
+  font-size: 11.5px;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    background 0.15s;
+  width: 100%;
+  box-sizing: border-box;
+}
+.aisb-ep-upload-zone:hover,
+.aisb-ep-upload-zone.is-dragover {
+  border-color: var(--ep-accent-soft);
+  background: var(--ep-surface-2);
+  color: var(--ep-text);
+}
+.aisb-ep-upload-zone svg {
+  opacity: 0.5;
+}
+
+/* ── Unsplash search row ───────────────────────────────────────── */
+.aisb-ep-unsplash-search-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.aisb-ep-unsplash-search-row .aisb-ep-input {
+  flex: 7;
+  min-width: 0;
+}
+.aisb-ep-unsplash-search-row .aisb-ep-upload-btn {
+  flex: 3;
+  width: auto;
+}
+
+/* ── Unsplash results grid ─────────────────────────────────────── */
+.aisb-ep-unsplash-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+}
+.aisb-ep-unsplash-item {
+  aspect-ratio: 4/3;
+  border-radius: var(--ep-radius-xs);
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.15s;
+}
+.aisb-ep-unsplash-item:hover {
+  border-color: var(--ep-accent-soft);
+}
+.aisb-ep-unsplash-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Progress bar (upload / unsplash loader) ───────────────────── */
+.aisb-ep-progress-wrap {
+  margin: 8px 0 4px;
+}
+.aisb-ep-progress-track {
+  height: 6px;
+  background: var(--ep-surface-2);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.aisb-ep-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #7c5cff, #34d399);
+  border-radius: 99px;
+  transition: width 0.25s ease;
+}
+.aisb-ep-progress-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+  font-size: 10.5px;
+  color: var(--ep-text-muted);
 }
