@@ -105,7 +105,7 @@
       // Re-inject images into any iframes that already loaded before the guide arrived
       if (D.guide.images && D.guide.images.length && D.allIframes) {
         D.allIframes.forEach((iframe) => {
-          if (iframe._loaded) D.injectImages(iframe);
+          if (iframe._loaded) D.injectSectionImages(iframe);
         });
       }
     }
@@ -133,15 +133,104 @@
       "[AISB design] final guide:",
       JSON.parse(JSON.stringify(D.guide)),
     );
-    D.buildCanvas();
+    D.buildDesignCanvas();
 
-    // Koppel de opslaan-knop in de toolbar aan D.saveAllPatches().
+    // Koppel de opslaan-knop in de toolbar aan D.saveAllEdits().
     const saveBtn = document.getElementById("aisb-design-save-btn");
     if (saveBtn) {
       saveBtn.addEventListener("click", function () {
-        if (D.saveAllPatches) D.saveAllPatches();
+        if (D.saveAllEdits) D.saveAllEdits();
       });
     }
+
+    // ── Unsaved-changes waarschuwing bij navigatie weg van stap 4 ──
+    D._showUnsavedModal = function (href) {
+      // Verwijder eventueel eerder exemplaar
+      const existing = document.getElementById("aisb-unsaved-modal");
+      if (existing) existing.remove();
+
+      const modal = document.createElement("div");
+      modal.id = "aisb-unsaved-modal";
+      modal.className = "aisb-unsaved-modal";
+      modal.innerHTML =
+        '<div class="aisb-unsaved-dialog">' +
+        '<div class="aisb-unsaved-icon">&#9888;</div>' +
+        '<h3 class="aisb-unsaved-title">Niet-opgeslagen wijzigingen</h3>' +
+        '<p class="aisb-unsaved-body">Je hebt wijzigingen in het Design die nog niet zijn opgeslagen. Als je nu weggaat <strong>verlies je alle aanpassingen</strong>.</p>' +
+        '<div class="aisb-unsaved-actions">' +
+        '<button class="aisb-unsaved-btn-save" id="aisb-unsaved-save">&#128190; Opslaan &amp; ga verder</button>' +
+        '<button class="aisb-unsaved-btn-leave" id="aisb-unsaved-leave">Toch weggaan</button>' +
+        '<button class="aisb-unsaved-btn-cancel" id="aisb-unsaved-cancel">Annuleren</button>' +
+        "</div>" +
+        "</div>";
+
+      document.body.appendChild(modal);
+
+      // Focus op annuleer (veiligste optie)
+      setTimeout(function () {
+        const cancel = document.getElementById("aisb-unsaved-cancel");
+        if (cancel) cancel.focus();
+      }, 50);
+
+      document
+        .getElementById("aisb-unsaved-save")
+        .addEventListener("click", async function () {
+          const saveBtn = document.getElementById("aisb-unsaved-save");
+          if (saveBtn) {
+            saveBtn.disabled = true;
+            saveBtn.textContent = "⏳ Opslaan…";
+          }
+          try {
+            if (D.saveAllEdits) await D.saveAllEdits();
+            modal.remove();
+            window.location.href = href;
+          } catch (err) {
+            if (saveBtn) {
+              saveBtn.disabled = false;
+              saveBtn.textContent = "⚠ Fout — probeer opnieuw";
+            }
+          }
+        });
+
+      document
+        .getElementById("aisb-unsaved-leave")
+        .addEventListener("click", function () {
+          modal.remove();
+          window.location.href = href;
+        });
+
+      document
+        .getElementById("aisb-unsaved-cancel")
+        .addEventListener("click", function () {
+          modal.remove();
+        });
+
+      // Sluiten met Escape
+      function onKeydown(e) {
+        if (e.key === "Escape") {
+          modal.remove();
+          document.removeEventListener("keydown", onKeydown);
+        }
+      }
+      document.addEventListener("keydown", onKeydown);
+
+      // Sluiten door op de overlay te klikken
+      modal.addEventListener("click", function (e) {
+        if (e.target === modal) modal.remove();
+      });
+    };
+
+    // Onderschep klikken op stap-tabs als er ongeslagen wijzigingen zijn.
+    document.querySelectorAll(".aisb-step-tab").forEach(function (tab) {
+      tab.addEventListener("click", function (e) {
+        if (!D.hasUnsavedChanges || !D.hasUnsavedChanges()) return;
+        // Huidige stap 4 — tab gaat naar een andere stap
+        const href = tab.getAttribute("href");
+        if (!href) return;
+        e.preventDefault();
+        D._showUnsavedModal(href);
+      });
+    });
   }
 
   init();
