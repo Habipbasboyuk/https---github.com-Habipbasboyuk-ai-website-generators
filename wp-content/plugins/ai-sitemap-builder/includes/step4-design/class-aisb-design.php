@@ -14,6 +14,122 @@ class AISB_Design {
     add_action('wp_ajax_aisb_design_replace_section',  [$this, 'ajax_design_replace_section']);
     add_action('wp_ajax_aisb_design_save_patch',       [$this, 'ajax_save_design_patch']);
     add_action('wp_ajax_aisb_design_insert_section',   [$this, 'ajax_insert_section']);
+    add_action('wp_ajax_aisb_design_reorder_sections', [$this, 'ajax_reorder_sections']);
+  }
+
+  /**
+   * AJAX: Wijzig de volgorde van secties binnen een pagina.
+   * Verwacht een geordende lijst van uuid's; het model wordt op basis daarvan
+   * gesorteerd en opgeslagen. Ongeldige/onbekende uuid's worden genegeerd;
+   * bestaande secties die niet in de lijst staan blijven aan het einde behouden.
+   */
+  public function ajax_reorder_sections(): void {
+    if (!is_user_logged_in()) wp_send_json_error(['message' => 'Not logged in'], 401);
+    $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
+    if (!$nonce || !wp_verify_nonce($nonce, 'aisb_sg_nonce')) {
+      wp_send_json_error(['message' => 'Bad nonce'], 403);
+    }
+
+    $project_id         = isset($_POST['project_id'])         ? (int) $_POST['project_id']                              : 0;
+    $sitemap_version_id = isset($_POST['sitemap_version_id']) ? (int) $_POST['sitemap_version_id']                      : 0;
+    $page_slug          = isset($_POST['page_slug'])          ? sanitize_title(wp_unslash($_POST['page_slug']))         : '';
+    $uuids_raw          = isset($_POST['uuids'])              ? wp_unslash($_POST['uuids'])                              : '';
+
+    if (!$project_id || !$sitemap_version_id || !$page_slug) {
+      wp_send_json_error(['message' => 'Missing params'], 400);
+    }
+
+    $uuids = json_decode((string)$uuids_raw, true);
+    if (!is_array($uuids)) wp_send_json_error(['message' => 'Invalid uuids'], 400);
+    $uuids = array_values(array_filter(array_map(static function ($u) {
+      return is_string($u) ? sanitize_text_field($u) : '';
+    }, $uuids), static function ($u) { return $u !== ''; }));
+
+    // Optionele bg_indices map (uuid → 0/1) om de afwisselende achtergrond
+    // visueel te bevriezen aan de sectie zelf, los van de positie.
+    $bg_raw = isset($_POST['bg_indices']) ? wp_unslash($_POST['bg_indices']) : '';
+    $bg_map = [];
+    if ($bg_raw !== '') {
+      $decoded = json_decode((string)$bg_raw, true);
+      if (is_array($decoded)) {
+        foreach ($decoded as $u => $v) {
+          if (!is_string($u) || $u === '') continue;
+          $u = sanitize_text_field($u);
+          $bg_map[$u] = ((int)$v === 1) ? 1 : 0;
+        }
+      }
+    }
+
+    // Eigenaarschapscontrole
+    $project = get_post($project_id);
+    if (!$project || $project->post_type !== 'aisb_project' || (int) $project->post_author !== (int) get_current_user_id()) {
+      wp_send_json_error(['message' => 'Forbidden'], 403);
+    }
+
+    global $wpdb;
+    $table = $wpdb->prefix . 'aisb_wireframes';
+    $row = $wpdb->get_row($wpdb->prepare(
+      "SELECT * FROM {$table} WHERE project_id=%d AND sitemap_version_id=%d AND page_slug=%s",
+      $project_id, $sitemap_version_id, $page_slug
+    ), ARRAY_A);
+    if (!$row) wp_send_json_error(['message' => 'Wireframe not found'], 404);
+
+    $model = json_decode((string)($row['model_json'] ?? '{}'), true);
+    if (!is_array($model)) wp_send_json_error(['message' => 'Invalid model'], 500);
+
+    $sections = $model['sections'] ?? [];
+    if (!is_array($sections) || !$sections) wp_send_json_error(['message' => 'No sections'], 400);
+
+    // Index op uuid
+    $by_uuid = [];
+    foreach ($sections as $s) {
+      if (is_array($s) && !empty($s['uuid'])) $by_uuid[(string)$s['uuid']] = $s;
+    }
+
+    $reordered = [];
+    $seen = [];
+    foreach ($uuids as $u) {
+      if (isset($by_uuid[$u]) && !isset($seen[$u])) {
+        $reordered[] = $by_uuid[$u];
+        $seen[$u] = true;
+      }
+    }
+    // Eventuele resterende secties (niet meegestuurd) achteraan toevoegen
+    foreach ($sections as $s) {
+      $u = (is_array($s) && isset($s['uuid'])) ? (string)$s['uuid'] : '';
+      if ($u !== '' && !isset($seen[$u])) {
+        $reordered[] = $s;
+        $seen[$u] = true;
+      }
+    }
+
+    if (count($reordered) !== count($sections)) {
+      wp_send_json_error(['message' => 'Section count mismatch'], 500);
+    }
+
+    // bg_index per sectie persisteren (indien meegestuurd)
+    if ($bg_map) {
+      foreach ($reordered as &$s) {
+        if (!is_array($s)) continue;
+        $u = (string)($s['uuid'] ?? '');
+        if ($u !== '' && array_key_exists($u, $bg_map)) {
+          $s['bg_index'] = $bg_map[$u];
+        }
+      }
+      unset($s);
+    }
+
+    $model['sections'] = $reordered;
+
+    $wpdb->update($table,
+      ['model_json' => wp_json_encode($model, JSON_UNESCAPED_SLASHES), 'compiled_bricks_json' => null, 'updated_at' => current_time('mysql')],
+      ['project_id' => $project_id, 'sitemap_version_id' => $sitemap_version_id, 'page_slug' => $page_slug],
+      ['%s', '%s', '%s'], ['%d', '%d', '%s']
+    );
+
+    error_log('[AISB] ajax_reorder_sections: page=' . $page_slug . ' count=' . count($reordered));
+
+    wp_send_json_success(['ok' => true, 'count' => count($reordered)]);
   }
 
   /**
@@ -235,7 +351,17 @@ class AISB_Design {
         $entry = ['type' => $type];
         if (isset($op['selector'])) $entry['selector'] = sanitize_text_field($op['selector']);
         if ($type === 'text')   $entry['text']  = wp_kses_post($op['text'] ?? '');
-        if ($type === 'css')  { $entry['prop']  = sanitize_key($op['prop'] ?? ''); $entry['value'] = sanitize_text_field($op['value'] ?? ''); }
+        if ($type === 'css')  {
+          $entry['prop']  = sanitize_key($op['prop'] ?? '');
+          $entry['value'] = sanitize_text_field($op['value'] ?? '');
+          // Behoud de 'cascade' marker (bv. "section") zodat applyPatch na
+          // refresh weet dat de bg-kleur ook over alle nested divs verspreid
+          // moet worden — anders kleurt alleen het root-element en
+          // 'reverten' de inner divs naar de oude kleur.
+          if (isset($op['cascade'])) {
+            $entry['cascade'] = sanitize_key($op['cascade']);
+          }
+        }
         if ($type === 'img')    $entry['src']   = esc_url_raw($op['src'] ?? '');
         if ($type === 'mirror') $entry['mirrored'] = (bool) ($op['mirrored'] ?? false);
         $clean[] = $entry;

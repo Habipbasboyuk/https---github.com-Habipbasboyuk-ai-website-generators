@@ -567,28 +567,48 @@ class AISB_Style_Guide {
       wp_send_json_error(['message' => 'Unsplash API key not configured (AISB_UNSPLASH_KEY missing from wp-config.php).'], 400);
     }
 
-    // Derive a search keyword from the project title via OpenAI
+    // Derive a search keyword from the project brief (business description)
     $site_name = get_the_title($project_id) ?: get_bloginfo('name');
+    $brief     = (string) get_post_meta($project_id, 'aisb_project_brief', true);
     $settings  = get_option('aisb_settings', []);
 
-    $keyword = $site_name; // fallback — used as-is if OpenAI call fails
+    // Use the brief as context if available, otherwise fall back to the title
+    $context_for_keyword = $brief ?: $site_name;
+
+    $keyword = 'business'; // safe fallback
 
     if (!empty($settings['api_key'])) {
       $openai = new AISB_OpenAI();
-      $prompt = "Website name: \"{$site_name}\"\nReturn ONLY a single English noun keyword for a stock photo search that best represents this website's topic. Examples: \"bakerij\" → \"bakery\", \"advocatenkantoor\" → \"lawyer\". Return ONLY the keyword, nothing else.";
-      $result = $openai->call_openai_chat_completions($prompt, $settings, 'You are a keyword extractor. Return ONLY one English word.');
+      $prompt = "Business description: \"{$context_for_keyword}\"\nReturn ONLY a single English noun keyword (one word, no brand names, no company names) for a stock photo search that visually represents this business. Examples: \"we build websites\" → \"web\", \"bakery in Amsterdam\" → \"bakery\", \"law firm\" → \"lawyer\", \"archery equipment shop\" → \"archery\". Return ONLY the keyword, nothing else.";
+      $result = $openai->call_openai_chat_completions($prompt, $settings, 'You are a stock photo keyword extractor. Return ONLY one English noun. Never return a company name or person name.');
       if (!is_wp_error($result)) {
-        $kw = trim(wp_strip_all_tags($result));
-        // Accept only a single short word/phrase (guard against garbage output)
-        if ($kw && strlen($kw) < 60 && !str_contains($kw, '{')) {
+        $kw = strtolower(trim(wp_strip_all_tags($result)));
+        // Accept only a single word (no spaces, no garbage, no brand names)
+        if ($kw && strlen($kw) < 40 && !str_contains($kw, '{') && !str_contains($kw, ' ')) {
           $keyword = $kw;
+        }
+      }
+    } else {
+      // No API key — extract a meaningful word from the brief
+      $source = $brief ?: $site_name;
+      $stop_words = ['agency', 'studio', 'digital', 'creative', 'media', 'group',
+                     'company', 'services', 'solutions', 'consulting', 'co', 'inc',
+                     'ltd', 'bv', 'de', 'het', 'en', 'van', 'voor', 'the', 'and',
+                     'for', 'we', 'our', 'your', 'with', 'are', 'is', 'a', 'an',
+                     'in', 'at', 'of', 'on', 'to', 'that', 'this', 'you', 'all'];
+      $words = preg_split('/[\s\-_&,\.]+/', strtolower(trim($source)));
+      foreach ($words as $w) {
+        $w = preg_replace('/[^a-z]/i', '', $w);
+        if ($w && !in_array($w, $stop_words, true) && strlen($w) > 3) {
+          $keyword = $w;
+          break;
         }
       }
     }
 
     // How many images do we need?
     $total_needed = isset($_POST['total_needed']) ? max(1, (int)$_POST['total_needed']) : 30;
-    $total_needed = min($total_needed, 60); // hard cap
+    $total_needed = min($total_needed, 150); // hard cap
 
     // Fetch from Unsplash — paginate if needed (max 30 per page)
     $images = [];
@@ -794,6 +814,7 @@ class AISB_Style_Guide {
           'layout_key'         => $s['layout_key'] ?? '',
           'media_count'        => $media_count,
           'patch'              => $patch_data,
+          'bg_index'           => isset($s['bg_index']) ? (int) $s['bg_index'] : null,
         ];
       }
       $result_pages[] = [
@@ -859,8 +880,8 @@ class AISB_Style_Guide {
         continue;
       }
 
-      // Images / video — galleries get one media entry per image inside them
-      if (in_array($name, ['image', 'video', 'svg', 'photo', 'media', 'background-image', 'post-image', 'featured-image', 'logo', 'icon'], true)) {
+      // Images / video — only real photo slots, not logos/icons/svgs
+      if (in_array($name, ['image', 'video', 'photo', 'media', 'post-image', 'featured-image'], true)) {
         $schema_elements[] = ['tag' => 'media', 'text' => ucfirst($name)];
         continue;
       }
