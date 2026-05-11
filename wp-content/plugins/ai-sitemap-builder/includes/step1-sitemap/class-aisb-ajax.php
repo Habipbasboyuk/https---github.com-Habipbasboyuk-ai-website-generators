@@ -56,7 +56,7 @@ class AISB_Ajax {
     $prompt = trim($prompt);
 
     if ($prompt === '' || strlen($prompt) < 10) wp_send_json_error(['message' => 'Please provide a more detailed brief (min 10 characters).'], 400);
-    if (strlen($prompt) > 4000) wp_send_json_error(['message' => 'Prompt is too long (max 4000 characters).'], 400);
+    if (strlen($prompt) > 10000) wp_send_json_error(['message' => 'Prompt is too long (max 4000 characters).'], 400);
     
     $languages_raw = isset($_POST['languages']) ? wp_unslash($_POST['languages']) : '[]';
     $page_count    = isset($_POST['page_count']) ? sanitize_text_field(wp_unslash($_POST['page_count'])) : '';
@@ -84,9 +84,8 @@ class AISB_Ajax {
     ]);
 
     if (empty($settings['api_key'])) {
-      $demo = $this->prompts()->demo_structure_response();
-      $demo = $this->enforcer()->enforce_structure_only($demo);
-      $demo['structure_only'] = true;
+      $demo = $this->prompts()->demo_response();
+      $demo = $this->enforcer()->enforce_rules_on_data($demo);
 
       $this->append_debug_log([
         'event'          => 'generate_demo_structure',
@@ -96,17 +95,21 @@ class AISB_Ajax {
         'enforced_output' => $demo,
       ]);
 
-      wp_send_json_success(['data' => $demo, 'demo' => true, 'structure_only' => true]);
+      wp_send_json_success(['data' => $demo, 'demo' => true]);
     }
 
+    $target_lang = !empty($languages) ? implode(', ', $languages) : "Not specified";
     $meta = "Constraints:\n"
-      . "- Languages: " . (!empty($languages) ? implode(', ', $languages) : "Not specified") . "\n"
+      . "- Target Output Language: " . $target_lang . "\n"
+      . "  CRITICAL RULE: The ENTIRE output (page titles, section names, purpose strings, key content, seo meta, etc.) MUST be written EXCLUSIVELY in {$target_lang}.\n"
+      . "  Do NOT mix languages. Even if the project is located in a bilingual region, output 100% of the content in {$target_lang}.\n"
+      . "  Do not default to English unless English is specified.\n"
       . "- Desired number of pages: " . $page_count . "\n\n";
 
     $augmented_prompt = $meta . $prompt;
 
     $openai  = new AISB_OpenAI();
-    $sys_prompt = $this->prompts()->structure_only_system_prompt();
+    $sys_prompt = $this->system_prompt();
     $result  = $openai->call_openai_chat_completions($augmented_prompt, $settings, $sys_prompt);
 
     if (is_wp_error($result)) wp_send_json_error(['message' => $result->get_error_message()], 500);
@@ -119,8 +122,7 @@ class AISB_Ajax {
       ], 500);
     }
 
-    $decoded = $this->enforcer()->enforce_structure_only($decoded);
-    $decoded['structure_only'] = true;
+    $decoded = $this->enforcer()->enforce_rules_on_data($decoded);
 
     // Create project if needed
     if (!$project_id) {
@@ -141,16 +143,16 @@ class AISB_Ajax {
       }
     }
 
-    // Save structure-only snapshot
+    // Save snapshot
     $settings = $this->get_settings();
     $save = $this->aisb_create_sitemap_version($project_id, $decoded, [
       'source'      => 'ai',
-      'label'       => 'Structure generated',
+      'label'       => 'Sitemap generated',
       'prompt'      => $augmented_prompt,
       'model'       => $settings['model'] ?? '',
       'endpoint'    => $settings['endpoint'] ?? '',
       'temperature' => 0.4,
-      'status'      => 'structure_only',
+      'status'      => 'generated',
     ]);
 
     if (is_wp_error($save)) {
@@ -163,7 +165,7 @@ class AISB_Ajax {
       'version'        => (int)$save['version'],
       'data'           => $decoded,
       'demo'           => false,
-      'structure_only' => true,
+      'structure_only' => false,
     ]);
   }
 
@@ -237,11 +239,23 @@ class AISB_Ajax {
     
       $page_prompt = $this->single_page_prompt($title, $desc, $parent_slug, $site_context);
     
+      $project_id = isset($_POST['project_id']) ? (int)$_POST['project_id'] : 0;
+      if ($project_id) {
+          $languages_raw = get_post_meta($project_id, 'aisb_project_languages', true);
+          $languages_arr = json_decode((string)$languages_raw, true);
+          $target_lang = (!empty($languages_arr) && is_array($languages_arr)) ? implode(', ', $languages_arr) : "Not specified";
+          
+          $lang_meta = "Language Constraints:\n"
+            . "- Target Output Language: " . $target_lang . "\n"
+            . "  CRITICAL RULE: The ENTIRE output MUST be written EXCLUSIVELY in {$target_lang}.\n\n";
+          $page_prompt = $lang_meta . $page_prompt;
+      }
+
       $t0 = microtime(true);
       $system_prompt = $this->system_prompt();
-    
+
       $openai = new AISB_OpenAI();
-      $result = $openai->call_openai_chat_completions($page_prompt, $settings);
+      $result = $openai->call_openai_chat_completions($page_prompt, $settings, $system_prompt);
 
       $elapsed = round(microtime(true) - $t0, 3);
     
@@ -354,6 +368,18 @@ class AISB_Ajax {
     $structure_json  = wp_json_encode($structure, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     $user_prompt     = $this->prompts()->fill_sections_user_prompt($structure_json);
     $system_prompt   = $this->prompts()->system_prompt(); // full prompt knows the section schema
+
+    $languages_raw = get_post_meta($project_id, 'aisb_project_languages', true);
+    $languages_arr = json_decode((string)$languages_raw, true);
+    $target_lang = (!empty($languages_arr) && is_array($languages_arr)) ? implode(', ', $languages_arr) : "Not specified";
+    
+    $lang_meta = "Language Constraints:\n"
+      . "- Target Output Language: " . $target_lang . "\n"
+      . "  CRITICAL RULE: The ENTIRE output (page titles, section names, purpose strings, key content, seo meta, etc.) MUST be written EXCLUSIVELY in {$target_lang}.\n"
+      . "  Do NOT mix languages. Even if the project is located in a bilingual region, output 100% of the content in {$target_lang}.\n"
+      . "  Do not default to English unless English is specified.\n\n";
+
+    $user_prompt = $lang_meta . $user_prompt;
 
     $openai = new AISB_OpenAI();
     $result = $openai->call_openai_chat_completions($user_prompt, $settings, $system_prompt);

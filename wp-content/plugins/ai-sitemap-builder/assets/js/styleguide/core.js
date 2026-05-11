@@ -49,6 +49,13 @@
       saveButton: root.querySelector("[data-save-button]"),
       typographyStatus: root.querySelector("[data-typography-status]"),
       typographyResult: root.querySelector("[data-typography-result]"),
+      actualLogoDropzone: root.querySelector("[data-actual-logo-dropzone]"),
+      actualLogoInput: root.querySelector("[data-actual-logo-input]"),
+      actualLogoPreview: root.querySelector("[data-actual-logo-preview]"),
+      actualLogoBrowse: root.querySelector("[data-actual-logo-browse]"),
+      actualLogoPlaceholder: root.querySelector(
+        "[data-actual-logo-placeholder]",
+      ),
       logoInput: root.querySelector("[data-logo-input]"),
       logoPreview: root.querySelector("[data-logo-preview]"),
       dropzone: root.querySelector("[data-logo-dropzone]"),
@@ -475,18 +482,42 @@
 
       style.textContent = overrideCss;
 
-      // Logo injecteren in header/nav secties (sectionIdx 0 = eerste sectie per pagina)
-      if (SG.guide.logoUrl && sIdx === 0) {
-        const logoImgs = iframeDocument.querySelectorAll(
-          ".brxe-nav-menu img, nav img, header img, [class*='logo'] img, .brxe-image img",
+      // Logo injecteren (in header, footer en in alle expliciete logo-elementen)
+      if (SG.guide.logoUrl) {
+        // Bouw een NodeList van duidelijke logo-elementen in elke sectie
+        let logoImgs = Array.from(
+          iframeDocument.querySelectorAll(
+            ".brxe-logo img, .bricks-site-logo, [class*='logo'] img, [id*='logo'] img, .brxe-nav-menu img, nav img",
+          ),
         );
-        if (logoImgs.length) {
-          logoImgs[0].src = SG.guide.logoUrl;
-          logoImgs[0].srcset = "";
-          logoImgs[0].style.maxHeight = "60px";
-          logoImgs[0].style.width = "auto";
-          logoImgs[0].style.objectFit = "contain";
+
+        // Voor header / footer secties proberen we de eerste afb. te pakken
+        // als er geen expliciete logo-classes zijn (vaak is dat de site-logo of placeholder).
+        const secType = (iframe._sectionType || "").toLowerCase();
+        if (!logoImgs.length && (sIdx === 0 || secType === "header" || secType === "footer")) {
+          // Fallback: kijk of er überhaupt images zijn bvb in een header of footer HTML tag (als die door Bricks wordt gegenereerd).
+          let fallbackImgs = Array.from(
+            iframeDocument.querySelectorAll("header img, footer img"),
+          );
+
+          // Als er geen struct tags gevonden zijn, maar we ZIJN een header of footer sectie, dan nemen we de eerste image
+          if (!fallbackImgs.length) {
+            fallbackImgs = Array.from(
+              iframeDocument.querySelectorAll(".brxe-image img"),
+            );
+          }
+          if (fallbackImgs.length) {
+            logoImgs.push(fallbackImgs[0]);
+          }
         }
+
+        logoImgs.forEach((img) => {
+          img.src = SG.guide.logoUrl;
+          img.srcset = "";
+          img.style.maxHeight = "60px";
+          img.style.width = "auto";
+          img.style.objectFit = "contain";
+        });
       }
 
       // Google Fonts als <link> injecteren (niet als @import in <style>,
@@ -623,6 +654,7 @@
         iframe._loaded = false;
         iframe._pageSlug = page.slug;
         iframe._sectionIdx = sectionIndex;
+        iframe._sectionType = section.type || "";
 
         // wanneer de iframe klaar is met laden:
         //   2. injecteer CSS-overrides (kleuren + fonts)

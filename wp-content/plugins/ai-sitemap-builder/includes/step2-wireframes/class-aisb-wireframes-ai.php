@@ -79,24 +79,30 @@ class AISB_Wireframes_AI {
         
         // Bricks element-data ophalen — Bricks slaat dit op onder verschillende meta keys
         $post_id = (int) $sec['bricks_template_id'];
-        $bricks_data = get_post_meta($post_id, '_bricks_page_content_2', true);
-        if (!is_array($bricks_data)) {
-            $bricks_data = get_post_meta($post_id, '_bricks_data', true);
-        }
-        if (!is_array($bricks_data)) {
-            $bricks_data = get_post_meta($post_id, '_bricks_page_header_2', true);
-        }
-        if (!is_array($bricks_data)) {
-            $bricks_data = get_post_meta($post_id, '_bricks_page_footer_2', true);
-        }
-        if (!is_array($bricks_data)) {
-            error_log('[AISB] Section ' . $idx . ': No valid Bricks element data found for post ' . $post_id . ' — skipped');
-            continue;
-        }
-        error_log('[AISB] Section ' . $idx . ': loaded Bricks elements for post ' . $post_id . ' (' . count($bricks_data) . ' nodes)');
+          $target_meta_key = '_bricks_page_content_2';
+          $bricks_data = get_post_meta($post_id, '_bricks_page_content_2', true);
+          if (!is_array($bricks_data)) {
+              $bricks_data = get_post_meta($post_id, '_bricks_data', true);
+              if (is_array($bricks_data)) $target_meta_key = '_bricks_data';
+          }
+          if (!is_array($bricks_data)) {
+              $bricks_data = get_post_meta($post_id, '_bricks_page_header_2', true);
+              if (is_array($bricks_data)) $target_meta_key = '_bricks_page_header_2';
+          }
+          if (!is_array($bricks_data)) {
+              $bricks_data = get_post_meta($post_id, '_bricks_page_footer_2', true);
+              if (is_array($bricks_data)) $target_meta_key = '_bricks_page_footer_2';
+          }
+          if (!is_array($bricks_data)) {
+              error_log('[AISB] Section ' . $idx . ': No valid Bricks element data found for post ' . $post_id . ' — skipped');
+              continue;
+          }
+          error_log('[AISB] Section ' . $idx . ': loaded Bricks elements for post ' . $post_id . ' (' . count($bricks_data) . ' nodes)');
 
-        $raw_bricks_data_maps[$idx] = $bricks_data;
-        $module_data_to_translate = [];
+          $raw_bricks_data_maps[$idx] = [
+              'data' => $bricks_data,
+              'meta_key' => $target_meta_key
+          ];
 
         foreach ($bricks_data as $node) {
             if (empty($node['settings'])) continue;
@@ -147,6 +153,16 @@ class AISB_Wireframes_AI {
 
     // 3. Teksten naar OpenAI sturen voor professionele copy
     $prompt = "You are a copywriter. Replace the placeholder texts in the following JSON with professional copy.\n\n";
+
+    // PROJECT LANGUAGE CONSTRAINT
+    $project_lang = get_post_meta($project_id, 'aisb_project_languages', true);
+    if (!empty($project_lang)) {
+        $prompt .= "=== LANGUAGE CONSTRAINTS ===\n";
+        $prompt .= "- The target language for ALL text is, so only use this language throughout the whole project: {$project_lang}\n";
+        $prompt .= "- You MUST generate the translated/replaced text exclusively in {$project_lang}.\n";
+        $prompt .= "============================\n\n";
+    }
+
     $prompt .= "Project: {$brief}\n";
     $prompt .= "Page: {$page_title}";
     if ($page_type) $prompt .= " (type: {$page_type})";
@@ -187,7 +203,8 @@ class AISB_Wireframes_AI {
         $idx = (int) str_replace('section_', '', $sec_key);
         if (!isset($raw_bricks_data_maps[$idx])) continue;
         $original_id = (int)($model['sections'][$idx]['bricks_template_id'] ?? 0);
-        $cloned_data = $raw_bricks_data_maps[$idx]; // Kopie van originele elementen
+        $cloned_data = $raw_bricks_data_maps[$idx]['data']; // Kopie van originele elementen
+        $meta_key_to_save = $raw_bricks_data_maps[$idx]['meta_key'];
 
         error_log('[AISB] DEBUG merge section_' . $idx . ': OpenAI module keys=[' . implode(',', array_keys($data['modules'] ?? [])) . ']');
         error_log('[AISB] DEBUG merge section_' . $idx . ': Bricks node IDs=[' . implode(',', array_column($cloned_data, 'id')) . ']');
@@ -263,6 +280,9 @@ class AISB_Wireframes_AI {
 
             // Bricks elementen opslaan in de post meta
             update_post_meta($new_post_id, '_bricks_page_content_2', $cloned_data);
+            if ($meta_key_to_save === '_bricks_page_header_2' || $meta_key_to_save === '_bricks_page_footer_2') {
+                update_post_meta($new_post_id, $meta_key_to_save, $cloned_data);
+            }
             // Metadata voor groepering en herleidbaarheid
             update_post_meta($new_post_id, '_aisb_source_template_id', $original_id); // Origineel Bricks template
             update_post_meta($new_post_id, '_aisb_project_id', $project_id);          // Bij welk project dit hoort
@@ -354,24 +374,51 @@ class AISB_Wireframes_AI {
   }
 
   /**
-   * Vervangt het 'logo' image-attribuut in alle Bricks 'logo' elementen
-   * door de logo van het project (uit de style guide).
-   */
-  private function inject_project_logo(array $nodes, array $project_logo): array {
-    foreach ($nodes as $i => $n) {
-      if (!is_array($n)) continue;
-      if (($n['name'] ?? '') !== 'logo') continue;
-      if (!isset($n['settings']) || !is_array($n['settings'])) {
-        $nodes[$i]['settings'] = [];
-      }
-      $logo_setting = [
-        'url'  => $project_logo['url'],
-        'size' => 'full',
-      ];
-      if (!empty($project_logo['id'])) {
-        $logo_setting['id'] = (int) $project_logo['id'];
-      }
-      $nodes[$i]['settings']['logo'] = $logo_setting;
+     * Vervangt het 'logo' image-attribuut in alle Bricks 'logo' elementen (en 'image' elementen met een logo class)
+     * door de logo van het project (uit de style guide).
+     */
+    private function inject_project_logo(array $nodes, array $project_logo): array {
+      foreach ($nodes as $i => $n) {
+        if (!is_array($n)) continue;
+        
+        $is_logo_module = (($n['name'] ?? '') === 'logo');
+        
+        // Controleer of dit een gewone image is die zich voordoet als logo
+        $is_image_logo = false;
+        if (($n['name'] ?? '') === 'image' && !empty($n['settings']['_cssClasses'])) {
+            $classes = $n['settings']['_cssClasses'];
+            if (is_array($classes)) {
+                foreach ($classes as $class_obj) {
+                    if (!empty($class_obj['name']) && stripos($class_obj['name'], 'logo') !== false) {
+                        $is_image_logo = true;
+                        break;
+                    }
+                }
+            } elseif (is_string($classes) && stripos($classes, 'logo') !== false) {
+                $is_image_logo = true;
+            }
+        }
+        
+        if (!$is_logo_module && !$is_image_logo) continue;
+        
+        if (!isset($n['settings']) || !is_array($n['settings'])) {
+          $nodes[$i]['settings'] = [];
+        }
+        
+        $logo_setting = [
+          'url'  => $project_logo['url'],
+          'size' => 'full',
+        ];
+        if (!empty($project_logo['id'])) {
+          $logo_setting['id'] = (int) $project_logo['id'];
+        }
+        
+        // Bricks logo element slaat het op in 'logo', image element in 'image'
+        if ($is_image_logo) {
+            $nodes[$i]['settings']['image'] = $logo_setting;
+        } else {
+            $nodes[$i]['settings']['logo'] = $logo_setting;
+        }
     }
     return $nodes;
   }

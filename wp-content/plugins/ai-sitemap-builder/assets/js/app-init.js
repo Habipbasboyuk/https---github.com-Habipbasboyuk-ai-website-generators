@@ -13,6 +13,8 @@
 
     // DOM refs
     promptEl: root.querySelector("#aisb-prompt"),
+    pdfUploadEl: root.querySelector("#aisb-pdf-upload"),
+    pdfStatusEl: root.querySelector("#aisb-pdf-status"),
     languagesEl: root.querySelector("#aisb-languages"),
     pageCountEl: root.querySelector("#aisb-pagecount"),
     btnGen: root.querySelector("[data-aisb-generate]"),

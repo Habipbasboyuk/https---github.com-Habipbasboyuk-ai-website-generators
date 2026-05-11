@@ -290,8 +290,18 @@ class AISB_Assets {
         <div class="aisb-step-panel" data-aisb-step-panel="1" style="<?php echo $step === 1 ? '' : 'display:none;'; ?>">
         <div class="aisb-card aisb-input-card">
           <label class="aisb-label" for="aisb-prompt">Website brief</label>
-          <textarea id="aisb-prompt" class="aisb-textarea" rows="7" maxlength="4000"
+          <textarea id="aisb-prompt" class="aisb-textarea" rows="7" maxlength="10000"
             placeholder="<?php echo esc_attr($atts['placeholder']); ?>"></textarea>
+          
+          <div class="aisb-field" style="margin-top: 15px; margin-bottom: 5px;">
+            <label class="aisb-label" for="aisb-pdf-upload" style="display: flex; align-items: center; gap: 5px;">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              Upload PDF brief (will be extracted as text)
+            </label>
+            <input type="file" id="aisb-pdf-upload" accept="application/pdf" class="aisb-file-input" style="font-size: 0.9em; padding: 5px; width: 100%; border: 1px solid #ddd; border-radius: 4px; background: #fff;">
+            <div id="aisb-pdf-status" style="font-size: 0.85em; color: #666; margin-top: 6px; display: none;"></div>
+          </div>
+
           <div class="aisb-brief-grid">
               <div class="aisb-field">
                 <label class="aisb-label" for="aisb-languages">Languages</label>
@@ -323,7 +333,7 @@ class AISB_Assets {
               <span data-aisb-demo-note class="aisb-demo-note" style="display:none;">
                 Demo mode (set API key in Settings → AI Sitemap Builder to enable live generation)
               </span>
-              <span data-aisb-counter class="aisb-counter">0 / 4000</span>
+              <span data-aisb-counter class="aisb-counter">0 / 10000</span>
             </div>
           </div>
 
@@ -613,7 +623,7 @@ class AISB_Assets {
       'actionFillSections' => AISB_Plugin::AJAX_FILL_SECTIONS,
       'actionGetLatestSitemap' => AISB_Plugin::AJAX_GET_LATEST_SITEMAP,
       'actionGetSitemapById'   => AISB_Plugin::AJAX_GET_SITEMAP_BY_ID,
-      'maxPromptChars' => 4000,
+      'maxPromptChars' => 10000,
       'demoMode' => empty($settings['api_key']) ? 1 : 0,
       'sectionTypes' => $this->section_types(),
       'actionSaveVersion' => AISB_Plugin::AJAX_SAVE_SITEMAP_VERSION,

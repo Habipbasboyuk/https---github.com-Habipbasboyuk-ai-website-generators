@@ -53,6 +53,7 @@ Output JSON format:
 }
 
 Rules:
+- CRITICAL: Always generate ALL textual content (page_title, nav_label, section_name, purpose, key_content, seo meta, etc) strictly in the user's specified Target Output Language. DO NOT USE ENGLISH unless English is explicitly requested. NEVER mix languages, even if the geographic location implies it.
 - Keep sitemap sensible and respect the user's desired number of pages if provided.
   Use this guidance:
   - "1" => exactly 1 page (Home only)
@@ -88,7 +89,8 @@ PROMPT;
       . "- section_type must be one of the allowed types configured in the system prompt.\n"
       . "- Aim for at least 5 to 10 sections per page (except blog listing rule) 10 sections being better.\n"
       . "- Set parent_slug to: {$parent_slug}\n"
-      . "- Create a reasonable slug from the title.\n\n"
+        . "- Create a reasonable slug from the title.\n"
+        . "- CRITICAL: If the site context specifies a language, ALL generated text (sections, purposes, key content, titles) MUST be fully translated into that language! Do NOT output English unless specified.\n\n"
       . "Page title: {$title}\n"
       . "Short description: {$desc}\n\n"
       . "Site context (JSON): {$ctx}\n\n"
@@ -138,6 +140,7 @@ Output JSON format:
 }
 
 Rules:
+- CRITICAL: Always generate ALL textual content (page_title, nav_label, section_name, purpose, key_content, seo meta, etc) strictly in the user's specified Target Output Language. DO NOT USE ENGLISH unless English is explicitly requested. NEVER mix languages, even if the geographic location implies it.
 - Keep sitemap sensible and respect the user's desired number of pages if provided.
   Use this guidance:
   - "1" => exactly 1 page (Home only)

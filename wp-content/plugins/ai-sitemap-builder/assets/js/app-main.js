@@ -54,6 +54,7 @@
     const form = new FormData();
     form.append("action", AISB.actionAddPage);
     form.append("nonce", AISB.nonce);
+    form.append("project_id", state.projectId || "");
     form.append("parent_slug", parentSlug);
     form.append("title", title);
     form.append("desc", desc);
@@ -139,7 +140,12 @@
       app.renderCanvas();
       app.fitToView();
       app.setActive(page.slug);
-      app.setStatus('<div class="aisb-ok">Child page created.</div>');
+      app.setStatus(
+        '<div class="aisb-ok">Child page created. Saving state...</div>',
+      );
+      if (app.btnSave && !app.btnSave.disabled) {
+        app.btnSave.click();
+      }
     } catch (e) {
       app.setStatus(
         '<div class="aisb-error">' +
@@ -506,6 +512,78 @@
       }
     }
   };
+
+  /* ── PDF Upload logic ─────────────────────────────── */
+  if (app.pdfUploadEl) {
+    app.pdfUploadEl.addEventListener("change", async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      if (file.type !== "application/pdf") {
+        app.pdfStatusEl.innerHTML =
+          '<span style="color:red;">Please select a valid PDF file.</span>';
+        app.pdfStatusEl.style.display = "block";
+        return;
+      }
+
+      app.pdfStatusEl.innerHTML = "Loading PDF engine...";
+      app.pdfStatusEl.style.display = "block";
+      const prevCursor = app.root.style.cursor;
+      app.root.style.cursor = "wait";
+
+      try {
+        if (!window.pdfjsLib) {
+          await new Promise((resolve, reject) => {
+            const script = document.createElement("script");
+            script.src =
+              "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js";
+            script.onload = () => {
+              window.pdfjsLib.GlobalWorkerOptions.workerSrc =
+                "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+              resolve();
+            };
+            script.onerror = () =>
+              reject(new Error("Could not load PDF library."));
+            document.head.appendChild(script);
+          });
+        }
+
+        app.pdfStatusEl.innerHTML =
+          "Extracting text from PDF (this might take a moment)...";
+
+        const arrayBuffer = await file.arrayBuffer();
+        const pdf = await window.pdfjsLib.getDocument({ data: arrayBuffer })
+          .promise;
+        let fullText = "\n\n--- PDF Context: " + file.name + " ---\n";
+
+        for (let i = 1; i <= pdf.numPages; i++) {
+          const page = await pdf.getPage(i);
+          const numContent = await page.getTextContent();
+          const strings = numContent.items.map((item) => item.str);
+          fullText += strings.join(" ") + "\n";
+        }
+
+        const tVal = app.promptEl.value || "";
+        app.promptEl.value = (tVal + fullText).substring(
+          0,
+          AISB.maxPromptChars,
+        );
+
+        app.promptEl.dispatchEvent(new Event("input"));
+
+        app.pdfStatusEl.innerHTML = `<span style="color:green;">Extracted ${pdf.numPages} page(s) and appended to brief!</span>`;
+        app.pdfUploadEl.value = "";
+      } catch (err) {
+        console.error(err);
+        app.pdfStatusEl.innerHTML =
+          '<span style="color:red;">Error extracting PDF: ' +
+          app.esc(err.message) +
+          "</span>";
+      } finally {
+        app.root.style.cursor = prevCursor;
+      }
+    });
+  }
 
   /* ── Button event listeners ─────────────────────────────── */
 

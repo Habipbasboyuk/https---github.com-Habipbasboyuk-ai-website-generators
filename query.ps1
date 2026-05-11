@@ -1,0 +1,1 @@
+Get-Content "c:\Users\habip\Local Sites\ai-sitemap-generators\app\public\wp-content\plugins\ai-sitemap-builder\includes\step2-wireframes\class-aisb-wireframes.php" | Select-String -Pattern "public function ajax_replace_section_type" -Context 0, 100

@@ -129,7 +129,31 @@
       el.logoInput && el.logoInput.click();
     });
 
-  // drag & drop zone voor logo-bestanden
+    // drag & drop zone voor ECHTE brand logo
+  if (el.actualLogoDropzone) {
+    el.actualLogoDropzone.addEventListener("click", function (e) {
+      if (e.target.closest("[data-actual-logo-browse]")) return;
+      el.actualLogoInput && el.actualLogoInput.click();
+    });
+
+    el.actualLogoDropzone.addEventListener("dragover", function (e) {
+      e.preventDefault();
+      el.actualLogoDropzone.classList.add("drag-over");
+    });
+    el.actualLogoDropzone.addEventListener("dragleave", function () {
+      el.actualLogoDropzone.classList.remove("drag-over");
+    });
+    el.actualLogoDropzone.addEventListener("drop", function (e) {
+      e.preventDefault();
+      el.actualLogoDropzone.classList.remove("drag-over");
+      if (e.dataTransfer.files[0]) handleActualLogoFile(e.dataTransfer.files[0]);
+    });
+  }
+
+  el.actualLogoInput && el.actualLogoInput.addEventListener("change", function () {
+    if (el.actualLogoInput.files[0]) handleActualLogoFile(el.actualLogoInput.files[0]);
+  });
+  // drag & drop zone voor kleur-extractie-bestanden
   if (el.dropzone) {
     // Klikken op de dropzone (ook als de preview al zichtbaar is) opent altijd
     // de file-dialog — zo kan de gebruiker het logo vervangen door ergens te klikken.
@@ -188,6 +212,41 @@
   }
 
   // verwerkt logo-bestand: toont preview, extraheert kleuren met ColorThief
+  function handleActualLogoFile(file) {
+    if (!file.type.startsWith("image/")) {
+      SG.setStatus("Please upload an image file.", "err");
+      return;
+    }
+    const url = URL.createObjectURL(file);
+    if (el.actualLogoPreview) {
+      el.actualLogoPreview.src = url;
+      el.actualLogoPreview.style.display = "block";
+    }
+    if (el.actualLogoPlaceholder) el.actualLogoPlaceholder.style.display = "none";
+    
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = function () {
+      try {
+        var MAX_W = 600;
+        var lw = img.naturalWidth > MAX_W ? MAX_W : img.naturalWidth;
+        var lh = Math.round(img.naturalHeight * (lw / img.naturalWidth));
+        var lc = document.createElement("canvas");
+        lc.width = lw;
+        lc.height = lh;
+        lc.getContext("2d").drawImage(img, 0, 0, lw, lh);
+        var mime = file.type === "image/svg+xml" ? "image/png" : file.type || "image/png";
+        SG.guide.logoUrl = lc.toDataURL(mime);
+      } catch (convErr) {
+        SG.guide.logoUrl = url;
+      }
+      SG.applyOverridesToAllIframes();
+      uploadLogoToLibrary(file);
+    };
+    img.src = url;
+  }
+
+  // verwerkt image-bestand voor extractie
   function handleLogoFile(file) {
     // alleen afbeeldingen toestaan
     if (!file.type.startsWith("image/")) {
@@ -230,31 +289,6 @@
         if (el.extractedContainer) el.extractedContainer.style.display = "";
         // vlag resetten zodat typografie opnieuw berekend wordt
         SG.fontsAssigned = false;
-
-        // Logo meteen als data URI opslaan zodat het beschikbaar is vóór de
-        // async WP-upload klaar is en ook werkt in iframe-contexten.
-        try {
-          var MAX_W = 600;
-          var lw = img.naturalWidth > MAX_W ? MAX_W : img.naturalWidth;
-          var lh = Math.round(img.naturalHeight * (lw / img.naturalWidth));
-          var lc = document.createElement("canvas");
-          lc.width = lw;
-          lc.height = lh;
-          lc.getContext("2d").drawImage(img, 0, 0, lw, lh);
-          var mime =
-            file.type === "image/svg+xml"
-              ? "image/png"
-              : file.type || "image/png";
-          SG.guide.logoUrl = lc.toDataURL(mime);
-        } catch (convErr) {
-          // Canvas conversion failed (e.g. tainted image) — fall back to blob URL temporarily
-          SG.guide.logoUrl = url;
-        }
-
-        // CSS-overrides in alle iframes bijwerken
-        SG.applyOverridesToAllIframes();
-        // logo uploaden naar WP media library (achtergrond, voor attachment_id)
-        uploadLogoToLibrary(file);
       } catch (err) {
         SG.setStatus("Could not extract colours: " + err.message, "err");
       }
@@ -451,3 +485,5 @@
     }
   });
 })();
+
+

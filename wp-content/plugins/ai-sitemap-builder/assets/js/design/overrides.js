@@ -328,17 +328,28 @@
         } catch (_) {}
       }
 
-      // Logo injecteren in elke sectie die een logo-element bevat
-      // (niet alleen sIdx 0 — ook niet-header secties kunnen een logo tonen)
+      // Logo injecteren in expliciete logo-elementen (en headers/footers)
       if (guide.logoUrl) {
-        const logoImgs = doc.querySelectorAll(
-          ".brxe-logo img, .bricks-site-logo, .brxe-nav-menu img, nav img, header img, [class*='logo'] img",
-        );
-        if (logoImgs.length) {
-          logoImgs[0].src = guide.logoUrl;
-          logoImgs[0].srcset = "";
-          logoImgs[0].setAttribute("data-aisb-logo", "1");
+        let logoImgs = Array.from(doc.querySelectorAll(
+          ".brxe-logo img, .bricks-site-logo, .brxe-nav-menu img, nav img, [class*='logo'] img, [id*='logo'] img"
+        ));
+
+        // Voor header / footer secties als er geen expliciete logo class is
+        if (!logoImgs.length && (secType === "header" || secType === "footer" || sIdx === 0)) {
+          let fallbackImgs = Array.from(doc.querySelectorAll("header img, footer img"));
+          if (!fallbackImgs.length) {
+            fallbackImgs = Array.from(doc.querySelectorAll(".brxe-image img"));
+          }
+          if (fallbackImgs.length) {
+            logoImgs.push(fallbackImgs[0]);
+          }
         }
+
+        logoImgs.forEach(img => {
+          img.src = guide.logoUrl;
+          img.srcset = "";
+          img.setAttribute("data-aisb-logo", "1");
+        });
       }
 
       // Google Fonts als <link> injecteren

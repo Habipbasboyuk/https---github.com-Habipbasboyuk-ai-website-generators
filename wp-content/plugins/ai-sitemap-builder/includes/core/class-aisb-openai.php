@@ -19,12 +19,14 @@ class AISB_OpenAI {
           ['role' => 'user', 'content' => $user_prompt],
         ],
         'temperature' => 0.4,
-        // Forceer geldig JSON zodat het antwoord nooit halverwege wordt afgekapt
-        // met losse tekst (anders crasht de JSON-parser en valt alle AI-tekst weg).
-        'response_format' => [ 'type' => 'json_object' ],
         // Ruime output-limiet zodat grote multi-section JSON antwoorden compleet zijn.
         'max_tokens' => 16000,
       ];
+
+      // Only force 'json_object' if generating sitemaps (prevent crashing string-only responses like Unsplash keyword)
+      if (strpos($system_prompt, 'JSON') !== false || strpos($user_prompt, 'JSON') !== false) {
+        $body['response_format'] = [ 'type' => 'json_object' ];
+      }
     
       $args = [
         'headers' => [
