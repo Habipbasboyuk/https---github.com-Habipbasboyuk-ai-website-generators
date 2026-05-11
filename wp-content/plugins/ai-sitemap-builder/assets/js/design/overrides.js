@@ -330,13 +330,20 @@
 
       // Logo injecteren in expliciete logo-elementen (en headers/footers)
       if (guide.logoUrl) {
-        let logoImgs = Array.from(doc.querySelectorAll(
-          ".brxe-logo img, .bricks-site-logo, .brxe-nav-menu img, nav img, [class*='logo'] img, [id*='logo'] img"
-        ));
+        let logoImgs = Array.from(
+          doc.querySelectorAll(
+            ".brxe-logo img, .bricks-site-logo, .brxe-nav-menu img, nav img, [class*='logo'] img, [id*='logo'] img",
+          ),
+        );
 
         // Voor header / footer secties als er geen expliciete logo class is
-        if (!logoImgs.length && (secType === "header" || secType === "footer" || sIdx === 0)) {
-          let fallbackImgs = Array.from(doc.querySelectorAll("header img, footer img"));
+        if (
+          !logoImgs.length &&
+          (secType === "header" || secType === "footer" || sIdx === 0)
+        ) {
+          let fallbackImgs = Array.from(
+            doc.querySelectorAll("header img, footer img"),
+          );
           if (!fallbackImgs.length) {
             fallbackImgs = Array.from(doc.querySelectorAll(".brxe-image img"));
           }
@@ -345,7 +352,7 @@
           }
         }
 
-        logoImgs.forEach(img => {
+        logoImgs.forEach((img) => {
           img.src = guide.logoUrl;
           img.srcset = "";
           img.setAttribute("data-aisb-logo", "1");

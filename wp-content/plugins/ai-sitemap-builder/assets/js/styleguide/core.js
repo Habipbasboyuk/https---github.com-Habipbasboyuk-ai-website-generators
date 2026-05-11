@@ -494,7 +494,10 @@
         // Voor header / footer secties proberen we de eerste afb. te pakken
         // als er geen expliciete logo-classes zijn (vaak is dat de site-logo of placeholder).
         const secType = (iframe._sectionType || "").toLowerCase();
-        if (!logoImgs.length && (sIdx === 0 || secType === "header" || secType === "footer")) {
+        if (
+          !logoImgs.length &&
+          (sIdx === 0 || secType === "header" || secType === "footer")
+        ) {
           // Fallback: kijk of er überhaupt images zijn bvb in een header of footer HTML tag (als die door Bricks wordt gegenereerd).
           let fallbackImgs = Array.from(
             iframeDocument.querySelectorAll("header img, footer img"),
