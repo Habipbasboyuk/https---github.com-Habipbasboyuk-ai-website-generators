@@ -60,3 +60,13 @@
 .aisb-mini-btn.primary:hover {
   opacity: 0.92;
 }
+
+
+.aisb-btn-link {
+  color: #345682;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #345682;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+}

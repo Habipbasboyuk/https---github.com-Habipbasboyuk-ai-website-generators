@@ -58,6 +58,52 @@
   background: #16a34a;
 }
 
+/* ── Figma export dropdown ──────────────────────────────── */
+.aisb-figma-export-wrap {
+  position: relative;
+  display: inline-flex;
+}
+.aisb-figma-export-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  padding-top: 6px;
+  min-width: 160px;
+  z-index: 999;
+}
+.aisb-figma-export-dropdown-inner {
+  background: #1a1f2e;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+.aisb-figma-export-wrap:hover .aisb-figma-export-dropdown,
+.aisb-figma-export-wrap:focus-within .aisb-figma-export-dropdown {
+  display: block;
+}
+.aisb-figma-export-dropdown button {
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.aisb-figma-export-dropdown button:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+.aisb-figma-export-dropdown button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
 /* ── Unsaved-changes waarschuwing modal ──────────────────── */
 .aisb-unsaved-modal {
   position: fixed;

@@ -276,6 +276,29 @@
         }
       }
 
+      // Verberg Bricks accordion-toggles (hidden checkboxes die zichtbaar
+      // worden door CSS-resets) en lege icon-wrappers zonder SVG/img inhoud.
+      // Deze verschijnen als lege grijze/witte rechthoekjes in de preview.
+      css +=
+        // Bricks accordion gebruikt een verborgen <input type="checkbox"> als toggle-
+        // mechanisme. In sommige templates staat dit zichtbaar of krijgt het een
+        // default browser-stijl. Verbergen zodat de preview er clean uitziet.
+        ".brxe-accordion-nested input[type='checkbox']," +
+        ".brxe-accordion input[type='checkbox']," +
+        ".brx-accordion input[type='checkbox']," +
+        "input[aria-expanded]" +
+        "{display:none !important;}" +
+        // Bricks accordion-nested gebruikt ook <button aria-expanded> als toggle.
+        // Zonder de faq-1__question klasse (die _exists:false is) krijgt de button
+        // browser-standaard styling: zichtbare border op alle 4 kanten.
+        "button[aria-expanded]" +
+        "{border:none !important;background:transparent !important;padding:0 !important;width:100% !important;text-align:left !important;cursor:pointer !important;}" +
+        // Lege icon-containers (geen zichtbare child-inhoud) verbergen we NIET
+        // want daarin zit vaak een <svg> die via JS of font-face geladen wordt.
+        // Wat we wél doen: zorg dat ze niet als grote lege blokken renderen.
+        ".brxe-icon:empty,.brxe-icon-box .brxe-icon:empty" +
+        "{min-width:0 !important;min-height:0 !important;width:auto !important;height:auto !important;}";
+
       style.textContent = css;
 
       // Header/footer: forceer iframe-hoogte op werkelijke content-hoogte ná

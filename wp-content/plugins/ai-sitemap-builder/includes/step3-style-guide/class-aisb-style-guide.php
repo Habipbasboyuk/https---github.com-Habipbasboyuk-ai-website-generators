@@ -786,19 +786,40 @@ class AISB_Style_Guide {
         $ai_id    = !empty($s['ai_wireframe_id']) ? (int) $s['ai_wireframe_id'] : 0;
         $tmpl_id  = !empty($s['bricks_template_id']) ? (int) $s['bricks_template_id'] : 0;
 
-        // Count media elements in this section
+        // Count image elements in actual bricks_elements (matches Figma-plugin traversal).
         $post_id_for_schema = $ai_id ?: $tmpl_id;
         $media_count = 0;
         if ($post_id_for_schema) {
-          $schema = $this->extract_content_schema($post_id_for_schema, $s['type'] ?? 'generic');
-          if ($schema && !empty($schema['elements'])) {
-            foreach ($schema['elements'] as $el) {
-              if (($el['tag'] ?? '') === 'media') $media_count++;
+          $bricks_elements = [];
+          foreach (['_bricks_page_content_2', '_bricks_data', '_bricks_page_header_2', '_bricks_page_footer_2'] as $meta_key) {
+            $raw = get_post_meta($post_id_for_schema, $meta_key, true);
+            if (is_array($raw) && !empty($raw)) {
+              $bricks_elements = $raw;
+              break;
+            }
+            if (is_string($raw) && $raw !== '') {
+              $decoded = json_decode($raw, true);
+              if (is_array($decoded) && !empty($decoded)) {
+                $bricks_elements = $decoded;
+                break;
+              }
+            }
+          }
+          if (!empty($bricks_elements)) {
+            $media_count = $this->count_bricks_image_elements($bricks_elements);
+          } else {
+            // Fallback: schema-based count
+            $schema = $this->extract_content_schema($post_id_for_schema, $s['type'] ?? 'generic');
+            if ($schema && !empty($schema['elements'])) {
+              foreach ($schema['elements'] as $el) {
+                if (($el['tag'] ?? '') === 'media') $media_count++;
+              }
             }
           }
         }
-        // Hard cap per section: no real section ever needs more than 8 unique stock photos.
-        $media_count = min($media_count, 8);
+        // Hard cap per section: real sections rarely need more than 16 unique stock photos
+        // (gallery sections kunnen meerdere images bevatten).
+        $media_count = min($media_count, 16);
         $total_media += $media_count;
 
         // Laad eerder opgeslagen design-patches (tekst/stijl/afbeelding-aanpassingen).
@@ -835,6 +856,31 @@ class AISB_Style_Guide {
    * Produces a { type, elements: [...] } object the JS skeleton renderer can use
    * with real AI-generated text instead of dummy placeholders.
    */
+  /**
+   * Recursively count Bricks 'image' elements in an elements array.
+   * This matches the same traversal the Figma-plugin uses when scanning bricks_elements.
+   * Includes both 'image' elements and 'image-gallery' element items.
+   */
+  private function count_bricks_image_elements(array $elements): int {
+    $count = 0;
+    foreach ($elements as $el) {
+      if (!is_array($el)) continue;
+      $name = $el['name'] ?? '';
+      if ($name === 'image') {
+        $count++;
+      } elseif ($name === 'image-gallery') {
+        $items = $el['settings']['items']['images'] ?? [];
+        if (is_array($items)) {
+          $count += count($items);
+        }
+      }
+      if (!empty($el['children']) && is_array($el['children'])) {
+        $count += $this->count_bricks_image_elements($el['children']);
+      }
+    }
+    return $count;
+  }
+
   private function extract_content_schema(int $post_id, string $section_type): ?array {
     $elements = get_post_meta($post_id, '_bricks_page_content_2', true);
     if (!is_array($elements) || empty($elements)) return null;

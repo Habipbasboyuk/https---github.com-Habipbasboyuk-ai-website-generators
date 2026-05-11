@@ -173,13 +173,16 @@
       });
       const out = await r.json();
       if (out && out.success && out.data.url) {
-        SG.guide.logoUrl = out.data.url;
-        // Sla ook attachment_id op zodat we het logo aan WP kunnen koppelen
-        // (nodig om het logo in Bricks-elementen te injecteren via de AI fill).
+        // Bewaar de WP attachment_id voor eventueel later gebruik,
+        // maar overschrijf logoUrl NIET — die is al gezet als data URI.
         if (out.data.attachment_id) {
           SG.guide.logoAttachmentId = parseInt(out.data.attachment_id, 10) || 0;
         }
-        SG.applyOverridesToAllIframes();
+        // Alleen de WP URL opslaan als er nog geen data URI is (fallback).
+        if (!SG.guide.logoUrl || SG.guide.logoUrl.indexOf("data:") !== 0) {
+          SG.guide.logoUrl = out.data.url;
+          SG.applyOverridesToAllIframes();
+        }
       }
     } catch (e) {}
   }
@@ -227,9 +230,30 @@
         if (el.extractedContainer) el.extractedContainer.style.display = "";
         // vlag resetten zodat typografie opnieuw berekend wordt
         SG.fontsAssigned = false;
+
+        // Logo meteen als data URI opslaan zodat het beschikbaar is vóór de
+        // async WP-upload klaar is en ook werkt in iframe-contexten.
+        try {
+          var MAX_W = 600;
+          var lw = img.naturalWidth > MAX_W ? MAX_W : img.naturalWidth;
+          var lh = Math.round(img.naturalHeight * (lw / img.naturalWidth));
+          var lc = document.createElement("canvas");
+          lc.width = lw;
+          lc.height = lh;
+          lc.getContext("2d").drawImage(img, 0, 0, lw, lh);
+          var mime =
+            file.type === "image/svg+xml"
+              ? "image/png"
+              : file.type || "image/png";
+          SG.guide.logoUrl = lc.toDataURL(mime);
+        } catch (convErr) {
+          // Canvas conversion failed (e.g. tainted image) — fall back to blob URL temporarily
+          SG.guide.logoUrl = url;
+        }
+
         // CSS-overrides in alle iframes bijwerken
         SG.applyOverridesToAllIframes();
-        // logo uploaden naar WP media library voor persistentie
+        // logo uploaden naar WP media library (achtergrond, voor attachment_id)
         uploadLogoToLibrary(file);
       } catch (err) {
         SG.setStatus("Could not extract colours: " + err.message, "err");

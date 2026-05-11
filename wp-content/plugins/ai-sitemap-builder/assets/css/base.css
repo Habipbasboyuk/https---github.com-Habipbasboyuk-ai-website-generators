@@ -51,6 +51,22 @@
 .aisb-step-tab.is-active {
   border-color: #111;
 }
+.aisb-step-tab--projects {
+  background: #f5f5f5;
+  font-weight: 700;
+}
+.aisb-step-tab--projects.is-active {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
+.aisb-step-tab-divider {
+  width: 1px;
+  height: 20px;
+  background: #ddd;
+  margin: 0 4px;
+  flex-shrink: 0;
+}
 .aisb-badge {
   display: inline-block;
   font-size: 12px;

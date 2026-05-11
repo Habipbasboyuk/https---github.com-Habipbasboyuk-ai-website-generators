@@ -25,9 +25,10 @@ class AISB_Assets {
     }
 
     $atts = shortcode_atts([
-      'builder_url' => '',
+      'builder_url'  => '',
       'wireframes_url' => '',
-      'title'       => 'My Projects',
+      'title'        => 'My Projects',
+      'target_step'  => 0,
     ], $atts);
 
     $current_url = '';
@@ -145,10 +146,19 @@ class AISB_Assets {
                   </div>
                   <?php if ($latest) : ?>
                     <?php
-                      $latest_url = add_query_arg([
-                        'aisb_project' => (int) $pid,
-                        'aisb_sitemap' => (int) $latest,
-                      ], $builder_url);
+                      $target_step = (int) $atts['target_step'];
+                      if ($target_step > 0) {
+                        $latest_url = add_query_arg([
+                          'aisb_project' => (int) $pid,
+                          'aisb_sitemap' => (int) $latest,
+                          'aisb_step'    => $target_step,
+                        ], $builder_url);
+                      } else {
+                        $latest_url = add_query_arg([
+                          'aisb_project' => (int) $pid,
+                          'aisb_sitemap' => (int) $latest,
+                        ], $builder_url);
+                      }
 
                       $latest_wf_url = add_query_arg([
                         'aisb_project' => (int) $pid,
@@ -157,8 +167,12 @@ class AISB_Assets {
                       ], $wireframes_url);
                     ?>
                     <div class="aisb-project-card-actions">
-                      <a class="aisb-btn-secondary" href="<?php echo esc_url($latest_url); ?>">Open sitemap</a>
-                      <a class="aisb-btn" href="<?php echo esc_url($latest_wf_url); ?>">Wireframes</a>
+                      <?php if ($target_step > 0) : ?>
+                        <a class="aisb-btn" href="<?php echo esc_url($latest_url); ?>">Select &rarr;</a>
+                      <?php else : ?>
+                        <a class="aisb-btn-secondary" href="<?php echo esc_url($latest_url); ?>">Open sitemap</a>
+                        <a class="aisb-btn" href="<?php echo esc_url($latest_wf_url); ?>">Wireframes</a>
+                      <?php endif; ?>
                     </div>
                   <?php endif; ?>
                 </div>
@@ -174,10 +188,19 @@ class AISB_Assets {
                           $v_label = 'v' . (int) $v['version'];
                           if (!empty($v['label'])) $v_label .= ' · ' . $v['label'];
                           if (!empty($v['current'])) $v_label .= ' · current';
-                          $v_url = add_query_arg([
-                            'aisb_project' => (int) $pid,
-                            'aisb_sitemap' => (int) $v['id'],
-                          ], $builder_url);
+                          $target_step_v = (int) $atts['target_step'];
+                          if ($target_step_v > 0) {
+                            $v_url = add_query_arg([
+                              'aisb_project' => (int) $pid,
+                              'aisb_sitemap' => (int) $v['id'],
+                              'aisb_step'    => $target_step_v,
+                            ], $builder_url);
+                          } else {
+                            $v_url = add_query_arg([
+                              'aisb_project' => (int) $pid,
+                              'aisb_sitemap' => (int) $v['id'],
+                            ], $builder_url);
+                          }
 
                           $v_wf_url = add_query_arg([
                             'aisb_project' => (int) $pid,
@@ -189,7 +212,9 @@ class AISB_Assets {
                           <a href="<?php echo esc_url($v_url); ?>" class="aisb-project-version-link">
                             <?php echo esc_html($v_label); ?>
                           </a>
-                          <a href="<?php echo esc_url($v_wf_url); ?>" title="Wireframes" class="aisb-project-version-wf">WF</a>
+                          <?php if (!$target_step_v) : ?>
+                            <a href="<?php echo esc_url($v_wf_url); ?>" title="Wireframes" class="aisb-project-version-wf">WF</a>
+                          <?php endif; ?>
                         </span>
                       <?php endforeach; ?>
                     </div>
@@ -216,7 +241,7 @@ class AISB_Assets {
     $this->enqueue_assets_for_shortcode();
 
     $step = isset($_GET['aisb_step']) ? (int) $_GET['aisb_step'] : 1;
-    if ($step < 1 || $step > 4) $step = 1;
+    if ($step < 0 || $step > 4) $step = 1;
 
     $project_id = isset($_GET['aisb_project']) ? (int) $_GET['aisb_project'] : 0;
     $sitemap_id = isset($_GET['aisb_sitemap']) ? (int) $_GET['aisb_sitemap'] : 0;
@@ -226,6 +251,11 @@ class AISB_Assets {
     if (!$base_url) {
       $base_url = remove_query_arg(['aisb_step'], add_query_arg([], $_SERVER['REQUEST_URI'] ?? ''));
     }
+    $return_step = isset($_GET['aisb_return']) ? (int) $_GET['aisb_return'] : 0;
+
+    $tab0_args = ['aisb_step' => 0];
+    if ($step > 0) $tab0_args['aisb_return'] = $step;
+    $tab0_url = add_query_arg($tab0_args, remove_query_arg(['aisb_project', 'aisb_sitemap', 'aisb_return'], $base_url));
     $tab1_url = remove_query_arg(['aisb_step'], $base_url);
     $tab2_url = add_query_arg(['aisb_step' => 2], $base_url);
     $tab3_url = add_query_arg(['aisb_step' => 3], $base_url);
@@ -241,11 +271,21 @@ class AISB_Assets {
         </div>
 
         <div class="aisb-steps">
+          <a class="aisb-step-tab aisb-step-tab--projects <?php echo $step === 0 ? 'is-active' : ''; ?>" href="<?php echo esc_url($tab0_url); ?>">My Projects</a>
+          <span class="aisb-step-tab-divider"></span>
           <a class="aisb-step-tab <?php echo $step === 1 ? 'is-active' : ''; ?>" href="<?php echo esc_url($tab1_url); ?>">Step 1 · Sitemap</a>
           <a class="aisb-step-tab <?php echo $step === 2 ? 'is-active' : ''; ?>" href="<?php echo esc_url($tab2_url); ?>" data-aisb-step2-tab>Step 2 · Wireframes</a>
           <a class="aisb-step-tab <?php echo $step === 3 ? 'is-active' : ''; ?>" href="<?php echo esc_url($tab3_url); ?>">Step 3 · Style Guide</a>
           <a class="aisb-step-tab <?php echo $step === 4 ? 'is-active' : ''; ?>" href="<?php echo esc_url($tab4_url); ?>">Step 4 · Design</a>
         </div>
+
+        <?php if ($step === 0) : ?>
+        <div class="aisb-step-panel" data-aisb-step-panel="0">
+          <div class="aisb-card">
+            <?php echo $this->render_my_projects_shortcode(['title' => 'My Projects', 'target_step' => $return_step]); ?>
+          </div>
+        </div><!-- /Step 0 panel -->
+        <?php endif; ?>
 
         <div class="aisb-step-panel" data-aisb-step-panel="1" style="<?php echo $step === 1 ? '' : 'display:none;'; ?>">
         <div class="aisb-card aisb-input-card">
@@ -355,15 +395,16 @@ class AISB_Assets {
               <p>You must be logged in to use wireframes.</p>
             <?php elseif (!$project_id || !$sitemap_id) : ?>
               <div class="aisb-wf-no-project">
-                <p class="aisb-wf-no-project-msg">Please select one of your projects below to start generating wireframes.</p>
-                <div class="aisb-wf-no-project-inner">
-                  <?php echo $this->render_my_projects_shortcode(['title' => '']); ?>
-                </div>
+                <p class="aisb-wf-no-project-msg">No project selected. <a href="<?php echo esc_url($tab0_url); ?>" class="aisb-btn-link">Go to My Projects</a> to pick one.</p>
               </div>
             <?php else : ?>
 
               <!-- Toolbar -->
               <div class="aisb-wf-toolbar">
+                <div class="aisb-wf-toolbar-left">
+                  <span class="aisb-project-switcher-name"><?php echo esc_html(get_the_title($project_id)); ?></span>
+                  <a href="<?php echo esc_url($tab0_url); ?>" class="aisb-btn-secondary aisb-project-switch-btn">Switch project</a>
+                </div>
                 <div class="aisb-wf-toolbar-right">
                   <button class="aisb-btn generate-wireframe__all" type="button" data-aisb-wf-generate-all>Generate all</button>
                   <button class="aisb-btn" type="button" data-aisb-wf-save-all>Save all</button>
@@ -453,9 +494,23 @@ class AISB_Assets {
                 <h3 class="aisb-output-title">Style Guide</h3>
                 <p class="aisb-subtitle">Brand colours · typography · component tokens</p>
               </div>
+              <?php if ($project_id) : ?>
+                <div class="aisb-project-switcher">
+                  <span class="aisb-project-switcher-name"><?php echo esc_html(get_the_title($project_id)); ?></span>
+                  <a href="<?php echo esc_url($tab0_url); ?>" class="aisb-btn-secondary aisb-project-switch-btn">Switch project</a>
+                </div>
+              <?php endif; ?>
             </div>
 
-            <?php AISB_Style_Guide::render_style_guide_html($project_id); ?>
+            <?php if (!is_user_logged_in()) : ?>
+              <p>You must be logged in to use the Style Guide.</p>
+            <?php elseif (!$project_id) : ?>
+              <div class="aisb-wf-no-project">
+                <p class="aisb-wf-no-project-msg">No project selected. <a href="<?php echo esc_url($tab0_url); ?>" class="aisb-btn-link">Go to My Projects</a> to pick one.</p>
+              </div>
+            <?php else : ?>
+              <?php AISB_Style_Guide::render_style_guide_html($project_id); ?>
+            <?php endif; ?>
           </div>
         </div><!-- /Step 3 panel -->
         <?php endif; ?>
@@ -468,9 +523,23 @@ class AISB_Assets {
                 <h3 class="aisb-output-title">Design</h3>
                 <p class="aisb-subtitle">Full preview with your style guide applied</p>
               </div>
+              <?php if ($project_id) : ?>
+                <div class="aisb-project-switcher">
+                  <span class="aisb-project-switcher-name"><?php echo esc_html(get_the_title($project_id)); ?></span>
+                  <a href="<?php echo esc_url($tab0_url); ?>" class="aisb-btn-secondary aisb-project-switch-btn">Switch project</a>
+                </div>
+              <?php endif; ?>
             </div>
 
-            <?php AISB_Design::render_design_html($project_id); ?>
+            <?php if (!is_user_logged_in()) : ?>
+              <p>You must be logged in to use the Design view.</p>
+            <?php elseif (!$project_id) : ?>
+              <div class="aisb-wf-no-project">
+                <p class="aisb-wf-no-project-msg">No project selected. <a href="<?php echo esc_url($tab0_url); ?>" class="aisb-btn-link">Go to My Projects</a> to pick one.</p>
+              </div>
+            <?php else : ?>
+              <?php AISB_Design::render_design_html($project_id); ?>
+            <?php endif; ?>
           </div>
         </div><!-- /Step 4 panel -->
         <?php endif; ?>

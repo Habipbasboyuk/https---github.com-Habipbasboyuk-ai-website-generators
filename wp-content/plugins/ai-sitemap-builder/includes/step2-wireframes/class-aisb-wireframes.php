@@ -28,6 +28,15 @@ class AISB_Wireframes {
     add_action('template_redirect', [$this, 'render_bricks_preview']);
     add_action('wp_enqueue_scripts', [$this, 'enqueue_assets']);
 
+    // Forceer Font Awesome in de preview iframe zodat FA-iconen niet als
+    // lege rechthoekjes (unicode placeholder-box) verschijnen.
+    if (isset($_GET['aisb_bricks_preview'])) {
+      add_action('wp_enqueue_scripts', function () {
+        wp_enqueue_style('bricks-font-awesome-6');
+        wp_enqueue_style('bricks-font-awesome-6-brands');
+      }, 100);
+    }
+
     // AJAX
     add_action('wp_ajax_aisb_get_wireframe_page', [$this, 'ajax_get_wireframe_page']);
     add_action('wp_ajax_aisb_generate_wireframe_page', [$this, 'ajax_generate_wireframe_page']);
@@ -129,6 +138,35 @@ class AISB_Wireframes {
         @media (max-width: 478px) {
           .brxe-section, .brxe-container, .brxe-block, .brxe-div { flex-wrap: nowrap !important; }
           [class*="brxe-"] { width: unset !important; max-width: unset !important; flex-basis: unset !important; flex-direction: unset !important; }
+        }
+      </style>
+      <style id="aisb-preview-fixes">
+        /* Verberg Bricks accordion-toggles (verborgen checkboxes) die als
+           zichtbare rechthoekjes renderen door browser-defaults. */
+        .brxe-accordion-nested input[type="checkbox"],
+        .brxe-accordion input[type="checkbox"],
+        .brx-accordion input[type="checkbox"],
+        input[aria-expanded] {
+          display: none !important;
+        }
+        /* Bricks accordion-nested gebruikt button[aria-expanded] als toggle.
+           Zonder de bijbehorende global class (die _exists:false is) toont
+           de browser de standaard button-border op alle 4 kanten. */
+        button[aria-expanded] {
+          border: none !important;
+          background: transparent !important;
+          padding: 0 !important;
+          width: 100% !important;
+          text-align: left !important;
+          cursor: pointer !important;
+        }
+        /* Lege icon-wrappers geen extra ruimte geven */
+        .brxe-icon:empty,
+        .brxe-icon-box .brxe-icon:empty {
+          min-width: 0 !important;
+          min-height: 0 !important;
+          width: auto !important;
+          height: auto !important;
         }
       </style>
       <div class="aisb-bricks-preview-wrap" id="aisb-preview">
