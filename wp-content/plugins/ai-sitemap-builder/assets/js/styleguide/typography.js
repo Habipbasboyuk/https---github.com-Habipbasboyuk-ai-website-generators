@@ -1,6 +1,7 @@
 /**
- * Style Guide — Step 2: Typography
- * Auto-assign fonts via AI, render typography preview, load Google Fonts.
+ * Stijlgids stap 2: typografie.
+ *
+ * Wijst fonts automatisch toe via AI, rendert typografiepreview en laadt Google Fonts.
  */
 (function () {
   "use strict";
@@ -21,6 +22,18 @@
     }
     el.typographyDisplay.innerHTML = typeScale
       .map(function (t) {
+        const styleParts = [];
+        if (t.fontFamily) {
+          styleParts.push(
+            "font-family:" + SG.escapeHtml(t.fontFamily) + ", sans-serif",
+          );
+        }
+        if (t.fontSize) {
+          styleParts.push("font-size:" + SG.escapeHtml(t.fontSize));
+        }
+        if (t.lineHeight) {
+          styleParts.push("line-height:" + SG.escapeHtml(t.lineHeight));
+        }
         return (
           '<div class="aisb-sg-type-row">' +
           '<div class="aisb-sg-type-meta">' +
@@ -29,11 +42,7 @@
           '<div class="aisb-sg-type-sample ' +
           SG.escapeHtml(t.cls || "body") +
           '"' +
-          (t.fontFamily
-            ? ' style="font-family:' +
-              SG.escapeHtml(t.fontFamily) +
-              ', sans-serif;"'
-            : "") +
+          (styleParts.length ? ' style="' + styleParts.join(";") + ';"' : "") +
           ">" +
           SG.escapeHtml(t.sample || t.label || "The quick brown fox") +
           "</div>" +
@@ -279,8 +288,8 @@
       SG.guide.headingFont = data.fonts.heading_font || "";
       SG.guide.bodyFont = data.fonts.body_font || "";
       SG.guide.typography = data.fonts.type_scale || [];
-      SG.guide.sectionBg1 = data.fonts.section_bg_1 || "#ffffff";
-      SG.guide.sectionBg2 = data.fonts.section_bg_2 || "#f0f4ff";
+      SG.guide.sectionBg1 = data.fonts.section_bg_1 || "";
+      SG.guide.sectionBg2 = data.fonts.section_bg_2 || "";
 
       SG.loadGoogleFonts(SG.guide.headingFont, SG.guide.bodyFont);
       SG.renderTypography(SG.guide.typography);

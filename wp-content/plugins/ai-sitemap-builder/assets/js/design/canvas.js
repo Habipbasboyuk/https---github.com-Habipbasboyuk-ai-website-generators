@@ -1,10 +1,10 @@
 /**
- * design/canvas.js — Figma-stijl infinite canvas: pagina's naast elkaar,
+ * design/canvas.js - Figma-achtig oneindig canvas: pagina's naast elkaar,
  * secties per pagina gestapeld in iframes.
  *
  * Verantwoordelijk voor:
- *   - buildDesignCanvas()  — bouwt de DOM-structuur en maakt de iframes aan
- *   - initCanvasPanZoom()  — pan (slepen) + zoom (Ctrl+scroll) + dubbelklik om te fitten
+ *   - buildDesignCanvas()  - bouwt de DOM-structuur en maakt de iframes aan
+ *   - initCanvasPanZoom()  - pan (slepen), zoom en dubbelklik om te fitten
  */
 (function () {
   "use strict";
@@ -12,7 +12,7 @@
   const D = window.AISB_Design;
   if (!D) return;
 
-  /* ── Canvas opbouwen ────────────────────────────────────────── */
+  /* Canvas opbouwen. */
 
   D.buildDesignCanvas = function () {
     const canvasEl = D.canvasEl;
@@ -115,6 +115,7 @@
                 wrap.style.height = h + "px";
               } else {
                 iframe.style.height = prev || "500px";
+                wrap.style.height = prev || "500px";
               }
             } catch (e) {
               iframe.style.height = "500px";
@@ -397,22 +398,33 @@
       doc.addEventListener(
         "wheel",
         (e) => {
-          e.preventDefault();
+          const canvas = D.canvasEl;
+          const handleWheel = canvas && canvas._designHandleWheel;
+          const canConsumeWheel = canvas && canvas._designCanConsumeWheel;
+          if (!handleWheel || !canConsumeWheel) return;
+
           const iframeRect = iframe.getBoundingClientRect();
-          D.canvasEl.dispatchEvent(
-            new WheelEvent("wheel", {
-              bubbles: true,
-              cancelable: true,
-              deltaX: e.deltaX,
-              deltaY: e.deltaY,
-              deltaZ: e.deltaZ,
-              deltaMode: e.deltaMode,
-              ctrlKey: e.ctrlKey,
-              shiftKey: e.shiftKey,
-              clientX: iframeRect.left + e.clientX,
-              clientY: iframeRect.top + e.clientY,
-            }),
-          );
+          const wheelLike = {
+            deltaX: e.deltaX,
+            deltaY: e.deltaY,
+            deltaZ: e.deltaZ,
+            deltaMode: e.deltaMode,
+            ctrlKey: e.ctrlKey,
+            shiftKey: e.shiftKey,
+            clientX: iframeRect.left + e.clientX,
+            clientY: iframeRect.top + e.clientY,
+            preventDefault() {},
+          };
+
+          if (!e.ctrlKey && !canConsumeWheel(wheelLike)) {
+            return;
+          }
+
+          if (!handleWheel(wheelLike)) {
+            return;
+          }
+
+          e.preventDefault();
         },
         { passive: false },
       );
@@ -606,6 +618,152 @@
         ")";
     }
 
+    function getContentBounds() {
+      const cards = inner.querySelectorAll(".aisb-design-page-card");
+      if (!cards.length) return null;
+
+      let minX = Infinity;
+      let minY = Infinity;
+      let maxX = -Infinity;
+      let maxY = -Infinity;
+
+      for (const card of cards) {
+        minX = Math.min(minX, card.offsetLeft);
+        minY = Math.min(minY, card.offsetTop);
+        maxX = Math.max(maxX, card.offsetLeft + card.offsetWidth);
+        maxY = Math.max(maxY, card.offsetTop + card.offsetHeight);
+      }
+
+      return {
+        minX,
+        minY,
+        maxX,
+        maxY,
+        width: maxX - minX,
+        height: maxY - minY,
+      };
+    }
+
+    function getTranslateLimits() {
+      const canvasRect = canvas.getBoundingClientRect();
+      const bounds = getContentBounds();
+      if (!bounds || !canvasRect.width || !canvasRect.height) return null;
+
+      const padding = 40;
+      const minTranslateX =
+        canvasRect.width - padding - bounds.maxX * state.scale;
+      const maxTranslateX = padding - bounds.minX * state.scale;
+      const minTranslateY =
+        canvasRect.height - padding - bounds.maxY * state.scale;
+      const maxTranslateY = padding - bounds.minY * state.scale;
+
+      return {
+        minTranslateX,
+        maxTranslateX,
+        minTranslateY,
+        maxTranslateY,
+        centeredX:
+          (canvasRect.width - (bounds.minX + bounds.maxX) * state.scale) / 2,
+        centeredY:
+          (canvasRect.height - (bounds.minY + bounds.maxY) * state.scale) / 2,
+      };
+    }
+
+    function clampToContentBounds() {
+      const limits = getTranslateLimits();
+      if (!limits) return false;
+
+      const prevX = state.translateX;
+      const prevY = state.translateY;
+
+      state.translateX =
+        limits.minTranslateX > limits.maxTranslateX
+          ? limits.centeredX
+          : D.clamp(
+              state.translateX,
+              limits.minTranslateX,
+              limits.maxTranslateX,
+            );
+
+      state.translateY =
+        limits.minTranslateY > limits.maxTranslateY
+          ? limits.centeredY
+          : D.clamp(
+              state.translateY,
+              limits.minTranslateY,
+              limits.maxTranslateY,
+            );
+
+      return prevX !== state.translateX || prevY !== state.translateY;
+    }
+
+    function canConsumeWheel(e) {
+      if (e.ctrlKey) return true;
+
+      const limits = getTranslateLimits();
+      if (!limits) return false;
+
+      const absX = Math.abs(e.deltaX || 0);
+      const absY = Math.abs(e.deltaY || 0);
+      const epsilon = 0.5;
+
+      if (absY >= absX && absY > epsilon) {
+        if (e.deltaY > 0) {
+          return state.translateY > limits.minTranslateY + epsilon;
+        }
+        if (e.deltaY < 0) {
+          return state.translateY < limits.maxTranslateY - epsilon;
+        }
+      }
+
+      if (absX > epsilon) {
+        if (e.deltaX > 0) {
+          return state.translateX > limits.minTranslateX + epsilon;
+        }
+        if (e.deltaX < 0) {
+          return state.translateX < limits.maxTranslateX - epsilon;
+        }
+      }
+
+      return false;
+    }
+
+    function handleWheel(e) {
+      if (e.ctrlKey) {
+        e.preventDefault();
+        const rect = canvas.getBoundingClientRect();
+        const cx = e.clientX - rect.left;
+        const cy = e.clientY - rect.top;
+        const prev = state.scale;
+        const next = D.clamp(prev * (1 - e.deltaY * 0.001), 0.05, 3);
+        if (Math.abs(next - prev) < 0.0001) return false;
+        state.translateX = cx - (cx - state.translateX) * (next / prev);
+        state.translateY = cy - (cy - state.translateY) * (next / prev);
+        state.scale = next;
+        clampToContentBounds();
+        applyTransform();
+        return true;
+      }
+
+      if (!canConsumeWheel(e)) {
+        return false;
+      }
+
+      e.preventDefault();
+      const prevX = state.translateX;
+      const prevY = state.translateY;
+      state.translateX -= e.deltaX;
+      state.translateY -= e.deltaY;
+      clampToContentBounds();
+
+      if (prevX === state.translateX && prevY === state.translateY) {
+        return false;
+      }
+
+      applyTransform();
+      return true;
+    }
+
     function fitToView() {
       const canvasRect = canvas.getBoundingClientRect();
       if (!canvasRect.width || !canvasRect.height) return;
@@ -632,10 +790,13 @@
         (canvasRect.width - contentWidth * state.scale) / 2 -
         minX * state.scale;
       state.translateY = padding;
+      clampToContentBounds();
       applyTransform();
     }
 
     canvas._designFitToView = fitToView;
+    canvas._designCanConsumeWheel = canConsumeWheel;
+    canvas._designHandleWheel = handleWheel;
     requestAnimationFrame(fitToView);
 
     function setIframePointerEvents(value) {
@@ -664,6 +825,7 @@
       if (!state.isPanning) return;
       state.translateX = state.panStart.tx + (e.clientX - state.panStart.x);
       state.translateY = state.panStart.ty + (e.clientY - state.panStart.y);
+      clampToContentBounds();
       applyTransform();
     });
 
@@ -685,25 +847,7 @@
     canvas.addEventListener(
       "wheel",
       (e) => {
-        if (e.ctrlKey) {
-          e.preventDefault();
-          const rect = canvas.getBoundingClientRect();
-          const cx = e.clientX - rect.left;
-          const cy = e.clientY - rect.top;
-          const prev = state.scale;
-          const next = D.clamp(prev * (1 - e.deltaY * 0.001), 0.05, 3);
-          if (Math.abs(next - prev) < 0.0001) return;
-          state.translateX = cx - (cx - state.translateX) * (next / prev);
-          state.translateY = cy - (cy - state.translateY) * (next / prev);
-          state.scale = next;
-          applyTransform();
-        } else {
-          // Normaal scrollen → canvas pannen zonder positie te resetten
-          e.preventDefault();
-          state.translateX -= e.deltaX;
-          state.translateY -= e.deltaY;
-          applyTransform();
-        }
+        handleWheel(e);
       },
       { passive: false },
     );

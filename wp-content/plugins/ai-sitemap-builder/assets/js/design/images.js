@@ -1,5 +1,5 @@
 /**
- * design/images.js — Afbeeldingen injecteren in de preview-iframes.
+ * design/images.js - Afbeeldingen injecteren in de preview-iframes.
  *
  * Verantwoordelijk voor:
  *   - buildSectionImageMap()  — maakt een kaart van pagina+sectie-index naar afbeelding-URLs

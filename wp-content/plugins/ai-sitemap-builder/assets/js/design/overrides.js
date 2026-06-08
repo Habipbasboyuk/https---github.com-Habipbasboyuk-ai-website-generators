@@ -1,11 +1,11 @@
 /**
- * design/overrides.js — CSS-override injectie in de preview-iframes.
+ * design/overrides.js - CSS-override injectie in de preview-iframes.
  *
  * Verantwoordelijk voor:
- *   - buildStyleGuideCSS()  — bouwt een volledige CSS-string met kleur- en fontoverrides
- *   - buildGoogleFontsUrl()  — maakt de Google Fonts URL voor heading- en bodyfont
- *   - getLuminance()         — WCAG-luminantieberekening (0 = zwart, 1 = wit)
- *   - injectStyleGuide()     — injecteert de CSS én Google Fonts in één iframe
+ *   - buildStyleGuideCSS()   - bouwt CSS met kleur- en fontoverrides
+ *   - buildGoogleFontsUrl()  - maakt de Google Fonts URL voor heading- en bodyfont
+ *   - getLuminance()         - WCAG-luminantieberekening (0 = zwart, 1 = wit)
+ *   - injectStyleGuide()     - injecteert CSS en Google Fonts in een iframe
  */
 (function () {
   "use strict";
@@ -13,7 +13,7 @@
   const D = window.AISB_Design;
   if (!D) return;
 
-  /* ── Kleur- en font-override CSS bouwen ─────────────────────── */
+  /* Kleur- en font-override CSS bouwen. */
 
   D.buildStyleGuideCSS = function () {
     const guide = D.guide;
@@ -195,50 +195,50 @@
 
         let secBg;
         if (bgIdx % 2 === 0) {
-          secBg = palLight || guide.sectionBg1 || "#ffffff";
+          secBg = palLight || guide.sectionBg1 || "";
         } else {
-          secBg = palNeutral || palLight || guide.sectionBg2 || "#f0f4ff";
+          secBg = palNeutral || palLight || guide.sectionBg2 || "";
         }
 
-        // :not([style*='background-image']) beschermt secties met een achtergrondafbeelding
-        css +=
-          ".brxe-section:not([style*='background-image'])," +
-          ".brxe-container:not([style*='background-image'])," +
-          ".brxe-block:not([style*='background-image'])" +
-          "{background-color:" +
-          secBg +
-          " !important;}";
-        css += "body{background-color:" + secBg + " !important;}";
-
-        const isDarkBg = D.getLuminance(secBg) < 0.4;
-        const headingColour = isDarkBg ? "#ffffff" : palDark || "#1a1a1a";
-        const bodyColour = isDarkBg
-          ? "rgba(255,255,255,0.85)"
-          : palDark || "#333333";
-
-        css +=
-          "h1,h2,h3,h4,h5,h6,.brxe-heading{color:" +
-          headingColour +
-          " !important;}";
-        css +=
-          "body,p,.brxe-text,.brxe-text-basic,.brxe-rich-text,.brxe-post-content,li,td,th,label,figcaption,blockquote{color:" +
-          bodyColour +
-          " !important;}";
-        if (isDarkBg) {
-          css += ".brxe-button,.bricks-button{color:#fff !important;}";
+        if (secBg) {
+          // :not([style*='background-image']) beschermt secties met een achtergrondafbeelding
           css +=
-            "a:not(.brxe-button){color:" +
-            (palLight || "#ffffff") +
+            ".brxe-section:not([style*='background-image'])" +
+            "{background-color:" +
+            secBg +
             " !important;}";
-        } else {
-          const primary = colours.length ? colours[0].hex : null;
-          if (primary) {
-            const btnTextColour =
-              D.getLuminance(primary) < 0.4 ? "#ffffff" : "#1a1a1a";
+          css += "body{background-color:" + secBg + " !important;}";
+
+          const isDarkBg = D.getLuminance(secBg) < 0.4;
+          const headingColour = isDarkBg ? "#ffffff" : palDark || "#1a1a1a";
+          const bodyColour = isDarkBg
+            ? "rgba(255,255,255,0.85)"
+            : palDark || "#333333";
+
+          css +=
+            "h1,h2,h3,h4,h5,h6,.brxe-heading{color:" +
+            headingColour +
+            " !important;}";
+          css +=
+            "body,p,.brxe-text,.brxe-text-basic,.brxe-rich-text,.brxe-post-content,li,td,th,label,figcaption,blockquote{color:" +
+            bodyColour +
+            " !important;}";
+          if (isDarkBg) {
+            css += ".brxe-button,.bricks-button{color:#fff !important;}";
             css +=
-              ".brxe-button,.bricks-button{color:" +
-              btnTextColour +
+              "a:not(.brxe-button){color:" +
+              (palLight || "#ffffff") +
               " !important;}";
+          } else {
+            const primary = colours.length ? colours[0].hex : null;
+            if (primary) {
+              const btnTextColour =
+                D.getLuminance(primary) < 0.4 ? "#ffffff" : "#1a1a1a";
+              css +=
+                ".brxe-button,.bricks-button{color:" +
+                btnTextColour +
+                " !important;}";
+            }
           }
         }
       }

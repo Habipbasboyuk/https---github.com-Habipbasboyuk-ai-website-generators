@@ -1,6 +1,7 @@
 /**
- * Utility functions and data processing.
- * Depends on: app-init.js
+ * Hulpfuncties en dataverwerking voor stap 1.
+ *
+ * Afhankelijk van: app-init.js.
  */
 (function () {
   "use strict";

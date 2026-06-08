@@ -1,0 +1,7 @@
+{
+  "name": "archer/ai-sitemap-builder",
+  "type": "project",
+  "require": {
+    "phpseclib/phpseclib": "^3.0"
+  }
+}

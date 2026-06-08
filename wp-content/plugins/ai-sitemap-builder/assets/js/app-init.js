@@ -1,6 +1,8 @@
 /**
- * App initialization: namespace, DOM refs, state, view, flags.
- * Must load first — all other app-*.js files depend on window.AISBApp.
+ * App-initialisatie voor stap 1.
+ *
+ * Maakt de namespace, DOM-referenties, gedeelde state, view en flags aan.
+ * Moet als eerste laden, omdat alle app-*.js bestanden window.AISBApp gebruiken.
  */
 (function () {
   "use strict";

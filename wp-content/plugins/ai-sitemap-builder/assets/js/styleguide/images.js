@@ -1,6 +1,8 @@
 /**
- * Style Guide — Step 3: Images
- * Upload own images + auto-fill remaining from Unsplash, swap modal.
+ * Stijlgids stap 3: afbeeldingen.
+ *
+ * Laat eigen afbeeldingen uploaden, vult ontbrekende beelden aan via Unsplash
+ * en beheert de wisselmodal.
  */
 (function () {
   "use strict";
@@ -10,9 +12,71 @@
 
   const el = SG.el;
   const autoImagesContainer = el.autoImagesContainer;
+  const imageTabButtons = SG.root.querySelectorAll("[data-image-mode]");
+  const imageTabPanels = SG.root.querySelectorAll("[data-image-panel]");
+  const uploadedEmpty = SG.root.querySelector("[data-uploaded-empty]");
+  const uploadedTabCount = SG.root.querySelector("[data-uploaded-tab-count]");
+  const unsplashTabCount = SG.root.querySelector("[data-unsplash-tab-count]");
+
+  SG.activeImageTab = "";
 
   // Uploaded images array (shape: same as Unsplash images)
   SG.uploadedImages = [];
+
+  function updateImageTabCounts() {
+    const uploadedCount = SG.uploadedImages ? SG.uploadedImages.length : 0;
+    const selectedCount =
+      SG.guide && SG.guide.images && SG.guide.images.length
+        ? SG.guide.images.length
+        : 0;
+
+    if (uploadedTabCount) {
+      uploadedTabCount.textContent = "(" + uploadedCount + ")";
+    }
+    if (unsplashTabCount) {
+      unsplashTabCount.textContent = "(" + selectedCount + ")";
+    }
+  }
+
+  function syncUploadedEmptyState() {
+    if (!uploadedEmpty) return;
+    const hasUploads = !!(SG.uploadedImages && SG.uploadedImages.length);
+    uploadedEmpty.style.display = hasUploads ? "none" : "";
+  }
+
+  function setImageTab(mode) {
+    SG.activeImageTab = mode || "";
+
+    imageTabButtons.forEach(function (button) {
+      button.classList.toggle(
+        "is-active",
+        button.getAttribute("data-image-mode") === SG.activeImageTab,
+      );
+    });
+
+    imageTabPanels.forEach(function (panel) {
+      panel.style.display =
+        panel.getAttribute("data-image-panel") === SG.activeImageTab
+          ? ""
+          : "none";
+    });
+
+    syncUploadedEmptyState();
+  }
+
+  function refreshImageLibraryState() {
+    updateImageTabCounts();
+    syncUploadedEmptyState();
+  }
+
+  SG.refreshImageLibraryState = refreshImageLibraryState;
+  setImageTab("");
+
+  SG.root.addEventListener("click", function (e) {
+    const btn = e.target.closest("[data-image-mode]");
+    if (!btn) return;
+    setImageTab(btn.getAttribute("data-image-mode"));
+  });
 
   /* ─── Count total media slots across wireframes ────────────── */
 
@@ -34,6 +98,7 @@
       el.uploadHint.textContent =
         uploaded + " images uploaded · " + total + " needed total";
     }
+    updateImageTabCounts();
   }
 
   /* ─── Upload handling ──────────────────────────────────────── */
@@ -68,6 +133,7 @@
         });
         renderUploadedGrid();
         updateUploadHint();
+        if (!SG.activeImageTab) setImageTab("uploads");
       })
       .catch(function () {
         if (el.uploadHint)
@@ -80,6 +146,7 @@
     if (!el.uploadedGrid || !el.uploadedGridInner) return;
     if (!SG.uploadedImages.length) {
       el.uploadedGrid.style.display = "none";
+      refreshImageLibraryState();
       return;
     }
     el.uploadedGrid.style.display = "";
@@ -116,6 +183,8 @@
           updateUploadHint();
         });
       });
+
+    refreshImageLibraryState();
   }
 
   // Drag & drop on upload zone
@@ -151,6 +220,8 @@
     updateUploadHint();
 
     if (!total) {
+      SG.guide.images = [];
+      refreshImageLibraryState();
       autoImagesContainer.innerHTML =
         '<div class="aisb-sg-empty-state">No images needed — no media elements found in wireframes.</div>';
       return;
@@ -226,6 +297,7 @@
         '<div class="aisb-sg-empty-state" style="color:#c00;">Error: ' +
         errMsg +
         "</div>";
+      refreshImageLibraryState();
       return;
     }
 
@@ -239,6 +311,7 @@
 
     // Store images in guide for saving + injection
     SG.guide.images = images.slice(0, total);
+    refreshImageLibraryState();
 
     // Render the image cards into the container so the loader is replaced
     if (SG.guide.images.length) {
@@ -567,6 +640,7 @@
             });
             searchBar.style.display = "none";
             footerEl.style.display = "none";
+            if (!SG.activeImageTab) setImageTab("uploads");
             renderModalUploads(overlay);
           })
           .catch(function () {
@@ -662,6 +736,7 @@
   function applyPickedImage(picked, overlay) {
     // Replace in guide.images
     SG.guide.images[swapModalIdx] = picked;
+    updateImageTabCounts();
 
     // Update the card thumbnail in the Unsplash grid
     const card = autoImagesContainer.querySelector(

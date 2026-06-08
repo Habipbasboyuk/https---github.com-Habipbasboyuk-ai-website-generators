@@ -1,5 +1,5 @@
 /**
- * Save, save-all, shuffle page, compile actions.
+ * Acties voor opslaan, alles opslaan, pagina shufflen en JSON compileren.
  */
 (function (app) {
   if (!app) return;

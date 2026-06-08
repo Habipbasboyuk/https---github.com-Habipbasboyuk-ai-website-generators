@@ -2,6 +2,13 @@
 
 if (!defined('ABSPATH')) exit;
 
+/**
+ * Compileert een wireframemodel naar Bricks JSON.
+ *
+ * Secties kunnen komen uit AI-wireframe posts, Bricks templates of de eigen
+ * templatebibliotheek. Tijdens compilatie krijgen nodes nieuwe IDs en worden
+ * risicovolle code-nodes verwijderd.
+ */
 class AISB_Wireframe_Compiler {
 
   /** @var AISB_Template_Library */
@@ -12,8 +19,8 @@ class AISB_Wireframe_Compiler {
   }
 
   /**
-   * Compile a wireframe model (page + sections) into a single Bricks JSON payload.
-   * Decision: we strip `code` nodes during compilation.
+    * Compileert een pagina met secties naar een enkele Bricks JSON payload.
+    * Code-nodes worden bewust verwijderd tijdens deze stap.
    */
   public function compile_page(array $wireframe_model): array {
     $sections = isset($wireframe_model['sections']) && is_array($wireframe_model['sections']) ? $wireframe_model['sections'] : [];
@@ -61,11 +68,11 @@ class AISB_Wireframe_Compiler {
           $final_content = array_merge($final_content, $rekeyed);
           continue;
         }
-        // Bricks template post exists but has no _bricks_data — skip gracefully.
+        // Bricks template bestaat, maar heeft geen _bricks_data: sla netjes over.
         continue;
       }
 
-      // --- Fallback: custom aisb_section_templates library ---
+      // --- Fallback: eigen aisb_section_templates bibliotheek ---
       $layout_key = (string) ($sec['layout_key'] ?? '');
       if ($layout_key === '') continue;
 

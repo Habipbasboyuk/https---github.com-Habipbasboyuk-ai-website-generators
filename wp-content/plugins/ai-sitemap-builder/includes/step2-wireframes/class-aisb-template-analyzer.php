@@ -3,14 +3,17 @@
 if (!defined('ABSPATH')) exit;
 
 /**
- * Parses Bricks "copied elements" JSON and derives a lightweight schema
- * for fast wireframe preview rendering.
+ * Analyseert Bricks "copied elements" JSON.
+ *
+ * Uit de Bricks nodes wordt een lichte preview-structuur afgeleid, zodat de
+ * wireframe-interface snel templates kan tonen zonder telkens volledige Bricks
+ * rendering nodig te hebben.
  */
 class AISB_Template_Analyzer {
 
   /**
-   * Increment when the preview schema structure changes.
-   * Used to regenerate older/missing preview schemas.
+   * Verhoog deze versie wanneer de preview_schema structuur wijzigt.
+   * Oudere of ontbrekende schemas kunnen dan opnieuw worden opgebouwd.
    */
   const PREVIEW_SCHEMA_VERSION = 1;
 
@@ -55,7 +58,7 @@ class AISB_Template_Analyzer {
       $custom_tag = (string)($settings['customTag'] ?? '');
       if (strtolower($custom_tag) === 'blockquote') $stats['blockquotes']++;
 
-      // Heuristic: containers/grids/repeaters often translate to cards
+      // Heuristiek: containers, grids en repeaters vertalen vaak naar cards.
       if (in_array($name, ['block', 'container', 'div', 'section'], true)) {
         $children = $node['children'] ?? [];
         if (is_array($children) && count($children) >= 3) {

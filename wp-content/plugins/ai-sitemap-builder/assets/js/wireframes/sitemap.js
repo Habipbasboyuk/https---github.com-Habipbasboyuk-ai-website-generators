@@ -1,5 +1,5 @@
 /**
- * Sitemap loading and page model fetching.
+ * Laadt de sitemap en haalt paginamodellen op voor stap 2.
  */
 (function (app) {
   if (!app) return;

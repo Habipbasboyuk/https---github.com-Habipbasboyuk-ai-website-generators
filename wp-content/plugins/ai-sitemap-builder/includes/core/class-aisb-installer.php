@@ -2,6 +2,12 @@
 
 if (!defined('ABSPATH')) exit;
 
+/**
+ * Installeert en migreert de eigen database-tabellen van de plugin.
+ *
+ * Wordt aangeroepen bij pluginactivatie en maakt de tabellen voor templates en
+ * opgeslagen wireframes aan via WordPress dbDelta().
+ */
 class AISB_Installer {
 
   const DB_VERSION_OPT = 'aisb_db_version';
@@ -20,7 +26,10 @@ class AISB_Installer {
 
     $charset_collate = $wpdb->get_charset_collate();
 
+    // Tabel met geanalyseerde Bricks/Brixies sectietemplates.
     $templates = $wpdb->prefix . 'aisb_section_templates';
+
+    // Tabel met gegenereerde wireframemodellen per project, versie en pagina.
     $wireframes = $wpdb->prefix . 'aisb_wireframes';
 
     $sql1 = "CREATE TABLE {$templates} (

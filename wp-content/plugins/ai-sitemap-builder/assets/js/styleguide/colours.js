@@ -1,3 +1,8 @@
+/**
+ * Stijlgids stap 1: kleuren.
+ *
+ * Beheert kleurkeuzes, kleurmodi, logo-gebaseerde kleurdetectie en preview updates.
+ */
 (function () {
   "use strict";
 
@@ -129,7 +134,7 @@
       el.logoInput && el.logoInput.click();
     });
 
-    // drag & drop zone voor ECHTE brand logo
+  // drag & drop zone voor ECHTE brand logo
   if (el.actualLogoDropzone) {
     el.actualLogoDropzone.addEventListener("click", function (e) {
       if (e.target.closest("[data-actual-logo-browse]")) return;
@@ -146,13 +151,16 @@
     el.actualLogoDropzone.addEventListener("drop", function (e) {
       e.preventDefault();
       el.actualLogoDropzone.classList.remove("drag-over");
-      if (e.dataTransfer.files[0]) handleActualLogoFile(e.dataTransfer.files[0]);
+      if (e.dataTransfer.files[0])
+        handleActualLogoFile(e.dataTransfer.files[0]);
     });
   }
 
-  el.actualLogoInput && el.actualLogoInput.addEventListener("change", function () {
-    if (el.actualLogoInput.files[0]) handleActualLogoFile(el.actualLogoInput.files[0]);
-  });
+  el.actualLogoInput &&
+    el.actualLogoInput.addEventListener("change", function () {
+      if (el.actualLogoInput.files[0])
+        handleActualLogoFile(el.actualLogoInput.files[0]);
+    });
   // drag & drop zone voor kleur-extractie-bestanden
   if (el.dropzone) {
     // Klikken op de dropzone (ook als de preview al zichtbaar is) opent altijd
@@ -222,8 +230,9 @@
       el.actualLogoPreview.src = url;
       el.actualLogoPreview.style.display = "block";
     }
-    if (el.actualLogoPlaceholder) el.actualLogoPlaceholder.style.display = "none";
-    
+    if (el.actualLogoPlaceholder)
+      el.actualLogoPlaceholder.style.display = "none";
+
     const img = new Image();
     img.crossOrigin = "anonymous";
     img.onload = function () {
@@ -235,7 +244,10 @@
         lc.width = lw;
         lc.height = lh;
         lc.getContext("2d").drawImage(img, 0, 0, lw, lh);
-        var mime = file.type === "image/svg+xml" ? "image/png" : file.type || "image/png";
+        var mime =
+          file.type === "image/svg+xml"
+            ? "image/png"
+            : file.type || "image/png";
         SG.guide.logoUrl = lc.toDataURL(mime);
       } catch (convErr) {
         SG.guide.logoUrl = url;
@@ -485,5 +497,3 @@
     }
   });
 })();
-
-

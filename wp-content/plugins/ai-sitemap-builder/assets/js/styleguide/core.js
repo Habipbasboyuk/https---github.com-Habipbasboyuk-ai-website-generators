@@ -1,8 +1,7 @@
-// core.js — Hoofdmodule van de Style Guide wizard
-// Dit bestand bevat de gedeelde state, wizard-navigatie,
-// live preview (CSS-overrides in iframes), de wireframe canvas-bouwer
-// met pan/zoom functionaliteit, en render-helpers.
-//
+// core.js - Hoofdmodule van de stijlgidswizard.
+// Bevat gedeelde state, wizardnavigatie, live preview, CSS-overrides,
+// wireframecanvas met pan/zoom en renderhelpers.
+
 // Hulpfuncties (setStatus, escapeHtml, toQueryString, post) staan in helpers.js
 //
 // Wordt geladen als eerste script in de keten:
@@ -417,65 +416,70 @@
         // even secties: lichte paletkleur (of sectionBg1 als fallback), oneven: neutral/sectionBg2
         let secBg;
         if (sIdx % 2 === 0) {
-          secBg = palLight || SG.guide.sectionBg1 || "#ffffff";
+          secBg = palLight || SG.guide.sectionBg1 || "";
         } else {
-          secBg = palNeutral || palLight || SG.guide.sectionBg2 || "#f0f4ff";
+          secBg = palNeutral || palLight || SG.guide.sectionBg2 || "";
         }
-        // Sectie- en container-achtergrond overschrijven met paletkleur.
-        // Gebruik !important om Bricks ID-selector CSS te overrulen.
-        // Uitzondering: elementen met een inline background-image behouden die.
-        overrideCss +=
-          ".brxe-section:not([style*='background-image'])," +
-          ".brxe-container:not([style*='background-image'])," +
-          ".brxe-block:not([style*='background-image'])" +
-          "{background-color:" +
-          secBg +
-          " !important;}";
-        overrideCss += "body{background-color:" + secBg + " !important;}";
-
-        // contrast-bewuste tekst- en headingkleur per sectie
-        const bgLum = SG.getLuminance(secBg);
-        const isDarkBg = bgLum < 0.4; // drempel: achtergrond is donker
-
-        const palDark = findByName("Dark");
-        let headingColour, bodyColour;
-
-        if (isDarkBg) {
-          // donkere achtergrond → lichte tekst
-          headingColour = "#ffffff";
-          bodyColour = "rgba(255,255,255,0.85)";
-        } else {
-          // lichte achtergrond → donkere tekst
-          headingColour = palDark || "#1a1a1a";
-          bodyColour = palDark ? palDark : "#333333";
-        }
-
-        overrideCss +=
-          "h1,h2,h3,h4,h5,h6,.brxe-heading{color:" +
-          headingColour +
-          " !important;}";
-        overrideCss +=
-          "body,p,.brxe-text,.brxe-text-basic,.brxe-rich-text{color:" +
-          bodyColour +
-          " !important;}";
-
-        // knoppen op donkere achtergrond: witte tekst op primary knop
-        if (isDarkBg) {
-          overrideCss += ".brxe-button,.bricks-button{color:#fff !important;}";
+        if (secBg) {
+          // Sectie- en container-achtergrond overschrijven met paletkleur.
+          // Gebruik !important om Bricks ID-selector CSS te overrulen.
+          // Uitzondering: elementen met een inline background-image behouden die.
           overrideCss +=
-            "a:not(.brxe-button){color:" +
-            (palLight || "#ffffff") +
+            ".brxe-section:not([style*='background-image'])," +
+            ".brxe-container:not([style*='background-image'])," +
+            ".brxe-block:not([style*='background-image'])" +
+            "{background-color:" +
+            secBg +
             " !important;}";
-        } else {
-          // lichte sectie-achtergrond: knoptekst baseren op contrast t.o.v. primary knopkleur
-          const primary = paletteColours.length ? paletteColours[0].hex : null;
-          if (primary) {
-            const btnTextColour =
-              SG.getLuminance(primary) < 0.4 ? "#ffffff" : "#1a1a1a";
+          overrideCss += "body{background-color:" + secBg + " !important;}";
+
+          // contrast-bewuste tekst- en headingkleur per sectie
+          const bgLum = SG.getLuminance(secBg);
+          const isDarkBg = bgLum < 0.4; // drempel: achtergrond is donker
+
+          const palDark = findByName("Dark");
+          let headingColour, bodyColour;
+
+          if (isDarkBg) {
+            // donkere achtergrond → lichte tekst
+            headingColour = "#ffffff";
+            bodyColour = "rgba(255,255,255,0.85)";
+          } else {
+            // lichte achtergrond → donkere tekst
+            headingColour = palDark || "#1a1a1a";
+            bodyColour = palDark ? palDark : "#333333";
+          }
+
+          overrideCss +=
+            "h1,h2,h3,h4,h5,h6,.brxe-heading{color:" +
+            headingColour +
+            " !important;}";
+          overrideCss +=
+            "body,p,.brxe-text,.brxe-text-basic,.brxe-rich-text{color:" +
+            bodyColour +
+            " !important;}";
+
+          // knoppen op donkere achtergrond: witte tekst op primary knop
+          if (isDarkBg) {
             overrideCss +=
-              ".brxe-button,.bricks-button{color:" +
-              btnTextColour +
+              ".brxe-button,.bricks-button{color:#fff !important;}";
+            overrideCss +=
+              "a:not(.brxe-button){color:" +
+              (palLight || "#ffffff") +
               " !important;}";
+          } else {
+            // lichte sectie-achtergrond: knoptekst baseren op contrast t.o.v. primary knopkleur
+            const primary = paletteColours.length
+              ? paletteColours[0].hex
+              : null;
+            if (primary) {
+              const btnTextColour =
+                SG.getLuminance(primary) < 0.4 ? "#ffffff" : "#1a1a1a";
+              overrideCss +=
+                ".brxe-button,.bricks-button{color:" +
+                btnTextColour +
+                " !important;}";
+            }
           }
         }
       }

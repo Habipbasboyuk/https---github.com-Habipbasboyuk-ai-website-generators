@@ -1,4 +1,4 @@
-/* Button styles: primary, secondary, plus icon, mini buttons */
+/* Knopstijlen: primaire knoppen, secundaire knoppen, plusicoon en kleine knoppen. */
 
 .aisb-btn {
   appearance: none;
@@ -60,7 +60,6 @@
 .aisb-mini-btn.primary:hover {
   opacity: 0.92;
 }
-
 
 .aisb-btn-link {
   color: #345682;

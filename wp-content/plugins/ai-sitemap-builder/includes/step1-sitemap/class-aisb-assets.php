@@ -2,28 +2,42 @@
 
 if (!defined('ABSPATH')) exit;
 
+/**
+ * Laadt en rendert de frontend van de AI Sitemap Builder.
+ *
+ * Deze klasse heeft drie hoofdtaken:
+ * - shortcodes tonen voor de builder en de projectlijst;
+ * - de juiste HTML per stap opbouwen;
+ * - CSS en JavaScript alleen laden wanneer ze nodig zijn.
+ */
 class AISB_Assets {
 
+  /**
+   * Houdt bij of de assets in deze request al zijn toegevoegd.
+   */
   private static bool $assets_enqueued = false;
 
   /**
-   * Shortcode: [my-projects]
+   * Rendert de shortcode [my-projects].
    *
-   * Purpose:
-   * - Provide an overview of the current user's projects (aisb_project)
-   * - Allow selecting a project and a specific sitemap version (aisb_sitemap)
-   * - Redirect (via GET params) to a page that contains [ai_sitemap_builder]
-   *   so the builder can auto-load the chosen snapshot.
+   * Wat deze shortcode doet:
+   * - toont de projecten van de ingelogde gebruiker;
+   * - toont per project de opgeslagen sitemapversies;
+   * - maakt links naar de builder of wireframes met de juiste GET-parameters.
    *
-   * Attributes:
-   * - builder_url: optional absolute/relative URL to the page that hosts [ai_sitemap_builder].
-   *   If omitted, the current page URL is used.
+   * Shortcode-attributen:
+   * - builder_url: pagina met [ai_sitemap_builder]. Leeg betekent huidige pagina.
+   * - wireframes_url: pagina met wireframes. Leeg gebruikt dezelfde pagina als builder_url.
+   * - title: titel boven de projectlijst.
+   * - target_step: optionele stap waarnaar een projectlink direct moet openen.
    */
   public function render_my_projects_shortcode($atts = [], $content = null) {
+    // Alleen ingelogde gebruikers mogen hun eigen projecten bekijken.
     if (!is_user_logged_in()) {
       return '<div class="aisb-wrap"><div class="aisb-card"><p>You must be logged in to view your projects.</p></div></div>';
     }
 
+    // Lees de shortcode-instellingen en vul eenvoudige standaardwaarden in.
     $atts = shortcode_atts([
       'builder_url'  => '',
       'wireframes_url' => '',
@@ -31,12 +45,14 @@ class AISB_Assets {
       'target_step'  => 0,
     ], $atts);
 
+    // Bepaal de URL van de huidige pagina. Die gebruiken we als er geen URL is meegegeven.
     $current_url = '';
     if (function_exists('home_url')) {
       $scheme = is_ssl() ? 'https' : 'http';
       $current_url = home_url(add_query_arg([], $_SERVER['REQUEST_URI'] ?? ''), $scheme);
     }
 
+    // Zonder expliciete builder_url wijst de projectlink terug naar deze pagina.
     $builder_url = trim((string) $atts['builder_url']);
     if ($builder_url === '') {
       $builder_url = $current_url;
@@ -44,15 +60,16 @@ class AISB_Assets {
 
     $wireframes_url = trim((string) $atts['wireframes_url']);
     if ($wireframes_url === '') {
-      // Default: assume the same page can host [ai_wireframes] OR use another page via attribute.
+      // Standaard gebruiken wireframes dezelfde pagina als de builder.
       $wireframes_url = $builder_url;
     }
 
-    // Clean builder_url of prior AISB params to avoid stacking.
+    // Verwijder oude AISB-parameters, zodat links niet steeds langer worden.
     $builder_url = remove_query_arg(['aisb_project', 'aisb_sitemap', 'aisb_version', 'aisb_step'], $builder_url);
     $wireframes_url = remove_query_arg(['aisb_project', 'aisb_sitemap', 'aisb_version', 'aisb_step'], $wireframes_url);
 
 
+    // Haal alleen de projecten op van de huidige gebruiker.
     $projects_q = new WP_Query([
       'post_type'      => 'aisb_project',
       'post_status'    => 'publish',
@@ -65,7 +82,7 @@ class AISB_Assets {
 
     $project_ids = $projects_q->posts;
 
-    // Fetch all sitemap versions for these projects in one query (faster than N+1).
+    // Haal alle sitemapversies in een query op. Dat is sneller dan een query per project.
     $versions_by_project = [];
     if (!empty($project_ids)) {
       $sitemaps_q = new WP_Query([
@@ -103,10 +120,10 @@ class AISB_Assets {
         ];
       }
 
-      // Ensure newest-first sort per project (in case WP_query mixes ordering across projects).
+      // Sorteer elke projectlijst opnieuw, zodat de nieuwste versie altijd eerst staat.
       foreach ($versions_by_project as $pid => $list) {
         usort($list, function($a, $b) {
-          // Prefer explicit version, fallback to created time.
+          // Gebruik eerst het versienummer en daarna de aanmaakdatum als reserve.
           if ((int)$a['version'] !== (int)$b['version']) {
             return ((int)$b['version'] <=> (int)$a['version']);
           }
@@ -116,7 +133,7 @@ class AISB_Assets {
       }
     }
 
-    // Render cards overview.
+    // Bouw de projectkaarten en geef de HTML als shortcode-output terug.
     ob_start();
     ?>
     <div class="aisb-wrap">
@@ -131,6 +148,7 @@ class AISB_Assets {
           <div class="aisb-projects-grid">
             <?php foreach ($project_ids as $pid) : ?>
               <?php
+                // Verzamel de gegevens die nodig zijn om een projectkaart te tonen.
                 $title = get_the_title($pid);
                 $brief = (string) get_post_meta($pid, 'aisb_project_brief', true);
                 $versions = $versions_by_project[$pid] ?? [];
@@ -146,6 +164,7 @@ class AISB_Assets {
                   </div>
                   <?php if ($latest) : ?>
                     <?php
+                      // Maak de knop naar de nieuwste sitemapversie of naar een vaste stap.
                       $target_step = (int) $atts['target_step'];
                       if ($target_step > 0) {
                         $latest_url = add_query_arg([
@@ -173,6 +192,7 @@ class AISB_Assets {
                         <a class="aisb-btn-secondary" href="<?php echo esc_url($latest_url); ?>">Open sitemap</a>
                         <a class="aisb-btn" href="<?php echo esc_url($latest_wf_url); ?>">Wireframes</a>
                       <?php endif; ?>
+                      <button class="aisb-btn-secondary aisb-delete-project-btn" data-project-id="<?php echo esc_attr($pid); ?>" title="Delete Project">🗑️</button>
                     </div>
                   <?php endif; ?>
                 </div>
@@ -185,6 +205,7 @@ class AISB_Assets {
                     <div class="aisb-project-versions-list">
                       <?php foreach ($versions as $v) : ?>
                         <?php
+                          // Bouw per versie een leesbaar label en de juiste openingslink.
                           $v_label = 'v' . (int) $v['version'];
                           if (!empty($v['label'])) $v_label .= ' · ' . $v['label'];
                           if (!empty($v['current'])) $v_label .= ' · current';
@@ -231,28 +252,43 @@ class AISB_Assets {
     return ob_get_clean();
   }
 
-      public function render_shortcode($atts = [], $content = null) {
+  /**
+   * Rendert de hoofdshortcode [ai_sitemap_builder].
+   *
+   * De shortcode toont een stappenbalk en daarna precies een actieve stap:
+   * 0. Mijn projecten
+   * 1. Sitemap genereren
+   * 2. Wireframes
+  * 3. Stijlgids
+  * 4. Designvoorbeeld
+   */
+  public function render_shortcode($atts = [], $content = null) {
+    // Lees de teksten die via shortcode-attributen overschreven kunnen worden.
     $atts = shortcode_atts([
       'title' => 'Sitemap Builder',
       'placeholder' => "Describe the website you want to build.\nExample: “A modern website for a hearing clinic in Belgium. Services: hearing tests, hearing aids, tinnitus coaching. Needs online appointment booking and testimonials.”",
       'button' => 'Generate sitemap',
     ], $atts);
 
+    // De hoofdshortcode heeft altijd de frontend-assets nodig.
     $this->enqueue_assets_for_shortcode();
 
+    // De actieve stap komt uit de URL. Buiten bereik valt terug naar stap 1.
     $step = isset($_GET['aisb_step']) ? (int) $_GET['aisb_step'] : 1;
     if ($step < 0 || $step > 4) $step = 1;
 
+    // Project en sitemap worden via de URL gedeeld tussen de stappen.
     $project_id = isset($_GET['aisb_project']) ? (int) $_GET['aisb_project'] : 0;
     $sitemap_id = isset($_GET['aisb_sitemap']) ? (int) $_GET['aisb_sitemap'] : 0;
 
-    // Build tab URLs (preserve project + sitemap).
+    // Bouw tab-URL's en behoud daarbij de gekozen project- en sitemapcontext.
     $base_url = remove_query_arg(['aisb_step'], (function_exists('home_url') ? home_url(add_query_arg([], $_SERVER['REQUEST_URI'] ?? ''), is_ssl() ? 'https' : 'http') : ''));
     if (!$base_url) {
       $base_url = remove_query_arg(['aisb_step'], add_query_arg([], $_SERVER['REQUEST_URI'] ?? ''));
     }
     $return_step = isset($_GET['aisb_return']) ? (int) $_GET['aisb_return'] : 0;
 
+    // De projecten-tab onthoudt vanaf welke stap de gebruiker kwam.
     $tab0_args = ['aisb_step' => 0];
     if ($step > 0) $tab0_args['aisb_return'] = $step;
     $tab0_url = add_query_arg($tab0_args, remove_query_arg(['aisb_project', 'aisb_sitemap', 'aisb_return'], $base_url));
@@ -284,7 +320,7 @@ class AISB_Assets {
           <div class="aisb-card">
             <?php echo $this->render_my_projects_shortcode(['title' => 'My Projects', 'target_step' => $return_step]); ?>
           </div>
-        </div><!-- /Step 0 panel -->
+        </div><!-- /Stap 0-paneel -->
         <?php endif; ?>
 
         <div class="aisb-step-panel" data-aisb-step-panel="1" style="<?php echo $step === 1 ? '' : 'display:none;'; ?>">
@@ -387,7 +423,7 @@ class AISB_Assets {
             <pre class="aisb-pre" data-aisb-raw></pre>
           </details>
         </div>
-        </div><!-- /Step 1 panel -->
+        </div><!-- /Stap 1-paneel -->
 
         <?php if ($step === 2) : ?>
         <div class="aisb-step-panel" data-aisb-step-panel="2">
@@ -409,7 +445,7 @@ class AISB_Assets {
               </div>
             <?php else : ?>
 
-              <!-- Toolbar -->
+              <!-- Werkbalk -->
               <div class="aisb-wf-toolbar">
                 <div class="aisb-wf-toolbar-left">
                   <span class="aisb-project-switcher-name"><?php echo esc_html(get_the_title($project_id)); ?></span>
@@ -424,10 +460,10 @@ class AISB_Assets {
 
               <div class="aisb-wf-status" data-aisb-wf-status></div>
 
-              <!-- Whiteboard -->
+              <!-- Werkvlak waarop alle pagina's als kaarten verschijnen -->
               <div class="aisb-wf-whiteboard" data-aisb-wf-whiteboard></div>
 
-              <!-- Expanded page panel (hidden by default) -->
+              <!-- Uitgeklapt paginapaneel, standaard verborgen -->
               <div class="aisb-wf-expanded" data-aisb-wf-expanded>
                 <div class="aisb-wf-expanded-head">
                   <div>
@@ -449,10 +485,10 @@ class AISB_Assets {
                 </details>
               </div>
 
-              <!-- Hidden legacy elements for JS compatibility -->
+              <!-- Verborgen oude elementen voor bestaande JavaScript-koppelingen -->
               <div class="aisb-wf-legacy-pages" data-aisb-wf-pages></div>
 
-              <!-- Templates -->
+              <!-- Templates die JavaScript kloont bij het opbouwen van de wireframe-ui -->
               <template data-tpl="page-card">
                 <div class="aisb-wf-page-card" data-wb-page>
                   <div class="aisb-wf-page-card-head">
@@ -492,7 +528,7 @@ class AISB_Assets {
 
             <?php endif; ?>
           </div>
-        </div><!-- /Step 2 panel -->
+        </div><!-- /Stap 2-paneel -->
         <?php endif; ?>
 
         <?php if ($step === 3) : ?>
@@ -522,7 +558,7 @@ class AISB_Assets {
               <?php AISB_Style_Guide::render_style_guide_html($project_id); ?>
             <?php endif; ?>
           </div>
-        </div><!-- /Step 3 panel -->
+        </div><!-- /Stap 3-paneel -->
         <?php endif; ?>
 
         <?php if ($step === 4) : ?>
@@ -551,38 +587,56 @@ class AISB_Assets {
               <?php AISB_Design::render_design_html($project_id); ?>
             <?php endif; ?>
           </div>
-        </div><!-- /Step 4 panel -->
+        </div><!-- /Stap 4-paneel -->
         <?php endif; ?>
       </div>
     <?php
     return ob_get_clean();
   }
 
-    public function enqueue_assets() {
+  /**
+  * Laadt bestanden op pagina's waar een frontend-shortcode staat.
+   *
+   * WordPress kan deze methode op elke pagina aanroepen. Daarom controleren we
+   * eerst of de huidige pagina echt een AISB-shortcode bevat.
+   */
+  public function enqueue_assets() {
     if (!$this->current_page_has_shortcode('ai_sitemap_builder') && !$this->current_page_has_shortcode('my-projects')) return;
     $this->enqueue_assets_for_shortcode();
   }
 
+  /**
+   * Leest de plugininstellingen.
+   *
+   * Eerst proberen we de centrale settings-klasse. Bestaat die niet, dan lezen
+   * we rechtstreeks uit de WordPress-opties.
+   */
   private function get_settings(): array{
-    // If your settings class exists and has a static getter, use it
+    // Gebruik de centrale settings-klasse wanneer die beschikbaar is.
     if (class_exists('AISB_Settings') && method_exists('AISB_Settings', 'get_settings')) {
         $settings = AISB_Settings::get_settings();
         return is_array($settings) ? $settings : [];
     }
 
-    // Fallback to wp_options (adjust option key if yours differs)
+    // Val terug op wp_options wanneer de settings-klasse niet geladen is.
     $settings = get_option(AISB_Plugin::OPT_KEY, []);
     return is_array($settings) ? $settings : [];
 }
 
 
+  /**
+   * Registreert alle CSS en JavaScript voor de builder.
+   *
+   * De methode is idempotent: bij meerdere shortcodes op dezelfde pagina worden
+  * de bestanden maar een keer toegevoegd.
+   */
   private function enqueue_assets_for_shortcode() {
     if (self::$assets_enqueued) return;
     self::$assets_enqueued = true;
 
     $settings = $this->get_settings();
 
-    // --- Google Fonts ---
+    // Laad de fonts die de frontend gebruikt.
     wp_enqueue_style(
       'aisb-google-fonts',
       'https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap',
@@ -590,7 +644,7 @@ class AISB_Assets {
       null
     );
 
-    // --- CSS (8 files, no dependencies between them) ---
+    // Laad de CSS-bestanden. Ze hebben onderling geen afhankelijkheden.
     $css_files = [
       'aisb-base'       => 'css/base.css',
       'aisb-forms'      => 'css/forms.css',
@@ -605,7 +659,7 @@ class AISB_Assets {
       wp_enqueue_style($handle, AISB_PLUGIN_URL . 'assets/' . $file, [], AISB_VERSION);
     }
 
-    // --- JS (5 files, loaded in dependency order) ---
+    // Laad de JavaScript-bestanden in volgorde van afhankelijkheid.
     wp_enqueue_script(
       'aisb-app-init',
       AISB_PLUGIN_URL . 'assets/js/app-init.js',
@@ -614,7 +668,7 @@ class AISB_Assets {
       true
     );
 
-    // Localize on the first JS file so window.AISB is available before the others run.
+    // Geef PHP-data door aan JavaScript voordat de andere scripts starten.
     wp_localize_script('aisb-app-init', 'AISB', [
       'ajaxUrl' => admin_url('admin-ajax.php'),
       'nonce'   => wp_create_nonce(AISB_Plugin::NONCE_ACTION),
@@ -662,6 +716,9 @@ class AISB_Assets {
     );
   }
 
+  /**
+   * Controleert of de huidige WordPress-pagina een bepaalde shortcode bevat.
+   */
   private function current_page_has_shortcode($shortcode) {
     if (!is_singular()) return false;
     global $post;
@@ -669,6 +726,9 @@ class AISB_Assets {
     return has_shortcode($post->post_content, $shortcode);
   }
 
+  /**
+   * Geeft de toegestane sectietypes terug voor sitemap- en wireframegeneratie.
+   */
   public function section_types():array {
     return AISB_Enforcer::section_types();
   }

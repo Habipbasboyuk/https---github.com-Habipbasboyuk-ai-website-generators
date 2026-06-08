@@ -1,3 +1,9 @@
+/**
+ * Script binnen de wireframe-preview iframe.
+ *
+ * Verwerkt inline tekstbewerking en stuurt hoogtewijzigingen naar het parent
+ * venster, zodat de editor de iframe netjes kan schalen.
+ */
 (function () {
   const TEXT_TAGS = [
     "H1",

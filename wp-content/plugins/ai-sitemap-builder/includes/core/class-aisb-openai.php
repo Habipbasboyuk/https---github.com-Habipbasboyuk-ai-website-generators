@@ -2,8 +2,16 @@
 
 if (!defined('ABSPATH')) exit;
 
+/**
+ * Kleine wrapper rond de OpenAI Chat Completions API.
+ *
+ * Deze klasse bouwt de request-body, forceert JSON-output wanneer dat nodig is
+ * en logt fouten of ongeldige antwoorden voor troubleshooting.
+ */
 class AISB_OpenAI {
-      // ---------- OpenAI call + prompts (UPDATED with debug logging) ----------
+    /**
+     * Roept OpenAI aan met een user prompt en optioneel een aparte system prompt.
+     */
     public function call_openai_chat_completions($user_prompt, $settings, $override_system_prompt = null) {
       $endpoint = $settings['endpoint'] ?: 'https://api.openai.com/v1/chat/completions';
       $api_key = $settings['api_key'];
@@ -23,7 +31,7 @@ class AISB_OpenAI {
         'max_tokens' => 16000,
       ];
 
-      // Only force 'json_object' if generating sitemaps (prevent crashing string-only responses like Unsplash keyword)
+      // Forceer JSON alleen wanneer de prompt duidelijk JSON verwacht.
       if (strpos($system_prompt, 'JSON') !== false || strpos($user_prompt, 'JSON') !== false) {
         $body['response_format'] = [ 'type' => 'json_object' ];
       }
@@ -42,7 +50,7 @@ class AISB_OpenAI {
       $elapsed = round(microtime(true) - $t0, 3);
     
       if (is_wp_error($response)) {
-        // Log transport-level WP error
+        // Log WordPress/HTTP-transportfouten.
         $this->append_debug_log([
           'event' => 'openai_http_wp_error',
           'model' => $model,
@@ -60,7 +68,7 @@ class AISB_OpenAI {
       $raw  = wp_remote_retrieve_body($response);
     
       if ($code < 200 || $code >= 300) {
-        // Log HTTP error response
+        // Log foutantwoorden van de API zelf.
         $this->append_debug_log([
           'event' => 'openai_http_error',
           'model' => $model,
@@ -77,7 +85,7 @@ class AISB_OpenAI {
     
       $json = json_decode($raw, true);
       if (!is_array($json)) {
-        // Log bad JSON wrapper from OpenAI
+        // Log wanneer de API-wrapper geen geldige JSON terugstuurt.
         $this->append_debug_log([
           'event' => 'openai_bad_json_wrapper',
           'model' => $model,
@@ -96,7 +104,7 @@ class AISB_OpenAI {
       $content = $json['choices'][0]['message']['content'] ?? '';
       $content = trim((string)$content);
     
-      // Strip possible fences
+      // Verwijder eventuele markdown code fences rond het antwoord.
       $content = preg_replace('/^```json\s*/i', '', $content);
       $content = preg_replace('/^```\s*/', '', $content);
       $content = preg_replace('/\s*```$/', '', $content);

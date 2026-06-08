@@ -2,7 +2,16 @@
 
 if (!defined('ABSPATH')) exit;
 
+/**
+ * Slaat een beperkte debuglog op in WordPress options.
+ *
+ * De log helpt bij het nakijken van AI-requests en schemafouten. Gevoelige
+ * waarden zoals API keys worden niet opgeslagen.
+ */
 class AISB_Logger {
+  /**
+   * Leest de huidige log uit wp_options.
+   */
     private function get_debug_log() {
     $log = get_option(AISB_Plugin::LOG_OPT_KEY, []);
     return is_array($log) ? $log : [];
@@ -11,12 +20,12 @@ class AISB_Logger {
   private function append_debug_log($entry) {
     if (!is_array($entry)) return;
 
-    // Never store API key
+    // Bewaar nooit API keys in de debuglog.
     if (isset($entry['api_key'])) unset($entry['api_key']);
 
     $log = $this->get_debug_log();
 
-    // Add timestamp metadata
+    // Voeg tijdsinformatie toe in WordPress-tijdzone en Unix-tijd.
     $entry['_ts'] = current_time('mysql'); // WP timezone
     $entry['_unix'] = time();
 
@@ -42,7 +51,7 @@ class AISB_Logger {
     if (!is_admin()) return;
     if (!current_user_can('manage_options')) return;
 
-    // Handle nonce-protected GET
+    // Verwerk de nonce-beveiligde GET-actie om de log te wissen.
     if (!isset($_GET['aisb_clear_log'])) return;
 
     if (

@@ -2,6 +2,12 @@
 
 if (!defined('ABSPATH')) exit;
 
+/**
+ * Beheert de eigen bibliotheek met wireframe-sectietemplates.
+ *
+ * Admins kunnen Bricks copied-elements JSON opslaan, analyseren, ophalen,
+ * verwijderen en oude preview schemas herstellen via AJAX.
+ */
 class AISB_Template_Library {
 
   /** @var AISB_Template_Analyzer */
@@ -12,19 +18,19 @@ class AISB_Template_Library {
   }
 
   public function init(): void {
-    // Ensure tables exist even if activation hook was missed.
+    // Zorg dat tabellen bestaan, ook als de activatiehook gemist werd.
     add_action('init', ['AISB_Installer', 'maybe_install']);
 
-    // Admin UI
+    // Admininterface voor templatebeheer.
     add_action('admin_menu', [$this, 'admin_menu']);
 
-    // AJAX
+    // AJAX-acties voor opslaan, tonen, verwijderen en herstellen.
     add_action('wp_ajax_aisb_save_section_template', [$this, 'ajax_save']);
     add_action('wp_ajax_aisb_list_section_templates', [$this, 'ajax_list']);
     add_action('wp_ajax_aisb_delete_section_template', [$this, 'ajax_delete']);
-    // Used by the wireframe UI to fetch a full template (incl. preview schema) with lazy regeneration.
+    // Gebruikt door de wireframe-ui om een volledige template met preview_schema op te halen.
     add_action('wp_ajax_aisb_get_section_template', [$this, 'ajax_get']);
-    // One-click (admin) repair utility for older libraries that have no preview_schema.
+    // Admin-herstelactie voor oudere bibliotheken zonder preview_schema.
     add_action('wp_ajax_aisb_regenerate_preview_schemas', [$this, 'ajax_regenerate_preview_schemas']);
   }
 

@@ -1,3 +1,9 @@
+/**
+ * Legacy frontendscript voor de sitemapbuilder.
+ *
+ * Beheert promptinvoer, sitemapweergave, canvasinteractie, nodes slepen,
+ * zoom/pan, pagina toevoegen en basis-AJAX-acties.
+ */
 (() => {
   const root = document.querySelector("[data-aisb]");
   if (!root || !window.AISB) return;
@@ -2153,6 +2159,56 @@
   // Auto-load a selected project/version when arriving from [my-projects]
   // (expects GET params: ?aisb_project=123&aisb_sitemap=456)
   autoLoadFromUrl();
+
+  // Handle delete project buttons recursively
+  document.addEventListener("click", async (e) => {
+    const btn = e.target.closest(".aisb-delete-project-btn");
+    if (!btn) return;
+
+    e.preventDefault();
+    if (
+      !confirm(
+        "Are you sure you want to delete this project? This will delete all associated sitemaps, wireframes, and design settings.",
+      )
+    ) {
+      return;
+    }
+
+    const projectId = btn.getAttribute("data-project-id");
+    btn.textContent = "...";
+    btn.disabled = true;
+
+    try {
+      const fd = new FormData();
+      fd.append("action", "aisb_delete_project");
+      fd.append("nonce", AISB.nonce);
+      fd.append("project_id", projectId);
+
+      const resp = await fetch(AISB.ajaxUrl, {
+        method: "POST",
+        body: fd,
+      });
+      const data = await resp.json();
+
+      if (data.success) {
+        const card = btn.closest(".aisb-project-card");
+        if (card) {
+          card.remove();
+        } else {
+          window.location.reload();
+        }
+      } else {
+        alert(data.data?.message || "Could not delete project.");
+        btn.textContent = "🗑️";
+        btn.disabled = false;
+      }
+    } catch (err) {
+      console.error(err);
+      alert("An error occurred during deletion.");
+      btn.textContent = "🗑️";
+      btn.disabled = false;
+    }
+  });
 
   const ro = new ResizeObserver(() => requestAnimationFrame(drawEdges));
   ro.observe(canvasEl);

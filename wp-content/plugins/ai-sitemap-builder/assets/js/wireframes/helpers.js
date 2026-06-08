@@ -1,5 +1,7 @@
 /**
- * Shared helper functions: status messages, AJAX posting.
+ * Gedeelde wireframe-hulpfuncties.
+ *
+ * Bevat statusberichten, AJAX-posting en kleine utilities voor de modules.
  */
 (function (app) {
   if (!app) return;

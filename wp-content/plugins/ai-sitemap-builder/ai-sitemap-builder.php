@@ -10,25 +10,32 @@
 
 if (!defined('ABSPATH')) exit;
 
+/**
+ * Hoofdbestand van de plugin.
+ *
+ * Dit bestand definieert de plugin-constanten, laadt alle klassen en maakt de
+ * service-objecten aan zodra WordPress alle plugins heeft geladen.
+ */
 define('AISB_VERSION', '1.7.9');
 define('AISB_PLUGIN_FILE', __FILE__);
 define('AISB_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('AISB_PLUGIN_URL', plugin_dir_url(__FILE__));
 
-// Core
+// Kernklassen: instellingen, logging, AI-call, installatie en publicatie.
 require_once __DIR__ . '/includes/core/class-aisb-plugin.php';
 require_once __DIR__ . '/includes/core/class-aisb-settings.php';
+require_once __DIR__ . '/includes/core/class-aisb-instawp.php';
 require_once __DIR__ . '/includes/core/class-aisb-openai.php';
 require_once __DIR__ . '/includes/core/class-aisb-logger.php';
 require_once __DIR__ . '/includes/core/class-aisb-installer.php';
 
-// Step 1 (Sitemap)
+// Stap 1: sitemapstructuur genereren en tonen.
 require_once __DIR__ . '/includes/step1-sitemap/class-aisb-ajax.php';
 require_once __DIR__ . '/includes/step1-sitemap/class-aisb-prompts.php';
 require_once __DIR__ . '/includes/step1-sitemap/class-aisb-enforcer.php';
 require_once __DIR__ . '/includes/step1-sitemap/class-aisb-assets.php';
 
-// Step 2 (Wireframes)
+// Stap 2: wireframes opbouwen uit Bricks/Brixies templates.
 require_once __DIR__ . '/includes/step2-wireframes/class-aisb-template-analyzer.php';
 require_once __DIR__ . '/includes/step2-wireframes/class-aisb-template-library.php';
 require_once __DIR__ . '/includes/step2-wireframes/class-aisb-wireframe-compiler.php';
@@ -36,16 +43,16 @@ require_once __DIR__ . '/includes/step2-wireframes/class-aisb-wireframes-bricks.
 require_once __DIR__ . '/includes/step2-wireframes/class-aisb-wireframes-ai.php';
 require_once __DIR__ . '/includes/step2-wireframes/class-aisb-wireframes.php';
 
-// Step 3 (Style Guide)
+// Stap 3: stijlgids genereren en beheren.
 require_once __DIR__ . '/includes/step3-style-guide/class-aisb-style-guide.php';
 
-// Step 4 (Design)
+// Stap 4: designpreview, secties vervangen en Figma-export.
 require_once __DIR__ . '/includes/step4-design/class-aisb-design.php';
 
 register_activation_hook(__FILE__, ['AISB_Installer', 'activate']);
 
 add_action('plugins_loaded', function () {
-  // Create the “service” objects
+  // Maak alle service-objecten aan en geef dependencies expliciet door.
   $logger   = new AISB_Logger();
   $settings = new AISB_Settings();
   $prompts  = new AISB_Prompts();
@@ -54,23 +61,25 @@ add_action('plugins_loaded', function () {
   $assets   = new AISB_Assets($settings, $prompts);
   $ajax     = new AISB_Ajax($settings, $logger, $openai, $enforcer);
 
-  // Step 2 (Wireframes)
+  // Stap 2: helpers voor templateanalyse, compilatie en wireframes.
   $analyzer  = new AISB_Template_Analyzer();
   $tpl_lib   = new AISB_Template_Library($analyzer);
   $compiler  = new AISB_Wireframe_Compiler($tpl_lib);
   $wireframes= new AISB_Wireframes($tpl_lib, $compiler);
+  $instawp   = new AISB_InstaWP($compiler);
 
-  // Step 3 (Style Guide)
+  // Stap 3: stijlgidsmodule.
   $style_guide = new AISB_Style_Guide();
 
-  // Step 4 (Design)
+  // Stap 4: designmodule.
   $design = new AISB_Design();
 
-  // Main plugin wires everything together
+  // De hoofdplugin registreert de centrale WordPress-hooks.
   $plugin   = new AISB_Plugin($settings, $assets, $ajax, $logger);
 
   $plugin->init();
   $wireframes->init();
+  $instawp->init();
   $style_guide->init();
   $design->init();
 });

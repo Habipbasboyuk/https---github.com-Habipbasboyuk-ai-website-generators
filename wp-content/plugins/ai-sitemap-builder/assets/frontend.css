@@ -1,4 +1,4 @@
-/* ---- Projects grid (my-projects shortcode) ---- */
+/* Projectgrid voor de [my-projects] shortcode. */
 .aisb-projects-title {
   margin: 0 0 14px;
   font-size: 18px;
@@ -112,4 +112,66 @@
 }
 .aisb-project-version-wf:hover {
   background: #f0f0f0;
+}
+
+/* ── Delete Project Modal ───────────────────────────────── */
+.aisb-delete-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(2px);
+  animation: aisb-fade-in 0.15s ease;
+}
+.aisb-delete-modal-dialog {
+  background: #fff;
+  border-radius: 12px;
+  padding: 30px;
+  max-width: 400px;
+  width: calc(100% - 32px);
+  text-align: center;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+  animation: aisb-slide-up 0.2s ease;
+}
+.aisb-delete-modal-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+.aisb-delete-modal-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 10px 0;
+  color: #111;
+}
+.aisb-delete-modal-text {
+  font-size: 15px;
+  color: #555;
+  margin: 0 0 24px 0;
+  line-height: 1.5;
+}
+.aisb-delete-modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+@keyframes aisb-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes aisb-slide-up {
+  from {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

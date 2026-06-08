@@ -1,4 +1,4 @@
-/* Output section: header, actions, summary pills, status, hints, counters, raw JSON */
+/* Outputgedeelte: header, acties, samenvatting, status, hints, teller en ruwe JSON. */
 
 .aisb-hint {
   display: flex;

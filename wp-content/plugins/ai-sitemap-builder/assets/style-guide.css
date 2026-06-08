@@ -1,4 +1,4 @@
-/* ─── Infinite Canvas ─────────────────────────────────────── */
+/* Stijlgids: oneindig canvas, wizardpanelen, previews en invoervelden. */
 .aisb-sg-canvas {
   width: 100%;
   height: 70vh;
@@ -794,6 +794,64 @@
   font-size: 11px;
   color: rgba(0, 0, 0, 0.35);
   margin: 0;
+}
+
+.aisb-sg-image-library {
+  margin-top: 18px;
+}
+.aisb-sg-subtabs--images {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  margin: 0;
+  padding: 4px;
+  border: 1px solid #d6dbe3;
+  border-radius: 14px;
+  background: #f4f6f8;
+}
+.aisb-sg-subtabs--images .aisb-sg-subtab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: rgba(17, 24, 39, 0.72);
+  font-size: 12px;
+  font-weight: 600;
+  transition:
+    background 0.16s ease,
+    color 0.16s ease,
+    box-shadow 0.16s ease;
+}
+.aisb-sg-subtabs--images .aisb-sg-subtab:hover {
+  background: rgba(255, 255, 255, 0.72);
+  color: #111827;
+}
+.aisb-sg-subtabs--images .aisb-sg-subtab.is-active {
+  background: linear-gradient(135deg, #161616, #2d2d2d);
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(17, 24, 39, 0.16);
+}
+.aisb-sg-image-tab-count {
+  color: inherit;
+  opacity: 0.7;
+  font-weight: 500;
+}
+.aisb-sg-image-tab-panel {
+  margin-top: 12px;
+  padding: 14px;
+  border: 1px solid #e7ebf0;
+  border-radius: 14px;
+  background: #fff;
+}
+.aisb-sg-image-tab-panel .aisb-sg-empty-state,
+.aisb-sg-image-tab-panel .aisb-sg-uploaded-images,
+.aisb-sg-image-tab-panel .aisb-sg-auto-images {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 /* Uploaded images grid */

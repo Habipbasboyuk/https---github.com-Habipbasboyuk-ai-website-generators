@@ -3,15 +3,17 @@
 if (!defined('ABSPATH')) exit;
 
 /**
- * Bricks template integration for wireframes.
- * Queries, groups, and picks Bricks templates by section type.
+ * Koppelt wireframes aan Bricks templates.
+ *
+ * De klasse zoekt gepubliceerde Bricks templates, groepeert ze per type/tag en
+ * kiest passende templates voor wireframe-secties.
  */
 class AISB_Wireframes_Bricks {
 
   /**
-   * Query all published Bricks templates and group them by WordPress tag slug.
-   * Falls back to `_bricks_template_type` meta when a template has no tags.
-   * Result is statically cached per request.
+   * Haalt alle gepubliceerde Bricks templates op en groepeert ze per tag slug.
+   * Zonder tags valt de methode terug op de `_bricks_template_type` meta.
+   * Het resultaat wordt per request gecached.
    *
    * @return array<string, list<array{id:int,title:string,ttype:string,tags:string[],shortcode:string}>>
    */

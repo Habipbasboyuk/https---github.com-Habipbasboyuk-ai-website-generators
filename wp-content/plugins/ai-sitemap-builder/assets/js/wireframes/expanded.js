@@ -1,5 +1,5 @@
 /**
- * Expanded page view: open/close, renderSections, createBricksIframe.
+ * Uitgeklapte paginaweergave: openen/sluiten, secties renderen en Bricks iframes maken.
  */
 (function (app) {
   if (!app) return;

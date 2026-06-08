@@ -1,5 +1,5 @@
 /**
- * Infinite canvas: pan, zoom, loader overlay, fitToView.
+ * Oneindig wireframecanvas: pan, zoom, loaderoverlay en fit-to-view.
  */
 (function (app) {
   if (!app) return;

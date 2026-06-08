@@ -1,5 +1,5 @@
 /**
- * Section actions (event delegation) and iframe message handling.
+ * Sectie-acties via event delegation en afhandeling van iframe-berichten.
  */
 (function (app) {
   if (!app) return;

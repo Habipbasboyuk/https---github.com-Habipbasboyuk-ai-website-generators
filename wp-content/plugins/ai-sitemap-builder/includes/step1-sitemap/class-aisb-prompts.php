@@ -2,8 +2,17 @@
 
 if (!defined('ABSPATH')) exit;
 
+/**
+ * Bouwt de prompts voor sitemapgeneratie.
+ *
+ * De prompt beschrijft het gewenste JSON-schema, de toegestane sectietypes en
+ * taalregels die OpenAI moet volgen bij het maken van pagina's en secties.
+ */
 class AISB_Prompts {
 
+  /**
+   * System prompt voor de volledige sitemap met secties.
+   */
     public function system_prompt() {
     $types = $this->section_types();
     $types_str = implode(' | ', array_map(function($t){ return $t; }, $types));
@@ -76,7 +85,7 @@ PROMPT;
   }
 
   /**
-   * Prompt to generate a single child page (used by AJAX add-page).
+    * Prompt om een losse child-page te genereren via de add-page AJAX-actie.
    */
   public function single_page_prompt($title, $desc, $parent_slug, $site_context_json) {
     $site_context_json = is_string($site_context_json) ? trim($site_context_json) : '';
@@ -102,7 +111,7 @@ PROMPT;
   }
 
   /**
-   * System prompt for step 1: generates page structure WITHOUT sections.
+    * System prompt voor stap 1 wanneer alleen paginastructuur nodig is.
    */
   public function structure_only_system_prompt(): string {
     return <<<PROMPT

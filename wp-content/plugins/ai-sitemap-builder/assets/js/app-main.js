@@ -1,6 +1,8 @@
 /**
- * Main: AJAX operations, renderAll, event listeners, initialization.
- * Depends on: app-init.js, app-utils.js, app-canvas.js, app-ui.js
+ * Hoofdmodule voor stap 1.
+ *
+ * Koppelt AJAX-acties, renderAll, eventlisteners en initialisatie aan elkaar.
+ * Afhankelijk van: app-init.js, app-utils.js, app-canvas.js en app-ui.js.
  */
 (function () {
   "use strict";
@@ -642,6 +644,93 @@
   });
 
   /* ── Initialize ─────────────────────────────────────────── */
+
+  // Show custom popup for deleting projects
+  const showDeleteModal = (projectId, btn, card) => {
+    // Check if modal already exists
+    if (document.querySelector(".aisb-delete-modal-overlay")) return;
+
+    const overlay = document.createElement("div");
+    overlay.className = "aisb-delete-modal-overlay";
+
+    const dialog = document.createElement("div");
+    dialog.className = "aisb-delete-modal-dialog";
+
+    dialog.innerHTML = `
+      <div class="aisb-delete-modal-icon">🗑️</div>
+      <h3 class="aisb-delete-modal-title">Delete Project?</h3>
+      <p class="aisb-delete-modal-text">Are you sure you want to delete this project? This will permanently delete all associated sitemaps, wireframes, and design settings. This action cannot be undone.</p>
+      <div class="aisb-delete-modal-actions">
+        <button class="aisb-btn-secondary" id="aisb-modal-cancel">Cancel</button>
+        <button class="aisb-btn" style="background:var(--aisb-danger, #ef4444);border-color:var(--aisb-danger, #ef4444);color:#fff;" id="aisb-modal-confirm">Yes, delete it</button>
+      </div>
+    `;
+
+    overlay.appendChild(dialog);
+    document.body.appendChild(overlay);
+
+    const close = () => {
+      overlay.remove();
+    };
+
+    document
+      .getElementById("aisb-modal-cancel")
+      .addEventListener("click", close);
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) close();
+    });
+
+    document
+      .getElementById("aisb-modal-confirm")
+      .addEventListener("click", async () => {
+        close();
+        const originalText = btn.textContent;
+        btn.textContent = "...";
+        btn.disabled = true;
+
+        try {
+          const fd = new FormData();
+          fd.append("action", "aisb_delete_project");
+          fd.append("nonce", AISB.nonce);
+          fd.append("project_id", projectId);
+
+          const resp = await fetch(AISB.ajaxUrl, {
+            method: "POST",
+            body: fd,
+          });
+          const data = await resp.json();
+
+          if (data.success) {
+            if (card) {
+              card.remove();
+            } else {
+              window.location.reload();
+            }
+          } else {
+            alert(data.data?.message || "Could not delete project.");
+            btn.textContent = originalText;
+            btn.disabled = false;
+          }
+        } catch (err) {
+          console.error(err);
+          alert("An error occurred during deletion.");
+          btn.textContent = originalText;
+          btn.disabled = false;
+        }
+      });
+  };
+
+  // Handle delete project buttons recursively
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest(".aisb-delete-project-btn");
+    if (!btn) return;
+
+    e.preventDefault();
+    const projectId = btn.getAttribute("data-project-id");
+    const card = btn.closest(".aisb-project-card");
+
+    showDeleteModal(projectId, btn, card);
+  });
 
   autoLoadFromUrl();
 

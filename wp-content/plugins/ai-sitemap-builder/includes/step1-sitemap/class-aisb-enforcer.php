@@ -2,7 +2,16 @@
 
 if (!defined('ABSPATH')) exit;
 
+/**
+ * Maakt AI-output veilig en consistent voor de sitemapbuilder.
+ *
+ * Deze klasse vult ontbrekende velden aan, normaliseert parent_slug waarden en
+ * dwingt toegestane sectietypes af voordat data wordt opgeslagen of getoond.
+ */
 class AISB_Enforcer {
+  /**
+   * Herleidt bekende sectienamen naar een toegestane Brixies/Bricks categorie.
+   */
       private function section_type_from_name($section_name) {
     $n = strtolower(trim((string)$section_name));
     if ($n === 'navbar') return 'Headers';
@@ -62,15 +71,15 @@ class AISB_Enforcer {
       'Timeline Sections',
     ];
 
-    // Allow overriding via filter, but guarantee an array return
+    // Laat uitbreiden via een filter, maar garandeer dat er altijd een array terugkomt.
     $filtered = apply_filters('aisb_section_types', $types);
 
     return is_array($filtered) ? array_values($filtered) : $types;
   }
 
   /**
-   * Validates structure-only data (step 1): ensures home page and parent slugs.
-   * Does NOT add or enforce sections.
+    * Valideert structure-only data: Home-pagina en parent_slugs worden gegarandeerd.
+    * Deze methode voegt bewust geen secties toe.
    */
   public function enforce_structure_only($data): array {
     if (!is_array($data)) return $data;

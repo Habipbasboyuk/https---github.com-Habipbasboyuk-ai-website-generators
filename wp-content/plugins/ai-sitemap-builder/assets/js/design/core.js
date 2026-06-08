@@ -1,8 +1,8 @@
 /**
- * design/core.js — Gedeelde state en helperfuncties voor de Design preview.
+ * design/core.js - Gedeelde state en helperfuncties voor de designpreview.
  *
  * Wordt als eerste geladen in de keten:
- *   core.js → overrides.js → images.js → canvas.js → init.js
+ *   core.js -> overrides.js -> images.js -> canvas.js -> init.js
  *
  * Stelt window.AISB_Design (alias D) beschikbaar zodat alle andere scripts
  * de gedeelde state en helpers kunnen bereiken.
@@ -107,11 +107,135 @@
         Object.assign({ action, nonce: AISB_DESIGN.nonce }, data || {}),
       ),
     });
-    return r.json();
+
+    const raw = await r.text();
+    let parsed = null;
+
+    if (raw) {
+      try {
+        parsed = JSON.parse(raw);
+      } catch (err) {
+        if (!r.ok) {
+          throw new Error(
+            "Request failed (" +
+              r.status +
+              " " +
+              r.statusText +
+              "): " +
+              raw.slice(0, 300),
+          );
+        }
+
+        throw new Error(
+          "Invalid server response (" + r.status + " " + r.statusText + ")",
+        );
+      }
+    }
+
+    if (!r.ok) {
+      const message =
+        (parsed && parsed.data && parsed.data.message) ||
+        (parsed && parsed.message) ||
+        raw ||
+        "Request failed (" + r.status + " " + r.statusText + ")";
+      const error = new Error(message);
+      error.status = r.status;
+      error.response = parsed;
+      throw error;
+    }
+
+    return parsed;
   };
 
   D.clamp = function (v, lo, hi) {
     return Math.max(lo, Math.min(hi, v));
+  };
+
+  function hasRichTextMarkup(text) {
+    return /<\s*br\s*\/?>|<\s*\/?\s*p\b|<\s*span\b/i.test(String(text || ""));
+  }
+
+  function extractSafeInlineColor(el) {
+    if (!el || !el.getAttribute) return "";
+    var styleAttr = String(el.getAttribute("style") || "");
+    var match = styleAttr.match(/(?:^|;)\s*color\s*:\s*([^;]+)/i);
+    if (!match) return "";
+    var value = String(match[1] || "").trim();
+    return /^(#[0-9a-f]{3,8}|rgba?\(\s*[\d\s.,%]+\)|hsla?\(\s*[\d\s.,%]+\)|var\(\s*--[a-z0-9_-]+\s*\)|[a-z-]+)$/i.test(
+      value,
+    )
+      ? value
+      : "";
+  }
+
+  function appendSanitizedRichText(parent, sourceNode, doc) {
+    if (!sourceNode || !parent || !doc) return;
+
+    if (sourceNode.nodeType === 3) {
+      parent.appendChild(doc.createTextNode(sourceNode.textContent || ""));
+      return;
+    }
+
+    if (sourceNode.nodeType !== 1) return;
+
+    var tag = String(sourceNode.tagName || "").toLowerCase();
+    if (tag === "br") {
+      parent.appendChild(doc.createElement("br"));
+      return;
+    }
+
+    if (tag === "p") {
+      if (parent.childNodes && parent.childNodes.length) {
+        parent.appendChild(doc.createElement("br"));
+        parent.appendChild(doc.createElement("br"));
+      }
+      Array.from(sourceNode.childNodes || []).forEach(function (child) {
+        appendSanitizedRichText(parent, child, doc);
+      });
+      return;
+    }
+
+    if (tag === "span") {
+      var span = doc.createElement("span");
+      var color = extractSafeInlineColor(sourceNode);
+      if (color) span.style.color = color;
+      Array.from(sourceNode.childNodes || []).forEach(function (child) {
+        appendSanitizedRichText(span, child, doc);
+      });
+      parent.appendChild(span);
+      return;
+    }
+
+    Array.from(sourceNode.childNodes || []).forEach(function (child) {
+      appendSanitizedRichText(parent, child, doc);
+    });
+  }
+
+  D._applyTextPatch = function (el, text, doc) {
+    var targetDoc = doc || (el && el.ownerDocument);
+    var raw = String(text || "");
+    if (!el || !targetDoc) return;
+
+    if (!hasRichTextMarkup(raw)) {
+      el.innerText = raw;
+      return;
+    }
+
+    var template = targetDoc.createElement("template");
+    template.innerHTML = raw;
+
+    var fragment = targetDoc.createDocumentFragment();
+    Array.from(template.content.childNodes || []).forEach(function (child) {
+      appendSanitizedRichText(fragment, child, targetDoc);
+    });
+
+    if (!fragment.childNodes || !fragment.childNodes.length) {
+      el.innerText = template.content.textContent || raw;
+      return;
+    }
+
+    while (el.firstChild) el.removeChild(el.firstChild);
+    el.appendChild(fragment);
   };
 
   /**
@@ -221,7 +345,11 @@
       const el = doc.body.querySelector(op.selector);
       if (!el) return;
       if (op.type === "text") {
-        el.innerText = op.text || "";
+        if (typeof D._applyTextPatch === "function") {
+          D._applyTextPatch(el, op.text || "", doc);
+        } else {
+          el.innerText = op.text || "";
+        }
         // Fix: Bricks counter-animatie overschrijft onze waarde na iframe-reload.
         // Bricks parseert countTo in closures VOORDAT applyStoredEdits loopt, en
         // IntersectionObserver roept u() aan die innerText = countFrom (0) zet
@@ -273,7 +401,9 @@
       } else if (op.type === "css") {
         const isSectionCascade =
           op.cascade === "section" &&
-          op.prop === "background-color" &&
+          (op.prop === "background-color" ||
+            op.prop === "background-image" ||
+            op.prop === "background") &&
           op.value;
         // Direct setProperty overslaan bij sectie-cascade: anders krijgt
         // het outer-root element wel een bg maar GEEN data-aisb-sec-bg
@@ -283,33 +413,28 @@
         if (!isSectionCascade && op.prop && op.value !== undefined) {
           el.style.setProperty(op.prop, op.value, "important");
         }
-        // Sectie-cascade: zet background-color op ALLE Bricks-containers
-        // via inline style (Bricks ID-selectors verslaan class-selectors,
-        // dus alleen inline !important wint). Itereer vanaf doc.body zodat
-        // het werkt ongeacht welke wrapper het outermost element is.
+        // Sectie-cascade: zet de background alleen op het geregistreerde
+        // section-anker. Child containers/blocks krijgen hun eigen Figma
+        // background via aparte patches wanneer ze er zelf een hebben.
         if (isSectionCascade) {
-          const SEL =
-            ".brxe-section,.brxe-container,.brxe-block,.brxe-div,section";
-          const targets = Array.from(doc.body.querySelectorAll(SEL));
-          // Eerst alle reeds-door-ons-gemarkeerde elementen verzamelen
-          // zodat we ze in elk geval kleuren (ook al staat er nu een
-          // ge-erfde inline bg op).
-          targets.forEach((t) => {
-            const inline = t.getAttribute("style") || "";
-            const wasOurs = t.dataset.aisbSecBg === "1";
-            // Als element niet door ons gemarkeerd is en een eigen bg/image
-            // heeft → handmatige override → overslaan.
-            if (
-              !wasOurs &&
-              (/background-image\s*:/i.test(inline) ||
-                /background-color\s*:/i.test(inline))
-            ) {
-              return;
-            }
-            t.style.setProperty("background-color", op.value, "important");
-            t.dataset.aisbSecBg = "1";
-          });
-          doc.body.style.setProperty("background-color", op.value, "important");
+          const target =
+            el ||
+            doc.body.querySelector(".brxe-section") ||
+            doc.body.querySelector("section") ||
+            doc.body.firstElementChild;
+          if (target) {
+            target.style.setProperty(op.prop, op.value, "important");
+            if (op.prop === "background-color")
+              target.style.removeProperty("background-image");
+            if (op.prop === "background-image")
+              target.style.removeProperty("background-color");
+            target.dataset.aisbSecBg = "1";
+          }
+          doc.body.style.setProperty(op.prop, op.value, "important");
+          if (op.prop === "background-color")
+            doc.body.style.removeProperty("background-image");
+          if (op.prop === "background-image")
+            doc.body.style.removeProperty("background-color");
           doc.body.dataset.aisbSecBg = "1";
         }
       } else if (op.type === "img") {

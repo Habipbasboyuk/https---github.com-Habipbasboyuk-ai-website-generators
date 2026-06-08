@@ -1,6 +1,8 @@
 /**
- * UI: rendering, detail panel, node cards, section editing, drag-drop.
- * Depends on: app-init.js, app-utils.js, app-canvas.js
+ * UI-rendering voor stap 1.
+ *
+ * Tekent nodekaarten, detailpanelen, sectie-editing en drag-and-drop states.
+ * Afhankelijk van: app-init.js, app-utils.js en app-canvas.js.
  */
 (function () {
   "use strict";

@@ -3,17 +3,21 @@
 if (!defined('ABSPATH')) exit;
 
 /**
- * Step 3: Style Guide
- * Generates and manages a brand style guide (colours, typography, components).
+ * Stap 3: stijlgids.
+ *
+ * Genereert en beheert merkkleuren, typografie, componentinstellingen,
+ * afbeeldingen en logo's voor het gekozen project.
  */
 class AISB_Style_Guide {
 
-// laadt assets, shortcodes en AJAX handlers voor de Style Guide (stap 3)
+  /**
+   * Registreert shortcodes, assets en AJAX-handlers voor de stijlgids.
+   */
   public function init(): void {
     add_action('init', [$this, 'register_shortcode']);
     add_action('wp_enqueue_scripts', [$this, 'enqueue_assets']);
 
-    // AJAX
+    // AJAX-acties voor laden, bewaren, AI-generatie, fonts en afbeeldingen.
     add_action('wp_ajax_aisb_get_style_guide', [$this, 'ajax_get_style_guide']);
     add_action('wp_ajax_aisb_save_style_guide', [$this, 'ajax_save_style_guide']);
     add_action('wp_ajax_aisb_generate_style_guide', [$this, 'ajax_generate_style_guide']);
@@ -25,23 +29,23 @@ class AISB_Style_Guide {
     add_action('wp_ajax_aisb_upload_logo',            [$this, 'ajax_upload_logo']);
   }
 
-  // Shortcode voor standalone gebruik van de Style Guide
+  // Shortcode voor standalone gebruik van de stijlgids.
   public function register_shortcode(): void {
     add_shortcode('ai_style_guide', [$this, 'render_shortcode']);
   }
 
-  // Assets alleen laden op de pagina's waar de Style Guide wordt gebruikt (stap 3)
+  // Assets alleen laden op pagina's waar de stijlgids nodig is.
   public function enqueue_assets(): void {
     $is_step3 = ((int)($_GET['aisb_step'] ?? 0) === 3); // Alleen in stap 3
     $has_ctx  = isset($_GET['aisb_project']); // En er moet een project_id in de URL staan
 
-    $is_sg_shortcode      = $this->current_page_has_shortcode('ai_style_guide'); // Of de shortcode [ai_style_guide] gebruiken
-    $is_builder_shortcode = $this->current_page_has_shortcode('ai_sitemap_builder'); // Of de algemene builder shortcode (voor het geval we de Style Guide daar ook tonen)
-    $is_step3_in_builder  = $is_step3 && $has_ctx; // Of we zitten in stap 3 van de builder (gebaseerd op URL)
+    $is_sg_shortcode      = $this->current_page_has_shortcode('ai_style_guide'); // Standalone shortcode.
+    $is_builder_shortcode = $this->current_page_has_shortcode('ai_sitemap_builder'); // Builder-shortcode.
+    $is_step3_in_builder  = $is_step3 && $has_ctx; // Stap 3 binnen de builderflow.
 
     if (!$is_sg_shortcode && !$is_step3_in_builder && !$is_builder_shortcode) return;
 
-    // Assets registreren en enqueuen
+    // CSS voor de stijlgidsinterface.
     wp_enqueue_style(
       'aisb-style-guide-style', 
       AISB_PLUGIN_URL . 'assets/style-guide.css',
@@ -49,7 +53,7 @@ class AISB_Style_Guide {
       AISB_VERSION
     );
 
-    // Color Thief, dominante kleuren uit een afbeelding te halen, voor de "With Logo" modus van de Style Guide.
+    // Color Thief haalt dominante kleuren uit een logo voor de "With Logo" modus.
     wp_enqueue_script(
       'color-thief',
       'https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.4.0/color-thief.umd.min.js',
@@ -58,8 +62,7 @@ class AISB_Style_Guide {
       true
     );
 
-    // Hoofdscript voor de Style Guide functionaliteit (uploaden logo, kleuren tonen, AI-aanroepen, live preview, etc.)
-    // Split over 4 bestanden: core → colours → typography → images → init
+    // Hoofdscripts voor logo-upload, kleuren, typografie, afbeeldingen, AI en live preview.
     wp_enqueue_script(
       'aisb-sg-core',
       AISB_PLUGIN_URL . 'assets/js/styleguide/core.js',
@@ -268,15 +271,29 @@ class AISB_Style_Guide {
               </div>
             </div>
 
-            <!-- Uploaded images -->
-            <div class="aisb-sg-uploaded-images" data-uploaded-grid style="display:none;">
-              <h5 class="aisb-sg-auto-group-title">Your uploads <span class="aisb-sg-auto-group-count" data-uploaded-count></span></h5>
-              <div class="aisb-sg-auto-grid" data-uploaded-grid-inner></div>
-            </div>
+            <div class="aisb-sg-image-library">
+              <div class="aisb-sg-subtabs aisb-sg-subtabs--images" data-image-tabs>
+                <button class="aisb-sg-subtab" type="button" data-image-mode="uploads">
+                  Your uploads <span class="aisb-sg-image-tab-count" data-uploaded-tab-count>(0)</span>
+                </button>
+                <button class="aisb-sg-subtab" type="button" data-image-mode="unsplash">
+                  Unsplash images <span class="aisb-sg-image-tab-count" data-unsplash-tab-count>(0)</span>
+                </button>
+              </div>
 
-            <!-- Auto-assigned images grid — populated by JS -->
-            <div class="aisb-sg-auto-images" data-images-grid>
-              <div class="aisb-sg-empty-state">Images will be loaded automatically…</div>
+              <div class="aisb-sg-image-tab-panel" data-image-panel="uploads" style="display:none;">
+                <div class="aisb-sg-empty-state" data-uploaded-empty>No uploaded images yet.</div>
+                <div class="aisb-sg-uploaded-images" data-uploaded-grid style="display:none;">
+                  <h5 class="aisb-sg-auto-group-title">Your uploads <span class="aisb-sg-auto-group-count" data-uploaded-count></span></h5>
+                  <div class="aisb-sg-auto-grid" data-uploaded-grid-inner></div>
+                </div>
+              </div>
+
+              <div class="aisb-sg-image-tab-panel" data-image-panel="unsplash" style="display:none;">
+                <div class="aisb-sg-auto-images" data-images-grid>
+                  <div class="aisb-sg-empty-state">Unsplash images will be loaded automatically…</div>
+                </div>
+              </div>
             </div>
 
             <div class="aisb-sg-wizard-nav">
@@ -418,14 +435,14 @@ class AISB_Style_Guide {
     // Prompt voor OpenAI om een font pairing en type scale te genereren op basis van de kleuren. vraag expliciet om alleen JSON terug te geven in een specifiek format, zodat we dit makkelijk kunnen parsen aan de client-side
     $prompt = "I have the following brand colours: " . implode(', ', $colour_list) . "\n\n"
       . "Suggest a complementary Google Fonts pairing (one heading font, one body font) that matches these colours' mood.\n"
-      . "Also return a type scale with 5 levels: H1, H2, H3, Body, Small.\n\n"
+      . "Also return a type scale with 5 levels: H1, H2, H3, Body, Small. Include fontSize in px and lineHeight for every level.\n\n"
       . "Return ONLY valid JSON in this exact format:\n"
       . '{"heading_font":"Font Name","body_font":"Font Name","type_scale":['
-      . '{"label":"H1","cls":"h1","fontFamily":"HEADING_FONT","sample":"Heading One"},'
-      . '{"label":"H2","cls":"h2","fontFamily":"HEADING_FONT","sample":"Heading Two"},'
-      . '{"label":"H3","cls":"h3","fontFamily":"HEADING_FONT","sample":"Heading Three"},'
-      . '{"label":"Body","cls":"body","fontFamily":"BODY_FONT","sample":"The quick brown fox jumps over the lazy dog."},'
-      . '{"label":"Small","cls":"small","fontFamily":"BODY_FONT","sample":"Fine print and captions"}'
+      . '{"label":"H1","cls":"h1","fontFamily":"HEADING_FONT","fontSize":"64px","lineHeight":"1.05","sample":"Heading One"},'
+      . '{"label":"H2","cls":"h2","fontFamily":"HEADING_FONT","fontSize":"48px","lineHeight":"1.1","sample":"Heading Two"},'
+      . '{"label":"H3","cls":"h3","fontFamily":"HEADING_FONT","fontSize":"36px","lineHeight":"1.15","sample":"Heading Three"},'
+      . '{"label":"Body","cls":"body","fontFamily":"BODY_FONT","fontSize":"18px","lineHeight":"1.6","sample":"The quick brown fox jumps over the lazy dog."},'
+      . '{"label":"Small","cls":"small","fontFamily":"BODY_FONT","fontSize":"14px","lineHeight":"1.5","sample":"Fine print and captions"}'
       . "]}";
 
     $system = "You are a brand typography expert. Return ONLY valid JSON, no explanation, no markdown fences.";
@@ -523,13 +540,13 @@ class AISB_Style_Guide {
       . " Do NOT use plain grey. Make it match the brand feel."
       . " Return them as hex colour values."
       . $font_list_hint
-      . "\n\nReturn ONLY valid JSON. Replace every placeholder with the actual value you chose:"
+      . "\n\nReturn ONLY valid JSON. Replace every placeholder with the actual value you chose. Include fontSize in px and lineHeight for every type_scale item:"
       . "\n" . '{"heading_font":"<actual heading font name>","body_font":"<actual body font name>","section_bg_1":"<hex>","section_bg_2":"<hex>","type_scale":['
-      . '{"label":"H1","cls":"h1","fontFamily":"<actual heading font name>","sample":"Heading One"},'
-      . '{"label":"H2","cls":"h2","fontFamily":"<actual heading font name>","sample":"Heading Two"},'
-      . '{"label":"H3","cls":"h3","fontFamily":"<actual heading font name>","sample":"Heading Three"},'
-      . '{"label":"Body","cls":"body","fontFamily":"<actual body font name>","sample":"The quick brown fox jumps over the lazy dog."},'
-      . '{"label":"Small","cls":"small","fontFamily":"<actual body font name>","sample":"Fine print and captions"}'
+      . '{"label":"H1","cls":"h1","fontFamily":"<actual heading font name>","fontSize":"64px","lineHeight":"1.05","sample":"Heading One"},'
+      . '{"label":"H2","cls":"h2","fontFamily":"<actual heading font name>","fontSize":"48px","lineHeight":"1.1","sample":"Heading Two"},'
+      . '{"label":"H3","cls":"h3","fontFamily":"<actual heading font name>","fontSize":"36px","lineHeight":"1.15","sample":"Heading Three"},'
+      . '{"label":"Body","cls":"body","fontFamily":"<actual body font name>","fontSize":"18px","lineHeight":"1.6","sample":"The quick brown fox jumps over the lazy dog."},'
+      . '{"label":"Small","cls":"small","fontFamily":"<actual body font name>","fontSize":"14px","lineHeight":"1.5","sample":"Fine print and captions"}'
       . ']}';
 
     $openai = new AISB_OpenAI();

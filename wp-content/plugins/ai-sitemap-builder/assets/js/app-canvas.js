@@ -1,6 +1,8 @@
 /**
- * Canvas: pan/zoom, layout algorithm, edge drawing, position helpers, fitToView.
- * Depends on: app-init.js, app-utils.js
+ * Canvaslogica voor stap 1.
+ *
+ * Beheert pan/zoom, layoutberekening, verbindingslijnen, positiehelpers en
+ * fit-to-view. Afhankelijk van: app-init.js en app-utils.js.
  */
 (function () {
   "use strict";

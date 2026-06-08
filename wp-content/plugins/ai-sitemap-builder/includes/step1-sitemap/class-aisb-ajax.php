@@ -2,10 +2,16 @@
 
 if (!defined('ABSPATH')) exit;
 
+/**
+ * Verwerkt de AJAX-acties van stap 1: sitemapgeneratie en projectbeheer.
+ *
+ * Deze klasse valideert input, bewaakt eenvoudige rate limits, roept OpenAI aan
+ * en bewaart projecten en sitemapversies als WordPress custom post types.
+ */
 class AISB_Ajax {
 
   /**
-   * Lazy helpers to avoid tight coupling and repeated instantiation.
+   * Lazy helpers om koppeling en herhaald aanmaken te beperken.
    */
   private function prompts(): AISB_Prompts {
     static $p = null;
@@ -19,7 +25,7 @@ class AISB_Ajax {
     return $e;
   }
 
-  // Backwards-compatible wrappers (older code called these on AISB_Ajax)
+  // Backwards-compatible wrappers voor oudere code die deze helpers op AISB_Ajax aanriep.
   private function system_prompt(): string {
     return $this->prompts()->system_prompt();
   }
@@ -40,6 +46,9 @@ class AISB_Ajax {
     return $this->enforcer()->enforce_page_sections($page, $is_home);
   }
 
+  /**
+   * Genereert een sitemap vanuit de frontend-brief.
+   */
       public function ajax_generate() {
     $ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 'unknown';
     $key = 'aisb_rl_' . md5($ip);
@@ -124,7 +133,7 @@ class AISB_Ajax {
 
     $decoded = $this->enforcer()->enforce_rules_on_data($decoded);
 
-    // Create project if needed
+    // Maak automatisch een project aan wanneer er nog geen project_id is.
     if (!$project_id) {
       $title      = $decoded['website_name'] ?? 'New project';
       $project_id = $this->aisb_create_project(
@@ -534,6 +543,59 @@ class AISB_Ajax {
       'version' => $version,
       'data' => $decoded,
     ]);
+  }
+
+  public function ajax_delete_project() {
+    $this->aisb_require_login();
+    check_ajax_referer(AISB_Plugin::NONCE_ACTION, 'nonce');
+
+    $project_id = isset($_POST['project_id']) ? (int)$_POST['project_id'] : 0;
+    if (!$project_id) {
+       wp_send_json_error(['message' => 'Missing project_id.'], 400);
+    }
+    
+    if (!$this->aisb_user_can_access_project($project_id)) {
+       wp_send_json_error(['message' => 'Forbidden.'], 403);
+    }
+
+    // Delete associated sitemaps
+    $sitemaps_q = new WP_Query([
+      'post_type'      => 'aisb_sitemap',
+      'post_status'    => 'any',
+      'posts_per_page' => 500,
+      'meta_query'     => [
+        [
+          'key'   => 'aisb_project_id',
+          'value' => $project_id,
+        ],
+      ],
+      'fields' => 'ids',
+    ]);
+    foreach ($sitemaps_q->posts as $sid) {
+      wp_delete_post($sid, true);
+    }
+    
+    // Delete associated wireframes
+    $wireframes_q = new WP_Query([
+        'post_type'      => 'ai_wireframe',
+        'post_status'    => 'any',
+        'posts_per_page' => 500,
+        'meta_query'     => [
+            [
+                'key'   => '_aisb_project_id',
+                'value' => $project_id,
+            ],
+        ],
+        'fields' => 'ids',
+    ]);
+    foreach ($wireframes_q->posts as $wid) {
+        wp_delete_post($wid, true);
+    }
+
+    // Delete the project itself
+    wp_delete_post($project_id, true);
+
+    wp_send_json_success(['message' => 'Project deleted successfully']);
   }
 
   public function ajax_list_projects() {

@@ -1,5 +1,5 @@
 /**
- * design/init.js — Bootstrap: laadt de style guide en wireframes, bouwt dan de canvas.
+ * design/init.js - Bootstrap: laadt de stijlgids en wireframes en bouwt daarna het canvas.
  *
  * Laadvolgorde:
  *   1. Inline data-design-guide attribuut (PHP embed)
@@ -140,6 +140,72 @@
     if (saveBtn) {
       saveBtn.addEventListener("click", function () {
         if (D.saveAllEdits) D.saveAllEdits();
+      });
+    }
+
+    const publishBtn = document.getElementById("aisb-design-publish-btn");
+    if (publishBtn && publishBtn.dataset.aisbPublishBound !== "1") {
+      publishBtn.dataset.aisbPublishBound = "1";
+      publishBtn.addEventListener("click", async function () {
+        if (publishBtn.dataset.aisbPublishing === "1") {
+          return;
+        }
+
+        publishBtn.dataset.aisbPublishing = "1";
+        const originalLabel = publishBtn.textContent;
+        publishBtn.disabled = true;
+        publishBtn.textContent = "\u23F3 Publishing\u2026";
+
+        try {
+          if (D.saveAllEdits) {
+            await D.saveAllEdits();
+          }
+
+          if (typeof D.exportLiveDesign !== "function") {
+            throw new Error("Live export is not available yet");
+          }
+
+          const exportData = await D.exportLiveDesign();
+          const result = await D.post("aisb_publish_instawp_site", {
+            project_id: D.projectId,
+            export_payload: JSON.stringify(exportData),
+          });
+
+          if (!result || !result.success) {
+            throw new Error(
+              (result && result.data && result.data.message) ||
+                "Publish failed",
+            );
+          }
+
+          publishBtn.textContent = "\u2713 Published";
+          publishBtn.classList.add("is-saved");
+
+          const targetUrl =
+            (result.data &&
+              (result.data.magic_login_url || result.data.wp_url || "")) ||
+            "";
+
+          if (targetUrl) {
+            window.location.href = targetUrl;
+            return;
+          }
+
+          delete publishBtn.dataset.aisbPublishing;
+          publishBtn.disabled = false;
+          setTimeout(function () {
+            publishBtn.textContent = originalLabel;
+            publishBtn.classList.remove("is-saved");
+          }, 2000);
+        } catch (err) {
+          console.error("[AISB design] publish failed:", err);
+          delete publishBtn.dataset.aisbPublishing;
+          publishBtn.disabled = false;
+          publishBtn.textContent = "\u26A0 Publish failed";
+          setTimeout(function () {
+            publishBtn.textContent = originalLabel;
+          }, 2500);
+        }
       });
     }
 

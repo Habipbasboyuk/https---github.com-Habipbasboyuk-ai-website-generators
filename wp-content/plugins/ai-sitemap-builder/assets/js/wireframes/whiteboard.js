@@ -1,5 +1,5 @@
 /**
- * Whiteboard rendering: page cards with scaled iframe previews.
+ * Whiteboard-rendering: paginakaarten met geschaalde iframe-previews.
  */
 (function (app) {
   if (!app) return;

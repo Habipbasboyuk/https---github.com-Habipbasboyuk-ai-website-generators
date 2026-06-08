@@ -1,5 +1,5 @@
 /**
- * Generate wireframe for single page and all pages.
+ * Genereert wireframes voor een losse pagina of alle pagina's tegelijk.
  */
 (function (app) {
   if (!app) return;
@@ -30,12 +30,6 @@
       app.setStatus("No pages found in sitemap.", "err");
       return;
     }
-    if (
-      !confirm(
-        "This will generate wireframes for ALL pages. Existing un-saved edits could be overridden. Continue?",
-      )
-    )
-      return;
 
     app.btn.generateAll.disabled = true;
     if (app.btn.generate) app.btn.generate.disabled = true;

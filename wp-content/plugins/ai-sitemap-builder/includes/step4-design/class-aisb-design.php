@@ -3,11 +3,16 @@
 if (!defined('ABSPATH')) exit;
 
 /**
- * Step 4: Design
- * Full-page wireframe preview with style-guide overrides applied.
+ * Stap 4: designpreview.
+ *
+ * Toont volledige wireframepagina's met stijlgids-overrides, laat secties
+ * vervangen of herschikken en bouwt de Figma-exportpayload.
  */
 class AISB_Design {
 
+  /**
+   * Registreert assets en AJAX-acties voor de designstap.
+   */
   public function init(): void {
     add_action('wp_enqueue_scripts', [$this, 'enqueue_assets']);
     add_action('wp_ajax_aisb_design_list_templates',   [$this, 'ajax_list_templates']);
@@ -363,7 +368,19 @@ class AISB_Design {
             $entry['cascade'] = sanitize_key($op['cascade']);
           }
         }
-        if ($type === 'img')    $entry['src']   = esc_url_raw($op['src'] ?? '');
+        if ($type === 'img') {
+          $src = $op['src'] ?? '';
+          // Bricks kan src opslaan als array { url, id } — normaliseer naar string.
+          if (is_array($src)) {
+            $src = (string) ($src['url'] ?? $src['src'] ?? $src['full'] ?? '');
+          }
+          $src = (string) $src;
+          if (strpos($src, 'data:image') === 0) {
+            $entry['src'] = $src; // Sta base64/data URI toe zonder dat esc_url_raw het stript
+          } else {
+            $entry['src'] = esc_url_raw($src);
+          }
+        }
         if ($type === 'mirror') $entry['mirrored'] = (bool) ($op['mirrored'] ?? false);
         $clean[] = $entry;
       }
@@ -535,6 +552,8 @@ class AISB_Design {
     $style_guide = $guide_raw ? json_decode($guide_raw, true) : [];
     if (!is_array($style_guide)) $style_guide = [];
 
+    $color_map = $this->_build_color_map($style_guide);
+
     // Laatste sitemap
     $sitemap_id = (int) get_post_meta($project_id, 'aisb_latest_sitemap_id', true);
     if (!$sitemap_id) {
@@ -593,6 +612,15 @@ class AISB_Design {
         $patch_data = ($patch_raw !== '') ? json_decode($patch_raw, true) : [];
         if (!is_array($patch_data)) $patch_data = [];
 
+        // Saniteer bestaande img-patches waarbij src per ongeluk een array is
+        // (door Bricks { url, id } object-formaat dat eerder niet genormaliseerd werd).
+        foreach ($patch_data as &$op) {
+          if (isset($op['type']) && $op['type'] === 'img' && isset($op['src']) && is_array($op['src'])) {
+            $op['src'] = (string) ($op['src']['url'] ?? $op['src']['src'] ?? $op['src']['full'] ?? '');
+          }
+        }
+        unset($op);
+
         // Bricks-elementen ophalen — zelfde volgorde als AISB_Wireframes_AI gebruikt.
         $post_id_for_content = $ai_id ?: $tmpl_id;
         $bricks_elements     = [];
@@ -621,12 +649,53 @@ class AISB_Design {
         // plugin sees all effective styles directly on the element.
         $this->_resolve_global_classes($bricks_elements, $class_map);
 
+        // Resolve color variables before compact content extraction so text
+        // color metadata is self-contained in content.text_styles.
+        $this->_resolve_color_vars($bricks_elements, $color_map);
+
         // Pas expliciete property inheritance toe (Figma heeft geen DOM CSS cascade)
         $this->_apply_inherited_styles($bricks_elements);
 
-        $texts  = [];
-        $images = [];
-        $this->_extract_figma_content($bricks_elements, $texts, $images);
+        // Normaliseer Bricks radius objects naar _borderRadius zodat de JSON
+        // direct bruikbaar is voor Figma en de bestaande importer.
+        $this->_normalise_border_radius_settings($bricks_elements);
+
+        // Bewaar de structuur ná style-resoluties (kleuren, global classes,
+        // border-radius) maar vóór Figma-specifieke structurele wijzigingen
+        // (accordion expand, dropdown expand, FAQ flatten). Dit is de versie
+        // die bij publish naar Bricks wordt gebruikt: styles kloppen, en de
+        // accordion/dropdown blijft als echte interactieve component.
+        $bricks_elements_bricks = $bricks_elements;
+
+        // Zorg dat accordion/FAQ-items uitgeklapt worden geëxporteerd zodat ze
+        // in Figma zichtbaar en bewerkbaar zijn.
+        $this->_expand_accordion_items($bricks_elements);
+
+        // Zorg dat nav-nested dropdowns uitgeklapt worden geëxporteerd.
+        $this->_expand_dropdown_items($bricks_elements);
+
+        // Zorg dat form-elementen zichtbaar worden in Figma.
+        $this->_expand_form_elements($bricks_elements);
+
+        $texts          = [];
+        $images         = [];
+        $text_styles    = [];
+        $element_styles = [];
+        $border_radii   = [];
+        $this->_extract_figma_content($bricks_elements, $texts, $images, $text_styles, $element_styles, $border_radii);
+        $this->_append_patch_border_radius_content($patch_data, $element_styles, $border_radii);
+
+        if (($s['type'] ?? '') === 'faq') {
+          $static_faq = $this->_flatten_faq_elements_for_figma($bricks_elements, $text_styles);
+          if ($static_faq !== null) {
+            $bricks_elements = $static_faq['bricks_elements'];
+            $texts           = $static_faq['texts'];
+            $text_styles     = $static_faq['text_styles'];
+            $element_styles  = [];
+            $border_radii    = [];
+            $images          = [];
+          }
+        }
 
         // Count actual Bricks image elements — used by Figma plugin to assign style_guide images.
         $image_count = $this->_count_bricks_image_elements($bricks_elements);
@@ -645,10 +714,19 @@ class AISB_Design {
           // Volledige Bricks-elementenstructuur zoals die in de iframe gerenderd
           // wordt. Dit is wat de Figma-plugin nodig heeft om het echte design op
           // te bouwen i.p.v. enkel de patches.
-          'bricks_elements'    => $bricks_elements,
+          'bricks_elements'        => $bricks_elements,
+          // Originele structuur vóór Figma-modificaties — gebruikt bij publish
+          // naar Bricks zodat accordion-elementen (FAQ) intact blijven.
+          'bricks_elements_bricks' => $bricks_elements_bricks,
           'content'            => [
-            'texts'  => $texts,
-            'images' => $images,
+            'texts'       => $texts,
+            'text_styles' => $text_styles,
+            'text_colors' => array_map(static function ($style) {
+              return is_array($style) ? (string)($style['color'] ?? '') : '';
+            }, $text_styles),
+            'element_styles' => $element_styles,
+            'border_radii'   => $border_radii,
+            'images'         => $images,
           ],
         ];
       }
@@ -721,8 +799,35 @@ class AISB_Design {
     }
     unset($page);
 
+    // Convert Bricks _background objects to settings.background CSS strings.
+    // Must run after color var resolution so var() references are already hex values.
+    foreach ($pages as &$page) {
+      if (!empty($page['sections']) && is_array($page['sections'])) {
+        foreach ($page['sections'] as &$sec) {
+          if (!empty($sec['bricks_elements']) && is_array($sec['bricks_elements'])) {
+            $this->_resolve_backgrounds_to_css($sec['bricks_elements']);
+          }
+        }
+        unset($sec);
+      }
+    }
+    unset($page);
+
     // Resolve in Theme Styles
     $this->_resolve_color_vars($theme_styles, $color_map);
+
+    // Bricks global variables / color palette drive every `var(--xxx)`
+    // reference used by the global classes and theme styles. They live in their
+    // own options and are NOT part of the page/class payload, so without them
+    // the clone falls back to the framework's default colours (e.g. the wrong
+    // button / background / accent colours). Ship them verbatim so the clone
+    // resolves the exact same variables as the source site.
+    $global_variables = get_option('bricks_global_variables', []);
+    if (!is_array($global_variables)) $global_variables = [];
+    $global_variables_categories = get_option('bricks_global_variables_categories', []);
+    if (!is_array($global_variables_categories)) $global_variables_categories = [];
+    $color_palette = get_option('bricks_color_palette', []);
+    if (!is_array($color_palette)) $color_palette = [];
 
     return [
       'version'        => '1.1',
@@ -732,6 +837,9 @@ class AISB_Design {
       'style_guide'    => $style_guide,
       'global_classes' => $global_classes,
       'theme_styles'   => $theme_styles,
+      'global_variables' => $global_variables,
+      'global_variables_categories' => $global_variables_categories,
+      'color_palette'  => $color_palette,
       'pages'          => $pages,
     ];
   }
@@ -778,7 +886,14 @@ class AISB_Design {
         }
 
         if (isset($fallback_slugs[$index])) {
-          $this->_register_color_token($map, $fallback_slugs[$index], $hex);
+          $fallback = $fallback_slugs[$index];
+          // Positional fallbacks are only a backstop for legacy style guides.
+          // Never let them overwrite an explicitly named semantic color such as
+          // "Dark" or "Light", otherwise later palette entries (for example a
+          // complementary accent) can remap var(--dark) to the wrong color.
+          if (!isset($map[$fallback]) && !isset($map['--' . $fallback])) {
+            $this->_register_color_token($map, $fallback, $hex);
+          }
         }
       }
     }
@@ -1023,6 +1138,49 @@ class AISB_Design {
   }
 
   /**
+   * Convert Bricks _background settings to a CSS background string (settings.background)
+   * so the Figma plugin can read it directly. Bricks stores backgrounds as nested objects;
+   * the Figma plugin expects a plain CSS value.
+   *
+   * Supported cases:
+   *   _background.color.raw  → solid color (hex or resolved var)
+   *   _background.image.gradient → linear/radial gradient CSS
+   */
+  private function _resolve_backgrounds_to_css(array &$elements): void {
+    foreach ($elements as &$el) {
+      if (!is_array($el)) continue;
+
+      $settings = $el['settings'] ?? [];
+      if (isset($settings['_background']) && is_array($settings['_background']) && !isset($settings['background'])) {
+        $bg = $settings['_background'];
+        $css = null;
+
+        // Solid color
+        if (!empty($bg['color']) && is_array($bg['color'])) {
+          $raw = $bg['color']['raw'] ?? $bg['color']['hex'] ?? '';
+          if (is_string($raw) && $raw !== '' && strpos($raw, 'var(') !== 0) {
+            $css = $raw;
+          }
+        }
+
+        // Gradient (Bricks stores gradient as a CSS string inside _background.image.gradient)
+        if ($css === null && !empty($bg['image']['gradient']) && is_string($bg['image']['gradient'])) {
+          $css = $bg['image']['gradient'];
+        }
+
+        if ($css !== null) {
+          $el['settings']['background'] = $css;
+        }
+      }
+
+      if (!empty($el['children']) && is_array($el['children'])) {
+        $this->_resolve_backgrounds_to_css($el['children']);
+      }
+    }
+    unset($el);
+  }
+
+  /**
    * Recursively merge Bricks global class settings into each element's settings.
    * Elements' own inline settings take priority over class settings.
    * This means the Figma plugin sees all effective styles directly on the element.
@@ -1083,6 +1241,849 @@ class AISB_Design {
   }
 
   /**
+   * Zet alle Bricks accordion-items op 'open' zodat FAQ-secties volledig
+   * uitgeklapt worden geëxporteerd naar Figma.
+   *
+   * Bricks accordion-nested: items zijn directe child-blocks. Open state wordt
+   * bepaald door de `brx-open` CSS class op het item-block én door
+   * settings['expandItem'] / settings['expandFirstItem'] op de container.
+   *
+   * Bricks accordion (legacy): items zijn sub-arrays in settings.items[].
+   */
+  private function _expand_accordion_items(array &$elements, ?string $parent_name = null): void {
+    if ($parent_name === null && $this->_is_flat_bricks_element_list($elements)) {
+      $this->_expand_flat_accordion_items($elements);
+      return;
+    }
+
+    foreach ($elements as $i => &$el) {
+      if (!is_array($el)) continue;
+
+      $name = $el['name'] ?? '';
+
+      // ── Bricks accordion-nested container ──────────────────────────────────
+      if ($name === 'accordion-nested') {
+        // Rename to "block" so Brixies treats it as a plain container
+        $el['name'] = 'block';
+        $name = 'block';
+        $this->_append_css_class($el, 'aisb-figma-accordion');
+      }
+
+      // ── Direct child block van accordion-nested: zet display flex ──────────
+      if ($parent_name === 'accordion-nested' && $name === 'block') {
+        if (!isset($el['settings'])) $el['settings'] = [];
+        $el['settings']['_display'] = 'flex';
+        $el['settings']['display'] = 'flex';
+        $el['settings']['_direction'] = 'column';
+        $el['settings']['flexDirection'] = 'column';
+      }
+
+      // ── Bricks legacy accordion: items als sub-array in settings ───────────
+      if ($name === 'accordion' && !empty($el['settings']['items']) && is_array($el['settings']['items'])) {
+        // Rename so Brixies doesn't apply its collapsed rendering
+        $el['name'] = 'block';
+        $name = 'block';
+        $this->_append_css_class($el, 'aisb-figma-accordion');
+        foreach ($el['settings']['items'] as &$item) {
+          if (is_array($item)) {
+            $item['open'] = true;
+          }
+        }
+        unset($item);
+      }
+
+      // ── Recurse into children ───────────────────────────────────────────────
+      if (!empty($el['children']) && is_array($el['children'])) {
+        $this->_expand_accordion_items($el['children'], $name);
+      }
+    }
+    unset($el);
+  }
+
+  private function _is_flat_bricks_element_list(array $elements): bool {
+    foreach ($elements as $el) {
+      if (!is_array($el)) continue;
+      if (empty($el['children']) || !is_array($el['children'])) continue;
+      foreach ($el['children'] as $child) {
+        if (is_scalar($child)) return true;
+      }
+    }
+
+    return false;
+  }
+
+  private function _expand_flat_accordion_items(array &$elements): void {
+    $index_by_id = [];
+    $children_by_parent = [];
+
+    foreach ($elements as $index => $el) {
+      if (!is_array($el)) continue;
+
+      $id = (string)($el['id'] ?? '');
+      if ($id !== '') $index_by_id[$id] = $index;
+
+      $parent = (string)($el['parent'] ?? '');
+      if ($parent !== '' && $parent !== '0') {
+        $children_by_parent[$parent][] = $id;
+      }
+    }
+
+    foreach ($elements as $index => &$el) {
+      if (!is_array($el)) continue;
+
+      $name = $el['name'] ?? '';
+
+      if ($name === 'accordion-nested') {
+        // Rename to "block" so Brixies/Figma plugin treats it as a plain
+        // container instead of applying its built-in collapsed accordion rendering.
+        $el['name'] = 'block';
+        $this->_append_css_class($el, 'aisb-figma-accordion');
+
+        if (!isset($el['settings']) || !is_array($el['settings'])) $el['settings'] = [];
+
+        $accordion_id = (string)($el['id'] ?? '');
+        $item_ids = $this->_accordion_direct_child_ids($el, $accordion_id, $children_by_parent);
+
+        foreach ($item_ids as $item_id) {
+          if ($item_id === '' || !isset($index_by_id[$item_id])) continue;
+
+          $item_index = $index_by_id[$item_id];
+          if (!isset($elements[$item_index]['settings']) || !is_array($elements[$item_index]['settings'])) {
+            $elements[$item_index]['settings'] = [];
+          }
+          $elements[$item_index]['settings']['_display'] = 'flex';
+          $elements[$item_index]['settings']['display'] = 'flex';
+          $elements[$item_index]['settings']['_direction'] = 'column';
+          $elements[$item_index]['settings']['flexDirection'] = 'column';
+
+          $descendant_ids = $this->_flat_descendant_ids($item_id, $children_by_parent);
+          foreach ($descendant_ids as $descendant_id) {
+            if (!isset($index_by_id[$descendant_id])) continue;
+
+            $descendant_index = $index_by_id[$descendant_id];
+            $this->_expand_accordion_descendant($elements[$descendant_index]);
+          }
+        }
+      }
+
+      if ($name === 'accordion' && !empty($el['settings']['items']) && is_array($el['settings']['items'])) {
+        // Rename so Brixies doesn't apply its collapsed rendering
+        $el['name'] = 'block';
+        $this->_append_css_class($el, 'aisb-figma-accordion');
+        foreach ($el['settings']['items'] as &$item) {
+          if (is_array($item)) $item['open'] = true;
+        }
+        unset($item);
+      }
+    }
+    unset($el);
+  }
+
+  private function _accordion_direct_child_ids(array $accordion, string $accordion_id, array $children_by_parent): array {
+    $ids = [];
+
+    if (!empty($accordion['children']) && is_array($accordion['children'])) {
+      foreach ($accordion['children'] as $child_id) {
+        if (is_scalar($child_id)) $ids[] = (string)$child_id;
+      }
+    }
+
+    if ($accordion_id !== '' && !empty($children_by_parent[$accordion_id])) {
+      foreach ($children_by_parent[$accordion_id] as $child_id) {
+        $ids[] = (string)$child_id;
+      }
+    }
+
+    $ids = array_values(array_unique(array_filter($ids, static function ($id) {
+      return $id !== '';
+    })));
+
+    return $ids;
+  }
+
+  private function _flat_descendant_ids(string $parent_id, array $children_by_parent): array {
+    $result = [];
+    $stack = $children_by_parent[$parent_id] ?? [];
+
+    while ($stack) {
+      $id = (string)array_shift($stack);
+      if ($id === '' || in_array($id, $result, true)) continue;
+
+      $result[] = $id;
+      if (!empty($children_by_parent[$id])) {
+        foreach ($children_by_parent[$id] as $child_id) {
+          $stack[] = (string)$child_id;
+        }
+      }
+    }
+
+    return $result;
+  }
+
+  private function _expand_accordion_descendant(array &$el): void {
+    if (!isset($el['settings']) || !is_array($el['settings'])) $el['settings'] = [];
+
+    $settings = &$el['settings'];
+    $class_string = $this->_settings_class_string($settings);
+
+    $is_content_wrapper = strpos($class_string, 'accordion-content-wrapper') !== false;
+    // Fallback: Bricks stores collapsed state in _hidden — expand any hidden
+    // descendant inside an accordion even if the class name differs.
+    $is_hidden_block = !$is_content_wrapper && !empty($settings['_hidden']) && is_array($settings['_hidden']);
+
+    if ($is_content_wrapper || $is_hidden_block) {
+      if ($is_content_wrapper) {
+        // Remove the class so Brixies/Figma plugin doesn't apply its display:none CSS rule
+        $this->_remove_css_class($el, 'accordion-content-wrapper');
+      }
+      $this->_append_css_class($el, 'aisb-figma-expanded-content');
+
+      $settings['_display'] = 'flex';
+      $settings['display'] = 'flex';
+      $settings['_direction'] = 'column';
+      $settings['flexDirection'] = 'column';
+      $settings['_visibility'] = 'visible';
+      $settings['visibility'] = 'visible';
+      $settings['_opacity'] = '1';
+      $settings['opacity'] = '1';
+      $settings['_height'] = 'auto';
+      $settings['height'] = 'auto';
+      $settings['_overflow'] = 'visible';
+      $settings['overflow'] = 'visible';
+      $settings['ariaHidden'] = 'false';
+      $settings['_cssCustom'] = trim((string)($settings['_cssCustom'] ?? '') . "\n&{display:flex!important;flex-direction:column!important;height:auto!important;opacity:1!important;visibility:visible!important;overflow:visible!important;}");
+
+      unset($settings['_hidden']);
+
+      $this->_remove_attribute($settings, 'aria-hidden');
+      $this->_set_attribute($settings, 'aria-hidden', 'false');
+    }
+
+    if (($settings['customTag'] ?? '') === 'button' || $this->_has_attribute($settings, 'aria-expanded')) {
+      $this->_set_attribute($settings, 'aria-expanded', 'true');
+      $settings['ariaExpanded'] = 'true';
+    }
+
+    unset($settings);
+  }
+
+  private function _flatten_faq_elements_for_figma(array $elements, array $existing_text_styles): ?array {
+    [$by_id, $children_by_parent] = $this->_flat_element_lookup($elements);
+    $pairs = $this->_extract_static_faq_pairs($elements, $by_id, $children_by_parent);
+    if (!$pairs) return null;
+
+    $intro = $this->_extract_static_faq_intro($elements, $pairs, $by_id);
+    $style_cursor = [
+      'styles' => array_values(array_map(function ($style) {
+        $style = is_array($style) ? $style : [];
+        $style['text'] = $this->_clean_figma_text($style['text'] ?? '');
+        return $style;
+      }, $existing_text_styles)),
+      'used' => [],
+    ];
+
+    $root = [];
+    foreach ($elements as $el) {
+      if (is_array($el) && ($el['name'] ?? '') === 'section' && (empty($el['parent']) || (string)$el['parent'] === '0')) {
+        $root = $el;
+        break;
+      }
+    }
+    if (!$root && isset($elements[0]) && is_array($elements[0])) $root = $elements[0];
+    if (!$root) $root = ['id' => 'aisb_faq_section', 'settings' => []];
+
+    $root_id = (string)($root['id'] ?? 'aisb_faq_section');
+    if ($root_id === '') $root_id = 'aisb_faq_section';
+
+    $root['id'] = $root_id;
+    $root['name'] = 'section';
+    $root['parent'] = 0;
+    $root['children'] = ['aisb_faq_container_' . $root_id];
+    if (!isset($root['settings']) || !is_array($root['settings'])) $root['settings'] = [];
+    unset($root['settings']['_cssGlobalClasses']);
+
+    $container_id = 'aisb_faq_container_' . $root_id;
+    $left_id = 'aisb_faq_left_' . $root_id;
+    $right_id = 'aisb_faq_list_' . $root_id;
+
+    $new_elements = [$root];
+    $text_styles = [];
+    $texts = [];
+
+    $new_elements[] = [
+      'id' => $container_id,
+      'name' => 'container',
+      'parent' => $root_id,
+      'children' => [$left_id, $right_id],
+      'settings' => [
+        '_display' => 'grid',
+        '_gridTemplateColumns' => 'repeat(2, minmax(0, 1fr))',
+        '_gridGap' => 'var(--space-m)',
+        '_gridTemplateColumns:tablet_portrait' => 'repeat(1, minmax(0, 1fr))',
+        '_padding' => ['top' => '3rem', 'bottom' => '3rem', 'left' => '', 'right' => ''],
+      ],
+    ];
+
+    $left_children = [];
+    foreach ($intro as $idx => $_item) {
+      $left_children[] = 'aisb_faq_intro_' . $root_id . '_' . $idx;
+    }
+
+    $new_elements[] = [
+      'id' => $left_id,
+      'name' => 'block',
+      'parent' => $container_id,
+      'children' => $left_children,
+      'settings' => [
+        '_display' => 'flex',
+        '_direction' => 'column',
+        '_rowGap' => 'var(--space-s)',
+        '_padding' => ['top' => '3rem', 'bottom' => '3rem', 'left' => '', 'right' => ''],
+      ],
+      'label' => 'FAQ Intro',
+    ];
+
+    foreach ($intro as $idx => $item) {
+      $id = $left_children[$idx];
+      $tag = $idx === 0 ? 'h2' : 'p';
+      $new_elements[] = $this->_make_static_faq_text_element($id, $left_id, $item['text'], $item['el'], $tag);
+      $style = $this->_next_static_faq_text_style($style_cursor, $item['text'], $item['el'], $idx === 0 ? 'heading' : 'body');
+      $texts[] = $item['text'];
+      $text_styles[] = $style;
+    }
+
+    $right_children = [];
+    foreach ($pairs as $idx => $_pair) {
+      $right_children[] = 'aisb_faq_card_' . $root_id . '_' . $idx;
+    }
+
+    $new_elements[] = [
+      'id' => $right_id,
+      'name' => 'block',
+      'parent' => $container_id,
+      'children' => $right_children,
+      'settings' => [
+        '_display' => 'flex',
+        '_direction' => 'column',
+        '_rowGap' => 'var(--space-m)',
+        '_padding' => ['top' => '3rem', 'bottom' => '3rem', 'left' => '', 'right' => ''],
+      ],
+      'label' => 'FAQ List',
+    ];
+
+    foreach ($pairs as $idx => $pair) {
+      $card_id = $right_children[$idx];
+      $question_id = 'aisb_faq_q_' . $root_id . '_' . $idx;
+      $answer_id = 'aisb_faq_a_' . $root_id . '_' . $idx;
+
+      $new_elements[] = [
+        'id' => $card_id,
+        'name' => 'block',
+        'parent' => $right_id,
+        'children' => [$question_id, $answer_id],
+        'settings' => [
+          '_display' => 'flex',
+          '_direction' => 'column',
+          '_rowGap' => 'var(--space-xs)',
+          '_padding' => ['top' => 'var(--space-s)', 'bottom' => 'var(--space-s)', 'left' => '0', 'right' => '0'],
+          '_border' => [
+            'width' => ['bottom' => '1px'],
+            'style' => 'solid',
+            'color' => ['raw' => '#08264533'],
+          ],
+        ],
+        'label' => 'FAQ Item',
+      ];
+
+      $new_elements[] = $this->_make_static_faq_text_element($question_id, $card_id, $pair['question'], $pair['question_el'], 'h3');
+      $new_elements[] = $this->_make_static_faq_text_element($answer_id, $card_id, $pair['answer'], $pair['answer_el'], 'p');
+      $texts[] = $pair['question'];
+      $text_styles[] = $this->_next_static_faq_text_style($style_cursor, $pair['question'], $pair['question_el'], 'question');
+      $texts[] = $pair['answer'];
+      $text_styles[] = $this->_next_static_faq_text_style($style_cursor, $pair['answer'], $pair['answer_el'], 'answer');
+    }
+
+    return [
+      'bricks_elements' => $new_elements,
+      'texts' => $texts,
+      'text_styles' => $text_styles,
+    ];
+  }
+
+  private function _flat_element_lookup(array $elements): array {
+    $by_id = [];
+    $children_by_parent = [];
+    foreach ($elements as $el) {
+      if (!is_array($el)) continue;
+      $id = (string)($el['id'] ?? '');
+      if ($id !== '') $by_id[$id] = $el;
+      $parent = (string)($el['parent'] ?? '');
+      if ($parent !== '' && $parent !== '0') $children_by_parent[$parent][] = $id;
+    }
+    return [$by_id, $children_by_parent];
+  }
+
+  private function _extract_static_faq_pairs(array $elements, array $by_id, array $children_by_parent): array {
+    $pairs = [];
+    $seen = [];
+    foreach ($elements as $wrapper) {
+      if (!$this->_is_static_faq_answer_wrapper($wrapper)) continue;
+      $wrapper_id = (string)($wrapper['id'] ?? '');
+      if ($wrapper_id !== '' && isset($seen[$wrapper_id])) continue;
+      if ($wrapper_id !== '') $seen[$wrapper_id] = true;
+
+      $answer_ids = array_merge([$wrapper_id], $this->_flat_descendant_ids($wrapper_id, $children_by_parent));
+      $answer_texts = [];
+      $answer_el = $wrapper;
+      foreach ($answer_ids as $id) {
+        if (empty($by_id[$id]) || !$this->_is_static_text_like_element($by_id[$id])) continue;
+        $answer_texts[] = $this->_clean_figma_text($by_id[$id]['settings']['text'] ?? '');
+        $answer_el = $by_id[$id];
+      }
+
+      $parent_id = (string)($wrapper['parent'] ?? '');
+      $question = '';
+      $question_el = [];
+      if ($parent_id !== '') {
+        $answer_id_map = array_fill_keys($answer_ids, true);
+        foreach ($this->_flat_descendant_ids($parent_id, $children_by_parent) as $candidate_id) {
+          if (isset($answer_id_map[$candidate_id]) || empty($by_id[$candidate_id])) continue;
+          if (!$this->_is_static_faq_question_element($by_id[$candidate_id])) continue;
+          $question_el = $by_id[$candidate_id];
+          $question = $this->_clean_figma_text($question_el['settings']['text'] ?? '');
+          break;
+        }
+      }
+
+      $answer_texts = array_values(array_unique(array_filter($answer_texts)));
+      $answer = trim(implode("\n", $answer_texts));
+      if ($question === '' || $answer === '') continue;
+
+      $pairs[] = [
+        'question' => $question,
+        'answer' => $answer,
+        'question_el' => $question_el,
+        'answer_el' => $answer_el,
+        'source_ids' => array_merge([$parent_id, $wrapper_id], $answer_ids),
+      ];
+    }
+    return $pairs;
+  }
+
+  private function _extract_static_faq_intro(array $elements, array $pairs, array $by_id): array {
+    $used = [];
+    foreach ($pairs as $pair) {
+      foreach (($pair['source_ids'] ?? []) as $id) if ($id !== '') $used[$id] = true;
+      if (!empty($pair['question_el']['id'])) $used[(string)$pair['question_el']['id']] = true;
+      if (!empty($pair['answer_el']['id'])) $used[(string)$pair['answer_el']['id']] = true;
+    }
+
+    $intro = [];
+    foreach ($elements as $el) {
+      if (!$this->_is_static_text_like_element($el)) continue;
+      $id = (string)($el['id'] ?? '');
+      if (isset($used[$id]) || $this->_is_descendant_of_used_static($el, $used, $by_id)) continue;
+      $text = $this->_clean_figma_text($el['settings']['text'] ?? '');
+      if ($text === '') continue;
+      $duplicate = false;
+      foreach ($intro as $item) {
+        if ($item['text'] === $text && ($item['el']['name'] ?? '') === ($el['name'] ?? '')) {
+          $duplicate = true;
+          break;
+        }
+      }
+      if (!$duplicate) $intro[] = ['text' => $text, 'el' => $el];
+      if (count($intro) >= 4) break;
+    }
+    return $intro;
+  }
+
+  private function _is_descendant_of_used_static(array $el, array $used, array $by_id): bool {
+    $parent = (string)($el['parent'] ?? '');
+    while ($parent !== '' && $parent !== '0') {
+      if (isset($used[$parent])) return true;
+      $parent = isset($by_id[$parent]) ? (string)($by_id[$parent]['parent'] ?? '') : '';
+    }
+    return false;
+  }
+
+  private function _make_static_faq_text_element(string $id, string $parent, string $text, array $source_el, string $tag): array {
+    $settings = isset($source_el['settings']) && is_array($source_el['settings']) ? $source_el['settings'] : [];
+    unset($settings['_cssGlobalClasses'], $settings['_attributes'], $settings['_hidden']);
+    $settings['text'] = $text;
+    $settings['tag'] = $tag;
+    $settings['_display'] = 'block';
+    $settings['display'] = 'block';
+    $settings['_visibility'] = 'visible';
+    $settings['visibility'] = 'visible';
+    $settings['_opacity'] = '1';
+    $settings['opacity'] = '1';
+    $settings['_overflow'] = 'visible';
+    $settings['overflow'] = 'visible';
+    $settings['_cssCustom'] = trim((string)($settings['_cssCustom'] ?? '') . "\n&{display:block!important;opacity:1!important;visibility:visible!important;overflow:visible!important;}");
+
+    return [
+      'id' => $id,
+      'name' => preg_match('/^h[1-6]$/', $tag) ? 'heading' : 'text-basic',
+      'parent' => $parent,
+      'children' => [],
+      'settings' => $settings,
+    ];
+  }
+
+  private function _next_static_faq_text_style(array &$cursor, string $text, array $source_el, string $role): array {
+    $clean = $this->_clean_figma_text($text);
+    foreach ($cursor['styles'] as $idx => $style) {
+      if (!empty($cursor['used'][$idx])) continue;
+      if (($style['text'] ?? '') !== $clean) continue;
+      $cursor['used'][$idx] = true;
+      $style['text'] = $clean;
+      return $style;
+    }
+
+    $typography = isset($source_el['settings']['_typography']) && is_array($source_el['settings']['_typography'])
+      ? $source_el['settings']['_typography']
+      : [];
+    $is_heading = in_array($role, ['heading', 'question'], true);
+    $tag = strtolower((string)($source_el['settings']['tag'] ?? ''));
+    $heading_sizes = [
+      'h1' => '64px',
+      'h2' => '48px',
+      'h3' => '36px',
+      'h4' => '28px',
+      'h5' => '22px',
+      'h6' => '18px',
+    ];
+    $default_font_size = $is_heading ? ($heading_sizes[$tag] ?? '48px') : '18px';
+
+    return [
+      'text' => $clean,
+      'color' => $this->_raw_color($typography['color'] ?? null) ?: '#082645',
+      'fontSize' => (string)($typography['font-size'] ?? $default_font_size),
+      'fontFamily' => (string)($typography['font-family'] ?? $typography['fontFamily'] ?? ''),
+      'fontWeight' => (string)($typography['font-weight'] ?? ($is_heading ? '700' : '400')),
+      'lineHeight' => (string)($typography['line-height'] ?? ($is_heading ? '1.12' : '1.6')),
+      'textAlign' => 'start',
+    ];
+  }
+
+  private function _raw_color($value): string {
+    if (is_string($value)) return $value;
+    if (is_array($value)) return (string)($value['raw'] ?? ($value['hex'] ?? ''));
+    return '';
+  }
+
+  private function _is_static_faq_answer_wrapper($el): bool {
+    if (!is_array($el)) return false;
+    $label = strtolower((string)($el['label'] ?? ''));
+    $settings = isset($el['settings']) && is_array($el['settings']) ? $el['settings'] : [];
+    return $label === 'answer wrapper'
+      || $this->_has_attribute_value($settings, 'itemprop', 'acceptedAnswer')
+      || $this->_has_attribute_value($settings, 'itemtype', 'https://schema.org/Answer');
+  }
+
+  private function _is_static_faq_question_element($el): bool {
+    if (!$this->_is_static_text_like_element($el)) return false;
+    $label = strtolower((string)($el['label'] ?? ''));
+    $settings = isset($el['settings']) && is_array($el['settings']) ? $el['settings'] : [];
+    return $label === 'question' || $this->_has_attribute_value($settings, 'itemprop', 'name');
+  }
+
+  private function _is_static_text_like_element($el): bool {
+    if (!is_array($el) || empty($el['settings']) || !is_array($el['settings'])) return false;
+    $name = (string)($el['name'] ?? '');
+    if (!in_array($name, ['heading', 'text', 'text-basic', 'button'], true)) return false;
+    return $this->_clean_figma_text($el['settings']['text'] ?? '') !== '';
+  }
+
+  private function _clean_figma_text($value): string {
+    $text = (string)$value;
+    $text = preg_replace('/<br\s*\/?>/i', "\n", $text);
+    $text = preg_replace('/<\/p\s*>/i', "\n", $text);
+    $text = wp_strip_all_tags($text);
+    $text = html_entity_decode($text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    $text = preg_replace('/[ \t]+\n/', "\n", $text);
+    $text = preg_replace('/\n{3,}/', "\n\n", $text);
+    return trim($text);
+  }
+
+  private function _settings_class_string(array $settings): string {
+    $hidden = isset($settings['_hidden']) && is_array($settings['_hidden'])
+      ? $settings['_hidden']
+      : [];
+
+    $parts = [
+      (string)($settings['_cssClasses'] ?? ''),
+      (string)($settings['cssClasses'] ?? ''),
+      (string)($settings['class'] ?? ''),
+      (string)($settings['_class'] ?? ''),
+      (string)($hidden['_cssClasses'] ?? ''),
+      (string)($hidden['cssClasses'] ?? ''),
+    ];
+
+    if (!empty($settings['_attributes']) && is_array($settings['_attributes'])) {
+      foreach ($settings['_attributes'] as $attr) {
+        if (!is_array($attr) || ($attr['name'] ?? '') !== 'class') continue;
+        $parts[] = (string)($attr['value'] ?? '');
+      }
+    }
+
+    return implode(' ', array_filter($parts, static function ($part) {
+      return trim($part) !== '';
+    }));
+  }
+
+  private function _append_css_class(array &$el, string $class): void {
+    if (!isset($el['settings']) || !is_array($el['settings'])) $el['settings'] = [];
+
+    $existing = trim((string)($el['settings']['_cssClasses'] ?? ''));
+    $classes = $existing === '' ? [] : preg_split('/\s+/', $existing);
+    if (!in_array($class, $classes, true)) $classes[] = $class;
+    $el['settings']['_cssClasses'] = trim(implode(' ', $classes));
+  }
+
+  private function _remove_css_class(array &$el, string $class): void {
+    if (!isset($el['settings']) || !is_array($el['settings'])) return;
+
+    foreach (['_cssClasses', 'cssClasses', '_class', 'class'] as $key) {
+      if (empty($el['settings'][$key])) continue;
+      $parts = preg_split('/\s+/', (string)$el['settings'][$key]);
+      $parts = array_values(array_filter($parts, static function ($c) use ($class) {
+        return $c !== '' && $c !== $class;
+      }));
+      $el['settings'][$key] = implode(' ', $parts);
+    }
+
+    // Also strip from _hidden sub-object
+    if (!empty($el['settings']['_hidden']) && is_array($el['settings']['_hidden'])) {
+      foreach (['_cssClasses', 'cssClasses'] as $key) {
+        if (empty($el['settings']['_hidden'][$key])) continue;
+        $parts = preg_split('/\s+/', (string)$el['settings']['_hidden'][$key]);
+        $parts = array_values(array_filter($parts, static function ($c) use ($class) {
+          return $c !== '' && $c !== $class;
+        }));
+        $el['settings']['_hidden'][$key] = implode(' ', $parts);
+      }
+    }
+  }
+
+  private function _has_attribute(array $settings, string $name): bool {
+    if (empty($settings['_attributes']) || !is_array($settings['_attributes'])) return false;
+
+    foreach ($settings['_attributes'] as $attr) {
+      if (is_array($attr) && ($attr['name'] ?? '') === $name) return true;
+    }
+
+    return false;
+  }
+
+  private function _has_attribute_value(array $settings, string $name, string $value): bool {
+    if (empty($settings['_attributes']) || !is_array($settings['_attributes'])) return false;
+
+    foreach ($settings['_attributes'] as $attr) {
+      if (!is_array($attr)) continue;
+      if (($attr['name'] ?? '') === $name && (string)($attr['value'] ?? '') === $value) return true;
+    }
+
+    return false;
+  }
+
+  private function _set_attribute(array &$settings, string $name, string $value): void {
+    if (!isset($settings['_attributes']) || !is_array($settings['_attributes'])) {
+      $settings['_attributes'] = [];
+    }
+
+    foreach ($settings['_attributes'] as &$attr) {
+      if (!is_array($attr) || ($attr['name'] ?? '') !== $name) continue;
+      $attr['value'] = $value;
+      unset($attr);
+      return;
+    }
+    unset($attr);
+
+    $settings['_attributes'][] = [
+      'id'    => 'aisb_' . substr(md5($name . $value), 0, 8),
+      'name'  => $name,
+      'value' => $value,
+    ];
+  }
+
+  private function _remove_attribute(array &$settings, string $name): void {
+    if (empty($settings['_attributes']) || !is_array($settings['_attributes'])) return;
+
+    $settings['_attributes'] = array_values(array_filter($settings['_attributes'], static function ($attr) use ($name) {
+      return !(is_array($attr) && ($attr['name'] ?? '') === $name);
+    }));
+  }
+
+  // ── Dropdown / nav-nested expand ─────────────────────────────────────────
+
+  private function _expand_dropdown_items(array &$elements): void {
+    if ($this->_is_flat_bricks_element_list($elements)) {
+      $this->_expand_flat_dropdown_items($elements);
+      return;
+    }
+
+    foreach ($elements as &$el) {
+      if (!is_array($el)) continue;
+
+      $name = $el['name'] ?? '';
+      if (!isset($el['settings']) || !is_array($el['settings'])) $el['settings'] = [];
+
+      if ($name === 'nav-nested') {
+        $el['name'] = 'block';
+        $this->_append_css_class($el, 'aisb-figma-nav-nested');
+      }
+
+      if ($name === 'dropdown') {
+        $el['name'] = 'block';
+        $this->_append_css_class($el, 'aisb-figma-dropdown');
+      }
+
+      $class_string = $this->_settings_class_string($el['settings']);
+      if (
+        strpos($class_string, 'brx-dropdown-content') !== false ||
+        strpos($class_string, 'brx-nav-nested-items') !== false
+      ) {
+        $this->_expand_dropdown_content($el);
+      }
+
+      if (!empty($el['children']) && is_array($el['children'])) {
+        $this->_expand_dropdown_items($el['children']);
+      }
+    }
+    unset($el);
+  }
+
+  private function _expand_flat_dropdown_items(array &$elements): void {
+    foreach ($elements as &$el) {
+      if (!is_array($el)) continue;
+
+      $name = $el['name'] ?? '';
+      if (!isset($el['settings']) || !is_array($el['settings'])) $el['settings'] = [];
+
+      if ($name === 'nav-nested') {
+        $el['name'] = 'block';
+        $this->_append_css_class($el, 'aisb-figma-nav-nested');
+      }
+
+      if ($name === 'dropdown') {
+        $el['name'] = 'block';
+        $this->_append_css_class($el, 'aisb-figma-dropdown');
+      }
+
+      $class_string = $this->_settings_class_string($el['settings']);
+      if (
+        strpos($class_string, 'brx-dropdown-content') !== false ||
+        strpos($class_string, 'brx-nav-nested-items') !== false
+      ) {
+        $this->_expand_dropdown_content($el);
+      }
+    }
+    unset($el);
+  }
+
+  private function _expand_dropdown_content(array &$el): void {
+    if (!isset($el['settings']) || !is_array($el['settings'])) $el['settings'] = [];
+    $settings = &$el['settings'];
+
+    // Remove classes that trigger Bricks default display:none CSS in Figma plugin
+    $this->_remove_css_class($el, 'brx-dropdown-content');
+    $this->_remove_css_class($el, 'brx-nav-nested-items');
+    $this->_append_css_class($el, 'aisb-figma-expanded-content');
+    unset($settings['_hidden']);
+
+    $settings['_display']    = 'block';
+    $settings['display']     = 'block';
+    $settings['_visibility'] = 'visible';
+    $settings['visibility']  = 'visible';
+    $settings['_opacity']    = '1';
+    $settings['opacity']     = '1';
+    $settings['_overflow']   = 'visible';
+    $settings['overflow']    = 'visible';
+    $settings['ariaHidden']  = 'false';
+    $settings['_cssCustom']  = trim((string)($settings['_cssCustom'] ?? '') .
+      "\n&{display:block!important;opacity:1!important;visibility:visible!important;overflow:visible!important;}");
+
+    $this->_remove_attribute($settings, 'aria-hidden');
+    $this->_set_attribute($settings, 'aria-hidden', 'false');
+
+    unset($settings);
+  }
+
+  // ── Form expand ───────────────────────────────────────────────────────────
+
+  private function _expand_form_elements(array &$elements): void {
+    if ($this->_is_flat_bricks_element_list($elements)) {
+      $this->_expand_flat_form_elements($elements);
+      return;
+    }
+    foreach ($elements as &$el) {
+      if (!is_array($el)) continue;
+      if (($el['name'] ?? '') === 'form') {
+        $el['name'] = 'block';
+        $this->_append_css_class($el, 'aisb-figma-form');
+        $synth = $this->_form_fields_to_elements($el['settings']['fields'] ?? [], '');
+        if (!empty($synth)) {
+          // In nested format children are element objects, not IDs
+          $el['children'] = array_merge((array)($el['children'] ?? []), $synth);
+        }
+      }
+      if (!empty($el['children']) && is_array($el['children'])) {
+        $this->_expand_form_elements($el['children']);
+      }
+    }
+    unset($el);
+  }
+
+  private function _expand_flat_form_elements(array &$elements): void {
+    $new_elements = [];
+    foreach ($elements as &$el) {
+      if (!is_array($el) || ($el['name'] ?? '') !== 'form') continue;
+      $el['name'] = 'block';
+      $this->_append_css_class($el, 'aisb-figma-form');
+      $form_id = (string)($el['id'] ?? '');
+      if (!isset($el['children']) || !is_array($el['children'])) $el['children'] = [];
+      foreach ($this->_form_fields_to_elements($el['settings']['fields'] ?? [], $form_id) as $synth) {
+        $new_elements[]   = $synth;
+        $el['children'][] = (string)$synth['id']; // keep parent→children in sync for Brixies DFS
+      }
+    }
+    unset($el);
+    foreach ($new_elements as $synth_el) {
+      $elements[] = $synth_el;
+    }
+  }
+
+  private function _form_fields_to_elements(array $fields, string $parent_id): array {
+    $result = [];
+    foreach ($fields as $idx => $field) {
+      if (!is_array($field)) continue;
+      $type        = $field['type'] ?? 'text';
+      $label       = trim((string)($field['label'] ?? ''));       // explicit label only
+      $placeholder = trim((string)($field['placeholder'] ?? ''));
+      $synth_id    = 'aisb_f_' . ($field['id'] ?? $idx);
+
+      if ($type === 'submit') {
+        // Submit → button: Brixies reads settings.text directly, no text_styles position consumed.
+        $btn_text = $label ?: $placeholder ?: ($field['value'] ?? 'Verzenden');
+        $entry = ['id' => $synth_id, 'name' => 'button', 'settings' => ['text' => $btn_text], 'children' => []];
+      } elseif ($label !== '') {
+        // Field with explicit label → text: Bricks renders <label> in DOM so DOM text leaf exists.
+        $entry = ['id' => $synth_id, 'name' => 'text', 'settings' => ['text' => $label], 'children' => []];
+      } elseif ($placeholder !== '') {
+        // Placeholder-only field → button: no <label> in DOM so we must not consume a text_styles position.
+        $entry = ['id' => $synth_id, 'name' => 'button', 'settings' => ['text' => $placeholder], 'children' => []];
+      } else {
+        continue;
+      }
+      if ($parent_id !== '') $entry['parent'] = $parent_id;
+      $result[] = $entry;
+    }
+    return $result;
+  }
+
+  /**
    * Recursively replace local logo URLs inside Bricks elements with data URIs.
    */
   private function _sanitize_local_logo_urls(array &$elements): void {
@@ -1125,27 +2126,276 @@ class AISB_Design {
   /**
    * Recursief tekst- en afbeeldingsinhoud uit Bricks-elementen halen.
    */
-  private function _extract_figma_content(array $elements, array &$texts, array &$images): void {
+  private function _extract_figma_content(array $elements, array &$texts, array &$images, array &$text_styles, array &$element_styles, array &$border_radii): void {
     foreach ($elements as $el) {
       if (!is_array($el)) continue;
       $name     = $el['name'] ?? '';
       $settings = $el['settings'] ?? [];
+      $radius_map = $this->_extract_border_radius_map($settings);
+
+      if (!empty($radius_map)) {
+        $style_entry = [
+          'id'    => (string)($el['id'] ?? ''),
+          'name'  => (string)$name,
+          'label' => (string)($el['label'] ?? ''),
+        ];
+        foreach ($radius_map as $prop => $value) {
+          $style_entry[$prop] = $value;
+        }
+        $element_styles[] = $style_entry;
+
+        foreach ($radius_map as $prop => $value) {
+          if ($prop === '_borderRadius') continue;
+          $border_radii[] = [
+            'id'    => (string)($el['id'] ?? ''),
+            'name'  => (string)$name,
+            'label' => (string)($el['label'] ?? ''),
+            'prop'  => (string)$prop,
+            'value' => (string)$value,
+          ];
+        }
+      }
 
       if (in_array($name, ['text', 'heading', 'text-basic'], true)) {
         $text = $settings['text'] ?? $settings['content'] ?? '';
-        if ($text) $texts[] = wp_strip_all_tags((string) $text);
+        $this->_append_figma_text_content($text, $settings, $texts, $text_styles);
       } elseif ($name === 'image') {
         $src = $settings['image']['url'] ?? $settings['src'] ?? '';
         if ($src) $images[] = (string) $src;
       } elseif ($name === 'button') {
         $text = $settings['text'] ?? $settings['label'] ?? '';
-        if ($text) $texts[] = wp_strip_all_tags((string) $text);
+        $this->_append_figma_text_content($text, $settings, $texts, $text_styles);
       }
 
       if (!empty($el['children']) && is_array($el['children'])) {
-        $this->_extract_figma_content($el['children'], $texts, $images);
+        $this->_extract_figma_content($el['children'], $texts, $images, $text_styles, $element_styles, $border_radii);
       }
     }
+  }
+
+  private function _append_figma_text_content($text, array $settings, array &$texts, array &$text_styles): void {
+    if ($text === null || $text === '') return;
+
+    $clean_text = wp_strip_all_tags((string) $text);
+    if ($clean_text === '') return;
+
+    $texts[] = $clean_text;
+
+    $style = $this->_extract_figma_text_style($settings);
+    $style['text'] = $clean_text;
+    $text_styles[] = $style;
+  }
+
+  private function _extract_figma_text_style(array $settings): array {
+    $typography = (!empty($settings['_typography']) && is_array($settings['_typography']))
+      ? $settings['_typography']
+      : [];
+
+    $style = [];
+
+    $color = $this->_extract_style_color($typography['color'] ?? ($settings['color'] ?? null));
+    if ($color !== '') $style['color'] = $color;
+
+    $radius_map = $this->_extract_border_radius_map($settings);
+    if (!empty($radius_map['borderRadius'])) {
+      $style['borderRadius'] = $radius_map['borderRadius'];
+      $style['_borderRadius'] = $radius_map['borderRadius'];
+    }
+
+    $map = [
+      'font-size'   => 'fontSize',
+      'font-family' => 'fontFamily',
+      'font-weight' => 'fontWeight',
+      'line-height' => 'lineHeight',
+      'text-align'  => 'textAlign',
+    ];
+
+    foreach ($map as $source_key => $export_key) {
+      if (isset($typography[$source_key]) && $typography[$source_key] !== '') {
+        $style[$export_key] = (string) $typography[$source_key];
+      }
+    }
+
+    return $style;
+  }
+
+  private function _extract_style_color($color): string {
+    if (is_string($color)) return $color;
+
+    if (is_array($color)) {
+      foreach (['raw', 'hex', 'color', 'value'] as $key) {
+        if (!empty($color[$key]) && is_string($color[$key])) {
+          return $color[$key];
+        }
+      }
+    }
+
+    return '';
+  }
+
+  private function _normalise_border_radius_settings(array &$elements): void {
+    foreach ($elements as &$el) {
+      if (!is_array($el)) continue;
+
+      if (!empty($el['settings']) && is_array($el['settings'])) {
+        $radius_map = $this->_extract_border_radius_map($el['settings']);
+        if (!empty($radius_map['borderRadius'])) {
+          $el['settings']['_borderRadius'] = $radius_map['borderRadius'];
+          $el['settings']['borderRadius'] = $radius_map['borderRadius'];
+        }
+      }
+
+      if (!empty($el['children']) && is_array($el['children'])) {
+        $this->_normalise_border_radius_settings($el['children']);
+      }
+    }
+    unset($el);
+  }
+
+  private function _append_patch_border_radius_content(array $patch_data, array &$element_styles, array &$border_radii): void {
+    foreach ($patch_data as $op) {
+      if (!is_array($op)) continue;
+      if (($op['type'] ?? '') !== 'css' || ($op['prop'] ?? '') !== 'border-radius') continue;
+
+      $value = $this->_normalise_border_radius_value($op['value'] ?? '');
+      if ($value === '') continue;
+
+      $selector = (string)($op['selector'] ?? '');
+      $element_styles[] = [
+        'selector'      => $selector,
+        'source'        => 'patch',
+        'borderRadius'  => $value,
+        '_borderRadius' => $value,
+      ];
+      $border_radii[] = [
+        'selector' => $selector,
+        'source'   => 'patch',
+        'prop'     => 'borderRadius',
+        'value'    => $value,
+      ];
+    }
+  }
+
+  private function _extract_border_radius_map(array $settings): array {
+    $radii = [];
+    $direct_radius = '';
+
+    foreach (['_borderRadius', 'borderRadius', 'border-radius'] as $key) {
+      if (array_key_exists($key, $settings)) {
+        $direct_radius = $this->_normalise_border_radius_value($settings[$key]);
+        if ($direct_radius !== '') break;
+      }
+    }
+
+    if ($direct_radius === '' && isset($settings['_border']['radius'])) {
+      $direct_radius = $this->_normalise_border_radius_value($settings['_border']['radius']);
+    }
+
+    if ($direct_radius !== '') {
+      $radii['borderRadius'] = $direct_radius;
+      $radii['_borderRadius'] = $direct_radius;
+    }
+
+    foreach ($settings as $key => $value) {
+      if (!is_array($value) || $key === '_border') continue;
+      if (!array_key_exists('radius', $value)) continue;
+
+      $radius = $this->_normalise_border_radius_value($value['radius']);
+      if ($radius === '') continue;
+
+      $prop = $this->_border_radius_prop_name((string)$key);
+      if ($prop === '_borderRadius') continue;
+      $radii[$prop] = $radius;
+    }
+
+    return $radii;
+  }
+
+  private function _border_radius_prop_name(string $key): string {
+    $key = trim($key);
+    if ($key === '' || $key === 'border') return 'borderRadius';
+
+    $parts = preg_split('/[^a-zA-Z0-9]+/', $key);
+    $parts = array_values(array_filter($parts, static function ($part) {
+      return $part !== '';
+    }));
+    if (empty($parts)) return 'borderRadius';
+
+    $camel = array_shift($parts);
+    foreach ($parts as $part) {
+      $camel .= ucfirst($part);
+    }
+
+    return $camel . 'Radius';
+  }
+
+  private function _normalise_border_radius_value($value): string {
+    if (is_int($value) || is_float($value)) {
+      $number = is_int($value)
+        ? (string)$value
+        : rtrim(rtrim(sprintf('%.4F', $value), '0'), '.');
+      return $number . 'px';
+    }
+
+    if (is_string($value)) {
+      $value = trim($value);
+      if ($value === '') return '';
+      return is_numeric($value) ? $value . 'px' : $value;
+    }
+
+    if (!is_array($value)) return '';
+
+    foreach (['raw', 'value', 'css'] as $key) {
+      if (array_key_exists($key, $value)) {
+        $normalised = $this->_normalise_border_radius_value($value[$key]);
+        if ($normalised !== '') return $normalised;
+      }
+    }
+
+    $ordered_keys = ['top', 'right', 'bottom', 'left'];
+    $values = [];
+    foreach ($ordered_keys as $key) {
+      $values[] = array_key_exists($key, $value)
+        ? $this->_normalise_border_radius_value($value[$key])
+        : '';
+    }
+
+    if (implode('', $values) === '') {
+      $corner_keys = ['topLeft', 'topRight', 'bottomRight', 'bottomLeft'];
+      $values = [];
+      foreach ($corner_keys as $key) {
+        $values[] = array_key_exists($key, $value)
+          ? $this->_normalise_border_radius_value($value[$key])
+          : '';
+      }
+    }
+
+    if (implode('', $values) === '') return '';
+
+    $fallback = '';
+    foreach ($values as $radius) {
+      if ($radius !== '') {
+        $fallback = $radius;
+        break;
+      }
+    }
+    if ($fallback === '') return '';
+
+    $values = array_map(static function ($radius) use ($fallback) {
+      return $radius !== '' ? $radius : $fallback;
+    }, $values);
+
+    if ($values[0] === $values[1] && $values[0] === $values[2] && $values[0] === $values[3]) {
+      return $values[0];
+    }
+    if ($values[0] === $values[2] && $values[1] === $values[3]) {
+      return $values[0] . ' ' . $values[1];
+    }
+    if ($values[1] === $values[3]) {
+      return $values[0] . ' ' . $values[1] . ' ' . $values[2];
+    }
+
+    return implode(' ', $values);
   }
 
   public function enqueue_assets(): void {    $is_step4 = ((int)($_GET['aisb_step'] ?? 0) === 4);
@@ -1221,6 +2471,14 @@ class AISB_Design {
       true
     );
 
+    wp_enqueue_script(
+      'aisb-design-figma-import',
+      AISB_PLUGIN_URL . 'assets/js/design/figma-import.js',
+      ['aisb-design'],
+      AISB_VERSION,
+      true
+    );
+
     wp_localize_script('aisb-design-core', 'AISB_DESIGN', [
       'ajaxUrl'    => admin_url('admin-ajax.php'),
       'nonce'      => wp_create_nonce('aisb_sg_nonce'),
@@ -1248,6 +2506,7 @@ class AISB_Design {
       </div>
     <?php
     } else {
+    $self = new self();
     $guide_raw = $project_id ? (string) get_post_meta($project_id, 'aisb_style_guide', true) : '';
     // Convert logoUrl to inline data URI so the design canvas can display
     // the logo without relying on the local WordPress URL being accessible.
@@ -1255,7 +2514,7 @@ class AISB_Design {
       $guide_arr = json_decode($guide_raw, true);
       if (is_array($guide_arr) && !empty($guide_arr['logoUrl'])
           && strpos($guide_arr['logoUrl'], 'data:') !== 0) {
-        $guide_arr['logoUrl'] = $this->_url_to_data_uri($guide_arr['logoUrl']);
+        $guide_arr['logoUrl'] = $self->_url_to_data_uri($guide_arr['logoUrl']);
         $guide_raw = wp_json_encode($guide_arr, JSON_UNESCAPED_SLASHES);
       }
     }    ?>
@@ -1265,6 +2524,7 @@ class AISB_Design {
       <div class="aisb-design-toolbar">
         <span class="aisb-design-toolbar-title">Design Canvas</span>
         <button id="aisb-design-save-btn" class="aisb-design-save-btn" type="button" title="Alle wijzigingen opslaan">&#128190; Opslaan</button>
+        <button id="aisb-design-publish-btn" class="aisb-design-save-btn" type="button" title="Clone en publish deze site via InstaWP">&#128640; Publish</button>
         <div class="aisb-figma-export-wrap" id="aisb-figma-export-wrap">
           <button class="aisb-design-save-btn aisb-design-figma-btn" type="button">&#128196; Export to Figma</button>
           <div class="aisb-figma-export-dropdown">
@@ -1274,6 +2534,7 @@ class AISB_Design {
             </div>
           </div>
         </div>
+        <button id="aisb-design-figma-import-btn" class="aisb-design-save-btn aisb-design-figma-import-btn" type="button" title="Plak Figma Brixies JSON om styling &amp; content toe te passen">&#128229; Import from Figma</button>
       </div>
       <div class="aisb-design-canvas" data-design-canvas></div>
       <p class="aisb-design-hint">Scroll to pan · Ctrl+scroll to zoom · Double-click to fit all</p>

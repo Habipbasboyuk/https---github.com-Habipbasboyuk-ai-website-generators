@@ -1,5 +1,5 @@
 /**
- * design/editor-panel.js — Zijpaneel voor het bewerken van geselecteerde elementen.
+ * design/editor-panel.js - Zijpaneel voor het bewerken van geselecteerde elementen.
  * Ondersteunt: tekst, afbeeldingen, en algemene elementen.
  */
 (function () {
@@ -340,12 +340,7 @@
 
   D._templatesCache = null; // cache zodat we niet bij elke open opnieuw laden
 
-  D._loadTemplatePicker = function (
-    iframe,
-    body,
-    currentType,
-    currentId,
-  ) {
+  D._loadTemplatePicker = function (iframe, body, currentType, currentId) {
     const grid = body.querySelector("#aisb-ep-tpl-grid");
     const search = body.querySelector("#aisb-ep-tpl-search");
     const catBar = body.querySelector("#aisb-ep-tpl-categories");

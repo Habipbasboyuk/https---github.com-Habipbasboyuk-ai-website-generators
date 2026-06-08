@@ -1,9 +1,16 @@
 <?php
 if (!defined('ABSPATH')) exit;
 
+/**
+ * Centrale WordPress-koppeling van de plugin.
+ *
+ * Deze klasse registreert shortcodes, scripts, adminpagina's, custom post types
+ * en AJAX-routes. De echte uitvoering wordt doorgestuurd naar gespecialiseerde
+ * klassen zoals AISB_Ajax en AISB_Assets.
+ */
 class AISB_Plugin {
 
-	// Shared keys + actions (other classes should reference AISB_Plugin::CONST, not self::CONST)
+	// Gedeelde option keys en AJAX-acties voor de andere plugin-klassen.
 	public const OPT_KEY = 'aisb_settings';
 	public const NONCE_ACTION = 'aisb_nonce_action';
 
@@ -15,6 +22,7 @@ class AISB_Plugin {
 	public const AJAX_GET_LATEST_SITEMAP  = 'aisb_get_latest_sitemap';
 	public const AJAX_GET_SITEMAP_BY_ID   = 'aisb_get_sitemap_by_id';
 	public const AJAX_LIST_PROJECTS       = 'aisb_list_projects';
+	public const AJAX_DELETE_PROJECT      = 'aisb_delete_project';
 	public const AJAX_LIST_SITEMAP_VERSIONS = 'aisb_list_sitemap_versions';
 
     const LOG_OPT_KEY = 'aisb_debug_log';
@@ -40,19 +48,19 @@ class AISB_Plugin {
 	}
 
 	/**
-	 * Call from ai-sitemap-builder.php after instantiating dependencies.
+	 * Registreert alle WordPress-hooks nadat de dependencies zijn aangemaakt.
 	 */
 	public function init(): void {
-		// Frontend
+		// Frontend-shortcodes en assets.
 		add_action('init', [$this, 'register_shortcode']);
 		add_action('wp_enqueue_scripts', [$this, 'enqueue_assets']);
 
-		// Admin
+		// Adminpagina, instellingen en debuglog-acties.
 		add_action('admin_menu', [$this, 'admin_menu']);
 		add_action('admin_init', [$this, 'register_settings']);
 		add_action('admin_init', [$this, 'handle_clear_log']);
 
-		// Data model
+		// Data model via custom post types.
 		add_action('init', [$this, 'register_cpts']);
 
 		// AI Wireframe admin kolommen & filters voor de wp-admin lijstpagina
@@ -70,7 +78,7 @@ class AISB_Plugin {
 			return $force;
 		}, 10, 2);
 
-		// AJAX (logged-in)
+		// AJAX voor ingelogde gebruikers.
 		add_action('wp_ajax_' . self::AJAX_ACTION,               [$this, 'ajax_generate']);
 		add_action('wp_ajax_' . self::AJAX_ADD_PAGE,             [$this, 'ajax_add_page']);
 		add_action('wp_ajax_' . self::AJAX_FILL_SECTIONS,        [$this, 'ajax_fill_sections']);
@@ -79,17 +87,18 @@ class AISB_Plugin {
 		add_action('wp_ajax_' . self::AJAX_GET_LATEST_SITEMAP,   [$this, 'ajax_get_latest_sitemap']);
 		add_action('wp_ajax_' . self::AJAX_GET_SITEMAP_BY_ID,    [$this, 'ajax_get_sitemap_by_id']);
 		add_action('wp_ajax_' . self::AJAX_LIST_PROJECTS,        [$this, 'ajax_list_projects']);
+		add_action('wp_ajax_' . self::AJAX_DELETE_PROJECT,       [$this, 'ajax_delete_project']);
 		add_action('wp_ajax_' . self::AJAX_LIST_SITEMAP_VERSIONS,[$this, 'ajax_list_sitemap_versions']);
 
-		// AJAX (public) — only if you truly want anonymous usage
+		// Publieke AJAX-routes voor anonieme sitemapgeneratie.
 		add_action('wp_ajax_nopriv_' . self::AJAX_ACTION,        [$this, 'ajax_generate']);
 		add_action('wp_ajax_nopriv_' . self::AJAX_ADD_PAGE,      [$this, 'ajax_add_page']);
 		add_action('wp_ajax_nopriv_' . self::AJAX_FILL_SECTIONS, [$this, 'ajax_fill_sections']);
-		// NOTE: I recommend NOT exposing project CRUD/versioning endpoints to nopriv.
+		// Project- en versiebeheer blijft bewust alleen beschikbaar voor ingelogde gebruikers.
 	}
 
 	/* ---------------------------
-	 * CPTs
+	 * Custom post types
 	 * ------------------------- */
 
 	public function register_cpts(): void {
@@ -303,6 +312,10 @@ class AISB_Plugin {
 
 	public function ajax_list_projects(): void {
 		$this->ajax->ajax_list_projects();
+	}
+
+	public function ajax_delete_project(): void {
+		$this->ajax->ajax_delete_project();
 	}
 
 	public function ajax_list_sitemap_versions(): void {

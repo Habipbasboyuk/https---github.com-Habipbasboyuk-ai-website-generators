@@ -1,6 +1,7 @@
 /**
- * Shared application namespace, state, DOM refs, templates and patterns.
- * Must be loaded first — all other wireframe modules depend on this.
+ * Gedeelde wireframe-namespace, state, DOM-referenties, templates en patronen.
+ *
+ * Moet als eerste laden, omdat alle andere wireframe-modules hiervan afhangen.
  */
 window.AISB_WF_App = (function () {
   const root = document.querySelector("[data-aisb-wireframes]");

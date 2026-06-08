@@ -1,8 +1,7 @@
-/* ── Editor Panel v3 ──────────────────────────────────────────── */
-/* Full dark, right-docked, glass + neon accent                    */
+/* Editorpaneel v3: donker rechterzijpaneel met glass-effect en accentkleur. */
 
 .aisb-editor-panel {
-  /* Tokens — dark theme */
+  /* Tokens voor het donkere thema. */
   --ep-bg: rgba(17, 19, 26, 0.85);
   --ep-bg-solid: #11131a;
   --ep-surface: rgba(255, 255, 255, 0.04);

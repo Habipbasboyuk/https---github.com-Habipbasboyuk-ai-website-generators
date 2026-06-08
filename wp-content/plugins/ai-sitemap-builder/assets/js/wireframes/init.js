@@ -1,5 +1,5 @@
 /**
- * Entry point — kicks off sitemap loading after all modules are registered.
+ * Startpunt van stap 2: laadt de sitemap nadat alle modules geregistreerd zijn.
  */
 (function (app) {
   if (!app) return;

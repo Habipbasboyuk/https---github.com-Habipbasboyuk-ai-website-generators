@@ -2,6 +2,13 @@
 
 if (!defined('ABSPATH')) exit;
 
+/**
+ * Orkestreert stap 2: wireframes maken, tonen en bewaren.
+ *
+ * Deze klasse registreert de wireframe-shortcode, laadt assets, levert Bricks
+ * previewpagina's en koppelt alle AJAX-acties voor genereren, shufflen,
+ * vervangen, compileren en opslaan.
+ */
 class AISB_Wireframes {
 
   /** @var AISB_Template_Library */
@@ -23,7 +30,7 @@ class AISB_Wireframes {
   public function init(): void {
     $this->tpl_lib->init();
 
-    // Shortcode + assets
+    // Shortcode, Bricks preview-rendering en frontend-assets.
     add_action('init', [$this, 'register_shortcode']);
     add_action('template_redirect', [$this, 'render_bricks_preview']);
     add_action('wp_enqueue_scripts', [$this, 'enqueue_assets']);
@@ -37,7 +44,7 @@ class AISB_Wireframes {
       }, 100);
     }
 
-    // AJAX
+    // AJAX-acties voor de wireframe-interface.
     add_action('wp_ajax_aisb_get_wireframe_page', [$this, 'ajax_get_wireframe_page']);
     add_action('wp_ajax_aisb_generate_wireframe_page', [$this, 'ajax_generate_wireframe_page']);
     add_action('wp_ajax_aisb_update_wireframe_page', [$this, 'ajax_update_wireframe_page']);
@@ -63,7 +70,7 @@ class AISB_Wireframes {
     $post = get_post($id);
     if (!$post) wp_die('Post not found');
 
-    // Zowel bricks_template als ai_wireframe posts toestaan voor preview
+    // Zowel bricks_template als ai_wireframe posts toestaan voor preview.
     $allowed_types = ['bricks_template', 'ai_wireframe'];
     if (!in_array($post->post_type, $allowed_types, true)) {
       wp_die('Invalid post type for preview');
@@ -77,7 +84,7 @@ class AISB_Wireframes {
     // Hier maken we een tijdelijk menu aan met de pagina's uit de sitemap.
     $this->setup_wireframe_nav_menu($id, $post->post_type);
 
-    // Set up post context BEFORE CSS generation so Bricks knows which elements need CSS
+    // Zet de postcontext voordat Bricks CSS genereert, zodat de juiste elementen CSS krijgen.
     global $post;
     $post = get_post($id);
     setup_postdata($post);

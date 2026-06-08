@@ -1,8 +1,7 @@
-// helpers.js — Gedeelde hulpfuncties voor de Style Guide wizard
-// Dit bestand bevat algemene utility-functies die door alle andere scripts
-// worden gebruikt: statusberichten, HTML-escaping, querystring-bouw en AJAX.
+// helpers.js - Gedeelde hulpfuncties voor de stijlgidswizard.
+// Bevat statusberichten, HTML escaping, querystringbouw en AJAX helpers.
 //
-// Laadvolgorde: core.js → helpers.js → colours.js / typography.js / images.js → init.js
+// Laadvolgorde: core.js -> helpers.js -> colours.js / typography.js / images.js -> init.js
 // Alle functies worden op het gedeelde SG-object (window.AISB_StyleGuide) geplaatst.
 
 (function () {

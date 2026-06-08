@@ -1,8 +1,8 @@
 /**
- * Style Guide — Main entry point.
+ * Startpunt van de stijlgidswizard.
  *
- * This file loads AFTER the step modules:
- *   js/styleguide/core.js     — shared state, helpers, wizard, canvas, CSS injection
+ * Dit bestand laadt na de stapmodules:
+ *   js/styleguide/core.js     - gedeelde state, helpers, wizard, canvas en CSS-injectie
  *   js/styleguide/colours.js  — step 1: logo/manual colour extraction
  *   js/styleguide/typography.js — step 2: AI auto-font pairing
  *   js/styleguide/images.js   — step 3: auto-assign + swap modal
@@ -176,6 +176,9 @@
     // De injectie zelf gebeurt via de load-handlers van de iframes.
     if (SG.guide.images && SG.guide.images.length) {
       SG.imagesLoaded = true;
+    }
+    if (SG.refreshImageLibraryState) {
+      SG.refreshImageLibraryState();
     }
   }
 
