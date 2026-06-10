@@ -2523,18 +2523,20 @@ class AISB_Design {
          data-design-guide="<?php echo esc_attr($guide_raw ?: '{}'); ?>">
       <div class="aisb-design-toolbar">
         <span class="aisb-design-toolbar-title">Design Canvas</span>
-        <button id="aisb-design-save-btn" class="aisb-design-save-btn" type="button" title="Alle wijzigingen opslaan">&#128190; Opslaan</button>
-        <button id="aisb-design-publish-btn" class="aisb-design-save-btn" type="button" title="Clone en publish deze site via InstaWP">&#128640; Publish</button>
-        <div class="aisb-figma-export-wrap" id="aisb-figma-export-wrap">
-          <button class="aisb-design-save-btn aisb-design-figma-btn" type="button">&#128196; Export to Figma</button>
-          <div class="aisb-figma-export-dropdown">
-            <div class="aisb-figma-export-dropdown-inner">
-              <button id="aisb-design-figma-copy-btn" type="button"> Copy JSON</button>
-              <button id="aisb-design-figma-download-btn" type="button"> Download JSON</button>
+        <div class="aisb-design-toolbar-actions">
+          <button id="aisb-design-save-btn" class="aisb-design-save-btn aisb-design-save-action" type="button" title="Alle wijzigingen opslaan">&#128190; Opslaan</button>
+          <button id="aisb-design-publish-btn" class="aisb-design-save-btn aisb-design-publish-action" type="button" title="Clone en publish deze site via InstaWP">&#128640; Publish</button>
+          <div class="aisb-figma-export-wrap" id="aisb-figma-export-wrap">
+            <button class="aisb-design-save-btn aisb-design-figma-btn" type="button">&#128196; Export to Figma</button>
+            <div class="aisb-figma-export-dropdown">
+              <div class="aisb-figma-export-dropdown-inner">
+                <button id="aisb-design-figma-copy-btn" type="button">Copy JSON</button>
+                <button id="aisb-design-figma-download-btn" type="button">Download JSON</button>
+              </div>
             </div>
           </div>
+          <button id="aisb-design-figma-import-btn" class="aisb-design-save-btn aisb-design-figma-import-btn" type="button" title="Plak Figma Brixies JSON om styling &amp; content toe te passen">&#128229; Import from Figma</button>
         </div>
-        <button id="aisb-design-figma-import-btn" class="aisb-design-save-btn aisb-design-figma-import-btn" type="button" title="Plak Figma Brixies JSON om styling &amp; content toe te passen">&#128229; Import from Figma</button>
       </div>
       <div class="aisb-design-canvas" data-design-canvas></div>
       <p class="aisb-design-hint">Scroll to pan · Ctrl+scroll to zoom · Double-click to fit all</p>

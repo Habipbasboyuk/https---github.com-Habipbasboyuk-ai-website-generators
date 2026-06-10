@@ -11,43 +11,58 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 12px;
-  background: #1a1f2e;
+  padding: 10px 12px;
+  background: #111827;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-bottom: none;
   border-radius: 10px 10px 0 0;
-  gap: 12px;
+  gap: 16px;
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.04);
 }
 
 .aisb-design-toolbar-title {
   font-size: 12px;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.6);
   letter-spacing: 0.04em;
   text-transform: uppercase;
+}
+
+.aisb-design-toolbar-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-left: auto;
 }
 
 .aisb-design-save-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
-  background: #ffffff;
-  color: #323232;
-  border: none;
-  border-radius: 7px;
+  justify-content: center;
+  gap: 7px;
+  min-height: 32px;
+  padding: 0 13px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #f8fafc;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
   transition:
     background 0.15s,
+    border-color 0.15s,
+    color 0.15s,
     opacity 0.15s,
     transform 0.1s;
   white-space: nowrap;
   line-height: 1;
 }
 .aisb-design-save-btn:hover:not(:disabled) {
-  background: #d7d7d7;
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.22);
   transform: translateY(-1px);
 }
 .aisb-design-save-btn:disabled {
@@ -56,6 +71,17 @@
 }
 .aisb-design-save-btn.is-saved {
   background: #16a34a;
+  border-color: #16a34a;
+  color: #fff;
+}
+.aisb-design-publish-action {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #fff;
+}
+.aisb-design-publish-action:hover:not(:disabled) {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
 }
 
 /* ── Figma export dropdown ──────────────────────────────── */
@@ -73,11 +99,11 @@
   z-index: 999;
 }
 .aisb-figma-export-dropdown-inner {
-  background: #1a1f2e;
+  background: #111827;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.38);
 }
 .aisb-figma-export-wrap:hover .aisb-figma-export-dropdown,
 .aisb-figma-export-wrap:focus-within .aisb-figma-export-dropdown {
@@ -106,11 +132,27 @@
 
 /* ── Figma import knop ───────────────────────────────────── */
 .aisb-design-figma-import-btn {
-  background: #1a6b3c;
+  background: #16a34a;
+  border-color: #16a34a;
+  color: #fff;
 }
 .aisb-design-figma-import-btn:hover:not(:disabled) {
-  background: #195e35;
+  background: #15803d;
+  border-color: #15803d;
   transform: translateY(-1px);
+}
+
+@media (max-width: 720px) {
+  .aisb-design-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .aisb-design-toolbar-actions {
+    justify-content: flex-start;
+    margin-left: 0;
+    width: 100%;
+  }
 }
 
 /* ── Import paste-modal ──────────────────────────────────── */
