@@ -65,3 +65,4 @@ desktop.ini
 # ── Editor bestanden ──────────────────────────────────────────────
 .vscode/
 .idea/
+.claude/settings.local.json

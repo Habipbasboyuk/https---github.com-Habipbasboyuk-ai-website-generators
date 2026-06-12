@@ -4,7 +4,9 @@
       "Bash(xargs grep -l \"figma\")",
       "Bash(npm run *)",
       "Bash(find \"/c/Users/habip\" -name \"Untitled-1\" -not -path \"*/node_modules/*\" 2>/dev/null | head -5)",
-      "Read(//c/Users/habip/**)"
+      "Read(//path/to/your/project/**)",
+      "Bash(Get-ChildItem -Path \"c:\\\\path\\\\to\\\\project\\\\app\\\\public\" -Directory)",
+      "Bash(Select-Object Name)"
     ]
   }
 }
