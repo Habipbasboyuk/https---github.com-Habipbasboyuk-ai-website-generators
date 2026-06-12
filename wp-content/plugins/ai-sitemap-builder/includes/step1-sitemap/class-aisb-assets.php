@@ -433,7 +433,6 @@ class AISB_Assets {
             <div class="aisb-wf-head">
               <div>
                 <h3 class="aisb-output-title">Wireframes</h3>
-                <p class="aisb-subtitle">Relume-like preview · Brixies sections · fast skeleton rendering</p>
               </div>
             </div>
 
@@ -567,7 +566,6 @@ class AISB_Assets {
             <div class="aisb-sg-head">
               <div>
                 <h3 class="aisb-output-title">Design</h3>
-                <p class="aisb-subtitle">Full preview with your style guide applied</p>
               </div>
               <?php if ($project_id) : ?>
                 <div class="aisb-project-switcher">

@@ -2451,7 +2451,7 @@ class AISB_Design {
       'aisb-design',
       AISB_PLUGIN_URL . 'assets/js/design/init.js',
       ['aisb-design-canvas'],
-      AISB_VERSION,
+      file_exists(AISB_PLUGIN_DIR . 'assets/js/design/init.js') ? filemtime(AISB_PLUGIN_DIR . 'assets/js/design/init.js') : AISB_VERSION,
       true
     );
 

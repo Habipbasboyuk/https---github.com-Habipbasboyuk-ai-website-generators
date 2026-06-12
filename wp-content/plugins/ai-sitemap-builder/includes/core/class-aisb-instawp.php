@@ -15,6 +15,8 @@ class AISB_InstaWP {
   private const XMLRPC_BLOG_ID = 1;
   private const PUBLISH_LOCK_TTL = 900;
   private const PUBLISH_SESSION_TTL = 7200;
+  private const AUTO_LOGIN_ACTION = 'aisb_instawp_auto_login';
+  private const AUTO_LOGIN_TTL = 300;
   private const LEGACY_TEMPLATE_SLUGS = [
     '22610' => 'bricks-ai-base',
   ];
@@ -44,6 +46,7 @@ class AISB_InstaWP {
 
   public function init(): void {
     add_action('wp_ajax_' . self::AJAX_ACTION, [$this, 'ajax_publish_site']);
+    add_action('admin_post_' . self::AUTO_LOGIN_ACTION, [$this, 'handle_auto_login_redirect']);
     $this->register_bricks_meta_auth();
   }
 
@@ -74,6 +77,79 @@ class AISB_InstaWP {
     }
 
     return user_can((int) $user_id, 'edit_post', (int) $post_id);
+  }
+
+  public function handle_auto_login_redirect(): void {
+    if (!is_user_logged_in()) {
+      wp_die('Not logged in', '', ['response' => 403]);
+    }
+
+    $token = isset($_GET['token']) ? sanitize_key(wp_unslash($_GET['token'])) : '';
+    $nonce = isset($_GET['_wpnonce']) ? (string) wp_unslash($_GET['_wpnonce']) : '';
+    if ($token === '' || !wp_verify_nonce($nonce, self::AUTO_LOGIN_ACTION . '_' . $token)) {
+      wp_die('Invalid auto-login link', '', ['response' => 403]);
+    }
+
+    $transient_key = $this->get_auto_login_transient_key($token);
+    $payload = get_transient($transient_key);
+    delete_transient($transient_key);
+
+    if (!is_array($payload)) {
+      wp_die('The auto-login link has expired. Publish the site again to create a new link.', '', ['response' => 410]);
+    }
+
+    $user_id = (int) ($payload['user_id'] ?? 0);
+    if ($user_id !== (int) get_current_user_id() && !current_user_can('manage_options')) {
+      wp_die('Forbidden', '', ['response' => 403]);
+    }
+
+    $site_url = untrailingslashit((string) ($payload['site_url'] ?? ''));
+    $username = (string) ($payload['username'] ?? '');
+    $password = (string) ($payload['password'] ?? '');
+    $target_url = (string) ($payload['target_url'] ?? '');
+    if ($site_url === '' || $username === '' || $password === '') {
+      wp_die('Missing remote login credentials', '', ['response' => 500]);
+    }
+
+    if ($target_url === '') {
+      $target_url = trailingslashit($site_url);
+    }
+
+    $login_url = trailingslashit($site_url) . 'wp-login.php';
+
+    nocache_headers();
+    header('X-Robots-Tag: noindex, nofollow', true);
+    ?>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title>Opening site...</title>
+  <style>
+    body { align-items: center; background: #f6f7f7; color: #1d2327; display: flex; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; justify-content: center; min-height: 100vh; margin: 0; }
+    main { text-align: center; }
+    button { background: #2271b1; border: 0; border-radius: 4px; color: #fff; cursor: pointer; font-size: 14px; padding: 10px 16px; }
+  </style>
+</head>
+<body>
+  <main>
+    <p>Opening your site...</p>
+    <form id="aisb-remote-login" method="post" action="<?php echo esc_url($login_url); ?>" autocomplete="off">
+      <input type="hidden" name="log" value="<?php echo esc_attr($username); ?>">
+      <input type="hidden" name="pwd" value="<?php echo esc_attr($password); ?>">
+      <input type="hidden" name="rememberme" value="forever">
+      <input type="hidden" name="redirect_to" value="<?php echo esc_url($target_url); ?>">
+      <input type="hidden" name="wp-submit" value="Log In">
+      <noscript><button type="submit">Open site</button></noscript>
+    </form>
+  </main>
+  <script>document.getElementById('aisb-remote-login').submit();</script>
+</body>
+</html>
+    <?php
+    exit;
   }
 
   public function ajax_publish_site(): void {
@@ -267,12 +343,56 @@ class AISB_InstaWP {
     return $session;
   }
 
+  private function get_auto_login_transient_key(string $token): string {
+    return 'aisb_instawp_auto_login_' . $token;
+  }
+
+  private function create_frontend_auto_login_url(array $site): string {
+    $site_url = untrailingslashit((string) ($site['site_url'] ?? ''));
+    $username = (string) ($site['username'] ?? '');
+    $password = (string) ($site['password'] ?? '');
+
+    if ($site_url === '' || $username === '' || $password === '') {
+      return '';
+    }
+
+    $token = str_replace('-', '', wp_generate_uuid4());
+    set_transient($this->get_auto_login_transient_key($token), [
+      'user_id' => get_current_user_id(),
+      'site_url' => $site_url,
+      'username' => $username,
+      'password' => $password,
+      'target_url' => trailingslashit($site_url),
+      'created_at' => time(),
+    ], self::AUTO_LOGIN_TTL);
+
+    return add_query_arg([
+      'action' => self::AUTO_LOGIN_ACTION,
+      'token' => $token,
+      '_wpnonce' => wp_create_nonce(self::AUTO_LOGIN_ACTION . '_' . $token),
+    ], admin_url('admin-post.php'));
+  }
+
+  private function extract_instawp_magic_login_url(array $payload): string {
+    $url = $this->extract_first_value($payload, ['magic_login_url', 'magic_login', 'wp_auto_login_url', 'auto_login_url']);
+    if ($url === '') {
+      return '';
+    }
+
+    $path = (string) wp_parse_url($url, PHP_URL_PATH);
+    if ($path !== '' && preg_match('~/wp-login\.php$~i', $path)) {
+      return '';
+    }
+
+    return $url;
+  }
+
   private function store_publish_session(int $project_id, string $site_name, array $clone, array $site): void {
     set_transient($this->get_publish_session_key($project_id), [
       'site_name' => $site_name,
       'saved_at' => time(),
       'site_id' => $this->extract_first_value($clone, ['site_id', 'id']),
-      'magic_login_url' => $this->extract_first_value($clone, ['magic_login_url', 'magic_login', 'login_url']),
+      'magic_login_url' => $this->extract_instawp_magic_login_url($clone),
       'clone' => $clone,
       'site' => $site,
     ], self::PUBLISH_SESSION_TTL);
@@ -292,7 +412,7 @@ class AISB_InstaWP {
             'clone' => $session,
             'site' => $ready_site,
             'site_id' => (string) ($session['site_id'] ?? $this->extract_first_value($session, ['site_id', 'id'])),
-            'magic_login_url' => (string) ($session['magic_login_url'] ?? $this->extract_first_value($session, ['magic_login_url', 'magic_login', 'login_url'])),
+            'magic_login_url' => (string) ($session['magic_login_url'] ?? $this->extract_instawp_magic_login_url($session)),
             'reused_existing_site' => true,
           ];
         }
@@ -323,7 +443,7 @@ class AISB_InstaWP {
       'clone' => $clone,
       'site' => $site,
       'site_id' => $this->extract_first_value($clone, ['site_id', 'id']),
-      'magic_login_url' => $this->extract_first_value($clone, ['magic_login_url', 'magic_login', 'login_url']),
+      'magic_login_url' => $this->extract_instawp_magic_login_url($clone),
       'reused_existing_site' => false,
     ];
   }
@@ -464,6 +584,7 @@ class AISB_InstaWP {
 
     $publish_result = $this->publish_pages_via_xmlrpc(
       $site,
+      $clone,
       $project,
       $pages,
       $style_guide,
@@ -485,7 +606,8 @@ class AISB_InstaWP {
     return array_merge([
       'wp_url' => $site['site_url'],
       'wp_admin_url' => $site['admin_url'],
-      'magic_login_url' => (string) ($publish_site['magic_login_url'] ?? $this->extract_first_value($clone, ['magic_login_url', 'magic_login', 'login_url'])),
+      'frontend_auto_login_url' => $this->create_frontend_auto_login_url($site),
+      'magic_login_url' => (string) ($publish_site['magic_login_url'] ?? $this->extract_instawp_magic_login_url($clone)),
       'site_id' => (string) ($publish_site['site_id'] ?? $this->extract_first_value($clone, ['site_id', 'id'])),
       'reused_existing_site' => !empty($publish_site['reused_existing_site']),
     ], $publish_result);
@@ -770,6 +892,7 @@ class AISB_InstaWP {
 
   private function publish_pages_via_xmlrpc(
     array $site,
+    array $clone,
     $project,
     array $pages,
     array $style_guide,
@@ -905,6 +1028,46 @@ class AISB_InstaWP {
       ];
     }
 
+    $bricks_code_execution_ok = $this->configure_bricks_code_execution($site, $timeout);
+
+    // The Bricks "Nav Menu" element references a WordPress menu by term id. The
+    // exported elements point at the source site's menu id, which does not exist
+    // on the fresh clone, so Bricks renders "No nav menu found.". Create a real
+    // menu (with the published pages as items) on the clone and rewrite every
+    // nav-menu element to use the new term id before injecting the Bricks data.
+    $nav_menu_id = 0;
+    $nav_menu_items = [];
+    foreach ($published_pages as $published_page) {
+      $title = trim((string) ($published_page['title'] ?? ''));
+      if ($title === '') {
+        $title = ucwords(str_replace('-', ' ', (string) ($published_page['slug'] ?? '')));
+      }
+      if ($title === '') continue;
+      $nav_menu_items[] = [
+        'title'     => $title,
+        'object_id' => (int) ($published_page['post_id'] ?? 0),
+        'url'       => (string) ($published_page['url'] ?? ''),
+      ];
+      if (count($nav_menu_items) >= 10) break;
+    }
+
+    if (!empty($nav_menu_items)) {
+      $menu_label = $project_name !== '' ? $project_name . ' Menu' : 'Main Menu';
+      $nav_menu_id = $this->configure_remote_nav_menu($clone, $nav_menu_items, $menu_label);
+    }
+
+    if ($nav_menu_id > 0 && !empty($bricks_injections)) {
+      foreach ($bricks_injections as $injection_index => $injection) {
+        $payload = is_array($injection['payload'] ?? null) ? $injection['payload'] : [];
+        foreach (['content', 'header', 'footer'] as $region) {
+          if (isset($payload[$region]) && is_array($payload[$region])) {
+            $payload[$region] = $this->set_nav_menu_id_in_nodes($payload[$region], $nav_menu_id);
+          }
+        }
+        $bricks_injections[$injection_index]['payload'] = $payload;
+      }
+    }
+
     // The Bricks page-builder data lives in protected `_bricks_*` post meta.
     // XML-RPC `set_custom_fields` silently refuses to write protected meta on a
     // vanilla WordPress + Bricks clone (our plugin is not installed there), so
@@ -930,6 +1093,8 @@ class AISB_InstaWP {
       'front_page_id' => $front_page_id,
       'front_page_updated' => $front_page_updated,
       'blog_title_updated' => $blog_title_updated,
+      'bricks_code_execution_configured' => $bricks_code_execution_ok,
+      'nav_menu_id' => $nav_menu_id,
       'bricks_injected' => $bricks_injected,
       'published_pages' => $published_pages,
     ];
@@ -1093,6 +1258,454 @@ class AISB_InstaWP {
     }
 
     return $results;
+  }
+
+  /**
+   * Enable code execution in Bricks Builder for all user roles on the cloned
+   * site. Fetches the Bricks settings admin page to scrape the nonce, then
+   * saves the code-execution settings via Bricks' own AJAX endpoint so the
+   * published site is immediately usable with code elements. Non-fatal: logs
+   * on failure but never aborts the publish.
+   */
+  private function configure_bricks_code_execution(array $site, int $timeout): bool {
+    $login = $this->remote_wordpress_login($site);
+    if (is_wp_error($login)) {
+      error_log('[AISB] Bricks settings: login failed: ' . $login->get_error_message());
+      return false;
+    }
+
+    $cookies      = $login['cookies'];
+    $site_url     = untrailingslashit((string) ($site['site_url'] ?? ''));
+    $ajax_url     = $site_url . '/wp-admin/admin-ajax.php';
+    $settings_url = $site_url . '/wp-admin/admin.php?page=bricks-settings';
+
+    $page_response = $this->remote_request($settings_url, [
+      'method'      => 'GET',
+      'timeout'     => max(20, min(60, $timeout)),
+      'redirection' => 3,
+      'cookies'     => $cookies,
+    ]);
+
+    if (is_wp_error($page_response)) {
+      error_log('[AISB] Bricks settings: could not fetch settings page: ' . $page_response->get_error_message());
+      return false;
+    }
+
+    $html  = (string) ($page_response['body'] ?? '');
+    $nonce = $this->extract_bricks_admin_nonce($html);
+
+    if ($nonce === '') {
+      error_log('[AISB] Bricks settings: Bricks nonce not found on settings page.');
+      return false;
+    }
+
+    $form_data = $this->build_bricks_settings_form_data($html, ['administrator', 'editor', 'author', 'contributor']);
+    if ($form_data === '') {
+      error_log('[AISB] Bricks settings: could not build settings form payload.');
+      return false;
+    }
+
+    $save_response = $this->remote_request($ajax_url, [
+      'method'  => 'POST',
+      'timeout' => max(20, min(60, $timeout)),
+      'cookies' => $cookies,
+      'headers' => [
+        'Referer'          => $settings_url,
+        'X-Requested-With' => 'XMLHttpRequest',
+      ],
+      'body' => [
+        'action'   => 'bricks_save_settings',
+        'nonce'    => $nonce,
+        'formData' => $form_data,
+      ],
+    ]);
+
+    if (is_wp_error($save_response)) {
+      error_log('[AISB] Bricks settings: AJAX call failed: ' . $save_response->get_error_message());
+      return false;
+    }
+
+    $code    = (int) ($save_response['code'] ?? 0);
+    $decoded = json_decode((string) ($save_response['body'] ?? ''), true);
+    $ok      = $code === 200 && is_array($decoded) && !empty($decoded['success']);
+
+    if ($ok) {
+      error_log('[AISB] Bricks code execution enabled for all roles on the clone.');
+    } else {
+      error_log('[AISB] Bricks settings: save failed (HTTP ' . $code . '): ' . substr((string) ($save_response['body'] ?? ''), 0, 300));
+    }
+
+    return $ok;
+  }
+
+  /**
+   * Create a real WordPress navigation menu on the cloned site and return its
+   * term id. The Bricks "Nav Menu" element renders "No nav menu found." until an
+   * actual `nav_menu` term exists. Since this plugin is not installed on the
+   * clone, write the classic menu records directly into the clone database so
+   * the menu is visible under Appearance > Menus and Bricks can render it.
+   *
+   * @param array<int, array{title:string, object_id:int, url?:string}> $menu_items
+   */
+  private function configure_remote_nav_menu(array $clone, array $menu_items, string $menu_name): int {
+    $menu_items = array_values(array_filter($menu_items, static function ($item): bool {
+      return is_array($item) && trim((string) ($item['title'] ?? '')) !== '';
+    }));
+    if (empty($menu_items)) {
+      return 0;
+    }
+
+    $config = $this->extract_database_config($clone);
+    if (is_wp_error($config)) {
+      error_log('[AISB] Nav menu: database config unavailable: ' . $config->get_error_message());
+      return 0;
+    }
+
+    $connection = $this->connect_database($config);
+    if (is_wp_error($connection)) {
+      error_log('[AISB] Nav menu: database connection failed: ' . $connection->get_error_message());
+      return 0;
+    }
+
+    $prefix = $this->detect_table_prefix($connection, (string) ($config['prefix'] ?? ''));
+    if (is_wp_error($prefix)) {
+      error_log('[AISB] Nav menu: table prefix detection failed: ' . $prefix->get_error_message());
+      $connection->close();
+      return 0;
+    }
+
+    $menu_name = trim($menu_name) !== '' ? trim($menu_name) : 'Main Menu';
+    $menu_slug = sanitize_title($menu_name);
+    if ($menu_slug === '') {
+      $menu_slug = 'main-menu';
+    }
+
+    $terms_table              = $prefix . 'terms';
+    $term_taxonomy_table      = $prefix . 'term_taxonomy';
+    $posts_table              = $prefix . 'posts';
+    $postmeta_table           = $prefix . 'postmeta';
+    $term_relationships_table = $prefix . 'term_relationships';
+
+    $term_id = 0;
+    $term_taxonomy_id = 0;
+
+    $stmt = $connection->prepare("SELECT t.term_id, tt.term_taxonomy_id FROM {$terms_table} t INNER JOIN {$term_taxonomy_table} tt ON tt.term_id=t.term_id WHERE tt.taxonomy='nav_menu' AND (t.slug=? OR t.name=?) ORDER BY t.term_id ASC LIMIT 1");
+    if ($stmt) {
+      $stmt->bind_param('ss', $menu_slug, $menu_name);
+      $stmt->execute();
+      $result = $stmt->get_result();
+      $row = $result ? $result->fetch_assoc() : null;
+      $stmt->close();
+      if ($row) {
+        $term_id = (int) ($row['term_id'] ?? 0);
+        $term_taxonomy_id = (int) ($row['term_taxonomy_id'] ?? 0);
+      }
+    }
+
+    if ($term_id <= 0 || $term_taxonomy_id <= 0) {
+      $term_group = 0;
+      $stmt = $connection->prepare("INSERT INTO {$terms_table} (name, slug, term_group) VALUES (?, ?, ?)");
+      if (!$stmt) {
+        error_log('[AISB] Nav menu: term insert prepare failed: ' . $connection->error);
+        $connection->close();
+        return 0;
+      }
+      $stmt->bind_param('ssi', $menu_name, $menu_slug, $term_group);
+      $stmt->execute();
+      $error = $stmt->error;
+      $term_id = (int) $connection->insert_id;
+      $stmt->close();
+
+      if ($error !== '' || $term_id <= 0) {
+        error_log('[AISB] Nav menu: term insert failed: ' . $error);
+        $connection->close();
+        return 0;
+      }
+
+      $taxonomy = 'nav_menu';
+      $description = '';
+      $parent = 0;
+      $count = 0;
+      $stmt = $connection->prepare("INSERT INTO {$term_taxonomy_table} (term_id, taxonomy, description, parent, count) VALUES (?, ?, ?, ?, ?)");
+      if (!$stmt) {
+        error_log('[AISB] Nav menu: term taxonomy insert prepare failed: ' . $connection->error);
+        $connection->close();
+        return 0;
+      }
+      $stmt->bind_param('issii', $term_id, $taxonomy, $description, $parent, $count);
+      $stmt->execute();
+      $error = $stmt->error;
+      $term_taxonomy_id = (int) $connection->insert_id;
+      $stmt->close();
+
+      if ($error !== '' || $term_taxonomy_id <= 0) {
+        error_log('[AISB] Nav menu: term taxonomy insert failed: ' . $error);
+        $connection->close();
+        return 0;
+      }
+    } else {
+      $existing_ids = [];
+      $stmt = $connection->prepare("SELECT p.ID FROM {$posts_table} p INNER JOIN {$term_relationships_table} tr ON tr.object_id=p.ID WHERE tr.term_taxonomy_id=? AND p.post_type='nav_menu_item'");
+      if ($stmt) {
+        $stmt->bind_param('i', $term_taxonomy_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        while ($result && ($row = $result->fetch_assoc())) {
+          $existing_ids[] = (int) ($row['ID'] ?? 0);
+        }
+        $stmt->close();
+      }
+
+      foreach (array_filter($existing_ids) as $existing_id) {
+        $stmt = $connection->prepare("DELETE FROM {$postmeta_table} WHERE post_id=?");
+        if ($stmt) {
+          $stmt->bind_param('i', $existing_id);
+          $stmt->execute();
+          $stmt->close();
+        }
+        $stmt = $connection->prepare("DELETE FROM {$term_relationships_table} WHERE object_id=?");
+        if ($stmt) {
+          $stmt->bind_param('i', $existing_id);
+          $stmt->execute();
+          $stmt->close();
+        }
+        $stmt = $connection->prepare("DELETE FROM {$posts_table} WHERE ID=? AND post_type='nav_menu_item'");
+        if ($stmt) {
+          $stmt->bind_param('i', $existing_id);
+          $stmt->execute();
+          $stmt->close();
+        }
+      }
+    }
+
+    $position = 0;
+    foreach ($menu_items as $item) {
+      $position++;
+      $object_id = (int) ($item['object_id'] ?? 0);
+      $url       = (string) ($item['url'] ?? '');
+      $is_post   = $object_id > 0;
+
+      $title = sanitize_text_field((string) ($item['title'] ?? ''));
+      $post_name = sanitize_title($title) . '-' . $position;
+      $now = gmdate('Y-m-d H:i:s');
+      $author = 1;
+      $empty = '';
+      $closed = 'closed';
+      $status = 'publish';
+      $post_type = 'nav_menu_item';
+      $post_parent = 0;
+      $comment_count = 0;
+
+      $stmt = $connection->prepare("INSERT INTO {$posts_table} (post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, post_type, post_mime_type, comment_count) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+      if (!$stmt) {
+        error_log('[AISB] Nav menu: menu item post prepare failed: ' . $connection->error);
+        $connection->close();
+        return 0;
+      }
+      $stmt->bind_param('isssssssssssssssisissi', $author, $now, $now, $empty, $title, $empty, $status, $closed, $closed, $empty, $post_name, $empty, $empty, $now, $now, $empty, $post_parent, $empty, $position, $post_type, $empty, $comment_count);
+      $stmt->execute();
+      $error = $stmt->error;
+      $menu_item_id = (int) $connection->insert_id;
+      $stmt->close();
+      if ($error !== '' || $menu_item_id <= 0) {
+        error_log('[AISB] Nav menu: menu item post insert failed: ' . $error);
+        $connection->close();
+        return 0;
+      }
+
+      $stmt = $connection->prepare("INSERT INTO {$term_relationships_table} (object_id, term_taxonomy_id, term_order) VALUES (?, ?, ?)");
+      if (!$stmt) {
+        error_log('[AISB] Nav menu: relationship prepare failed: ' . $connection->error);
+        $connection->close();
+        return 0;
+      }
+      $term_order = 0;
+      $stmt->bind_param('iii', $menu_item_id, $term_taxonomy_id, $term_order);
+      $stmt->execute();
+      $error = $stmt->error;
+      $stmt->close();
+      if ($error !== '') {
+        error_log('[AISB] Nav menu: relationship insert failed: ' . $error);
+        $connection->close();
+        return 0;
+      }
+
+      $meta_values = [
+        '_menu_item_type'             => $is_post ? 'post_type' : 'custom',
+        '_menu_item_menu_item_parent' => '0',
+        '_menu_item_object_id'        => $is_post ? (string) $object_id : '0',
+        '_menu_item_object'           => $is_post ? 'page' : 'custom',
+        '_menu_item_target'           => '',
+        '_menu_item_classes'          => maybe_serialize(['']),
+        '_menu_item_xfn'              => '',
+        '_menu_item_url'              => $is_post ? '' : $url,
+      ];
+
+      foreach ($meta_values as $meta_key => $meta_value) {
+        $stored = $this->upsert_meta_value($connection, $prefix, $menu_item_id, $meta_key, (string) $meta_value);
+        if (is_wp_error($stored)) {
+          error_log('[AISB] Nav menu: meta write failed: ' . $stored->get_error_message());
+          $connection->close();
+          return 0;
+        }
+      }
+    }
+
+    $count = count($menu_items);
+    $stmt = $connection->prepare("UPDATE {$term_taxonomy_table} SET count=? WHERE term_taxonomy_id=?");
+    if ($stmt) {
+      $stmt->bind_param('ii', $count, $term_taxonomy_id);
+      $stmt->execute();
+      $stmt->close();
+    }
+
+    error_log('[AISB] Nav menu created in clone database (term id ' . $term_id . ') with ' . $count . ' items.');
+    $connection->close();
+    return $term_id;
+  }
+
+  /**
+   * Point every Bricks "nav-menu" element in a flat node list at the given WP
+   * menu term id. The exported elements reference the source site's menu id
+   * (e.g. "8"), which does not exist on the clone, so we rewrite it to the menu
+   * we just created.
+   *
+   * @param array<int, array<string, mixed>> $nodes
+   * @return array<int, array<string, mixed>>
+   */
+  private function set_nav_menu_id_in_nodes(array $nodes, int $menu_id): array {
+    if ($menu_id <= 0) {
+      return $nodes;
+    }
+
+    foreach ($nodes as $index => $node) {
+      if (!is_array($node) || ($node['name'] ?? '') !== 'nav-menu') {
+        continue;
+      }
+
+      $settings = isset($node['settings']) && is_array($node['settings']) ? $node['settings'] : [];
+      $settings['menu'] = (string) $menu_id;
+      $nodes[$index]['settings'] = $settings;
+    }
+
+    return $nodes;
+  }
+
+  private function extract_bricks_admin_nonce(string $html): string {
+    // Bricks localizes the admin nonce inside the `bricksData` object. Scope the
+    // search to that object so we never grab a nonce from another script.
+    $scope = $html;
+    $pos = strpos($html, 'bricksData');
+    if ($pos !== false) {
+      $scope = substr($html, $pos, 4000);
+    }
+
+    // WordPress nonces are 10 hexadecimal-ish characters.
+    if (preg_match('/"nonce"\s*:\s*"([a-zA-Z0-9]{10})"/', $scope, $m)) {
+      return $m[1];
+    }
+
+    if (preg_match('/"nonce"\s*:\s*"([a-zA-Z0-9]{8,12})"/', $scope, $m)) {
+      return $m[1];
+    }
+
+    return '';
+  }
+
+  private function build_bricks_settings_form_data(string $html, array $execute_roles): string {
+    $pairs = [];
+
+    if (class_exists('DOMDocument')) {
+      $previous_errors = libxml_use_internal_errors(true);
+      $document = new DOMDocument();
+      // NOTE: DOMDocument::getElementById() is unreliable for HTML loaded via
+      // loadHTML() (no DTD marks `id` as an ID attribute), so locate the Bricks
+      // settings form through XPath instead.
+      $loaded = $document->loadHTML('<?xml encoding="utf-8" ?>' . $html);
+      libxml_clear_errors();
+      libxml_use_internal_errors($previous_errors);
+
+      if ($loaded) {
+        $xpath = new DOMXPath($document);
+        $form_nodes = $xpath->query('//form[@id="bricks-settings"]');
+        $form = ($form_nodes && $form_nodes->length > 0) ? $form_nodes->item(0) : null;
+        if ($form instanceof DOMElement) {
+          $pairs = $this->serialize_form_element_pairs($form);
+        }
+      }
+    }
+
+    // Fallback: even if we could not parse the existing form, still enable code
+    // execution so the published site is immediately usable.
+    $pairs = array_values(array_filter($pairs, static function ($pair): bool {
+      $name = (string) ($pair[0] ?? '');
+      return $name !== 'executeCodeEnabled' && $name !== 'executeCodeCapabilities[]';
+    }));
+
+    $pairs[] = ['executeCodeEnabled', 'on'];
+    foreach ($execute_roles as $role) {
+      $role = sanitize_key((string) $role);
+      if ($role !== '') {
+        $pairs[] = ['executeCodeCapabilities[]', $role];
+      }
+    }
+
+    $encoded = [];
+    foreach ($pairs as $pair) {
+      $encoded[] = rawurlencode((string) $pair[0]) . '=' . rawurlencode((string) $pair[1]);
+    }
+
+    return implode('&', $encoded);
+  }
+
+  private function serialize_form_element_pairs(DOMElement $form): array {
+    $pairs = [];
+    foreach (['input', 'textarea', 'select'] as $tag_name) {
+      foreach ($form->getElementsByTagName($tag_name) as $element) {
+        if (!$element instanceof DOMElement) {
+          continue;
+        }
+
+        $name = $element->getAttribute('name');
+        if ($name === '' || $element->hasAttribute('disabled')) {
+          continue;
+        }
+
+        if ($tag_name === 'textarea') {
+          $pairs[] = [$name, $element->textContent];
+          continue;
+        }
+
+        if ($tag_name === 'select') {
+          $options = $element->getElementsByTagName('option');
+          $selected = [];
+          foreach ($options as $option) {
+            if ($option instanceof DOMElement && $option->hasAttribute('selected')) {
+              $selected[] = $option;
+            }
+          }
+          if (empty($selected) && !$element->hasAttribute('multiple') && $options->length > 0 && $options->item(0) instanceof DOMElement) {
+            $selected[] = $options->item(0);
+          }
+          foreach ($selected as $option) {
+            $pairs[] = [$name, $option->hasAttribute('value') ? $option->getAttribute('value') : $option->textContent];
+          }
+          continue;
+        }
+
+        $type = strtolower($element->getAttribute('type') ?: 'text');
+        if (in_array($type, ['submit', 'button', 'reset', 'file', 'image'], true)) {
+          continue;
+        }
+        if (in_array($type, ['checkbox', 'radio'], true) && !$element->hasAttribute('checked')) {
+          continue;
+        }
+
+        $pairs[] = [$name, $element->hasAttribute('value') ? $element->getAttribute('value') : 'on'];
+      }
+    }
+
+    return $pairs;
   }
 
   /**
@@ -1800,6 +2413,21 @@ class AISB_InstaWP {
     }
 
     return ['cookies' => $cookies];
+  }
+
+  /**
+   * Scrape the value of a named <input> field from admin HTML. Handles both
+   * attribute orders (name before value and value before name).
+   */
+  private function extract_input_value(string $html, string $name): string {
+    $escaped = preg_quote($name, '/');
+    if (preg_match('/<input\b[^>]*\bname=["\']' . $escaped . '["\'][^>]*\bvalue=["\']([^"\']*)["\']/i', $html, $matches)) {
+      return $matches[1];
+    }
+    if (preg_match('/<input\b[^>]*\bvalue=["\']([^"\']*)["\'][^>]*\bname=["\']' . $escaped . '["\']/i', $html, $matches)) {
+      return $matches[1];
+    }
+    return '';
   }
 
   private function extract_wp_admin_nonce(string $html): string {
@@ -3683,6 +4311,7 @@ JS;
 
     $publish_result = $this->publish_pages_via_xmlrpc(
       $site,
+      $clone,
       $project instanceof WP_Post ? $project : null,
       [$legacy_page],
       [],
@@ -3707,7 +4336,8 @@ JS;
     return array_merge([
       'wp_url' => $site['site_url'],
       'wp_admin_url' => $site['admin_url'],
-      'magic_login_url' => (string) ($publish_site['magic_login_url'] ?? $this->extract_first_value($clone, ['magic_login_url', 'magic_login', 'login_url'])),
+      'frontend_auto_login_url' => $this->create_frontend_auto_login_url($site),
+      'magic_login_url' => (string) ($publish_site['magic_login_url'] ?? $this->extract_instawp_magic_login_url($clone)),
       'site_id' => (string) ($publish_site['site_id'] ?? $this->extract_first_value($clone, ['site_id', 'id'])),
       'reused_existing_site' => !empty($publish_site['reused_existing_site']),
       'target_post_id' => $target_post_id,

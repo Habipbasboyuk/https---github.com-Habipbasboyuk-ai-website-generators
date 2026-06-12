@@ -446,7 +446,6 @@ class AISB_Wireframes {
         <div class="aisb-wf-head">
           <div>
             <h2 class="aisb-title">Wireframes</h2>
-            <p class="aisb-subtitle">Relume-like preview · Brixies sections · fast skeleton rendering</p>
           </div>
           <div class="aisb-wf-top-actions">
             <a class="aisb-btn-secondary" href="<?php echo esc_url(remove_query_arg(['aisb_step'])); ?>">Back to sitemap</a>

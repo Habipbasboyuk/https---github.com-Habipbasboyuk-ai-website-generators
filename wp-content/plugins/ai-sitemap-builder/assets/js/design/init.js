@@ -156,6 +156,41 @@
         publishBtn.disabled = true;
         publishBtn.textContent = "\u23F3 Publishing\u2026";
 
+        // Open immediately to avoid popup blockers, then redirect later
+        let targetWindow = null;
+        try {
+          targetWindow = window.open("about:blank", "_blank");
+          if (targetWindow) {
+            targetWindow.document.write(
+              '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Publishing\u2026</title>' +
+                "<style>" +
+                "*{box-sizing:border-box;}" +
+                "body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;margin:0;background:linear-gradient(135deg,#1e1b4b 0%,#4c1d95 100%);color:#fff;}" +
+                ".aisb-loader{width:min(420px,80vw);text-align:center;}" +
+                ".aisb-spinner{width:56px;height:56px;margin:0 auto 28px;border:5px solid rgba(255,255,255,.2);border-top-color:#fff;border-radius:50%;animation:aisb-spin 1s linear infinite;}" +
+                "@keyframes aisb-spin{to{transform:rotate(360deg);}}" +
+                "h2{font-size:20px;font-weight:600;margin:0 0 6px;}" +
+                "p{margin:0 0 24px;opacity:.75;font-size:14px;}" +
+                ".aisb-bar{width:100%;height:10px;background:rgba(255,255,255,.18);border-radius:999px;overflow:hidden;}" +
+                ".aisb-bar-fill{height:100%;width:0%;background:linear-gradient(90deg,#a855f7,#ec4899);border-radius:999px;transition:width .4s ease;}" +
+                ".aisb-pct{margin-top:14px;font-size:28px;font-weight:700;font-variant-numeric:tabular-nums;}" +
+                "</style></head><body>" +
+                '<div class="aisb-loader">' +
+                '<div class="aisb-spinner"></div>' +
+                "<h2>Publishing your AI website</h2>" +
+                "<p>Setting up your site, this can take a minute\u2026</p>" +
+                '<div class="aisb-bar"><div class="aisb-bar-fill" id="aisb-bar-fill"></div></div>' +
+                '<div class="aisb-pct" id="aisb-pct">0%</div>' +
+                "</div>" +
+                "<script>(function(){var p=0,done=false;var fill=document.getElementById('aisb-bar-fill');var pct=document.getElementById('aisb-pct');function render(){fill.style.width=p+'%';pct.textContent=Math.round(p)+'%';}function tick(){if(done)return;var step=p<60?1.4:(p<85?0.5:0.15);p=Math.min(p+step,95);render();setTimeout(tick,180);}window.__aisbComplete=function(){done=true;p=100;render();};render();setTimeout(tick,180);})();<\/script>" +
+                "</body></html>",
+            );
+            targetWindow.document.close();
+          }
+        } catch (e) {
+          console.warn("Could not open blank window", e);
+        }
+
         try {
           if (D.saveAllEdits) {
             await D.saveAllEdits();
@@ -181,14 +216,42 @@
           publishBtn.textContent = "\u2713 Published";
           publishBtn.classList.add("is-saved");
 
-          const targetUrl =
+          const wpUrl = (result.data && result.data.wp_url) || "";
+          // Prefer the one-time auto-login bridge so the browser receives the remote WP cookie.
+          let targetUrl =
             (result.data &&
-              (result.data.magic_login_url || result.data.wp_url || "")) ||
+              (result.data.frontend_auto_login_url ||
+                result.data.magic_login_url ||
+                result.data.wp_url ||
+                "")) ||
             "";
 
+          if (
+            targetUrl &&
+            wpUrl &&
+            targetUrl !== wpUrl &&
+            result.data.magic_login_url &&
+            !result.data.frontend_auto_login_url
+          ) {
+            const sep = targetUrl.includes("?") ? "&" : "?";
+            targetUrl += sep + "dest=/&redirect_to=/";
+          }
+
           if (targetUrl) {
-            window.location.href = targetUrl;
-            return;
+            if (targetWindow) {
+              try {
+                if (typeof targetWindow.__aisbComplete === "function") {
+                  targetWindow.__aisbComplete();
+                }
+              } catch (e) {
+                /* cross-origin or closed window: ignore */
+              }
+              targetWindow.location.href = targetUrl;
+            } else {
+              window.location.href = targetUrl;
+            }
+          } else if (targetWindow) {
+            targetWindow.close();
           }
 
           delete publishBtn.dataset.aisbPublishing;
@@ -199,6 +262,9 @@
           }, 2000);
         } catch (err) {
           console.error("[AISB design] publish failed:", err);
+          if (targetWindow) {
+            targetWindow.close();
+          }
           delete publishBtn.dataset.aisbPublishing;
           publishBtn.disabled = false;
           publishBtn.textContent = "\u26A0 Publish failed";

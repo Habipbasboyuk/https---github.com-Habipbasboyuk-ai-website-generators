@@ -69,6 +69,26 @@
     applyTransform();
   };
 
+  /* ── Vertical scroll bounds ────────────────────────────────── */
+
+  const getCanvasYBounds = () => {
+    const cards = Array.from(nodesEl.querySelectorAll(".aisb-node-card"));
+    if (!cards.length) return null;
+    let minY = Infinity, maxY = -Infinity;
+    cards.forEach((el) => {
+      minY = Math.min(minY, el.offsetTop);
+      maxY = Math.max(maxY, el.offsetTop + el.offsetHeight);
+    });
+    const ch = canvasEl.clientHeight;
+    const sc = view.scale;
+    const pad = 50;
+    return {
+      minTy: ch - maxY * sc - pad,
+      maxTy: -minY * sc + pad,
+      fits: (maxY - minY) * sc + pad * 2 <= ch,
+    };
+  };
+
   /* ── Pan events ─────────────────────────────────────────── */
 
   canvasEl.addEventListener("mousedown", (e) => {
@@ -84,7 +104,9 @@
     const dx = e.clientX - app.panStart.x;
     const dy = e.clientY - app.panStart.y;
     view.tx = app.panStart.tx + dx;
-    view.ty = app.panStart.ty + dy;
+    const newTy = app.panStart.ty + dy;
+    const b = getCanvasYBounds();
+    view.ty = (b && !b.fits) ? clamp(newTy, b.minTy, b.maxTy) : newTy;
     applyTransform();
   });
 
@@ -104,9 +126,14 @@
         zoomTo(view.scale * factor, e.clientX, e.clientY);
         return;
       }
+      const b = getCanvasYBounds();
+      if (!b || b.fits) return;
+      const ty = view.ty;
+      if (e.deltaY > 0 && ty <= b.minTy + 2) return;
+      if (e.deltaY < 0 && ty >= b.maxTy - 2) return;
       e.preventDefault();
       view.tx -= e.deltaX;
-      view.ty -= e.deltaY;
+      view.ty = clamp(ty - e.deltaY, b.minTy, b.maxTy);
       applyTransform();
     },
     { passive: false },

@@ -41,6 +41,23 @@
     return Math.max(lo, Math.min(hi, v));
   }
 
+  function getYBounds() {
+    const cards = inner.querySelectorAll(".aisb-wf-page-card");
+    if (!cards.length) return null;
+    const vp = wb.getBoundingClientRect();
+    let minY = Infinity, maxY = -Infinity;
+    for (const c of cards) {
+      minY = Math.min(minY, c.offsetTop);
+      maxY = Math.max(maxY, c.offsetTop + c.offsetHeight);
+    }
+    const sc = app.canvas.scale;
+    return {
+      minTy: vp.height - maxY * sc,
+      maxTy: -minY * sc,
+      fits: (maxY - minY) * sc <= vp.height,
+    };
+  }
+
   // Pan: mousedown on empty canvas area
   wb.addEventListener("mousedown", (e) => {
     if (e.target.closest(".aisb-wf-page-card")) return;
@@ -58,7 +75,13 @@
   window.addEventListener("mousemove", (e) => {
     if (!app.isPanning) return;
     app.canvas.tx = app.panStart.tx + (e.clientX - app.panStart.x);
-    app.canvas.ty = app.panStart.ty + (e.clientY - app.panStart.y);
+    const newTy = app.panStart.ty + (e.clientY - app.panStart.y);
+    const bounds = getYBounds();
+    if (bounds && !bounds.fits) {
+      app.canvas.ty = clamp(newTy, bounds.minTy, bounds.maxTy);
+    } else {
+      app.canvas.ty = newTy;
+    }
     applyCanvasTransform();
   });
 
@@ -88,23 +111,14 @@
         app.canvas.ty = cy - wy * next;
         applyCanvasTransform();
       } else {
-        const cards = inner.querySelectorAll(".aisb-wf-page-card");
-        if (!cards.length) return;
-        const vp = wb.getBoundingClientRect();
-        let minY = Infinity,
-          maxY = -Infinity;
-        for (const c of cards) {
-          minY = Math.min(minY, c.offsetTop);
-          maxY = Math.max(maxY, c.offsetTop + c.offsetHeight);
-        }
-        const contentTop = app.canvas.ty + minY * app.canvas.scale;
-        const contentBot = app.canvas.ty + maxY * app.canvas.scale;
-        if (e.deltaY > 0 && contentBot <= vp.height + 2) return;
-        if (e.deltaY < 0 && contentTop >= -2) return;
-
+        const bounds = getYBounds();
+        if (!bounds || bounds.fits) return;
+        const ty = app.canvas.ty;
+        if (e.deltaY > 0 && ty <= bounds.minTy + 2) return;
+        if (e.deltaY < 0 && ty >= bounds.maxTy - 2) return;
         e.preventDefault();
         app.canvas.tx -= e.deltaX;
-        app.canvas.ty -= e.deltaY;
+        app.canvas.ty = clamp(ty - e.deltaY, bounds.minTy, bounds.maxTy);
         applyCanvasTransform();
       }
     },
