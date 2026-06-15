@@ -1053,7 +1053,7 @@ class AISB_InstaWP {
 
     if (!empty($nav_menu_items)) {
       $menu_label = $project_name !== '' ? $project_name . ' Menu' : 'Main Menu';
-      $nav_menu_id = $this->configure_remote_nav_menu($clone, $nav_menu_items, $menu_label);
+      $nav_menu_id = $this->configure_remote_nav_menu($clone, $site, $nav_menu_items, $menu_label, $timeout);
     }
 
     if ($nav_menu_id > 0 && !empty($bricks_injections)) {
@@ -1339,15 +1339,225 @@ class AISB_InstaWP {
   }
 
   /**
-   * Create a real WordPress navigation menu on the cloned site and return its
-   * term id. The Bricks "Nav Menu" element renders "No nav menu found." until an
-   * actual `nav_menu` term exists. Since this plugin is not installed on the
-   * clone, write the classic menu records directly into the clone database so
-   * the menu is visible under Appearance > Menus and Bricks can render it.
+   * Maak een WordPress navigatiemenu aan op de geclonede site en geef het term id terug.
+   * Probeert eerst via de WordPress REST API (betrouwbaar, vereist geen database credentials).
+   * Val terug op directe database-verbinding als REST niet werkt.
    *
    * @param array<int, array{title:string, object_id:int, url?:string}> $menu_items
    */
-  private function configure_remote_nav_menu(array $clone, array $menu_items, string $menu_name): int {
+  private function configure_remote_nav_menu(array $clone, array $site, array $menu_items, string $menu_name, int $timeout): int {
+    $menu_items = array_values(array_filter($menu_items, static function ($item): bool {
+      return is_array($item) && trim((string) ($item['title'] ?? '')) !== '';
+    }));
+    if (empty($menu_items)) return 0;
+
+    // Primaire aanpak: WordPress REST API (vereist geen database credentials)
+    $menu_id = $this->configure_remote_nav_menu_via_rest($site, $menu_items, $menu_name, $timeout);
+    if ($menu_id > 0) {
+      return $menu_id;
+    }
+
+    error_log('[AISB] Nav menu: REST API aanpak mislukt, probeer directe database...');
+
+    // Fallback: directe database verbinding
+    return $this->configure_remote_nav_menu_via_db($clone, $menu_items, $menu_name);
+  }
+
+  /**
+   * Maak het navigatiemenu aan via de WordPress REST API.
+   * Gebruik: login → REST nonce → POST /wp-json/wp/v2/menus → POST /wp-json/wp/v2/menu-items
+   *
+   * @param array<int, array{title:string, object_id:int, url?:string}> $menu_items
+   */
+  private function configure_remote_nav_menu_via_rest(array $site, array $menu_items, string $menu_name, int $timeout): int {
+    $login = $this->remote_wordpress_login($site);
+    if (is_wp_error($login)) {
+      error_log('[AISB] Nav menu REST: login mislukt: ' . $login->get_error_message());
+      return 0;
+    }
+
+    $cookies  = $login['cookies'];
+    $site_url = untrailingslashit((string) ($site['site_url'] ?? ''));
+    $rest_url = $site_url . '/wp-json/wp/v2';
+
+    // REST nonce ophalen vanuit de WordPress admin dashboard pagina
+    $nonce = $this->fetch_wp_rest_nonce($site_url, $cookies, $timeout);
+    if ($nonce === '') {
+      error_log('[AISB] Nav menu REST: kon geen REST nonce ophalen.');
+      return 0;
+    }
+
+    $headers = [
+      'X-WP-Nonce'       => $nonce,
+      'Content-Type'     => 'application/json',
+      'X-Requested-With' => 'XMLHttpRequest',
+    ];
+
+    // Menu aanmaken via REST API
+    $menu_slug = sanitize_title($menu_name);
+    if ($menu_slug === '') $menu_slug = 'main-menu';
+
+    $create_response = $this->remote_request($rest_url . '/menus', [
+      'method'  => 'POST',
+      'timeout' => max(15, min(60, $timeout)),
+      'cookies' => $cookies,
+      'headers' => $headers,
+      'body'    => wp_json_encode(['name' => $menu_name, 'slug' => $menu_slug], JSON_UNESCAPED_UNICODE),
+    ]);
+
+    if (is_wp_error($create_response)) {
+      error_log('[AISB] Nav menu REST: menu aanmaken mislukt: ' . $create_response->get_error_message());
+      return 0;
+    }
+
+    $code    = (int) ($create_response['code'] ?? 0);
+    $decoded = json_decode((string) ($create_response['body'] ?? ''), true);
+
+    if (($code !== 200 && $code !== 201) || !is_array($decoded) || empty($decoded['id'])) {
+      error_log('[AISB] Nav menu REST: menu aanmaken HTTP ' . $code . ': ' . substr((string) ($create_response['body'] ?? ''), 0, 300));
+      return 0;
+    }
+
+    $menu_id = (int) $decoded['id'];
+    error_log('[AISB] Nav menu REST: menu aangemaakt id=' . $menu_id . ' naam=' . $menu_name);
+
+    // Menu-items toevoegen
+    foreach ($menu_items as $order => $item) {
+      $object_id = (int) ($item['object_id'] ?? 0);
+      $title     = sanitize_text_field((string) ($item['title'] ?? ''));
+      $url       = (string) ($item['url'] ?? '');
+
+      $item_body = [
+        'title'      => ['rendered' => $title, 'raw' => $title],
+        'menus'      => $menu_id,
+        'status'     => 'publish',
+        'menu_order' => $order + 1,
+      ];
+
+      if ($object_id > 0) {
+        $item_body['type']      = 'post_type';
+        $item_body['object']    = 'page';
+        $item_body['object_id'] = $object_id;
+        $item_body['url']       = $url;
+      } else {
+        $item_body['type'] = 'custom';
+        $item_body['url']  = $url;
+      }
+
+      $item_response = $this->remote_request($rest_url . '/menu-items', [
+        'method'  => 'POST',
+        'timeout' => max(10, min(30, $timeout)),
+        'cookies' => $cookies,
+        'headers' => $headers,
+        'body'    => wp_json_encode($item_body, JSON_UNESCAPED_UNICODE),
+      ]);
+
+      if (is_wp_error($item_response)) {
+        error_log('[AISB] Nav menu REST: item "' . $title . '" mislukt: ' . $item_response->get_error_message());
+        continue;
+      }
+
+      $item_code = (int) ($item_response['code'] ?? 0);
+      if ($item_code !== 200 && $item_code !== 201) {
+        error_log('[AISB] Nav menu REST: item "' . $title . '" HTTP ' . $item_code . ': ' . substr((string) ($item_response['body'] ?? ''), 0, 200));
+      }
+    }
+
+    // Probeer het menu toe te wijzen aan beschikbare theme locaties (niet fataal)
+    $this->assign_menu_to_locations_via_rest($site_url, $cookies, $headers, $menu_id, $timeout);
+
+    return $menu_id;
+  }
+
+  /**
+   * Haal de WordPress REST API nonce op van de admin dashboard pagina.
+   * WordPress injecteert dit in het wpApiSettings object op elke admin-pagina.
+   */
+  private function fetch_wp_rest_nonce(string $site_url, array $cookies, int $timeout): string {
+    $response = $this->remote_request($site_url . '/wp-admin/index.php', [
+      'method'      => 'GET',
+      'timeout'     => max(15, min(60, $timeout)),
+      'redirection' => 3,
+      'cookies'     => $cookies,
+    ]);
+
+    if (is_wp_error($response)) {
+      return '';
+    }
+
+    $html = (string) ($response['body'] ?? '');
+    if ($html === '') return '';
+
+    // wpApiSettings object zoeken — aanwezig op elke WordPress admin pagina
+    if (preg_match('/wpApiSettings\s*=\s*\{[^}]{0,800}"nonce"\s*:\s*"([a-zA-Z0-9]+)"/', $html, $m)) {
+      return $m[1];
+    }
+    // Fallback: standalone nonce veld
+    if (preg_match('/"rest_nonce"\s*:\s*"([a-zA-Z0-9]+)"/', $html, $m)) {
+      return $m[1];
+    }
+
+    return '';
+  }
+
+  /**
+   * Wijs het menu toe aan de beschikbare WordPress theme locaties via REST API.
+   * Niet-fataal: logt fouten maar onderbreekt de publish niet.
+   */
+  private function assign_menu_to_locations_via_rest(string $site_url, array $cookies, array $headers, int $menu_id, int $timeout): void {
+    $rest_url = $site_url . '/wp-json/wp/v2';
+
+    // Lijst van beschikbare locaties ophalen
+    $loc_response = $this->remote_request($rest_url . '/menu-locations', [
+      'method'  => 'GET',
+      'timeout' => max(10, min(30, $timeout)),
+      'cookies' => $cookies,
+      'headers' => $headers,
+    ]);
+
+    if (is_wp_error($loc_response) || (int) ($loc_response['code'] ?? 0) !== 200) {
+      error_log('[AISB] Nav menu: menu-locations endpoint niet bereikbaar (niet-fataal).');
+      return;
+    }
+
+    $locations = json_decode((string) ($loc_response['body'] ?? ''), true);
+    if (!is_array($locations) || empty($locations)) {
+      error_log('[AISB] Nav menu: geen theme locaties gevonden.');
+      return;
+    }
+
+    $assigned_count = 0;
+    foreach ($locations as $location) {
+      if ($assigned_count >= 3) break; // Beperk tot 3 locaties om timeout te vermijden
+
+      $location_slug = $location['slug'] ?? $location['name'] ?? '';
+      if ($location_slug === '') continue;
+
+      $assign_response = $this->remote_request($rest_url . '/menu-locations/' . rawurlencode($location_slug), [
+        'method'  => 'POST',
+        'timeout' => max(10, min(20, $timeout)),
+        'cookies' => $cookies,
+        'headers' => $headers,
+        'body'    => wp_json_encode(['menus' => $menu_id]),
+      ]);
+
+      $assign_code = is_wp_error($assign_response) ? 0 : (int) ($assign_response['code'] ?? 0);
+      if ($assign_code === 200 || $assign_code === 201) {
+        $assigned_count++;
+        error_log('[AISB] Nav menu: toegewezen aan locatie "' . $location_slug . '"');
+      } else {
+        error_log('[AISB] Nav menu: locatie "' . $location_slug . '" HTTP ' . $assign_code . ' (niet-fataal).');
+      }
+    }
+  }
+
+  /**
+   * Fallback: Create a real WordPress navigation menu on the cloned site via
+   * direct database connection. Used when REST API is not available.
+   *
+   * @param array<int, array{title:string, object_id:int, url?:string}> $menu_items
+   */
+  private function configure_remote_nav_menu_via_db(array $clone, array $menu_items, string $menu_name): int {
     $menu_items = array_values(array_filter($menu_items, static function ($item): bool {
       return is_array($item) && trim((string) ($item['title'] ?? '')) !== '';
     }));
@@ -1560,8 +1770,106 @@ class AISB_InstaWP {
     }
 
     error_log('[AISB] Nav menu created in clone database (term id ' . $term_id . ') with ' . $count . ' items.');
+
+    // Wijs het menu ook toe aan de WordPress theme-locaties zodat het zichtbaar is
+    // onder Appearance > Menus en klassieke thema-headers het menu ook kunnen laden.
+    $this->assign_menu_to_theme_locations($connection, $prefix, $term_id);
+
     $connection->close();
     return $term_id;
+  }
+
+  /**
+   * Wijs het gegenereerde nav menu toe aan de actieve WordPress theme locaties
+   * (nav_menu_locations in theme_mods) zodat het direct beschikbaar is onder
+   * Appearance > Menus en in de WordPress customizer.
+   */
+  private function assign_menu_to_theme_locations($connection, string $prefix, int $term_id): void {
+    if ($term_id <= 0) return;
+
+    $options_table = $prefix . 'options';
+
+    // Actief thema ophalen uit de options tabel
+    $stmt = $connection->prepare("SELECT option_value FROM {$options_table} WHERE option_name='stylesheet' LIMIT 1");
+    if (!$stmt) {
+      error_log('[AISB] Nav menu locations: could not query active theme.');
+      return;
+    }
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result ? $result->fetch_assoc() : null;
+    $stmt->close();
+
+    if (!$row || empty($row['option_value'])) {
+      error_log('[AISB] Nav menu locations: active theme not found in options.');
+      return;
+    }
+
+    $theme_slug = (string) $row['option_value'];
+    $theme_mods_key = 'theme_mods_' . $theme_slug;
+
+    // Bestaande theme mods ophalen
+    $stmt = $connection->prepare("SELECT option_value FROM {$options_table} WHERE option_name=? LIMIT 1");
+    if (!$stmt) {
+      error_log('[AISB] Nav menu locations: could not query theme_mods.');
+      return;
+    }
+    $stmt->bind_param('s', $theme_mods_key);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $existing = $result ? $result->fetch_assoc() : null;
+    $stmt->close();
+
+    $theme_mods = [];
+    if ($existing && !empty($existing['option_value'])) {
+      $decoded = maybe_unserialize($existing['option_value']);
+      if (is_array($decoded)) {
+        $theme_mods = $decoded;
+      }
+    }
+
+    // Bepaal welke locaties al geregistreerd zijn; vul ze allemaal in met ons menu
+    $locations = isset($theme_mods['nav_menu_locations']) && is_array($theme_mods['nav_menu_locations'])
+      ? $theme_mods['nav_menu_locations']
+      : [];
+
+    if (empty($locations)) {
+      // Meest voorkomende WordPress/Bricks locatienamen als fallback
+      $locations = [
+        'primary'     => $term_id,
+        'main'        => $term_id,
+        'header'      => $term_id,
+        'main-menu'   => $term_id,
+        'top-menu'    => $term_id,
+      ];
+    } else {
+      // Wijs ons nieuwe menu toe aan elke beschikbare locatie
+      foreach ($locations as $location => $existing_id) {
+        $locations[$location] = $term_id;
+      }
+    }
+
+    $theme_mods['nav_menu_locations'] = $locations;
+    $serialized = serialize($theme_mods);
+
+    if ($existing) {
+      $stmt = $connection->prepare("UPDATE {$options_table} SET option_value=? WHERE option_name=?");
+      if ($stmt) {
+        $stmt->bind_param('ss', $serialized, $theme_mods_key);
+        $stmt->execute();
+        $stmt->close();
+      }
+    } else {
+      $autoload = 'yes';
+      $stmt = $connection->prepare("INSERT INTO {$options_table} (option_name, option_value, autoload) VALUES (?, ?, ?)");
+      if ($stmt) {
+        $stmt->bind_param('sss', $theme_mods_key, $serialized, $autoload);
+        $stmt->execute();
+        $stmt->close();
+      }
+    }
+
+    error_log('[AISB] Nav menu (term_id=' . $term_id . ') assigned to theme locations: ' . implode(', ', array_keys($locations)));
   }
 
   /**

@@ -537,7 +537,6 @@ class AISB_Assets {
             <div class="aisb-sg-head">
               <div>
                 <h3 class="aisb-output-title">Style Guide</h3>
-                <p class="aisb-subtitle">Brand colours · typography · component tokens</p>
               </div>
               <?php if ($project_id) : ?>
                 <div class="aisb-project-switcher">
