@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Startpunt van de stijlgidswizard.
  *
  * Dit bestand laadt na de stapmodules:
@@ -188,13 +188,6 @@
     SG.el.saveButton.addEventListener("click", async function (e) {
       e.preventDefault();
 
-      console.log("[AISB] Save button clicked");
-      console.log("[AISB] projectId:", SG.projectId);
-      console.log("[AISB] extractedColours:", SG.extractedColours);
-      console.log(
-        "[AISB] guide before save:",
-        JSON.parse(JSON.stringify(SG.guide)),
-      );
 
       if (!SG.extractedColours.length) {
         console.warn("[AISB] No extractedColours — aborting save");
@@ -213,20 +206,12 @@
       SG.guide.colours = SG.extractedColours;
       SG.guide.uploadedImages = SG.uploadedImages || [];
 
-      console.log(
-        "[AISB] guide being saved:",
-        JSON.parse(JSON.stringify(SG.guide)),
-      );
 
       // Write to dedicated preview key BEFORE navigation so design.js always
       // has the most recent guide available immediately on step 4.
       try {
         const previewJson = JSON.stringify(SG.guide);
         localStorage.setItem("aisb_sg_preview_" + SG.projectId, previewJson);
-        console.log(
-          "[AISB] preview key written to localStorage, length:",
-          previewJson.length,
-        );
       } catch (e) {
         console.error("[AISB] localStorage write failed:", e);
       }
@@ -234,16 +219,13 @@
       // Persist draft as a secondary fallback
       SG.saveDraft();
 
-      console.log("[AISB] posting to server...");
       const out = await SG.post("aisb_save_style_guide", {
         project_id: SG.projectId,
         style_guide_json: JSON.stringify(SG.guide),
       });
-      console.log("[AISB] server save response:", out);
 
       if (out && out.success) {
         clearDraft();
-        console.log("[AISB] server save OK, navigating...");
       } else {
         console.warn(
           "[AISB] server save FAILED — falling back to localStorage preview key",
@@ -252,7 +234,6 @@
       }
 
       const href = SG.el.saveButton.getAttribute("href");
-      console.log("[AISB] navigating to:", href);
       if (href) window.location.href = href;
     });
 

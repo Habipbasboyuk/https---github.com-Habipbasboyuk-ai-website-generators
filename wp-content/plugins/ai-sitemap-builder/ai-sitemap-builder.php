@@ -44,9 +44,14 @@ require_once __DIR__ . '/includes/step2-wireframes/class-aisb-wireframes-ai.php'
 require_once __DIR__ . '/includes/step2-wireframes/class-aisb-wireframes.php';
 
 // Stap 3: stijlgids genereren en beheren.
+require_once __DIR__ . '/includes/step3-style-guide/class-aisb-sg-ajax.php';
+require_once __DIR__ . '/includes/step3-style-guide/class-aisb-sg-images.php';
+require_once __DIR__ . '/includes/step3-style-guide/class-aisb-sg-wireframes.php';
 require_once __DIR__ . '/includes/step3-style-guide/class-aisb-style-guide.php';
 
 // Stap 4: designpreview, secties vervangen en Figma-export.
+require_once __DIR__ . '/includes/step4-design/class-aisb-design-ajax.php';
+require_once __DIR__ . '/includes/step4-design/class-aisb-design-figma.php';
 require_once __DIR__ . '/includes/step4-design/class-aisb-design.php';
 
 register_activation_hook(__FILE__, ['AISB_Installer', 'activate']);

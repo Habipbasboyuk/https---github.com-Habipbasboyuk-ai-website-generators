@@ -5,10 +5,23 @@ if (!defined('ABSPATH')) exit;
 /**
  * Stap 3: stijlgids.
  *
- * Genereert en beheert merkkleuren, typografie, componentinstellingen,
- * afbeeldingen en logo's voor het gekozen project.
+ * Orkestreert kleuren, typografie en afbeeldingen voor het gekozen project.
+ * AJAX-handlers zitten in sub-klassen; deze klasse beheert assets, shortcode en HTML-render.
  */
 class AISB_Style_Guide {
+
+  /** @var AISB_SG_Ajax */
+  private $ajax;
+  /** @var AISB_SG_Images */
+  private $images;
+  /** @var AISB_SG_Wireframes */
+  private $wireframes;
+
+  public function __construct() {
+    $this->ajax       = new AISB_SG_Ajax();
+    $this->images     = new AISB_SG_Images();
+    $this->wireframes = new AISB_SG_Wireframes();
+  }
 
   /**
    * Registreert shortcodes, assets en AJAX-handlers voor de stijlgids.
@@ -17,37 +30,33 @@ class AISB_Style_Guide {
     add_action('init', [$this, 'register_shortcode']);
     add_action('wp_enqueue_scripts', [$this, 'enqueue_assets']);
 
-    // AJAX-acties voor laden, bewaren, AI-generatie, fonts en afbeeldingen.
-    add_action('wp_ajax_aisb_get_style_guide', [$this, 'ajax_get_style_guide']);
-    add_action('wp_ajax_aisb_save_style_guide', [$this, 'ajax_save_style_guide']);
-    add_action('wp_ajax_aisb_generate_style_guide', [$this, 'ajax_generate_style_guide']);
-    add_action('wp_ajax_aisb_auto_fonts',             [$this, 'ajax_auto_fonts']);
-    add_action('wp_ajax_aisb_get_wireframe_sections', [$this, 'ajax_get_wireframe_sections']);
-    add_action('wp_ajax_aisb_get_unsplash_images',   [$this, 'ajax_get_unsplash_images']);
-    add_action('wp_ajax_aisb_search_similar_images', [$this, 'ajax_search_similar_images']);
-    add_action('wp_ajax_aisb_upload_images',          [$this, 'ajax_upload_images']);
-    add_action('wp_ajax_aisb_upload_logo',            [$this, 'ajax_upload_logo']);
+    add_action('wp_ajax_aisb_get_style_guide',        [$this->ajax,       'ajax_get_style_guide']);
+    add_action('wp_ajax_aisb_save_style_guide',       [$this->ajax,       'ajax_save_style_guide']);
+    add_action('wp_ajax_aisb_generate_style_guide',   [$this->ajax,       'ajax_generate_style_guide']);
+    add_action('wp_ajax_aisb_auto_fonts',             [$this->ajax,       'ajax_auto_fonts']);
+    add_action('wp_ajax_aisb_get_wireframe_sections', [$this->wireframes, 'ajax_get_wireframe_sections']);
+    add_action('wp_ajax_aisb_get_unsplash_images',    [$this->images,     'ajax_get_unsplash_images']);
+    add_action('wp_ajax_aisb_search_similar_images',  [$this->images,     'ajax_search_similar_images']);
+    add_action('wp_ajax_aisb_upload_images',          [$this->images,     'ajax_upload_images']);
+    add_action('wp_ajax_aisb_upload_logo',            [$this->images,     'ajax_upload_logo']);
   }
 
-  // Shortcode voor standalone gebruik van de stijlgids.
   public function register_shortcode(): void {
     add_shortcode('ai_style_guide', [$this, 'render_shortcode']);
   }
 
-  // Assets alleen laden op pagina's waar de stijlgids nodig is.
   public function enqueue_assets(): void {
-    $is_step3 = ((int)($_GET['aisb_step'] ?? 0) === 3); // Alleen in stap 3
-    $has_ctx  = isset($_GET['aisb_project']); // En er moet een project_id in de URL staan
+    $is_step3 = ((int)($_GET['aisb_step'] ?? 0) === 3);
+    $has_ctx  = isset($_GET['aisb_project']);
 
-    $is_sg_shortcode      = $this->current_page_has_shortcode('ai_style_guide'); // Standalone shortcode.
-    $is_builder_shortcode = $this->current_page_has_shortcode('ai_sitemap_builder'); // Builder-shortcode.
-    $is_step3_in_builder  = $is_step3 && $has_ctx; // Stap 3 binnen de builderflow.
+    $is_sg_shortcode      = $this->current_page_has_shortcode('ai_style_guide');
+    $is_builder_shortcode = $this->current_page_has_shortcode('ai_sitemap_builder');
+    $is_step3_in_builder  = $is_step3 && $has_ctx;
 
     if (!$is_sg_shortcode && !$is_step3_in_builder && !$is_builder_shortcode) return;
 
-    // CSS voor de stijlgidsinterface.
     wp_enqueue_style(
-      'aisb-style-guide-style', 
+      'aisb-style-guide-style',
       AISB_PLUGIN_URL . 'assets/style-guide.css',
       [],
       AISB_VERSION
@@ -62,50 +71,14 @@ class AISB_Style_Guide {
       true
     );
 
-    // Hoofdscripts voor logo-upload, kleuren, typografie, afbeeldingen, AI en live preview.
-    wp_enqueue_script(
-      'aisb-sg-core',
-      AISB_PLUGIN_URL . 'assets/js/styleguide/core.js',
-      ['color-thief'],
-      AISB_VERSION,
-      true
-    );
-    wp_enqueue_script(
-      'aisb-sg-helpers',
-      AISB_PLUGIN_URL . 'assets/js/styleguide/helpers.js',
-      ['aisb-sg-core'],
-      AISB_VERSION,
-      true
-    );
-    wp_enqueue_script(
-      'aisb-sg-colours',
-      AISB_PLUGIN_URL . 'assets/js/styleguide/colours.js',
-      ['aisb-sg-helpers'],
-      AISB_VERSION,
-      true
-    );
-    wp_enqueue_script(
-      'aisb-sg-typography',
-      AISB_PLUGIN_URL . 'assets/js/styleguide/typography.js',
-      ['aisb-sg-helpers'],
-      AISB_VERSION,
-      true
-    );
-    wp_enqueue_script(
-      'aisb-sg-images',
-      AISB_PLUGIN_URL . 'assets/js/styleguide/images.js',
-      ['aisb-sg-helpers'],
-      AISB_VERSION,
-      true
-    );
-    wp_enqueue_script(
-      'aisb-style-guide',
-      AISB_PLUGIN_URL . 'assets/js/styleguide/init.js',
-      ['aisb-sg-core', 'aisb-sg-colours', 'aisb-sg-typography', 'aisb-sg-images'],
-      AISB_VERSION,
-      true
-    );
-    // brug tussen serverphp en browser javascript
+    wp_enqueue_script('aisb-sg-core',       AISB_PLUGIN_URL . 'assets/js/styleguide/core.js',       ['color-thief'],                                                          AISB_VERSION, true);
+    wp_enqueue_script('aisb-sg-helpers',    AISB_PLUGIN_URL . 'assets/js/styleguide/helpers.js',    ['aisb-sg-core'],                                                         AISB_VERSION, true);
+    wp_enqueue_script('aisb-sg-colours',    AISB_PLUGIN_URL . 'assets/js/styleguide/colours.js',    ['aisb-sg-helpers'],                                                      AISB_VERSION, true);
+    wp_enqueue_script('aisb-sg-typography', AISB_PLUGIN_URL . 'assets/js/styleguide/typography.js', ['aisb-sg-helpers'],                                                      AISB_VERSION, true);
+    wp_enqueue_script('aisb-sg-images',     AISB_PLUGIN_URL . 'assets/js/styleguide/images.js',     ['aisb-sg-helpers'],                                                      AISB_VERSION, true);
+    wp_enqueue_script('aisb-style-guide',   AISB_PLUGIN_URL . 'assets/js/styleguide/init.js',       ['aisb-sg-core', 'aisb-sg-colours', 'aisb-sg-typography', 'aisb-sg-images'], AISB_VERSION, true);
+
+    // Brug tussen server-PHP en browser-JavaScript.
     wp_localize_script('aisb-sg-core', 'AISB_SG', [
       'ajaxUrl'    => admin_url('admin-ajax.php'),
       'nonce'      => wp_create_nonce('aisb_sg_nonce'),
@@ -115,11 +88,9 @@ class AISB_Style_Guide {
   }
 
   /**
-   * Shared inner HTML for the Style Guide panel.
-   * Used by both the standalone shortcode and the builder Step 3.
+   * Gedeelde HTML voor het stijlgidspaneel.
+   * Gebruikt door zowel de standalone shortcode als de builder stap 3.
    */
-
-  
   public static function render_style_guide_html(int $project_id): void {
     if (!is_user_logged_in()) : ?>
       <p>You must be logged in to use the Style Guide.</p>
@@ -157,7 +128,7 @@ class AISB_Style_Guide {
           <!-- ═══════════════ STEP 1: Colours & Logo ═══════════════ -->
           <div class="aisb-sg-wizard-panel" data-wizard-panel="1">
             <h3 class="aisb-sg-panel-title">Brand Logo & Colours</h3>
-            
+
             <!-- Brand Logo Upload -->
             <div class="aisb-sg-mode-panel" style="margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #e5e7eb;">
               <label class="aisb-label">Brand Logo</label>
@@ -349,791 +320,6 @@ class AISB_Style_Guide {
     </div>
     <?php
     return ob_get_clean();
-  }
-
-  /* ------------------- AJAX ------------------- */
-
-  public function ajax_get_style_guide(): void {
-    $this->require_login();
-    $this->check_nonce();
-    $project_id = isset($_POST['project_id']) ? (int)$_POST['project_id'] : 0;
-    $this->assert_project_ownership($project_id);
-
-    $guide = get_post_meta($project_id, 'aisb_style_guide', true);
-    $data  = $guide ? json_decode((string)$guide, true) : null;
-    // Ensure we always return a JSON object {}, never a JSON array []
-    if (!is_array($data) || array_keys($data) === range(0, count($data) - 1)) {
-      // Either null, or a sequential (indexed) array — treat as empty object
-      $data = [];
-    }
-    wp_send_json_success(['style_guide' => (object) $data]);
-  }
-
-  public function ajax_save_style_guide(): void {
-    $this->require_login();
-    $this->check_nonce();
-
-    // haalt project id uit de post data
-    $project_id = isset($_POST['project_id']) ? (int)$_POST['project_id'] : 0;
-
-    // controleert of de gebruiker eigenaar is van het project
-    $this->assert_project_ownership($project_id);
-
-    // ontvangt de style guide data als json en decodeert deze naar eena array
-    $raw  = isset($_POST['style_guide_json']) ? wp_unslash($_POST['style_guide_json']) : '';
-    $data = json_decode($raw, true);
-
-    if (!is_array($data)) wp_send_json_error(['message' => 'Invalid style_guide_json'], 400);
-
-    // slaat de style guide data op als post meta, geëncodeerd als json
-    update_post_meta($project_id, 'aisb_style_guide', wp_json_encode($data, JSON_UNESCAPED_SLASHES));
-    // stuurt een succes response terug naar de client
-    wp_send_json_success(['ok' => 1]);
-  }
-
-  /**
-   * AJAX: Genereer style guide — ontvangt kleuren van JS, vraagt OpenAI om font-pairings.
-   */
-  public function ajax_generate_style_guide(): void {
-    $this->require_login();
-    $this->check_nonce();
-
-    // controleer project_id en eigenaarschap
-    $project_id = isset($_POST['project_id']) ? (int)$_POST['project_id'] : 0;
-    $this->assert_project_ownership($project_id);
-
-    // Kleuren ontvangen van de client (ColorThief of handmatig)
-    $colours_raw = isset($_POST['colours']) ? wp_unslash($_POST['colours']) : '[]';
-
-    // Decodeer de kleurenlijst en valideer deze
-    $colours = json_decode($colours_raw, true);
-    if (!is_array($colours) || empty($colours)) {
-      wp_send_json_error(['message' => 'No colours supplied'], 400);
-    }
-
-    // Saniteer hex-waarden
-    $colour_list = [];
-    foreach ($colours as $c) {
-
-    // Verwijder alles behalve # en hex-tekens, en zorg dat het veld bestaat
-      $hex = isset($c['hex']) ? preg_replace('/[^#0-9a-fA-F]/', '', $c['hex']) : '';
-      if ($hex) $colour_list[] = $hex;
-    }
-
-
-    if (empty($colour_list)) {
-      wp_send_json_error(['message' => 'No valid hex colours'], 400);
-    }
-
-    // Controleer of de OpenAI API-sleutel is ingesteld in de plugin-instellingen
-    $settings = get_option('aisb_settings', []);
-    if (empty($settings['api_key'])) {
-      wp_send_json_error(['message' => 'OpenAI API key not configured. Go to Settings.'], 400);
-    }
-
-
-    // Prompt voor OpenAI om een font pairing en type scale te genereren op basis van de kleuren. vraag expliciet om alleen JSON terug te geven in een specifiek format, zodat we dit makkelijk kunnen parsen aan de client-side
-    $prompt = "I have the following brand colours: " . implode(', ', $colour_list) . "\n\n"
-      . "Suggest a complementary Google Fonts pairing (one heading font, one body font) that matches these colours' mood.\n"
-      . "Also return a type scale with 5 levels: H1, H2, H3, Body, Small. Include fontSize in px and lineHeight for every level.\n\n"
-      . "Return ONLY valid JSON in this exact format:\n"
-      . '{"heading_font":"Font Name","body_font":"Font Name","type_scale":['
-      . '{"label":"H1","cls":"h1","fontFamily":"HEADING_FONT","fontSize":"64px","lineHeight":"1.05","sample":"Heading One"},'
-      . '{"label":"H2","cls":"h2","fontFamily":"HEADING_FONT","fontSize":"48px","lineHeight":"1.1","sample":"Heading Two"},'
-      . '{"label":"H3","cls":"h3","fontFamily":"HEADING_FONT","fontSize":"36px","lineHeight":"1.15","sample":"Heading Three"},'
-      . '{"label":"Body","cls":"body","fontFamily":"BODY_FONT","fontSize":"18px","lineHeight":"1.6","sample":"The quick brown fox jumps over the lazy dog."},'
-      . '{"label":"Small","cls":"small","fontFamily":"BODY_FONT","fontSize":"14px","lineHeight":"1.5","sample":"Fine print and captions"}'
-      . "]}";
-
-    $system = "You are a brand typography expert. Return ONLY valid JSON, no explanation, no markdown fences.";
-
-
-    // maak contact met openai api
-    $openai = new AISB_OpenAI();
-    // roep de chat completions endpoint aan met het prompt en systeembericht, en de API-sleutel uit de plugin-instellingen. ontvang het resultaat of een WP_Error als er iets misgaat
-    $result = $openai->call_openai_chat_completions($prompt, $settings, $system);
-
-    // als de API-aanroep mislukt of geen geldig antwoord teruggeeft, stuur dan een JSON error response terug naar de client
-    if (is_wp_error($result)) {
-      wp_send_json_error(['message' => $result->get_error_message()]);
-    }
-
-
-    $fonts = json_decode($result, true);
-    if (!is_array($fonts) || empty($fonts['heading_font'])) {
-      wp_send_json_error(['message' => 'Invalid AI response — could not parse font suggestion.']);
-    }
-
-    wp_send_json_success([
-      'fonts'   => $fonts,
-      'colours' => $colours,
-    ]);
-  }
-
-  /**
-   * AJAX: Auto-generate font pairing using AI + validate via Google Fonts API.
-   * Google Fonts API key lives in wp-config.php — never exposed to browser.
-   */
-  public function ajax_auto_fonts(): void {
-    $this->require_login();
-    $this->check_nonce();
-
-    $project_id = isset($_POST['project_id']) ? (int)$_POST['project_id'] : 0;
-    $this->assert_project_ownership($project_id);
-
-    $settings = get_option('aisb_settings', []);
-    if (empty($settings['api_key'])) {
-      wp_send_json_error(['message' => 'OpenAI API key not configured.'], 400);
-    }
-
-    // Get colours from POST
-    $colours_raw = isset($_POST['colours']) ? wp_unslash($_POST['colours']) : '[]';
-    $colours = json_decode($colours_raw, true);
-    $colour_list = [];
-    if (is_array($colours)) {
-      foreach ($colours as $c) {
-        $hex = isset($c['hex']) ? preg_replace('/[^#0-9a-fA-F]/', '', $c['hex']) : '';
-        if ($hex) $colour_list[] = $hex;
-      }
-    }
-
-    // Get site name for context
-    $site_name = get_the_title($project_id) ?: get_bloginfo('name');
-
-    // Build available fonts list from Google Fonts API (if key present)
-    $available_fonts = [];
-    if (defined('AISB_GOOGLE_FONTS_KEY') && AISB_GOOGLE_FONTS_KEY) {
-      $gf_url = add_query_arg([
-        'key'  => AISB_GOOGLE_FONTS_KEY,
-        'sort' => 'popularity',
-      ], 'https://www.googleapis.com/webfonts/v1/webfonts');
-      $gf_response = wp_remote_get($gf_url, ['timeout' => 10]);
-      if (!is_wp_error($gf_response) && wp_remote_retrieve_response_code($gf_response) === 200) {
-        $gf_body = json_decode(wp_remote_retrieve_body($gf_response), true);
-        if (!empty($gf_body['items'])) {
-          // Take top 200 popular fonts for the AI to choose from
-          $items = array_slice($gf_body['items'], 0, 200);
-          foreach ($items as $f) {
-            $available_fonts[] = $f['family'];
-          }
-        }
-      }
-    }
-
-    $font_list_hint = '';
-    if ($available_fonts) {
-      $font_list_hint = "\n\nYou MUST choose ONLY from these Google Fonts (pick two DIFFERENT fonts — one for headings, one for body):\n" . implode(', ', $available_fonts);
-    } else {
-      // Fallback: give the AI a curated list so it doesn't always pick the same generic font
-      $font_list_hint = "\n\nChoose from popular Google Fonts such as: Montserrat, Playfair Display, Raleway, Lora, Poppins, Merriweather, Oswald, Source Sans 3, Nunito, Roboto Slab, Inter, Work Sans, Fira Sans, Libre Baskerville, DM Sans, Josefin Sans, Rubik, Bitter, Karla, Mulish, Cabin, Archivo, Crimson Text, PT Serif, Quicksand, Space Grotesk, Barlow, Cormorant Garamond, Outfit, Sora.";
-    }
-
-    $prompt = "Website name: \"{$site_name}\""
-      . ($colour_list ? "\nBrand colours: " . implode(', ', $colour_list) : '')
-      . "\n\nPick the best Google Fonts pairing (one heading font, one body font) that matches this brand."
-      . " The heading font and body font should be DIFFERENT from each other."
-      . "\n\nAlso pick TWO alternating section background colours for the website layout:"
-      . " - section_bg_1: the main/lighter background (e.g. white, very light tint)"
-      . " - section_bg_2: the alternating background (a noticeably different but still light tint that complements the brand)"
-      . " These two colours MUST be visually distinct from each other — the user must clearly see the alternation."
-      . " They can be e.g. white + light blue, cream + soft lavender, off-white + pale brand tint, etc."
-      . " Do NOT use plain grey. Make it match the brand feel."
-      . " Return them as hex colour values."
-      . $font_list_hint
-      . "\n\nReturn ONLY valid JSON. Replace every placeholder with the actual value you chose. Include fontSize in px and lineHeight for every type_scale item:"
-      . "\n" . '{"heading_font":"<actual heading font name>","body_font":"<actual body font name>","section_bg_1":"<hex>","section_bg_2":"<hex>","type_scale":['
-      . '{"label":"H1","cls":"h1","fontFamily":"<actual heading font name>","fontSize":"64px","lineHeight":"1.05","sample":"Heading One"},'
-      . '{"label":"H2","cls":"h2","fontFamily":"<actual heading font name>","fontSize":"48px","lineHeight":"1.1","sample":"Heading Two"},'
-      . '{"label":"H3","cls":"h3","fontFamily":"<actual heading font name>","fontSize":"36px","lineHeight":"1.15","sample":"Heading Three"},'
-      . '{"label":"Body","cls":"body","fontFamily":"<actual body font name>","fontSize":"18px","lineHeight":"1.6","sample":"The quick brown fox jumps over the lazy dog."},'
-      . '{"label":"Small","cls":"small","fontFamily":"<actual body font name>","fontSize":"14px","lineHeight":"1.5","sample":"Fine print and captions"}'
-      . ']}';
-
-    $openai = new AISB_OpenAI();
-    $result = $openai->call_openai_chat_completions($prompt, $settings, 'You are a brand typography and colour expert. Return ONLY valid JSON, no explanation, no markdown fences. Every fontFamily value must be a real Google Font name, never a placeholder. section_bg_1 and section_bg_2 must be valid hex colours that are visually distinct.');
-
-    if (is_wp_error($result)) {
-      wp_send_json_error(['message' => $result->get_error_message()]);
-    }
-
-    $fonts = json_decode($result, true);
-    if (!is_array($fonts) || empty($fonts['heading_font'])) {
-      wp_send_json_error(['message' => 'Invalid AI response.']);
-    }
-
-    // Safety net: replace any leftover placeholders in type_scale with actual font names
-    $heading = $fonts['heading_font'];
-    $body    = $fonts['body_font'] ?: $heading;
-    if (!empty($fonts['type_scale']) && is_array($fonts['type_scale'])) {
-      foreach ($fonts['type_scale'] as &$item) {
-        if (!isset($item['fontFamily'])) continue;
-        $ff = $item['fontFamily'];
-        // Replace known placeholders the AI might have returned literally
-        if (in_array($ff, ['HEADING_FONT', '<actual heading font name>', 'heading_font', 'Font Name', ''], true)) {
-          $item['fontFamily'] = $heading;
-        } elseif (in_array($ff, ['BODY_FONT', '<actual body font name>', 'body_font', ''], true)) {
-          $item['fontFamily'] = $body;
-        }
-      }
-      unset($item);
-    }
-
-    wp_send_json_success([
-      'fonts'   => $fonts,
-      'colours' => $colours ?: [],
-    ]);
-  }
-
-  /**
-   * AJAX: Fetch Unsplash images based on the project/website name.
-   * The API key lives only in wp-config.php and is never sent to the browser.
-   */
-  public function ajax_get_unsplash_images(): void {
-    $this->require_login();
-    $this->check_nonce();
-
-    $project_id = isset($_POST['project_id']) ? (int)$_POST['project_id'] : 0;
-    $this->assert_project_ownership($project_id);
-
-    if (!defined('AISB_UNSPLASH_KEY') || !AISB_UNSPLASH_KEY) {
-      wp_send_json_error(['message' => 'Unsplash API key not configured (AISB_UNSPLASH_KEY missing from wp-config.php).'], 400);
-    }
-
-    // Derive a search keyword from the project brief (business description)
-    $site_name = get_the_title($project_id) ?: get_bloginfo('name');
-    $brief     = (string) get_post_meta($project_id, 'aisb_project_brief', true);
-    $settings  = get_option('aisb_settings', []);
-
-    // Use the brief as context if available, otherwise fall back to the title
-    $context_for_keyword = $brief ?: $site_name;
-
-    $keyword = 'business'; // safe fallback
-
-    if (!empty($settings['api_key'])) {
-      $openai = new AISB_OpenAI();
-      $prompt = "Website brief: \"{$context_for_keyword}\"\nYour task is to generate a highly relevant search phrase (1 to 3 words max) for Unsplash to find stock photography for this website. Examples: \"hearing clinic\" → \"hearing test\", \"car mechanic\" → \"auto repair\", \"bakery in Amsterdam\" → \"bakery shop\", \"law firm\" → \"lawyer office\". Return ONLY the search phrase in English, nothing else.";
-      $result = $openai->call_openai_chat_completions($prompt, $settings, 'You are a stock photo keyword extractor. Return ONLY 1 to 3 english words. Never return a company name, person name, or URL.');
-      if (!is_wp_error($result)) {
-        $kw = strtolower(trim(wp_strip_all_tags($result)));
-        // Strip punctuation that could break Unsplash
-        $kw = str_replace(array('.', ',', '"', '\'', ':', ';', '{', '}'), '', $kw);
-        if ($kw && strlen($kw) < 60) {
-          $keyword = urlencode($kw);
-        }
-      }
-    } else {
-      // No API key — extract a meaningful word from the brief
-      $source = $brief ?: $site_name;
-      $stop_words = ['agency', 'studio', 'digital', 'creative', 'media', 'group',
-                     'company', 'services', 'solutions', 'consulting', 'co', 'inc',
-                     'ltd', 'bv', 'de', 'het', 'en', 'van', 'voor', 'the', 'and',
-                     'for', 'we', 'our', 'your', 'with', 'are', 'is', 'a', 'an',
-                     'in', 'at', 'of', 'on', 'to', 'that', 'this', 'you', 'all'];
-      $words = preg_split('/[\s\-_&,\.]+/', strtolower(trim($source)));
-      foreach ($words as $w) {
-        $w = preg_replace('/[^a-z]/i', '', $w);
-        if ($w && !in_array($w, $stop_words, true) && strlen($w) > 3) {
-          $keyword = $w;
-          break;
-        }
-      }
-    }
-
-    // How many images do we need?
-    $total_needed = isset($_POST['total_needed']) ? max(1, (int)$_POST['total_needed']) : 30;
-    $total_needed = min($total_needed, 150); // hard cap
-
-    // Fetch from Unsplash — paginate if needed (max 30 per page)
-    $images = [];
-    $pages_needed = (int) ceil($total_needed / 30);
-    for ($page = 1; $page <= $pages_needed; $page++) {
-      $per_page = min(30, $total_needed - count($images));
-      $api_url  = add_query_arg([
-        'query'       => $keyword,
-        'per_page'    => $per_page,
-        'page'        => $page,
-        'orientation' => 'landscape',
-      ], 'https://api.unsplash.com/search/photos');
-
-      $response = wp_remote_get($api_url, [
-        'headers' => [
-          'Authorization'  => 'Client-ID ' . AISB_UNSPLASH_KEY,
-          'Accept-Version' => 'v1',
-        ],
-        'timeout' => 15,
-      ]);
-
-      if (is_wp_error($response)) {
-        wp_send_json_error(['message' => 'Unsplash request failed: ' . $response->get_error_message()]);
-      }
-      $code = wp_remote_retrieve_response_code($response);
-      if ($code !== 200) {
-        wp_send_json_error(['message' => 'Unsplash returned HTTP ' . $code]);
-      }
-
-      $body = json_decode(wp_remote_retrieve_body($response), true);
-      if (!is_array($body) || empty($body['results'])) break;
-
-      foreach ($body['results'] as $photo) {
-        $images[] = [
-          'thumb'        => $photo['urls']['small']   ?? '',
-          'full'         => $photo['urls']['regular'] ?? '',
-          'alt'          => $photo['alt_description'] ?? $keyword,
-          'photographer' => $photo['user']['name']    ?? '',
-          'link'         => $photo['links']['html']   ?? '',
-        ];
-        if (count($images) >= $total_needed) break;
-      }
-      if (count($images) >= $total_needed) break;
-    }
-
-    wp_send_json_success(['images' => $images, 'keyword' => urldecode((string)$keyword)]);
-  }
-
-  /**
-   * AJAX: Search similar Unsplash images for a given keyword.
-   * Used when the user clicks an image to swap it.
-   */
-  public function ajax_search_similar_images(): void {
-    $this->require_login();
-    $this->check_nonce();
-
-    if (!defined('AISB_UNSPLASH_KEY') || !AISB_UNSPLASH_KEY) {
-      wp_send_json_error(['message' => 'Unsplash API key not configured.'], 400);
-    }
-
-    $keyword = isset($_POST['keyword']) ? sanitize_text_field(wp_unslash($_POST['keyword'])) : '';
-    if (!$keyword) {
-      wp_send_json_error(['message' => 'No keyword supplied.'], 400);
-    }
-
-    $page = isset($_POST['page']) ? max(1, (int)$_POST['page']) : 1;
-    $per_page = isset($_POST['per_page']) ? max(1, min(30, (int)$_POST['per_page'])) : 12;
-
-    $api_url = add_query_arg([
-      'query'       => $keyword,
-      'per_page'    => $per_page,
-      'page'        => $page,
-      'orientation' => 'landscape',
-    ], 'https://api.unsplash.com/search/photos');
-
-    $response = wp_remote_get($api_url, [
-      'headers' => [
-        'Authorization'  => 'Client-ID ' . AISB_UNSPLASH_KEY,
-        'Accept-Version' => 'v1',
-      ],
-      'timeout' => 15,
-    ]);
-
-    if (is_wp_error($response)) {
-      wp_send_json_error(['message' => 'Unsplash request failed.']);
-    }
-    if (wp_remote_retrieve_response_code($response) !== 200) {
-      wp_send_json_error(['message' => 'Unsplash returned HTTP ' . wp_remote_retrieve_response_code($response)]);
-    }
-
-    $body = json_decode(wp_remote_retrieve_body($response), true);
-    $images = [];
-    if (!empty($body['results'])) {
-      foreach ($body['results'] as $photo) {
-        $images[] = [
-          'thumb'        => $photo['urls']['small']   ?? '',
-          'full'         => $photo['urls']['regular'] ?? '',
-          'alt'          => $photo['alt_description'] ?? $keyword,
-          'photographer' => $photo['user']['name']    ?? '',
-          'link'         => $photo['links']['html']   ?? '',
-        ];
-      }
-    }
-
-    $total_pages = isset($body['total_pages']) ? (int)$body['total_pages'] : 1;
-    wp_send_json_success(['images' => $images, 'page' => $page, 'total_pages' => $total_pages]);
-  }
-
-  /**
-   * AJAX: Haal wireframe-secties op voor de live preview.
-   * Gebruikt project_id → aisb_latest_sitemap_id → aisb_wireframes tabel.
-   */
-  public function ajax_get_wireframe_sections(): void {
-    $this->require_login();
-    $this->check_nonce();
-
-    // controleer project_id en eigenaarschap
-    $project_id = isset($_POST['project_id']) ? (int)$_POST['project_id'] : 0;
-    $this->assert_project_ownership($project_id);
-
-    // Zoek de laatste sitemap voor dit project
-    $sitemap_id = (int) get_post_meta($project_id, 'aisb_latest_sitemap_id', true);
-    if (!$sitemap_id) {
-      wp_send_json_success(['sections' => []]);
-    }
-
-    // Haal de sitemap JSON op om de eerste pagina te vinden
-    $sitemap_json = get_post_meta($sitemap_id, 'aisb_sitemap_json', true);
-
-    // Decodeer de sitemap JSON en pak de pagina's eruit (onder 'sitemap' of 'pages', afhankelijk van het format)
-    $sitemap_data = $sitemap_json ? json_decode((string)$sitemap_json, true) : [];
-
-    // Haal alle pagina slugs op uit de sitemap
-    $page_slugs = [];
-    $sitemap_pages = [];
-    if (!empty($sitemap_data['sitemap']) && is_array($sitemap_data['sitemap'])) {
-      $sitemap_pages = $sitemap_data['sitemap'];
-    } elseif (!empty($sitemap_data['pages']) && is_array($sitemap_data['pages'])) {
-      $sitemap_pages = $sitemap_data['pages'];
-    }
-    foreach ($sitemap_pages as $p) {
-      $slug = $p['slug'] ?? $p['page_slug'] ?? $p['url'] ?? $p['path'] ?? '';
-      $slug = sanitize_title($slug);
-      if ($slug) $page_slugs[] = $slug;
-    }
-    if (empty($page_slugs)) {
-      wp_send_json_success(['pages' => []]);
-    }
-
-    // Haal alle wireframe models op uit de database
-    global $wpdb;
-    $table = $wpdb->prefix . 'aisb_wireframes';
-    $placeholders = implode(',', array_fill(0, count($page_slugs), '%s'));
-    $query_args   = array_merge([$project_id, $sitemap_id], $page_slugs);
-    // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-    $rows = $wpdb->get_results($wpdb->prepare(
-      "SELECT page_slug, model_json FROM {$table} WHERE project_id=%d AND sitemap_version_id=%d AND page_slug IN ({$placeholders})",
-      ...$query_args
-    ), ARRAY_A);
-
-    // Zet de rows om in een slug-geïndexeerde map
-    $models_by_slug = [];
-    foreach (($rows ?: []) as $row) {
-      $models_by_slug[$row['page_slug']] = json_decode($row['model_json'], true);
-    }
-
-    // Bouw het resultaat op per pagina (behoud volgorde van de sitemap)
-    $result_pages = [];
-    $total_media = 0;
-    foreach ($page_slugs as $slug) {
-      $model = $models_by_slug[$slug] ?? null;
-      if (!$model || empty($model['sections'])) continue;
-      $sections = [];
-      foreach ($model['sections'] as $s) {
-        $ai_id    = !empty($s['ai_wireframe_id']) ? (int) $s['ai_wireframe_id'] : 0;
-        $tmpl_id  = !empty($s['bricks_template_id']) ? (int) $s['bricks_template_id'] : 0;
-
-        // Count image elements in actual bricks_elements (matches Figma-plugin traversal).
-        $post_id_for_schema = $ai_id ?: $tmpl_id;
-        $media_count = 0;
-        if ($post_id_for_schema) {
-          $bricks_elements = [];
-          foreach (['_bricks_page_content_2', '_bricks_data', '_bricks_page_header_2', '_bricks_page_footer_2'] as $meta_key) {
-            $raw = get_post_meta($post_id_for_schema, $meta_key, true);
-            if (is_array($raw) && !empty($raw)) {
-              $bricks_elements = $raw;
-              break;
-            }
-            if (is_string($raw) && $raw !== '') {
-              $decoded = json_decode($raw, true);
-              if (is_array($decoded) && !empty($decoded)) {
-                $bricks_elements = $decoded;
-                break;
-              }
-            }
-          }
-          if (!empty($bricks_elements)) {
-            $media_count = $this->count_bricks_image_elements($bricks_elements);
-          } else {
-            // Fallback: schema-based count
-            $schema = $this->extract_content_schema($post_id_for_schema, $s['type'] ?? 'generic');
-            if ($schema && !empty($schema['elements'])) {
-              foreach ($schema['elements'] as $el) {
-                if (($el['tag'] ?? '') === 'media') $media_count++;
-              }
-            }
-          }
-        }
-        // Hard cap per section: real sections rarely need more than 16 unique stock photos
-        // (gallery sections kunnen meerdere images bevatten).
-        $media_count = min($media_count, 16);
-        $total_media += $media_count;
-
-        // Laad eerder opgeslagen design-patches (tekst/stijl/afbeelding-aanpassingen).
-        $patch_raw  = $ai_id ? (string) get_post_meta($ai_id, '_aisb_design_patch', true) : '';
-        $patch_data = ($patch_raw !== '') ? json_decode($patch_raw, true) : [];
-        if (!is_array($patch_data)) $patch_data = [];
-
-        $sections[] = [
-          'type'               => $s['type'] ?? 'generic',
-          'uuid'               => $s['uuid'] ?? '',
-          'ai_wireframe_id'    => $ai_id,
-          'bricks_template_id' => $tmpl_id,
-          'layout_key'         => $s['layout_key'] ?? '',
-          'media_count'        => $media_count,
-          'patch'              => $patch_data,
-          'bg_index'           => isset($s['bg_index']) ? (int) $s['bg_index'] : null,
-        ];
-      }
-      $result_pages[] = [
-        'slug'               => $slug,
-        'title'              => $model['page']['title'] ?? ucfirst(str_replace('-', ' ', $slug)),
-        'sitemap_version_id' => $sitemap_id,
-        'sections'           => $sections,
-      ];
-    }
-
-    wp_send_json_success(['pages' => $result_pages, 'total_media' => $total_media]);
-  }
-
-  /* ------------------- Helpers ------------------- */
-
-  /**
-   * Extract a content schema from an ai_wireframe post's Bricks element data.
-   * Produces a { type, elements: [...] } object the JS skeleton renderer can use
-   * with real AI-generated text instead of dummy placeholders.
-   */
-  /**
-   * Recursively count Bricks 'image' elements in an elements array.
-   * This matches the same traversal the Figma-plugin uses when scanning bricks_elements.
-   * Includes both 'image' elements and 'image-gallery' element items.
-   */
-  private function count_bricks_image_elements(array $elements): int {
-    $count = 0;
-    foreach ($elements as $el) {
-      if (!is_array($el)) continue;
-      $name = $el['name'] ?? '';
-      if ($name === 'image') {
-        $count++;
-      } elseif ($name === 'image-gallery') {
-        $items = $el['settings']['items']['images'] ?? [];
-        if (is_array($items)) {
-          $count += count($items);
-        }
-      }
-      if (!empty($el['children']) && is_array($el['children'])) {
-        $count += $this->count_bricks_image_elements($el['children']);
-      }
-    }
-    return $count;
-  }
-
-  private function extract_content_schema(int $post_id, string $section_type): ?array {
-    $elements = get_post_meta($post_id, '_bricks_page_content_2', true);
-    if (!is_array($elements) || empty($elements)) return null;
-
-    $text_keys = ['text', 'title', 'subtitle', 'heading', 'content', 'description',
-                  'label', 'buttonText', 'link_text', 'tag_line', 'quote', 'name'];
-
-    $schema_elements = [];
-
-    foreach ($elements as $node) {
-      if (empty($node['settings'])) continue;
-      $name = $node['name'] ?? '';
-      $s    = $node['settings'];
-
-      // Heading elements
-      if (in_array($name, ['heading', 'post-title'], true) || !empty($s['tag']) && in_array($s['tag'] ?? '', ['h1','h2','h3','h4'])) {
-        $txt = $this->first_text($s, ['text', 'title', 'heading', 'content']);
-        if ($txt) {
-          $tag_val = $s['tag'] ?? ($section_type === 'hero' ? 'h1' : 'h2');
-          $schema_elements[] = ['tag' => $tag_val, 'text' => $txt];
-        }
-        continue;
-      }
-
-      // Text / rich-text / paragraph
-      if (in_array($name, ['text', 'text-basic', 'rich-text', 'post-excerpt', 'post-content'], true)) {
-        $txt = $this->first_text($s, ['text', 'content', 'description']);
-        if ($txt) {
-          // Strip HTML tags for clean preview
-          $txt = wp_strip_all_tags($txt);
-          if (mb_strlen($txt) > 200) $txt = mb_substr($txt, 0, 200) . '…';
-          $schema_elements[] = ['tag' => 'p', 'text' => $txt];
-        }
-        continue;
-      }
-
-      // Buttons
-      if (in_array($name, ['button', 'icon-button'], true)) {
-        $txt = $this->first_text($s, ['text', 'label', 'buttonText', 'link_text']);
-        if ($txt) {
-          $schema_elements[] = ['tag' => 'button', 'text' => $txt];
-        }
-        continue;
-      }
-
-      // Images / video — only real photo slots, not logos/icons/svgs
-      if (in_array($name, ['image', 'video', 'photo', 'media', 'post-image', 'featured-image'], true)) {
-        $schema_elements[] = ['tag' => 'media', 'text' => ucfirst($name)];
-        continue;
-      }
-      if (in_array($name, ['image-gallery', 'image-slider', 'image-carousel'], true)) {
-        $stored = !empty($s['images']) && is_array($s['images']) ? count($s['images']) : 1;
-        // Cap at 6: gallery templates often store many placeholder images; the
-        // rendered section rarely shows more than 6 unique visible slots.
-        $img_count = min(max(1, $stored), 6);
-        for ($gi = 0; $gi < $img_count; $gi++) {
-          $schema_elements[] = ['tag' => 'media', 'text' => 'Gallery image'];
-        }
-        continue;
-      }
-
-      // For any other element with text content, add as paragraph
-      $txt = $this->first_text($s, $text_keys);
-      if ($txt && mb_strlen(wp_strip_all_tags($txt)) > 5) {
-        $clean = wp_strip_all_tags($txt);
-        if (mb_strlen($clean) > 200) $clean = mb_substr($clean, 0, 200) . '…';
-        // Determine tag based on content
-        if (!empty($s['tag']) && in_array($s['tag'], ['h1','h2','h3','h4'])) {
-          $schema_elements[] = ['tag' => $s['tag'], 'text' => $clean];
-        } else {
-          $schema_elements[] = ['tag' => 'p', 'text' => $clean];
-        }
-      }
-    }
-
-    if (empty($schema_elements)) return null;
-
-    return [
-      'type'     => $section_type,
-      'elements' => $schema_elements,
-    ];
-  }
-
-  /**
-   * Return the first non-empty text value from a settings array, checking the given keys.
-   */
-  private function first_text(array $settings, array $keys): string {
-    foreach ($keys as $k) {
-      if (!empty($settings[$k]) && is_string($settings[$k])) {
-        return trim($settings[$k]);
-      }
-    }
-    return '';
-  }
-
-  private function require_login(): void {
-    if (!is_user_logged_in()) {
-      wp_send_json_error(['message' => 'Not logged in'], 401);
-    }
-  }
-
-  private function check_nonce(): void {
-    $nonce  = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
-    $ok_sg  = $nonce && wp_verify_nonce($nonce, 'aisb_sg_nonce');
-    $ok_core = $nonce && wp_verify_nonce($nonce, 'aisb_nonce_action');
-    if (!$ok_sg && !$ok_core) {
-      wp_send_json_error(['message' => 'Bad nonce'], 403);
-    }
-  }
-
-  private function assert_project_ownership(int $project_id): void {
-    if (!$project_id) wp_send_json_error(['message' => 'Missing project_id'], 400);
-    $post = get_post($project_id);
-    if (!$post || $post->post_type !== 'aisb_project') {
-      wp_send_json_error(['message' => 'Project not found'], 404);
-    }
-    if ((int)$post->post_author !== (int)get_current_user_id()) {
-      wp_send_json_error(['message' => 'Forbidden'], 403);
-    }
-  }
-
-  /**
-   * AJAX: Upload images to the WP Media Library.
-   * Accepts multipart file uploads, returns image objects.
-   */
-  public function ajax_upload_images(): void {
-    $this->require_login();
-    // nonce sent as form field
-    $nonce  = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
-    $ok_sg  = $nonce && wp_verify_nonce($nonce, 'aisb_sg_nonce');
-    $ok_core = $nonce && wp_verify_nonce($nonce, 'aisb_nonce_action');
-    if (!$ok_sg && !$ok_core) {
-      wp_send_json_error(['message' => 'Bad nonce'], 403);
-    }
-
-    if (empty($_FILES['images'])) {
-      wp_send_json_error(['message' => 'No files uploaded.'], 400);
-    }
-
-    require_once ABSPATH . 'wp-admin/includes/image.php';
-    require_once ABSPATH . 'wp-admin/includes/file.php';
-    require_once ABSPATH . 'wp-admin/includes/media.php';
-
-    $files = $_FILES['images'];
-    $results = [];
-    $count = is_array($files['name']) ? count($files['name']) : 1;
-
-    for ($i = 0; $i < $count; $i++) {
-      // Build a single-file $_FILES entry for media_handle_upload
-      $single = [
-        'name'     => is_array($files['name'])     ? $files['name'][$i]     : $files['name'],
-        'type'     => is_array($files['type'])     ? $files['type'][$i]     : $files['type'],
-        'tmp_name' => is_array($files['tmp_name']) ? $files['tmp_name'][$i] : $files['tmp_name'],
-        'error'    => is_array($files['error'])    ? $files['error'][$i]    : $files['error'],
-        'size'     => is_array($files['size'])      ? $files['size'][$i]     : $files['size'],
-      ];
-
-      // Validate it's actually an image
-      $check = wp_check_filetype($single['name']);
-      if (empty($check['type']) || strpos($check['type'], 'image/') !== 0) {
-        continue;
-      }
-
-      $_FILES['aisb_upload'] = $single;
-      $attachment_id = media_handle_upload('aisb_upload', 0);
-      if (is_wp_error($attachment_id)) {
-        continue;
-      }
-
-      $thumb = wp_get_attachment_image_url($attachment_id, 'medium') ?: '';
-      $full  = wp_get_attachment_image_url($attachment_id, 'large')  ?: wp_get_attachment_url($attachment_id);
-      $alt   = get_post_meta($attachment_id, '_wp_attachment_image_alt', true) ?: '';
-
-      $results[] = [
-        'thumb'        => $thumb,
-        'full'         => $full,
-        'alt'          => $alt,
-        'photographer' => 'Uploaded',
-        'link'         => '',
-        'uploaded'     => true,
-        'attachment_id' => $attachment_id,
-      ];
-    }
-
-    if (empty($results)) {
-      wp_send_json_error(['message' => 'No valid images could be uploaded.'], 400);
-    }
-
-    wp_send_json_success(['images' => $results]);
-  }
-
-  /**
-   * AJAX: Upload logo to WP Media Library. Returns the attachment URL.
-   */
-  public function ajax_upload_logo(): void {
-    $this->require_login();
-    $this->check_nonce();
-
-    if (empty($_FILES['logo'])) {
-      wp_send_json_error(['message' => 'No file uploaded.'], 400);
-    }
-
-    require_once ABSPATH . 'wp-admin/includes/image.php';
-    require_once ABSPATH . 'wp-admin/includes/file.php';
-    require_once ABSPATH . 'wp-admin/includes/media.php';
-
-    $file  = $_FILES['logo'];
-    $check = wp_check_filetype($file['name']);
-    if (empty($check['type']) || strpos($check['type'], 'image/') !== 0) {
-      wp_send_json_error(['message' => 'Invalid file type — only images allowed.'], 400);
-    }
-
-    $_FILES['aisb_logo'] = $file;
-    $attachment_id = media_handle_upload('aisb_logo', 0);
-    if (is_wp_error($attachment_id)) {
-      wp_send_json_error(['message' => $attachment_id->get_error_message()], 500);
-    }
-
-    $url = wp_get_attachment_image_url($attachment_id, 'full') ?: wp_get_attachment_url($attachment_id);
-    wp_send_json_success(['url' => $url, 'attachment_id' => $attachment_id]);
   }
 
   private function current_page_has_shortcode(string $shortcode): bool {

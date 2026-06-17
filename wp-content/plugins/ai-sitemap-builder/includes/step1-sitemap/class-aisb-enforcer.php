@@ -223,42 +223,6 @@ class AISB_Enforcer {
       $names[$key] = true;
     };
 
-    /*if ($is_blog_listing) {
-      $sections = [];
-      $ensure('Navbar', 'Primary navigation and key CTAs.', ['Logo', 'Menu items', 'CTA button'], 'Headers');
-      $ensure('Blog Hero', 'Introduce the blog and highlight featured content.', ['Title', 'Intro text', 'Featured posts'], 'Blog Sections');
-      $ensure('Blog List', 'List all blog posts with filters/search.', ['Post cards', 'Categories/tags', 'Pagination'], 'Blog Sections');
-      $ensure('Footer', 'Secondary navigation, trust, and contact details.', ['Links', 'Contact info', 'Legal', 'Social links'], 'Footers');
-    } else {
-
-      $min = 5;
-      $max = 10;
-      $count = count($sections);
-      $pad = [
-        ['Social proof', 'Build trust quickly.', ['Testimonials', 'Logos', 'Ratings'], 'Testimonial Sections'],
-        ['Services overview', 'Preview key offerings.', ['Service cards', 'Benefits', 'CTA to Services'], 'Feature Sections'],
-        ['Process', 'Explain how it works.', ['Steps', 'Timeline', 'What to expect'], 'Process Sections'],
-        ['FAQ', 'Answer common objections.', ['Pricing', 'Scope', 'Support'], 'FAQ Sections'],
-        ['CTA', 'Drive the next step.', ['Call booking', 'Contact link', 'Offer summary'], 'CTA Sections'],
-      ];
-      foreach ($pad as $block) {
-        if ($count >= $min) break;
-        $ensure($block[0], $block[1], $block[2], $block[3]);
-        $count = count($sections);
-      }
-
-      if (count($sections) > $max) {
-        $required = ['navbar', 'hero', 'footer'];
-        $req = [];
-        $other = [];
-        foreach ($sections as $s) {
-          $n = strtolower((string)($s['section_name'] ?? ''));
-          if (in_array($n, $required, true)) $req[] = $s; else $other[] = $s;
-        }
-        $sections = array_merge($req, array_slice($other, 0, $max - count($req)));
-      }
-    } */
-
     foreach ($sections as $idx => $s) {
       $sections[$idx]['section_type'] = $this->coerce_section_type($s['section_type'] ?? '', $s['section_name'] ?? '');
       if (!isset($sections[$idx]['purpose'])) $sections[$idx]['purpose'] = '';

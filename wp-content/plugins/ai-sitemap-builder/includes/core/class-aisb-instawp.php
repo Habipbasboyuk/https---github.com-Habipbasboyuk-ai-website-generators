@@ -1596,9 +1596,10 @@ class AISB_InstaWP {
     $postmeta_table           = $prefix . 'postmeta';
     $term_relationships_table = $prefix . 'term_relationships';
 
+    // Check if the menu already exists (by slug or name). If it does, delete its items first.
     $term_id = 0;
     $term_taxonomy_id = 0;
-
+    // stmt voor bestrijding sql injection
     $stmt = $connection->prepare("SELECT t.term_id, tt.term_taxonomy_id FROM {$terms_table} t INNER JOIN {$term_taxonomy_table} tt ON tt.term_id=t.term_id WHERE tt.taxonomy='nav_menu' AND (t.slug=? OR t.name=?) ORDER BY t.term_id ASC LIMIT 1");
     if ($stmt) {
       $stmt->bind_param('ss', $menu_slug, $menu_name);

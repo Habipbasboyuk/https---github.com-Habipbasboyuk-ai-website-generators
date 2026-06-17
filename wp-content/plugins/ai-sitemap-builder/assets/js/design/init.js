@@ -1,4 +1,4 @@
-/**
+﻿/**
  * design/init.js - Bootstrap: laadt de stijlgids en wireframes en bouwt daarna het canvas.
  *
  * Laadvolgorde:
@@ -17,23 +17,12 @@
     D.canvasEl.innerHTML =
       '<div class="aisb-design-empty">Loading design preview…</div>';
 
-    console.log("[AISB design] init, projectId:", D.projectId);
 
     // ── 1. Inline guide — PHP embedt verse DB-data in het HTML-attribuut.
     try {
       const inlineRaw = D.root.getAttribute("data-design-guide");
-      console.log(
-        "[AISB design] inline data-design-guide length:",
-        inlineRaw ? inlineRaw.length : 0,
-      );
       if (inlineRaw && inlineRaw !== "{}") {
         D.guide = JSON.parse(inlineRaw);
-        console.log(
-          "[AISB design] inline guide parsed — colours:",
-          D.guide.colours && D.guide.colours.length,
-          "headingFont:",
-          D.guide.headingFont,
-        );
       }
     } catch (e) {
       console.error("[AISB design] failed to parse inline guide:", e);
@@ -43,18 +32,10 @@
     //    vóór de navigatie; wordt bovenop de inline data toegepast als extra veiligheidsnet.
     try {
       const previewRaw = localStorage.getItem("aisb_sg_preview_" + D.projectId);
-      console.log(
-        "[AISB design] localStorage preview key present:",
-        !!previewRaw,
-      );
       if (previewRaw) {
         const pg = JSON.parse(previewRaw);
         if (pg && Object.keys(pg).length) Object.assign(D.guide, pg);
         localStorage.removeItem("aisb_sg_preview_" + D.projectId);
-        console.log(
-          "[AISB design] preview key applied — colours:",
-          D.guide.colours && D.guide.colours.length,
-        );
       }
     } catch (e) {
       console.error("[AISB design] preview key parse failed:", e);
@@ -67,7 +48,6 @@
       !D.guide.colours.length ||
       !D.guide.images ||
       !D.guide.images.length;
-    console.log("[AISB design] needsGuide (AJAX fallback):", needsGuide);
     const reqs = [
       D.post("aisb_get_wireframe_sections", { project_id: D.projectId }),
     ];
@@ -78,10 +58,6 @@
 
     if (wfRes && wfRes.success && wfRes.data.pages) {
       D.wireframePages = wfRes.data.pages;
-      console.log(
-        "[AISB design] wireframe pages loaded:",
-        D.wireframePages.length,
-      );
 
       // Bouw _savedPatches: postId → patch-array, afkomstig uit de wireframe-response.
       D._savedPatches = {};
@@ -121,18 +97,10 @@
           if (draft && draft.guide) Object.assign(D.guide, draft.guide);
           if (draft && draft.colours && draft.colours.length)
             D.guide.colours = draft.colours;
-          console.log(
-            "[AISB design] draft applied — colours:",
-            D.guide.colours && D.guide.colours.length,
-          );
         }
       } catch (e) {}
     }
 
-    console.log(
-      "[AISB design] final guide:",
-      JSON.parse(JSON.stringify(D.guide)),
-    );
     D.buildDesignCanvas();
 
     // Koppel de opslaan-knop in de toolbar aan D.saveAllEdits().

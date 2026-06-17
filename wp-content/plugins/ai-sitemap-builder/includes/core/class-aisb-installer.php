@@ -17,6 +17,7 @@ class AISB_Installer {
     self::maybe_install();
   }
 
+  // Controleert of de database up-to-date is en voert zo niet de installatie/migratie uit. Wordt ook aangeroepen bij plugin-updates.
   public static function maybe_install(): void {
     $current = (int) get_option(self::DB_VERSION_OPT, 0);
     if ($current >= self::DB_VERSION) return;
@@ -64,6 +65,7 @@ class AISB_Installer {
       KEY created_by (created_by)
     ) {$charset_collate};";
 
+// dbDelta() vergelijkt de huidige tabellen met de opgegeven SQL en past aan waar nodig, zonder data te verliezen. Het kan ook nieuwe tabellen aanmaken.
     dbDelta($sql1);
     dbDelta($sql2);
 
